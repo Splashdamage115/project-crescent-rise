@@ -3,11 +3,12 @@
 #include "Library.h"
 #include "Window.h"
 
-class GameLoop
+class Game
 {
 public:
 	int playGame();
 
+	static double deltaTime;
 private:
 	Window m_window;
 };
