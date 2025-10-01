@@ -8,6 +8,7 @@ int main()
         return -1;
 
     Game game;
+    game.initGame();
     game.playGame();
 
     glfwTerminate();

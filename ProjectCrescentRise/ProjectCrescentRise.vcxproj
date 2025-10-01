@@ -133,14 +133,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CubeBody.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjects.cpp" />
+    <ClCompile Include="ScriptObject.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CubeBody.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Library.h" />
+    <ClInclude Include="ScriptObject.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

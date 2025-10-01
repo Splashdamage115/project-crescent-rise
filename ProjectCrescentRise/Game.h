@@ -6,9 +6,11 @@
 class Game
 {
 public:
+	void initGame();
+
 	int playGame();
 
-	static double deltaTime;
+	static double deltaTime;	
 private:
 	Window m_window;
 };
