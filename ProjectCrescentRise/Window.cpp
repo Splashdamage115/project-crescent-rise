@@ -69,7 +69,7 @@ void Window::render()
 
     // Put the shader program, and the VAO, in focus in OpenGL's state machine.
     glUseProgram(shader_program);
- //   glBindVertexArray(vao);
+    glBindVertexArray(vao);
  
     // Draw points 0-3 from the currently bound VAO with current in-use shader.
     glDrawArrays(GL_TRIANGLES, 0, 3);
