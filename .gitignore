@@ -21,7 +21,6 @@
 # Ignore build results and cache files
 *.obj
 *.bin
-*.dll
 *.exe
 *.log
 *.pdb

@@ -140,6 +140,7 @@
     <ClCompile Include="ScriptObject.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Update.cpp" />
+    <ClCompile Include="ShaderPrograms.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="Library.h" />
     <ClInclude Include="ScriptObject.h" />
     <ClInclude Include="Update.h" />
+    <ClInclude Include="ShaderPrograms.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

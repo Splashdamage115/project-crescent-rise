@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "ShaderPrograms.h"
 
 Window::Window()
 {
@@ -8,9 +9,10 @@ Window::Window()
         glfwTerminate();
         return;
     }
-
     /* Make the window's context current */
     glfwMakeContextCurrent(m_window);
+    glewInit();
+    VertexShaders::initialise();
 }
 
 Window::~Window()
@@ -29,7 +31,7 @@ void Window::render()
    0.5f, -0.5f,  0.0f,
   -0.5f, -0.5f,  0.0f
     };
-    GLuint vbo = 0;
+    GLuint vbo;
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
@@ -41,28 +43,25 @@ void Window::render()
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-    const char* vertex_shader =
-        "#version 410 core\n"
-        "in vec3 vp;"
-        "void main() {"
-        "  gl_Position = vec4( vp, 1.0 );"
-        "}";
+
+
+
+
     const char* fragment_shader =
         "#version 410 core\n"
         "out vec4 frag_colour;"
         "void main() {"
-        "  frag_colour = vec4( 0.5, 0.0, 0.5, 1.0 );"
+        "  frag_colour = vec4( 0.0, 0.0, 0.5, 1.0 );"
         "}";
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vs, 1, &vertex_shader, NULL);
-    glCompileShader(vs);
+
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &fragment_shader, NULL);
     glCompileShader(fs);
 
+
     GLuint shader_program = glCreateProgram();
     glAttachShader(shader_program, fs);
-    glAttachShader(shader_program, vs);
+    VertexShaders::LoadShader(VertexShaders::VertexShaderType::standardBlue, shader_program);
     glLinkProgram(shader_program);
     /* Render here */
     glClear(GL_COLOR_BUFFER_BIT);

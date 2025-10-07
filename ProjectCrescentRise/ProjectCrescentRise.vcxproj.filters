@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Scripts">
       <UniqueIdentifier>{81734abf-3343-4858-9b07-ffc21b8eb680}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Shaders">
+      <UniqueIdentifier>{548a6851-6886-4ff9-b92d-8d021b331fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{ae96c193-4efa-4b36-bdad-dafb752e1952}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -51,6 +57,9 @@
     <ClCompile Include="CubeBody.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="ShaderPrograms.cpp">
+      <Filter>Source Files\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -76,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="CubeBody.h">
       <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderPrograms.h">
+      <Filter>Header Files\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
