@@ -8,3 +8,5 @@
 - Overhauled all rendering pipeline objects to class model, also now using scripts in objects
 - Fragment Shader and vertex Shader storage system, specific formatting for easy understanding
 - GameObject pool is self contained and calls all functions necessary
+- added the mathmatical functionality to move objects across the screen efficiently
+- changed the vertex shader to account for movement
