@@ -8,6 +8,6 @@ public:
 	virtual void Start()override;
 	virtual void Render()override;
 private:
-
+	
 };
 

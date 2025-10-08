@@ -21,12 +21,14 @@ void billboard2D::Start()
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::standard);
 }
 
 void billboard2D::Render()
 {
     // Put the shader program, and the VAO, in focus in OpenGL's state machine.
-    VertexShaders::LoadShader(Shader::VertexShaderType::standardBlue, Shader::FragmentShaderType::standard);
+    VertexShaders::LoadShader(m_shader);
 
     glBindVertexArray(m_body.vao);
 

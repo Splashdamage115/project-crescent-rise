@@ -18,5 +18,6 @@ public:
 	virtual void Render() override {}
 protected:
 	renderObject m_body;
+	std::shared_ptr<Shader> m_shader;
 };
 
