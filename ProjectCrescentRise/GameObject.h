@@ -13,7 +13,7 @@ public:
 	bool addScript(std::shared_ptr<ScriptObject> t_newScript);
 	void callRenders();
 
-	Transform transform{};
+	std::shared_ptr<Transform> transform;
 
 	bool active = false;
 	bool hidden = false;

@@ -19,5 +19,10 @@ public:
 protected:
 	renderObject m_body;
 	std::shared_ptr<Shader> m_shader;
+	
+	GLint uModelLoc = -1;
+	GLint uViewLoc = -1;
+	GLint uProjLoc = -1;
+
 };
 

@@ -9,10 +9,14 @@ void VertexShaders::initialise()
 {
     const char* newVertex =
         "#version 410 core\n"
-        "in vec3 vp;"
-        "void main() {"
-        "  gl_Position = vec4( vp, 1.0 );"
-        "}";
+        "layout (location = 0) in vec3 aPos;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "void main() {\n"
+        "    gl_Position = uProj * uView * uModel * vec4(aPos, 1.0);\n"
+        "}\n";
+
 
     ShaderFilesVertex newVertexPair;
     newVertexPair.vertexType = Shader::VertexShaderType::standard;

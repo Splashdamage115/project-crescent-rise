@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "Update.h"
 #include "GameObjects.h"
-#include "CubeBody.h"
+#include "Mover.h"
 #include "billboard2D.h"
 
 double Game::deltaTime = 0;
@@ -9,7 +9,9 @@ double Game::deltaTime = 0;
 void Game::initGame()
 {
 	GameObject obj;
-	obj.addScript(std::make_shared<CubeBody>());
+	std::shared_ptr<Mover> mover = std::make_shared<Mover>();
+	mover->velocity = glm::vec3(0.0f, 0.0f, 0.5f);
+	obj.addScript(mover);
 	obj.addScript(std::make_shared<billboard2D>());
 	GameObjects::addNewObjectToPool(obj);
 }

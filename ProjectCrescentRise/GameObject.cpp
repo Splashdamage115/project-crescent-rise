@@ -4,19 +4,20 @@
 
 GameObject::GameObject()
 {
+	transform = std::make_shared<Transform>();
 	active = true;
 }
 
 void GameObject::move(const glm::vec3& delta)
 {
-	transform.position += delta;
+	transform->position += delta;
 }
 
 bool GameObject::addScript(std::shared_ptr<ScriptObject> t_newScript)
 {
 	try {
 		// TO DO: fix this potential circular include of self stopping self destruction
-		t_newScript->setTransform(std::make_shared<Transform>(transform));
+		t_newScript->setTransform(transform);
 
 		t_newScript->Start();
 

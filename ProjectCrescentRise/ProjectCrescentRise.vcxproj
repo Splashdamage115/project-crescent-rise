@@ -134,7 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="billboard2D.cpp" />
-    <ClCompile Include="CubeBody.cpp" />
+    <ClCompile Include="Mover.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjects.cpp" />
@@ -147,7 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="billboard2D.h" />
-    <ClInclude Include="CubeBody.h" />
+    <ClInclude Include="Mover.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjects.h" />

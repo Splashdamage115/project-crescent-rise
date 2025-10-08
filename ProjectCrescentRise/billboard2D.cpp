@@ -23,14 +23,28 @@ void billboard2D::Start()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
     m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::standard);
+
+    uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
+    uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
+    uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
+
 }
 
 void billboard2D::Render()
 {
-    // Put the shader program, and the VAO, in focus in OpenGL's state machine.
     VertexShaders::LoadShader(m_shader);
 
     glBindVertexArray(m_body.vao);
+
+    glm::mat4 model = transform ? ToModelMatrix(*transform) : glm::mat4(1.0f);
+    glm::mat4 view = glm::mat4(1.0f);
+    glm::mat4 proj = glm::mat4(1.0f);
+
+    if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, &model[0][0]);
+    if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, &view[0][0]);
+    if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, &proj[0][0]);
+
+
 
     // Draw points 0-3 from the currently bound VAO with current in-use shader.
     glDrawArrays(GL_TRIANGLES, 0, 6);

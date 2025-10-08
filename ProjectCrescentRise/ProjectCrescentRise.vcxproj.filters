@@ -51,7 +51,7 @@
     <ClCompile Include="GameObjects.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="CubeBody.cpp">
+    <ClCompile Include="Mover.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="ShaderPrograms.cpp">
@@ -89,7 +89,7 @@
     <ClInclude Include="GameObjects.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="CubeBody.h">
+    <ClInclude Include="Mover.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="ShaderPrograms.h">
