@@ -9,7 +9,7 @@ public:
 
 	virtual void Start() {}
 	virtual void Update() {}
-
+	virtual void Render() {}
 protected:
 	std::shared_ptr<Transform> transform;
 };

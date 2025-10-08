@@ -11,6 +11,7 @@ public:
 
 	void move(const glm::vec3& delta);
 	bool addScript(std::shared_ptr<ScriptObject> t_newScript);
+	void callRenders();
 
 	Transform transform{};
 

@@ -14,3 +14,14 @@ void GameObjects::addNewObjectToPool(const GameObject& t_newObject)
 	}
 	m_gameObjects.push_back(t_newObject);
 }
+
+void GameObjects::renderAll()
+{
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (m_gameObjects.at(i).active)
+		{
+			m_gameObjects.at(i).callRenders();
+		}
+	}
+}

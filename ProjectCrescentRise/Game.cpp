@@ -2,6 +2,7 @@
 #include "Update.h"
 #include "GameObjects.h"
 #include "CubeBody.h"
+#include "billboard2D.h"
 
 double Game::deltaTime = 0;
 
@@ -9,6 +10,7 @@ void Game::initGame()
 {
 	GameObject obj;
 	obj.addScript(std::make_shared<CubeBody>());
+	obj.addScript(std::make_shared<billboard2D>());
 	GameObjects::addNewObjectToPool(obj);
 }
 
