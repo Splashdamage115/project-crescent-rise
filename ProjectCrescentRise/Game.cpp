@@ -10,7 +10,7 @@ void Game::initGame()
 {
 	GameObject obj;
 	std::shared_ptr<Mover> mover = std::make_shared<Mover>();
-	mover->velocity = glm::vec3(0.0f, 0.0f, 0.5f);
+	mover->velocity = glm::vec3(0.0f, 0.5f, 0.0f);
 	obj.addScript(mover);
 	obj.addScript(std::make_shared<billboard2D>());
 	GameObjects::addNewObjectToPool(obj);

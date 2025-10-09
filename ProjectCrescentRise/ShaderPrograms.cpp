@@ -70,6 +70,7 @@ void VertexShaders::LoadShader(Shader::VertexShaderType t_vertex, Shader::Fragme
 void VertexShaders::LoadShader(std::shared_ptr<Shader> t_shader)
 {
     glUseProgram(t_shader->shaderPair);
+    //glBindTexture To Do
 }
 
 // retrieve the pointer to the wanted shader
