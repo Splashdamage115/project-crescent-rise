@@ -4,7 +4,7 @@
 
 Window::Window()
 {
-    m_window = glfwCreateWindow(640, 480, "Project Crescent Rise", NULL, NULL);
+    m_window = glfwCreateWindow(m_width, m_height, "Project Crescent Rise", NULL, NULL);
     if (!m_window)
     {
         glfwTerminate();
@@ -13,6 +13,8 @@ Window::Window()
     /* Make the window's context current */
     glfwMakeContextCurrent(m_window);
     glewInit();
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
     VertexShaders::initialise();
 }
 
@@ -27,8 +29,9 @@ bool Window::windowClosed()
 
 void Window::render()
 {
-    /* Render here */
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.1f, 0.1f, 0.15f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
     GameObjects::renderAll();
 

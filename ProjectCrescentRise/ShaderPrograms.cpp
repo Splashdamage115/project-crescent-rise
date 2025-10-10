@@ -18,6 +18,7 @@ void VertexShaders::initialise()
         "}\n";
 
 
+
     ShaderFilesVertex newVertexPair;
     newVertexPair.vertexType = Shader::VertexShaderType::standard;
     newVertexPair.file = newVertex;

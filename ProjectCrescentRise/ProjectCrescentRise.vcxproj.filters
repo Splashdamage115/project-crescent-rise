@@ -66,6 +66,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CameraFeed.h">
+      <Filter>Header Files\Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -99,6 +102,9 @@
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="billboard2D.h">
+      <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
   </ItemGroup>

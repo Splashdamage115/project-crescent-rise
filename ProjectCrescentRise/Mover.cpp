@@ -4,6 +4,6 @@
 void Mover::Update()
 {
 	transform->position += velocity * static_cast<float>(Game::deltaTime);
-
-	std::cout << transform->position.z << std::endl;
+	transform->rotation += rotation * static_cast<float>(Game::deltaTime);
+	std::cout << transform->rotation.z << std::endl;
 }

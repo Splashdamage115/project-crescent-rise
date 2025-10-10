@@ -8,6 +8,7 @@ public:
 	void Update() override;
 
 	glm::vec3 velocity = glm::vec3(0.0f);
+	glm::vec3 rotation = glm::vec3(0.0f);
 private:
 
 };

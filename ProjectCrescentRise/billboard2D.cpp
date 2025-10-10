@@ -1,5 +1,6 @@
 #include "billboard2D.h"
 #include "Window.h"
+#include <glm/gtc/type_ptr.hpp>
 
 void billboard2D::Start()
 {
@@ -37,14 +38,13 @@ void billboard2D::Render()
     glBindVertexArray(m_body.vao);
 
     glm::mat4 model = transform ? ToModelMatrix(*transform) : glm::mat4(1.0f);
-    glm::mat4 view = glm::mat4(1.0f);
-    glm::mat4 proj = glm::mat4(1.0f);
-
-    if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, &model[0][0]);
-    if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, &view[0][0]);
-    if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, &proj[0][0]);
+    glm::mat4 view = Window::Get().GetView();
+    glm::mat4 proj = Window::Get().GetProj();
 
 
+    if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
     // Draw points 0-3 from the currently bound VAO with current in-use shader.
     glDrawArrays(GL_TRIANGLES, 0, 6);
