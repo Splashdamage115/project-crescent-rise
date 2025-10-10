@@ -13,52 +13,46 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Objects">
-      <UniqueIdentifier>{b0bc013a-927e-4d2d-b16e-d9b41608cdaa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Objects">
-      <UniqueIdentifier>{7c4ea0f5-6635-4c9c-a5fd-ef43d209d93e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Scripts">
       <UniqueIdentifier>{91350d29-3cc3-4204-9003-7cfc20deb495}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Scripts">
       <UniqueIdentifier>{81734abf-3343-4858-9b07-ffc21b8eb680}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Shaders">
+    <Filter Include="Header Files\Library">
+      <UniqueIdentifier>{ef8dfb79-8dab-42ae-985d-9a0fdf759748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library">
+      <UniqueIdentifier>{504a1170-af52-43a7-8e0e-26614ca26182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\Shaders">
+      <UniqueIdentifier>{ae96c193-4efa-4b36-bdad-dafb752e1952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\Shaders">
       <UniqueIdentifier>{548a6851-6886-4ff9-b92d-8d021b331fc0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shaders">
-      <UniqueIdentifier>{ae96c193-4efa-4b36-bdad-dafb752e1952}</UniqueIdentifier>
+    <Filter Include="Header Files\Library\Objects">
+      <UniqueIdentifier>{b0bc013a-927e-4d2d-b16e-d9b41608cdaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\Objects">
+      <UniqueIdentifier>{7c4ea0f5-6635-4c9c-a5fd-ef43d209d93e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Update.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ScriptObject.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Objects</Filter>
+      <Filter>Source Files\Library\Objects</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects.cpp">
-      <Filter>Source Files\Objects</Filter>
+      <Filter>Source Files\Library\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Mover.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="ShaderPrograms.cpp">
-      <Filter>Source Files\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderableObject.cpp">
-      <Filter>Source Files\Scripts</Filter>
+      <Filter>Source Files\Library\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="billboard2D.cpp">
       <Filter>Source Files\Scripts</Filter>
@@ -69,34 +63,40 @@
     <ClCompile Include="CameraFeed.h">
       <Filter>Header Files\Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="KeyScan.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Update.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderableObject.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Update.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ScriptObject.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Objects</Filter>
+      <Filter>Header Files\Library\Objects</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects.h">
-      <Filter>Header Files\Objects</Filter>
+      <Filter>Header Files\Library\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Mover.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="ShaderPrograms.h">
-      <Filter>Header Files\Shaders</Filter>
+      <Filter>Header Files\Library\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="RenderableObject.h">
       <Filter>Header Files\Scripts</Filter>
@@ -106,6 +106,18 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyScan.h">
+      <Filter>Header Files\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library.h">
+      <Filter>Header Files\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Update.h">
+      <Filter>Header Files\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Library</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="billboard2D.cpp" />
     <ClCompile Include="CameraFeed.h" />
+    <ClCompile Include="KeyScan.cpp" />
     <ClCompile Include="Mover.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="billboard2D.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="KeyScan.h" />
     <ClInclude Include="Mover.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
