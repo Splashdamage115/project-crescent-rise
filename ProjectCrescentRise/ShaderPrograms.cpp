@@ -37,6 +37,25 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::standard);
+
+    const char* newFragment2 =
+        "#version 410 core"
+        "in vec2 TexCoords;"
+        "out vec4 FragColor;"
+        "uniform float scale;"
+        "void main()"
+        "{"
+        "   vec2 uv = TexCoords * scale;"
+        "   float checker = mod(floor(uv.x) + floor(uv.y), 2.0);"
+        "   FragColor = checker == 0.0 ? vec4(1.0) : vec4(0.0);";
+        "}";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::checkerboard;
+    newFragmentPair.file = newFragment2;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
 }
 
 // *** NEVER USE THIS ***

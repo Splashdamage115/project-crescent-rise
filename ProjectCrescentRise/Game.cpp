@@ -14,7 +14,7 @@ void Game::initGame()
 	Window::Get().InitCamera();
 	GameObject obj;
 	obj.addScript(std::make_shared<billboard2D>());
-
+	obj.transform->scale = { 1.0f, 1.0f, 3.0f };
 	GameObjects::addNewObjectToPool(obj);
 
 	GameObject obj2;
@@ -23,7 +23,7 @@ void Game::initGame()
 	obj2.addScript(std::make_shared<CameraFeed>());
 
 	std::shared_ptr<Mover>mover = std::make_shared<Mover>();
-	mover->rotation = glm::vec3(90.0f, 0.0f, 90.0f);
+	mover->rotation = glm::vec3(90.f, 0.f, 90.f);
 	obj.addScript(mover);
 
 	GameObjects::addNewObjectToPool(obj2);

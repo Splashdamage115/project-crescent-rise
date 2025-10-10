@@ -17,19 +17,15 @@ public:
 	Window(Window const&) = delete;
 	void operator=(Window const&) = delete;
 
-    // One-time perspective setup (do this at startup)
     void InitCamera(float fovDeg = 60.0f, float zNear = 0.1f, float zFar = 100.0f) {
-        float aspect = (m_height != 0) ? (static_cast<float>(m_width) / m_height) : 1.0f;
+        float aspect = static_cast<float>(m_width) / static_cast<float>(m_height);
         m_camera.setPerspective(fovDeg, aspect, zNear, zFar);
     }
     
-    // Used by your camera script to push transform into the camera
     void SetCameraFromTransform(const Transform& t) {
-        // Convert Euler rotation (degrees) to a forward vector (right-handed, -Z forward)
-        float yaw = glm::radians(t.rotation.y); // yaw around Y
-        float pitch = glm::radians(t.rotation.x); // pitch around X
+        float yaw = glm::radians(t.rotation.y);
+        float pitch = glm::radians(t.rotation.x);
     
-        // Forward vector using yaw (Y) and pitch (X):
         glm::vec3 forward;
         forward.x = cos(pitch) * sin(yaw);
         forward.y = sin(pitch);
@@ -49,7 +45,6 @@ public:
     
     int Width()  const { return m_width; }
     int Height() const { return m_height; }
-	//
 	
 	~Window();
 	bool windowClosed();

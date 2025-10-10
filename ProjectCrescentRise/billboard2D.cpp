@@ -23,7 +23,7 @@ void billboard2D::Start()
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::standard);
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");

@@ -9,6 +9,7 @@ public:
 
 	glm::vec3 velocity = glm::vec3(0.0f);
 	glm::vec3 rotation = glm::vec3(0.0f);
+	glm::vec3 scale = glm::vec3(0.0f);
 private:
 
 };
