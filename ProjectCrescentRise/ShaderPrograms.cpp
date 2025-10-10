@@ -10,11 +10,14 @@ void VertexShaders::initialise()
     const char* newVertex =
         "#version 410 core\n"
         "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTexCoord;\n"
         "uniform mat4 uModel;\n"
         "uniform mat4 uView;\n"
         "uniform mat4 uProj;\n"
+        "out vec2 TexCoords;\n"
         "void main() {\n"
         "    gl_Position = uProj * uView * uModel * vec4(aPos, 1.0);\n"
+        "    TexCoords = aTexCoord;\n"
         "}\n";
 
 
@@ -39,16 +42,15 @@ void VertexShaders::initialise()
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::standard);
 
     const char* newFragment2 =
-        "#version 410 core"
-        "in vec2 TexCoords;"
-        "out vec4 FragColor;"
-        "uniform float scale;"
-        "void main()"
-        "{"
-        "   vec2 uv = TexCoords * scale;"
-        "   float checker = mod(floor(uv.x) + floor(uv.y), 2.0);"
-        "   FragColor = checker == 0.0 ? vec4(1.0) : vec4(0.0);";
-        "}";
+        "#version 410 core\n"
+        "in vec2 TexCoords;\n"
+        "out vec4 FragColor;\n"
+        "void main()\n"
+        "{\n"
+        "   vec2 uv = TexCoords * 300.0;\n"
+        "   float checker = mod(floor(uv.x) + floor(uv.y), 2.0);\n"
+        "   FragColor = checker == 0.0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.1, 0.1, 0.15, 1.0);\n"
+        "}\n";
 
     newFragmentPair = ShaderFilesFragment();
     newFragmentPair.fragmentType = Shader::FragmentShaderType::checkerboard;

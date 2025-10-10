@@ -5,23 +5,30 @@
 void billboard2D::Start()
 {
     float points[] = {
-    0.5f,  0.5f,  0.0f,
-    0.5f, -0.5f,  0.0f,
-    -0.5f, -0.5f,  0.0f,
-    -0.5f, -0.5f,  0.0f,
-    -0.5f, 0.5f,  0.0f,
-    0.5f, 0.5f,  0.0f
+        // positions          // texture coords
+        0.5f,   0.5f,  0.0f,   1.0f, 1.0f,  
+        0.5f,  -0.5f,  0.0f,   1.0f, 0.0f,  
+        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f,  
+        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f, 
+        -0.5f,  0.5f,  0.0f,   0.0f, 1.0f,
+        0.5f,   0.5f,  0.0f,   1.0f, 1.0f
     };
 
     glGenBuffers(1, &m_body.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
-    glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), points, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 30 * sizeof(float), points, GL_STATIC_DRAW);
 
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
+    
+    // Position attribute (location = 0)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+    
+    // Texture coordinate attribute (location = 1)
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
 
