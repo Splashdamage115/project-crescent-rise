@@ -4,22 +4,25 @@
 
 void PlayerInput::Update()
 {
+	glm::vec3 displacement = glm::vec3(0.0f);
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::D))
 	{
-		transform->position.x += 10.0f * Game::deltaTime;
+		displacement.x += 10.0f * Game::deltaTime;
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::S))
 	{
-		transform->position.z += 10.0f * Game::deltaTime;
+		displacement.z += 10.0f * Game::deltaTime;
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::A))
 	{
-		transform->position.x += -10.0f * Game::deltaTime;
+		displacement.x += -10.0f * Game::deltaTime;
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::W))
 	{
-		transform->position.z += -10.0f * Game::deltaTime;
+		displacement.z += -10.0f * Game::deltaTime;
 	}
+
+	transform->moveAlongForward(displacement);
 
 	float xDelta = KeyScan::mouseX - lastMouseX;
 	float yDelta = KeyScan::mouseY - lastMouseY;
