@@ -46,12 +46,16 @@ public:
     int Width()  const { return m_width; }
     int Height() const { return m_height; }
 	
+    void Update();
+
 	~Window();
 	bool windowClosed();
 	void render();
 
 private:
 	Window();
+    bool escDown = false;
+
 	GLFWwindow* m_window = nullptr;
 
     int m_width = 1280;

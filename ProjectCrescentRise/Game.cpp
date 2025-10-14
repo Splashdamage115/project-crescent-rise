@@ -5,6 +5,7 @@
 #include "billboard2D.h"
 #include "Window.h"
 #include "CameraFeed.h"
+#include "PlayerInput.h"
 
 double Game::deltaTime = 0;
 
@@ -24,6 +25,7 @@ void Game::initGame()
 	obj2.transform->position = { 0.0f, 0.0f, 3.0f };
 	obj2.transform->rotation = { 0.0f, 0.0f, 0.0f };
 	obj2.addScript(std::make_shared<CameraFeed>());
+	obj2.addScript(std::make_shared<PlayerInput>());
 
 	GameObjects::addNewObjectToPool(obj2);
 }

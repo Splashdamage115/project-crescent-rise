@@ -1,6 +1,8 @@
 #include "Window.h"
 #include "ShaderPrograms.h"
 #include "GameObjects.h"
+#include "KeyScan.h"
+#include "Update.h"
 
 Window::Window()
 {
@@ -16,6 +18,24 @@ Window::Window()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     VertexShaders::initialise();
+    KeyScan::init();
+    glfwSetKeyCallback(m_window, KeyScan::key_callback);
+    glfwSetCursorPosCallback(m_window, KeyScan::cursorCallback);
+
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    if (glfwRawMouseMotionSupported())
+        glfwSetInputMode(m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+
+    Update::append([this]() { this->Update(); });
+}
+
+void Window::Update()
+{
+    if (escDown &&!KeyScan::isKeyDown(KeyScan::KeyCode::ESC))
+    {
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+    escDown = KeyScan::isKeyDown(KeyScan::KeyCode::ESC);
 }
 
 Window::~Window()

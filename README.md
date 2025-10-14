@@ -10,3 +10,5 @@
 - GameObject pool is self contained and calls all functions necessary
 - added the mathmatical functionality to move objects across the screen efficiently
 - changed the vertex shader to account for movement
+- Created an encapsulated input system that holds the key down events for keys
+- created a mouse input system to track mouse delta
