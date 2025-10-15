@@ -12,3 +12,8 @@
 - changed the vertex shader to account for movement
 - Created an encapsulated input system that holds the key down events for keys
 - created a mouse input system to track mouse delta
+- issue with reading the escape to exit the mouse from the screen (fixed)
+- allowing clicking back into the window
+- grouund tile ebo usage, keeps breaking, reverted back to no ebo
+- worked on random displacement for floor mesh
+- linking of vertices in the floor mesh

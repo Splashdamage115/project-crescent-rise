@@ -19,7 +19,7 @@ void Game::initGame()
 	obj.transform->position = { 0.0f, -1.8f, 0.0f };
 	obj.transform->rotation = { 90.0f, 0.0f, 0.0f };
 	obj.addScript(std::make_shared<billboard2D>());
-	GameObjects::addNewObjectToPool(obj);
+	//GameObjects::addNewObjectToPool(obj);
 
 	GameObject obj2;
 	obj2.transform->position = { 0.0f, 0.0f, 0.0f };
@@ -30,7 +30,7 @@ void Game::initGame()
 	GameObjects::addNewObjectToPool(obj2);
 
 	GameObject floorObj;
-	floorObj.transform->position = { 0.0f, 0.0f, -2.0f };
+	floorObj.transform->position = { 0.0f, -2.0f, -2.0f };
 	floorObj.transform->scale = { 1.0f, 1.0f, 1.0f };
 	floorObj.addScript(std::make_shared<GroundTile>());
 	//std::shared_ptr<Mover> m = std::make_shared<Mover>();

@@ -10,5 +10,6 @@ public:
 private:
 	const unsigned int pointLength = 20;
 	const unsigned int hop = 3;
+	int size = 0;
 };
 

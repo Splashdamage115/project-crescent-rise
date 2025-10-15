@@ -14,7 +14,7 @@ void billboard2D::Start()
 
     glGenBuffers(1, &m_body.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
-    glBufferData(GL_ARRAY_BUFFER, 30 * sizeof(float), points, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
 
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);

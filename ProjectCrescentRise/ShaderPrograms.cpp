@@ -47,7 +47,7 @@ void VertexShaders::initialise()
         "out vec4 FragColor;\n"
         "void main()\n"
         "{\n"
-        "   vec2 uv = TexCoords * 30.0;\n"
+        "   vec2 uv = TexCoords * 2.0;\n"
         "   float checker = mod(floor(uv.x) + floor(uv.y), 2.0);\n"
         "   FragColor = checker == 0.0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.1, 0.1, 0.15, 1.0);\n"
         "}\n";
