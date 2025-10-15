@@ -1,15 +1,15 @@
-#include "billboard2D.h"
+#include "GroundTile.h"
 
-void billboard2D::Start()
+void GroundTile::Start()
 {
     float points[] = {
         // positions          // texture coords
-        0.5f,   0.5f,  0.0f,   1.0f, 1.0f,  
-        0.5f,  -0.5f,  0.0f,   1.0f, 0.0f,  
-        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f,  
-        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f, 
-        -0.5f,  0.5f,  0.0f,   0.0f, 1.0f,
-        0.5f,   0.5f,  0.0f,   1.0f, 1.0f
+          0.5f,  0.0f,  0.5f,     1.0f, 1.0f,
+          0.5f,  0.0f, -0.5f,     1.0f, 0.0f,
+          -0.5f, 0.0f, -0.5f,     0.0f, 0.0f,
+          -0.5f, 0.0f, -0.5f,     0.0f, 0.0f,
+          -0.5f, 0.0f,  0.5f,     0.0f, 1.0f,
+          0.5f,  0.0f,  0.5f,     1.0f, 1.0f
     };
 
     glGenBuffers(1, &m_body.vbo);
@@ -18,10 +18,10 @@ void billboard2D::Start()
 
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
-    
+
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    
+
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
@@ -34,7 +34,7 @@ void billboard2D::Start()
 
 }
 
-void billboard2D::Render()
+void GroundTile::Render()
 {
     VertexShaders::LoadShader(m_shader);
 

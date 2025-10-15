@@ -7,25 +7,43 @@ void PlayerInput::Update()
 	glm::vec3 displacement = glm::vec3(0.0f);
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::D))
 	{
-		displacement.x += 10.0f * Game::deltaTime;
+		displacement.x += currentSpeed * static_cast<float>(Game::deltaTime);
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::S))
 	{
-		displacement.z += 10.0f * Game::deltaTime;
+		displacement.z += currentSpeed * static_cast<float>(Game::deltaTime);
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::A))
 	{
-		displacement.x += -10.0f * Game::deltaTime;
+		displacement.x += -currentSpeed * static_cast<float>(Game::deltaTime);
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::W))
 	{
-		displacement.z += -10.0f * Game::deltaTime;
+		displacement.z += -currentSpeed * static_cast<float>(Game::deltaTime);
+	}
+	if (KeyScan::isKeyDown(KeyScan::KeyCode::Q))
+	{
+		displacement.y += -currentSpeed * static_cast<float>(Game::deltaTime);
+	}
+	if (KeyScan::isKeyDown(KeyScan::KeyCode::E))
+	{
+		displacement.y += currentSpeed * static_cast<float>(Game::deltaTime);
+	}
+
+	if (KeyScan::isKeyDown(KeyScan::KeyCode::LSHIFT))
+	{
+		currentSpeed += speedIncrease * static_cast<float>(Game::deltaTime);
+		if (currentSpeed >= maxSpeed) currentSpeed = maxSpeed;
+	}
+	else
+	{
+		currentSpeed = minSpeed;
 	}
 
 	transform->moveAlongForward(displacement);
 
-	float xDelta = KeyScan::mouseX - lastMouseX;
-	float yDelta = KeyScan::mouseY - lastMouseY;
+	float xDelta = static_cast<float>(KeyScan::mouseX - lastMouseX);
+	float yDelta = static_cast<float>(KeyScan::mouseY - lastMouseY);
 
 	transform->rotation.y += xDelta * 0.05f;
 	transform->rotation.x -= yDelta * 0.05f;
@@ -33,6 +51,4 @@ void PlayerInput::Update()
 
 	lastMouseY = KeyScan::mouseY;
 	lastMouseX = KeyScan::mouseX;
-
-	//std::cout << "x: " << KeyScan::mouseX << ", y: " << KeyScan::mouseY << "\n";
 }
