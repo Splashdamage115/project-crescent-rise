@@ -47,7 +47,7 @@ void VertexShaders::initialise()
         "out vec4 FragColor;\n"
         "void main()\n"
         "{\n"
-        "   vec2 uv = TexCoords * 300.0;\n"
+        "   vec2 uv = TexCoords * 2.0;\n"
         "   float checker = mod(floor(uv.x) + floor(uv.y), 2.0);\n"
         "   FragColor = checker == 0.0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.1, 0.1, 0.15, 1.0);\n"
         "}\n";
@@ -64,7 +64,7 @@ void VertexShaders::initialise()
 void VertexShaders::LoadShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment)
 {
     // find the shader and try to use it
-    for (int i = 0; i < m_shaders.size(); i++)
+    for (unsigned int i = 0; i < m_shaders.size(); i++)
     {
         if (m_shaders.at(i)->vertexType == t_vertex &&
             m_shaders.at(i)->fragmentType == t_fragment)
@@ -99,7 +99,7 @@ void VertexShaders::LoadShader(std::shared_ptr<Shader> t_shader)
 std::shared_ptr<Shader> VertexShaders::retrieveShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment)
 {
     // find the shader and try to use it
-    for (int i = 0; i < m_shaders.size(); i++)
+    for (unsigned int i = 0; i < m_shaders.size(); i++)
     {
         if (m_shaders.at(i)->vertexType == t_vertex &&
             m_shaders.at(i)->fragmentType == t_fragment)
@@ -130,7 +130,7 @@ std::errc VertexShaders::mountShader(Shader::VertexShaderType t_vertex, Shader::
     int vertexNum = -1;
     int fragNum = -1;
 
-    for (int i = 0; i < m_vertexFiles.size(); i++)
+    for (unsigned int i = 0; i < m_vertexFiles.size(); i++)
     {
         if (m_vertexFiles.at(i).vertexType == t_vertex)
         {
@@ -138,7 +138,7 @@ std::errc VertexShaders::mountShader(Shader::VertexShaderType t_vertex, Shader::
             break;
         }
     }
-    for (int i = 0; i < m_fragmentFiles.size(); i++)
+    for (unsigned int i = 0; i < m_fragmentFiles.size(); i++)
     {
         if (m_fragmentFiles.at(i).fragmentType == t_fragment)
         {

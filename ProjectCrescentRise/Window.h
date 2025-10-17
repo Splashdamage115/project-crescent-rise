@@ -3,6 +3,7 @@
 #include "Library.h"
 #include <functional>
 #include "Camera.h"
+#include "KeyScan.h"
 
 class Window
 {
@@ -47,6 +48,7 @@ public:
     int Height() const { return m_height; }
 	
     void Update();
+    void ClickIn();
 
 	~Window();
 	bool windowClosed();
@@ -55,6 +57,8 @@ public:
 private:
 	Window();
     bool escDown = false;
+    bool tabbedOut = false;
+    std::shared_ptr<mouseKeyInput> clickIntoWindow;
 
 	GLFWwindow* m_window = nullptr;
 

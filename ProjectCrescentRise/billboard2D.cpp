@@ -1,6 +1,4 @@
 #include "billboard2D.h"
-#include "Window.h"
-#include <glm/gtc/type_ptr.hpp>
 
 void billboard2D::Start()
 {
@@ -16,16 +14,14 @@ void billboard2D::Start()
 
     glGenBuffers(1, &m_body.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
-    glBufferData(GL_ARRAY_BUFFER, 30 * sizeof(float), points, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
 
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
     
-    // Position attribute (location = 0)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     
-    // Texture coordinate attribute (location = 1)
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
@@ -53,6 +49,5 @@ void billboard2D::Render()
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
-    // Draw points 0-3 from the currently bound VAO with current in-use shader.
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

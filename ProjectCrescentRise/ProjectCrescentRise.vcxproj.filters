@@ -81,6 +81,9 @@
     <ClCompile Include="PlayerInput.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="GroundTile.cpp">
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -123,6 +126,9 @@
       <Filter>Header Files\Library</Filter>
     </ClInclude>
     <ClInclude Include="PlayerInput.h">
+      <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundTile.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
   </ItemGroup>

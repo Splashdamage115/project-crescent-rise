@@ -34,7 +34,7 @@ bool GameObject::addScript(std::shared_ptr<ScriptObject> t_newScript)
 
 void GameObject::callRenders()
 {
-	for (int i = 0; i < m_scripts.size(); i++)
+	for (unsigned int i = 0; i < m_scripts.size(); i++)
 	{
 		m_scripts.at(i)->Render();
 	}

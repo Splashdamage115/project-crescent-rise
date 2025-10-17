@@ -1,7 +1,6 @@
 #include "Window.h"
 #include "ShaderPrograms.h"
 #include "GameObjects.h"
-#include "KeyScan.h"
 #include "Update.h"
 
 Window::Window()
@@ -19,6 +18,7 @@ Window::Window()
     glDepthFunc(GL_LESS);
     VertexShaders::initialise();
     KeyScan::init();
+    glfwSetMouseButtonCallback(m_window, KeyScan::mouseClickCallback);
     glfwSetKeyCallback(m_window, KeyScan::key_callback);
     glfwSetCursorPosCallback(m_window, KeyScan::cursorCallback);
 
@@ -27,15 +27,30 @@ Window::Window()
         glfwSetInputMode(m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
 
     Update::append([this]() { this->Update(); });
+
+    clickIntoWindow = std::make_shared<mouseKeyInput>();
+    clickIntoWindow->active = true;
+    clickIntoWindow->function = [this]() { this->ClickIn(); };
+    clickIntoWindow->keyCode = KeyScan::MouseKeyCode::LeftMouse;
+    KeyScan::append(clickIntoWindow, true);
 }
 
 void Window::Update()
 {
-    if (escDown &&!KeyScan::isKeyDown(KeyScan::KeyCode::ESC))
+    if (escDown && !KeyScan::isKeyDown(KeyScan::KeyCode::ESC))
     {
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        tabbedOut = true;
     }
     escDown = KeyScan::isKeyDown(KeyScan::KeyCode::ESC);
+    if (!tabbedOut) {
+        glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
+}
+
+void Window::ClickIn()
+{
+    tabbedOut = false;
 }
 
 Window::~Window()
