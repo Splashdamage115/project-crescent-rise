@@ -20,8 +20,6 @@ void VertexShaders::initialise()
         "    TexCoords = aTexCoord;\n"
         "}\n";
 
-
-
     ShaderFilesVertex newVertexPair;
     newVertexPair.vertexType = Shader::VertexShaderType::standard;
     newVertexPair.file = newVertex;
@@ -58,6 +56,81 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
+
+    const char* newFragment3 =
+        "#version 410 core\n"
+        "out vec4 frag_colour;"
+        "void main() {"
+        "  frag_colour = vec4( 0.0, 0.0, 1.0, 1.0 );"
+        "}";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::Blue;
+    newFragmentPair.file = newFragment3;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Blue);
+
+
+    const char* terrainVertex =
+        "#version 410 core\n"
+        "layout(location = 0) in vec3 aPos;\n"
+        "layout(location = 1) in vec2 aTexCoord;\n"
+        "\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "out vec2 TexCoords;\n"
+        "out float worldY;\n"
+        "\n"
+        "void main() {\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    TexCoords = aTexCoord;\n"
+        "    worldY = worldPos.y;\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::terrain;
+    newVertexPair.file = terrainVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+
+    const char* terrainFrag =
+        "#version 410 core\n"
+        "in vec2 TexCoords;\n"
+        "in float worldY;\n"
+        "\n"
+        "out vec4 FragColor;\n"
+        "\n"
+        "uniform float lowHeight = 12.0;\n"
+        "uniform float midHeight = 14.0;\n"
+        "uniform float highHeight = 20.0;\n"
+        "\n"
+        "vec4 getHeightColor(float y) {\n"
+        "    if (y < midHeight) {\n"
+        "        // Blend yellow to green\n"
+        "        float t = clamp((y - lowHeight) / (midHeight - lowHeight), 0.0, 1.0);\n"
+        "        return mix(vec4(1.0, 1.0, 0.0, 1.0), vec4(0.0, 1.0, 0.0, 1.0), t);\n"
+        "    }\n"
+        "    else {\n"
+        "        // Blend green to grey\n"
+        "        float t = clamp((y - midHeight) / (highHeight - midHeight), 0.0, 1.0);\n"
+        "        return mix(vec4(0.0, 1.0, 0.0, 1.0), vec4(0.5, 0.5, 0.5, 1.0), t);\n"
+        "    }\n"
+        "}\n"
+        "\n"
+        "void main() {\n"
+        "    FragColor = getHeightColor(worldY);\n"
+        "}\n";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::terrain;
+    newFragmentPair.file = terrainFrag;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::terrain, Shader::FragmentShaderType::terrain);
 }
 
 // *** NEVER USE THIS ***

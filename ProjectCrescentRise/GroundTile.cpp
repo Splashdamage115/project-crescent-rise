@@ -7,12 +7,28 @@ void GroundTile::Start()
 
     std::vector<float> vertices;
 
+    std::vector<std::vector<float>> heights1;
+    std::vector<std::vector<float>> heights2;
+
+    generateVornoi(heights1, width, 32);
+    generateVornoi(heights2, width, 128);
+
     std::vector<std::vector<float>> heights;
+
+    for (int x = 0; x < width; x++)
+    {
+        heights.emplace_back();
+        for (int y = 0; y < width; y++)
+        {
+            heights.at(x).emplace_back((heights1.at(x).at(y)) + (heights2.at(x).at(y) * 0.5f));
+        }
+    }
+
 
     disp *= scaleFactor;
     tileSize *= scaleFactor;
 
-    generateVornoi(heights, width);
+    //generateVornoi(heights, width);
 
     int iterX = 0;
     int iterY = 0;
@@ -77,7 +93,7 @@ if (x >= width)
     glEnableVertexAttribArray(1);
 
     // Get shader and uniform locations
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::terrain, Shader::FragmentShaderType::terrain);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
@@ -113,11 +129,11 @@ static float distance(float t_pos1x, float t_pos1y, float t_pos2x, float t_pos2y
     return std::sqrt((t_pos1x - t_pos2x) * (t_pos1x - t_pos2x) + (t_pos1y - t_pos2y) * (t_pos1y - t_pos2y));
 }
 
-void GroundTile::generateVornoi(std::vector<std::vector<float>>& t_heights, int width)
+void GroundTile::generateVornoi(std::vector<std::vector<float>>& t_heights, int width, int pointAmt)
 {
     std::vector<pos> vornoiPositions;
 
-    for (int i = 0; i < pointAmountVornoi; i++)
+    for (int i = 0; i < pointAmt; i++)
     {
         float x = static_cast<float>(rand() % width);
         float y = static_cast<float>(rand() % width);
