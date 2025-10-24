@@ -15,9 +15,8 @@ public:
 
 	static double deltaTime;	
 private:
-	std::shared_ptr<GameObject> floorObj;
 	std::shared_ptr<mouseKeyInput> mski;
-
+	std::shared_ptr<GameObject> floorObj;
 	std::shared_ptr<GameObject> camObj;
 	std::shared_ptr<GameObject> waterObj;
 };

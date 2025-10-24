@@ -1,6 +1,6 @@
-#include "GroundTile.h"
+#include "SphereGenerator.h"
 
-void GroundTile::Start()
+void SphereGenerator::Start()
 {
     int x = 0;
     int y = 0;
@@ -38,29 +38,29 @@ void GroundTile::Start()
 
     for (int i = 0; i < width * width; i++)
     {
-//                        x                                  y                                 z                                 u                               v
-// 0
-vertices.emplace_back( -tileSize + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at((x == 0) ? iterY : iterY - 1) ); vertices.emplace_back( -tileSize + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  1.0f );
+        //                        x                                  y                                 z                                 u                               v
+        // 0
+        vertices.emplace_back(-tileSize + (x * disp)); vertices.emplace_back(0.f); vertices.emplace_back(-tileSize + (y * disp)); vertices.emplace_back(0.0f); vertices.emplace_back(1.0f);
 
-// 1
-vertices.emplace_back( -tileSize + (x * disp) ); vertices.emplace_back( heights.at(iterX).at((x == 0) ? iterY : iterY - 1)); vertices.emplace_back(tileSize + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  0.0f );
+        // 1
+        vertices.emplace_back(-tileSize + (x * disp)); vertices.emplace_back(0.f); vertices.emplace_back(tileSize + (y * disp)); vertices.emplace_back(0.0f); vertices.emplace_back(0.0f);
 
-// 2
-vertices.emplace_back(  tileSize + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at(iterY)); vertices.emplace_back( -tileSize + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  1.0f );
+        // 2
+        vertices.emplace_back(tileSize + (x * disp)); vertices.emplace_back(0.f); vertices.emplace_back(-tileSize + (y * disp)); vertices.emplace_back(1.0f); vertices.emplace_back(1.0f);
 
-// 3
-vertices.emplace_back(  tileSize + (x * disp) ); vertices.emplace_back( heights.at(iterX).at(iterY)); vertices.emplace_back(tileSize + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  0.0f );
+        // 3
+        vertices.emplace_back(tileSize + (x * disp)); vertices.emplace_back(0.f); vertices.emplace_back(tileSize + (y * disp)); vertices.emplace_back(1.0f); vertices.emplace_back(0.0f);
 
-        
-iterY++;
-x++;
-if (x >= width)
-{
-    iterY = 0;
-    iterX++;
-    x = 0;
-    y++;
-}
+
+        iterY++;
+        x++;
+        if (x >= width)
+        {
+            iterY = 0;
+            iterX++;
+            x = 0;
+            y++;
+        }
     }
 
     // Define indices for two triangles (counter-clockwise)
@@ -105,7 +105,7 @@ if (x >= width)
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
 }
 
-void GroundTile::Render()
+void SphereGenerator::Render()
 {
     VertexShaders::LoadShader(m_shader);
 
@@ -134,7 +134,7 @@ static float distance(float t_pos1x, float t_pos1y, float t_pos2x, float t_pos2y
     return std::sqrt((t_pos1x - t_pos2x) * (t_pos1x - t_pos2x) + (t_pos1y - t_pos2y) * (t_pos1y - t_pos2y));
 }
 
-void GroundTile::generateVornoi(std::vector<std::vector<float>>& t_heights, int width, int pointAmt)
+void SphereGenerator::generateVornoi(std::vector<std::vector<float>>& t_heights, int width, int pointAmt)
 {
     std::vector<pos> vornoiPositions;
 

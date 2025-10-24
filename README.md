@@ -74,7 +74,10 @@
 
 # Priority Order List : 
 
-### 🟡 - vornoi noise
+### ✅ - vornoi noise
+### 🔴 - Sky Box
+### 🔴 - Water Textures
+### 🔴 - ground mesh texturing
 ### 🔴 - map genertation size increase
 ### 🔴 - angle map to be spherical
 ### 🔴 - ground tile texturing
