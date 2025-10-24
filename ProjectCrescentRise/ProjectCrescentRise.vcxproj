@@ -148,7 +148,8 @@
     <ClCompile Include="RenderableObject.cpp" />
     <ClCompile Include="ScriptObject.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="SphereGenerator.cpp" />
+    <ClCompile Include="IcoSphere.cpp" />
+    <ClCompile Include="SpherePlanet.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="ShaderPrograms.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GroundTile.h" />
     <ClInclude Include="KeyScan.h" />
+    <ClInclude Include="MathUtils.h" />
     <ClInclude Include="Mover.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -166,7 +168,8 @@
     <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="RenderableObject.h" />
     <ClInclude Include="ScriptObject.h" />
-    <ClInclude Include="SphereGenerator.h" />
+    <ClInclude Include="IcoSphere.h" />
+    <ClInclude Include="SpherePlanet.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="ShaderPrograms.h" />
     <ClInclude Include="Window.h" />

@@ -84,7 +84,10 @@
     <ClCompile Include="GroundTile.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="SphereGenerator.cpp">
+    <ClCompile Include="IcoSphere.cpp">
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="SpherePlanet.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,7 +137,13 @@
     <ClInclude Include="GroundTile.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="SphereGenerator.h">
+    <ClInclude Include="IcoSphere.h">
+      <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtils.h">
+      <Filter>Header Files\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="SpherePlanet.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
   </ItemGroup>

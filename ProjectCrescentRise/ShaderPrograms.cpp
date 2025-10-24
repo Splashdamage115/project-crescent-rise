@@ -131,6 +131,74 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::terrain, Shader::FragmentShaderType::terrain);
+
+    const char* sphereTerrainVertex =
+        "#version 410 core\n"
+        "layout(location = 0) in vec3 aPos;\n"
+        "layout(location = 1) in vec2 aTexCoord;\n"
+        "\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "out vec2 TexCoords;\n"
+        "out vec3 worldPos;\n"
+        "out float radialDistance;\n"
+        "\n"
+        "void main() {\n"
+        "    vec4 worldPosition = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPosition;\n"
+        "    TexCoords = aTexCoord;\n"
+        "    worldPos = worldPosition.xyz;\n"
+        "    radialDistance = length(worldPosition.xyz);\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::sphereTerrain;
+    newVertexPair.file = sphereTerrainVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* sphereTerrainFrag =
+        "#version 410 core\n"
+        "in vec2 TexCoords;\n"
+        "in vec3 worldPos;\n"
+        "in float radialDistance;\n"
+        "\n"
+        "out vec4 FragColor;\n"
+        "\n"
+        "// Sphere terrain height thresholds (based on radial distance)\n"
+        "uniform float baseRadius = 360.0;\n"        
+        "uniform float lowHeight = 402.5;\n"         
+        "uniform float midHeight = 415.0;\n"        
+        "uniform float highHeight = 430.0;\n"       
+        "\n"
+        "vec4 getRadialHeightColor(float distance) {\n"
+        "    if (distance < midHeight) {\n"
+        "        // Shore to grassland (sandy yellow to green)\n"
+        "        float t = clamp((distance - lowHeight) / (midHeight - lowHeight), 0.0, 1.0);\n"
+        "        return mix(vec4(1.0, 1.0, 0.0, 1.0), vec4(0.0, 1.0, 0.0, 1.0), t);\n"
+        "    }\n"
+        "    else {\n"
+        "        // Grassland to mountains (green to grey)\n"
+        "        float t = clamp((distance - midHeight) / (highHeight - midHeight), 0.0, 1.0);\n"
+        "        return mix(vec4(0.0, 1.0, 0.0, 1.0), vec4(0.5, 0.5, 0.5, 1.0), t);\n"
+        "    }\n"
+        "}\n"
+        "\n"
+        "void main() {\n"
+        "    // Use circular coordinates for texture sampling if needed\n"
+        "    vec2 circularCoords = TexCoords;\n"
+        "    \n"
+        "    // Get color based on radial distance from center\n"
+        "    FragColor = getRadialHeightColor(radialDistance);\n"
+        "}\n";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::sphereTerrain;
+    newFragmentPair.file = sphereTerrainFrag;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::sphereTerrain, Shader::FragmentShaderType::sphereTerrain);
 }
 
 // *** NEVER USE THIS ***

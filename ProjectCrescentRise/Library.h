@@ -7,17 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
-
-#define PI 3.1415926535897932384626433f
-inline static float degreesToRadians(float t_degrees)
-{
-    return t_degrees * (PI / 180.0f);
-}
-inline static float radiansToDegrees(float t_radians)
-{
-    return t_radians * 180.f / PI;
-}
-
+#include "MathUtils.h"
 
 struct Transform {
 	glm::vec3 position = glm::vec3(0.0f);
@@ -26,7 +16,7 @@ struct Transform {
 
 	void moveAlongForward(glm::vec3 t_disp)
 	{
-        glm::quat forward = glm::quat(glm::vec3(0.0f, degreesToRadians(rotation.y), 0.0f));
+        glm::quat forward = glm::quat(glm::vec3(0.0f, MathUtils::toRadians(rotation.y), 0.0f));
         position += t_disp * forward;
 
 	}
