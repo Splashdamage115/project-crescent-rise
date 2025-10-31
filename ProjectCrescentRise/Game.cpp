@@ -6,7 +6,7 @@
 #include "CameraFeed.h"
 #include "PlayerInput.h"
 #include "GroundTile.h"
-#include "SphereGenerator.h"
+#include "CubeSphere.h"
 
 double Game::deltaTime = 0;
 
@@ -16,8 +16,8 @@ void Game::initGame()
 	Window::Get().InitCamera();
 
 	camObj = std::make_shared<GameObject>();
-	camObj->transform->position = { -46.3333f, 175.656f, -39.0139f };
-	camObj->transform->rotation = { -36.0f, 135.0f, 0.0f };
+	camObj->transform->position = { 0.f, 0.f, 0.f };
+	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	camObj->addScript(std::make_shared<CameraFeed>());
 	camObj->addScript(std::make_shared<PlayerInput>());
 
@@ -28,7 +28,7 @@ void Game::initGame()
 	waterObj->transform->rotation = { 90.0f, 0.0f, 0.0f };
 	waterObj->transform->position = { 0.0f, 11.0f, 0.0f };
 	waterObj->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
-	//GameObjects::addNewObjectToPool(waterObj);
+	GameObjects::addNewObjectToPool(waterObj);
 
 	initFloor();
 
@@ -70,7 +70,7 @@ void Game::initFloor()
 	std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
 	floorObj2->transform->position = { 0.0f, -2.0f, -2.0f };
 	floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
-	floorObj2->addScript(std::make_shared<SphereGenerator>());
+	floorObj2->addScript(std::make_shared<CubeSphere>());
 	if(floorObj != nullptr) floorObj->active = false;
 	floorObj = floorObj2;
 	GameObjects::addNewObjectToPool(floorObj2);

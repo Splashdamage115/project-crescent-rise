@@ -8,7 +8,7 @@ struct Shader
 		standard, terrain
 	};
 	enum class FragmentShaderType {
-		standard, checkerboard, Blue, terrain
+		standard, checkerboard, Colour, terrain
 	};
 	VertexShaderType vertexType;
 	FragmentShaderType fragmentType;

@@ -45,7 +45,7 @@ void VertexShaders::initialise()
         "out vec4 FragColor;\n"
         "void main()\n"
         "{\n"
-        "   vec2 uv = TexCoords * 2.0;\n"
+        "   vec2 uv = TexCoords * 8.0;\n"
         "   float checker = mod(floor(uv.x) + floor(uv.y), 2.0);\n"
         "   FragColor = checker == 0.0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.1, 0.1, 0.15, 1.0);\n"
         "}\n";
@@ -59,17 +59,18 @@ void VertexShaders::initialise()
 
     const char* newFragment3 =
         "#version 410 core\n"
-        "out vec4 frag_colour;"
-        "void main() {"
-        "  frag_colour = vec4( 0.0, 0.0, 1.0, 1.0 );"
-        "}";
+        "uniform vec3 colour;\n"
+        "out vec4 frag_colour;\n"
+        "void main() {\n"
+        "  frag_colour = vec4(colour.x / 255.0, colour.y / 255.0, colour.z / 255.0, 1.0);\n"
+        "}\n";
 
     newFragmentPair = ShaderFilesFragment();
-    newFragmentPair.fragmentType = Shader::FragmentShaderType::Blue;
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::Colour;
     newFragmentPair.file = newFragment3;
     m_fragmentFiles.push_back(newFragmentPair);
 
-    mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Blue);
+    mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
 
 
     const char* terrainVertex =

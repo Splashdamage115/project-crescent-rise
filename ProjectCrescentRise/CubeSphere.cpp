@@ -1,0 +1,76 @@
+#include "CubeSphere.h"
+#include "CubeSphereFace.h"
+
+void CubeSphere::Start()
+{
+    shapeGenerator.settings = shapeSettings;
+
+    std::vector<float> vertices;
+    vertices.resize(6 *(pointsPerRow * pointsPerRow) * 5);
+    std::vector<unsigned int> indices;
+    indices.resize(6 * (pointsPerRow-1) * (pointsPerRow-1) * 6);
+
+    std::vector<glm::vec3> direction;
+
+    direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   // Up
+    direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  // Down
+    direction.emplace_back(glm::vec3(-1.0f, 0.0f, 0.0f));  // Left
+    direction.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));   // Right
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  // Forward
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   // Back
+
+    for (int i = 0; i < 6; i++)
+    {
+        CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator);
+    }
+    size = indices.size();
+
+    // Generate and setup VAO
+    glGenVertexArrays(1, &m_body.vao);
+    glBindVertexArray(m_body.vao);
+
+    // Generate and setup VBO
+    glGenBuffers(1, &m_body.vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
+
+    // Generate and setup EBO
+    glGenBuffers(1, &m_body.ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_STATIC_DRAW);
+
+    // Setup vertex attributes
+    // Position attribute (location = 0)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // Texture coordinate attribute (location = 1)
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    // Get shader and uniform locations
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
+
+    uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
+    uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
+    uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
+    uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
+}
+
+void CubeSphere::Render()
+{
+    VertexShaders::LoadShader(m_shader);
+
+    glBindVertexArray(m_body.vao);
+
+    glm::mat4 model = transform ? ToModelMatrix(*transform) : glm::mat4(1.0f);
+    glm::mat4 view = Window::Get().GetView();
+    glm::mat4 proj = Window::Get().GetProj();
+
+    if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
+    if (uColourLoc >= 0) glUniform3f(uColourLoc, (float)planetColour.r, (float)planetColour.g, (float)planetColour.b);
+
+    glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
+}

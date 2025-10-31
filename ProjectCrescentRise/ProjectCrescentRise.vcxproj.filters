@@ -37,6 +37,18 @@
     <Filter Include="Source Files\Library\Objects">
       <UniqueIdentifier>{7c4ea0f5-6635-4c9c-a5fd-ef43d209d93e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scripts\CubeSphere">
+      <UniqueIdentifier>{a2f3667c-4b27-49db-aec2-e7ecefc99d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripts\CubeSphere">
+      <UniqueIdentifier>{53886c51-fcac-4a16-804e-8817ae6f8c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scripts\CubeSphere\Settings">
+      <UniqueIdentifier>{4e0cd7fb-9b58-4d6e-86aa-4dc012612d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripts\CubeSphere\Settings">
+      <UniqueIdentifier>{a474a35e-d1d6-4efc-b0e1-92a1206bb906}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ScriptObject.cpp">
@@ -84,8 +96,20 @@
     <ClCompile Include="GroundTile.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="SphereGenerator.cpp">
-      <Filter>Source Files\Scripts</Filter>
+    <ClCompile Include="CubeSphereFace.cpp">
+      <Filter>Source Files\Scripts\CubeSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeSphere.cpp">
+      <Filter>Source Files\Scripts\CubeSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetColour.cpp">
+      <Filter>Source Files\Scripts\CubeSphere\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeSettings.cpp">
+      <Filter>Source Files\Scripts\CubeSphere\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeGenerator.cpp">
+      <Filter>Source Files\Scripts\CubeSphere</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,8 +158,20 @@
     <ClInclude Include="GroundTile.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="SphereGenerator.h">
-      <Filter>Header Files\Scripts</Filter>
+    <ClInclude Include="CubeSphere.h">
+      <Filter>Header Files\Scripts\CubeSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeSphereFace.h">
+      <Filter>Header Files\Scripts\CubeSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetColour.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeSettings.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeGenerator.h">
+      <Filter>Header Files\Scripts\CubeSphere</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

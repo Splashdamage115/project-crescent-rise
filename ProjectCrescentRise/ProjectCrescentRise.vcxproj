@@ -138,17 +138,21 @@
   <ItemGroup>
     <ClCompile Include="billboard2D.cpp" />
     <ClCompile Include="CameraFeed.h" />
+    <ClCompile Include="CubeSphere.cpp" />
+    <ClCompile Include="CubeSphereFace.cpp" />
     <ClCompile Include="GroundTile.cpp" />
     <ClCompile Include="KeyScan.cpp" />
     <ClCompile Include="Mover.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjects.cpp" />
+    <ClCompile Include="PlanetColour.cpp" />
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="RenderableObject.cpp" />
     <ClCompile Include="ScriptObject.cpp" />
+    <ClCompile Include="ShapeGenerator.cpp" />
+    <ClCompile Include="ShapeSettings.cpp" />
     <ClCompile Include="Source.cpp" />
-    <ClCompile Include="SphereGenerator.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="ShaderPrograms.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -156,6 +160,8 @@
   <ItemGroup>
     <ClInclude Include="billboard2D.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CubeSphere.h" />
+    <ClInclude Include="CubeSphereFace.h" />
     <ClInclude Include="GroundTile.h" />
     <ClInclude Include="KeyScan.h" />
     <ClInclude Include="Mover.h" />
@@ -163,10 +169,12 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Library.h" />
+    <ClInclude Include="PlanetColour.h" />
     <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="RenderableObject.h" />
     <ClInclude Include="ScriptObject.h" />
-    <ClInclude Include="SphereGenerator.h" />
+    <ClInclude Include="ShapeGenerator.h" />
+    <ClInclude Include="ShapeSettings.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="ShaderPrograms.h" />
     <ClInclude Include="Window.h" />
