@@ -49,7 +49,7 @@ void CubeSphere::Start()
     glEnableVertexAttribArray(1);
 
     // Get shader and uniform locations
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");

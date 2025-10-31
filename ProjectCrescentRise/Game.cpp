@@ -15,6 +15,7 @@ void Game::initGame()
 	Window::Get();
 	Window::Get().InitCamera();
 
+
 	camObj = std::make_shared<GameObject>();
 	camObj->transform->position = { 0.f, 0.f, 0.f };
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
@@ -28,7 +29,7 @@ void Game::initGame()
 	waterObj->transform->rotation = { 90.0f, 0.0f, 0.0f };
 	waterObj->transform->position = { 0.0f, 11.0f, 0.0f };
 	waterObj->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
-	GameObjects::addNewObjectToPool(waterObj);
+	//GameObjects::addNewObjectToPool(waterObj);
 
 	initFloor();
 
