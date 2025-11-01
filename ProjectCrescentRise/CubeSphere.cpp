@@ -3,11 +3,14 @@
 
 void CubeSphere::ResetPlanet()
 {
+    callChange = true;
+
     shapeGenerator.settings = shapeSettings;
+    shapeGenerator.reset();
 
     std::vector<float> vertices;
     vertices.clear();
-    vertices.resize(6 *(pointsPerRow * pointsPerRow) * 5);
+    vertices.resize(6 *(pointsPerRow * pointsPerRow) * 8);
     std::vector<unsigned int> indices;
     indices.clear();
     indices.resize(6 * (pointsPerRow-1) * (pointsPerRow-1) * 6);
@@ -52,28 +55,32 @@ void CubeSphere::Start()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 0, nullptr, GL_DYNAMIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
-    uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
+    uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
 
     // Generate initial mesh data
     ResetPlanet();
+    callChange = false;
 }
 
 void CubeSphere::Render()
 {
     if (!enabled) return;
 
-    ResetPlanet();
+    if (callChange) ResetPlanet();
 
     VertexShaders::LoadShader(m_shader);
 

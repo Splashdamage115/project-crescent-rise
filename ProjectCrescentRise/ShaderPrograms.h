@@ -4,12 +4,12 @@
 
 struct Shader
 {
-	enum class VertexShaderType {
-		standard, terrain
-	};
-	enum class FragmentShaderType {
-		standard, checkerboard, Colour, terrain
-	};
+enum class VertexShaderType {
+standard, terrain, lit
+};
+enum class FragmentShaderType {
+standard, checkerboard, Colour, terrain, lit
+};
 	VertexShaderType vertexType;
 	FragmentShaderType fragmentType;
 	GLuint shaderPair;
@@ -41,4 +41,3 @@ private:
 	static std::vector<ShaderFilesVertex> m_vertexFiles;
 	static std::vector<ShaderFilesFragment> m_fragmentFiles;
 };
-

@@ -16,6 +16,9 @@ public:
 	ShapeSettings shapeSettings;
 	PlanetColour planetColour;
 	ShapeGenerator shapeGenerator;
+
+	// handles if the world is being edited or not
+	bool callChange = false;
 private:
 	int size = 0;
 	GLint uColourLoc = -1;

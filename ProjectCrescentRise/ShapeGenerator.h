@@ -10,7 +10,7 @@ public:
 	ShapeSettings settings;
 	std::vector<NoiseFilter> noiseFilters;
 
-	ShapeGenerator()
+	void reset()
 	{
 		noiseFilters.resize(settings.noiseLayers.size());
 		for(int i = 0; i < noiseFilters.size();i++)
@@ -19,7 +19,6 @@ public:
 
 	glm::vec3 CalcualtePointOnPlanet(glm::vec3 pointOnUnitSphere)
 	{
-		return pointOnUnitSphere;
 		float firstLayerValue = 0;
 		float elev = 0;
 

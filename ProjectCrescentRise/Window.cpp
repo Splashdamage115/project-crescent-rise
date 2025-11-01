@@ -45,9 +45,8 @@ Window::Window()
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);         // Fixed size for simplicity
         
         // Create smaller GUI window (adjust size as needed)
-        int guiWidth = 600;
-        int guiHeight = 800;
-        guiWindow = glfwCreateWindow(guiWidth, guiHeight, "GUI WINDOW", NULL, NULL);
+        
+        guiWindow = glfwCreateWindow(planetGen.guiWidth, planetGen.guiHeight, "GUI WINDOW", NULL, NULL);
         if (!guiWindow)
         {
             glfwTerminate();
@@ -55,7 +54,7 @@ Window::Window()
         }
         
         // Position the window in top-right corner
-        glfwSetWindowPos(guiWindow, m_width - guiWidth - 50, 50);
+        glfwSetWindowPos(guiWindow, m_width - planetGen.guiWidth - 50, 50);
         
         // Set window opacity (0.9 = 90% opaque, 10% transparent)
         glfwSetWindowOpacity(guiWindow, 0.9f);
@@ -108,10 +107,12 @@ void Window::ClickIn()
 
 Window::~Window()
 {
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
-
+    if (guiActive)
+    {
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+    }
 }
 
 bool Window::windowClosed()
@@ -133,9 +134,12 @@ void Window::render()
 
         planetGen.guiRender();
 
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-        glfwSwapBuffers(guiWindow);
+        if (guiActive)
+        {
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+            glfwSwapBuffers(guiWindow);
+        }
     }
 
 
@@ -157,4 +161,16 @@ void Window::render()
 void Window::PassPlanet(std::shared_ptr<CubeSphere> t_planet)
 {
     planetGen.init(t_planet);
+}
+
+void Window::closeGUI()
+{
+    guiActive = false;
+
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
+    glfwDestroyWindow(guiWindow);
+    glfwMakeContextCurrent(m_window);
 }
