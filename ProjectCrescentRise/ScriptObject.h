@@ -12,5 +12,6 @@ public:
 	virtual void Render() {}
 protected:
 	std::shared_ptr<Transform> transform;
+	bool enabled = true;
 };
 

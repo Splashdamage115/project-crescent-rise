@@ -153,3 +153,8 @@ void Window::render()
     /* Poll for and process events */
     glfwPollEvents();
 }
+
+void Window::PassPlanet(std::shared_ptr<CubeSphere> t_planet)
+{
+    planetGen.init(t_planet);
+}

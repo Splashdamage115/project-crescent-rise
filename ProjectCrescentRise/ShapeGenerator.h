@@ -19,6 +19,7 @@ public:
 
 	glm::vec3 CalcualtePointOnPlanet(glm::vec3 pointOnUnitSphere)
 	{
+		return pointOnUnitSphere;
 		float firstLayerValue = 0;
 		float elev = 0;
 

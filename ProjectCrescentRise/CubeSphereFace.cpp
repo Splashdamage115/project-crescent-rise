@@ -17,17 +17,17 @@ void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsi
 			glm::vec2 percent = glm::vec2((float)x / (float)(resolution - 1), (float)y / (float)(resolution - 1));
 			glm::vec3 pointOnUnitCube = up + (percent.x - 0.5f) * 2 * axisA + (percent.y - 0.5f) * 2 * axisB;
 			glm::vec3 pointOnUnitSphere = glm::normalize(pointOnUnitCube);
-			glm::vec3 displacedPoint = gen.CalcualtePointOnPlanet(pointOnUnitSphere);
-			vertices.at(vertNum    ) = displacedPoint.x;
-			vertices.at(vertNum + 1) = displacedPoint.y;
-			vertices.at(vertNum + 2) = displacedPoint.z;
+			//glm::vec3 displacedPoint = gen.CalcualtePointOnPlanet(pointOnUnitSphere);
+			vertices.at(vertNum) = pointOnUnitSphere.x;
+			vertices.at(vertNum + 1) = pointOnUnitSphere.y;
+			vertices.at(vertNum + 2) = pointOnUnitSphere.z;
 			vertices.at(vertNum + 3) = percent.x; //     u
 			vertices.at(vertNum + 4) = percent.y; //     v
 
 			if (x != resolution - 1 && y != resolution - 1)
 			{
 				// triangle 1
-				indices.at(triIndex    ) = vertexIndex;
+				indices.at(triIndex) = vertexIndex;
 				indices.at(triIndex + 1) = vertexIndex + resolution + 1;
 				indices.at(triIndex + 2) = vertexIndex + resolution;
 

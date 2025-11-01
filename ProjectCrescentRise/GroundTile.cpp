@@ -107,6 +107,8 @@ if (x >= width)
 
 void GroundTile::Render()
 {
+    if (!enabled) return;
+
     VertexShaders::LoadShader(m_shader);
 
     glBindVertexArray(m_body.vao);

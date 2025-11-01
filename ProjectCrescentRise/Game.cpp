@@ -71,7 +71,13 @@ void Game::initFloor()
 	std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
 	floorObj2->transform->position = { 0.0f, -2.0f, -2.0f };
 	floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
-	floorObj2->addScript(std::make_shared<CubeSphere>());
+	std::shared_ptr<ScriptObject> planet = std::make_shared<CubeSphere>();
+
+	Window::Get().PassPlanet(std::static_pointer_cast<CubeSphere>(planet));
+
+	floorObj2->addScript(planet);
+
+
 	if(floorObj != nullptr) floorObj->active = false;
 	floorObj = floorObj2;
 	GameObjects::addNewObjectToPool(floorObj2);

@@ -8,15 +8,15 @@
 class CubeSphere : public RenderableObject
 {
 public:
+	void ResetPlanet();
 	virtual void Start()override;
 	virtual void Render()override;
 
-private:
-	int size = 0;
-	int pointsPerRow = 24;
-	GLint uColourLoc = -1;
-
+	int pointsPerRow = 4;
 	ShapeSettings shapeSettings;
 	PlanetColour planetColour;
 	ShapeGenerator shapeGenerator;
+private:
+	int size = 0;
+	GLint uColourLoc = -1;
 };

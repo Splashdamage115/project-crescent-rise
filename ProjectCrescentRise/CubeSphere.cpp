@@ -1,14 +1,17 @@
 #include "CubeSphere.h"
 #include "CubeSphereFace.h"
 
-void CubeSphere::Start()
+void CubeSphere::ResetPlanet()
 {
     shapeGenerator.settings = shapeSettings;
 
     std::vector<float> vertices;
+    vertices.clear();
     vertices.resize(6 *(pointsPerRow * pointsPerRow) * 5);
     std::vector<unsigned int> indices;
+    indices.clear();
     indices.resize(6 * (pointsPerRow-1) * (pointsPerRow-1) * 6);
+
 
     std::vector<glm::vec3> direction;
 
@@ -25,40 +28,53 @@ void CubeSphere::Start()
     }
     size = indices.size();
 
+
+    glBindVertexArray(m_body.vao);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), vertices.data(), GL_DYNAMIC_DRAW);
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_DYNAMIC_DRAW);
+}
+
+void CubeSphere::Start()
+{
     // Generate and setup VAO
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
 
-    // Generate and setup VBO
     glGenBuffers(1, &m_body.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 0, nullptr, GL_DYNAMIC_DRAW);
 
-    // Generate and setup EBO
     glGenBuffers(1, &m_body.ebo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 0, nullptr, GL_DYNAMIC_DRAW);
 
-    // Setup vertex attributes
-    // Position attribute (location = 0)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    // Texture coordinate attribute (location = 1)
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    // Get shader and uniform locations
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
     uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
+
+    // Generate initial mesh data
+    ResetPlanet();
 }
 
 void CubeSphere::Render()
 {
+    if (!enabled) return;
+
+    ResetPlanet();
+
     VertexShaders::LoadShader(m_shader);
 
     glBindVertexArray(m_body.vao);

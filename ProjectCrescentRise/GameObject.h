@@ -10,6 +10,7 @@ public:
 	GameObject();
 
 	void move(const glm::vec3& delta);
+	bool removeScript(std::shared_ptr<ScriptObject> t_script);
 	bool addScript(std::shared_ptr<ScriptObject> t_newScript);
 	void callRenders();
 
