@@ -2,36 +2,36 @@
 
 void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsigned int>& indices, int resolution, glm::vec3 up, int faceNum, ShapeGenerator gen)
 {
-glm::vec3 axisA = glm::vec3(up.y, up.z, up.x);
-glm::vec3 axisB = glm::cross(up, axisA);
+	glm::vec3 axisA = glm::vec3(up.y, up.z, up.x);
+	glm::vec3 axisB = glm::cross(up, axisA);
 
-int triIndex = faceNum * (resolution - 1) * (resolution - 1) * 6;
+	int triIndex = faceNum * (resolution - 1) * (resolution - 1) * 6;
 
-for (int y = 0; y < resolution; y++)
-{
-for (int x = 0; x < resolution; x++)
-{
-int i = x + y * resolution;
-int vertexIndex = i + (faceNum * resolution * resolution);
-int vertNum = vertexIndex * 8;
-glm::vec2 percent = glm::vec2((float)x / (float)(resolution - 1), (float)y / (float)(resolution - 1));
-glm::vec3 pointOnUnitCube = up + (percent.x - 0.5f) * 2 * axisA + (percent.y - 0.5f) * 2 * axisB;
-glm::vec3 pointOnUnitSphere = glm::normalize(pointOnUnitCube);
-glm::vec3 displacedPoint = gen.CalcualtePointOnPlanet(pointOnUnitSphere);
-glm::vec3 normal = glm::normalize(displacedPoint);
-vertices.at(vertNum    ) = displacedPoint.x;
-vertices.at(vertNum + 1) = displacedPoint.y;
-vertices.at(vertNum + 2) = displacedPoint.z;
-vertices.at(vertNum + 3) = percent.x; //     u
-vertices.at(vertNum + 4) = percent.y; //     v
-vertices.at(vertNum + 5) = normal.x;   //     normal x
-vertices.at(vertNum + 6) = normal.y;   //     normal y
-vertices.at(vertNum + 7) = normal.z;   //     normal z
+	for (int y = 0; y < resolution; y++)
+	{
+		for (int x = 0; x < resolution; x++)
+		{
+			int i = x + y * resolution;
+			int vertexIndex = i + (faceNum * resolution * resolution);
+			int vertNum = vertexIndex * 8;
+			glm::vec2 percent = glm::vec2((float)x / (float)(resolution - 1), (float)y / (float)(resolution - 1));
+			glm::vec3 pointOnUnitCube = up + (percent.x - 0.5f) * 2 * axisA + (percent.y - 0.5f) * 2 * axisB;
+			glm::vec3 pointOnUnitSphere = glm::normalize(pointOnUnitCube);
+			glm::vec3 displacedPoint = gen.CalcualtePointOnPlanet(pointOnUnitSphere);
+			glm::vec3 normal = glm::normalize(displacedPoint);
+			vertices.at(vertNum) = displacedPoint.x;
+			vertices.at(vertNum + 1) = displacedPoint.y;
+			vertices.at(vertNum + 2) = displacedPoint.z;
+			vertices.at(vertNum + 3) = percent.x; //     u
+			vertices.at(vertNum + 4) = percent.y; //     v
+			vertices.at(vertNum + 5) = normal.x;   //     normal x
+			vertices.at(vertNum + 6) = normal.y;   //     normal y
+			vertices.at(vertNum + 7) = normal.z;   //     normal z
 
 			if (x != resolution - 1 && y != resolution - 1)
 			{
 				// triangle 1
-				indices.at(triIndex    ) = vertexIndex;
+				indices.at(triIndex) = vertexIndex;
 				indices.at(triIndex + 1) = vertexIndex + resolution + 1;
 				indices.at(triIndex + 2) = vertexIndex + resolution;
 

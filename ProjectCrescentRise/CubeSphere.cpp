@@ -70,6 +70,7 @@ void CubeSphere::Start()
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
     uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
+    MinMax = glGetUniformLocation(m_shader->shaderPair, "minMax");
 
     // Generate initial mesh data
     ResetPlanet();
@@ -94,6 +95,8 @@ void CubeSphere::Render()
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
     if (uColourLoc >= 0) glUniform3f(uColourLoc, (float)planetColour.r, (float)planetColour.g, (float)planetColour.b);
+    if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax());
+
 
     glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
 }

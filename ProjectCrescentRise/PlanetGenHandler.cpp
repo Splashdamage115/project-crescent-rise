@@ -81,6 +81,8 @@ void PlanetGenHandler::guiRender()
 	}
 	for (int i = 0; i < m_planet->shapeSettings.noiseLayers.size(); i++)
 	{
+		if (i - 1 > currentItem.size()) currentItem.emplace_back();
+
 		std::string enable = "Enabled " + std::to_string(i);
 		if (ImGui::Checkbox(enable.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).enabled))
 		{
@@ -89,8 +91,51 @@ void PlanetGenHandler::guiRender()
 		std::string t = "Layer " + std::to_string(i);
 		if (ImGui::CollapsingHeader(t.c_str()))
 		{
+			std::string n = "Noise Filter Type " + std::to_string(i);
+			const char* items[] = { "Simple", "Rigid" };
+			
+
+			if (ImGui::BeginCombo(n.c_str(), currentItem.at(i))) 
+			{
+				for (int a = 0; a < IM_ARRAYSIZE(items); a++) 
+				{
+					bool isSelected = (currentItem.at(i) == items[a]);
+
+					if (ImGui::Selectable(items[a], isSelected))
+					{
+						currentItem.at(i) = items[a];
+
+						if (currentItem.at(i) == "Simple")
+						{
+							m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.filterType = NoiseSettings::FilterType::Simple;
+							resetPlanet();
+						}
+						if (currentItem.at(i) == "Rigid")
+						{
+							m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.filterType = NoiseSettings::FilterType::Rigid;
+							resetPlanet();
+						}
+					}
+					if (isSelected)
+					{
+						ImGui::SetItemDefaultFocus();
+					}
+				}
+
+				
+				ImGui::EndCombo();
+
+			}
+
+			// Layer Amount
+			n = "Layer Amount " + std::to_string(i);
+			if (ImGui::SliderInt(n.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.numLayers, 1, 30))
+			{
+				resetPlanet();
+			}
+
 			// base roughness
-			std::string n = "Base Roughness " + std::to_string(i);
+			n = "Base Roughness " + std::to_string(i);
 			if (ImGui::SliderFloat(n.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.baseRoughness, 0.f, 256.f))
 			{
 				resetPlanet();

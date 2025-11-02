@@ -22,4 +22,5 @@ public:
 private:
 	int size = 0;
 	GLint uColourLoc = -1;
+	GLint MinMax = -1;
 };
