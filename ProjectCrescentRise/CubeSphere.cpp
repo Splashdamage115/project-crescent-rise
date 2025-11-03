@@ -31,7 +31,6 @@ void CubeSphere::ResetPlanet()
     }
     size = indices.size();
 
-
     glBindVertexArray(m_body.vao);
     
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
