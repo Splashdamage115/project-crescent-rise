@@ -12,7 +12,7 @@ private:
 
 
 	float currentSpeed = 10.0f;
-	const float speedIncrease = 5.0f;
+	const float speedIncrease = 50.0f;
 	const float minSpeed = 10.0f;
 	const float maxSpeed = 300.0f;
 };

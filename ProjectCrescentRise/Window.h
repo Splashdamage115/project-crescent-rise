@@ -4,6 +4,7 @@
 #include <functional>
 #include "Camera.h"
 #include "KeyScan.h"
+#include "PlanetGenHandler.h"
 
 class Window
 {
@@ -18,7 +19,7 @@ public:
 	Window(Window const&) = delete;
 	void operator=(Window const&) = delete;
 
-    void InitCamera(float fovDeg = 60.0f, float zNear = 0.1f, float zFar = 100.0f) {
+    void InitCamera(float fovDeg = 60.0f, float zNear = 0.1f, float zFar = 1000.0f) {
         float aspect = static_cast<float>(m_width) / static_cast<float>(m_height);
         m_camera.setPerspective(fovDeg, aspect, zNear, zFar);
     }
@@ -49,21 +50,32 @@ public:
 	
     void Update();
     void ClickIn();
-
+    
 	~Window();
 	bool windowClosed();
 	void render();
 
+    void PassPlanet(std::shared_ptr<CubeSphere> t_planet);
+    void closeGUI();
 private:
-	Window();
+Window();
     bool escDown = false;
     bool tabbedOut = false;
     std::shared_ptr<mouseKeyInput> clickIntoWindow;
+    
+    // Variables for GUI window dragging
+    bool isDragging = false;
+    double lastMouseX = 0.0;
+    double lastMouseY = 0.0;
 
 	GLFWwindow* m_window = nullptr;
+    GLFWwindow* guiWindow = nullptr;
+
 
     int m_width = 1280;
     int m_height = 720;
     Camera m_camera;
-};
 
+    bool guiActive = true;
+    PlanetGenHandler planetGen;
+};

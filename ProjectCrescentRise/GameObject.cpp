@@ -13,6 +13,8 @@ void GameObject::move(const glm::vec3& delta)
 	transform->position += delta;
 }
 
+
+
 bool GameObject::addScript(std::shared_ptr<ScriptObject> t_newScript)
 {
 	try {

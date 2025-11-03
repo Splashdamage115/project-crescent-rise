@@ -29,7 +29,7 @@ private:
     glm::vec3 m_position, m_target, m_up;
     float m_fov = 90.0f;
     float m_aspect = 16.0f / 9.0f;
-    float m_near = 0.1f, m_far = 100.0f; // clipping planes
+    float m_near = 0.1f, m_far = 1000.0f; // clipping planes
     glm::mat4 m_proj = glm::perspective(glm::radians(m_fov), m_aspect, m_near, m_far);
 };
 

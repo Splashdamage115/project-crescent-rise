@@ -29,7 +29,7 @@ void PlayerInput::Update()
 	{
 		displacement.y += currentSpeed * static_cast<float>(Game::deltaTime);
 	}
-
+	
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::LSHIFT))
 	{
 		currentSpeed += speedIncrease * static_cast<float>(Game::deltaTime);
@@ -39,16 +39,19 @@ void PlayerInput::Update()
 	{
 		currentSpeed = minSpeed;
 	}
-
+	
 	transform->moveAlongForward(displacement);
-
+	
 	float xDelta = static_cast<float>(KeyScan::mouseX - lastMouseX);
 	float yDelta = static_cast<float>(KeyScan::mouseY - lastMouseY);
-
+	
 	transform->rotation.y += xDelta * 0.05f;
 	transform->rotation.x -= yDelta * 0.05f;
-
-
+	
+	
 	lastMouseY = KeyScan::mouseY;
 	lastMouseX = KeyScan::mouseX;
+	
+	//std::cout << transform->rotation.x << ", " << transform->rotation.y << ", " << transform->rotation.z << "\n";
+	//std::cout << transform->position.x << ", " << transform->position.y << ", " << transform->position.z << "\n";
 }

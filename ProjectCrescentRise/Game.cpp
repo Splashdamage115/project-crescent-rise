@@ -1,12 +1,12 @@
 #include "Game.h"
 #include "Update.h"
-#include "GameObjects.h"
 #include "Mover.h"
 #include "billboard2D.h"
 #include "Window.h"
 #include "CameraFeed.h"
 #include "PlayerInput.h"
 #include "GroundTile.h"
+#include "CubeSphere.h"
 
 double Game::deltaTime = 0;
 
@@ -14,29 +14,30 @@ void Game::initGame()
 {
 	Window::Get();
 	Window::Get().InitCamera();
-	GameObject obj;
-	obj.transform->scale = { 30.0f, 30.0f, 1.0f };
-	obj.transform->position = { 0.0f, -1.8f, 0.0f };
-	obj.transform->rotation = { 90.0f, 0.0f, 0.0f };
-	obj.addScript(std::make_shared<billboard2D>());
-	//GameObjects::addNewObjectToPool(obj);
 
-	GameObject obj2;
-	obj2.transform->position = { 0.0f, 0.0f, 0.0f };
-	obj2.transform->rotation = { 0.0f, 0.0f, 0.0f };
-	obj2.addScript(std::make_shared<CameraFeed>());
-	obj2.addScript(std::make_shared<PlayerInput>());
 
-	GameObjects::addNewObjectToPool(obj2);
+	camObj = std::make_shared<GameObject>();
+	camObj->transform->position = { 0.f, 0.f, 0.f };
+	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
+	camObj->addScript(std::make_shared<CameraFeed>());
+	camObj->addScript(std::make_shared<PlayerInput>());
 
-	GameObject floorObj;
-	floorObj.transform->position = { 0.0f, -2.0f, -2.0f };
-	floorObj.transform->scale = { 1.0f, 1.0f, 1.0f };
-	floorObj.addScript(std::make_shared<GroundTile>());
-	//std::shared_ptr<Mover> m = std::make_shared<Mover>();
-	//m->rotation = glm::vec3(100.0f, 0.0f, 100.0f);
-	//floorObj.addScript(m);
-	GameObjects::addNewObjectToPool(floorObj);
+	GameObjects::addNewObjectToPool(camObj);
+
+	waterObj = std::make_shared<GameObject>();
+	waterObj->addScript(std::make_shared<billboard2D>());
+	waterObj->transform->rotation = { 90.0f, 0.0f, 0.0f };
+	waterObj->transform->position = { 0.0f, 11.0f, 0.0f };
+	waterObj->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
+	//GameObjects::addNewObjectToPool(waterObj);
+
+	initFloor();
+
+	mski = std::make_shared<mouseKeyInput>();
+	mski->active = true;
+	mski->function = { [this]() {this->initFloor(); } };
+	mski->keyCode = KeyScan::MouseKeyCode::RightMouse;
+	KeyScan::append(mski, true);
 }
 
 int Game::playGame()
@@ -54,4 +55,30 @@ int Game::playGame()
 		Window::Get().render();
 	}
 	return 0;
+}
+
+void Game::initFloor()
+{
+	//std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
+	//floorObj2->transform->position = { 0.0f, -2.0f, -2.0f };
+	//floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
+	//floorObj2->addScript(std::make_shared<GroundTile>());
+	//if(floorObj != nullptr) floorObj->active = false;
+	//floorObj = floorObj2;
+	//GameObjects::addNewObjectToPool(floorObj2);
+
+
+	std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
+	floorObj2->transform->position = { 0.0f, -2.0f, -2.0f };
+	floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
+	std::shared_ptr<ScriptObject> planet = std::make_shared<CubeSphere>();
+
+	Window::Get().PassPlanet(std::static_pointer_cast<CubeSphere>(planet));
+
+	floorObj2->addScript(planet);
+
+
+	if(floorObj != nullptr) floorObj->active = false;
+	floorObj = floorObj2;
+	GameObjects::addNewObjectToPool(floorObj2);
 }

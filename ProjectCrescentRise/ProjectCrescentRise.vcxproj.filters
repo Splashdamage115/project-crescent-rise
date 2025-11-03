@@ -37,6 +37,30 @@
     <Filter Include="Source Files\Library\Objects">
       <UniqueIdentifier>{7c4ea0f5-6635-4c9c-a5fd-ef43d209d93e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scripts\CubeSphere">
+      <UniqueIdentifier>{a2f3667c-4b27-49db-aec2-e7ecefc99d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripts\CubeSphere">
+      <UniqueIdentifier>{53886c51-fcac-4a16-804e-8817ae6f8c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scripts\CubeSphere\Settings">
+      <UniqueIdentifier>{4e0cd7fb-9b58-4d6e-86aa-4dc012612d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripts\CubeSphere\Settings">
+      <UniqueIdentifier>{a474a35e-d1d6-4efc-b0e1-92a1206bb906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library\imgui">
+      <UniqueIdentifier>{573a28a1-0c50-4d0b-92f8-e8a3a13e92ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\imgui">
+      <UniqueIdentifier>{79de4321-691f-46e0-8c99-27e77aafa5f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui">
+      <UniqueIdentifier>{06d58453-4ed5-47fb-8a1d-9cfe5a3977a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui">
+      <UniqueIdentifier>{43199401-5e8e-4a3d-8aaf-3dad80b4ff7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ScriptObject.cpp">
@@ -84,6 +108,42 @@
     <ClCompile Include="GroundTile.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="CubeSphereFace.cpp">
+      <Filter>Source Files\Scripts\CubeSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeSphere.cpp">
+      <Filter>Source Files\Scripts\CubeSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeGenerator.cpp">
+      <Filter>Source Files\Scripts\CubeSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="Noise.cpp">
+      <Filter>Source Files\Scripts\CubeSphere\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>Source Files\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>Source Files\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>Source Files\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_glfw.cpp">
+      <Filter>Source Files\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_opengl3.cpp">
+      <Filter>Source Files\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>Source Files\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>Source Files\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetGenHandler.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -130,6 +190,63 @@
     </ClInclude>
     <ClInclude Include="GroundTile.h">
       <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeSphere.h">
+      <Filter>Header Files\Scripts\CubeSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeSphereFace.h">
+      <Filter>Header Files\Scripts\CubeSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetColour.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeSettings.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeGenerator.h">
+      <Filter>Header Files\Scripts\CubeSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="Noise.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="NoiseSettings.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imconfig.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_glfw.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_opengl3.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_internal.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_rectpack.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_textedit.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imstb_truetype.h">
+      <Filter>Header Files\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetGenHandler.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="NoiseFilters.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="MinMax.h">
+      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

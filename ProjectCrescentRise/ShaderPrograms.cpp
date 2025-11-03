@@ -20,8 +20,6 @@ void VertexShaders::initialise()
         "    TexCoords = aTexCoord;\n"
         "}\n";
 
-
-
     ShaderFilesVertex newVertexPair;
     newVertexPair.vertexType = Shader::VertexShaderType::standard;
     newVertexPair.file = newVertex;
@@ -47,7 +45,7 @@ void VertexShaders::initialise()
         "out vec4 FragColor;\n"
         "void main()\n"
         "{\n"
-        "   vec2 uv = TexCoords * 2.0;\n"
+        "   vec2 uv = TexCoords * 8.0;\n"
         "   float checker = mod(floor(uv.x) + floor(uv.y), 2.0);\n"
         "   FragColor = checker == 0.0 ? vec4(1.0, 1.0, 1.0, 1.0) : vec4(0.1, 0.1, 0.15, 1.0);\n"
         "}\n";
@@ -58,6 +56,148 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
+
+    const char* newFragment3 =
+        "#version 410 core\n"
+        "uniform vec3 colour;\n"
+        "out vec4 frag_colour;\n"
+        "void main() {\n"
+        "  frag_colour = vec4(colour.x / 255.0, colour.y / 255.0, colour.z / 255.0, 1.0);\n"
+        "}\n";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::Colour;
+    newFragmentPair.file = newFragment3;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
+
+
+    const char* terrainVertex =
+        "#version 410 core\n"
+        "layout(location = 0) in vec3 aPos;\n"
+        "layout(location = 1) in vec2 aTexCoord;\n"
+        "\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "out vec2 TexCoords;\n"
+        "out float worldY;\n"
+        "\n"
+        "void main() {\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    TexCoords = aTexCoord;\n"
+        "    worldY = worldPos.y;\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::terrain;
+    newVertexPair.file = terrainVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+
+    const char* terrainFrag =
+        "#version 410 core\n"
+        "in vec2 TexCoords;\n"
+        "in float worldY;\n"
+        "\n"
+        "out vec4 FragColor;\n"
+        "\n"
+        "uniform float lowHeight = 12.0;\n"
+        "uniform float midHeight = 14.0;\n"
+        "uniform float highHeight = 20.0;\n"
+        "\n"
+        "vec4 getHeightColor(float y) {\n"
+        "    if (y < midHeight) {\n"
+        "        // Blend yellow to green\n"
+        "        float t = clamp((y - lowHeight) / (midHeight - lowHeight), 0.0, 1.0);\n"
+        "        return mix(vec4(1.0, 1.0, 0.0, 1.0), vec4(0.0, 1.0, 0.0, 1.0), t);\n"
+        "    }\n"
+        "    else {\n"
+        "        // Blend green to grey\n"
+        "        float t = clamp((y - midHeight) / (highHeight - midHeight), 0.0, 1.0);\n"
+        "        return mix(vec4(0.0, 1.0, 0.0, 1.0), vec4(0.5, 0.5, 0.5, 1.0), t);\n"
+        "    }\n"
+        "}\n"
+        "\n"
+        "void main() {\n"
+        "    FragColor = getHeightColor(worldY);\n"
+        "}\n";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::terrain;
+    newFragmentPair.file = terrainFrag;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::terrain, Shader::FragmentShaderType::terrain);
+
+    const char* litVertex =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTexCoord;\n"
+        "layout (location = 2) in vec3 aNormal;\n"
+        "\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "out vec2 TexCoords;\n"
+        "out vec3 WorldPos;\n"
+        "out vec3 Normal;\n"
+        "\n"
+        "void main() {\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    \n"
+        "    WorldPos = worldPos.xyz;\n"
+        "    Normal = mat3(transpose(inverse(uModel))) * aNormal;\n"
+        "    TexCoords = aTexCoord;\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::lit;
+    newVertexPair.file = litVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* litFragment =
+        "#version 410 core\n"
+        "in vec2 TexCoords;\n"
+        "in vec3 WorldPos;\n"
+        "in vec3 Normal;\n"
+        "out vec4 FragColor;\n"
+        "uniform vec3 baseColour;\n"
+        "uniform vec2 minMax;\n"
+        "const vec3 lightPos = vec3(10.0, 10.0, 10.0);\n"
+        "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
+        "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
+        "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
+        "void main() {\n"
+        "    // Normalize the interpolated normal\n"
+        "    vec3 norm = normalize(Normal);\n"
+        "    float min = minMax.x;\n"
+        "    float max = minMax.y;\n"
+        "    vec3 objectColor = (baseColour / 255.0);\n"
+        "    float ambientStrength = 0.2;\n"
+        "    vec3 ambient = ambientStrength * lightColor;\n"
+        "    float diff = max(dot(norm, -lightDir), 0.0);\n"
+        "    vec3 diffuse = diff * lightColor;\n"
+        "    float specularStrength = 0.5;\n"
+        "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
+        "    vec3 reflectDir = reflect(lightDir, norm);\n"
+        "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
+        "    vec3 specular = specularStrength * spec * lightColor;\n"
+        "    vec3 result = (ambient + diffuse) * objectColor + specular;\n"
+        "    FragColor = vec4(result, 1.0);\n"
+        "}\n";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::lit;
+    newFragmentPair.file = litFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
 }
 
 // *** NEVER USE THIS ***

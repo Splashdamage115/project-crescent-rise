@@ -7,11 +7,11 @@ void GroundTile::Start()
 
     std::vector<float> vertices;
 
-    int squareCount = 4096;
-    int width = 64;
-    size = squareCount;
-    bool stopHeight = false;
-    int disp = 1;
+    std::vector<std::vector<float>> heights1;
+    std::vector<std::vector<float>> heights2;
+
+    generateVornoi(heights1, width, 32);
+    generateVornoi(heights2, width, 128);
 
     std::vector<std::vector<float>> heights;
 
@@ -20,22 +20,36 @@ void GroundTile::Start()
         heights.emplace_back();
         for (int y = 0; y < width; y++)
         {
-            heights.at(x).emplace_back(static_cast<float>(rand() % 100) / 100.f);
+            heights.at(x).emplace_back((heights1.at(x).at(y)) + (heights2.at(x).at(y) * 0.5f));
         }
     }
 
+
+    disp *= scaleFactor;
+    tileSize *= scaleFactor;
+
+    //generateVornoi(heights, width);
+
     int iterX = 0;
     int iterY = 0;
+    bool stopHeight = false;
+    size = width * width;
 
-    for (int i = 0; i < squareCount; i++)
+
+    for (int i = 0; i < width * width; i++)
     {
-
-
 //                        x                                  y                                 z                                 u                               v
-vertices.emplace_back( -0.5f + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at((x == 0) ? iterY : iterY - 1) ); vertices.emplace_back( -0.5f + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  1.0f );
-vertices.emplace_back( -0.5f + (x * disp) ); vertices.emplace_back( heights.at(iterX).at((x == 0) ? iterY : iterY - 1)); vertices.emplace_back(  0.5f + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  0.0f );
-vertices.emplace_back(  0.5f + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at(iterY)); vertices.emplace_back( -0.5f + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  1.0f );
-vertices.emplace_back(  0.5f + (x * disp) ); vertices.emplace_back( heights.at(iterX).at(iterY)); vertices.emplace_back(  0.5f + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  0.0f );
+// 0
+vertices.emplace_back( -tileSize + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at((x == 0) ? iterY : iterY - 1) ); vertices.emplace_back( -tileSize + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  1.0f );
+
+// 1
+vertices.emplace_back( -tileSize + (x * disp) ); vertices.emplace_back( heights.at(iterX).at((x == 0) ? iterY : iterY - 1)); vertices.emplace_back(tileSize + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  0.0f );
+
+// 2
+vertices.emplace_back(  tileSize + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at(iterY)); vertices.emplace_back( -tileSize + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  1.0f );
+
+// 3
+vertices.emplace_back(  tileSize + (x * disp) ); vertices.emplace_back( heights.at(iterX).at(iterY)); vertices.emplace_back(tileSize + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  0.0f );
 
         
 iterY++;
@@ -52,7 +66,7 @@ if (x >= width)
     // Define indices for two triangles (counter-clockwise)
     std::vector<unsigned int> indices;
 
-    for (int i = 0; i < squareCount; i++)
+    for (int i = 0; i < width * width; i++)
     {
         int offset = i * 4;
         indices.push_back(0 + offset); indices.push_back(1 + offset); indices.push_back(2 + offset);
@@ -84,7 +98,7 @@ if (x >= width)
     glEnableVertexAttribArray(1);
 
     // Get shader and uniform locations
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::terrain, Shader::FragmentShaderType::terrain);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
@@ -93,6 +107,8 @@ if (x >= width)
 
 void GroundTile::Render()
 {
+    if (!enabled) return;
+
     VertexShaders::LoadShader(m_shader);
 
     glBindVertexArray(m_body.vao);
@@ -107,4 +123,53 @@ void GroundTile::Render()
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
     glDrawElements(GL_TRIANGLES, size * 6, GL_UNSIGNED_INT, 0);
+}
+
+struct pos
+{
+    pos(float t_x, float t_y) : x(t_x), y(t_y) { }
+    float x, y;
+};
+
+static float distance(float t_pos1x, float t_pos1y, float t_pos2x, float t_pos2y)
+{
+    return std::sqrt((t_pos1x - t_pos2x) * (t_pos1x - t_pos2x) + (t_pos1y - t_pos2y) * (t_pos1y - t_pos2y));
+}
+
+void GroundTile::generateVornoi(std::vector<std::vector<float>>& t_heights, int width, int pointAmt)
+{
+    std::vector<pos> vornoiPositions;
+
+    for (int i = 0; i < pointAmt; i++)
+    {
+        float x = static_cast<float>(rand() % width);
+        float y = static_cast<float>(rand() % width);
+        vornoiPositions.emplace_back(x, y);
+    }
+    float height = 0.f;
+    for (int x = 0; x < width; x++)
+    {
+        t_heights.emplace_back();
+        height = 0.f;
+        for (int y = 0; y < width; y++)
+        {
+            //int closest = 0;
+            float closestDistance = distance(x, y, vornoiPositions.at(0).x, vornoiPositions.at(0).y);
+            float secondClosest = distance(x, y, vornoiPositions.at(1).x, vornoiPositions.at(1).y);
+            for (int i = 0; i < vornoiPositions.size(); i++)
+            {
+                float currentDistance = distance(x, y, vornoiPositions.at(i).x, vornoiPositions.at(i).y);
+                if (closestDistance > currentDistance)
+                {
+                    secondClosest = closestDistance;
+                    closestDistance = currentDistance;
+                }
+                else if (secondClosest > currentDistance)
+                {
+                    secondClosest = currentDistance;
+                }
+            }
+            t_heights.at(x).emplace_back((closestDistance + secondClosest) * heightFactor);
+        }
+    }
 }
