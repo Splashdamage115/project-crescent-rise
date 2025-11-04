@@ -182,7 +182,7 @@ void VertexShaders::initialise()
         "    vec3 localPos = WorldPos - CenterPoint;\n"
         "    float localDistanceToCenter = sqrt((CenterPoint.x - localPos.x) * (CenterPoint.x - localPos.x) + (CenterPoint.y - localPos.y) * (CenterPoint.y - localPos.y) + (CenterPoint.z - localPos.z) * (CenterPoint.z - localPos.z));\n"
         "    float elevationPercent = (localDistanceToCenter -  min) / max;\n"
-        "    vec3 objectColor = (baseColour / 255.0) * elevationPercent;\n"
+        "    vec3 objectColor = 1.0 * elevationPercent;\n"
         "    float ambientStrength = 0.2;\n"
         "    vec3 ambient = ambientStrength * lightColor;\n"
         "    float diff = max(dot(norm, -lightDir), 0.0);\n"
