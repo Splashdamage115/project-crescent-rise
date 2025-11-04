@@ -94,7 +94,10 @@ void CubeSphere::Render()
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
     if (uColourLoc >= 0) glUniform3f(uColourLoc, (float)planetColour.r, (float)planetColour.g, (float)planetColour.b);
-    if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax());
+    if (MinMax >= 0) {
+        glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax()); 
+        //std::cout << "Min : " << shapeGenerator.elevationMinMax.getMin() << " , Max : " << shapeGenerator.elevationMinMax.getMax() << "\n";
+    }
 
 
     glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);

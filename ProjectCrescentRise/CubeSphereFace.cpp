@@ -1,6 +1,6 @@
 #include "CubeSphereFace.h"
 
-void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsigned int>& indices, int resolution, glm::vec3 up, int faceNum, ShapeGenerator gen)
+void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsigned int>& indices, int resolution, glm::vec3 up, int faceNum, ShapeGenerator& gen)
 {
 	glm::vec3 axisA = glm::vec3(up.y, up.z, up.x);
 	glm::vec3 axisB = glm::cross(up, axisA);
