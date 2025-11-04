@@ -67,6 +67,9 @@
 4. Render order issues
     - hard to understand what the render order wrapping was, had to redo the order and the UV coordinated Multiple times for the floor
 
+5. ReInstantiation issue
+    - ONE AMPERSAND HAS COST ME 3 DAYS
+
 ## Research:
     - Rock climbing game, with surface (snowboarding?)
 

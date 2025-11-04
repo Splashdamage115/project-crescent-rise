@@ -138,6 +138,7 @@ void VertexShaders::initialise()
         "layout (location = 0) in vec3 aPos;\n"
         "layout (location = 1) in vec2 aTexCoord;\n"
         "layout (location = 2) in vec3 aNormal;\n"
+        "const vec3 CenterPoint = vec3(0.0,0.0,0.0);\n"
         "\n"
         "uniform mat4 uModel;\n"
         "uniform mat4 uView;\n"
@@ -146,14 +147,17 @@ void VertexShaders::initialise()
         "out vec2 TexCoords;\n"
         "out vec3 WorldPos;\n"
         "out vec3 Normal;\n"
+        "out float height;\n"
         "\n"
         "void main() {\n"
         "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
         "    gl_Position = uProj * uView * worldPos;\n"
         "    \n"
         "    WorldPos = worldPos.xyz;\n"
+        ""
         "    Normal = mat3(transpose(inverse(uModel))) * aNormal;\n"
         "    TexCoords = aTexCoord;\n"
+        "    height = sqrt((CenterPoint.x - WorldPos.x) * (CenterPoint.x - WorldPos.x) + (CenterPoint.y - WorldPos.y) * (CenterPoint.y - WorldPos.y) + (CenterPoint.z - WorldPos.z) * (CenterPoint.z - WorldPos.z));\n"
         "}\n";
 
     newVertexPair = ShaderFilesVertex();
@@ -163,8 +167,10 @@ void VertexShaders::initialise()
 
     const char* litFragment =
         "#version 410 core\n"
-        "in vec2 TexCoords;\n"
+        //"in vec2 TexCoords;\n"
+        //"const vec3 CenterPoint = vec3(0.0,0.0,0.0);\n"
         "in vec3 WorldPos;\n"
+        "in float height;\n"
         "in vec3 Normal;\n"
         "out vec4 FragColor;\n"
         "uniform vec3 baseColour;\n"
@@ -178,7 +184,11 @@ void VertexShaders::initialise()
         "    vec3 norm = normalize(Normal);\n"
         "    float min = minMax.x;\n"
         "    float max = minMax.y;\n"
-        "    vec3 objectColor = (baseColour / 255.0);\n"
+        "    vec3 localPos = WorldPos;\n"
+        "    float heightPercent = (height - min) / max;\n"  
+        "    vec3 colourOverride = baseColour;\n"
+        "    if (heightPercent <= 0.01) colourOverride = vec3(0.0,0.0,255.0);\n"
+        "    vec3 objectColor = (colourOverride / 255.0) * clamp(heightPercent, 0.1, 1.0);\n"
         "    float ambientStrength = 0.2;\n"
         "    vec3 ambient = ambientStrength * lightColor;\n"
         "    float diff = max(dot(norm, -lightDir), 0.0);\n"
@@ -188,7 +198,8 @@ void VertexShaders::initialise()
         "    vec3 reflectDir = reflect(lightDir, norm);\n"
         "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
         "    vec3 specular = specularStrength * spec * lightColor;\n"
-        "    vec3 result = (ambient + diffuse) * objectColor + specular;\n"
+        //"    vec3 result = (ambient + diffuse) * objectColor + specular;\n"
+        "    vec3 result = objectColor;\n"  
         "    FragColor = vec4(result, 1.0);\n"
         "}\n";
 
@@ -299,10 +310,26 @@ std::errc VertexShaders::mountShader(Shader::VertexShaderType t_vertex, Shader::
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vs, 1, &m_vertexFiles.at(vertexNum).file, NULL);
     glCompileShader(vs);
+    GLint success;
+    glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        char infoLog[512];
+        glGetShaderInfoLog(vs, 512, NULL, infoLog);
+        std::cout << "Vertex shader compilation failed: " << infoLog << std::endl;
+        return std::errc::timed_out;
+    }
+
 
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &m_fragmentFiles.at(fragNum).file, NULL);
     glCompileShader(fs);
+    glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        char infoLog[512];
+        glGetShaderInfoLog(vs, 512, NULL, infoLog);
+        std::cout << "Fragment shader compilation failed: " << infoLog << std::endl;
+        return std::errc::timed_out;
+    }
 
     glAttachShader(newShader->shaderPair, vs);
     glAttachShader(newShader->shaderPair, fs);

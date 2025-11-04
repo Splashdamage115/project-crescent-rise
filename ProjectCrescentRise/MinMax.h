@@ -9,6 +9,13 @@ public:
 
 	void AddValue(float v)
 	{
+		if (firstPass)
+		{
+			min = v;
+			max = v;
+			firstPass = false;
+		}
+
 		if (v > max)
 		{
 			max = v;
@@ -21,4 +28,5 @@ public:
 private:
 	float min = FLT_MAX;
 	float max = FLT_MIN;
+	bool firstPass = true; 
 };
