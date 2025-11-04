@@ -154,11 +154,11 @@ void GroundTile::generateVornoi(std::vector<std::vector<float>>& t_heights, int 
         for (int y = 0; y < width; y++)
         {
             //int closest = 0;
-            float closestDistance = distance(x, y, vornoiPositions.at(0).x, vornoiPositions.at(0).y);
-            float secondClosest = distance(x, y, vornoiPositions.at(1).x, vornoiPositions.at(1).y);
-            for (int i = 0; i < vornoiPositions.size(); i++)
+            float closestDistance = distance(static_cast<float>(x), static_cast<float>(y), vornoiPositions.at(0).x, vornoiPositions.at(0).y);
+            float secondClosest = distance(static_cast<float>(x), static_cast<float>(y), vornoiPositions.at(1).x, vornoiPositions.at(1).y);
+            for (unsigned int i = 0; i < vornoiPositions.size(); i++)
             {
-                float currentDistance = distance(x, y, vornoiPositions.at(i).x, vornoiPositions.at(i).y);
+                float currentDistance = distance(static_cast<float>(x), static_cast<float>(y), vornoiPositions.at(i).x, vornoiPositions.at(i).y);
                 if (closestDistance > currentDistance)
                 {
                     secondClosest = closestDistance;

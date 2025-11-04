@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Library.h"`
+#include "Library.h"
 
 class MinMax {
 public:

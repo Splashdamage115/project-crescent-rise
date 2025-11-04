@@ -138,23 +138,21 @@ void VertexShaders::initialise()
         "layout (location = 0) in vec3 aPos;\n"
         "layout (location = 1) in vec2 aTexCoord;\n"
         "layout (location = 2) in vec3 aNormal;\n"
-        "const vec3 CenterPoint = vec3(0.0,0.0,0.0);\n"
-        "\n"
+
+        "uniform vec3 CenterPoint;\n"
         "uniform mat4 uModel;\n"
         "uniform mat4 uView;\n"
         "uniform mat4 uProj;\n"
-        "\n"
+
         "out vec2 TexCoords;\n"
         "out vec3 WorldPos;\n"
         "out vec3 Normal;\n"
         "out float height;\n"
-        "\n"
+
         "void main() {\n"
         "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
         "    gl_Position = uProj * uView * worldPos;\n"
-        "    \n"
         "    WorldPos = worldPos.xyz;\n"
-        ""
         "    Normal = mat3(transpose(inverse(uModel))) * aNormal;\n"
         "    TexCoords = aTexCoord;\n"
         "    height = sqrt((CenterPoint.x - WorldPos.x) * (CenterPoint.x - WorldPos.x) + (CenterPoint.y - WorldPos.y) * (CenterPoint.y - WorldPos.y) + (CenterPoint.z - WorldPos.z) * (CenterPoint.z - WorldPos.z));\n"
@@ -167,24 +165,24 @@ void VertexShaders::initialise()
 
     const char* litFragment =
         "#version 410 core\n"
-        //"in vec2 TexCoords;\n"
-        //"const vec3 CenterPoint = vec3(0.0,0.0,0.0);\n"
         "in vec3 WorldPos;\n"
         "in float height;\n"
         "in vec3 Normal;\n"
+
         "out vec4 FragColor;\n"
+
         "uniform vec3 baseColour;\n"
         "uniform vec2 minMax;\n"
-        "const vec3 lightPos = vec3(10.0, 10.0, 10.0);\n"
+
         "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
         "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
         "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
+
         "void main() {\n"
         "    // Normalize the interpolated normal\n"
         "    vec3 norm = normalize(Normal);\n"
         "    float min = minMax.x;\n"
         "    float max = minMax.y;\n"
-        "    vec3 localPos = WorldPos;\n"
         "    float heightPercent = (height - min) / max;\n"  
         "    vec3 colourOverride = baseColour;\n"
         "    if (heightPercent <= 0.01) colourOverride = vec3(0.0,0.0,255.0);\n"

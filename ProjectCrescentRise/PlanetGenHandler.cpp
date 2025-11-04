@@ -58,9 +58,9 @@ void PlanetGenHandler::guiRender()
 	{
 		if (LiveUpdate)
 		{
-			m_planet->planetColour.r = col[0] * 255.f;
-			m_planet->planetColour.g = col[1] * 255.f;
-			m_planet->planetColour.b = col[2] * 255.f;
+			m_planet->planetColour.r = static_cast<unsigned short>(col[0] * 255.f);
+			m_planet->planetColour.g = static_cast<unsigned short>(col[1] * 255.f);
+			m_planet->planetColour.b = static_cast<unsigned short>(col[2] * 255.f);
 		}
 	}
 	ImGui::End();
@@ -79,7 +79,7 @@ void PlanetGenHandler::guiRender()
 	{
 		m_planet->shapeSettings.noiseLayers.emplace_back();
 	}
-	for (int i = 0; i < m_planet->shapeSettings.noiseLayers.size(); i++)
+	for (unsigned int i = 0; i < m_planet->shapeSettings.noiseLayers.size(); i++)
 	{
 		if (i - 1 > currentItem.size()) currentItem.emplace_back();
 
@@ -97,7 +97,7 @@ void PlanetGenHandler::guiRender()
 
 			if (ImGui::BeginCombo(n.c_str(), currentItem.at(i))) 
 			{
-				for (int a = 0; a < IM_ARRAYSIZE(items); a++) 
+				for (unsigned int a = 0; a < IM_ARRAYSIZE(items); a++) 
 				{
 					bool isSelected = (currentItem.at(i) == items[a]);
 

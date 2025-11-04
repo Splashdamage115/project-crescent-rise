@@ -15,7 +15,7 @@ public:
 	void reset()
 	{
 		noiseFilters.resize(settings.noiseLayers.size());
-		for (int i = 0; i < noiseFilters.size(); i++)
+		for (unsigned int i = 0; i < noiseFilters.size(); i++)
 		{
 			noiseFilters.at(i) = NoiseFilterFactory::getFilter(settings.noiseLayers.at(i).noiseSettings);
 			noiseFilters.at(i)->init(settings.noiseLayers.at(i).noiseSettings);
@@ -35,7 +35,7 @@ public:
 			if (settings.noiseLayers.at(0).enabled)
 				elev = firstLayerValue;
 		}
-		for (int i = 1; i < noiseFilters.size(); i++)
+		for (unsigned int i = 1; i < noiseFilters.size(); i++)
 		{
 			if (settings.noiseLayers.at(i).enabled)
 			{
