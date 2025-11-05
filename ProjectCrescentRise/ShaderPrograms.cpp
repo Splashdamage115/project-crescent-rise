@@ -168,11 +168,15 @@ void VertexShaders::initialise()
         "in vec3 WorldPos;\n"
         "in float height;\n"
         "in vec3 Normal;\n"
-
         "out vec4 FragColor;\n"
 
-        "uniform vec3 baseColour;\n"
+        //"uniform vec3 baseColour;\n"
         "uniform vec2 minMax;\n"
+        "const int MAX_VEC_SIZE = 32;\n"
+
+        "uniform vec3 heightColours[MAX_VEC_SIZE];\n"
+        "uniform float startHeight[MAX_VEC_SIZE];\n"
+        //"in float feather;\n"
 
         "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
         "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
@@ -183,10 +187,15 @@ void VertexShaders::initialise()
         "    vec3 norm = normalize(Normal);\n"
         "    float min = minMax.x;\n"
         "    float max = minMax.y;\n"
-        "    float heightPercent = (height - min) / max;\n"  
-        "    vec3 colourOverride = baseColour;\n"
-        "    if (heightPercent <= 0.01) colourOverride = vec3(0.0,0.0,255.0);\n"
-        "    vec3 objectColor = (colourOverride / 255.0) * clamp(heightPercent, 0.1, 1.0);\n"
+        "    float heightPercent = ((height - min) / max);\n"  
+        "    vec3 colourOverride = vec3(252.0,15.0,192.0);\n"
+        //"    if (heightPercent <= 0.01) colourOverride = vec3(0.0,0.0,255.0);\n"
+        "    for (int i = 0; i < MAX_VEC_SIZE; i++) {\n"
+        //"       if(startHeight[i] == 0.0) continue;\n"
+        "       if(startHeight[i] <= heightPercent){\n"
+        "           colourOverride = heightColours[i];\n"
+        "       }}\n"
+        "    vec3 objectColor = (colourOverride / 255.0);\n"
         "    float ambientStrength = 0.2;\n"
         "    vec3 ambient = ambientStrength * lightColor;\n"
         "    float diff = max(dot(norm, -lightDir), 0.0);\n"
@@ -324,7 +333,7 @@ std::errc VertexShaders::mountShader(Shader::VertexShaderType t_vertex, Shader::
     glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
     if (!success) {
         char infoLog[512];
-        glGetShaderInfoLog(vs, 512, NULL, infoLog);
+        glGetShaderInfoLog(fs, 512, NULL, infoLog);
         std::cout << "Fragment shader compilation failed: " << infoLog << std::endl;
         return std::errc::timed_out;
     }

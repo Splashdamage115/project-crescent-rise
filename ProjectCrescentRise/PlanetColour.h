@@ -5,8 +5,10 @@
 class PlanetColour
 {
 public:
-	unsigned short r = 255;
-	unsigned short g = 255;
-	unsigned short b = 255;
+	std::vector<glm::vec3> m_colours;
+	std::vector<float> m_heights;
+	std::vector<bool> active;
+	const int COLOUR_MAX = 32;
+
 };
 

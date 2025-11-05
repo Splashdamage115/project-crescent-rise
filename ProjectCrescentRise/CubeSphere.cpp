@@ -8,6 +8,7 @@ void CubeSphere::ResetPlanet()
     shapeGenerator.settings = shapeSettings;
     shapeGenerator.reset();
 
+
     std::vector<float> vertices;
     vertices.clear();
     vertices.resize(6 *(pointsPerRow * pointsPerRow) * 8);
@@ -42,6 +43,12 @@ void CubeSphere::ResetPlanet()
 
 void CubeSphere::Start()
 {
+    for (int i = 0; i < planetColour.COLOUR_MAX; i++)
+    {
+        planetColour.m_colours.emplace_back(255.f);
+        planetColour.m_heights.emplace_back(10.0f);
+        planetColour.active.emplace_back(false);
+    }
     // Generate and setup VAO
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
@@ -68,9 +75,11 @@ void CubeSphere::Start()
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
-    uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
+    //uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
     MinMax = glGetUniformLocation(m_shader->shaderPair, "minMax");
     CenterPoint = glGetUniformLocation(m_shader->shaderPair, "CenterPoint");
+    heightColours = glGetUniformLocation(m_shader->shaderPair, "heightColours");
+    startHeight = glGetUniformLocation(m_shader->shaderPair, "startHeight");
 
     // Generate initial mesh data
     ResetPlanet();
@@ -94,10 +103,14 @@ void CubeSphere::Render()
     if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(model));
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
-    if (uColourLoc >= 0) glUniform3f(uColourLoc, (float)planetColour.r, (float)planetColour.g, (float)planetColour.b);
+    //if (uColourLoc >= 0) glUniform3f(uColourLoc, (float)planetColour..r, (float)planetColour.g, (float)planetColour.b);
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);
     if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax()); 
-
+    if (heightColours >= 0) {
+        std::cout << planetColour.m_colours[0].x << " " << planetColour.m_colours[0].g << " " << planetColour.m_colours[0].b << "\n";
+        glUniform3fv(heightColours, planetColour.m_colours.size(), glm::value_ptr(planetColour.m_colours[0]));
+    }
+    if (startHeight >= 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);
 
     glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
 }

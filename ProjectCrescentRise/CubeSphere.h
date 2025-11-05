@@ -24,4 +24,6 @@ private:
 	GLint uColourLoc = -1;
 	GLint MinMax = -1;
 	GLint CenterPoint = -1;
+	GLint heightColours = -1;
+	GLint startHeight = -1;
 };

@@ -52,15 +52,36 @@ void PlanetGenHandler::guiRender()
 	{
 		resetPlanet();
 	}
-	ImGui::Text("Planet Colour");
-	float col[] = { static_cast<float>(m_planet->planetColour.r) / 255.f, static_cast<float>(m_planet->planetColour.g) / 255.f, static_cast<float>(m_planet->planetColour.b) / 255.f };
-	if (ImGui::ColorPicker3("Planet Colour", col))
+	ImGui::Text("Planet Colours");
+
+	if (ImGui::Button("+"))
 	{
-		if (LiveUpdate)
+		m_planet->planetColour.active.at(colourSelected) = true;
+		colourSelected++;
+	}
+	for (int i = 0; i < m_planet->planetColour.COLOUR_MAX; i++) {
+		if (!m_planet->planetColour.active.at(i)) continue;
+
+		std::string t = "Colour " + std::to_string(i);
+		if (ImGui::CollapsingHeader(t.c_str()))
 		{
-			m_planet->planetColour.r = static_cast<unsigned short>(col[0] * 255.f);
-			m_planet->planetColour.g = static_cast<unsigned short>(col[1] * 255.f);
-			m_planet->planetColour.b = static_cast<unsigned short>(col[2] * 255.f);
+			std::string text = "Planet Colour " + std::to_string(i);
+			if (ImGui::SliderFloat(text.c_str(), &m_planet->planetColour.m_heights.at(i), -1.f, 1.f))
+			{
+				resetPlanet();
+			}
+			float col[] = { static_cast<float>(m_planet->planetColour.m_colours.at(i).x) / 255.f, static_cast<float>(m_planet->planetColour.m_colours.at(i).y) / 255.f, static_cast<float>(m_planet->planetColour.m_colours.at(i).z) / 255.f};
+
+			text = "Planet Colour " + std::to_string(i);
+			if (ImGui::ColorPicker3(text.c_str(), col))
+			{
+				if (LiveUpdate)
+				{
+					m_planet->planetColour.m_colours.at(i).x = static_cast<unsigned short>(col[0] * 255.f);
+					m_planet->planetColour.m_colours.at(i).y = static_cast<unsigned short>(col[1] * 255.f);
+					m_planet->planetColour.m_colours.at(i).z = static_cast<unsigned short>(col[2] * 255.f);
+				}
+			}
 		}
 	}
 	ImGui::End();
