@@ -107,7 +107,7 @@ void CubeSphere::Render()
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);
     if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax()); 
     if (heightColours >= 0) {
-        std::cout << planetColour.m_colours[0].x << " " << planetColour.m_colours[0].g << " " << planetColour.m_colours[0].b << "\n";
+        //std::cout << planetColour.m_colours[0].x << " " << planetColour.m_colours[0].g << " " << planetColour.m_colours[0].b << "\n";
         glUniform3fv(heightColours, planetColour.m_colours.size(), glm::value_ptr(planetColour.m_colours[0]));
     }
     if (startHeight >= 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);

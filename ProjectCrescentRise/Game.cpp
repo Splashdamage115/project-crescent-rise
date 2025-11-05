@@ -76,6 +76,9 @@ void Game::initFloor()
 	Window::Get().PassPlanet(std::static_pointer_cast<CubeSphere>(planet));
 
 	floorObj2->addScript(planet);
+	std::shared_ptr<Mover> i = std::make_shared < Mover>();
+	i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
+	floorObj2->addScript(i);
 
 
 	if(floorObj != nullptr) floorObj->active = false;

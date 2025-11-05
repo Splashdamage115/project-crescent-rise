@@ -187,7 +187,7 @@ void VertexShaders::initialise()
         "    vec3 norm = normalize(Normal);\n"
         "    float min = minMax.x;\n"
         "    float max = minMax.y;\n"
-        "    float heightPercent = ((height - min) / max);\n"  
+        "    float heightPercent = ((height - min) / (max - min));\n"  
         "    vec3 colourOverride = vec3(252.0,15.0,192.0);\n"
         //"    if (heightPercent <= 0.01) colourOverride = vec3(0.0,0.0,255.0);\n"
         "    for (int i = 0; i < MAX_VEC_SIZE; i++) {\n"
@@ -205,8 +205,8 @@ void VertexShaders::initialise()
         "    vec3 reflectDir = reflect(lightDir, norm);\n"
         "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
         "    vec3 specular = specularStrength * spec * lightColor;\n"
-        //"    vec3 result = (ambient + diffuse) * objectColor + specular;\n"
-        "    vec3 result = objectColor;\n"  
+        "    vec3 result = (ambient + diffuse) * objectColor + specular;\n"
+        //"    vec3 result = objectColor;\n"  
         "    FragColor = vec4(result, 1.0);\n"
         "}\n";
 
