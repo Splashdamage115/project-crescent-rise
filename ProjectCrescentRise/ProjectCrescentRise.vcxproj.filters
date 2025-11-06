@@ -114,9 +114,6 @@
     <ClCompile Include="CubeSphere.cpp">
       <Filter>Source Files\Scripts\CubeSphere</Filter>
     </ClCompile>
-    <ClCompile Include="ShapeGenerator.cpp">
-      <Filter>Source Files\Scripts\CubeSphere</Filter>
-    </ClCompile>
     <ClCompile Include="Noise.cpp">
       <Filter>Source Files\Scripts\CubeSphere\Settings</Filter>
     </ClCompile>

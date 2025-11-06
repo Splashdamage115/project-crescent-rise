@@ -73,6 +73,53 @@
 ## Research:
     - Rock climbing game, with surface (snowboarding?)
 
+## -
+- document noise / cube sphere - links, reasoning
+
+
+## Links
+- cube sphere implementation documentation
+- https://songho.ca/opengl/gl_sphere.html
+- Cube sphere has been used to make the process of joining faces easier, and so that uv coordinates are even across faces, as oposed to the ico sphere where faces are not even
+    Also gives a higher level of control of the vertices of the asset
+
+- Noise Map generation
+- https://github.com/SaintGimp/LibNoise
+- this noise has been converted from c# to c++
+    used to keep terrain changes consistent
+
+## Implementation of LOD
+### Phase 1: Restructure Face Management
+
+- Create `CubeSphereFaceLOD` class extending `CubeSphereFace`
+- Add per-face LOD level tracking
+- Implement distance calculation from camera to face center
+
+### Phase 2: Implement Face Culling
+
+- Add camera position access to `CubeSphere`
+- Implement back-face culling using dot product test
+- Add frustum culling using camera view frustum
+
+### Phase 3: Dynamic LOD System
+
+- Replace single `pointsPerRow` with per-face resolution
+- Implement LOD level calculation based on distance/screen size
+- Add smooth transitions between LOD levels
+
+### Phase 4: Optimization Enhancements
+
+- Implement mesh caching system
+- Add asynchronous mesh generation for smooth performance
+- Optimize vertex buffer updates for changed faces only
+
+### Phase 5: Advanced Features
+
+- Implement seamless LOD transitions using geometry tessellation
+- Add adaptive subdivision based on terrain complexity
+- Implement horizon culling for planetary scale
+
+
 ## Plan
 
 # Priority Order List : 

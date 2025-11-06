@@ -8,14 +8,12 @@ void CubeSphere::ResetPlanet()
     shapeGenerator.settings = shapeSettings;
     shapeGenerator.reset();
 
-
     std::vector<float> vertices;
     vertices.clear();
     vertices.resize(6 *(pointsPerRow * pointsPerRow) * 8);
     std::vector<unsigned int> indices;
     indices.clear();
     indices.resize(6 * (pointsPerRow-1) * (pointsPerRow-1) * 6);
-
 
     std::vector<glm::vec3> direction;
 
@@ -49,6 +47,9 @@ void CubeSphere::Start()
         planetColour.m_heights.emplace_back(10.0f);
         planetColour.active.emplace_back(false);
     }
+
+    planetColour.m_heights.at(0) = -1.0f;
+
     // Generate and setup VAO
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);

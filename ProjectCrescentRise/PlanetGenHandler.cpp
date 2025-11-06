@@ -54,6 +54,8 @@ void PlanetGenHandler::guiRender()
 	}
 	ImGui::Text("Planet Colours");
 
+
+	// planet colour layers
 	if (ImGui::Button("+"))
 	{
 		m_planet->planetColour.active.at(colourSelected) = true;
@@ -65,18 +67,25 @@ void PlanetGenHandler::guiRender()
 		std::string t = "Colour " + std::to_string(i);
 		float col[] = { static_cast<float>(m_planet->planetColour.m_colours.at(i).x) / 255.f, static_cast<float>(m_planet->planetColour.m_colours.at(i).y) / 255.f, static_cast<float>(m_planet->planetColour.m_colours.at(i).z) / 255.f };
 		std::string text = "Visible colour " + std::to_string(i) + ":";
+		// name for the colour, mainly for seperation between colours
 		ImGui::Text(text.c_str());
+
+		// small indicator to show the layers colour, this is to help read the item, and know which it is
 		text = "actual colour " + std::to_string(i);
 		ImGui::ColorButton(text.c_str(), ImVec4(col[0],col[1],col[2], 255.0f));
+
+		// collapsing header to hiade all other elements
 		if (ImGui::CollapsingHeader(t.c_str()))
 		{
-			text = "Planet Colour " + std::to_string(i);
+			// control the layer height
+			text = "layer height adjustment " + std::to_string(i);
 			if (ImGui::SliderFloat(text.c_str(), &m_planet->planetColour.m_heights.at(i), 0.f, 1.f))
 			{
 				resetPlanet();
 			}
 
-			text = "Planet Colour " + std::to_string(i);
+			// change the colour on that layer
+			text = "Layer Colour " + std::to_string(i);
 			if (ImGui::ColorPicker3(text.c_str(), col))
 			{
 				if (LiveUpdate)
@@ -84,6 +93,7 @@ void PlanetGenHandler::guiRender()
 					m_planet->planetColour.m_colours.at(i).x = static_cast<unsigned short>(col[0] * 255.f);
 					m_planet->planetColour.m_colours.at(i).y = static_cast<unsigned short>(col[1] * 255.f);
 					m_planet->planetColour.m_colours.at(i).z = static_cast<unsigned short>(col[2] * 255.f);
+			
 				}
 			}
 		}
@@ -99,6 +109,7 @@ void PlanetGenHandler::guiRender()
 
 	ImGui::Begin("Noise Settings");
 
+	// add a new noise leayer
 	ImGui::Text("Noise Layers");
 	if (ImGui::Button("+"))
 	{
