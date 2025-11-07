@@ -146,14 +146,14 @@ void VertexShaders::initialise()
 
         "out vec2 TexCoords;\n"
         "out vec3 WorldPos;\n"
-        "out vec3 Normal;\n"
+        "out vec3 bNormal;\n"
         "out float height;\n"
 
         "void main() {\n"
         "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
         "    gl_Position = uProj * uView * worldPos;\n"
         "    WorldPos = worldPos.xyz;\n"
-        "    Normal = mat3(transpose(inverse(uModel))) * aNormal;\n"
+        "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
         "    TexCoords = aTexCoord;\n"
         "    height = sqrt((CenterPoint.x - WorldPos.x) * (CenterPoint.x - WorldPos.x) + (CenterPoint.y - WorldPos.y) * (CenterPoint.y - WorldPos.y) + (CenterPoint.z - WorldPos.z) * (CenterPoint.z - WorldPos.z));\n"
         "}\n";
@@ -167,7 +167,7 @@ void VertexShaders::initialise()
         "#version 410 core\n"
         "in vec3 WorldPos;\n"
         "in float height;\n"
-        "in vec3 Normal;\n"
+        "in vec3 bNormal;\n"
         "out vec4 FragColor;\n"
 
         //"uniform vec3 baseColour;\n"
@@ -184,10 +184,10 @@ void VertexShaders::initialise()
 
         "void main() {\n"
         "    // Normalize the interpolated normal\n"
-        "    vec3 norm = normalize(Normal);\n"
-        "    float min = minMax.x;\n"
-        "    float max = minMax.y;\n"
-        "    float heightPercent = ((height - min) / (max - min));\n"  
+        "    vec3 norm = normalize(bNormal);\n"
+        "    float mini = minMax.x;\n"
+        "    float maxi = minMax.y;\n"
+        "    float heightPercent = ((height - mini) / (maxi - mini));\n"  
         "    vec3 colourOverride = vec3(252.0,15.0,192.0);\n"
         "    for (int i = 0; i < MAX_VEC_SIZE; i++) {\n"
         "       if(startHeight[i] <= heightPercent){\n"
