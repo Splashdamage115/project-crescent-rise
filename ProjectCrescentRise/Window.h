@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "KeyScan.h"
 #include "PlanetGenHandler.h"
+#include "ChatBox.h"
 
 class Window
 {
@@ -58,15 +59,10 @@ public:
     void PassPlanet(std::shared_ptr<CubeSphere> t_planet);
     void closeGUI();
 private:
-Window();
+    Window();
     bool escDown = false;
     bool tabbedOut = false;
     std::shared_ptr<mouseKeyInput> clickIntoWindow;
-    
-    // Variables for GUI window dragging
-    bool isDragging = false;
-    double lastMouseX = 0.0;
-    double lastMouseY = 0.0;
 
 	GLFWwindow* m_window = nullptr;
     GLFWwindow* guiWindow = nullptr;
@@ -76,6 +72,8 @@ Window();
     int m_height = 720;
     Camera m_camera;
 
-    bool guiActive = true;
+    bool guiActive = false;
     PlanetGenHandler planetGen;
+
+    ChatBox m_chatBox;
 };

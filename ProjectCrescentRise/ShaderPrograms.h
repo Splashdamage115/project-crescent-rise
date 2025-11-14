@@ -5,10 +5,10 @@
 struct Shader
 {
 enum class VertexShaderType {
-standard, terrain, lit
+standard, terrain, lit, text
 };
 enum class FragmentShaderType {
-standard, checkerboard, Colour, terrain, lit
+standard, checkerboard, Colour, terrain, lit, text
 };
 	VertexShaderType vertexType;
 	FragmentShaderType fragmentType;

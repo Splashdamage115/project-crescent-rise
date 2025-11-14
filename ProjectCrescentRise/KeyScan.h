@@ -40,6 +40,11 @@ public:
         TAB,
         LSHIFT,
         LCTRL,
+        ENTER,
+        CAPS_LOCK,
+        BACKSPACE,
+        SPACEBAR,
+        SLASH,
         LALT
     };
 
@@ -74,7 +79,10 @@ public:
                     if (action == GLFW_PRESS)
                         pressedKey.at(i).second = true;
                     else if (action == GLFW_RELEASE)
+                    {
                         pressedKey.at(i).second = false;
+                        m_typeWaitTime = 0.f;
+                    }
                 }
                 
             }
@@ -111,6 +119,49 @@ public:
                     else if (action == GLFW_RELEASE)
                         pressedKey.at(i).second = false;
                 }
+                else if (pressedKey.at(i).first == KeyCode::ENTER && key == GLFW_KEY_ENTER)
+                {
+                    // WE SPECIFICALLY SET THE TYPING
+                    if (action == GLFW_RELEASE)
+                        typingActive = !typingActive;
+                }
+                else if (pressedKey.at(i).first == KeyCode::CAPS_LOCK && key == GLFW_KEY_CAPS_LOCK)
+                {
+                    if (action == GLFW_PRESS)
+                        pressedKey.at(i).second = true;
+                    else if (action == GLFW_RELEASE)
+                        pressedKey.at(i).second = false;
+                }
+                else if (pressedKey.at(i).first == KeyCode::BACKSPACE && key == GLFW_KEY_BACKSPACE)
+                {
+                    if (action == GLFW_PRESS)
+                        pressedKey.at(i).second = true;
+                    else if (action == GLFW_RELEASE)
+                    {
+                        pressedKey.at(i).second = false;
+                        m_typeWaitTime = 0.f;
+                    }
+                }
+                else if (pressedKey.at(i).first == KeyCode::SPACEBAR && key == GLFW_KEY_SPACE)
+                {
+                    if (action == GLFW_PRESS)
+                        pressedKey.at(i).second = true;
+                    else if (action == GLFW_RELEASE)
+                    {
+                        pressedKey.at(i).second = false;
+                        m_typeWaitTime = 0.f;
+                    }
+                }
+                else if (pressedKey.at(i).first == KeyCode::SLASH && key == GLFW_KEY_SLASH)
+                {
+                    if (action == GLFW_PRESS)
+                        pressedKey.at(i).second = true;
+                    else if (action == GLFW_RELEASE)
+                    {
+                        pressedKey.at(i).second = false;
+                        m_typeWaitTime = 0.f;
+                    }
+                }
                 else if (pressedKey.at(i).first == KeyCode::LSHIFT && key == GLFW_KEY_LEFT_SHIFT)
                 {
                     if (action == GLFW_PRESS)
@@ -132,6 +183,20 @@ public:
 
     static bool isKeyDown(KeyCode t_key)
     {
+        if (t_key == KeyCode::CAPS_LOCK)
+        {
+            for (unsigned int i = 0; i < pressedKey.size(); i++)
+            {
+                if (pressedKey.at(i).first == t_key)
+                {
+                    if (pressedKey.at(i).second)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+        }
+        if (typingActive) return false;
         for (unsigned int i = 0; i < pressedKey.size(); i++)
         {
             if (pressedKey.at(i).first == t_key)
@@ -159,12 +224,16 @@ public:
     static double mouseX;
     static double mouseY;
 
+    static bool HandleTyping(std::string& t_string);
+
+    static bool typingActive;
 private:
     static std::vector<std::pair<KeyCode, bool>> pressedKey;
     static std::vector<std::pair<MouseKeyCode, bool>> pressedMouse;
     static std::vector<std::shared_ptr<mouseKeyInput>> mouseReleasedPair;
     static std::vector< std::shared_ptr<mouseKeyInput>> mousePressedPair;
-
+    static KeyCode m_lastKeyStroke;
+    static float m_typeWaitTime;
 };
 
 struct mouseKeyInput

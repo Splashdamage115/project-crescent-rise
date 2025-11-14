@@ -5,6 +5,13 @@
 class ScriptObject
 {
 public:
+	enum class RenderPriority
+	{
+		GUI, Normal
+	};
+
+	RenderPriority renderPriority = RenderPriority::Normal;
+
 	void setTransform(std::shared_ptr<Transform> t_transform);
 
 	virtual void Start() {}

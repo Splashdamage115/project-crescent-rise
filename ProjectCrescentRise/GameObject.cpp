@@ -1,6 +1,5 @@
 #include "GameObject.h"
 #include "Update.h"
-#include "ScriptObject.h"
 
 GameObject::GameObject()
 {
@@ -34,10 +33,12 @@ bool GameObject::addScript(std::shared_ptr<ScriptObject> t_newScript)
 	return true;
 }
 
-void GameObject::callRenders()
+void GameObject::callRenders(ScriptObject::RenderPriority t_currentPriority)
 {
 	for (unsigned int i = 0; i < m_scripts.size(); i++)
 	{
-		m_scripts.at(i)->Render();
+		if(m_scripts.at(i)->renderPriority == t_currentPriority)
+			m_scripts.at(i)->Render();
 	}
 }
+

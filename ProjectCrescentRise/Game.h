@@ -19,5 +19,6 @@ private:
 	std::shared_ptr<GameObject> floorObj;
 	std::shared_ptr<GameObject> camObj;
 	std::shared_ptr<GameObject> waterObj;
+	std::shared_ptr<GameObject> guiObject;
 };
 

@@ -26,44 +26,48 @@ Window::Window()
     if (glfwRawMouseMotionSupported())
         glfwSetInputMode(m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
     Update::append([this]() { this->Update(); });
 
     clickIntoWindow = std::make_shared<mouseKeyInput>();
     clickIntoWindow->active = true;
     clickIntoWindow->function = [this]() { this->ClickIn(); };
     clickIntoWindow->keyCode = KeyScan::MouseKeyCode::LeftMouse;
-    KeyScan::append(clickIntoWindow, true);
+    //KeyScan::append(clickIntoWindow, true);
 
     if (guiActive)
     {
-        std::cout << "=== GUI ACTIVE ===\n";
-        
-        // Set window hints for floating, transparent, draggable window
-        glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);           // Always on top
-        glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);         // No title bar/borders
-        glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE); // Transparent background
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);         // Fixed size for simplicity
-        
-        // Create smaller GUI window (adjust size as needed)
-        
-        guiWindow = glfwCreateWindow(planetGen.guiWidth, planetGen.guiHeight, "GUI WINDOW", NULL, NULL);
-        if (!guiWindow)
-        {
-            glfwTerminate();
-            return;
-        }
-        
-        // Position the window in top-right corner
-        glfwSetWindowPos(guiWindow, m_width - planetGen.guiWidth - 50, 50);
-        
-        // Set window opacity (0.9 = 90% opaque, 10% transparent)
-        glfwSetWindowOpacity(guiWindow, 0.9f);
-        
-        /* Make the window's context current */
-        glfwMakeContextCurrent(guiWindow);
-        glewInit();
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LESS);
+        //std::cout << "=== GUI ACTIVE ===\n";
+        //
+        //// Set window hints for floating, transparent, draggable window
+        //glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);           // Always on top
+        //glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);         // No title bar/borders
+        //glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE); // Transparent background
+        //glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);         // Fixed size for simplicity
+        //
+        //// Create smaller GUI window (adjust size as needed)
+        //
+        //guiWindow = glfwCreateWindow(planetGen.guiWidth, planetGen.guiHeight, "GUI WINDOW", NULL, NULL);
+        //if (!guiWindow)
+        //{
+        //    glfwTerminate();
+        //    return;
+        //}
+        //
+        //// Position the window in top-right corner
+        //glfwSetWindowPos(guiWindow, m_width - planetGen.guiWidth - 50, 50);
+        //
+        //// Set window opacity (0.9 = 90% opaque, 10% transparent)
+        //glfwSetWindowOpacity(guiWindow, 0.9f);
+        //
+        ///* Make the window's context current */
+        //glfwMakeContextCurrent(guiWindow);
+        //glewInit();
+        //glEnable(GL_DEPTH_TEST);
+        //glDepthFunc(GL_LESS);
 
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -74,17 +78,19 @@ Window::Window()
         ImGuiStyle& style = ImGui::GetStyle();
         style.Colors->w = 0.8f; // 80% opaque background
         
-        ImGui_ImplGlfw_InitForOpenGL(guiWindow, true);
+        ImGui_ImplGlfw_InitForOpenGL(m_window, true);
         ImGui_ImplOpenGL3_Init("#version 330");
         
         // Set up mouse callbacks for dragging
-        glfwSetWindowUserPointer(guiWindow, this);
+        glfwSetWindowUserPointer(m_window, this);
     }
     else
     {
         std::cout << "=== GUI INACTIVE ===\n";
     }
     glfwMakeContextCurrent(m_window);
+
+    m_chatBox.init();
 }
 
 void Window::Update()
@@ -122,34 +128,32 @@ bool Window::windowClosed()
 
 void Window::render()
 {
+    glfwMakeContextCurrent(m_window);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    GameObjects::renderAll();
+
     if (guiActive)
     {
         // render all im gui stuff
-        glfwMakeContextCurrent(guiWindow);
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Set alpha to 0 for transparent background
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        //glfwMakeContextCurrent(guiWindow);
+        //glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Set alpha to 0 for transparent background
+        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
         planetGen.guiRender();
+        m_chatBox.guiRender();
 
         if (guiActive)
         {
             ImGui::Render();
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-            glfwSwapBuffers(guiWindow);
+            //glfwSwapBuffers(m_window);
         }
     }
-
-
-    glfwMakeContextCurrent(m_window);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    
-
-    GameObjects::renderAll();
 
     /* Swap front and back buffers */
     glfwSwapBuffers(m_window);

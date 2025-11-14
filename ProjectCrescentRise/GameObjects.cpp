@@ -1,4 +1,5 @@
 #include "GameObjects.h"
+#include "ScriptObject.h"
 
 std::vector<std::shared_ptr<GameObject>> GameObjects::m_gameObjects;
 
@@ -20,11 +21,20 @@ void GameObjects::addNewObjectToPool(std::shared_ptr< GameObject> t_newObject)
 
 void GameObjects::renderAll()
 {
+	// render normals
 	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 	{
 		if (m_gameObjects.at(i)->active)
 		{
-			m_gameObjects.at(i)->callRenders();
+			m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::Normal);
+		}
+	}
+	// render GUI
+	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (m_gameObjects.at(i)->active)
+		{
+			m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::GUI);
 		}
 	}
 }

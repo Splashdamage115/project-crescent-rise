@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Library.h"
-
-class ScriptObject;
+#include "ScriptObject.h"
 
 class GameObject
 {
@@ -12,7 +11,7 @@ public:
 	void move(const glm::vec3& delta);
 	bool removeScript(std::shared_ptr<ScriptObject> t_script);
 	bool addScript(std::shared_ptr<ScriptObject> t_newScript);
-	void callRenders();
+	void callRenders(ScriptObject::RenderPriority t_currentPriority);
 
 	std::shared_ptr<Transform> transform;
 

@@ -7,6 +7,7 @@
 #include "PlayerInput.h"
 #include "GroundTile.h"
 #include "CubeSphere.h"
+#include "ChatBoxText.h"
 
 double Game::deltaTime = 0;
 
@@ -24,20 +25,27 @@ void Game::initGame()
 
 	GameObjects::addNewObjectToPool(camObj);
 
-	waterObj = std::make_shared<GameObject>();
-	waterObj->addScript(std::make_shared<billboard2D>());
-	waterObj->transform->rotation = { 90.0f, 0.0f, 0.0f };
-	waterObj->transform->position = { 0.0f, 11.0f, 0.0f };
-	waterObj->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
+	guiObject = std::make_shared<GameObject>();
+	guiObject->transform->position = { 0.f, 0.f, -1.f };
+	guiObject->transform->rotation = { 0.0f, 0.0f, 0.0f };
+	guiObject->addScript(std::make_shared<ChatBoxText>());
+	
+	GameObjects::addNewObjectToPool(guiObject);
+
+	//waterObj = std::make_shared<GameObject>();
+	//waterObj->addScript(std::make_shared<billboard2D>());
+	//waterObj->transform->rotation = { 90.0f, 0.0f, 0.0f };
+	//waterObj->transform->position = { 0.0f, 11.0f, 0.0f };
+	//waterObj->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
 	//GameObjects::addNewObjectToPool(waterObj);
 
 	initFloor();
 
-	mski = std::make_shared<mouseKeyInput>();
-	mski->active = true;
-	mski->function = { [this]() {this->initFloor(); } };
-	mski->keyCode = KeyScan::MouseKeyCode::RightMouse;
-	KeyScan::append(mski, true);
+	//mski = std::make_shared<mouseKeyInput>();
+	//mski->active = true;
+	//mski->function = { [this]() {this->initFloor(); } };
+	//mski->keyCode = KeyScan::MouseKeyCode::RightMouse;
+	//KeyScan::append(mski, true);
 }
 
 int Game::playGame()
@@ -67,9 +75,8 @@ void Game::initFloor()
 	//floorObj = floorObj2;
 	//GameObjects::addNewObjectToPool(floorObj2);
 
-
 	std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
-	floorObj2->transform->position = { 0.0f, 0.0f, 0.0f };
+	floorObj2->transform->position = { 10.0f, 0.0f, 0.0f };
 	floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
 	std::shared_ptr<ScriptObject> planet = std::make_shared<CubeSphere>();
 

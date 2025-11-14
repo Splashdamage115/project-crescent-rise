@@ -214,6 +214,42 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
+
+    const char* textVertex =
+        "#version 410\n"
+        "layout(location = 0) in vec4 coord;"
+        "out vec2 texcoord;"
+        "uniform mat4 uModel;"
+        "uniform mat4 uView;"
+        "uniform mat4 uProj;"
+        "void main(void) {"
+        "    gl_Position = uProj * uView * uModel * vec4(coord.xy, 0.0, 1.0);"
+        "    texcoord = coord.zw;"
+        "}";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::text;
+    newVertexPair.file = textVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* textFragment =
+
+    "#version 410\n"
+    "in vec2 texcoord;"
+    "uniform sampler2D tex;"
+    "uniform vec4 color;"
+    "out vec4 fragColor;"
+    "void main(void) {"
+    "    float alpha = texture(tex, texcoord).r;"
+    "    fragColor = vec4(color.rgb, alpha);"
+    "}";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::text;
+    newFragmentPair.file = textFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::text, Shader::FragmentShaderType::text);
 }
 
 // *** NEVER USE THIS ***
