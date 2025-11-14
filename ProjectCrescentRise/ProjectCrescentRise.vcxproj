@@ -141,6 +141,7 @@
     <ClCompile Include="ChatBoxText.cpp" />
     <ClCompile Include="CommandInterpreter.cpp" />
     <ClCompile Include="CubeSphere.cpp" />
+    <ClCompile Include="PlanetSurface.cpp" />
     <ClCompile Include="CubeSphereFace.cpp" />
     <ClCompile Include="GroundTile.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="ChatBoxText.h" />
     <ClInclude Include="CommandInterpreter.h" />
     <ClInclude Include="CubeSphere.h" />
+    <ClInclude Include="PlanetSurface.h" />
     <ClInclude Include="CubeSphereFace.h" />
     <ClInclude Include="GroundTile.h" />
     <ClInclude Include="imgui\imconfig.h" />

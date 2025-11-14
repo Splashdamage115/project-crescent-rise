@@ -2,12 +2,12 @@
 
 #include "Library.h"
 
-class CubeSphere;
+class PlanetSurface;
 
 class PlanetGenHandler
 {
 public:
-	void init(std::shared_ptr<CubeSphere>);
+	void init(std::shared_ptr<PlanetSurface>);
 	void guiRender();
 
 	int guiWidth = 800;
@@ -16,7 +16,7 @@ private:
 	void resetPlanet();
 
 	std::vector< const char* > currentItem;
-	std::shared_ptr<CubeSphere> m_planet;
+	std::shared_ptr<PlanetSurface> m_planet;
 	bool LiveUpdate = false;
 	int colourSelected = 0;
 };

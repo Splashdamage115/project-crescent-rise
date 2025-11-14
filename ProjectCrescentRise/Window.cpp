@@ -166,7 +166,7 @@ void Window::render()
     glfwPollEvents();
 }
 
-void Window::PassPlanet(std::shared_ptr<CubeSphere> t_planet)
+void Window::PassPlanet(std::shared_ptr<PlanetSurface> t_planet)
 {
     planetGen.init(t_planet);
 }

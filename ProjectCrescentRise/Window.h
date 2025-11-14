@@ -55,7 +55,7 @@ public:
 	bool windowClosed();
 	void render();
 
-    void PassPlanet(std::shared_ptr<CubeSphere> t_planet);
+    void PassPlanet(std::shared_ptr<PlanetSurface> t_planet);
     void closeGUI();
 
     void openGui();

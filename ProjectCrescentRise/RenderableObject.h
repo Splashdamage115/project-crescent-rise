@@ -26,6 +26,5 @@ protected:
 	GLint uModelLoc = -1;
 	GLint uViewLoc = -1;
 	GLint uProjLoc = -1;
-
 };
 

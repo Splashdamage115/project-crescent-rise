@@ -7,8 +7,9 @@
 #include "CameraFeed.h"
 #include "PlayerInput.h"
 #include "GroundTile.h"
-#include "CubeSphere.h"
+#include "PlanetSurface.h"
 #include "ChatBoxText.h"
+#include "CubeSphere.h"
 
 double Game::deltaTime = 0;
 
@@ -25,6 +26,8 @@ void Game::initGame()
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	camObj->addScript(std::make_shared<CameraFeed>());
 	camObj->addScript(std::make_shared<PlayerInput>());
+	//camObj->addScript(std::make_shared<CubeSphere>());
+
 
 	GameObjects::addNewObjectToPool(camObj);
 
@@ -81,9 +84,9 @@ void Game::initFloor()
 	std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
 	floorObj2->transform->position = { 10.0f, 0.0f, 0.0f };
 	floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
-	std::shared_ptr<ScriptObject> planet = std::make_shared<CubeSphere>();
+	std::shared_ptr<ScriptObject> planet = std::make_shared<PlanetSurface>();
 
-	Window::Get().PassPlanet(std::static_pointer_cast<CubeSphere>(planet));
+	Window::Get().PassPlanet(std::static_pointer_cast<PlanetSurface>(planet));
 
 	floorObj2->addScript(planet);
 	std::shared_ptr<Mover> i = std::make_shared < Mover>();

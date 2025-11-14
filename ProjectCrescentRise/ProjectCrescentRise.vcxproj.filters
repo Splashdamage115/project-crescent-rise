@@ -114,7 +114,7 @@
     <ClCompile Include="CubeSphereFace.cpp">
       <Filter>Source Files\Scripts\CubeSphere</Filter>
     </ClCompile>
-    <ClCompile Include="CubeSphere.cpp">
+    <ClCompile Include="PlanetSurface.cpp">
       <Filter>Source Files\Scripts\CubeSphere</Filter>
     </ClCompile>
     <ClCompile Include="Noise.cpp">
@@ -155,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="CommandInterpreter.cpp">
       <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeSphere.cpp">
+      <Filter>Source Files\Scripts\CubeSphere</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +206,7 @@
     <ClInclude Include="GroundTile.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="CubeSphere.h">
+    <ClInclude Include="PlanetSurface.h">
       <Filter>Header Files\Scripts\CubeSphere</Filter>
     </ClInclude>
     <ClInclude Include="CubeSphereFace.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="CommandInterpreter.h">
       <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeSphere.h">
+      <Filter>Header Files\Scripts\CubeSphere</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

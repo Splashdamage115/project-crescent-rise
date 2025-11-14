@@ -1,9 +1,9 @@
 #include "PlanetGenHandler.h"
-#include "CubeSphere.h"
+#include "PlanetSurface.h"
 #include "Window.h"
 #include <string>
 
-void PlanetGenHandler::init(std::shared_ptr<CubeSphere> t_planet)
+void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet)
 {
 	m_planet = t_planet;
 
