@@ -61,6 +61,12 @@
     <Filter Include="Source Files\gui">
       <UniqueIdentifier>{43199401-5e8e-4a3d-8aaf-3dad80b4ff7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Library\Online">
+      <UniqueIdentifier>{dec9568f-9818-49e2-8341-1f18ccaca15c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Library\Online">
+      <UniqueIdentifier>{c88eaabd-35c8-4fd4-8789-e0e4b7e9489a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ScriptObject.cpp">
@@ -138,14 +144,17 @@
     <ClCompile Include="PlanetGenHandler.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="ChatBox.cpp">
-      <Filter>Source Files\gui</Filter>
-    </ClCompile>
     <ClCompile Include="ChatBoxText.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="OnlineDispatcher.cpp">
+      <Filter>Source Files\Library\Online</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandInterpreter.cpp">
+      <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,11 +260,14 @@
     <ClInclude Include="MinMax.h">
       <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
     </ClInclude>
-    <ClInclude Include="ChatBox.h">
-      <Filter>Header Files\gui</Filter>
-    </ClInclude>
     <ClInclude Include="ChatBoxText.h">
       <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineDispatcher.h">
+      <Filter>Header Files\Library\Online</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInterpreter.h">
+      <Filter>Header Files\gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

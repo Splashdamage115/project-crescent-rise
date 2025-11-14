@@ -138,8 +138,8 @@
   <ItemGroup>
     <ClCompile Include="billboard2D.cpp" />
     <ClCompile Include="CameraFeed.h" />
-    <ClCompile Include="ChatBox.cpp" />
     <ClCompile Include="ChatBoxText.cpp" />
+    <ClCompile Include="CommandInterpreter.cpp" />
     <ClCompile Include="CubeSphere.cpp" />
     <ClCompile Include="CubeSphereFace.cpp" />
     <ClCompile Include="GroundTile.cpp" />
@@ -156,6 +156,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjects.cpp" />
     <ClCompile Include="Noise.cpp" />
+    <ClCompile Include="OnlineDispatcher.cpp" />
     <ClCompile Include="PlanetGenHandler.cpp" />
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="RenderableObject.cpp" />
@@ -168,8 +169,8 @@
   <ItemGroup>
     <ClInclude Include="billboard2D.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="ChatBox.h" />
     <ClInclude Include="ChatBoxText.h" />
+    <ClInclude Include="CommandInterpreter.h" />
     <ClInclude Include="CubeSphere.h" />
     <ClInclude Include="CubeSphereFace.h" />
     <ClInclude Include="GroundTile.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="Noise.h" />
     <ClInclude Include="NoiseFilters.h" />
     <ClInclude Include="NoiseSettings.h" />
+    <ClInclude Include="OnlineDispatcher.h" />
     <ClInclude Include="PlanetColour.h" />
     <ClInclude Include="PlanetGenHandler.h" />
     <ClInclude Include="PlayerInput.h" />

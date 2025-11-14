@@ -17,6 +17,11 @@ public:
 	void Update();
 	void Render();
 
+	void SentNewText(std::string text, std::string name);
+
+	// debug function
+	void ClearTextFields();
+
 	bool typing = false;
 private:
 	void CleanRender();

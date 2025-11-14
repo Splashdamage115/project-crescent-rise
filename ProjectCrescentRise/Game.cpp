@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "OnlineDispatcher.h"
 #include "Update.h"
 #include "Mover.h"
 #include "billboard2D.h"
@@ -13,6 +14,8 @@ double Game::deltaTime = 0;
 
 void Game::initGame()
 {
+	OnlineDispatcher::Init();
+
 	Window::Get();
 	Window::Get().InitCamera();
 

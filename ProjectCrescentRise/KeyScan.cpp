@@ -211,6 +211,7 @@ bool KeyScan::HandleTyping(std::string& t_string)
                 }
                 if (pressedKey.at(i).second)
                 {
+                    if (t_string.size() == 0) continue;
                     std::string t = t_string;
                     t_string.clear();
                     for (int l = 0; l < t.size() - 1; l++)

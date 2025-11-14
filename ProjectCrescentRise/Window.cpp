@@ -2,9 +2,11 @@
 #include "ShaderPrograms.h"
 #include "GameObjects.h"
 #include "Update.h"
+#include "CommandInterpreter.h"
 
 Window::Window()
 {
+    CommandInterpreter::append([this]() { this->openGui(); }, "/GUI");
     m_window = glfwCreateWindow(m_width, m_height, "Project Crescent Rise", NULL, NULL);
     if (!m_window)
     {
@@ -69,28 +71,31 @@ Window::Window()
         //glEnable(GL_DEPTH_TEST);
         //glDepthFunc(GL_LESS);
 
-        IMGUI_CHECKVERSION();
-        ImGui::CreateContext();
-        ImGuiIO& io = ImGui::GetIO(); (void)io;
-        ImGui::StyleColorsDark();
-        
-        // Make ImGui background more transparent
-        ImGuiStyle& style = ImGui::GetStyle();
-        style.Colors->w = 0.8f; // 80% opaque background
-        
-        ImGui_ImplGlfw_InitForOpenGL(m_window, true);
-        ImGui_ImplOpenGL3_Init("#version 330");
-        
-        // Set up mouse callbacks for dragging
-        glfwSetWindowUserPointer(m_window, this);
+        initGui();
     }
     else
     {
         std::cout << "=== GUI INACTIVE ===\n";
     }
     glfwMakeContextCurrent(m_window);
+}
 
-    m_chatBox.init();
+void Window::initGui()
+{
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui::StyleColorsDark();
+
+    // Make ImGui background more transparent
+    ImGuiStyle& style = ImGui::GetStyle();
+    style.Colors->w = 0.8f; // 80% opaque background
+
+    ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+    ImGui_ImplOpenGL3_Init("#version 330");
+
+    // Set up mouse callbacks for dragging
+    glfwSetWindowUserPointer(m_window, this);
 }
 
 void Window::Update()
@@ -145,7 +150,6 @@ void Window::render()
         ImGui::NewFrame();
 
         planetGen.guiRender();
-        m_chatBox.guiRender();
 
         if (guiActive)
         {
@@ -177,4 +181,12 @@ void Window::closeGUI()
 
     glfwDestroyWindow(guiWindow);
     glfwMakeContextCurrent(m_window);
+}
+
+void Window::openGui()
+{
+    guiActive = !guiActive;
+
+    if (guiActive)initGui();
+    else closeGUI();
 }

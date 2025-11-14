@@ -1,21 +1,24 @@
 #include "ChatBoxText.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "Game.h"
+#include "OnlineDispatcher.h"
+#include "CommandInterpreter.h"
 
-void ChatBoxText::Start() {
+void ChatBoxText::Start() 
+{
+    CommandInterpreter::append([this]() { this->ClearTextFields(); }, "/clear");
+    CommandInterpreter::append([this]() { this->ClearTextFields(); }, "/CLEAR");
+
+
+    m_playerName = OnlineDispatcher::GetIdentifier();
     renderPriority = RenderPriority::GUI;
 
     // Initialize FreeType
-    if (FT_Init_FreeType(&ft)) {
-        std::cerr << "Could not init FreeType Library" << std::endl;
-    }
-
-    if (FT_New_Face(ft, "Assets/Fonts/Architect.ttf", 0, &face)) {
-        std::cerr << "Could not open font" << std::endl;
-    }
-
+    if (FT_Init_FreeType(&ft)) std::cerr << "Could not init FreeType Library" << std::endl;
+    if (FT_New_Face(ft, "Assets/Fonts/Architect.ttf", 0, &face)) std::cerr << "Could not open font" << std::endl;
     FT_Set_Pixel_Sizes(face, 0, 22);
 
+    // initialise the texture for the sprites
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D, textureID);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -34,6 +37,7 @@ void ChatBoxText::Start() {
 
     m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::text, Shader::FragmentShaderType::text);
 
+    // get the model coords
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
@@ -50,14 +54,26 @@ void ChatBoxText::Start() {
 
 void ChatBoxText::Update()
 {
+    // if the enter key is pressed, the typing is done and sent
     if (KeyScan::HandleTyping(text))
     {
-        if (text.length() != 0)
+        if (text.size() < 1) return;
+        if (text.at(0) == '/')
         {
-            ChatText t;
-            t.playerName = m_playerName;
-            t.text = text;
-            m_chatHistory.emplace_back(t);
+            // the text is a command
+            if (CommandInterpreter::funcCalled(text))
+            {
+                SentNewText("SYSTEM", text);
+            }
+            else
+            {
+                SentNewText("SYSTEM", "FUNCTION DOES NOT EXIST");
+            }
+        }
+        else
+        {
+            SentNewText(m_playerName, text);
+            OnlineDispatcher::Dispatch(OnlineDispatcher::DispatchType::ChatText, text); // send online
         }
         text = "";
     }
@@ -65,44 +81,46 @@ void ChatBoxText::Update()
 
 void ChatBoxText::Render() {
 
+    // initialise open gl context parts
     glBindTexture(GL_TEXTURE_2D, textureID);
-
     VertexShaders::LoadShader(m_shader);
-
     glBindVertexArray(m_body.vao);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_DEPTH_TEST);
-
-
     glm::mat4 model = transform ? ToModelMatrix(*transform) : glm::mat4(1.0f);
     glm::mat4 view = glm::mat4(1.0f);
     glm::mat4 proj = Window::Get().GetProj();
-
     if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(model));
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
     if (uColourLoc >= 0) glUniform4fv(uColourLoc, 1, glm::value_ptr(color));
 
 
+    // initilise the write 
     std::string readable = text;
     readable += '|';
 
     float x = 0.0f;
-    float y = 0.0f;
-    float textOffset = 0.06f;
+    float yStart = -0.4f;
+    float textOffset = -0.06f;
+    float y = yStart;
 
+    // only display the last 5 messages
     int startPos = 0;
     if (m_chatHistory.size() > 5)
     {
         startPos = m_chatHistory.size() - 5;
     }
 
+    // if the context for typing isnt open
+    // we only show the last updates to the context
     if (!KeyScan::typingActive)
     {
         for (int i = startPos; i < m_chatHistory.size(); i++)
         {
+            // find items that havent timed out
             if (m_chatHistory.at(i).TimeOut > 0.f)
             {
                 readable = m_chatHistory.at(i).playerName;
@@ -123,13 +141,14 @@ void ChatBoxText::Render() {
     }
 
     x = 0.0f;
-    y = 0.0f;
+    y = yStart;
 
-    for (int i = startPos; i < m_chatHistory.size() + 1; i++)
+    for (int i = m_chatHistory.size(); i >= startPos; i--)
     {
         // display typing
         if (i == m_chatHistory.size())
         {
+            y = yStart + textOffset;
             readable = text;
             readable += '|';
         }
@@ -150,6 +169,24 @@ void ChatBoxText::Render() {
     CleanRender();
 }
 
+// initilise the text object
+void ChatBoxText::SentNewText(std::string name, std::string text)
+{
+    if (text.length() != 0)
+    {
+        ChatText t;
+        t.playerName = name;
+        t.text = text;
+        m_chatHistory.emplace_back(t);
+    }
+}
+
+void ChatBoxText::ClearTextFields()
+{
+    m_chatHistory.clear();
+}
+
+// clean the render queue, used 2x in render, if typing is available or not
 void ChatBoxText::CleanRender()
 {
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -161,6 +198,9 @@ void ChatBoxText::CleanRender()
 
 }
 
+// this code has been modified by me, but most of it comes from the freeType documentation for how to render the text
+// still has added cleanup thanks to open gl
+// these few lines of code should not be considered for my final mark
 void ChatBoxText::RenderTexts(std::string t_textToRender, float x, float y)
 {
     float sx = 0.002f;
