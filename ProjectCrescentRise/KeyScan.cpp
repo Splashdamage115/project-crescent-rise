@@ -12,6 +12,119 @@ KeyScan::KeyCode KeyScan::m_lastKeyStroke = KeyScan::KeyCode::ESC;
 float KeyScan::m_typeWaitTime = 0.3f;
 
 
+void KeyScan::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key >= GLFW_KEY_A && key <= GLFW_KEY_Z)
+    {
+        KeyCode code = static_cast<KeyCode>(key - GLFW_KEY_A);
+
+        for (unsigned int i = 0; i < pressedKey.size(); i++)
+        {
+            if (pressedKey.at(i).first == code)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                {
+                    pressedKey.at(i).second = false;
+                    m_typeWaitTime = 0.f;
+                }
+            }
+
+        }
+    }
+    else
+    {
+        for (unsigned int i = 0; i < pressedKey.size(); i++)
+        {
+            if (pressedKey.at(i).first == KeyCode::ESC && key == GLFW_KEY_ESCAPE)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                    pressedKey.at(i).second = false;
+            }
+            else if (pressedKey.at(i).first == KeyCode::TAB && key == GLFW_KEY_TAB)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                    pressedKey.at(i).second = false;
+            }
+            else if (pressedKey.at(i).first == KeyCode::LALT && key == GLFW_KEY_LEFT_ALT)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                    pressedKey.at(i).second = false;
+            }
+            else if (pressedKey.at(i).first == KeyCode::LCTRL && key == GLFW_KEY_LEFT_CONTROL)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                    pressedKey.at(i).second = false;
+            }
+            else if (pressedKey.at(i).first == KeyCode::ENTER && key == GLFW_KEY_ENTER)
+            {
+                // WE SPECIFICALLY SET THE TYPING
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                {
+                    pressedKey.at(i).second = false;
+                    typingActive = !typingActive;
+
+                }
+            }
+            else if (pressedKey.at(i).first == KeyCode::CAPS_LOCK && key == GLFW_KEY_CAPS_LOCK)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                    pressedKey.at(i).second = false;
+            }
+            else if (pressedKey.at(i).first == KeyCode::BACKSPACE && key == GLFW_KEY_BACKSPACE)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                {
+                    pressedKey.at(i).second = false;
+                    m_typeWaitTime = 0.f;
+                }
+            }
+            else if (pressedKey.at(i).first == KeyCode::SPACEBAR && key == GLFW_KEY_SPACE)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                {
+                    pressedKey.at(i).second = false;
+                    m_typeWaitTime = 0.f;
+                }
+            }
+            else if (pressedKey.at(i).first == KeyCode::SLASH && key == GLFW_KEY_SLASH)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                {
+                    pressedKey.at(i).second = false;
+                    m_typeWaitTime = 0.f;
+                }
+            }
+            else if (pressedKey.at(i).first == KeyCode::LSHIFT && key == GLFW_KEY_LEFT_SHIFT)
+            {
+                if (action == GLFW_PRESS)
+                    pressedKey.at(i).second = true;
+                else if (action == GLFW_RELEASE)
+                    pressedKey.at(i).second = false;
+            }
+        }
+    }
+}
+
 void KeyScan::mouseClickCallback(GLFWwindow* window, int button, int action, int mods)
 {
     MouseKeyCode m = static_cast<MouseKeyCode>(button);
@@ -63,10 +176,10 @@ void KeyScan::mousePressed(MouseKeyCode& t_key)
 bool KeyScan::HandleTyping(std::string& t_string)
 {
     float keyStrokeTime = 0.2f;
-    if (!typingActive) return;
+    if (!typingActive) return false;
     for (unsigned int i = 0; i < pressedKey.size(); i++)
     {
-        if (i > 26)
+        if (i >= 26)
         {
             if (pressedKey.at(i).first == KeyCode::SPACEBAR)
             {
@@ -131,13 +244,13 @@ bool KeyScan::HandleTyping(std::string& t_string)
                 {
                     t_string.clear();
                     typingActive = false;
+                    return true;
                 }
             }
             if (pressedKey.at(i).first == KeyCode::ENTER)
             {
                 if (pressedKey.at(i).second)
                 {
-                    typingActive = false;
                     return true;
                 }
             }

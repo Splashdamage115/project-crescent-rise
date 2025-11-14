@@ -1,5 +1,6 @@
 #include "ChatBoxText.h"
 #include <glm/gtc/type_ptr.hpp>
+#include "Game.h"
 
 void ChatBoxText::Start() {
     renderPriority = RenderPriority::GUI;
@@ -13,7 +14,7 @@ void ChatBoxText::Start() {
         std::cerr << "Could not open font" << std::endl;
     }
 
-    FT_Set_Pixel_Sizes(face, 0, 48);
+    FT_Set_Pixel_Sizes(face, 0, 22);
 
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D, textureID);
@@ -51,7 +52,13 @@ void ChatBoxText::Update()
 {
     if (KeyScan::HandleTyping(text))
     {
-        m_chatHistory.emplace_back(text);
+        if (text.length() != 0)
+        {
+            ChatText t;
+            t.playerName = m_playerName;
+            t.text = text;
+            m_chatHistory.emplace_back(t);
+        }
         text = "";
     }
 }
@@ -78,12 +85,88 @@ void ChatBoxText::Render() {
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
     if (uColourLoc >= 0) glUniform4fv(uColourLoc, 1, glm::value_ptr(color));
 
-    float x = 0.f;
-    float y = 0.f;
+
+    std::string readable = text;
+    readable += '|';
+
+    float x = 0.0f;
+    float y = 0.0f;
+    float textOffset = 0.06f;
+
+    int startPos = 0;
+    if (m_chatHistory.size() > 5)
+    {
+        startPos = m_chatHistory.size() - 5;
+    }
+
+    if (!KeyScan::typingActive)
+    {
+        for (int i = startPos; i < m_chatHistory.size(); i++)
+        {
+            if (m_chatHistory.at(i).TimeOut > 0.f)
+            {
+                readable = m_chatHistory.at(i).playerName;
+                readable += " > ";
+                readable += m_chatHistory.at(i).text;
+        
+                RenderTexts(readable, x, y);
+        
+                x = 0.0f;
+                y -= textOffset;
+        
+                m_chatHistory.at(i).TimeOut -= Game::deltaTime;
+            }
+        }
+        CleanRender();
+
+        return;
+    }
+
+    x = 0.0f;
+    y = 0.0f;
+
+    for (int i = startPos; i < m_chatHistory.size() + 1; i++)
+    {
+        // display typing
+        if (i == m_chatHistory.size())
+        {
+            readable = text;
+            readable += '|';
+        }
+        // display readable
+        else
+        {
+            readable = m_chatHistory.at(i).playerName;
+            readable += " > ";
+            readable += m_chatHistory.at(i).text;
+        }
+        
+        RenderTexts(readable, x, y);
+
+        x = 0.0f;
+        y -= textOffset;
+    }
+
+    CleanRender();
+}
+
+void ChatBoxText::CleanRender()
+{
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+    glUseProgram(0);
+    glDisable(GL_BLEND);
+    glEnable(GL_DEPTH_TEST);
+
+}
+
+void ChatBoxText::RenderTexts(std::string t_textToRender, float x, float y)
+{
     float sx = 0.002f;
     float sy = 0.002f;
 
-    for (const char* p = text.c_str(); *p; p++) {
+    for (const char* p = t_textToRender.c_str(); *p; p++) {
         if (FT_Load_Char(face, *p, FT_LOAD_RENDER))
             continue;
 
@@ -111,13 +194,5 @@ void ChatBoxText::Render() {
         x += (g->advance.x / 64) * sx;
         y += (g->advance.y / 64) * sy;
     }
-
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-    glUseProgram(0);
-    glDisable(GL_BLEND);
-    glEnable(GL_DEPTH_TEST);
-
 }
 

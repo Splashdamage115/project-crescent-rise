@@ -3,6 +3,13 @@
 #include "RenderableObject.h"
 #include "KeyScan.h"
 
+struct ChatText
+{
+	std::string text = "";
+	std::string playerName = "";
+	float TimeOut = 1.0f;
+};
+
 class ChatBoxText : public RenderableObject
 {
 public:
@@ -10,7 +17,13 @@ public:
 	void Update();
 	void Render();
 
+	bool typing = false;
 private:
+	void CleanRender();
+	void RenderTexts(std::string t_textToRender, float x, float y);
+
+	std::string m_playerName = "Player1";
+
 	FT_Face face;
 	FT_Library ft;
 
@@ -19,7 +32,6 @@ private:
 	std::string text = "";
 	glm::vec4 color = glm::vec4(1.0f);
 
-	bool typing = false;
-	std::vector<std::string> m_chatHistory;
+	std::vector<ChatText> m_chatHistory;
 };
 
