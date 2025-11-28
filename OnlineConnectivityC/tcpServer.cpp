@@ -218,9 +218,13 @@ std::string TcpServer::recieveData(std::string t_data)
         {
             m_playerId.at(senderNum) = modifier;
         }
-        if (command == "/planetMod")
+        else if (command == "/planetMod")
         {
 
+        }
+        else if (command == "/DEBUG" || command == "/debug")
+        {
+            debug = !debug;
         }
         return std::string();
     }

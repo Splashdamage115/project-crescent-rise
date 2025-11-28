@@ -14,6 +14,9 @@ void ChatBoxText::Start()
     CommandInterpreter::append([this](std::string t) { this->ChangePlayerName(t); }, "/changename");
     CommandInterpreter::append([this](std::string t) { this->ChangePlayerName(t); }, "/CHANGENAME");
 
+    CommandInterpreter::append([this](std::string t) { this->changeDebug(t); }, "/debug");
+    CommandInterpreter::append([this](std::string t) { this->changeDebug(t); }, "/DEBUG");
+
 
     m_playerName = OnlineDispatcher::GetIdentifier();
     renderPriority = RenderPriority::GUI;
@@ -196,6 +199,11 @@ void ChatBoxText::ChangePlayerName(std::string t_arguement)
 {
     m_playerName = t_arguement;
     OnlineDispatcher::playerIdentifier = m_playerName;
+}
+
+void ChatBoxText::changeDebug(std::string _)
+{
+
 }
 
 // clean the render queue, used 2x in render, if typing is available or not
