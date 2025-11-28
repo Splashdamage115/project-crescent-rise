@@ -9,8 +9,8 @@ void Update::append(const std::function<void(void)>& t_func)
 
 void Update::update()
 {
-	for (auto& func : m_updateFunctions)
+	for (int i = 0; i < m_updateFunctions.size(); i++)
 	{
-		func();
+		m_updateFunctions.at(i)();
 	}
 }

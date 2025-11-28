@@ -17,10 +17,11 @@ public:
 	void Update();
 	void Render();
 
-	void SentNewText(std::string text, std::string name);
+	static void SentNewText(std::string text, std::string name);
 
 	// debug function
-	void ClearTextFields();
+	void ClearTextFields(std::string t_arguement);
+	void ChangePlayerName(std::string t_arguement);
 
 	bool typing = false;
 private:
@@ -37,6 +38,6 @@ private:
 	std::string text = "";
 	glm::vec4 color = glm::vec4(1.0f);
 
-	std::vector<ChatText> m_chatHistory;
+	static std::vector<ChatText> m_chatHistory;
 };
 

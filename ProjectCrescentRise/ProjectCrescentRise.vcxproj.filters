@@ -159,6 +159,12 @@
     <ClCompile Include="CubeSphere.cpp">
       <Filter>Source Files\Scripts\CubeSphere</Filter>
     </ClCompile>
+    <ClCompile Include="OnlineConnection.cpp">
+      <Filter>Source Files\Library\Online</Filter>
+    </ClCompile>
+    <ClCompile Include="OnlineMover.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -274,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="CubeSphere.h">
       <Filter>Header Files\Scripts\CubeSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineConnection.h">
+      <Filter>Header Files\Library\Online</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineMover.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,14 +7,14 @@ class OnlineDispatcher
 public:
 	enum class DispatchType
 	{
-		ChatText
+		ChatText, movement
 	};
 	static void Init();
 	static std::string GetIdentifier();
 	static void Dispatch(DispatchType t_type, std::string data);
-	static std::string RecieveDispatch();
+	static void RecieveDispatch(DispatchType t_type, std::string data);
 
-private:
 	static std::string playerIdentifier;
+private:
 };
 

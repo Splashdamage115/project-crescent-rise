@@ -58,7 +58,7 @@ public:
     void PassPlanet(std::shared_ptr<PlanetSurface> t_planet);
     void closeGUI();
 
-    void openGui();
+    void openGui(std::string t_arguement);
 private:
     Window();
     void initGui();

@@ -1,6 +1,8 @@
 #include "PlayerInput.h"
 #include "KeyScan.h"
 #include "Game.h"
+#include "OnlineDispatcher.h"
+#include <string>
 
 void PlayerInput::Update()
 {
@@ -41,6 +43,16 @@ void PlayerInput::Update()
 	}
 	
 	transform->moveAlongForward(displacement);
+
+	std::string position;
+	position += std::to_string(transform->position.x);
+	position += ',';
+	position += std::to_string(transform->position.y);
+	position += ',';
+	position += std::to_string(transform->position.z);
+	position += ',';
+
+	OnlineDispatcher::Dispatch(OnlineDispatcher::DispatchType::movement, position);
 	
 	float xDelta = static_cast<float>(KeyScan::mouseX - lastMouseX);
 	float yDelta = static_cast<float>(KeyScan::mouseY - lastMouseY);

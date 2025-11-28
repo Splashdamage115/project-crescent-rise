@@ -4,10 +4,15 @@
 #include "OnlineDispatcher.h"
 #include "CommandInterpreter.h"
 
+std::vector<ChatText> ChatBoxText::m_chatHistory;
+
 void ChatBoxText::Start() 
 {
-    CommandInterpreter::append([this]() { this->ClearTextFields(); }, "/clear");
-    CommandInterpreter::append([this]() { this->ClearTextFields(); }, "/CLEAR");
+    CommandInterpreter::append([this](std::string t) { this->ClearTextFields(t); }, "/clear");
+    CommandInterpreter::append([this](std::string t) { this->ClearTextFields(t); }, "/CLEAR");
+
+    CommandInterpreter::append([this](std::string t) { this->ChangePlayerName(t); }, "/changename");
+    CommandInterpreter::append([this](std::string t) { this->ChangePlayerName(t); }, "/CHANGENAME");
 
 
     m_playerName = OnlineDispatcher::GetIdentifier();
@@ -63,6 +68,7 @@ void ChatBoxText::Update()
             // the text is a command
             if (CommandInterpreter::funcCalled(text))
             {
+                OnlineDispatcher::Dispatch(OnlineDispatcher::DispatchType::ChatText, text); // send online
                 SentNewText("SYSTEM", text);
             }
             else
@@ -72,7 +78,7 @@ void ChatBoxText::Update()
         }
         else
         {
-            SentNewText(m_playerName, text);
+            //SentNewText(m_playerName, text);
             OnlineDispatcher::Dispatch(OnlineDispatcher::DispatchType::ChatText, text); // send online
         }
         text = "";
@@ -181,9 +187,15 @@ void ChatBoxText::SentNewText(std::string name, std::string text)
     }
 }
 
-void ChatBoxText::ClearTextFields()
+void ChatBoxText::ClearTextFields(std::string t_arguement)
 {
     m_chatHistory.clear();
+}
+
+void ChatBoxText::ChangePlayerName(std::string t_arguement)
+{
+    m_playerName = t_arguement;
+    OnlineDispatcher::playerIdentifier = m_playerName;
 }
 
 // clean the render queue, used 2x in render, if typing is available or not

@@ -83,7 +83,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)ProjectCrescentRise\Dependencies\GLFW\lib-vc2022;$(SolutionDir)ProjectCrescentRise\Dependencies\GLEW\RELEASE\Win32;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)ProjectCrescentRise\Dependencies\GLFW\lib-vc2022;$(SolutionDir)ProjectCrescentRise\Dependencies\GLEW\REL\Win32;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(CoreLibraryDependencies);opengl32.lib;Gdi32.lib;glew32.lib;glfw3.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -103,7 +103,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)ProjectCrescentRise\Dependencies\GLFW\lib-vc2022;$(SolutionDir)ProjectCrescentRise\Dependencies\GLEW\RELEASE\Win32;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)ProjectCrescentRise\Dependencies\GLFW\lib-vc2022;$(SolutionDir)ProjectCrescentRise\Dependencies\GLEW\REL\Win32;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(CoreLibraryDependencies);opengl32.lib;Gdi32.lib;glew32.lib;glfw3.lib;freetype.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -141,6 +141,8 @@
     <ClCompile Include="ChatBoxText.cpp" />
     <ClCompile Include="CommandInterpreter.cpp" />
     <ClCompile Include="CubeSphere.cpp" />
+    <ClCompile Include="OnlineConnection.cpp" />
+    <ClCompile Include="OnlineMover.cpp" />
     <ClCompile Include="PlanetSurface.cpp" />
     <ClCompile Include="CubeSphereFace.cpp" />
     <ClCompile Include="GroundTile.cpp" />
@@ -173,6 +175,8 @@
     <ClInclude Include="ChatBoxText.h" />
     <ClInclude Include="CommandInterpreter.h" />
     <ClInclude Include="CubeSphere.h" />
+    <ClInclude Include="OnlineConnection.h" />
+    <ClInclude Include="OnlineMover.h" />
     <ClInclude Include="PlanetSurface.h" />
     <ClInclude Include="CubeSphereFace.h" />
     <ClInclude Include="GroundTile.h" />

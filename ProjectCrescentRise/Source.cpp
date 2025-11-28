@@ -16,5 +16,6 @@ int main()
     game.playGame();
 
     glfwTerminate();
+    system("pause");
     return 0;
 }

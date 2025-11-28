@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include <mutex>
 
 class GameObjects
 {
@@ -9,5 +10,5 @@ public:
 	static void renderAll();
 private:
 	static std::vector<std::shared_ptr<GameObject>> m_gameObjects;
+	static std::mutex gameObjectsMutex;
 };
-

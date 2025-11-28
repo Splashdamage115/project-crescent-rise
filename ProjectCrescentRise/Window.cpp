@@ -6,7 +6,7 @@
 
 Window::Window()
 {
-    CommandInterpreter::append([this]() { this->openGui(); }, "/GUI");
+    CommandInterpreter::append([this](std::string t) { this->openGui(t); }, "/GUI");
     m_window = glfwCreateWindow(m_width, m_height, "Project Crescent Rise", NULL, NULL);
     if (!m_window)
     {
@@ -183,7 +183,7 @@ void Window::closeGUI()
     glfwMakeContextCurrent(m_window);
 }
 
-void Window::openGui()
+void Window::openGui(std::string t_arguement)
 {
     guiActive = !guiActive;
 
