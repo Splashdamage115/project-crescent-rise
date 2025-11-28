@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tcpClient.h"
 #include "TcpServer.h"
+#include <string>
 
 int main()
 {

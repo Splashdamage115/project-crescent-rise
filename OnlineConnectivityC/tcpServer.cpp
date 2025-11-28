@@ -1,4 +1,6 @@
 #include "TcpServer.h"
+#include <string>
+
 
 std::vector<SOCKET> TcpServer::m_sockets;
 SOCKET TcpServer::m_listenSocket;

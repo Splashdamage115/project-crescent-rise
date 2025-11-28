@@ -1,4 +1,6 @@
 #include "TcpClient.h"
+#include <string>
+
 
 bool TcpClient::loopActive = true;
 int TcpClient::playerId = -1;
