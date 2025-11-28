@@ -5,7 +5,7 @@
 .vs/
 
 # Ignore Visual Studio project files
-*.vcxproj
+#*.vcxproj
 *.csproj
 *.fsproj
 *.vbproj
