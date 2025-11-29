@@ -64,3 +64,27 @@ void OnlineDispatcher::RecieveDispatch(DispatchType t_type, std::string data)
 		break;
 	}
 }
+
+std::vector<char> OnlineDispatcher::serializePlanetSettings(const PlanetPayload& t_planetPayload)
+{
+	std::vector<char> buffer;
+
+	auto write = [&](const void* data, size_t size) {
+		const char* bytes = reinterpret_cast<const char*>(data);
+		buffer.insert(buffer.end(), bytes, bytes + size);
+		};
+	uint32_t len = (uint32_t)t_planetPayload.shapeSettings.noiseLayers.size();
+	write(&len, sizeof(len));
+	write(t_planetPayload.shapeSettings.noiseLayers.data(), len);
+	
+	float planetRadius = t_planetPayload.shapeSettings.planetRadius;
+	write(&planetRadius, sizeof(planetRadius));
+
+	return buffer;
+}
+
+PlanetPayload OnlineDispatcher::deSerializePlanet(const char* data, size_t size)
+{
+	return PlanetPayload();
+}
+
