@@ -22,6 +22,8 @@ public:
 	// debug function
 	void ClearTextFields(std::string t_arguement);
 	void ChangePlayerName(std::string t_arguement);
+	void changeDebug(std::string _);
+
 
 	bool typing = false;
 private:
