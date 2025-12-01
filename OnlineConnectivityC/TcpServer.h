@@ -10,7 +10,7 @@
 #pragma comment(lib, "Ws2_32.lib")
 
 #define DEFAULT_PORT "54000"
-#define BUFFER_SIZE 512
+#define BUFFER_SIZE 4096
 
 #define BUFLEN 512	//Max length of buffer
 #define PORT 8888	//The port on which to listen for incoming data
@@ -24,7 +24,7 @@ public:
 
     static int setUpListenSocket();
     static void listenForConnections();
-    static void listenOnSocket();
+    static void listenOnSocket(int socketNum);
 
     static std::string recieveData(std::string t_data);
 
@@ -35,6 +35,7 @@ public:
 
     static SOCKET m_listenSocket;
     static std::vector<SOCKET> m_sockets;
+    static std::vector<bool> m_activeSocket;
     static std::vector<std::thread> m_threads;
     static std::vector<std::string> m_playerId;
     static bool debug;

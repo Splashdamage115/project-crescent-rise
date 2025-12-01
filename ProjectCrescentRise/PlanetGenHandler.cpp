@@ -2,11 +2,15 @@
 #include "PlanetSurface.h"
 #include "Window.h"
 #include <string>
+#include "OnlineDispatcher.h"
+#include "Update.h"
+#include "Game.h"
 
 void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet)
 {
 	m_planet = t_planet;
 
+	Update::append([this]() { this->update(); });
 	// read all info here from a save file
 }
 
@@ -25,11 +29,18 @@ void PlanetGenHandler::guiRender()
 	{
 		Window::Get().closeGUI();
 		m_planet->callChange = false;
+		LiveUpdate = false;
 		return;
+	}
+
+	if (ImGui::Button("Send Planet"))
+	{
+		sendPlanetData();
 	}
 
 	if (ImGui::Button("Update Planet"))
 	{
+		sendPlanetData();
 		LiveUpdate = true;
 		resetPlanet();
 		LiveUpdate = false;
@@ -214,7 +225,58 @@ void PlanetGenHandler::guiRender()
 	ImGui::End();
 }
 
+void PlanetGenHandler::setNewPlanet(PlanetPayload t_payload)
+{
+	for(int i =0; i < t_payload.planetColour.m_colours.size();i++)
+		m_planet->planetColour.m_colours.at(i) = t_payload.planetColour.m_colours.at(i);
+	for (int i = 0; i < t_payload.planetColour.m_heights.size(); i++)
+		m_planet->planetColour.m_heights = t_payload.planetColour.m_heights;
+
+	m_planet->shapeSettings.noiseLayers = t_payload.shapeSettings.noiseLayers;
+	m_planet->shapeSettings.planetRadius = t_payload.shapeSettings.planetRadius;
+
+	m_planet->pointsPerRow = t_payload.planetPointCount;
+
+	if (!LiveUpdate)
+	{
+		LiveUpdate = true;
+		resetPlanet();
+		LiveUpdate = false;
+	}
+}
+
+void PlanetGenHandler::update()
+{
+	if (LiveUpdate)
+	{
+		currentWaitForSend -= Game::deltaTime;
+
+		if (currentWaitForSend <= 0.0f)
+		{
+			currentWaitForSend = MaxWaitForSend;
+
+			sendPlanetData();
+		}
+	}
+	
+}
+
 void PlanetGenHandler::resetPlanet()
 {
 	if (LiveUpdate) m_planet->ResetPlanet();
+}
+
+void PlanetGenHandler::sendPlanetData()
+{
+	PlanetPayload p;
+
+	p.planetColour.m_colours = m_planet->planetColour.m_colours;
+	p.planetColour.m_heights = m_planet->planetColour.m_heights;
+
+	p.shapeSettings.noiseLayers = m_planet->shapeSettings.noiseLayers;
+	p.shapeSettings.planetRadius = m_planet->shapeSettings.planetRadius;
+
+	p.planetPointCount = m_planet->pointsPerRow;
+
+	OnlineDispatcher::pushPlanet(p);
 }

@@ -13,16 +13,20 @@
 #pragma comment(lib, "Ws2_32.lib")
 
 #define SERVER_IP "127.0.0.1"
+#define SERVER_UDP "127.0.0.1"
 //#define SERVER_IP "149.153.106.6"
 #define DEFAULT_PORT "54000"
 #define UDP_PORT 8888
-#define BUFFER_SIZE 512
+#define BUFFER_SIZE 4096
 
 class OnlineConnection
 {
 public:
 	~OnlineConnection();
+	static void callReConnect(std::string _);
 	static int Start();
+
+	static void tryReconnect();
 
 	static void pushTcp(std::string& data);
 	static void pushPosition(std::string& data);
@@ -55,4 +59,10 @@ private:
 	static std::atomic<bool> m_readyToCreate;
 	static std::atomic<int> m_createPosition;
 	static std::atomic<bool> m_creating;
+
+	static bool firstPass;
+	static bool connected;
+
+	static float reconnectTimeOut;
+	static bool textOnce;
 };

@@ -9,7 +9,7 @@ SOCKET TcpServer::m_udpSocket;
 std::mutex TcpServer::m_udpMutex;
 bool TcpServer::debug = false;
 std::vector<std::string> TcpServer::m_playerId;
-
+std::vector<bool> TcpServer::m_activeSocket;
 
 int TcpServer::setUpServer() 
 {
@@ -20,6 +20,7 @@ int TcpServer::setUpServer()
     std::cout << "Server is ready to accept external connections." << std::endl;
 
     m_sockets.emplace_back();
+    m_activeSocket.emplace_back(true);
     std::thread listenThread(listenForConnections);
     std::thread udpThread(listenForUDP);
     udpThread.detach();
@@ -110,13 +111,26 @@ void TcpServer::initialiseSocket(int t_pos)
     helloMessage += std::string(buffer, bytesReceived);
     helloMessage += " ~ Connection Established";
     send(m_sockets.at(t_pos), helloMessage.c_str(), helloMessage.size(), 0);
+
+    m_activeSocket.at(t_pos) = true;
 }
 
 void TcpServer::listenForConnections()
 {
     int pos = 0;
+    bool reused = false;
     while (true) 
     {
+        reused = false;
+        for (int i = 0; i < m_sockets.size(); i++)
+        {
+            if (!m_activeSocket.at(i))
+            {
+                pos = i;
+                reused = true;
+                break;
+            }
+        }
         m_sockets.at(pos) = accept(m_listenSocket, nullptr, nullptr);
 
         if (m_sockets.at(m_sockets.size() - 1) == INVALID_SOCKET)
@@ -127,19 +141,46 @@ void TcpServer::listenForConnections()
 
         initialiseSocket(pos);
 
-        m_threads.push_back(std::thread(listenOnSocket));
-        m_threads.at(m_threads.size() - 1).detach();
+        if(!reused)
+        {
+            m_threads.push_back(std::thread(listenOnSocket, pos));
+            m_threads.at(m_threads.size() - 1).detach();
 
-        m_sockets.emplace_back();
+            m_sockets.emplace_back();
+        }
+        else
+        {
+            bool joined = false;
+            for (int i = 0; i < m_threads.size();i++)
+            {
+                if (m_threads.at(i).joinable())
+                {
+                    m_threads.at(i) = std::thread(listenOnSocket, pos);
+                    m_threads.at(i).detach();
+                    m_sockets.emplace_back();
+                    joined = true;
+                    break;
+                }
+            }
+            if (!joined)
+            {
+                m_threads.push_back(std::thread(listenOnSocket, pos));
+                m_threads.at(m_threads.size() - 1).detach();
+
+            }
+            
+        }
         pos = m_sockets.size() - 1;
+        if (!reused)
+            m_activeSocket.push_back(false);
     }
 }
 
-void TcpServer::listenOnSocket()
+void TcpServer::listenOnSocket(int socketNum)
 {
     char buffer[BUFFER_SIZE];
     int bytesReceived;
-    int pos = m_sockets.size() - 2;
+    int pos = socketNum;
 
     do
     {
@@ -147,7 +188,8 @@ void TcpServer::listenOnSocket()
 
         if (bytesReceived > 0)
         {
-            std::cout << "Received: " << std::string(buffer, bytesReceived) << std::endl;
+            if(debug)
+                std::cout << "Received: " << std::string(buffer, bytesReceived) << std::endl;
             // add interpretation here for commands and such
             std::string spitBack = recieveData(std::string(buffer, bytesReceived));
 
@@ -155,13 +197,23 @@ void TcpServer::listenOnSocket()
 
             for (int i = 0; i < m_sockets.size(); i++)
             {
-                send(m_sockets.at(i), spitBack.c_str(), spitBack.size(), 0); // Echo back
+                int result = send(m_sockets.at(i), spitBack.c_str(), spitBack.size(), 0); // Echo back
+
+                if (result == SOCKET_ERROR)
+                {
+                    m_activeSocket.at(i) = false;
+                }
             }
+        }
+        else if (bytesReceived == SOCKET_ERROR)
+        {
+            m_activeSocket.at(pos) = false;
         }
     } while (bytesReceived > 0);
 
     std::cout << "Client disconnected." << std::endl;
     closesocket(m_sockets.at(pos));
+    m_activeSocket.at(pos) = false;
 }
 
 std::string TcpServer::recieveData(std::string t_data)
@@ -220,7 +272,11 @@ std::string TcpServer::recieveData(std::string t_data)
         }
         else if (command == "/planetMod")
         {
-
+            std::string output;
+            output += m_playerId.at(senderNum);
+            output += "~";
+            output += itemSent;
+            return output;
         }
         else if (command == "/DEBUG" || command == "/debug")
         {

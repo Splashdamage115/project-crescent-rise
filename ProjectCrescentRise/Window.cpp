@@ -109,6 +109,15 @@ void Window::Update()
     if (!tabbedOut) {
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
+
+    if (newPlanetWaitingInBuffer.load())
+    {
+        std::lock_guard<std::mutex> lock(planetMutex);
+
+        planetGen.setNewPlanet(mostRecentPlanet);
+        newPlanetWaitingInBuffer.store(false);
+
+    }
 }
 
 void Window::ClickIn()
@@ -169,6 +178,21 @@ void Window::render()
 void Window::PassPlanet(std::shared_ptr<PlanetSurface> t_planet)
 {
     planetGen.init(t_planet);
+}
+
+void Window::passNewPlanetSettings(PlanetPayload t_payload)
+{
+    std::lock_guard<std::mutex> lock(planetMutex);
+
+    mostRecentPlanet.planetColour.m_colours = t_payload.planetColour.m_colours;
+    mostRecentPlanet.planetColour.m_heights = t_payload.planetColour.m_heights;
+
+    mostRecentPlanet.shapeSettings.noiseLayers = t_payload.shapeSettings.noiseLayers;
+    mostRecentPlanet.shapeSettings.planetRadius = t_payload.shapeSettings.planetRadius;
+
+    mostRecentPlanet.planetPointCount = t_payload.planetPointCount;
+
+    newPlanetWaitingInBuffer.store(true);
 }
 
 void Window::closeGUI()

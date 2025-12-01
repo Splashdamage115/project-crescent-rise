@@ -2,6 +2,9 @@
 #include "OnlineDispatcher.h"
 #include "CubeSphere.h"
 #include "Update.h"
+#include "CommandInterpreter.h"
+#include "Game.h"
+#include "ChatBoxText.h"
 
 bool OnlineConnection::loopActive = true;
 int OnlineConnection::playerId = -1;
@@ -19,6 +22,14 @@ std::atomic<int> OnlineConnection::m_createPosition;
 std::mutex OnlineConnection::positionMutex;
 std::atomic<bool> OnlineConnection::m_creating = false;
 
+bool OnlineConnection::connected = false;
+bool OnlineConnection::firstPass = true;
+bool OnlineConnection::textOnce = false;
+
+#define RECONNECT_TIME 10.0f
+
+float OnlineConnection::reconnectTimeOut = RECONNECT_TIME;
+
 
 OnlineConnection::~OnlineConnection()
 {
@@ -27,9 +38,24 @@ OnlineConnection::~OnlineConnection()
     WSACleanup();
 }
 
+void OnlineConnection::callReConnect(std::string _)
+{
+    std::cout << "TRYING TO RECONNECT TO SERVER\n";
+
+    Start();
+}
+
 // start the online connection client
 int OnlineConnection::Start()
 {
+    if (connected) return 1;
+    if (firstPass)
+    {
+        Update::append(tryReconnect);
+        CommandInterpreter::append(callReConnect, "/RECONNECT");
+        firstPass = false;
+    }
+
     int errorResult = SetUpConnections();
     if (errorResult != 0)
     {
@@ -38,12 +64,40 @@ int OnlineConnection::Start()
 
     initiliseDataFromServer();
 
+    connected = true;
+    ChatBoxText::SentNewText("SERVER", ". . . SUCCESFULLY CONNECTED . . .");
+
     std::thread IOthread(LoopConnection);
     IOthread.detach();
 
     Update::append(addNewPlayer);
 
     return 0;
+}
+
+void OnlineConnection::tryReconnect()
+{
+    if (!connected)
+    {
+        reconnectTimeOut -= Game::deltaTime;
+        if (reconnectTimeOut <= 0.0f)
+        {
+            callReConnect("");
+
+            reconnectTimeOut = RECONNECT_TIME;
+
+            textOnce = false;
+        }
+        else if (reconnectTimeOut <= 0.5f)
+        {
+            if (!textOnce)
+            {
+                ChatBoxText::SentNewText("SERVER", ". . . TRYING TO RECONNECT TO SERVER . . .");
+                textOnce = true;
+            }
+        }
+        
+    }
 }
 
 int OnlineConnection::initiliseDataFromServer()
@@ -104,7 +158,6 @@ int OnlineConnection::SetUpConnections()
 // set up the udp connection
 int OnlineConnection::SetUpUdp()
 {
-    //create socket
     if ((udpSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR)
     {
         std::cout << "UDP socket() failed with error code : " << WSAGetLastError() << std::endl;
@@ -317,7 +370,7 @@ void OnlineConnection::LoopConnection()
     memset((char*)&si_other, 0, sizeof(si_other));
     si_other.sin_family = AF_INET;
     si_other.sin_port = htons(UDP_PORT);
-    si_other.sin_addr.S_un.S_addr = inet_addr(SERVER_IP);
+    si_other.sin_addr.S_un.S_addr = inet_addr(SERVER_UDP);
 
     char buffer[BUFFER_SIZE];
     std::string topOfQueue;
@@ -326,7 +379,7 @@ void OnlineConnection::LoopConnection()
     timeout.tv_usec = 1000;
 
     // loop the data transfer
-    while (loopActive)
+    while (connected && loopActive)
     {
         FD_ZERO(&readFds);
         FD_ZERO(&writeFds);
@@ -350,6 +403,11 @@ void OnlineConnection::LoopConnection()
                 {
                     pullPosition(std::string(buffer, bytesReceived));
                 }
+                else if (bytesReceived == SOCKET_ERROR)
+                {
+                    std::cout << "DISCONNECTED FROM SERVER\n";
+                    connected = false;
+                }
             }
 
             // recieve data tcp
@@ -361,20 +419,38 @@ void OnlineConnection::LoopConnection()
                     OnlineDispatcher::RecieveDispatch(OnlineDispatcher::DispatchType::ChatText, std::string(buffer, bytesReceived));
                     //recievedData.push(std::string(buffer, bytesReceived));
                 }
+                else if (bytesReceived == SOCKET_ERROR)
+                {
+                    std::cout << "DISCONNECTED FROM SERVER\n";
+                    connected = false;
+                }
             }
 
             // send data tcp
             if (FD_ISSET(tcpSocket, &writeFds) && popTcp(topOfQueue))
             {
-                send(tcpSocket, topOfQueue.c_str(), topOfQueue.size(), 0);
+                int result = -1;
+                result = send(tcpSocket, topOfQueue.c_str(), topOfQueue.size(), 0);
+
+                if (result == SOCKET_ERROR)
+                {
+                    std::cout << "DISCONNECTED FROM SERVER\n";
+                    connected = false;
+                }
             }
 
             // send data udp
             if (FD_ISSET(udpSocket, &writeFds))
             {
+                int result = -1;
                 {
                     std::lock_guard<std::mutex> lock(positionMutex);
-                    sendto(udpSocket, position.c_str(), strlen(position.c_str()), 0, (struct sockaddr*)&si_other, slen);
+                    result = sendto(udpSocket, position.c_str(), strlen(position.c_str()), 0, (struct sockaddr*)&si_other, slen);
+                }
+                if (result == SOCKET_ERROR)
+                {
+                    std::cout << "DISCONNECTED FROM SERVER\n";
+                    connected = false;
                 }
             }
         }

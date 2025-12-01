@@ -5,6 +5,9 @@
 #include "Camera.h"
 #include "KeyScan.h"
 #include "PlanetGenHandler.h"
+#include <mutex>
+#include <atomic>
+#include "OnlineDispatcher.h"
 
 class Window
 {
@@ -56,6 +59,8 @@ public:
 	void render();
 
     void PassPlanet(std::shared_ptr<PlanetSurface> t_planet);
+    void passNewPlanetSettings(PlanetPayload t_payload);
+
     void closeGUI();
 
     void openGui(std::string t_arguement);
@@ -76,4 +81,8 @@ private:
 
     bool guiActive = false;
     PlanetGenHandler planetGen;
+
+    std::mutex planetMutex;
+    PlanetPayload mostRecentPlanet;
+    std::atomic<bool> newPlanetWaitingInBuffer = false;
 };

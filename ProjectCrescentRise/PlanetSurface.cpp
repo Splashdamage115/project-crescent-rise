@@ -107,11 +107,11 @@ void PlanetSurface::Render()
     //if (uColourLoc >= 0) glUniform3f(uColourLoc, (float)planetColour..r, (float)planetColour.g, (float)planetColour.b);
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);
     if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax()); 
-    if (heightColours >= 0) {
+    if (heightColours >= 0 && planetColour.m_colours.size() > 0) {
         //std::cout << planetColour.m_colours[0].x << " " << planetColour.m_colours[0].g << " " << planetColour.m_colours[0].b << "\n";
         glUniform3fv(heightColours, planetColour.m_colours.size(), glm::value_ptr(planetColour.m_colours[0]));
     }
-    if (startHeight >= 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);
+    if (startHeight >= 0 && planetColour.m_heights.size() > 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);
 
     glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
 }

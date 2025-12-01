@@ -17,7 +17,7 @@ public:
 	void Update();
 	void Render();
 
-	static void SentNewText(std::string text, std::string name);
+	static void SentNewText(std::string name, std::string text);
 
 	// debug function
 	void ClearTextFields(std::string t_arguement);

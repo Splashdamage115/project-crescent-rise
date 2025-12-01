@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Debug\\CameraFeed.h.obj",
+            "outputs": [
+                "C:\\Users\\david\\Desktop\\GamesNetwork\\projectcrescentrise\\ProjectCrescentRise\\Debug\\vc143.pdb",
+                "Debug\\",
+                "C:\\Users\\david\\Desktop\\GamesNetwork\\projectcrescentrise\\ProjectCrescentRise\\Debug\\CameraFeed.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "CameraFeed.h",
+                    "source-path": "c:\\users\\david\\desktop\\gamesnetwork\\projectcrescentrise\\projectcrescentrise\\camerafeed.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}
