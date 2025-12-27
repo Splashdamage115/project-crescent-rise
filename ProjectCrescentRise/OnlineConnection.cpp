@@ -5,6 +5,7 @@
 #include "CommandInterpreter.h"
 #include "Game.h"
 #include "ChatBoxText.h"
+#include "Globals.h"
 
 bool OnlineConnection::loopActive = true;
 int OnlineConnection::playerId = -1;
@@ -51,10 +52,14 @@ int OnlineConnection::Start()
     if (connected) return 1;
     if (firstPass)
     {
-        Update::append(tryReconnect);
+        if (ONLINE_SESSION)
+            Update::append(tryReconnect);
         CommandInterpreter::append(callReConnect, "/RECONNECT");
+        CommandInterpreter::append(callReConnect, "/CONNECT");
         firstPass = false;
     }
+
+    if (!ONLINE_SESSION) return 1;
 
     int errorResult = SetUpConnections();
     if (errorResult != 0)
