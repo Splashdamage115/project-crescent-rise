@@ -90,7 +90,7 @@ void Game::initFloor()
 
 	floorObj2->addScript(planet);
 	std::shared_ptr<Mover> i = std::make_shared < Mover>();
-	i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
+	//i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
 	floorObj2->addScript(i);
 
 

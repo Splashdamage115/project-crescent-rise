@@ -1,5 +1,6 @@
 #include "PlanetSurface.h"
 #include "CubeSphereFace.h"
+#include "PlayerInput.h"
 
 void PlanetSurface::ResetPlanet()
 {
@@ -10,10 +11,12 @@ void PlanetSurface::ResetPlanet()
 
     std::vector<float> vertices;
     vertices.clear();
-    vertices.resize(6 *(pointsPerRow * pointsPerRow) * 8);
+    vertices.resize(6 * ((pointsPerRow * pointsPerRow * pointsPerRow)) * 8);
     std::vector<unsigned int> indices;
     indices.clear();
-    indices.resize(6 * (pointsPerRow-1) * (pointsPerRow-1) * 6);
+    indices.resize(6 * (pointsPerRow-1) * (pointsPerRow-1) * (pointsPerRow - 1) * (pointsPerRow - 1) * 6);
+
+    glm::vec3 playerPos = PlayerInput::playerPosition;
 
     std::vector<glm::vec3> direction;
 
@@ -24,9 +27,26 @@ void PlanetSurface::ResetPlanet()
     direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  // Forward
     direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   // Back
 
+    float lowestDist = glm::distance(playerPos, direction.at(0));
+    int closestNum = 0;
+
+    for (int i = 1; i < 6; i++)
+    {
+        float currentDist = glm::distance(playerPos, direction.at(i));
+        if (currentDist < lowestDist)
+        {
+            lowestDist = currentDist;
+            closestNum = i;
+        }
+    }
+
+
     for (int i = 0; i < 6; i++)
     {
-        CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator);
+        float multiplier = 1.0f;
+        if (i == closestNum) multiplier = 2.0f;
+
+        CubeSphereFace::generateFace(vertices, indices, pointsPerRow * multiplier, direction.at(i), i, shapeGenerator);
     }
     size = indices.size();
 

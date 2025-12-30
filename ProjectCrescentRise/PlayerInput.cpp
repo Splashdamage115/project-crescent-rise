@@ -4,6 +4,8 @@
 #include "OnlineDispatcher.h"
 #include <string>
 
+glm::vec3 PlayerInput::playerPosition;
+
 void PlayerInput::Update()
 {
 	glm::vec3 displacement = glm::vec3(0.0f);
@@ -63,6 +65,8 @@ void PlayerInput::Update()
 	
 	lastMouseY = KeyScan::mouseY;
 	lastMouseX = KeyScan::mouseX;
+
+	playerPosition = transform->position;
 	
 	//std::cout << transform->rotation.x << ", " << transform->rotation.y << ", " << transform->rotation.z << "\n";
 	//std::cout << transform->position.x << ", " << transform->position.y << ", " << transform->position.z << "\n";

@@ -6,6 +6,8 @@ class PlayerInput : public ScriptObject
 {
 public:
 	void Update();
+
+	static glm::vec3 playerPosition;
 private:
 	double lastMouseX = 0.;
 	double lastMouseY = 0.;
