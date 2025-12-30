@@ -250,6 +250,39 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::text, Shader::FragmentShaderType::text);
+
+
+    const char* lineVertex =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "void main() {\n"
+        "    gl_Position = uProj * uView * uModel * vec4(aPos, 1.0);\n"
+        "}\n";
+
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::Line;
+    newVertexPair.file = lineVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* lineFragment =
+        "#version 410 core\n"
+        "out vec4 frag_colour;\n"
+        "uniform vec3 baseColour;\n"
+        "void main() {\n"
+        "    frag_colour = vec4(baseColour, 1.0);\n"
+        "}\n";
+
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::Line;
+    newFragmentPair.file = lineFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::Line, Shader::FragmentShaderType::Line);
 }
 
 // *** NEVER USE THIS ***

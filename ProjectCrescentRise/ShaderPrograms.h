@@ -4,18 +4,22 @@
 
 struct Shader
 {
-enum class VertexShaderType {
-standard, terrain, lit, text
-};
-enum class FragmentShaderType {
-standard, checkerboard, Colour, terrain, lit, text
-};
+	enum class VertexShaderType 
+	{
+		standard, terrain, lit, text, Line
+	};
+
+	enum class FragmentShaderType 
+	{
+		standard, checkerboard, Colour, terrain, lit, text, Line
+	};
+
 	VertexShaderType vertexType;
 	FragmentShaderType fragmentType;
 	GLuint shaderPair;
 };
 
-struct ShaderFilesVertex 
+struct ShaderFilesVertex
 {
 	Shader::VertexShaderType vertexType;
 	const char* file;

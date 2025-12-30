@@ -1,9 +1,22 @@
 {
-    "Version": "1.1",
-    "Data": {
-        "Source": "c:\\users\\david\\desktop\\project-crescent-rise\\projectcrescentrise\\camerafeed.h",
-        "ProvidedModule": "",
-        "ImportedModules": [],
-        "ImportedHeaderUnits": []
-    }
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Debug\\CameraFeed.obj",
+            "outputs": [
+                "Debug\\CameraFeed.h_F5AE328D6BAC3C7B.ifc.dt.module.json",
+                "Debug\\CameraFeed.h_F5AE328D6BAC3C7B.ifc.dt.d.json",
+                "Debug\\CameraFeed.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "C:\\Users\\david\\Desktop\\project-crescent-rise\\ProjectCrescentRise\\CameraFeed.h",
+                    "source-path": "c:\\users\\david\\desktop\\project-crescent-rise\\projectcrescentrise\\camerafeed.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
 }

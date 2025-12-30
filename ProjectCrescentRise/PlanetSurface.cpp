@@ -71,12 +71,16 @@ void PlanetSurface::Start()
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
+    //m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::Line, Shader::FragmentShaderType::Line);
+
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glLineWidth(2.0f);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
-    //uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
+    uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
     MinMax = glGetUniformLocation(m_shader->shaderPair, "minMax");
     CenterPoint = glGetUniformLocation(m_shader->shaderPair, "CenterPoint");
     heightColours = glGetUniformLocation(m_shader->shaderPair, "heightColours");
@@ -104,7 +108,10 @@ void PlanetSurface::Render()
     if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(model));
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
-    //if (uColourLoc >= 0) glUniform3f(uColourLoc, (float)planetColour..r, (float)planetColour.g, (float)planetColour.b);
+
+    if (uColourLoc >= 0) glUniform3f(uColourLoc, 255.0f, 255.0f, 255.0f);
+
+
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);
     if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax()); 
     if (heightColours >= 0 && planetColour.m_colours.size() > 0) {

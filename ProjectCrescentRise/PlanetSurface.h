@@ -21,7 +21,7 @@ public:
 	bool callChange = false;
 private:
 	int size = 0;
-	//GLint uColourLoc = -1;
+	GLint uColourLoc = -1;
 	GLint MinMax = -1;
 	GLint CenterPoint = -1;
 	GLint heightColours = -1;
