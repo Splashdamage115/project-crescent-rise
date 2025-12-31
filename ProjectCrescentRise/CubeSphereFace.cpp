@@ -1,24 +1,26 @@
 #include "CubeSphereFace.h"
 
-void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsigned int>& indices, int resolution, glm::vec3 up, int faceNum, ShapeGenerator& gen, int multiplier, int multiplierSkip)
+void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsigned int>& indices, int resolution, glm::vec3 up, int faceNum, ShapeGenerator& gen)
 {
 	glm::vec3 axisA = glm::vec3(up.y, up.z, up.x);
 	glm::vec3 axisB = glm::cross(up, axisA);
 
 	int triIndex = faceNum * (resolution - 1) * (resolution - 1) * 6;
-	if(multiplierSkip > 0)
-		triIndex += (multiplierSkip - 1) * ((resolution - 1) * (resolution - 1) * 6);
+	//if(multiplierSkip > 0)
+	//	triIndex += (multiplierSkip - 1) * ((resolution - 1) * (resolution - 1) * 6);
 
-	for (int y = 0; y < resolution; y++)
+	int pointAmt = resolution;
+
+	for (int y = 0; y < pointAmt; y++)
 	{
-		for (int x = 0; x < resolution; x++)
+		for (int x = 0; x < pointAmt; x++)
 		{
-			int i = x + y * resolution;
+			int i = x + y * pointAmt;
 			int vertexIndex = i + (faceNum * resolution * resolution);
-			if (multiplierSkip > 0)
-				vertexIndex += (multiplierSkip - 1) * (faceNum * resolution * resolution);
+			//if (multiplierSkip > 0)
+			//	vertexIndex += (multiplierSkip - 1) * (faceNum * pointAmt * pointAmt);
 			int vertNum = vertexIndex * 8;
-			glm::vec2 percent = glm::vec2((float)x / (float)(resolution - 1), (float)y / (float)(resolution - 1));
+			glm::vec2 percent = glm::vec2((float)x / (float)(pointAmt - 1), (float)y / (float)(pointAmt - 1));
 			glm::vec3 pointOnUnitCube = up + (percent.x - 0.5f) * 2 * axisA + (percent.y - 0.5f) * 2 * axisB;
 			glm::vec3 pointOnUnitSphere = glm::normalize(pointOnUnitCube);
 			glm::vec3 displacedPoint = gen.CalcualtePointOnPlanet(pointOnUnitSphere);
@@ -36,13 +38,13 @@ void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsi
 			{
 				// triangle 1
 				indices.at(triIndex) = vertexIndex;
-				indices.at(triIndex + 1) = vertexIndex + resolution + 1;
-				indices.at(triIndex + 2) = vertexIndex + resolution;
+				indices.at(triIndex + 1) = vertexIndex + pointAmt + 1;
+				indices.at(triIndex + 2) = vertexIndex + pointAmt;
 
 				// triangle 2
 				indices.at(triIndex + 3) = vertexIndex;
 				indices.at(triIndex + 4) = vertexIndex + 1;
-				indices.at(triIndex + 5) = vertexIndex + resolution + 1;
+				indices.at(triIndex + 5) = vertexIndex + pointAmt + 1;
 
 				triIndex += 6;
 			}

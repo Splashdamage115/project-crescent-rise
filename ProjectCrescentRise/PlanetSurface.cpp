@@ -18,14 +18,10 @@ void PlanetSurface::ResetPlanet()
     int pointAmt = (pointsPerRow * pointsPerRow);
     int indiceAmt = (pointsPerRow - 1) * (pointsPerRow - 1);
 
-    int multiplierAmt = 1;
-    int extraPointCount = (pointAmt * multiplierAmt * 1);
-    int extraIndiceCount = (indiceAmt * multiplierAmt * 1);
-
     vertices.clear();
-    vertices.resize((((faceAmt - 1) * pointAmt) + extraPointCount) * vertLength);
+    vertices.resize(((faceAmt) * pointAmt) * vertLength);
     indices.clear();
-    indices.resize((((faceAmt - 1) * indiceAmt) + (extraIndiceCount)) * triIntCount);
+    indices.resize(((faceAmt) * indiceAmt) * triIntCount);
 
     glm::vec3 playerPos = PlayerInput::playerPosition;
 
@@ -55,12 +51,10 @@ void PlanetSurface::ResetPlanet()
 
     for (int i = 0; i < 6; i++)
     {
-        int multiplier = 1; // standard with no multiplier
-        if (i == closestNum) multiplier = multiplierAmt; // with extra points
+        //if (i == closestNum); // i is now the closest face
 
-        CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator, multiplier, multiplierSkip);
+        CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator);
 
-        if (i == closestNum) multiplierSkip = multiplierAmt;
     }
     size = indices.size();
 
