@@ -82,7 +82,7 @@ void Game::initFloor()
 	//GameObjects::addNewObjectToPool(floorObj2);
 
 	std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
-	floorObj2->transform->position = { 10.0f, 0.0f, 0.0f };
+	floorObj2->transform->position = { 0.0f, 0.0f, 0.0f };
 	floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
 	std::shared_ptr<ScriptObject> planet = std::make_shared<PlanetSurface>();
 

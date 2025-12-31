@@ -1,24 +1,34 @@
 #include "PlanetSurface.h"
 #include "CubeSphereFace.h"
 #include "PlayerInput.h"
+#include "Globals.h"
 
 void PlanetSurface::ResetPlanet()
 {
     callChange = true;
-
     shapeGenerator.settings = shapeSettings;
     shapeGenerator.reset();
+    std::vector<glm::vec3> direction;
 
     std::vector<float> vertices;
-    vertices.clear();
-    vertices.resize(6 * ((pointsPerRow * pointsPerRow * pointsPerRow)) * 8);
     std::vector<unsigned int> indices;
+    int vertLength = 8; // x y z NormalX NormalY NormalZ u v
+    int faceAmt = 6; // face for each side
+    int triIntCount = 6; // top left, top right, bottom left ~ bootom left, top right, bottom right ~ these are the triangle positions
+    int pointAmt = (pointsPerRow * pointsPerRow);
+    int indiceAmt = (pointsPerRow - 1) * (pointsPerRow - 1);
+
+    int multiplierAmt = 1;
+    int extraPointCount = (pointAmt * multiplierAmt * 1);
+    int extraIndiceCount = (indiceAmt * multiplierAmt * 1);
+
+    vertices.clear();
+    vertices.resize((((faceAmt - 1) * pointAmt) + extraPointCount) * vertLength);
     indices.clear();
-    indices.resize(6 * (pointsPerRow-1) * (pointsPerRow-1) * (pointsPerRow - 1) * (pointsPerRow - 1) * 6);
+    indices.resize((((faceAmt - 1) * indiceAmt) + (extraIndiceCount)) * triIntCount);
 
     glm::vec3 playerPos = PlayerInput::playerPosition;
 
-    std::vector<glm::vec3> direction;
 
     direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   // Up
     direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  // Down
@@ -27,12 +37,13 @@ void PlanetSurface::ResetPlanet()
     direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  // Forward
     direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   // Back
 
-    float lowestDist = glm::distance(playerPos, direction.at(0));
     int closestNum = 0;
+
+    float lowestDist = glm::distance(playerPos, direction.at(0) + transform->position);
 
     for (int i = 1; i < 6; i++)
     {
-        float currentDist = glm::distance(playerPos, direction.at(i));
+        float currentDist = glm::distance(playerPos, direction.at(i) + transform->position);
         if (currentDist < lowestDist)
         {
             lowestDist = currentDist;
@@ -40,13 +51,16 @@ void PlanetSurface::ResetPlanet()
         }
     }
 
+    int multiplierSkip = 0;
 
     for (int i = 0; i < 6; i++)
     {
-        float multiplier = 1.0f;
-        if (i == closestNum) multiplier = 2.0f;
+        int multiplier = 1; // standard with no multiplier
+        if (i == closestNum) multiplier = multiplierAmt; // with extra points
 
-        CubeSphereFace::generateFace(vertices, indices, pointsPerRow * multiplier, direction.at(i), i, shapeGenerator);
+        CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator, multiplier, multiplierSkip);
+
+        if (i == closestNum) multiplierSkip = multiplierAmt;
     }
     size = indices.size();
 
@@ -91,16 +105,22 @@ void PlanetSurface::Start()
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    //m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::Line, Shader::FragmentShaderType::Line);
+    if (WIRE_FRAME)
+        m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::Line, Shader::FragmentShaderType::Line);
+    else
+        m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glLineWidth(2.0f);
+    if (WIRE_FRAME)
+    {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glLineWidth(2.0f);
+    }
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
-    uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
+    if (WIRE_FRAME)
+        uColourLoc = glGetUniformLocation(m_shader->shaderPair, "baseColour");
     MinMax = glGetUniformLocation(m_shader->shaderPair, "minMax");
     CenterPoint = glGetUniformLocation(m_shader->shaderPair, "CenterPoint");
     heightColours = glGetUniformLocation(m_shader->shaderPair, "heightColours");
@@ -129,7 +149,7 @@ void PlanetSurface::Render()
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
-    if (uColourLoc >= 0) glUniform3f(uColourLoc, 255.0f, 255.0f, 255.0f);
+    if (WIRE_FRAME && uColourLoc >= 0) glUniform3f(uColourLoc, 255.0f, 255.0f, 255.0f);
 
 
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);

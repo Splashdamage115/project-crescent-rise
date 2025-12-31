@@ -1,11 +1,13 @@
 #include "CubeSphereFace.h"
 
-void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsigned int>& indices, int resolution, glm::vec3 up, int faceNum, ShapeGenerator& gen)
+void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsigned int>& indices, int resolution, glm::vec3 up, int faceNum, ShapeGenerator& gen, int multiplier, int multiplierSkip)
 {
 	glm::vec3 axisA = glm::vec3(up.y, up.z, up.x);
 	glm::vec3 axisB = glm::cross(up, axisA);
 
 	int triIndex = faceNum * (resolution - 1) * (resolution - 1) * 6;
+	if(multiplierSkip > 0)
+		triIndex += (multiplierSkip - 1) * ((resolution - 1) * (resolution - 1) * 6);
 
 	for (int y = 0; y < resolution; y++)
 	{
@@ -13,6 +15,8 @@ void CubeSphereFace::generateFace(std::vector<float>& vertices, std::vector<unsi
 		{
 			int i = x + y * resolution;
 			int vertexIndex = i + (faceNum * resolution * resolution);
+			if (multiplierSkip > 0)
+				vertexIndex += (multiplierSkip - 1) * (faceNum * resolution * resolution);
 			int vertNum = vertexIndex * 8;
 			glm::vec2 percent = glm::vec2((float)x / (float)(resolution - 1), (float)y / (float)(resolution - 1));
 			glm::vec3 pointOnUnitCube = up + (percent.x - 0.5f) * 2 * axisA + (percent.y - 0.5f) * 2 * axisB;
