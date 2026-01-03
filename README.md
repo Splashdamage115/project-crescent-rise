@@ -70,6 +70,48 @@
 5. ReInstantiation issue
     - ONE AMPERSAND HAS COST ME 3 DAYS
 
+## sphere
+
+1. creation of cube sphere
+    - this in itself took me an insane amount of time with figuring out how to create a 3d sphere
+    - researchon which method to use
+    - research onmost efficient way tocreate it
+
+2. noise
+    - creation / finding of noise maps for 3d space, my methods were not sufficient, used online library instead
+
+3. noise variations
+    - changing of the noise to more align with myuse case, added different ways to edit the noise
+
+4. editor
+    - usage of IMGUI for editing of variables
+    - using 2 main menus one for  coloour one for noise layerss
+    - abstraction of all noise classes into own datastructures which mnake sense and are all tangible
+
+5. colouring
+    - creation of shader that allows for the colouring of the terrain based on heights from center of planet, extensive errors with shaders had tobe rectified
+        including errors with min and max , naming conventions endedupbeing biggest error
+    - addding ionto the editor for different height variations and on the fly editing
+
+6. chat system /  multiplayer
+    - outlined more in other docs, mainly worked on text being rendered to screen using external libraries
+    - online server and client based interactions
+
+7. persistence between multiple players
+    - outlined in other docs
+
+8. LOD failures
+    - trying to add LOD to the planet, this has been error after error of it not working
+    - this has been temporarily abandoned as I am unable to implement it now
+
+9. textured cube
+    - made a custom cubve with textures, lighting, and height maps
+
+10. sky box
+    - moved through mappingto box, to cubesphere, multiple iterations
+    - added high and low def
+
+
 ## Research:
     - Rock climbing game, with surface (snowboarding?)
 
@@ -125,12 +167,12 @@
 # Priority Order List : 
 
 ### ✅ - vornoi noise
-### 🔴 - Sky Box
-### 🔴 - Water Textures
-### 🔴 - ground mesh texturing
+### ✅ - Sky Box
+### 🟡 - Water Textures
+### 🟡 - ground mesh texturing
 ### 🔴 - map genertation size increase
-### 🔴 - angle map to be spherical
-### 🔴 - ground tile texturing
+### ✅ - angle map to be spherical
+### 🟡 - ground tile texturing
 ### 🔴 - movement on the mesh
 
 <br><br><br>
