@@ -6,12 +6,12 @@ struct Shader
 {
 	enum class VertexShaderType 
 	{
-		standard, terrain, lit, text, Line, texture, litTexture, skyBox
+		standard, terrain, Planet, text, Line, texture, litTexture, skyBox
 	};
 
 	enum class FragmentShaderType 
 	{
-		standard, checkerboard, Colour, terrain, lit, text, Line, texture, litTexture, skyBox
+		standard, checkerboard, Colour, terrain, Planet, text, Line, texture, litTexture, skyBox
 	};
 
 	VertexShaderType vertexType;
@@ -41,6 +41,7 @@ public:
 	static std::shared_ptr<Shader> retrieveShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment);
 private:
 	static std::errc mountShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment);
+	static void setUpPlanetShader();
 	static std::vector<std::shared_ptr<Shader>> m_shaders;
 	static std::vector<ShaderFilesVertex> m_vertexFiles;
 	static std::vector<ShaderFilesFragment> m_fragmentFiles;

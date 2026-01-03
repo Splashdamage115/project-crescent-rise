@@ -58,7 +58,7 @@ void Game::initGame()
 	i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
 	crateCube->addScript(i);
 	
-	GameObjects::addNewObjectToPool(crateCube);
+	//GameObjects::addNewObjectToPool(crateCube);
 	// - - - !CRATE - - - 
 
 	// - - - SKY BOX - - - 
@@ -133,5 +133,5 @@ void Game::initFloor()
 
 	if(floorObj != nullptr) floorObj->active = false;
 	floorObj = floorObj2;
-	//GameObjects::addNewObjectToPool(floorObj2);
+	GameObjects::addNewObjectToPool(floorObj2);
 }

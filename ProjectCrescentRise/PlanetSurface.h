@@ -26,4 +26,7 @@ private:
 	GLint CenterPoint = -1;
 	GLint heightColours = -1;
 	GLint startHeight = -1;
+	GLint shaderType = -1;
+	GLint ViewPosition = -1;
+	GLint time = -1;
 };

@@ -71,10 +71,13 @@ void PlanetSurface::Start()
 {
     for (int i = 0; i < planetColour.COLOUR_MAX; i++)
     {
+        planetColour.m_shaderType.emplace_back(0);
         planetColour.m_colours.emplace_back(255.f);
         planetColour.m_heights.emplace_back(10.0f);
         planetColour.active.emplace_back(false);
     }
+    // TO DO: change from being static lowest being water
+    planetColour.m_shaderType.at(0) = 1;
 
     planetColour.m_heights.at(0) = -1.0f;
 
@@ -102,7 +105,7 @@ void PlanetSurface::Start()
     if (WIRE_FRAME)
         m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::Line, Shader::FragmentShaderType::Line);
     else
-        m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
+        m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::Planet, Shader::FragmentShaderType::Planet);
 
     if (WIRE_FRAME)
     {
@@ -119,6 +122,9 @@ void PlanetSurface::Start()
     CenterPoint = glGetUniformLocation(m_shader->shaderPair, "CenterPoint");
     heightColours = glGetUniformLocation(m_shader->shaderPair, "heightColours");
     startHeight = glGetUniformLocation(m_shader->shaderPair, "startHeight");
+    shaderType = glGetUniformLocation(m_shader->shaderPair, "shaderType");
+    ViewPosition = glGetUniformLocation(m_shader->shaderPair, "viewPos");
+    time = glGetUniformLocation(m_shader->shaderPair, "uTime");
 
     // Generate initial mesh data
     ResetPlanet();
@@ -153,6 +159,13 @@ void PlanetSurface::Render()
         glUniform3fv(heightColours, planetColour.m_colours.size(), glm::value_ptr(planetColour.m_colours[0]));
     }
     if (startHeight >= 0 && planetColour.m_heights.size() > 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);
+    if (shaderType >= 0 && planetColour.m_shaderType.size() > 0) glUniform1iv(shaderType, planetColour.m_shaderType.size(), &planetColour.m_shaderType[0]);
+    if (ViewPosition >= 0)
+    {
+        glm::vec3 playerPos = PlayerInput::playerPosition;
+        glUniform3f(ViewPosition, playerPos.x, playerPos.y, playerPos.z);
+    }
+    if (time >= 0) glUniform1f(time, glfwGetTime());
 
     glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
 }
