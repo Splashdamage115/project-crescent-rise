@@ -7,6 +7,11 @@ std::vector<ShaderFilesFragment> VertexShaders::m_fragmentFiles;
 // load fragment and vertex shader files
 void VertexShaders::initialise()
 {
+
+    // - - - - - - - - - - - - - - - 
+    //  pink shader, basic
+    // - - - - - - - - - - - - - - - 
+
     const char* newVertex =
         "#version 410 core\n"
         "layout (location = 0) in vec3 aPos;\n"
@@ -39,6 +44,11 @@ void VertexShaders::initialise()
 
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::standard);
 
+
+    // - - - - - - - - - - - - - - - 
+    //  checkerboard 
+    // - - - - - - - - - - - - - - - 
+
     const char* newFragment2 =
         "#version 410 core\n"
         "in vec2 TexCoords;\n"
@@ -57,6 +67,14 @@ void VertexShaders::initialise()
 
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::checkerboard);
 
+
+
+
+
+    // - - - - - - - - - - - - - - - 
+    //  colour, pass colour to frag
+    // - - - - - - - - - - - - - - - 
+
     const char* newFragment3 =
         "#version 410 core\n"
         "uniform vec3 colour;\n"
@@ -72,6 +90,10 @@ void VertexShaders::initialise()
 
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
 
+
+    // - - - - - - - - - - - - - - - 
+    //  terrain (flat terrain)
+    // - - - - - - - - - - - - - - - 
 
     const char* terrainVertex =
         "#version 410 core\n"
@@ -132,6 +154,13 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::terrain, Shader::FragmentShaderType::terrain);
+
+
+
+
+    // - - - - - - - - - - - - - - - 
+    //  lit ~ this is for the planet
+    // - - - - - - - - - - - - - - - 
 
     const char* litVertex =
         "#version 410 core\n"
@@ -215,6 +244,14 @@ void VertexShaders::initialise()
 
     mountShader(Shader::VertexShaderType::lit, Shader::FragmentShaderType::lit);
 
+
+
+
+
+    // - - - - - - - - - - - - - - - 
+    //  text
+    // - - - - - - - - - - - - - - - 
+
     const char* textVertex =
         "#version 410\n"
         "layout(location = 0) in vec4 coord;"
@@ -252,6 +289,13 @@ void VertexShaders::initialise()
     mountShader(Shader::VertexShaderType::text, Shader::FragmentShaderType::text);
 
 
+
+
+    // - - - - - - - - - - - - - - - 
+    //  Line 
+    // - - - - - - - - - - - - - - - 
+
+
     const char* lineVertex =
         "#version 410 core\n"
         "layout (location = 0) in vec3 aPos;\n"
@@ -283,7 +327,198 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::Line, Shader::FragmentShaderType::Line);
+    
+
+
+    // - - - - - - - - - - - - - - - 
+    //  Texture
+    // - - - - - - - - - - - - - - - 
+
+
+
+    const char* TextureVertex =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTex;\n"
+        "\n"
+        "out vec2 vTex;\n"
+        "\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "void main() {\n"
+        "    vTex = aTex;\n"
+        "    gl_Position = uProj * uView * uModel * vec4(aPos, 1.0);\n"
+        "}\n";
+
+
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::texture;
+    newVertexPair.file = TextureVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* TextureFragment =
+        "#version 410 core\n"
+        "in vec2 vTex;\n"
+        "out vec4 frag_colour;\n"
+        "\n"
+        "uniform sampler2D uTexture;\n"
+        "uniform vec3 colour;\n"
+        "\n"
+        "void main() {\n"
+        "    vec4 texColor = texture(uTexture, vTex);\n"
+        "    frag_colour = texColor * vec4(colour, 1.0);\n"
+        "}\n";
+
+
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::texture;
+    newFragmentPair.file = TextureFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::texture, Shader::FragmentShaderType::texture);
+
+
+
+    // - - - - - - - - - - - - - - - 
+    //  Lit Texture
+    // - - - - - - - - - - - - - - - 
+
+
+    const char* LitTextureVertex =
+    "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTex;\n"
+        "layout (location = 2) in vec3 aNormal;\n"
+
+        "uniform vec3 CenterPoint;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+
+        "out vec2 vTex;\n"
+        "out vec3 WorldPos;\n"
+        "out vec3 bNormal;\n"
+
+        "void main() {\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    WorldPos = worldPos.xyz;\n"
+        "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
+        "    vTex = aTex;\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::litTexture;
+    newVertexPair.file = LitTextureVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* LitTextureFragment =
+    // ... ... ...
+    "#version 410 core\n"
+        "in vec2 vTex;\n"
+        "in vec3 WorldPos;\n"
+        "in vec3 bNormal;\n"
+        "out vec4 FragColor;\n"
+
+        "uniform sampler2D uTexture;\n"
+        "uniform vec3 colour;\n"
+        "uniform sampler2D uHeightMap;\n"
+        "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
+        "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
+        "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
+
+        "void main() {\n"
+        "    // Normalize the interpolated normal\n"
+        "    vec3 norm = normalize(bNormal);\n"
+        ""
+        "    float height = texture(uHeightMap, vTex).r;\n"
+        "    float scale = 0.08;\n"
+        "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
+        "    vec2 parallaxUV = vTex - viewDir.xy * (height * scale);\n"
+        "    vec4 texColor = texture(uTexture, parallaxUV);\n"
+        ""
+        "    float ambientStrength = 0.2;\n"
+        "    vec3 ambient = ambientStrength * lightColor;\n"
+        "    float diff = max(dot(norm, -lightDir), 0.0);\n"
+        "    vec3 diffuse = diff * lightColor;\n"
+        "    float specularStrength = 0.5;\n"
+        "    vec3 reflectDir = reflect(lightDir, norm);\n"
+        "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
+        "    vec3 specular = specularStrength * spec * lightColor;\n"
+        "    vec3 lighting = (ambient + diffuse) + specular;\n"
+        "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);"
+        "}\n";
+
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::litTexture;
+    newFragmentPair.file = LitTextureFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
+
+    // - - - - - - - - - - - - - - - 
+    //  SKY BOX 
+    // - - - - - - - - - - - - - - - 
+
+    const char* skyBoxVertex =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "\n"
+        "out vec3 vDir;\n"
+        "\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "void main() {\n"
+        "    mat4 rotView = mat4(mat3(uView));\n"
+        "    vec4 pos = uProj * rotView * vec4(aPos, 1.0);\n"
+        "    gl_Position = pos;\n"
+        "    gl_Position.z = gl_Position.w;\n"
+        "    vDir = aPos;\n"
+        "}\n";
+
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::skyBox;
+    newVertexPair.file = skyBoxVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* skyBoxFragment =
+        "#version 410 core\n"
+        "in vec3 vDir;\n"
+        "out vec4 frag_colour;\n"
+        "\n"
+        "uniform samplerCube uSky;\n"
+        "\n"
+        "void main() {\n"
+        "    frag_colour = texture(uSky, normalize(vDir));\n"
+        "}\n";
+
+
+
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::skyBox;
+    newFragmentPair.file = skyBoxFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::skyBox, Shader::FragmentShaderType::skyBox);
 }
+
+
+
+
+
+
+
+
+
+
 
 // *** NEVER USE THIS ***
 void VertexShaders::LoadShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment)

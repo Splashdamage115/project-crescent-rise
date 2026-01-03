@@ -10,6 +10,8 @@
 #include "PlanetSurface.h"
 #include "ChatBoxText.h"
 #include "CubeSphere.h"
+#include "Skybox.h"
+#include "Cube.h"
 
 double Game::deltaTime = 0;
 
@@ -19,7 +21,8 @@ void Game::initGame()
 
 	Window::Get();
 	Window::Get().InitCamera();
-
+	
+	// - - - PLAYER - - - 
 
 	camObj = std::make_shared<GameObject>();
 	camObj->transform->position = { 0.f, 0.f, 0.f };
@@ -28,9 +31,12 @@ void Game::initGame()
 	camObj->addScript(std::make_shared<PlayerInput>());
 	//camObj->addScript(std::make_shared<CubeSphere>());
 
-
 	GameObjects::addNewObjectToPool(camObj);
 
+	// - - - !PLAYER - - - 
+
+
+	// - - - CHAT BOX - - - 
 	guiObject = std::make_shared<GameObject>();
 	guiObject->transform->position = { 0.f, 0.f, -1.f };
 	guiObject->transform->rotation = { 0.0f, 0.0f, 0.0f };
@@ -38,15 +44,46 @@ void Game::initGame()
 	
 	GameObjects::addNewObjectToPool(guiObject);
 
+	// - - - !CHAT BOX - - - 
+
+
+	// - - - CRATE - - - 
+	crateCube = std::make_shared<GameObject>();
+	//crateCube->transform->position = { 0.f, 0.f, -1.f };
+	//crateCube->transform->rotation = { 0.0f, 0.0f, 0.0f };
+	//crateCube->addScript(std::make_shared<Skybox>());
+	crateCube->addScript(std::make_shared<Cube>());
+
+	std::shared_ptr<Mover> i = std::make_shared<Mover>();
+	i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
+	crateCube->addScript(i);
+	
+	GameObjects::addNewObjectToPool(crateCube);
+	// - - - !CRATE - - - 
+
+	// - - - SKY BOX - - - 
+	skyBox = std::make_shared<GameObject>();
+	//skyBox->transform->position = { 0.f, 0.f, -1.f };
+	//skyBox->transform->rotation = { 0.0f, 0.0f, 0.0f };
+	//skyBox->addScript(std::make_shared<Skybox>());
+	skyBox->addScript(std::make_shared<Skybox>());
+
+	GameObjects::addNewObjectToPool(skyBox);
+	// - - - !SKY BOX - - - 
+
+
+	// - - - WATER - - - 
 	//waterObj = std::make_shared<GameObject>();
 	//waterObj->addScript(std::make_shared<billboard2D>());
 	//waterObj->transform->rotation = { 90.0f, 0.0f, 0.0f };
 	//waterObj->transform->position = { 0.0f, 11.0f, 0.0f };
 	//waterObj->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
 	//GameObjects::addNewObjectToPool(waterObj);
+	// - - - !WATER - - - 
 
 	initFloor();
 
+	// - - - RELOADING OF FLOOR - - - 
 	//mski = std::make_shared<mouseKeyInput>();
 	//mski->active = true;
 	//mski->function = { [this]() {this->initFloor(); } };
@@ -96,5 +133,5 @@ void Game::initFloor()
 
 	if(floorObj != nullptr) floorObj->active = false;
 	floorObj = floorObj2;
-	GameObjects::addNewObjectToPool(floorObj2);
+	//GameObjects::addNewObjectToPool(floorObj2);
 }

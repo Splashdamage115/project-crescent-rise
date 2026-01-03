@@ -6,7 +6,6 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-
 #include <gl/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>

@@ -37,8 +37,8 @@ Window::Window()
     clickIntoWindow = std::make_shared<mouseKeyInput>();
     clickIntoWindow->active = true;
     clickIntoWindow->function = [this]() { this->ClickIn(); };
-    clickIntoWindow->keyCode = KeyScan::MouseKeyCode::LeftMouse;
-    //KeyScan::append(clickIntoWindow, true);
+    clickIntoWindow->keyCode = KeyScan::MouseKeyCode::RightMouse;
+    KeyScan::append(clickIntoWindow, true);
 
     if (guiActive)
     {
