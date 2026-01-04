@@ -1,14 +1,16 @@
 #include "PlanetGenHandler.h"
 #include "PlanetSurface.h"
+#include "WaterSphere.h"
 #include "Window.h"
 #include <string>
 #include "OnlineDispatcher.h"
 #include "Update.h"
 #include "Game.h"
 
-void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet)
+void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet, std::shared_ptr<WaterSphere> t_water)
 {
 	m_planet = t_planet;
+	m_water = t_water;
 
 	Update::append([this]() { this->update(); });
 	// read all info here from a save file
@@ -23,12 +25,14 @@ void PlanetGenHandler::guiRender()
 	////////////////////////////////////////////////////////////
 
 	m_planet->callChange = LiveUpdate;
+	m_water->callChange = LiveUpdate;
 
 	ImGui::Begin("Planet Settings");
 	if (ImGui::Button("Close GUI"))
 	{
 		Window::Get().closeGUI();
 		m_planet->callChange = false;
+		m_water->callChange = false;
 		LiveUpdate = false;
 		return;
 	}
@@ -50,6 +54,7 @@ void PlanetGenHandler::guiRender()
 	if (ImGui::Checkbox("Live Update", &LiveUpdate))
 	{
 		m_planet->callChange = LiveUpdate;
+		m_water->callChange = LiveUpdate;
 	}
 	
 	// basic info
@@ -58,8 +63,16 @@ void PlanetGenHandler::guiRender()
 	{
 		resetPlanet();
 	}
+	if (ImGui::SliderInt("Water Point Count", &m_water->pointsPerRow, 2, 128))
+	{
+		resetPlanet();
+	}
 	ImGui::Text("Planet Radius");
 	if (ImGui::SliderFloat("Planet Radius", &m_planet->shapeSettings.planetRadius, 0.1f, 256.f))
+	{
+		resetPlanet();
+	}
+	if (ImGui::SliderFloat("Water Radius", &m_water->shapeSettings.planetRadius, 0.1f, 256.f))
 	{
 		resetPlanet();
 	}
@@ -263,7 +276,11 @@ void PlanetGenHandler::update()
 
 void PlanetGenHandler::resetPlanet()
 {
-	if (LiveUpdate) m_planet->ResetPlanet();
+	if (LiveUpdate) 
+	{ 
+		m_planet->ResetPlanet();
+		m_water->ResetPlanet();
+	}
 }
 
 void PlanetGenHandler::sendPlanetData()

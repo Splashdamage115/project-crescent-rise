@@ -145,7 +145,8 @@ void Window::render()
     glfwMakeContextCurrent(m_window);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     GameObjects::renderAll();
 
     if (guiActive)
@@ -175,9 +176,9 @@ void Window::render()
     glfwPollEvents();
 }
 
-void Window::PassPlanet(std::shared_ptr<PlanetSurface> t_planet)
+void Window::PassPlanet(std::shared_ptr<PlanetSurface> t_planet, std::shared_ptr<WaterSphere> t_water)
 {
-    planetGen.init(t_planet);
+    planetGen.init(t_planet, t_water);
 }
 
 void Window::passNewPlanetSettings(PlanetPayload t_payload)

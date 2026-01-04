@@ -58,7 +58,7 @@ public:
 	bool windowClosed();
 	void render();
 
-    void PassPlanet(std::shared_ptr<PlanetSurface> t_planet);
+    void PassPlanet(std::shared_ptr<PlanetSurface> t_planet, std::shared_ptr<WaterSphere> t_water);
     void passNewPlanetSettings(PlanetPayload t_payload);
 
     void closeGUI();

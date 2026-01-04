@@ -12,6 +12,7 @@
 #include "CubeSphere.h"
 #include "Skybox.h"
 #include "Cube.h"
+#include "WaterSphere.h"
 
 double Game::deltaTime = 0;
 
@@ -108,8 +109,7 @@ int Game::playGame()
 	return 0;
 }
 
-void Game::initFloor()
-{
+// ground tile
 	//std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
 	//floorObj2->transform->position = { 0.0f, -2.0f, -2.0f };
 	//floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
@@ -118,20 +118,46 @@ void Game::initFloor()
 	//floorObj = floorObj2;
 	//GameObjects::addNewObjectToPool(floorObj2);
 
-	std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
-	floorObj2->transform->position = { 0.0f, 0.0f, 0.0f };
-	floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
+
+void Game::initFloor()
+{
+	// initialise
+	waterObj = std::make_shared<GameObject>();
+	PlanetObj = std::make_shared<GameObject>();
+
 	std::shared_ptr<ScriptObject> planet = std::make_shared<PlanetSurface>();
+	std::shared_ptr<ScriptObject> water = std::make_shared<WaterSphere>();
 
-	Window::Get().PassPlanet(std::static_pointer_cast<PlanetSurface>(planet));
+	Window::Get().PassPlanet(std::static_pointer_cast<PlanetSurface>(planet), std::static_pointer_cast<WaterSphere>(water));
 
-	floorObj2->addScript(planet);
-	std::shared_ptr<Mover> i = std::make_shared < Mover>();
+	// Planet
+
+	PlanetObj->transform->position = { 0.0f, 0.0f, 0.0f };
+	PlanetObj->transform->scale = { 1.0f, 1.0f, 1.0f };
+	PlanetObj->addScript(planet);
+
+	std::shared_ptr<Mover> t = std::make_shared<Mover>();
 	//i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
-	floorObj2->addScript(i);
+	PlanetObj->addScript(t);
+
+	GameObjects::addNewObjectToPool(PlanetObj);
 
 
-	if(floorObj != nullptr) floorObj->active = false;
-	floorObj = floorObj2;
-	GameObjects::addNewObjectToPool(floorObj2);
+
+
+	// water
+
+	waterObj->transform->position = { 0.0f, 0.0f, 0.0f };
+	waterObj->transform->scale = { 1.0f, 1.0f, 1.0f };
+	waterObj->addScript(water);
+
+	std::shared_ptr<Mover> i = std::make_shared<Mover>();
+	//i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
+	waterObj->addScript(i);
+
+	GameObjects::addNewObjectToPool(waterObj);
+
+
+
+
 }

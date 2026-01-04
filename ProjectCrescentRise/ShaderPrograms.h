@@ -6,12 +6,12 @@ struct Shader
 {
 	enum class VertexShaderType 
 	{
-		standard, terrain, Planet, text, Line, texture, litTexture, skyBox
+		standard, terrain, Planet, text, Line, texture, litTexture, skyBox, Water
 	};
 
 	enum class FragmentShaderType 
 	{
-		standard, checkerboard, Colour, terrain, Planet, text, Line, texture, litTexture, skyBox
+		standard, checkerboard, Colour, terrain, Planet, text, Line, texture, litTexture, skyBox, Water
 	};
 
 	VertexShaderType vertexType;

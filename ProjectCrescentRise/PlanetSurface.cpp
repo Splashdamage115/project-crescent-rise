@@ -77,7 +77,7 @@ void PlanetSurface::Start()
         planetColour.active.emplace_back(false);
     }
     // TO DO: change from being static lowest being water
-    planetColour.m_shaderType.at(0) = 1;
+    //planetColour.m_shaderType.at(0) = 1;
 
     planetColour.m_heights.at(0) = -1.0f;
 

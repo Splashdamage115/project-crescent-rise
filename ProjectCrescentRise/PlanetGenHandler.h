@@ -3,12 +3,13 @@
 #include "Library.h"
 
 class PlanetSurface;
+class WaterSphere;
 struct PlanetPayload;
 
 class PlanetGenHandler
 {
 public:
-	void init(std::shared_ptr<PlanetSurface>);
+	void init(std::shared_ptr<PlanetSurface>, std::shared_ptr<WaterSphere>);
 	void guiRender();
 
 	int guiWidth = 800;
@@ -23,6 +24,7 @@ private:
 
 	std::vector< const char* > currentItem;
 	std::shared_ptr<PlanetSurface> m_planet;
+	std::shared_ptr<WaterSphere> m_water;
 	bool LiveUpdate = false;
 	int colourSelected = 0;
 
