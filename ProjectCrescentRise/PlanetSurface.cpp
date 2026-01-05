@@ -2,6 +2,7 @@
 #include "CubeSphereFace.h"
 #include "PlayerInput.h"
 #include "Globals.h"
+#include "stb_image.h"
 
 void PlanetSurface::ResetPlanet()
 {
@@ -56,6 +57,61 @@ void PlanetSurface::ResetPlanet()
         CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator);
 
     }
+    for (int i = 0; i < planetColour.COLOUR_MAX; i++)
+    {
+        if (!planetColour.m_needsReloading.at(i)) continue;
+
+        std::string location = "./Assets/Images/floorTextures/";
+        location += planetColour.m_textureLocation.at(i);
+
+        int width, height, channels; unsigned char* data = stbi_load(location.c_str(), &width, &height, &channels, 4);
+
+        if (!data)
+        {
+            std::cout << "DATA FOR IMAGE COULD NOT BE LOADED\n";
+        }
+
+        glGenTextures(1, &textureLocations.at(i));
+        glBindTexture(GL_TEXTURE_2D, textureLocations.at(i));
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glTexImage2D(
+            GL_TEXTURE_2D,
+            0,
+            GL_RGBA,
+            width,
+            height,
+            0,
+            GL_RGBA,
+            GL_UNSIGNED_BYTE,
+            data
+        );
+
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        stbi_image_free(data);
+
+
+
+        glGenTextures(1, &normalLocations.at(i));
+        glBindTexture(GL_TEXTURE_2D, normalLocations.at(i));
+
+        location = "./Assets/Images/floorTextures/";
+        location += planetColour.m_normalLocation.at(i);
+
+        int w, h, c;
+        unsigned char* hData = stbi_load(location.c_str(), &w, &h, &c, 1);
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, hData);
+        glGenerateMipmap(GL_TEXTURE_2D);
+        stbi_image_free(hData);
+
+        planetColour.m_needsReloading.at(i) = false;
+    }
     size = indices.size();
 
     glBindVertexArray(m_body.vao);
@@ -75,9 +131,65 @@ void PlanetSurface::Start()
         planetColour.m_colours.emplace_back(255.f);
         planetColour.m_heights.emplace_back(10.0f);
         planetColour.active.emplace_back(false);
+        planetColour.m_needsReloading.emplace_back(false);
+        planetColour.m_textureLocation.emplace_back("basic.jpg");
+        planetColour.m_normalLocation.emplace_back("basicNormal.jpg");
+        planetColour.m_textureScale.emplace_back(20.f);
+        planetColour.m_normalStrength.emplace_back(0.8f);
+
+        textureLocations.emplace_back(-1);
+        std::string location = "./Assets/Images/floorTextures/";
+        location += planetColour.m_textureLocation.at(i);
+
+        int width, height, channels; unsigned char* data = stbi_load(location.c_str(), &width, &height, &channels, 4);
+
+        if (!data)
+        {
+            std::cout << "DATA FOR IMAGE COULD NOT BE LOADED\n";
+        }
+
+        glGenTextures(1, &textureLocations.at(i));
+        glBindTexture(GL_TEXTURE_2D, textureLocations.at(i));
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glTexImage2D(
+            GL_TEXTURE_2D,
+            0,
+            GL_RGBA,
+            width,
+            height,
+            0,
+            GL_RGBA,
+            GL_UNSIGNED_BYTE,
+            data
+        );
+
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        stbi_image_free(data);
+
+
+
+        normalLocations.emplace_back(-1);
+        glGenTextures(1, &normalLocations.at(i));
+        glBindTexture(GL_TEXTURE_2D, normalLocations.at(i));
+
+        location = "./Assets/Images/floorTextures/";
+        location += planetColour.m_normalLocation.at(i);
+
+        int w, h, c;
+        unsigned char* hData = stbi_load(location.c_str(), &w, &h, &c, 1);
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, hData);
+        glGenerateMipmap(GL_TEXTURE_2D);
+        stbi_image_free(hData);
     }
-    // TO DO: change from being static lowest being water
-    //planetColour.m_shaderType.at(0) = 1;
+    // TO DO: change from being static lowest being sand
+    planetColour.m_shaderType.at(0) = 1;
 
     planetColour.m_heights.at(0) = -1.0f;
 
@@ -125,6 +237,10 @@ void PlanetSurface::Start()
     shaderType = glGetUniformLocation(m_shader->shaderPair, "shaderType");
     ViewPosition = glGetUniformLocation(m_shader->shaderPair, "viewPos");
     time = glGetUniformLocation(m_shader->shaderPair, "uTime");
+    layerTextures = glGetUniformLocation(m_shader->shaderPair, "layerTextures");
+    textureScale = glGetUniformLocation(m_shader->shaderPair, "textureScale");
+    LayerNormal = glGetUniformLocation(m_shader->shaderPair, "uLayerNormal");
+    NormalStrength = glGetUniformLocation(m_shader->shaderPair, "uLayerNormalStrength");
 
     // Generate initial mesh data
     ResetPlanet();
@@ -160,6 +276,31 @@ void PlanetSurface::Render()
     }
     if (startHeight >= 0 && planetColour.m_heights.size() > 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);
     if (shaderType >= 0 && planetColour.m_shaderType.size() > 0) glUniform1iv(shaderType, planetColour.m_shaderType.size(), &planetColour.m_shaderType[0]);
+
+    if (layerTextures >= 0 && !textureLocations.empty())
+    {
+        glBindTextures(0, textureLocations.size(), &textureLocations[0]);
+
+        std::vector<int> units(textureLocations.size());
+        for (int i = 0; i < units.size(); i++)
+            units[i] = i;
+
+        glUniform1iv(layerTextures, units.size(), units.data());
+    }
+    if (LayerNormal >= 0 && !normalLocations.empty())
+    {
+        glBindTextures(planetColour.COLOUR_MAX, normalLocations.size(), &normalLocations[0]);
+
+        std::vector<int> units(normalLocations.size());
+        for (int i = 0; i < units.size(); i++)
+            units[i] = i + planetColour.COLOUR_MAX;
+
+        glUniform1iv(LayerNormal, units.size(), units.data());
+    }
+    
+    if (textureScale >= 0 && !planetColour.m_textureScale.empty()) glUniform1fv(textureScale, planetColour.m_textureScale.size(), &planetColour.m_textureScale[0]);
+    if (NormalStrength >= 0 && !planetColour.m_normalStrength.empty()) glUniform1fv(NormalStrength, planetColour.m_normalStrength.size(), &planetColour.m_normalStrength[0]);
+
     if (ViewPosition >= 0)
     {
         glm::vec3 playerPos = PlayerInput::playerPosition;

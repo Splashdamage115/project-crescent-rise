@@ -23,6 +23,9 @@ private:
 	void sendPlanetData();
 
 	std::vector< const char* > currentItem;
+	std::vector< const char* > currentColour;
+	std::vector< std::string > inputTextureAddress;
+	std::vector< std::string > inputNormalAddress;
 	std::shared_ptr<PlanetSurface> m_planet;
 	std::shared_ptr<WaterSphere> m_water;
 	bool LiveUpdate = false;

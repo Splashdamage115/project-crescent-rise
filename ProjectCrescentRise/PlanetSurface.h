@@ -29,4 +29,11 @@ private:
 	GLint shaderType = -1;
 	GLint ViewPosition = -1;
 	GLint time = -1;
+	GLint layerTextures = -1;
+	GLint LayerNormal = -1;
+	GLint textureScale = -1;
+	GLint NormalStrength = -1;
+
+	std::vector<GLuint> textureLocations;
+	std::vector<GLuint> normalLocations;
 };

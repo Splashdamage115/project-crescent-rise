@@ -24,6 +24,8 @@ void PlanetGenHandler::guiRender()
 	//
 	////////////////////////////////////////////////////////////
 
+	int inputLength = 128; // length of input boxes
+
 	m_planet->callChange = LiveUpdate;
 	m_water->callChange = LiveUpdate;
 
@@ -88,19 +90,71 @@ void PlanetGenHandler::guiRender()
 	for (int i = 0; i < m_planet->planetColour.COLOUR_MAX; i++) {
 		if (!m_planet->planetColour.active.at(i)) continue;
 
+
+		if (i - 1 > m_planet->planetColour.active.size()) 
+		{ 
+			inputTextureAddress.emplace_back(m_planet->planetColour.m_textureLocation.at(i));
+			inputNormalAddress.emplace_back(m_planet->planetColour.m_normalLocation.at(i));
+			currentColour.emplace_back();
+		}
+
 		std::string t = "Colour " + std::to_string(i);
 		float col[] = { static_cast<float>(m_planet->planetColour.m_colours.at(i).x) / 255.f, static_cast<float>(m_planet->planetColour.m_colours.at(i).y) / 255.f, static_cast<float>(m_planet->planetColour.m_colours.at(i).z) / 255.f };
 		std::string text = "Visible colour " + std::to_string(i) + ":";
-		// name for the colour, mainly for seperation between colours
-		ImGui::Text(text.c_str());
 
-		// small indicator to show the layers colour, this is to help read the item, and know which it is
-		text = "actual colour " + std::to_string(i);
-		ImGui::ColorButton(text.c_str(), ImVec4(col[0],col[1],col[2], 255.0f));
+
+		if (m_planet->planetColour.m_shaderType.at(i) == 0)
+		{
+			// name for the colour, mainly for seperation between colours
+			ImGui::Text(text.c_str());
+
+			// small indicator to show the layers colour, this is to help read the item, and know which it is
+			text = "actual colour " + std::to_string(i);
+			ImGui::ColorButton(text.c_str(), ImVec4(col[0], col[1], col[2], 255.0f));
+		}
+
+
 
 		// collapsing header to hiade all other elements
 		if (ImGui::CollapsingHeader(t.c_str()))
 		{
+			std::string n = "Layer Overlay Type " + std::to_string(i);
+			const char* items[] = { "Colour", "Texture" };
+
+
+
+			if (ImGui::BeginCombo(n.c_str(), currentColour.at(i)))
+			{
+				for (unsigned int a = 0; a < IM_ARRAYSIZE(items); a++)
+				{
+					bool isSelected = (currentColour.at(i) == items[a]);
+
+					if (ImGui::Selectable(items[a], isSelected))
+					{
+						currentColour.at(i) = items[a];
+
+						if (currentColour.at(i) == "Colour")
+						{
+							m_planet->planetColour.m_shaderType.at(i) = 0;
+							resetPlanet();
+						}
+						if (currentColour.at(i) == "Texture")
+						{
+							m_planet->planetColour.m_shaderType.at(i) = 1;
+							resetPlanet();
+						}
+					}
+					if (isSelected)
+					{
+						ImGui::SetItemDefaultFocus();
+					}
+				}
+
+
+				ImGui::EndCombo();
+
+			}
+
 			// control the layer height
 			text = "layer height adjustment " + std::to_string(i);
 			if (ImGui::SliderFloat(text.c_str(), &m_planet->planetColour.m_heights.at(i), 0.f, 1.f))
@@ -108,18 +162,62 @@ void PlanetGenHandler::guiRender()
 				resetPlanet();
 			}
 
-			// change the colour on that layer
-			text = "Layer Colour " + std::to_string(i);
-			if (ImGui::ColorPicker3(text.c_str(), col))
+
+			if (m_planet->planetColour.m_shaderType.at(i) == 0)
 			{
-				if (LiveUpdate)
+				// change the colour on that layer
+				text = "Layer Colour " + std::to_string(i);
+				if (ImGui::ColorPicker3(text.c_str(), col))
 				{
-					m_planet->planetColour.m_colours.at(i).x = static_cast<unsigned short>(col[0] * 255.f);
-					m_planet->planetColour.m_colours.at(i).y = static_cast<unsigned short>(col[1] * 255.f);
-					m_planet->planetColour.m_colours.at(i).z = static_cast<unsigned short>(col[2] * 255.f);
-			
+					if (LiveUpdate)
+					{
+						m_planet->planetColour.m_colours.at(i).x = static_cast<unsigned short>(col[0] * 255.f);
+						m_planet->planetColour.m_colours.at(i).y = static_cast<unsigned short>(col[1] * 255.f);
+						m_planet->planetColour.m_colours.at(i).z = static_cast<unsigned short>(col[2] * 255.f);
+
+					}
 				}
 			}
+			else if (m_planet->planetColour.m_shaderType.at(i) == 1)
+			{
+				text = "Texture " + std::to_string(i);
+				ImGui::Text(text.c_str());
+
+				text = "Load Texture " + std::to_string(i);
+				if (ImGui::Button(text.c_str()))
+				{
+					m_planet->planetColour.m_needsReloading.at(i) = true;
+					resetPlanet();
+				}
+
+				text = "Texture Address " + std::to_string(i);
+				if (ImGui::InputText(text.c_str(), inputTextureAddress.at(i).data(), inputLength))
+				{
+					m_planet->planetColour.m_textureLocation.at(i) = inputTextureAddress.at(i);
+				}
+
+				text = "Texture Tiling Density " + std::to_string(i);
+				if (ImGui::SliderFloat(text.c_str(), &m_planet->planetColour.m_textureScale.at(i), 0.001f, 256.f))
+				{
+					
+				}
+
+				text = "Normal Address " + std::to_string(i);
+				if (ImGui::InputText(text.c_str(), inputNormalAddress.at(i).data(), inputLength))
+				{
+					m_planet->planetColour.m_normalLocation.at(i) = inputNormalAddress.at(i);
+				}
+
+				text = "Normal Strength " + std::to_string(i);
+				if (ImGui::SliderFloat(text.c_str(), &m_planet->planetColour.m_normalStrength.at(i), -5.0f, 5.0f))
+				{
+
+				}
+			}
+
+
+
+
 		}
 	}
 	ImGui::End();
