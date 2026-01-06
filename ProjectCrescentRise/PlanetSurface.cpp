@@ -138,55 +138,58 @@ void PlanetSurface::Start()
         planetColour.m_normalStrength.emplace_back(0.8f);
 
         textureLocations.emplace_back(-1);
-        std::string location = "./Assets/Images/floorTextures/";
-        location += planetColour.m_textureLocation.at(i);
-
-        int width, height, channels; unsigned char* data = stbi_load(location.c_str(), &width, &height, &channels, 4);
-
-        if (!data)
-        {
-            std::cout << "DATA FOR IMAGE COULD NOT BE LOADED\n";
-        }
-
-        glGenTextures(1, &textureLocations.at(i));
-        glBindTexture(GL_TEXTURE_2D, textureLocations.at(i));
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        glTexImage2D(
-            GL_TEXTURE_2D,
-            0,
-            GL_RGBA,
-            width,
-            height,
-            0,
-            GL_RGBA,
-            GL_UNSIGNED_BYTE,
-            data
-        );
-
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-        stbi_image_free(data);
-
-
-
         normalLocations.emplace_back(-1);
-        glGenTextures(1, &normalLocations.at(i));
-        glBindTexture(GL_TEXTURE_2D, normalLocations.at(i));
+        if (i == 0)
+        {
+            std::string location = "./Assets/Images/floorTextures/";
+            location += planetColour.m_textureLocation.at(i);
 
-        location = "./Assets/Images/floorTextures/";
-        location += planetColour.m_normalLocation.at(i);
+            int width, height, channels; unsigned char* data = stbi_load(location.c_str(), &width, &height, &channels, 4);
 
-        int w, h, c;
-        unsigned char* hData = stbi_load(location.c_str(), &w, &h, &c, 1);
+            if (!data)
+            {
+                std::cout << "DATA FOR IMAGE COULD NOT BE LOADED\n";
+            }
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, hData);
-        glGenerateMipmap(GL_TEXTURE_2D);
-        stbi_image_free(hData);
+            glGenTextures(1, &textureLocations.at(i));
+            glBindTexture(GL_TEXTURE_2D, textureLocations.at(i));
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+            glTexImage2D(
+                GL_TEXTURE_2D,
+                0,
+                GL_RGBA,
+                width,
+                height,
+                0,
+                GL_RGBA,
+                GL_UNSIGNED_BYTE,
+                data
+            );
+
+            glGenerateMipmap(GL_TEXTURE_2D);
+
+            stbi_image_free(data);
+
+
+
+            glGenTextures(1, &normalLocations.at(i));
+            glBindTexture(GL_TEXTURE_2D, normalLocations.at(i));
+
+            location = "./Assets/Images/floorTextures/";
+            location += planetColour.m_normalLocation.at(i);
+
+            int w, h, c;
+            unsigned char* hData = stbi_load(location.c_str(), &w, &h, &c, 1);
+
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, hData);
+            glGenerateMipmap(GL_TEXTURE_2D);
+            stbi_image_free(hData);
+        }
     }
     // TO DO: change from being static lowest being sand
     planetColour.m_shaderType.at(0) = 1;
