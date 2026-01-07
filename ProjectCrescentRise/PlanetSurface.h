@@ -19,6 +19,14 @@ public:
 
 	// handles if the world is being edited or not
 	bool callChange = false;
+
+	// Simple global instance so scripts can sample the planet without heavy coupling.
+	// Set in Start(). May be null if no planet exists yet.
+	static PlanetSurface* s_instance;
+
+	// Given a world-space position, returns the world-space point on the planet surface
+	// along the radial direction from the planet center through worldPos.
+	glm::vec3 GetSurfacePointFromWorldPosition(glm::vec3 worldPos);
 private:
 	int size = 0;
 	GLint uColourLoc = -1;

@@ -13,6 +13,7 @@
 #include "Skybox.h"
 #include "Cube.h"
 #include "WaterSphere.h"
+#include "SurfaceFollower.h"
 
 double Game::deltaTime = 0;
 
@@ -26,10 +27,11 @@ void Game::initGame()
 	// - - - PLAYER - - - 
 
 	camObj = std::make_shared<GameObject>();
-	camObj->transform->position = { 0.f, 0.f, 0.f };
+	camObj->transform->position = { 50.f, 0.f, 0.f };
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	camObj->addScript(std::make_shared<CameraFeed>());
 	camObj->addScript(std::make_shared<PlayerInput>());
+	camObj->addScript(std::make_shared<SurfaceFollower>());
 	//camObj->addScript(std::make_shared<CubeSphere>());
 
 	GameObjects::addNewObjectToPool(camObj);

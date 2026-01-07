@@ -4,6 +4,21 @@
 #include "Globals.h"
 #include "stb_image.h"
 
+// static instance definition
+PlanetSurface* PlanetSurface::s_instance = nullptr;
+
+glm::vec3 PlanetSurface::GetSurfacePointFromWorldPosition(glm::vec3 worldPos)
+{
+	// safety: require transform and a valid shape generator
+	if (!transform) return worldPos;
+	// direction from planet center to world position
+	glm::vec3 dir = glm::normalize(worldPos - transform->position);
+	// evaluate deformed surface point in local-space (ShapeGenerator returns pointOnUnitSphere * elevation)
+	glm::vec3 localSurface = shapeGenerator.CalcualtePointOnPlanet(dir); // matches spelling in ShapeGenerator
+	// convert to world-space
+	return transform->position + localSurface;
+}
+
 void PlanetSurface::ResetPlanet()
 {
     callChange = true;
@@ -125,6 +140,9 @@ void PlanetSurface::ResetPlanet()
 
 void PlanetSurface::Start()
 {
+	// register global instance for surface followers
+	s_instance = this;
+
     for (int i = 0; i < planetColour.COLOUR_MAX; i++)
     {
         planetColour.m_shaderType.emplace_back(0);
@@ -274,7 +292,7 @@ void PlanetSurface::Render()
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);
     if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax()); 
     if (heightColours >= 0 && planetColour.m_colours.size() > 0) {
-        //std::cout << planetColour.m_colours[0].x << " " << planetColour.m_colours[0].g << " " << planetColour.m_colours[0].b << "\n";
+        //std::cout << planetColour.m_colurs[0].x << " " << planetColour.m_colurs[0].g << " " << planetColour.m_colurs[0].b << "\n";
         glUniform3fv(heightColours, planetColour.m_colours.size(), glm::value_ptr(planetColour.m_colours[0]));
     }
     if (startHeight >= 0 && planetColour.m_heights.size() > 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);

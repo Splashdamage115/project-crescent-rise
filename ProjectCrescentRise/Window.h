@@ -27,23 +27,7 @@ public:
         m_camera.setPerspective(fovDeg, aspect, zNear, zFar);
     }
     
-    void SetCameraFromTransform(const Transform& t) {
-        float yaw = glm::radians(t.rotation.y);
-        float pitch = glm::radians(t.rotation.x);
-    
-        glm::vec3 forward;
-        forward.x = cos(pitch) * sin(yaw);
-        forward.y = sin(pitch);
-        forward.z = -cos(pitch) * cos(yaw);
-    
-        glm::vec3 pos = t.position;
-        glm::vec3 target = pos + forward;
-        glm::vec3 up = { 0.0f, 1.0f, 0.0f };
-    
-        m_camera.setPosition(pos);
-        m_camera.setTarget(target);
-        m_camera.setUp(up);
-    }
+    void SetCameraFromTransform(Transform& t);
     
     glm::mat4 GetView() const { return m_camera.GetView(); }
     glm::mat4 GetProj() const { return m_camera.GetProj(); }

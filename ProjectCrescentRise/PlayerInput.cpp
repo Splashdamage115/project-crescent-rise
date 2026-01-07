@@ -3,8 +3,15 @@
 #include "Game.h"
 #include "OnlineDispatcher.h"
 #include <string>
+#include "CommandInterpreter.h"
 
 glm::vec3 PlayerInput::playerPosition;
+bool PlayerInput::noClipEnabled = false;
+
+void PlayerInput::Start()
+{
+	CommandInterpreter::append([this](std::string t) { this->noClipEnabled = !this->noClipEnabled; }, "/NOCLIP");
+}
 
 void PlayerInput::Update()
 {
@@ -15,7 +22,7 @@ void PlayerInput::Update()
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::S))
 	{
-		displacement.z += currentSpeed * static_cast<float>(Game::deltaTime);
+		displacement.z += -currentSpeed * static_cast<float>(Game::deltaTime);
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::A))
 	{
@@ -23,7 +30,7 @@ void PlayerInput::Update()
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::W))
 	{
-		displacement.z += -currentSpeed * static_cast<float>(Game::deltaTime);
+		displacement.z += currentSpeed * static_cast<float>(Game::deltaTime);
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::Q))
 	{
@@ -43,8 +50,15 @@ void PlayerInput::Update()
 	{
 		currentSpeed = minSpeed;
 	}
-	
-	transform->moveAlongForward(displacement);
+
+	if (noClipEnabled)
+	{
+		transform->moveAlongForward(displacement);
+	}
+	else
+	{
+		transform->moveAlongForwardPlanet(displacement);
+	}
 
 	std::string position;
 	position += std::to_string(transform->position.x);
@@ -59,8 +73,8 @@ void PlayerInput::Update()
 	float xDelta = static_cast<float>(KeyScan::mouseX - lastMouseX);
 	float yDelta = static_cast<float>(KeyScan::mouseY - lastMouseY);
 	
-	transform->rotation.y += xDelta * 0.05f;
-	transform->rotation.x -= yDelta * 0.05f;
+	transform->rotation.y -= xDelta * 0.05f;
+	transform->rotation.x += yDelta * 0.05f;
 	
 	
 	lastMouseY = KeyScan::mouseY;

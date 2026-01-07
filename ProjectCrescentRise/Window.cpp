@@ -3,6 +3,8 @@
 #include "GameObjects.h"
 #include "Update.h"
 #include "CommandInterpreter.h"
+#include "PlanetSurface.h"
+#include <glm/gtc/quaternion.hpp>
 
 Window::Window()
 {
@@ -96,6 +98,50 @@ void Window::initGui()
 
     // Set up mouse callbacks for dragging
     glfwSetWindowUserPointer(m_window, this);
+}
+
+void Window::SetCameraFromTransform(Transform& t) {
+    // Use planet-relative up when available so camera follows spherical surface orientation
+    glm::vec3 pos = t.position;
+    glm::vec3 up = { 0.0f, 1.0f, 0.0f };
+    if (PlanetSurface::s_instance && PlanetSurface::s_instance->getTransform()) {
+        up = glm::normalize(pos - PlanetSurface::s_instance->getTransform()->position);
+    }
+
+    // Build a tangent-space forward using yaw and pitch around local axes
+    float yaw = glm::radians(t.rotation.y);
+    float pitch = glm::radians(t.rotation.x);
+
+    // pick an arbitrary vector not parallel to 'up'
+    glm::vec3 arbitrary = glm::vec3(0.0f, 0.0f, 1.0f);
+    if (fabs(glm::dot(up, arbitrary)) > 0.999f) arbitrary = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    // build orthonormal tangent basis
+    glm::vec3 right = glm::normalize(glm::cross(up, arbitrary));
+    glm::vec3 forwardBasis = glm::normalize(glm::cross(right, up));
+
+    // apply yaw around up first
+    glm::quat qYaw = glm::angleAxis(yaw, up);
+    glm::vec3 fYaw = qYaw * forwardBasis;
+
+    // recompute right after yaw in a consistent way
+    glm::vec3 rightYaw = glm::normalize(glm::cross(up, fYaw));
+
+    // apply pitch around the post-yaw right axis
+    glm::quat qPitch = glm::angleAxis(pitch, rightYaw);
+    glm::vec3 forward = qPitch * fYaw;
+
+    // if forward becomes nearly parallel to up, fallback to yaw-only to avoid degenerate lookAt
+    if (fabs(glm::dot(glm::normalize(forward), up)) > 0.999f)
+    {
+        forward = fYaw; // yaw-only
+    }
+
+    glm::vec3 target = pos + forward;
+
+    m_camera.setPosition(pos);
+    m_camera.setTarget(target);
+    m_camera.setUp(up);
 }
 
 void Window::Update()

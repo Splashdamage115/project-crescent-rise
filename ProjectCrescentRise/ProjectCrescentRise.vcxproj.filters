@@ -177,6 +177,12 @@
     <ClCompile Include="WaterSphere.cpp">
       <Filter>Source Files\Scripts\CubeSphere</Filter>
     </ClCompile>
+    <ClCompile Include="SurfaceFollower.cpp">
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -313,6 +319,12 @@
     </ClInclude>
     <ClInclude Include="WaterSphere.h">
       <Filter>Header Files\Scripts\CubeSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>Header Files\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceFollower.h">
+      <Filter>Header Files\Scripts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

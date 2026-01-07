@@ -168,6 +168,8 @@
     <ClCompile Include="ScriptObject.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SurfaceFollower.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="ShaderPrograms.cpp" />
     <ClCompile Include="WaterSphere.cpp" />
@@ -181,6 +183,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeSphere.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="OnlineConnection.h" />
     <ClInclude Include="OnlineMover.h" />
     <ClInclude Include="PlanetSurface.h" />
@@ -215,6 +218,7 @@
     <ClInclude Include="ShapeSettings.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="SurfaceFollower.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="ShaderPrograms.h" />
     <ClInclude Include="WaterSphere.h" />

@@ -24,18 +24,13 @@ inline static float radiansToDegrees(float t_radians)
     return t_radians * 180.f / PI;
 }
 
-
 struct Transform {
 	glm::vec3 position = glm::vec3(0.0f);
 	glm::vec3 rotation = glm::vec3(0.0f);
     glm::vec3 scale = glm::vec3(1.0f);
 
-	void moveAlongForward(glm::vec3 t_disp)
-	{
-        glm::quat forward = glm::quat(glm::vec3(0.0f, degreesToRadians(rotation.y), 0.0f));
-        position += t_disp * forward;
-
-	}
+	void moveAlongForward(glm::vec3 t_disp);
+    void moveAlongForwardPlanet(glm::vec3 t_disp);
 };
 
 inline glm::mat4 ToModelMatrix(const Transform& t) {

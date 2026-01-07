@@ -5,9 +5,11 @@
 class PlayerInput : public ScriptObject
 {
 public:
-	void Update();
+	void Start() override;
+	void Update() override;
 
 	static glm::vec3 playerPosition;
+	static bool noClipEnabled;
 private:
 	double lastMouseX = 0.;
 	double lastMouseY = 0.;
