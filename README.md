@@ -166,14 +166,31 @@
 
 # Priority Order List : 
 
+<ul>
+    <li> 🔴 - surface unstancing</li>
+    <li> 🔴 - grass instancing</li>
+    <li> 🔴 - building collisions</li>
+    <li> 🔴 - object with collision instancing</li>
+    <li> 🔴 - enemy on surface</li>
+    <li> 🔴 - load planet from json</li>
+    <li> 🔴 - save planet to json</li>
+    <li> 🔴 - load random from json</li>
+    <li> 🔴 - attacking enemy</li>
+    <li> 🔴 - enemy attack player</li>
+    <li> 🔴 - player death</li>
+    <li> 🔴 - main menu screen</li>
+    <li> 🔴 - player Weapon</li>
+</ul>
+
+## Completed
 ### ✅ - vornoi noise
 ### ✅ - Sky Box
-### 🟡 - Water Textures
-### 🟡 - ground mesh texturing
-### 🔴 - map genertation size increase
+### ✅ - Water Textures
+### ✅ - ground mesh texturing
+### ✅ - map genertation size increase
 ### ✅ - angle map to be spherical
-### 🟡 - ground tile texturing
-### 🔴 - movement on the mesh
+### ✅ - ground tile texturing
+### ✅ - movement on the mesh
 
 <br><br><br>
   </em></p>
