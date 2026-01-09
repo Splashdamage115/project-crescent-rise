@@ -167,7 +167,7 @@
 # Priority Order List : 
 
 <ul>
-    <li> 🔴 - surface unstancing</li>
+    <li> 🔴 - surface instancing</li>
     <li> 🔴 - grass instancing</li>
     <li> 🔴 - building collisions</li>
     <li> 🔴 - object with collision instancing</li>

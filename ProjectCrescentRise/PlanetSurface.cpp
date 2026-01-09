@@ -262,6 +262,7 @@ void PlanetSurface::Start()
     textureScale = glGetUniformLocation(m_shader->shaderPair, "textureScale");
     LayerNormal = glGetUniformLocation(m_shader->shaderPair, "uLayerNormal");
     NormalStrength = glGetUniformLocation(m_shader->shaderPair, "uLayerNormalStrength");
+    ambientLight = glGetUniformLocation(m_shader->shaderPair, "ambientLightStrength"); 
 
     // Generate initial mesh data
     ResetPlanet();
@@ -321,6 +322,7 @@ void PlanetSurface::Render()
     
     if (textureScale >= 0 && !planetColour.m_textureScale.empty()) glUniform1fv(textureScale, planetColour.m_textureScale.size(), &planetColour.m_textureScale[0]);
     if (NormalStrength >= 0 && !planetColour.m_normalStrength.empty()) glUniform1fv(NormalStrength, planetColour.m_normalStrength.size(), &planetColour.m_normalStrength[0]);
+    if (ambientLight >= 0) glUniform1f(ambientLight, planetColour.lightIntensity);
 
     if (ViewPosition >= 0)
     {

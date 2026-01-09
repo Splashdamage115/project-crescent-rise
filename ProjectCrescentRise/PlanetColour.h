@@ -17,5 +17,6 @@ public:
 	std::vector<bool> active;
 	const int COLOUR_MAX = 32;
 
+	float lightIntensity = 0.4f;
 };
 

@@ -29,6 +29,7 @@ public:
 	glm::vec3 GetSurfacePointFromWorldPosition(glm::vec3 worldPos);
 private:
 	int size = 0;
+	float lightStrength = 0.3f;
 	GLint uColourLoc = -1;
 	GLint MinMax = -1;
 	GLint CenterPoint = -1;
@@ -41,6 +42,7 @@ private:
 	GLint LayerNormal = -1;
 	GLint textureScale = -1;
 	GLint NormalStrength = -1;
+	GLint ambientLight = -1;
 
 	std::vector<GLuint> textureLocations;
 	std::vector<GLuint> normalLocations;

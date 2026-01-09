@@ -80,6 +80,10 @@ void PlanetGenHandler::guiRender()
 	}
 	ImGui::Text("Planet Colours");
 
+	if (ImGui::SliderFloat("Light intensity", &m_planet->planetColour.lightIntensity, 0.0f, 1.f))
+	{
+
+	}
 
 	// planet colour layers
 	if (ImGui::Button("+"))
