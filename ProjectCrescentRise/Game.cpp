@@ -14,6 +14,8 @@
 #include "Cube.h"
 #include "WaterSphere.h"
 #include "SurfaceFollower.h"
+#include "SurfaceInstancer.h"
+#include "SurfaceAttacher.h"
 
 double Game::deltaTime = 0;
 
@@ -146,7 +148,6 @@ void Game::initFloor()
 
 
 
-
 	// water
 
 	waterObj->transform->position = { 0.0f, 0.0f, 0.0f };
@@ -160,6 +161,42 @@ void Game::initFloor()
 	GameObjects::addNewObjectToPool(waterObj);
 
 
+	// - - - SURFACE INSTANCING - - -
+	// TEMPORARY TEST - Instantiate a single cube in a known location
+	std::cout << "=== SURFACE INSTANCING TEST ===" << std::endl;
+	
+	auto planetScript = std::static_pointer_cast<PlanetSurface>(planet);
+	glm::vec3 planetCenter = planetScript->getTransform()->position;
+	
+	// Test 1: Place a cube directly above planet center
+	std::shared_ptr<GameObject> testObj1 = std::make_shared<GameObject>();
+	testObj1->addScript(std::make_shared<Cube>());
+	testObj1->transform->position = { planetCenter.x, planetCenter.y + 2.0f, planetCenter.z };
+	testObj1->transform->scale = { 2.0f, 2.0f, 2.0f };
+	testObj1->active = true;
+	GameObjects::addNewObjectToPool(testObj1);
+	std::cout << "Test cube 1 placed at: " << testObj1->transform->position.x << ", " 
+		<< testObj1->transform->position.y << ", " << testObj1->transform->position.z << std::endl;
 
+	SurfaceInstancer instancer;
+	
+	InstancerSettings settings;
+	settings.density = 1.0f;
+	settings.noiseScale = 100.0f;
+	settings.noiseThreshold = 1.0f;
+	settings.noiseSeed = 42;
 
+	instancer.SetSettings(settings);
+
+	auto creatorFunc = []() -> std::shared_ptr<GameObject>
+	{
+		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+		obj->addScript(std::make_shared<Cube>());
+		obj->transform->scale = { 1.5f, 1.5f, 1.5f };
+		return obj;
+	};
+
+	instancer.InstantiateOnSurface(planetScript, creatorFunc, 4);
+
+	static std::shared_ptr<PlanetSurface> g_planetScript = planetScript;
 }

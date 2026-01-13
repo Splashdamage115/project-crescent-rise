@@ -159,9 +159,6 @@
     <ClCompile Include="OnlineConnection.cpp">
       <Filter>Source Files\Library\Online</Filter>
     </ClCompile>
-    <ClCompile Include="OnlineMover.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Skybox.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
@@ -182,6 +179,15 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceAttacher.cpp">
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceInstancer.cpp">
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="OnlineMover.cpp">
+      <Filter>Source Files\Library\Online</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,9 +302,6 @@
     <ClInclude Include="OnlineConnection.h">
       <Filter>Header Files\Library\Online</Filter>
     </ClInclude>
-    <ClInclude Include="OnlineMover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Globals.h">
       <Filter>Header Files\Library</Filter>
     </ClInclude>
@@ -325,6 +328,15 @@
     </ClInclude>
     <ClInclude Include="SurfaceFollower.h">
       <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceAttacher.h">
+      <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceInstancer.h">
+      <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineMover.h">
+      <Filter>Header Files\Library\Online</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
