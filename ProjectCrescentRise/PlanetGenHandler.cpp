@@ -6,6 +6,7 @@
 #include "OnlineDispatcher.h"
 #include "Update.h"
 #include "Game.h"
+#include "jsonPlanetParser.h"
 
 void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet, std::shared_ptr<WaterSphere> t_water)
 {
@@ -338,6 +339,20 @@ void PlanetGenHandler::guiRender()
 	}
 
 	ImGui::End();
+
+	JsonPlanetSettings();
+}
+
+void PlanetGenHandler::JsonPlanetSettings()
+{
+	ImGui::Begin("Json Save/Load");
+
+	if(ImGui::Button("Save Current Settings"))
+	{
+		savePlanet();
+	}
+
+	ImGui::End();
 }
 
 void PlanetGenHandler::setNewPlanet(PlanetPayload t_payload)
@@ -398,4 +413,17 @@ void PlanetGenHandler::sendPlanetData()
 	p.planetPointCount = m_planet->pointsPerRow;
 
 	OnlineDispatcher::pushPlanet(p);
+}
+
+void PlanetGenHandler::savePlanet()
+{
+	PlanetData planet;
+
+	planet.planetShape = m_planet->shapeSettings;
+	planet.oceanShapeSettings = m_water->shapeSettings;
+	planet.planetColour = m_planet->planetColour;
+	planet.planetPointCount = m_planet->pointsPerRow;
+	planet.oceanPointCount = m_water->pointsPerRow;
+	
+	jsonPlanetParser::WritePlanetData(planet);
 }

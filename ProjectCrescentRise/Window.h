@@ -8,6 +8,7 @@
 #include <mutex>
 #include <atomic>
 #include "OnlineDispatcher.h"
+#include "Globals.h"
 
 class Window
 {
@@ -63,7 +64,7 @@ private:
     int m_height = 720;
     Camera m_camera;
 
-    bool guiActive = false;
+    bool guiActive = AUTO_GUI;
     PlanetGenHandler planetGen;
 
     std::mutex planetMutex;

@@ -11,6 +11,7 @@ class PlanetGenHandler
 public:
 	void init(std::shared_ptr<PlanetSurface>, std::shared_ptr<WaterSphere>);
 	void guiRender();
+	void JsonPlanetSettings();
 
 	int guiWidth = 800;
 	int guiHeight = 800;
@@ -21,6 +22,7 @@ public:
 private:
 	void resetPlanet();
 	void sendPlanetData();
+	void savePlanet();
 
 	std::vector< const char* > currentItem;
 	std::vector< const char* > currentColour;

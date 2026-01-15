@@ -143,6 +143,7 @@
     <ClCompile Include="CommandInterpreter.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeSphere.cpp" />
+    <ClCompile Include="jsonPlanetParser.cpp" />
     <ClCompile Include="Library.cpp" />
     <ClCompile Include="OnlineConnection.cpp" />
     <ClCompile Include="OnlineMover.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="CubeSphere.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="json.hpp" />
+    <ClInclude Include="jsonPlanetParser.h" />
     <ClInclude Include="OnlineConnection.h" />
     <ClInclude Include="OnlineMover.h" />
     <ClInclude Include="PlanetSurface.h" />

@@ -192,6 +192,9 @@
     <ClCompile Include="TextureStore.cpp">
       <Filter>Source Files\Library\Shaders</Filter>
     </ClCompile>
+    <ClCompile Include="jsonPlanetParser.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -343,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="TextureStore.h">
       <Filter>Header Files\Library\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="jsonPlanetParser.h">
+      <Filter>Header Files\gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
