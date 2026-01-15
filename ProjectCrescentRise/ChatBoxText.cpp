@@ -26,6 +26,8 @@ void ChatBoxText::Start()
     if (FT_New_Face(ft, "Assets/Fonts/Architect.ttf", 0, &face)) std::cerr << "Could not open font" << std::endl;
     FT_Set_Pixel_Sizes(face, 0, 22);
 
+    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::text, Shader::FragmentShaderType::text);
+
     // initialise the texture for the sprites
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D, textureID);
@@ -42,8 +44,6 @@ void ChatBoxText::Start()
 
     glGenBuffers(1, &m_body.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
-
-    m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::text, Shader::FragmentShaderType::text);
 
     // get the model coords
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
@@ -91,8 +91,9 @@ void ChatBoxText::Update()
 void ChatBoxText::Render() {
 
     // initialise open gl context parts
-    glBindTexture(GL_TEXTURE_2D, textureID);
     VertexShaders::LoadShader(m_shader);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureID);
     glBindVertexArray(m_body.vao);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glEnable(GL_BLEND);

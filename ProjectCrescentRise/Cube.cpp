@@ -1,5 +1,5 @@
 #include "Cube.h"
-#include "stb_image.h"
+#include "TextureStore.h"
 
 void Cube::Start()
 {
@@ -71,46 +71,10 @@ void Cube::Start()
 	m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
 
 
-	int width, height, channels; unsigned char* data = stbi_load("./Assets/Images/crate.jpg", &width, &height, &channels, 4);
+	textureID = TextureStore::RetrieveTexture("./Assets/Images/crate.jpg");
 
-	if (!data)
-	{
-		std::cout << "DATA FOR IMAGE COULD NOT BE LOADED\n";
-	}
 
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_2D, textureID);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	glTexImage2D(
-		GL_TEXTURE_2D,
-		0,
-		GL_RGBA,
-		width,
-		height,
-		0,
-		GL_RGBA,
-		GL_UNSIGNED_BYTE,
-		data
-	);
-
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	stbi_image_free(data);
-
-	glGenTextures(1, &heightMapID);
-	glBindTexture(GL_TEXTURE_2D, heightMapID);
-
-	int w, h, c;
-	unsigned char* hData = stbi_load("./Assets/Images/CrateNormal.png", &w, &h, &c, 1);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, hData);
-	glGenerateMipmap(GL_TEXTURE_2D);
-	stbi_image_free(hData);
+	heightMapID = TextureStore::RetrieveNormals("./Assets/Images/CrateNormal.jpg");
 
 	heightLoc = glGetUniformLocation(m_shader->shaderPair, "uHeightMap");
 	uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
@@ -125,12 +89,11 @@ void Cube::Render()
 	VertexShaders::LoadShader(m_shader);
 
 	glBindVertexArray(m_body.vao);
-	if (textureLoc != -1 && textureID != -1 && heightMapID != -1 && heightLoc != -1)
+	if (textureLoc != -1 && heightMapID != -1 && heightLoc != -1 && textureID != -1)
 	{
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		glUniform1i(textureLoc, 0);
-
 
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, heightMapID);

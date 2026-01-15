@@ -470,8 +470,8 @@ void VertexShaders::LoadShader(Shader::VertexShaderType t_vertex, Shader::Fragme
 // we use this to speed up execution
 void VertexShaders::LoadShader(std::shared_ptr<Shader> t_shader)
 {
+    glActiveTexture(GL_TEXTURE0);
     glUseProgram(t_shader->shaderPair);
-    //glBindTexture To Do
 }
 
 // retrieve the pointer to the wanted shader
@@ -845,7 +845,7 @@ void VertexShaders::setUpPlanetShader()
         "uniform vec3 viewPos;\n"
         "uniform float uTime;\n"
         "\n"
-        "const float FEATHER = 0.1; // widen or tighten blending\n"
+        "const float FEATHER = 0.1;\n"
         "\n"
         "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
         "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"

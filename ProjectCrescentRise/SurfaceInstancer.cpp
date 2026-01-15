@@ -33,12 +33,7 @@ void SurfaceInstancer::InstantiateOnSurface(
 
 }
 
-int SurfaceInstancer::SampleFace(
-	std::shared_ptr<PlanetSurface> planet,
-	InstanceCreatorFunc creator,
-	int samplesPerFace,
-	const glm::vec3& faceNormal
-)
+int SurfaceInstancer::SampleFace(std::shared_ptr<PlanetSurface> planet,InstanceCreatorFunc creator,int samplesPerFace,const glm::vec3& faceNormal)
 {
 	if (!planet || !creator)
 		return 0;

@@ -97,6 +97,7 @@
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(SolutionDir)ProjectCrescentRise\Dependencies\GLFW\include;$(SolutionDir)ProjectCrescentRise\Dependencies\GLEW;$(SolutionDir)ProjectCrescentRise;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype\freetype;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -171,6 +172,7 @@
     <ClCompile Include="SurfaceAttacher.cpp" />
     <ClCompile Include="SurfaceFollower.cpp" />
     <ClCompile Include="SurfaceInstancer.cpp" />
+    <ClCompile Include="TextureStore.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="ShaderPrograms.cpp" />
@@ -223,6 +225,7 @@
     <ClInclude Include="SurfaceAttacher.h" />
     <ClInclude Include="SurfaceFollower.h" />
     <ClInclude Include="SurfaceInstancer.h" />
+    <ClInclude Include="TextureStore.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="ShaderPrograms.h" />
     <ClInclude Include="WaterSphere.h" />

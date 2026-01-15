@@ -189,6 +189,9 @@
     <ClCompile Include="OnlineMover.cpp">
       <Filter>Source Files\Library\Online</Filter>
     </ClCompile>
+    <ClCompile Include="TextureStore.cpp">
+      <Filter>Source Files\Library\Shaders</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -337,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="OnlineMover.h">
       <Filter>Header Files\Library\Online</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureStore.h">
+      <Filter>Header Files\Library\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
