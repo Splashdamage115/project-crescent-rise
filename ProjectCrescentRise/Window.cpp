@@ -10,7 +10,22 @@
 Window::Window()
 {
     CommandInterpreter::append([this](std::string t) { this->openGui(t); }, "/GUI");
-    m_window = glfwCreateWindow(m_width, m_height, "Project Crescent Rise", NULL, NULL);
+
+    GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
+
+    if (FULLSCREEN_MODE)
+    {
+        m_width = mode->width;
+        m_height = mode->height;
+        m_window = glfwCreateWindow(mode->width, mode->height, "Project Crescent Rise", primaryMonitor, NULL);
+    }
+    else
+    {
+        m_window = glfwCreateWindow(m_width, m_height, "Project Crescent Rise", NULL, NULL);
+    }
+
+
     if (!m_window)
     {
         glfwTerminate();
@@ -275,4 +290,9 @@ void Window::openGui(std::string t_arguement)
 
     if (guiActive)initGui();
     else closeGUI();
+}
+
+void Window::initPlanet()
+{
+    planetGen.FirstLoadPlanet();
 }

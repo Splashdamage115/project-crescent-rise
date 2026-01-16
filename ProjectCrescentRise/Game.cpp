@@ -94,6 +94,8 @@ void Game::initGame()
 	//mski->function = { [this]() {this->initFloor(); } };
 	//mski->keyCode = KeyScan::MouseKeyCode::RightMouse;
 	//KeyScan::append(mski, true);
+
+	Window::Get().initPlanet();
 }
 
 int Game::playGame()

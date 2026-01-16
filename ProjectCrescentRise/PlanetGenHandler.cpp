@@ -17,6 +17,11 @@ void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet, std::shared
 	// read all info here from a save file
 }
 
+void PlanetGenHandler::FirstLoadPlanet()
+{
+	loadPlanet(true);
+}
+
 void PlanetGenHandler::guiRender()
 {
 	////////////////////////////////////////////////////////////
@@ -347,11 +352,23 @@ void PlanetGenHandler::JsonPlanetSettings()
 {
 	ImGui::Begin("Json Save/Load");
 
-	if(ImGui::Button("Save Current Settings"))
+	if(ImGui::Button("Save Current Settings to new"))
 	{
-		savePlanet();
+		savePlanet(true);
 	}
 
+	if (ImGui::SliderInt("Selected planet number", &jsonPlanetParser::s_chosenPlanet, 0, jsonPlanetParser::s_amountOfPlanets - 1))
+	{
+	}
+
+	if (ImGui::Button("Save Current Settings to current planet"))
+	{
+		savePlanet(false);
+	}
+	if (ImGui::Button("Load selected planet"))
+	{
+		loadPlanet(false);
+	}
 	ImGui::End();
 }
 
@@ -415,7 +432,7 @@ void PlanetGenHandler::sendPlanetData()
 	OnlineDispatcher::pushPlanet(p);
 }
 
-void PlanetGenHandler::savePlanet()
+void PlanetGenHandler::savePlanet(bool saveAsNew)
 {
 	PlanetData planet;
 
@@ -425,5 +442,36 @@ void PlanetGenHandler::savePlanet()
 	planet.planetPointCount = m_planet->pointsPerRow;
 	planet.oceanPointCount = m_water->pointsPerRow;
 	
-	jsonPlanetParser::WritePlanetData(planet);
+	jsonPlanetParser::WritePlanetData(planet, saveAsNew);
+}
+
+void PlanetGenHandler::loadPlanet(bool loadNewRandom)
+{
+	PlanetData planet = jsonPlanetParser::RetrieveData(loadNewRandom);
+
+	if (planet.planetColour.active.size() == 0)
+		return;
+
+	m_planet->shapeSettings = planet.planetShape;
+	m_water->shapeSettings = planet.oceanShapeSettings;
+	m_planet->planetColour = planet.planetColour;
+
+	for (int i = 0; i < m_planet->planetColour.COLOUR_MAX; i++)
+	{
+		m_planet->planetColour.m_needsReloading.emplace_back(m_planet->planetColour.active.at(i));
+	}
+
+	m_planet->pointsPerRow = planet.planetPointCount;
+	m_water->pointsPerRow = planet.oceanPointCount;
+
+	if (!LiveUpdate)
+	{
+		LiveUpdate = true;
+		resetPlanet();
+		LiveUpdate = false;
+	}
+	else
+	{
+		resetPlanet();
+	}
 }

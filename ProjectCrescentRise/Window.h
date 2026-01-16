@@ -49,6 +49,8 @@ public:
     void closeGUI();
 
     void openGui(std::string t_arguement);
+
+    void initPlanet();
 private:
     Window();
     void initGui();
@@ -60,8 +62,9 @@ private:
     GLFWwindow* guiWindow = nullptr;
 
 
-    int m_width = 1280;
-    int m_height = 720;
+    int m_width = WINDOW_SIZE_X;
+    int m_height = WINDOW_SIZE_Y;
+
     Camera m_camera;
 
     bool guiActive = AUTO_GUI;
