@@ -408,6 +408,12 @@ void PlanetGenHandler::update()
 	
 }
 
+void PlanetGenHandler::AlignLiveUpdate()
+{
+	m_planet->callChange = LiveUpdate;
+	m_water->callChange = LiveUpdate;
+}
+
 void PlanetGenHandler::resetPlanet()
 {
 	if (LiveUpdate) 

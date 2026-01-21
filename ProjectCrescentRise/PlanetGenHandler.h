@@ -20,6 +20,8 @@ public:
 	void setNewPlanet(PlanetPayload t_payload);
 
 	void update();
+
+	void AlignLiveUpdate();
 private:
 	void resetPlanet();
 	void sendPlanetData();

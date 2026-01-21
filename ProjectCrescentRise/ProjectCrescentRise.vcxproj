@@ -145,6 +145,8 @@
     <ClCompile Include="CubeSphere.cpp" />
     <ClCompile Include="jsonPlanetParser.cpp" />
     <ClCompile Include="Library.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelStore.cpp" />
     <ClCompile Include="OnlineConnection.cpp" />
     <ClCompile Include="OnlineMover.cpp" />
     <ClCompile Include="OrientToCenter.cpp" />
@@ -177,6 +179,7 @@
     <ClCompile Include="SurfaceInstancer.cpp" />
     <ClCompile Include="TextureStore.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="ufbx.c" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="ShaderPrograms.cpp" />
     <ClCompile Include="WaterSphere.cpp" />
@@ -192,6 +195,8 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="jsonPlanetParser.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelStore.h" />
     <ClInclude Include="OnlineConnection.h" />
     <ClInclude Include="OnlineMover.h" />
     <ClInclude Include="OrientToCenter.h" />
@@ -232,6 +237,7 @@
     <ClInclude Include="SurfaceFollower.h" />
     <ClInclude Include="SurfaceInstancer.h" />
     <ClInclude Include="TextureStore.h" />
+    <ClInclude Include="ufbx.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="ShaderPrograms.h" />
     <ClInclude Include="WaterSphere.h" />

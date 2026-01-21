@@ -250,6 +250,8 @@ void Window::render()
 
     /* Poll for and process events */
     glfwPollEvents();
+
+    planetGen.AlignLiveUpdate();
 }
 
 void Window::PassPlanet(std::shared_ptr<PlanetSurface> t_planet, std::shared_ptr<WaterSphere> t_water)

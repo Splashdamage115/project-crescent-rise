@@ -336,7 +336,6 @@ void VertexShaders::initialise()
     m_vertexFiles.push_back(newVertexPair);
 
     const char* LitTextureFragment =
-    // ... ... ...
     "#version 410 core\n"
         "in vec2 vTex;\n"
         "in vec3 WorldPos;\n"

@@ -196,10 +196,19 @@
       <Filter>Source Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="OrientToCenter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="OrientToSurface.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelStore.cpp">
+      <Filter>Source Files\Library\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="ufbx.c">
+      <Filter>Header Files\Library\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,12 +329,6 @@
     <ClInclude Include="Skybox.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="RenderableObject.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="ScriptObject.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
     <ClInclude Include="Cube.h">
       <Filter>Header Files\Scripts</Filter>
     </ClInclude>
@@ -356,11 +359,26 @@
     <ClInclude Include="jsonPlanetParser.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="ufbx.h">
+      <Filter>Header Files\Library\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderableObject.h">
+      <Filter>Header Files\Library\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptObject.h">
+      <Filter>Header Files\Library\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelStore.h">
+      <Filter>Header Files\Library\Objects</Filter>
+    </ClInclude>
     <ClInclude Include="OrientToCenter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="OrientToSurface.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\Scripts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

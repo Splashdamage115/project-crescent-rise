@@ -18,6 +18,7 @@
 #include "SurfaceAttacher.h"
 #include "OrientToCenter.h"
 #include "OrientToSurface.h"
+#include "Model.h"
 
 double Game::deltaTime = 0;
 
@@ -181,14 +182,26 @@ void Game::initFloor()
 	auto creatorFunc = []() -> std::shared_ptr<GameObject>
 	{
 		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-		obj->addScript(std::make_shared<Cube>());
+		obj->addScript(std::make_shared<Model>());
 		obj->addScript(std::make_shared<OrientToSurface>());
+		obj->transform->rotation = { 270.0f, 0.0f, 0.0f };
 		obj->transform->scale = { 1.0f, 1.0f, 1.0f };
 		return obj;
 	};
 	
-	instancer.InstantiateOnSurface(planetScript, creatorFunc, 16
-	);
+	instancer.InstantiateOnSurface(planetScript, creatorFunc, 4);
+
+	auto creatorFunc2 = []() -> std::shared_ptr<GameObject>
+		{
+			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+			obj->addScript(std::make_shared<Model>());
+			obj->addScript(std::make_shared<OrientToCenter>());
+			obj->transform->rotation = { 270.0f, 0.0f, 0.0f };
+			obj->transform->scale = { 1.0f, 1.0f, 1.0f };
+			return obj;
+		};
+
+	instancer.InstantiateOnSurface(planetScript, creatorFunc2, 8);
 
 	static std::shared_ptr<PlanetSurface> g_planetScript = planetScript;
 }

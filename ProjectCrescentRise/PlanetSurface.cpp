@@ -116,6 +116,7 @@ void PlanetSurface::ResetPlanet()
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_DYNAMIC_DRAW);
+
 }
 
 void PlanetSurface::Start()
@@ -215,7 +216,10 @@ void PlanetSurface::Render()
 {
     if (!enabled) return;
 
-    if (callChange) ResetPlanet();
+    if (callChange)
+    {
+        ResetPlanet();
+    }
 
     VertexShaders::LoadShader(m_shader);
 

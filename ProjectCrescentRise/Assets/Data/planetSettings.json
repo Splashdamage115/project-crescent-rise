@@ -6,9 +6,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
+                        "x": 26475.0,
+                        "y": 27747.0,
+                        "z": 7117.0
                     },
                     "filterType": 0,
                     "minValue": 0.5249999761581421,
@@ -24,9 +24,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 0.0,
-                        "y": 0.0,
-                        "z": 0.0
+                        "x": 5452.0,
+                        "y": 2439.0,
+                        "z": 25311.0
                     },
                     "filterType": 1,
                     "minValue": 0.5960000157356262,
@@ -40,7 +40,7 @@
         },
         "name": "First",
         "oceanPoints": 128,
-        "oceanRad": 1030.0,
+        "oceanRad": 103.0,
         "planetColour": {
             "0": {
                 "active": true,
@@ -492,7 +492,7 @@
             },
             "lightIntensity": 0.5410000085830688
         },
-        "planetPoints": 512,
-        "planetRad": 1000.0
+        "planetPoints": 128,
+        "planetRad": 100.0
     }
 }

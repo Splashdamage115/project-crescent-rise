@@ -41,6 +41,7 @@ void OrientToSurface::Update()
         z = atan2(-rot[1][0], rot[1][1]);
     }
 
-    transform->rotation = glm::degrees(glm::vec3(x, y, z));
+    glm::vec3 t = transform->rotation;
+    transform->rotation = glm::degrees(glm::vec3(x, y, z)) + t;
     m_oriented = true;
 }
