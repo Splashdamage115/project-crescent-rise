@@ -27,6 +27,10 @@ public:
 	// Given a world-space position, returns the world-space point on the planet surface
 	// along the radial direction from the planet center through worldPos.
 	glm::vec3 GetSurfacePointFromWorldPosition(glm::vec3 worldPos);
+
+	// Given a world-space position, returns the world-space normal of the planet surface
+	// at the point aligned with the radial direction from the planet center.
+	glm::vec3 GetSurfaceNormalFromWorldPosition(glm::vec3 worldPos);
 private:
 	int size = 0;
 	float lightStrength = 0.3f;

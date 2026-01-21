@@ -212,15 +212,31 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
                 continue;
             }
 
-            // Create new layer and get reference
-            p.planetShape.noiseLayers.emplace_back();
-            auto& layer = p.planetShape.noiseLayers.back();
+            // parse index from key (keys are numeric strings in saved JSON)
+            int layerIndex = -1;
+            try
+            {
+                layerIndex = std::stoi(idx);
+            }
+            catch (...)
+            {
+                std::cout << "[jsonToPlanetData] NoiseLayers key '" << idx << "' is not a number, skipping\n";
+                continue;
+            }
+            if (layerIndex < 0)
+            {
+                std::cout << "[jsonToPlanetData] NoiseLayers index negative, skipping\n";
+                continue;
+            }
 
-            // Booleans
+            if (layerIndex >= static_cast<int>(p.planetShape.noiseLayers.size()))
+                p.planetShape.noiseLayers.resize(layerIndex + 1);
+
+            auto& layer = p.planetShape.noiseLayers.at(layerIndex);
+
             if (nlJson.contains("enabled")) layer.enabled = nlJson.value("enabled", layer.enabled);
             if (nlJson.contains("mask")) layer.useAsMask = nlJson.value("mask", layer.useAsMask);
 
-            // Settings
             if (nlJson.contains("settings") && nlJson["settings"].is_object())
             {
                 const json& s = nlJson["settings"];
@@ -250,7 +266,6 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
             }
             else
             {
-                // No settings object — warn but continue
                 std::cout << "[jsonToPlanetData] NoiseLayers." << idx << " missing settings or not an object\n";
             }
         }
@@ -260,7 +275,6 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
         std::cout << "[jsonToPlanetData] NoiseLayers present but not an object\n";
     }
 
-    // Planet colours
     if (j.contains("planetColour") && j["planetColour"].is_object())
     {
         const json& pc = j["planetColour"];
@@ -278,55 +292,83 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
                 continue;
             }
 
-            // shaderType
-            auto shaderTypeVal = v.value("shaderType", 0);
-            p.planetColour.m_shaderType.push_back(shaderTypeVal);
+            // parse numeric colour index from key
+            int colourIndex = -1;
+            try
+            {
+                colourIndex = std::stoi(k);
+            }
+            catch (...)
+            {
+                std::cout << "[jsonToPlanetData] planetColour key '" << k << "' is not a number, skipping\n";
+                continue;
+            }
+            if (colourIndex < 0)
+            {
+                std::cout << "[jsonToPlanetData] planetColour index negative, skipping\n";
+                continue;
+            }
 
-            // active
-            auto activeVal = v.value("active", false);
-            p.planetColour.active.push_back(activeVal);
+            // ensure all vectors have space for this index
+            auto ensureSize = [&](size_t needed) {
+                if (colourIndex >= static_cast<int>(needed))
+                {
+                    // Resize all colour-related vectors to hold index
+                    p.planetColour.m_shaderType.resize(colourIndex + 1);
+                    p.planetColour.active.resize(colourIndex + 1);
+                    p.planetColour.m_colours.resize(colourIndex + 1);
+                    p.planetColour.m_heights.resize(colourIndex + 1);
+                    p.planetColour.m_normalLocation.resize(colourIndex + 1);
+                    p.planetColour.m_normalStrength.resize(colourIndex + 1);
+                    p.planetColour.m_textureLocation.resize(colourIndex + 1);
+                    p.planetColour.m_textureScale.resize(colourIndex + 1);
+                }
+            };
+            ensureSize(p.planetColour.m_shaderType.size());
 
-            // colour struct
-            typename decltype(p.planetColour.m_colours)::value_type col;
+            // assign values using .at(index) to preserve numeric keys' positions
+            if (v.contains("shaderType") && v["shaderType"].is_number_integer())
+                p.planetColour.m_shaderType.at(colourIndex) = v["shaderType"].get<int>();
+
+            if (v.contains("active") && v["active"].is_boolean())
+                p.planetColour.active.at(colourIndex) = v["active"].get<bool>();
+
             if (v.contains("colour") && v["colour"].is_object())
             {
                 const json& c = v["colour"];
-                if (c.contains("r") && c["r"].is_number()) col.r = c["r"].get<decltype(col.r)>();
-                if (c.contains("g") && c["g"].is_number()) col.g = c["g"].get<decltype(col.g)>();
-                if (c.contains("b") && c["b"].is_number()) col.b = c["b"].get<decltype(col.b)>();
+                if (c.contains("r") && c["r"].is_number()) p.planetColour.m_colours.at(colourIndex).r = c["r"].get<float>();
+                if (c.contains("g") && c["g"].is_number()) p.planetColour.m_colours.at(colourIndex).g = c["g"].get<float>();
+                if (c.contains("b") && c["b"].is_number()) p.planetColour.m_colours.at(colourIndex).b = c["b"].get<float>();
             }
             else
             {
-                // use default col if missing
                 std::cout << "[jsonToPlanetData] planetColour." << k << ".colour missing or not object\n";
             }
-            p.planetColour.m_colours.push_back(col);
 
-            // Other scalar properties
             if (v.contains("height") && v["height"].is_number())
-                p.planetColour.m_heights.push_back(v["height"].get<decltype(p.planetColour.m_heights)::value_type>());
+                p.planetColour.m_heights.at(colourIndex) = v["height"].get<float>();
             else
-                p.planetColour.m_heights.push_back(decltype(p.planetColour.m_heights)::value_type()); // default, keep alignment
+                p.planetColour.m_heights.at(colourIndex) = 0.0f;
 
-            if (v.contains("normalLoc") && v["normalLoc"].is_number())
-                p.planetColour.m_normalLocation.push_back(v["normalLoc"].get<decltype(p.planetColour.m_normalLocation)::value_type>());
+            if (v.contains("normalLoc") && v["normalLoc"].is_string())
+                p.planetColour.m_normalLocation.at(colourIndex) = v["normalLoc"].get<std::string>();
             else
-                p.planetColour.m_normalLocation.push_back(decltype(p.planetColour.m_normalLocation)::value_type());
+                p.planetColour.m_normalLocation.at(colourIndex).clear();
 
             if (v.contains("normalStrength") && v["normalStrength"].is_number())
-                p.planetColour.m_normalStrength.push_back(v["normalStrength"].get<decltype(p.planetColour.m_normalStrength)::value_type>());
+                p.planetColour.m_normalStrength.at(colourIndex) = v["normalStrength"].get<float>();
             else
-                p.planetColour.m_normalStrength.push_back(decltype(p.planetColour.m_normalStrength)::value_type());
+                p.planetColour.m_normalStrength.at(colourIndex) = 0.0f;
 
             if (v.contains("textureLocation") && v["textureLocation"].is_string())
-                p.planetColour.m_textureLocation.push_back(v["textureLocation"].get<decltype(p.planetColour.m_textureLocation)::value_type>());
+                p.planetColour.m_textureLocation.at(colourIndex) = v["textureLocation"].get<std::string>();
             else
-                p.planetColour.m_textureLocation.push_back(decltype(p.planetColour.m_textureLocation)::value_type());
+                p.planetColour.m_textureLocation.at(colourIndex).clear();
 
             if (v.contains("textureScale") && v["textureScale"].is_number())
-                p.planetColour.m_textureScale.push_back(v["textureScale"].get<decltype(p.planetColour.m_textureScale)::value_type>());
+                p.planetColour.m_textureScale.at(colourIndex) = v["textureScale"].get<float>();
             else
-                p.planetColour.m_textureScale.push_back(decltype(p.planetColour.m_textureScale)::value_type());
+                p.planetColour.m_textureScale.at(colourIndex) = 0.0f;
         }
 
     }

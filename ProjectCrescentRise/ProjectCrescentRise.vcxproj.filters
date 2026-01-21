@@ -195,6 +195,12 @@
     <ClCompile Include="jsonPlanetParser.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
+    <ClCompile Include="OrientToCenter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OrientToSurface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -349,6 +355,12 @@
     </ClInclude>
     <ClInclude Include="jsonPlanetParser.h">
       <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="OrientToCenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrientToSurface.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

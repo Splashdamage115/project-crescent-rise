@@ -183,9 +183,6 @@
     <li> 🔴 - building collisions</li>
     <li> 🔴 - object with collision instancing</li>
     <li> 🔴 - enemy on surface</li>
-    <li> 🔴 - load planet from json</li>
-    <li> 🔴 - save planet to json</li>
-    <li> 🔴 - load random from json</li>
     <li> 🔴 - attacking enemy</li>
     <li> 🔴 - enemy attack player</li>
     <li> 🔴 - player death</li>
@@ -194,14 +191,21 @@
 </ul>
 
 ## Completed
-### ✅ - vornoi noise
-### ✅ - Sky Box
-### ✅ - Water Textures
-### ✅ - ground mesh texturing
-### ✅ - map genertation size increase
-### ✅ - angle map to be spherical
-### ✅ - ground tile texturing
-### ✅ - movement on the mesh
+
+### phase 1
+#### ✅ - vornoi noise
+#### ✅ - Sky Box
+#### ✅ - Water Textures
+#### ✅ - ground mesh texturing
+#### ✅ - map genertation size increase
+#### ✅ - angle map to be spherical
+#### ✅ - ground tile texturing
+#### ✅ - movement on the mesh
+
+### phase 2
+#### ✅ - load planet from json
+#### ✅ - save planet to json
+#### ✅ - load random from json
 
 <br><br><br>
   </em></p>

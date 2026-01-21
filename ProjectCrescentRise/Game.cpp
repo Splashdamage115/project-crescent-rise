@@ -16,6 +16,8 @@
 #include "SurfaceFollower.h"
 #include "SurfaceInstancer.h"
 #include "SurfaceAttacher.h"
+#include "OrientToCenter.h"
+#include "OrientToSurface.h"
 
 double Game::deltaTime = 0;
 
@@ -180,6 +182,7 @@ void Game::initFloor()
 	{
 		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 		obj->addScript(std::make_shared<Cube>());
+		obj->addScript(std::make_shared<OrientToSurface>());
 		obj->transform->scale = { 1.0f, 1.0f, 1.0f };
 		return obj;
 	};

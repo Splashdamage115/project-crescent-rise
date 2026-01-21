@@ -452,6 +452,18 @@ void PlanetGenHandler::loadPlanet(bool loadNewRandom)
 	if (planet.planetColour.active.size() == 0)
 		return;
 
+	if (NOISE_RANDOMISATION)
+	{
+		for (int i = 0; i < planet.planetShape.noiseLayers.size(); i++)
+		{
+			auto& pos = planet.planetShape.noiseLayers.at(i).noiseSettings.center;
+
+			pos.x = static_cast<float>(rand());
+			pos.y = static_cast<float>(rand());
+			pos.z = static_cast<float>(rand());
+		}
+	}
+
 	m_planet->shapeSettings = planet.planetShape;
 	m_water->shapeSettings = planet.oceanShapeSettings;
 	m_planet->planetColour = planet.planetColour;

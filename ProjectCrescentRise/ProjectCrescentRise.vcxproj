@@ -147,6 +147,8 @@
     <ClCompile Include="Library.cpp" />
     <ClCompile Include="OnlineConnection.cpp" />
     <ClCompile Include="OnlineMover.cpp" />
+    <ClCompile Include="OrientToCenter.cpp" />
+    <ClCompile Include="OrientToSurface.cpp" />
     <ClCompile Include="PlanetSurface.cpp" />
     <ClCompile Include="CubeSphereFace.cpp" />
     <ClCompile Include="GroundTile.cpp" />
@@ -192,6 +194,8 @@
     <ClInclude Include="jsonPlanetParser.h" />
     <ClInclude Include="OnlineConnection.h" />
     <ClInclude Include="OnlineMover.h" />
+    <ClInclude Include="OrientToCenter.h" />
+    <ClInclude Include="OrientToSurface.h" />
     <ClInclude Include="PlanetSurface.h" />
     <ClInclude Include="CubeSphereFace.h" />
     <ClInclude Include="GroundTile.h" />

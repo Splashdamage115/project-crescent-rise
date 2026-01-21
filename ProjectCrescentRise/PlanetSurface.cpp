@@ -16,6 +16,24 @@ glm::vec3 PlanetSurface::GetSurfacePointFromWorldPosition(glm::vec3 worldPos)
 	return transform->position + localSurface;
 }
 
+glm::vec3 PlanetSurface::GetSurfaceNormalFromWorldPosition(glm::vec3 worldPos)
+{
+	if (!transform) return glm::vec3(0, 1, 0);
+	glm::vec3 center = transform->position;
+	glm::vec3 dir = glm::normalize(worldPos - center);
+
+	float eps = 0.001f;
+	glm::vec3 tangent = (glm::abs(dir.y) < 0.999f) ? glm::vec3(0, 1, 0) : glm::vec3(1, 0, 0);
+	glm::vec3 v1 = glm::normalize(glm::cross(tangent, dir));
+	glm::vec3 v2 = glm::cross(dir, v1);
+
+	glm::vec3 p0 = shapeGenerator.CalcualtePointOnPlanet(dir);
+	glm::vec3 p1 = shapeGenerator.CalcualtePointOnPlanet(glm::normalize(dir + v1 * eps));
+	glm::vec3 p2 = shapeGenerator.CalcualtePointOnPlanet(glm::normalize(dir + v2 * eps));
+
+	return glm::normalize(glm::cross(p1 - p0, p2 - p0));
+}
+
 void PlanetSurface::ResetPlanet()
 {
     callChange = true;

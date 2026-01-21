@@ -88,9 +88,6 @@ int SurfaceInstancer::SampleFace(std::shared_ptr<PlanetSurface> planet,InstanceC
 					{
 						instance->transform->position = surfacePoint;
 
-						glm::vec3 upVector = glm::normalize(surfacePoint - planetCenter);
-						instance->transform->rotation = glm::vec3(0.0f);
-
 						auto attacher = std::make_shared<SurfaceAttacher>();
 						attacher->SetPlanetSurface(planet);
 						instance->addScript(attacher);
