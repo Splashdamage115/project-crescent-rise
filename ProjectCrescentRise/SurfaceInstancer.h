@@ -38,10 +38,5 @@ private:
 
 	float EvaluateNoiseAtPosition(const glm::vec3& worldPos) const;
 
-	int SampleFace(
-		std::shared_ptr<PlanetSurface> planet,
-		InstanceCreatorFunc creator,
-		int samplesPerFace,
-		const glm::vec3& faceNormal
-	);
+	int SampleFace(std::shared_ptr<PlanetSurface> planet, InstanceCreatorFunc creator, int samplesPerFace, const glm::vec3& faceNormal);
 };
