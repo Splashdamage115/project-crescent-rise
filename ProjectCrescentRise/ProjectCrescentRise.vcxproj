@@ -176,6 +176,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SurfaceAttacher.cpp" />
     <ClCompile Include="SurfaceFollower.cpp" />
+    <ClCompile Include="SurfaceGrass.cpp" />
     <ClCompile Include="SurfaceInstancer.cpp" />
     <ClCompile Include="TextureStore.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -235,6 +236,7 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="SurfaceAttacher.h" />
     <ClInclude Include="SurfaceFollower.h" />
+    <ClInclude Include="SurfaceGrass.h" />
     <ClInclude Include="SurfaceInstancer.h" />
     <ClInclude Include="TextureStore.h" />
     <ClInclude Include="ufbx.h" />

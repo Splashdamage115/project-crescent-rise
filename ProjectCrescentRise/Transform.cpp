@@ -31,4 +31,3 @@ void Transform::moveAlongForward(glm::vec3 t_disp)
     glm::quat forward = glm::quat(glm::vec3(0.0f, degreesToRadians(rotation.y), 0.0f));
     position += t_disp * forward;
 }
-

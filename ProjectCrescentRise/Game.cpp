@@ -19,6 +19,7 @@
 #include "OrientToCenter.h"
 #include "OrientToSurface.h"
 #include "Model.h"
+#include "SurfaceGrass.h"
 
 double Game::deltaTime = 0;
 
@@ -56,15 +57,15 @@ void Game::initGame()
 
 
 	// - - - CRATE - - - 
-	crateCube = std::make_shared<GameObject>();
+	//crateCube = std::make_shared<GameObject>();
 	//crateCube->transform->position = { 0.f, 0.f, -1.f };
 	//crateCube->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	//crateCube->addScript(std::make_shared<Skybox>());
-	crateCube->addScript(std::make_shared<Cube>());
+	//crateCube->addScript(std::make_shared<Cube>());
 
-	std::shared_ptr<Mover> i = std::make_shared<Mover>();
-	i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
-	crateCube->addScript(i);
+	//std::shared_ptr<Mover> i = std::make_shared<Mover>();
+	//i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
+	//crateCube->addScript(i);
 	
 	//GameObjects::addNewObjectToPool(crateCube);
 	// - - - !CRATE - - - 
@@ -88,6 +89,24 @@ void Game::initGame()
 	//waterObj->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
 	//GameObjects::addNewObjectToPool(waterObj);
 	// - - - !WATER - - - 
+
+
+	// - - - GRASS - - -
+	//grass = std::make_shared<GameObject>();
+	//grass->addScript(std::make_shared<billboard2D>());
+	//grass->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
+	//GameObjects::addNewObjectToPool(grass);
+	// - - - !GRASS - - - 
+
+	// - - - ENEMY - - -
+	Enemy = std::make_shared<GameObject>();
+	std::shared_ptr<Mover> t = std::make_shared<Mover>();
+	t->velocity = glm::vec3(1.0f, 1.f, 1.f);
+	Enemy->addScript(t);
+	Enemy->addScript(std::make_shared<Cube>());
+	Enemy->addScript(std::make_shared<SurfaceFollower>());
+	GameObjects::addNewObjectToPool(Enemy);
+	// - - - !ENEMY - - - 
 
 	initFloor();
 
@@ -145,9 +164,9 @@ void Game::initFloor()
 	PlanetObj->transform->scale = { 1.0f, 1.0f, 1.0f };
 	PlanetObj->addScript(planet);
 
-	std::shared_ptr<Mover> t = std::make_shared<Mover>();
+	//std::shared_ptr<Mover> t = std::make_shared<Mover>();
 	//i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
-	PlanetObj->addScript(t);
+	//PlanetObj->addScript(t);
 
 	GameObjects::addNewObjectToPool(PlanetObj);
 
@@ -159,9 +178,9 @@ void Game::initFloor()
 	waterObj->transform->scale = { 1.0f, 1.0f, 1.0f };
 	waterObj->addScript(water);
 
-	std::shared_ptr<Mover> i = std::make_shared<Mover>();
+	//std::shared_ptr<Mover> i = std::make_shared<Mover>();
 	//i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
-	waterObj->addScript(i);
+	//waterObj->addScript(i);
 
 	GameObjects::addNewObjectToPool(waterObj);
 

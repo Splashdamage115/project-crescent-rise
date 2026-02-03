@@ -808,14 +808,6 @@ void VertexShaders::setUpPlanetShader()
             "    height = sqrt((CenterPoint.x - WorldPos.x) * (CenterPoint.x - WorldPos.x) + (CenterPoint.y - WorldPos.y) * (CenterPoint.y - WorldPos.y) + (CenterPoint.z - WorldPos.z) * (CenterPoint.z - WorldPos.z));\n"
             "}\n";
 
-
-
-    // Then when you create the shader:
-    //std::string composedVertex = composeFragmentShader(
-    //    litVertex,
-    //    vertexDeformationModule
-    //);
-
     newVertexPair = ShaderFilesVertex();
     newVertexPair.vertexType = Shader::VertexShaderType::Planet;
     newVertexPair.file = litVertex;
@@ -906,19 +898,88 @@ void VertexShaders::setUpPlanetShader()
         "}\n";
 
 
-
-
-    // Then when you create the shader:
-    //std::string composedFragment = composeFragmentShader(
-    //    litFragment,
-    //    waterShaderModule
-    //);
-
     newFragmentPair = ShaderFilesFragment();
     newFragmentPair.fragmentType = Shader::FragmentShaderType::Planet;
     newFragmentPair.file = litFragment;
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::Planet, Shader::FragmentShaderType::Planet);
+
+
+
+
+    const char* billboardVert =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTex;\n"
+        "layout (location = 2) in vec3 aPlanetPos;\n"
+
+        "uniform vec3 CenterPoint;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+
+        "out vec2 vTex;\n"
+        "out vec3 WorldPos;\n"
+        "out vec3 bNormal;\n"
+
+        "void main() {\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    WorldPos = worldPos.xyz;\n"
+        "    bNormal = mat3(transpose(inverse(uModel)));\n"
+        "    vTex = aTex;\n"
+        "}\n";
+
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::billboard;
+    newVertexPair.file = billboardVert;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* billboardFrag =
+        "#version 410 core\n"
+        "in vec2 vTex;\n"
+        "in vec3 WorldPos;\n"
+        "in vec3 bNormal;\n"
+        "out vec4 FragColor;\n"
+
+        "uniform sampler2D uTexture;\n"
+        "uniform vec3 colour;\n"
+        "uniform sampler2D uHeightMap;\n"
+        "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
+        "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
+        "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
+
+        "void main() {\n"
+        "    // Normalize the interpolated normal\n"
+        "    vec3 norm = normalize(bNormal);\n"
+        ""
+        "    float height = texture(uHeightMap, vTex).r;\n"
+        "    float scale = 0.08;\n"
+        "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
+        "    vec2 parallaxUV = vTex - viewDir.xy * (height * scale);\n"
+        "    vec4 texColor = texture(uTexture, parallaxUV);\n"
+        ""
+        "    float ambientStrength = 0.2;\n"
+        "    vec3 ambient = ambientStrength * lightColor;\n"
+        "    float diff = max(dot(norm, -lightDir), 0.0);\n"
+        "    vec3 diffuse = diff * lightColor;\n"
+        "    float specularStrength = 0.5;\n"
+        "    vec3 reflectDir = reflect(lightDir, norm);\n"
+        "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
+        "    vec3 specular = specularStrength * spec * lightColor;\n"
+        "    vec3 lighting = (ambient + diffuse) + specular;\n"
+        "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);"
+        "}\n";
+
+
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::billboard;
+    newFragmentPair.file = billboardFrag;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::billboard, Shader::FragmentShaderType::billboard);
 
 }

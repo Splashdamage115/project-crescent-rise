@@ -22,5 +22,8 @@ private:
 	std::shared_ptr<GameObject> crateCube;
 	std::shared_ptr<GameObject> skyBox;
 	std::shared_ptr<GameObject> guiObject;
+	std::shared_ptr<GameObject> grass;
+
+	std::shared_ptr<GameObject> Enemy;
 };
 

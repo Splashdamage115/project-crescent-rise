@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Debug\\CameraFeed.obj",
+            "outputs": [
+                "Debug\\CameraFeed.h_4333F3BC9B7D3D86.ifc.dt.module.json",
+                "Debug\\CameraFeed.h_4333F3BC9B7D3D86.ifc.dt.d.json",
+                "Debug\\CameraFeed.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "C:\\Users\\gameuser\\Desktop\\project-crescent-rise\\ProjectCrescentRise\\CameraFeed.h",
+                    "source-path": "c:\\users\\gameuser\\desktop\\project-crescent-rise\\projectcrescentrise\\camerafeed.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}
