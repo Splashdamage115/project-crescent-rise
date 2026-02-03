@@ -201,7 +201,7 @@ void Game::initFloor()
 			return obj;
 		};
 
-	instancer.InstantiateOnSurface(planetScript, creatorFunc2, 8);
+	instancer.InstantiateOnSurface(planetScript, creatorFunc2, 4);
 
 	static std::shared_ptr<PlanetSurface> g_planetScript = planetScript;
 }

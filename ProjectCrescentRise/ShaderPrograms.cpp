@@ -921,4 +921,12 @@ void VertexShaders::setUpPlanetShader()
 
     mountShader(Shader::VertexShaderType::Planet, Shader::FragmentShaderType::Planet);
 
+
+    const char* grassShader =
+        "// Random function implementation"
+        "float rand(vec2 co) {\n"
+        "    return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);\n"
+        "}\n";
+   
+
 }
