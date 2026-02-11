@@ -1,393 +1,433 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Files">
+      <UniqueIdentifier>{57116006-3399-4e6c-8f94-5aeb09078dba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Files\Library">
+      <UniqueIdentifier>{236fad10-46ee-4145-9c34-02acfbb415c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Scripts">
-      <UniqueIdentifier>{91350d29-3cc3-4204-9003-7cfc20deb495}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scripts">
-      <UniqueIdentifier>{81734abf-3343-4858-9b07-ffc21b8eb680}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Library">
+    <Filter Include="External\Library">
       <UniqueIdentifier>{ef8dfb79-8dab-42ae-985d-9a0fdf759748}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Library">
-      <UniqueIdentifier>{504a1170-af52-43a7-8e0e-26614ca26182}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Library\Shaders">
-      <UniqueIdentifier>{ae96c193-4efa-4b36-bdad-dafb752e1952}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Library\Shaders">
-      <UniqueIdentifier>{548a6851-6886-4ff9-b92d-8d021b331fc0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Library\Objects">
+    <Filter Include="External\Library\Objects">
       <UniqueIdentifier>{b0bc013a-927e-4d2d-b16e-d9b41608cdaa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Library\Objects">
-      <UniqueIdentifier>{7c4ea0f5-6635-4c9c-a5fd-ef43d209d93e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Scripts\CubeSphere">
-      <UniqueIdentifier>{a2f3667c-4b27-49db-aec2-e7ecefc99d9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scripts\CubeSphere">
-      <UniqueIdentifier>{53886c51-fcac-4a16-804e-8817ae6f8c03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Scripts\CubeSphere\Settings">
-      <UniqueIdentifier>{4e0cd7fb-9b58-4d6e-86aa-4dc012612d7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scripts\CubeSphere\Settings">
-      <UniqueIdentifier>{a474a35e-d1d6-4efc-b0e1-92a1206bb906}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Library\imgui">
+    <Filter Include="External\imgui">
       <UniqueIdentifier>{573a28a1-0c50-4d0b-92f8-e8a3a13e92ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Library\imgui">
-      <UniqueIdentifier>{79de4321-691f-46e0-8c99-27e77aafa5f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui">
+    <Filter Include="Files\Library\gui">
       <UniqueIdentifier>{06d58453-4ed5-47fb-8a1d-9cfe5a3977a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gui">
-      <UniqueIdentifier>{43199401-5e8e-4a3d-8aaf-3dad80b4ff7f}</UniqueIdentifier>
+    <Filter Include="Files\Library\Objects">
+      <UniqueIdentifier>{c1ffc5ed-1ebf-4251-808e-200ca0d9b8f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Library\Online">
-      <UniqueIdentifier>{dec9568f-9818-49e2-8341-1f18ccaca15c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Library\Online">
+    <Filter Include="Files\Library\Online">
       <UniqueIdentifier>{c88eaabd-35c8-4fd4-8789-e0e4b7e9489a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Library\Shaders">
+      <UniqueIdentifier>{ae96c193-4efa-4b36-bdad-dafb752e1952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Library\Global">
+      <UniqueIdentifier>{6b7aee82-1026-475b-b673-35d035043e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts">
+      <UniqueIdentifier>{ed2bb2f0-ce22-4511-aba4-abdebce955fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Renderables">
+      <UniqueIdentifier>{b71f1693-25ea-4491-b457-657c652f9e4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet">
+      <UniqueIdentifier>{c1239308-ff40-4c4d-9773-e24e8a4ec69f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\Settings">
+      <UniqueIdentifier>{1d734cf9-87fc-424d-a469-a757627eaa0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\Planet">
+      <UniqueIdentifier>{85eec6ed-a632-47cd-b1dd-0a2811038e80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\Instancer">
+      <UniqueIdentifier>{e16b90fb-4ea9-4314-a606-46a79a61ff60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Renderables\Billboard">
+      <UniqueIdentifier>{18d3d22b-a212-4b33-81f7-fabdc435aa10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Renderables\Cube">
+      <UniqueIdentifier>{ea8868dd-ce6a-416c-9189-5cdfcd4f1456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Renderables\Legacy">
+      <UniqueIdentifier>{98e04b8a-6f9a-464f-a15c-6ad6a15ccb81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Player">
+      <UniqueIdentifier>{7655d578-ac5e-45f7-a40a-c3ceeb57e302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\GUI">
+      <UniqueIdentifier>{a56a57cf-dcf7-4db7-889c-b3a3311fec5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\MISC">
+      <UniqueIdentifier>{a81fc7b5-f8da-4979-b10d-e479318ebb95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC">
+      <UniqueIdentifier>{5a65c339-79f4-475b-b4bc-144726af239a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Renderables\CubeSphere">
+      <UniqueIdentifier>{1cbbd1c6-c6c4-43cd-83e3-bc91d90dc5f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Renderables\Models">
+      <UniqueIdentifier>{6846f430-5cfb-4c56-a23b-05003d86b0c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Renderables\Grass">
+      <UniqueIdentifier>{0e96e194-fee0-438e-b31a-ca597dff8915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\SkyBox">
+      <UniqueIdentifier>{07debd6e-79ac-4023-a811-5fe2676b203e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\Attachers">
+      <UniqueIdentifier>{1cea1201-5bb4-457d-92db-c55a552252e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\Attachers\Orient">
+      <UniqueIdentifier>{bec7860e-4904-4f6e-a85f-179191a8081d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\Attachers\AttachToSurface">
+      <UniqueIdentifier>{b8e97a55-0fc1-4014-9b68-eb5cd9b8c51a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\Attachers\Orient\Center">
+      <UniqueIdentifier>{09bc9f72-b57c-401f-aa37-5ef4d4cffddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\Attachers\Orient\Surface">
+      <UniqueIdentifier>{153489b4-f53b-4adb-9989-e08e35ea5797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\Attachers\AttachToSurface\Follower">
+      <UniqueIdentifier>{d6b08255-7b11-4847-a00f-4cdf41af6699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher">
+      <UniqueIdentifier>{375a974f-3f69-41b4-b835-aad9eb653e30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Library\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjects.cpp">
-      <Filter>Source Files\Library\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Mover.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderPrograms.cpp">
-      <Filter>Source Files\Library\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="billboard2D.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraFeed.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyScan.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Update.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderableObject.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerInput.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundTile.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeSphereFace.cpp">
-      <Filter>Source Files\Scripts\CubeSphere</Filter>
-    </ClCompile>
-    <ClCompile Include="PlanetSurface.cpp">
-      <Filter>Source Files\Scripts\CubeSphere</Filter>
-    </ClCompile>
-    <ClCompile Include="Noise.cpp">
-      <Filter>Source Files\Scripts\CubeSphere\Settings</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
-      <Filter>Source Files\Library\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_demo.cpp">
-      <Filter>Source Files\Library\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
-      <Filter>Source Files\Library\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_glfw.cpp">
-      <Filter>Source Files\Library\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_opengl3.cpp">
-      <Filter>Source Files\Library\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_tables.cpp">
-      <Filter>Source Files\Library\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_widgets.cpp">
-      <Filter>Source Files\Library\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="PlanetGenHandler.cpp">
-      <Filter>Source Files\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="ChatBoxText.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\Library</Filter>
+      <Filter>Files\Library\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="OnlineDispatcher.cpp">
-      <Filter>Source Files\Library\Online</Filter>
-    </ClCompile>
-    <ClCompile Include="CommandInterpreter.cpp">
-      <Filter>Source Files\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeSphere.cpp">
-      <Filter>Source Files\Scripts\CubeSphere</Filter>
+      <Filter>Files\Library\Online</Filter>
     </ClCompile>
     <ClCompile Include="OnlineConnection.cpp">
-      <Filter>Source Files\Library\Online</Filter>
-    </ClCompile>
-    <ClCompile Include="Skybox.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="ScriptObject.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="Library.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="WaterSphere.cpp">
-      <Filter>Source Files\Scripts\CubeSphere</Filter>
-    </ClCompile>
-    <ClCompile Include="SurfaceFollower.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files\Library</Filter>
-    </ClCompile>
-    <ClCompile Include="SurfaceAttacher.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="SurfaceInstancer.cpp">
-      <Filter>Source Files\Scripts</Filter>
+      <Filter>Files\Library\Online</Filter>
     </ClCompile>
     <ClCompile Include="OnlineMover.cpp">
-      <Filter>Source Files\Library\Online</Filter>
+      <Filter>Files\Library\Online</Filter>
     </ClCompile>
     <ClCompile Include="TextureStore.cpp">
-      <Filter>Source Files\Library\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="jsonPlanetParser.cpp">
-      <Filter>Source Files\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="OrientToCenter.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="OrientToSurface.cpp">
-      <Filter>Source Files\Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelStore.cpp">
-      <Filter>Source Files\Library\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\Scripts</Filter>
+      <Filter>Files\Library\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="ufbx.c">
-      <Filter>Header Files\Library\Objects</Filter>
+      <Filter>External\Library\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandInterpreter.cpp">
+      <Filter>Files\Library\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="jsonPlanetParser.cpp">
+      <Filter>Files\Library\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetGenHandler.cpp">
+      <Filter>Files\Library\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_glfw.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_opengl3.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>External\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Files\Library\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelStore.cpp">
+      <Filter>Files\Library\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects.cpp">
+      <Filter>Files\Library\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyScan.cpp">
+      <Filter>Files\Library\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Library.cpp">
+      <Filter>Files\Library\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Files\Library\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Files\Library\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Update.cpp">
+      <Filter>Files\Library\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Files\Library\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderableObject.cpp">
+      <Filter>Files\Library\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptObject.cpp">
+      <Filter>Files\Library\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlanetSurface.cpp">
+      <Filter>Files\Scripts\Planet\Planet</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterSphere.cpp">
+      <Filter>Files\Scripts\Planet\Planet</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceInstancer.cpp">
+      <Filter>Files\Scripts\Planet\Instancer</Filter>
+    </ClCompile>
+    <ClCompile Include="billboard2D.cpp">
+      <Filter>Files\Scripts\Renderables\Billboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Files\Scripts\Renderables\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundTile.cpp">
+      <Filter>Files\Scripts\Renderables\Legacy</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraFeed.h">
+      <Filter>Files\Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatBoxText.cpp">
+      <Filter>Files\Scripts\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeSphereFace.cpp">
+      <Filter>Files\Scripts\Planet\Planet</Filter>
+    </ClCompile>
+    <ClCompile Include="Mover.cpp">
+      <Filter>Files\Scripts\MISC</Filter>
+    </ClCompile>
+    <ClCompile Include="Noise.cpp">
+      <Filter>External\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeSphere.cpp">
+      <Filter>Files\Scripts\Renderables\CubeSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClCompile>
     <ClCompile Include="SurfaceGrass.cpp">
-      <Filter>Source Files\Scripts</Filter>
+      <Filter>Files\Scripts\Renderables\Grass</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <Filter>Files\Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Files\Scripts\Planet\MISC\SkyBox</Filter>
+    </ClCompile>
+    <ClCompile Include="OrientToCenter.cpp">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\Orient\Center</Filter>
+    </ClCompile>
+    <ClCompile Include="OrientToSurface.cpp">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\Orient\Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceFollower.cpp">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\Follower</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceAttacher.cpp">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher</Filter>
     </ClCompile>
     <ClCompile Include="ModelPartnerScript.cpp">
       <Filter>Source Files\Scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Library\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjects.h">
-      <Filter>Header Files\Library\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Mover.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderPrograms.h">
-      <Filter>Header Files\Library\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="billboard2D.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyScan.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Library.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Update.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerInput.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundTile.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="PlanetSurface.h">
-      <Filter>Header Files\Scripts\CubeSphere</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeSphereFace.h">
-      <Filter>Header Files\Scripts\CubeSphere</Filter>
-    </ClInclude>
-    <ClInclude Include="PlanetColour.h">
-      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
-    </ClInclude>
-    <ClInclude Include="ShapeSettings.h">
-      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
-    </ClInclude>
-    <ClInclude Include="ShapeGenerator.h">
-      <Filter>Header Files\Scripts\CubeSphere</Filter>
-    </ClInclude>
-    <ClInclude Include="Noise.h">
-      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseSettings.h">
-      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
-    </ClInclude>
     <ClInclude Include="imgui\imconfig.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_glfw.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_opengl3.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_internal.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imstb_rectpack.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imstb_textedit.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imstb_truetype.h">
-      <Filter>Header Files\Library\imgui</Filter>
+      <Filter>External\imgui</Filter>
     </ClInclude>
     <ClInclude Include="PlanetGenHandler.h">
-      <Filter>Header Files\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="NoiseFilters.h">
-      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
-    </ClInclude>
-    <ClInclude Include="MinMax.h">
-      <Filter>Header Files\Scripts\CubeSphere\Settings</Filter>
-    </ClInclude>
-    <ClInclude Include="ChatBoxText.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="OnlineDispatcher.h">
-      <Filter>Header Files\Library\Online</Filter>
+      <Filter>Files\Library\gui</Filter>
     </ClInclude>
     <ClInclude Include="CommandInterpreter.h">
-      <Filter>Header Files\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeSphere.h">
-      <Filter>Header Files\Scripts\CubeSphere</Filter>
-    </ClInclude>
-    <ClInclude Include="OnlineConnection.h">
-      <Filter>Header Files\Library\Online</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="Skybox.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files\Scripts</Filter>
+      <Filter>Files\Library\gui</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="WaterSphere.h">
-      <Filter>Header Files\Scripts\CubeSphere</Filter>
+      <Filter>External\Library</Filter>
     </ClInclude>
     <ClInclude Include="json.hpp">
-      <Filter>Header Files\Library</Filter>
-    </ClInclude>
-    <ClInclude Include="SurfaceFollower.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="SurfaceAttacher.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="SurfaceInstancer.h">
-      <Filter>Header Files\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="OnlineMover.h">
-      <Filter>Header Files\Library\Online</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureStore.h">
-      <Filter>Header Files\Library\Shaders</Filter>
+      <Filter>External\Library</Filter>
     </ClInclude>
     <ClInclude Include="jsonPlanetParser.h">
-      <Filter>Header Files\gui</Filter>
+      <Filter>Files\Library\gui</Filter>
     </ClInclude>
     <ClInclude Include="ufbx.h">
-      <Filter>Header Files\Library\Objects</Filter>
+      <Filter>External\Library\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="RenderableObject.h">
-      <Filter>Header Files\Library\Objects</Filter>
+    <ClInclude Include="GameObject.h">
+      <Filter>Files\Library\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ScriptObject.h">
-      <Filter>Header Files\Library\Objects</Filter>
+    <ClInclude Include="GameObjects.h">
+      <Filter>Files\Library\Objects</Filter>
     </ClInclude>
     <ClInclude Include="ModelStore.h">
-      <Filter>Header Files\Library\Objects</Filter>
+      <Filter>Files\Library\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="OrientToCenter.h">
-      <Filter>Header Files\Scripts</Filter>
+    <ClInclude Include="RenderableObject.h">
+      <Filter>Files\Library\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="OrientToSurface.h">
-      <Filter>Header Files\Scripts</Filter>
+    <ClInclude Include="ScriptObject.h">
+      <Filter>Files\Library\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineConnection.h">
+      <Filter>Files\Library\Online</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineDispatcher.h">
+      <Filter>Files\Library\Online</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineMover.h">
+      <Filter>Files\Library\Online</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureStore.h">
+      <Filter>Files\Library\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderPrograms.h">
+      <Filter>Files\Library\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Files\Library\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Library.h">
+      <Filter>Files\Library\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Update.h">
+      <Filter>Files\Library\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Files\Library\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyScan.h">
+      <Filter>Files\Library\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Noise.h">
+      <Filter>External\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoiseFilters.h">
+      <Filter>Files\Scripts\Planet\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="NoiseSettings.h">
+      <Filter>Files\Scripts\Planet\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetColour.h">
+      <Filter>Files\Scripts\Planet\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeGenerator.h">
+      <Filter>Files\Scripts\Planet\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="PlanetSurface.h">
+      <Filter>Files\Scripts\Planet\Planet</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterSphere.h">
+      <Filter>Files\Scripts\Planet\Planet</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceInstancer.h">
+      <Filter>Files\Scripts\Planet\Instancer</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeSettings.h">
+      <Filter>Files\Scripts\Planet\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="billboard2D.h">
+      <Filter>Files\Scripts\Renderables\Billboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Files\Scripts\Renderables\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundTile.h">
+      <Filter>Files\Scripts\Renderables\Legacy</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Files\Library\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatBoxText.h">
+      <Filter>Files\Scripts\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeSphereFace.h">
+      <Filter>Files\Scripts\Planet\Planet</Filter>
+    </ClInclude>
+    <ClInclude Include="MinMax.h">
+      <Filter>Files\Scripts\Planet\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="Mover.h">
+      <Filter>Files\Scripts\MISC</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeSphere.h">
+      <Filter>Files\Scripts\Renderables\CubeSphere</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
-      <Filter>Header Files\Scripts</Filter>
+      <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClInclude>
     <ClInclude Include="SurfaceGrass.h">
-      <Filter>Header Files\Scripts</Filter>
+      <Filter>Files\Scripts\Renderables\Grass</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInput.h">
+      <Filter>Files\Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Files\Scripts\Planet\MISC\SkyBox</Filter>
+    </ClInclude>
+    <ClInclude Include="OrientToCenter.h">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\Orient\Center</Filter>
+    </ClInclude>
+    <ClInclude Include="OrientToSurface.h">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\Orient\Surface</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceFollower.h">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\Follower</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceAttacher.h">
+      <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher</Filter>
     </ClInclude>
     <ClInclude Include="ModelPartnerScript.h">
       <Filter>Header Files\Scripts</Filter>
