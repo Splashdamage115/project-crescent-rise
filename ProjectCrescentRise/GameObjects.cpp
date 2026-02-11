@@ -31,7 +31,8 @@ void GameObjects::renderAll()
 		{
 			if (m_gameObjects.at(i)->active)
 			{
-				m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::Normal);
+				m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::noCull);
+				m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::Cull);
 			}
 		}
 	}

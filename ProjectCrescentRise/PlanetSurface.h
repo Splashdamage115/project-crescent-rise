@@ -31,6 +31,9 @@ public:
 	// Given a world-space position, returns the world-space normal of the planet surface
 	// at the point aligned with the radial direction from the planet center.
 	glm::vec3 GetSurfaceNormalFromWorldPosition(glm::vec3 worldPos);
+
+	float GetHeightPercentFromWorldPosition(glm::vec3 worldPos);
+	int GetHeightLayerIndexFromWorldPosition(glm::vec3 worldPos);
 private:
 	int size = 0;
 	float lightStrength = 0.3f;

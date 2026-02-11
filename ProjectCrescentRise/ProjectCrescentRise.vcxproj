@@ -95,9 +95,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(SolutionDir)ProjectCrescentRise\Dependencies\GLFW\include;$(SolutionDir)ProjectCrescentRise\Dependencies\GLEW;$(SolutionDir)ProjectCrescentRise;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype\freetype;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,7 +106,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)ProjectCrescentRise\Dependencies\GLFW\lib-vc2022;$(SolutionDir)ProjectCrescentRise\Dependencies\GLEW\REL\Win32;$(SolutionDir)ProjectCrescentRise\Dependencies\freetype\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);opengl32.lib;Gdi32.lib;glew32.lib;glfw3.lib;freetype.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);msvcrt.lib;msvcprt.lib;ucrt.lib;legacy_stdio_definitions.lib;opengl32.lib;Gdi32.lib;glew32.lib;glfw3.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -146,6 +149,7 @@
     <ClCompile Include="jsonPlanetParser.cpp" />
     <ClCompile Include="Library.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelPartnerScript.cpp" />
     <ClCompile Include="ModelStore.cpp" />
     <ClCompile Include="OnlineConnection.cpp" />
     <ClCompile Include="OnlineMover.cpp" />
@@ -197,6 +201,7 @@
     <ClInclude Include="json.hpp" />
     <ClInclude Include="jsonPlanetParser.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelPartnerScript.h" />
     <ClInclude Include="ModelStore.h" />
     <ClInclude Include="OnlineConnection.h" />
     <ClInclude Include="OnlineMover.h" />

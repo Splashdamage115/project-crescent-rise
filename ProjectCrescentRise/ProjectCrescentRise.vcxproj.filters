@@ -253,6 +253,9 @@
     <ClCompile Include="SurfaceAttacher.cpp">
       <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher</Filter>
     </ClCompile>
+    <ClCompile Include="ModelPartnerScript.cpp">
+      <Filter>Source Files\Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -425,6 +428,9 @@
     </ClInclude>
     <ClInclude Include="SurfaceAttacher.h">
       <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelPartnerScript.h">
+      <Filter>Header Files\Scripts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

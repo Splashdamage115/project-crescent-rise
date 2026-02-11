@@ -7,10 +7,10 @@ class ScriptObject
 public:
 	enum class RenderPriority
 	{
-		GUI, Normal
+		GUI, Cull, noCull
 	};
 
-	RenderPriority renderPriority = RenderPriority::Normal;
+	RenderPriority renderPriority = RenderPriority::noCull;
 
 	void setTransform(std::shared_ptr<Transform> t_transform);
 	std::shared_ptr<Transform> getTransform() { return transform; }

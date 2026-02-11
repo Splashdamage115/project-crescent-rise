@@ -3,7 +3,8 @@
 
 void Model::Start()
 {
-	m_body = MeshStore::getMesh("./Assets/Mesh/bottle.fbx");
+	renderPriority = RenderPriority::Cull;
+	m_body = MeshStore::getMesh(loadLocation);
 
 	m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
 
@@ -50,7 +51,7 @@ void Model::Render()
 	if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(model));
 	if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
 	if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
-	if (uColourLoc >= 0) glUniform3f(uColourLoc, 40.f, 255.f, 80.f);
+	if (uColourLoc >= 0) glUniform3f(uColourLoc, colour.x, colour.y, colour.z);
 
 	glDrawElements(GL_TRIANGLES, m_body.indexLength, GL_UNSIGNED_INT, 0);
 }

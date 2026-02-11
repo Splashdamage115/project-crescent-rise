@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "PlanetSurface.h"
 #include <functional>
+#include <cstdint>
 
 struct InstancerSettings
 {
@@ -12,6 +13,8 @@ struct InstancerSettings
 	float noiseScale = 50.0f;
 	float noiseThreshold = 0.3f;
 	int noiseSeed = 12345;
+	bool useHeightLayerMask = false;
+	uint32_t heightLayerMask = 0xFFFFFFFFu;
 };
 
 using InstanceCreatorFunc = std::function<std::shared_ptr<GameObject>()>;

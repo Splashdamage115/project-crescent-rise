@@ -235,3 +235,9 @@
     bottles instanced on planet surface
     world changes on each load
   (Surface Instancing)[https://setuo365-my.sharepoint.com/personal/c00283152_setu_ie/_layouts/15/stream.aspx?id=%2Fpersonal%2Fc00283152%5Fsetu%5Fie%2FDocuments%2FProject%2F2026%2D01%2D21%20SurfaceInstancing%20surfaceLoading%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ee5881e58%2D63c3%2D4145%2D926a%2D112de3e674e1]
+
+
+  - Video of grass instancing on planet surface
+    also visible, distance culling, trees instancing, and rock instancing
+    (trees need orientation fixes)
+  (Grass Instancing)[https://setuo365-my.sharepoint.com/:v:/g/personal/c00283152_setu_ie/IQCzBRn4ryxbRp1zUIiUIIdpAamoiizAmQmZiyVDSb__JR4?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=hiBhH6]

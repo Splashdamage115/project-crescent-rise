@@ -8,5 +8,5 @@ void Mover::Update()
 	transform->scale += scale * static_cast<float>(Game::deltaTime);
 
 
-	std::cout << transform->position.x << "/" << transform->position.y << "/" << transform->position.z << "\n";
+	//std::cout << transform->position.x << "/" << transform->position.y << "/" << transform->position.z << "\n";
 }
