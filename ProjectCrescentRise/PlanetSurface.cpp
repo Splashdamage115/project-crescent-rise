@@ -34,6 +34,39 @@ glm::vec3 PlanetSurface::GetSurfaceNormalFromWorldPosition(glm::vec3 worldPos)
 	return glm::normalize(glm::cross(p1 - p0, p2 - p0));
 }
 
+float PlanetSurface::GetHeightPercentFromWorldPosition(glm::vec3 worldPos)
+{
+	if (!transform) return 0.0f;
+
+	float height = glm::distance(transform->position, worldPos);
+	float minHeight = shapeGenerator.elevationMinMax.getMin();
+	float maxHeight = shapeGenerator.elevationMinMax.getMax();
+
+	if (glm::abs(maxHeight - minHeight) < 0.0001f)
+		return 0.0f;
+
+	float percent = (height - minHeight) / (maxHeight - minHeight);
+	return glm::clamp(percent, 0.0f, 1.0f);
+}
+
+int PlanetSurface::GetHeightLayerIndexFromWorldPosition(glm::vec3 worldPos)
+{
+	float heightPercent = GetHeightPercentFromWorldPosition(worldPos);
+	const auto& heights = planetColour.m_heights;
+
+	if (heights.size() < 2)
+		return 0;
+
+	int maxIndex = static_cast<int>(heights.size()) - 1;
+	for (int i = maxIndex; i >= 0; --i)
+	{
+		if (heights[i] <= heightPercent && heightPercent < heights[i + 1])
+			return i;
+	}
+
+	return 0;
+}
+
 void PlanetSurface::ResetPlanet()
 {
     callChange = true;

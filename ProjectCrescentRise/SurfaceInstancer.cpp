@@ -74,6 +74,13 @@ int SurfaceInstancer::SampleFace(std::shared_ptr<PlanetSurface> planet,InstanceC
 
 			glm::vec3 surfacePoint = planet->GetSurfacePointFromWorldPosition(worldSamplePoint);
 
+			if (m_settings.useHeightLayerMask)
+			{
+				int layerIndex = planet->GetHeightLayerIndexFromWorldPosition(surfacePoint);
+				if (((m_settings.heightLayerMask >> layerIndex) & 1u) == 0u)
+					continue;
+			}
+
 			float noiseValue = EvaluateNoiseAtPosition(surfacePoint);
 
 			noiseValue = (noiseValue + 1.0f) * 0.5f;

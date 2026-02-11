@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "Update.h"
+#include "PlayerInput.h"
 
 GameObject::GameObject()
 {
@@ -37,8 +38,22 @@ void GameObject::callRenders(ScriptObject::RenderPriority t_currentPriority)
 {
 	for (unsigned int i = 0; i < m_scripts.size(); i++)
 	{
-		if(m_scripts.at(i)->renderPriority == t_currentPriority)
-			m_scripts.at(i)->Render();
+		if (m_scripts.at(i)->renderPriority == t_currentPriority)
+		{
+			if (t_currentPriority == ScriptObject::RenderPriority::Cull)
+			{
+				
+				if (glm::distance(transform->position, PlayerInput::playerPosition) < 30.f)
+				{
+					m_scripts.at(i)->setTransform(transform);
+					m_scripts.at(i)->Render();
+				}
+			}
+			else
+			{
+				m_scripts.at(i)->Render();
+			}
+		}
 	}
 }
 

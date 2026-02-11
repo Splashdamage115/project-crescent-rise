@@ -3,6 +3,8 @@
 #include "Library.h"
 #include "GameObjects.h"
 #include "KeyScan.h"
+#include "Model.h"
+#include "SurfaceGrass.h"
 
 class Game
 {
@@ -25,5 +27,9 @@ private:
 	std::shared_ptr<GameObject> grass;
 
 	std::shared_ptr<GameObject> Enemy;
+
+	std::shared_ptr <Model> treeModel;
+	std::shared_ptr <Model> rockModel;
+	std::shared_ptr<SurfaceGrass> grassModel;
 };
 

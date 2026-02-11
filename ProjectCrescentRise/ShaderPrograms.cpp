@@ -927,7 +927,7 @@ void VertexShaders::setUpPlanetShader()
         "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
         "    gl_Position = uProj * uView * worldPos;\n"
         "    WorldPos = worldPos.xyz;\n"
-        "    bNormal = mat3(transpose(inverse(uModel)));\n"
+        "    bNormal = vec3(transpose(inverse(uModel)));\n"
         "    vTex = aTex;\n"
         "}\n";
 

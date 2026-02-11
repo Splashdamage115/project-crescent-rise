@@ -4,6 +4,8 @@
 
 void SurfaceGrass::Start()
 {
+    renderPriority = RenderPriority::Cull;
+
     float points[] = {
         // positions          // texture coords
         0.5f,   0.5f,  0.0f,   1.0f, 1.0f,
@@ -79,5 +81,22 @@ void SurfaceGrass::Render()
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
     if (uColourLoc >= 0) glUniform3f(uColourLoc, 1.f, 1.f, 1.f);
 
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    int billboardAmt = 4;
+    static const float kYawAngles[6] = { 0.f, 90.f, 45.f, 135.f, 120.f, 150.f };
+    static const float kTiltAngles[6] = { 20.f, -30.f,10.f, 3.f, 3.5f, -1.f };
+    static const float kHeightScales[6] = { 0.85f, 1.00f, 1.10f, 0.90f, 1.05f, 0.95f };
+
+    glDepthMask(GL_FALSE);
+    for (int i = 0; i < billboardAmt; ++i)
+    {
+        glm::mat4 newModel = model;
+        newModel = glm::rotate(newModel, glm::radians(kYawAngles[i]), glm::vec3(0.f, 1.f, 0.f));
+        newModel = glm::rotate(newModel, glm::radians(kTiltAngles[i]), glm::vec3(1.f, 0.f, 1.f));
+        newModel = glm::scale(newModel, glm::vec3(1.f, kHeightScales[i], 1.f));
+
+        if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(newModel));
+
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+    }
+    glDepthMask(GL_TRUE);
 }
