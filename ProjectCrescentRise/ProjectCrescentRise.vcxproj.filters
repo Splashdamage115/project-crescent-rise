@@ -254,7 +254,7 @@
       <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher</Filter>
     </ClCompile>
     <ClCompile Include="ModelPartnerScript.cpp">
-      <Filter>Source Files\Scripts</Filter>
+      <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,7 +430,7 @@
       <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher</Filter>
     </ClInclude>
     <ClInclude Include="ModelPartnerScript.h">
-      <Filter>Header Files\Scripts</Filter>
+      <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
