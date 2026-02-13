@@ -30,6 +30,15 @@ struct Transform {
 	glm::vec3 rotation = glm::vec3(0.0f);
     glm::vec3 scale = glm::vec3(1.0f);
 
+    Transform operator+(const Transform& other) const
+    {
+        Transform result;
+        result.position = position + other.position;
+        result.rotation = rotation + other.rotation;
+        result.scale = scale * other.scale;
+        return result;
+	}
+
 	void moveAlongForward(glm::vec3 t_disp);
     void moveAlongForwardPlanet(glm::vec3 t_disp);
 };

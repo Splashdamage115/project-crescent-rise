@@ -43,7 +43,7 @@ void Model::Render()
 		glUniform1i(heightLoc, 1);
 	}
 
-	glm::mat4 model = transform ? ToModelMatrix(*transform) : glm::mat4(1.0f);
+	glm::mat4 model = transform ? ToModelMatrix(*transform + modelOffset) : glm::mat4(1.0f);
 	glm::mat4 view = Window::Get().GetView();
 	glm::mat4 proj = Window::Get().GetProj();
 
