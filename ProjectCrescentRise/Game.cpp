@@ -122,10 +122,16 @@ void Game::initGame()
 	// - - - ENEMY - - -
 	Enemy = std::make_shared<GameObject>();
 	std::shared_ptr<Mover> t = std::make_shared<Mover>();
-	t->velocity = glm::vec3(1.0f, 1.f, 1.f);
+	t->velocity = glm::vec3(1.0f, 0.f, 1.f);
 	Enemy->addScript(t);
-	Enemy->addScript(std::make_shared<Cube>());
+	std::shared_ptr enemyModel = std::make_shared<Model>();
+	std::shared_ptr<ModelPartnerScript> partner = std::make_shared<ModelPartnerScript>();
+	enemyModel->renderPriority = ScriptObject::RenderPriority::noCull;
+	partner->m_pairedModel = enemyModel;
+	Enemy->addScript(partner);
+	Enemy->addScript(enemyModel);
 	Enemy->addScript(std::make_shared<SurfaceFollower>());
+	Enemy->transform->scale = glm::vec3(300.0f);
 	Enemy->tags.emplace_back("interactible");
 	GameObjects::addNewObjectToPool(Enemy);
 	// - - - !ENEMY - - - 

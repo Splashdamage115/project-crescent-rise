@@ -12,6 +12,7 @@ public:
     void setTarget(const glm::vec3& t) { m_target = t; }
     void setUp(const glm::vec3& u) { m_up = u; }
 
+    glm::vec3 GetPosition() const { return m_position; }
     glm::mat4 GetView() const { return glm::lookAt(m_position, m_target, m_up); }
 
     void setPerspective(float fovDeg, float aspect, float zNear, float zFar) {

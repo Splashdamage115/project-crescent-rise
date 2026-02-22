@@ -28,6 +28,8 @@ public:
 	std::string textureLoc2 = "";
 
 	bool highlight = false;
+	glm::vec3 outlineColor = glm::vec3(255.f, 255.f, 255.f);
+	float outlineWidth = 0.01f;
 private:
 	GLint uColourLoc = -1;
 	GLuint textureLoc = -1;
@@ -37,5 +39,13 @@ private:
 	GLuint uTexture2Loc = -1;
 	GLuint textureID2 = -1;
 	GLint highlightLoc = -1;
+	GLint viewPosLoc = -1;
+
+	std::shared_ptr<Shader> m_outlineShader;
+	GLint outlineModelLoc = -1;
+	GLint outlineViewLoc  = -1;
+	GLint outlineProjLoc  = -1;
+	GLint outlineWidthLoc = -1;
+	GLint outlineColorLoc = -1;
 };
 

@@ -78,8 +78,7 @@ void VertexShaders::initialise()
     const char* colouredVertex =
         "#version 410 core\n"
         "layout (location = 0) in vec3 aPos;\n"
-        "layout (location = 1) in vec2 aTexCoord;\n"
-        "layout (location = 2) in vec3 aNormal;\n"
+        "layout (location = 1) in vec3 aNormal;\n"
         "uniform mat4 uModel;\n"
         "uniform mat4 uView;\n"
         "uniform mat4 uProj;\n"
@@ -102,18 +101,9 @@ void VertexShaders::initialise()
         "in vec3 WorldPos;\n"
         "in vec3 bNormal;\n"
         "uniform vec3 colour;\n"
-        "uniform bool uHighlight;\n"
-        "uniform vec3 viewPos;\n"
         "out vec4 frag_colour;\n"
         "void main() {\n"
-        "    vec3 norm = normalize(bNormal);\n"
-        "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
         "    frag_colour = vec4(colour / 255.0, 1.0);\n"
-        "    if (uHighlight) {\n"
-        "        float rim = 1.0 - max(dot(viewDir, norm), 0.0);\n"
-        "        float outline = smoothstep(0.4, 1.0, rim);\n"
-        "        frag_colour = vec4(mix(frag_colour.rgb, vec3(1.0, 1.0, 1.0), outline), frag_colour.a);\n"
-        "    }\n"
         "}\n";
 
     newFragmentPair = ShaderFilesFragment();
@@ -1026,6 +1016,42 @@ void VertexShaders::setUpPlanetShader()
         "float rand(vec2 co) {\n"
         "    return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);\n"
         "}\n";
-   
 
+
+    // - - - - - - - - - - - - - - - 
+    //  Outline (backface expand, second pass)
+    // - - - - - - - - - - - - - - - 
+
+    const char* outlineVertex =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec3 aNormal;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "uniform float uOutlineWidth;\n"
+        "void main() {\n"
+        "    vec3 expanded = aPos + normalize(aNormal) * uOutlineWidth;\n"
+        "    gl_Position = uProj * uView * uModel * vec4(expanded, 1.0);\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::outline;
+    newVertexPair.file = outlineVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* outlineFragment =
+        "#version 410 core\n"
+        "out vec4 frag_colour;\n"
+        "uniform vec3 outlineColor;\n"
+        "void main() {\n"
+        "    frag_colour = vec4(outlineColor, 1.0);\n"
+        "}\n";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::outline;
+    newFragmentPair.file = outlineFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::outline, Shader::FragmentShaderType::outline);
 }

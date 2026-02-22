@@ -32,6 +32,7 @@ public:
     
     glm::mat4 GetView() const { return m_camera.GetView(); }
     glm::mat4 GetProj() const { return m_camera.GetProj(); }
+    glm::vec3 GetCameraPosition() const { return m_camera.GetPosition(); }
     
     int Width()  const { return m_width; }
     int Height() const { return m_height; }
