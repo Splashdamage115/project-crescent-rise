@@ -33,12 +33,20 @@ void Game::initGame()
 	
 	// - - - PLAYER - - - 
 
+	std::shared_ptr<Model> gunModel = std::make_shared<Model>();
+	gunModel->modelOffset.scale = { 0.1f, 0.1f, 0.1f };
+	gunModel->modelOffset.rotation = { 0.0f, 90.0f, -90.0f };
+	gunModel->modelOffset.position = { 1.6f, 0.0f, 0.0f };
+	gunModel->loadLocation = "./Assets/Mesh/gun.fbx";
+	gunModel->colour = glm::vec3(143.f, 88.f, 56.f);
+
 	camObj = std::make_shared<GameObject>();
 	camObj->transform->position = { 50.f, 0.f, 0.f };
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	camObj->addScript(std::make_shared<CameraFeed>());
 	camObj->addScript(std::make_shared<PlayerInput>());
 	camObj->addScript(std::make_shared<SurfaceFollower>());
+	camObj->addScript(gunModel);
 	//camObj->addScript(std::make_shared<CubeSphere>());
 
 	GameObjects::addNewObjectToPool(camObj);
@@ -261,6 +269,12 @@ void Game::initFloor()
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 			m->m_pairedModel = this->rockModel;
+			float grayScale = (rand() % 128) + 64.f;
+
+			m->colour.x = grayScale;
+			m->colour.y = grayScale;
+			m->colour.z = grayScale;
+
 			obj->addScript(m);
 			obj->addScript(this->rockModel);
 			obj->addScript(std::make_shared<OrientToSurface>());

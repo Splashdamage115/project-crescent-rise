@@ -13,10 +13,10 @@
 # Ignore build output folders recursively
 **/bin/
 **/obj/
-#**/Debug/
-#**/Release/
-#**/debug/
-#**/release/
+**/Debug/
+**/Release/
+**/debug/
+**/release/
 
 # Ignore build results and cache files
 *.obj
@@ -78,3 +78,7 @@ _ReSharper*/
 *.bim.layout
 *.bim_*.settings
 FakesAssemblies/
+
+# Re-include DLLs inside Debug/Release folders
+!**/Debug/**/*.dll
+!**/Release/**/*.dll
