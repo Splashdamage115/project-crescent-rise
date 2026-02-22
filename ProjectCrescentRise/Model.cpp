@@ -18,6 +18,8 @@ void Model::Start()
 		textureID = TextureStore::RetrieveTexture(textureLoc1);
 		heightMapID = TextureStore::RetrieveNormals("./Assets/Images/metal.jpg");
 		colour = glm::vec3(1.0f);
+		if (!textureLoc2.empty())
+			textureID2 = TextureStore::RetrieveTexture(textureLoc2);
 	}
 
 
@@ -30,6 +32,7 @@ void Model::Start()
 	uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
 	uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
 	textureLoc = glGetUniformLocation(m_shader->shaderPair, "uTexture");
+	uTexture2Loc = glGetUniformLocation(m_shader->shaderPair, "uTexture2");
 }
 
 void Model::Update()
@@ -59,6 +62,13 @@ void Model::Render()
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, heightMapID);
 		glUniform1i(heightLoc, 1);
+
+		if (uTexture2Loc != -1 && textureID2 != -1)
+		{
+			glActiveTexture(GL_TEXTURE2);
+			glBindTexture(GL_TEXTURE_2D, textureID2);
+			glUniform1i(uTexture2Loc, 2);
+		}
 	}
 
 	glm::mat4 model, view, proj;

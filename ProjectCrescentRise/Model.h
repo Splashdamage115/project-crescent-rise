@@ -25,11 +25,14 @@ public:
 	glm::vec3 scale = glm::vec3(0.0f);
 
 	std::string textureLoc1 = "";
+	std::string textureLoc2 = "";
 private:
 	GLint uColourLoc = -1;
 	GLuint textureLoc = -1;
 	GLuint textureID = -1;
 	GLuint heightLoc = -1;
 	GLuint heightMapID = -1;
+	GLuint uTexture2Loc = -1;
+	GLuint textureID2 = -1;
 };
 

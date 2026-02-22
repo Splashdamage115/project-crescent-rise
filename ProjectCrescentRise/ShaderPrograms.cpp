@@ -312,6 +312,7 @@ void VertexShaders::initialise()
         "layout (location = 0) in vec3 aPos;\n"
         "layout (location = 1) in vec2 aTex;\n"
         "layout (location = 2) in vec3 aNormal;\n"
+        "layout (location = 3) in float aMaterialID;\n"
 
         "uniform vec3 CenterPoint;\n"
         "uniform mat4 uModel;\n"
@@ -321,6 +322,7 @@ void VertexShaders::initialise()
         "out vec2 vTex;\n"
         "out vec3 WorldPos;\n"
         "out vec3 bNormal;\n"
+        "out float vMaterialID;\n"
 
         "void main() {\n"
         "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
@@ -328,6 +330,7 @@ void VertexShaders::initialise()
         "    WorldPos = worldPos.xyz;\n"
         "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
         "    vTex = aTex;\n"
+        "    vMaterialID = aMaterialID;\n"
         "}\n";
 
     newVertexPair = ShaderFilesVertex();
@@ -340,9 +343,11 @@ void VertexShaders::initialise()
         "in vec2 vTex;\n"
         "in vec3 WorldPos;\n"
         "in vec3 bNormal;\n"
+        "in float vMaterialID;\n"
         "out vec4 FragColor;\n"
 
         "uniform sampler2D uTexture;\n"
+        "uniform sampler2D uTexture2;\n"
         "uniform vec3 colour;\n"
         "uniform sampler2D uHeightMap;\n"
         "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
@@ -350,15 +355,11 @@ void VertexShaders::initialise()
         "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
 
         "void main() {\n"
-        "    // Normalize the interpolated normal\n"
         "    vec3 norm = normalize(bNormal);\n"
-        ""
         "    float height = texture(uHeightMap, vTex).r;\n"
-        "    float scale = 0.08;\n"
         "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
-        "    vec2 parallaxUV = vTex - viewDir.xy * (height * scale);\n"
-        "    vec4 texColor = texture(uTexture, parallaxUV);\n"
-        ""
+        "    vec2 parallaxUV = vTex - viewDir.xy * (height * 0.08);\n"
+        "    vec4 texColor = vMaterialID < 0.5 ? texture(uTexture,  parallaxUV) : texture(uTexture2, parallaxUV);\n"
         "    float ambientStrength = 0.2;\n"
         "    vec3 ambient = ambientStrength * lightColor;\n"
         "    float diff = max(dot(norm, -lightDir), 0.0);\n"
@@ -368,7 +369,7 @@ void VertexShaders::initialise()
         "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
         "    vec3 specular = specularStrength * spec * lightColor;\n"
         "    vec3 lighting = (ambient + diffuse) + specular;\n"
-        "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);"
+        "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);\n"
         "}\n";
 
 

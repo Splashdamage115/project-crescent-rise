@@ -36,7 +36,7 @@ void Game::initGame()
 
 	std::shared_ptr<Model> gunModel = std::make_shared<Model>();
 	gunModel->modelOffset.scale = { 0.1f, 0.1f, 0.1f };
-	gunModel->modelOffset.rotation = { 0.0f, 270.0f, -90.0f };
+	gunModel->modelOffset.rotation = { 90.0f, 180.0f, 180.0f };
 	gunModel->modelOffset.position = { 0.5f, -0.3f, -1.0f };
 	gunModel->loadLocation = "./Assets/Mesh/gun.fbx";
 	gunModel->colour = glm::vec3(1.f, 1.f, 1.f);
@@ -44,7 +44,8 @@ void Game::initGame()
 
 	//gunModel->useOffsetMover = true;
 	gunModel->rotation = glm::vec3(0.f, 90.f, 0.f);
-	gunModel->textureLoc1 = "./Assets/Images/metal.jpg";
+	gunModel->textureLoc2 = "./Assets/Images/metal.jpg";
+	gunModel->textureLoc1 = "./Assets/Images/wood.jpg";
 
 	auto cameraFeed = std::make_shared<CameraFeed>();
 
