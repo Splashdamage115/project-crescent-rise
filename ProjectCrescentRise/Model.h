@@ -26,6 +26,8 @@ public:
 
 	std::string textureLoc1 = "";
 	std::string textureLoc2 = "";
+
+	bool highlight = false;
 private:
 	GLint uColourLoc = -1;
 	GLuint textureLoc = -1;
@@ -34,5 +36,6 @@ private:
 	GLuint heightMapID = -1;
 	GLuint uTexture2Loc = -1;
 	GLuint textureID2 = -1;
+	GLint highlightLoc = -1;
 };
 

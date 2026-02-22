@@ -235,6 +235,7 @@
     <ClInclude Include="PlanetColour.h" />
     <ClInclude Include="PlanetGenHandler.h" />
     <ClInclude Include="PlayerInput.h" />
+    <ClInclude Include="Raycast.h" />
     <ClInclude Include="RenderableObject.h" />
     <ClInclude Include="ScriptObject.h" />
     <ClInclude Include="ShapeGenerator.h" />

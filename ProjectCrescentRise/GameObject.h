@@ -17,6 +17,9 @@ public:
 
 	bool active = false;
 	bool hidden = false;
+	std::shared_ptr<bool> highlighted;
+
+	std::vector<std::string> tags;
 protected:
 	std::vector<std::shared_ptr<ScriptObject>> m_scripts;
 private:

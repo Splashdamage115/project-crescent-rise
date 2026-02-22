@@ -5,6 +5,7 @@
 GameObject::GameObject()
 {
 	transform = std::make_shared<Transform>();
+	highlighted = std::make_shared<bool>();
 	active = true;
 }
 
@@ -14,12 +15,12 @@ void GameObject::move(const glm::vec3& delta)
 }
 
 
-
 bool GameObject::addScript(std::shared_ptr<ScriptObject> t_newScript)
 {
 	try {
 		// TO DO: fix this potential circular include of self stopping self destruction
 		t_newScript->setTransform(transform);
+		t_newScript->setParentHighlight(highlighted);
 
 		t_newScript->Start();
 

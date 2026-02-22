@@ -126,6 +126,7 @@ void Game::initGame()
 	Enemy->addScript(t);
 	Enemy->addScript(std::make_shared<Cube>());
 	Enemy->addScript(std::make_shared<SurfaceFollower>());
+	Enemy->tags.emplace_back("interactible");
 	GameObjects::addNewObjectToPool(Enemy);
 	// - - - !ENEMY - - - 
 
@@ -280,6 +281,8 @@ void Game::initFloor()
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
+			obj->tags.emplace_back("interactible");
+
 			m->m_pairedModel = this->rockModel;
 			float grayScale = (rand() % 128) + 64.f;
 

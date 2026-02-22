@@ -438,5 +438,8 @@
     <ClInclude Include="GunAttachment.h">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Raycast.h">
+      <Filter>Files\Library\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

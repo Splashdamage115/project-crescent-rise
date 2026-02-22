@@ -75,12 +75,45 @@ void VertexShaders::initialise()
     //  colour, pass colour to frag
     // - - - - - - - - - - - - - - - 
 
+    const char* colouredVertex =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTexCoord;\n"
+        "layout (location = 2) in vec3 aNormal;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "out vec3 WorldPos;\n"
+        "out vec3 bNormal;\n"
+        "void main() {\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    WorldPos = worldPos.xyz;\n"
+        "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::Colour;
+    newVertexPair.file = colouredVertex;
+    m_vertexFiles.push_back(newVertexPair);
+
     const char* newFragment3 =
         "#version 410 core\n"
+        "in vec3 WorldPos;\n"
+        "in vec3 bNormal;\n"
         "uniform vec3 colour;\n"
+        "uniform bool uHighlight;\n"
+        "uniform vec3 viewPos;\n"
         "out vec4 frag_colour;\n"
         "void main() {\n"
-        "  frag_colour = vec4(colour.x / 255.0, colour.y / 255.0, colour.z / 255.0, 1.0);\n"
+        "    vec3 norm = normalize(bNormal);\n"
+        "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
+        "    frag_colour = vec4(colour / 255.0, 1.0);\n"
+        "    if (uHighlight) {\n"
+        "        float rim = 1.0 - max(dot(viewDir, norm), 0.0);\n"
+        "        float outline = smoothstep(0.4, 1.0, rim);\n"
+        "        frag_colour = vec4(mix(frag_colour.rgb, vec3(1.0, 1.0, 1.0), outline), frag_colour.a);\n"
+        "    }\n"
         "}\n";
 
     newFragmentPair = ShaderFilesFragment();
@@ -88,7 +121,7 @@ void VertexShaders::initialise()
     newFragmentPair.file = newFragment3;
     m_fragmentFiles.push_back(newFragmentPair);
 
-    mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
+    mountShader(Shader::VertexShaderType::Colour, Shader::FragmentShaderType::Colour);
 
 
     // - - - - - - - - - - - - - - - 
@@ -350,14 +383,15 @@ void VertexShaders::initialise()
         "uniform sampler2D uTexture2;\n"
         "uniform vec3 colour;\n"
         "uniform sampler2D uHeightMap;\n"
+        "uniform bool uHighlight;\n"
         "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
         "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
         "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
 
         "void main() {\n"
         "    vec3 norm = normalize(bNormal);\n"
-        "    float height = texture(uHeightMap, vTex).r;\n"
         "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
+        "    float height = texture(uHeightMap, vTex).r;\n"
         "    vec2 parallaxUV = vTex - viewDir.xy * (height * 0.08);\n"
         "    vec4 texColor = vMaterialID < 0.5 ? texture(uTexture,  parallaxUV) : texture(uTexture2, parallaxUV);\n"
         "    float ambientStrength = 0.2;\n"
@@ -370,6 +404,11 @@ void VertexShaders::initialise()
         "    vec3 specular = specularStrength * spec * lightColor;\n"
         "    vec3 lighting = (ambient + diffuse) + specular;\n"
         "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);\n"
+        "    if (uHighlight) {\n"
+        "        float rim = 1.0 - max(dot(viewDir, norm), 0.0);\n"
+        "        float outline = smoothstep(0.55, 1.0, rim);\n"
+        "        FragColor = vec4(mix(FragColor.rgb, vec3(1.0, 1.0, 1.0), outline), FragColor.a);\n"
+        "    }\n"
         "}\n";
 
 

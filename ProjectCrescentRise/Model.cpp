@@ -10,7 +10,7 @@ void Model::Start()
 
 	if (textureLoc1.empty())
 	{
-		m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::Colour);
+		m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::Colour, Shader::FragmentShaderType::Colour);
 	}
 	else
 	{
@@ -33,6 +33,7 @@ void Model::Start()
 	uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
 	textureLoc = glGetUniformLocation(m_shader->shaderPair, "uTexture");
 	uTexture2Loc = glGetUniformLocation(m_shader->shaderPair, "uTexture2");
+	highlightLoc = glGetUniformLocation(m_shader->shaderPair, "uHighlight");
 }
 
 void Model::Update()
@@ -106,6 +107,10 @@ void Model::Render()
 	if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
 	if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
 	if (uColourLoc >= 0) glUniform3f(uColourLoc, colour.x, colour.y, colour.z);
+	if (highlightLoc >= 0)
+	{
+		glUniform1i(highlightLoc, highlight);
+	}
 
 	glDrawElements(GL_TRIANGLES, m_body.indexLength, GL_UNSIGNED_INT, 0);
 }

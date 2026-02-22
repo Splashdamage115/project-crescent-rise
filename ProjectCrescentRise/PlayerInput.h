@@ -19,5 +19,7 @@ private:
 	const float speedIncrease = 50.0f;
 	const float minSpeed = 10.0f;
 	const float maxSpeed = 300.0f;
+
+	std::shared_ptr<GameObject> highlightedObj;
 };
 

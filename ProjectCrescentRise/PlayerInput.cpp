@@ -4,6 +4,7 @@
 #include "OnlineDispatcher.h"
 #include <string>
 #include "CommandInterpreter.h"
+#include "Raycast.h"
 
 glm::vec3 PlayerInput::playerPosition;
 bool PlayerInput::noClipEnabled = false;
@@ -53,6 +54,7 @@ void PlayerInput::Update()
 
 	if (noClipEnabled)
 	{
+		displacement *= -1.f;
 		transform->moveAlongForward(displacement);
 	}
 	else
@@ -82,6 +84,45 @@ void PlayerInput::Update()
 
 	playerPosition = transform->position;
 	
+	std::vector<std::shared_ptr<GameObject>> go = GameObjects::getAllOfTag("interactible");
+
+
+	Ray ray = Ray::FromCamera();
+
+	float hitDist = 999999.0f;
+	float closestHit = 99999999.0f;
+	int closestNum = -1;
+
+	for (int i = 0; i < go.size(); i++)
+	{
+		glm::vec3 enemyPos = go.at(i)->transform->position;
+		if (ray.hitsphere(enemyPos, 1.0f, hitDist))
+		{
+			if (hitDist < closestHit)
+			{
+				glm::vec3 hitPoint = ray.at(hitDist);
+				closestHit = hitDist;
+				closestNum = i;
+			}
+		}
+	}
+
+	if (closestNum != -1)
+	{
+		if (go.at(closestNum) != highlightedObj)
+		{
+			if(highlightedObj) *highlightedObj->highlighted = false;
+			highlightedObj = go.at(closestNum);
+			*highlightedObj->highlighted = true;
+		}
+	}
+	else
+	{
+		if (highlightedObj) *highlightedObj->highlighted = false;
+		highlightedObj = nullptr;
+	}
+	//std::cout << "Hit enemy at distance " << closestHit << "\n";
+
 	//std::cout << transform->rotation.x << ", " << transform->rotation.y << ", " << transform->rotation.z << "\n";
 	//std::cout << transform->position.x << ", " << transform->position.y << ", " << transform->position.z << "\n";
 }
