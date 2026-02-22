@@ -21,6 +21,7 @@
 #include "Model.h"
 #include "SurfaceGrass.h"
 #include "ModelPartnerScript.h"
+#include "GunAttachment.h"
 
 double Game::deltaTime = 0;
 
@@ -35,21 +36,31 @@ void Game::initGame()
 
 	std::shared_ptr<Model> gunModel = std::make_shared<Model>();
 	gunModel->modelOffset.scale = { 0.1f, 0.1f, 0.1f };
-	gunModel->modelOffset.rotation = { 0.0f, 90.0f, -90.0f };
-	gunModel->modelOffset.position = { 1.6f, 0.0f, 0.0f };
+	gunModel->modelOffset.rotation = { 0.0f, 270.0f, -90.0f };
+	gunModel->modelOffset.position = { 0.5f, -0.3f, -1.0f };
 	gunModel->loadLocation = "./Assets/Mesh/gun.fbx";
-	gunModel->colour = glm::vec3(143.f, 88.f, 56.f);
+	gunModel->colour = glm::vec3(1.f, 1.f, 1.f);
+	gunModel->followCam = true;
+
+	//gunModel->useOffsetMover = true;
+	gunModel->rotation = glm::vec3(0.f, 90.f, 0.f);
+	gunModel->textureLoc1 = "./Assets/Images/metal.jpg";
+
+	auto cameraFeed = std::make_shared<CameraFeed>();
 
 	camObj = std::make_shared<GameObject>();
 	camObj->transform->position = { 50.f, 0.f, 0.f };
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
-	camObj->addScript(std::make_shared<CameraFeed>());
+	camObj->addScript(cameraFeed);
 	camObj->addScript(std::make_shared<PlayerInput>());
 	camObj->addScript(std::make_shared<SurfaceFollower>());
-	camObj->addScript(gunModel);
 	//camObj->addScript(std::make_shared<CubeSphere>());
 
 	GameObjects::addNewObjectToPool(camObj);
+
+	auto gunObj = std::make_shared<GameObject>();
+	gunObj->addScript(gunModel);
+	GameObjects::addNewObjectToPool(gunObj);
 
 	// - - - !PLAYER - - - 
 

@@ -36,6 +36,17 @@ void GameObjects::renderAll()
 			}
 		}
 	}
+	// render viewmodel (gun, etc.) on top of world geometry
+	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (m_gameObjects.at(i) != nullptr)
+		{
+			if (m_gameObjects.at(i)->active)
+			{
+				m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::Viewmodel);
+			}
+		}
+	}
 	// render GUI
 	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 	{

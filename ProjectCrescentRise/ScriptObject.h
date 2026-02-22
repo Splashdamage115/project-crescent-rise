@@ -7,7 +7,7 @@ class ScriptObject
 public:
 	enum class RenderPriority
 	{
-		GUI, Cull, noCull
+		GUI, Cull, noCull, Viewmodel
 	};
 
 	RenderPriority renderPriority = RenderPriority::noCull;

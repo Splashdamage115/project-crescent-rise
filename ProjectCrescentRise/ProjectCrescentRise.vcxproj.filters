@@ -256,6 +256,9 @@
     <ClCompile Include="ModelPartnerScript.cpp">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClCompile>
+    <ClCompile Include="GunAttachment.cpp">
+      <Filter>Files\Scripts\Renderables\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -430,6 +433,9 @@
       <Filter>Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher</Filter>
     </ClInclude>
     <ClInclude Include="ModelPartnerScript.h">
+      <Filter>Files\Scripts\Renderables\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="GunAttachment.h">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClInclude>
   </ItemGroup>
