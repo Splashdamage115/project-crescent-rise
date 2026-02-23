@@ -5,6 +5,7 @@
 #include "CommandInterpreter.h"
 
 std::vector<ChatText> ChatBoxText::m_chatHistory;
+bool ChatBoxText::typing = false;
 
 void ChatBoxText::Start() 
 {

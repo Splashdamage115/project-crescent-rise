@@ -13,6 +13,9 @@ public:
 	bool addScript(std::shared_ptr<ScriptObject> t_newScript);
 	void callRenders(ScriptObject::RenderPriority t_currentPriority);
 
+	virtual void sendMessage(const std::string& t_messageType);
+	virtual void sendMessage(const std::string& t_messageType, std::any t_messageParameters);
+
 	std::shared_ptr<Transform> transform;
 
 	bool active = false;

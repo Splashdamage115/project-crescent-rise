@@ -259,6 +259,7 @@
     <ClCompile Include="GunAttachment.cpp">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClCompile>
+    <ClCompile Include="HealthController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -440,6 +441,9 @@
     </ClInclude>
     <ClInclude Include="Raycast.h">
       <Filter>Files\Library\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthController.h">
+      <Filter>External</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

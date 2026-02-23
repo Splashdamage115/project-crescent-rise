@@ -58,3 +58,19 @@ void GameObject::callRenders(ScriptObject::RenderPriority t_currentPriority)
 	}
 }
 
+void GameObject::sendMessage(const std::string& t_messageType)
+{
+	for (auto& i : m_scripts)
+	{
+		i->sendMessage(t_messageType);
+	}
+}
+
+void GameObject::sendMessage(const std::string& t_messageType, std::any t_messageParameters)
+{
+	for (auto& i : m_scripts)
+	{
+		i->sendMessage(t_messageType, t_messageParameters);
+	}
+}
+

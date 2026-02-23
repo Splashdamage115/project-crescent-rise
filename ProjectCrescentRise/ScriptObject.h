@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Library.h"
+#include <any>
 
 class GameObject;
 
@@ -21,6 +22,8 @@ public:
 	virtual void Start() {}
 	virtual void Update() {}
 	virtual void Render() {}
+	virtual void sendMessage(const std::string& t_messageType) {}
+	virtual void sendMessage(const std::string& t_messageType, std::any t_messageParameters) {}
 protected:
 	std::shared_ptr<bool> parentHighlight;
 	std::shared_ptr<Transform> transform;

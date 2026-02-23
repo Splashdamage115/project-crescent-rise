@@ -10,7 +10,10 @@ public:
 
 	static glm::vec3 playerPosition;
 	static bool noClipEnabled;
+
+	void handleInteractRelease();
 private:
+
 	double lastMouseX = 0.;
 	double lastMouseY = 0.;
 

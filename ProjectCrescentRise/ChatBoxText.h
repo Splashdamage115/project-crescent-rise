@@ -25,7 +25,7 @@ public:
 	void changeDebug(std::string _);
 
 
-	bool typing = false;
+	static bool typing;
 private:
 	void CleanRender();
 	void RenderTexts(std::string t_textToRender, float x, float y);

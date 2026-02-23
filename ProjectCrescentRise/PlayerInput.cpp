@@ -12,6 +12,12 @@ bool PlayerInput::noClipEnabled = false;
 void PlayerInput::Start()
 {
 	CommandInterpreter::append([this](std::string t) { this->noClipEnabled = !this->noClipEnabled; }, "/NOCLIP");
+
+	std::shared_ptr<keyboardInput> ki = std::make_shared<keyboardInput>();
+	ki->active = true;
+	ki->keyCode = KeyScan::KeyCode::F;
+	ki->function = ([this]() { this->handleInteractRelease(); });
+	KeyScan::append(ki, true);
 }
 
 void PlayerInput::Update()
@@ -125,4 +131,14 @@ void PlayerInput::Update()
 
 	//std::cout << transform->rotation.x << ", " << transform->rotation.y << ", " << transform->rotation.z << "\n";
 	//std::cout << transform->position.x << ", " << transform->position.y << ", " << transform->position.z << "\n";
+}
+
+void PlayerInput::handleInteractRelease()
+{
+	if (highlightedObj)
+	{
+		highlightedObj->sendMessage("PICKUP");
+		highlightedObj->active = false;
+		highlightedObj = nullptr;
+	}
 }
