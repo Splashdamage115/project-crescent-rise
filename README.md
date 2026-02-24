@@ -178,16 +178,23 @@
 # Priority Order List : 
 
 <ul>
-    <li> 🔴 - surface instancing</li>
-    <li> 🔴 - grass instancing</li>
+    <li> 🔴 - Weapon variants</li>
+    <li> 🔴 - foliage improvements</li>
+    <li> 🔴 - enemy pathfinding</li>
+    <li> 🔴 - weapon animation (shooting)</li>
+    <li> 🔴 - weapon reload animations</li>
+    <li> 🔴 - weapon hit effect</li>
+    <li> 🔴 - weapon shoot particle effect</li>
+    <li> 🔴 - object pick up </li>
     <li> 🔴 - building collisions</li>
     <li> 🔴 - object with collision instancing</li>
-    <li> 🔴 - enemy on surface</li>
-    <li> 🔴 - attacking enemy</li>
     <li> 🔴 - enemy attack player</li>
     <li> 🔴 - player death</li>
     <li> 🔴 - main menu screen</li>
-    <li> 🔴 - player Weapon</li>
+    <li> 🔴 - orbital station</li>
+    <li> 🔴 - orbital station movement</li>
+    <li> 🔴 - orbital station collisions</li>
+    <li> 🔴 - orbital station start</li>
 </ul>
 
 ## Completed
@@ -206,6 +213,14 @@
 #### ✅ - load planet from json
 #### ✅ - save planet to json
 #### ✅ - load random from json
+
+### phase 3
+#### ✅ - player Weapon
+#### ✅ - attacking enemy
+#### ✅ - enemy on surface
+#### ✅ - grass instancing
+#### ✅ - surface instancing
+
 
 <br><br><br>
   </em></p>
