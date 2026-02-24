@@ -333,11 +333,18 @@ void Game::initFloor()
 			
 			m->m_pairedModel = this->enemyModel;
 			m->colour = glm::vec3(0.f, 125.f, 255.f);
-
 			obj->addScript(m);
 
+
+			std::shared_ptr<Mover> t = std::make_shared<Mover>();
+			t->velocity = glm::vec3(1.0f, 0.f, 0.f);
+			obj->addScript(t);
+
 			obj->addScript(this->enemyModel);
-			obj->addScript(std::make_shared<OrientToSurface>());
+			std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
+			f->heightOffset = 0.0f;
+			f->rotationSmooth = 1.0f;
+			obj->addScript(f);
 			obj->addScript(std::make_shared<HealthController>());
 			obj->transform->rotation = { 0.0f, 90.0f, 0.0f };
 			obj->transform->scale = { 1.0f, 1.0f, 1.0f };
