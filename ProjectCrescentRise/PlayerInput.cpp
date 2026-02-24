@@ -39,9 +39,12 @@ void PlayerInput::Update()
 	{
 		displacement.z += currentSpeed * static_cast<float>(Game::deltaTime);
 	}
-	if (KeyScan::isKeyDown(KeyScan::KeyCode::Q))
+	if (KeyScan::isKeyDown(KeyScan::KeyCode::LCTRL))
 	{
-		displacement.y += -currentSpeed * static_cast<float>(Game::deltaTime);
+		if(noClipEnabled)
+			displacement.y += -currentSpeed * static_cast<float>(Game::deltaTime);
+		else
+			displacement.y += -0.8f;
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::E))
 	{
@@ -67,6 +70,7 @@ void PlayerInput::Update()
 	{
 		transform->moveAlongForwardPlanet(displacement);
 	}
+
 
 	std::string position;
 	position += std::to_string(transform->position.x);

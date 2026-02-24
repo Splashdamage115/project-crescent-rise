@@ -147,6 +147,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeSphere.cpp" />
     <ClCompile Include="GunAttachment.cpp" />
+    <ClCompile Include="GunController.cpp" />
     <ClCompile Include="HealthController.cpp" />
     <ClCompile Include="jsonPlanetParser.cpp" />
     <ClCompile Include="Library.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="CubeSphere.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GunAttachment.h" />
+    <ClInclude Include="GunController.h" />
     <ClInclude Include="HealthController.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="jsonPlanetParser.h" />

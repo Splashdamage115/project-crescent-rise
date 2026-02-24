@@ -95,9 +95,7 @@ void Game::initGame()
 	skyBox = std::make_shared<GameObject>();
 	//skyBox->transform->position = { 0.f, 0.f, -1.f };
 	//skyBox->transform->rotation = { 0.0f, 0.0f, 0.0f };
-	//skyBox->addScript(std::make_shared<Skybox>());
 	skyBox->addScript(std::make_shared<Skybox>());
-
 	GameObjects::addNewObjectToPool(skyBox);
 	// - - - !SKY BOX - - - 
 

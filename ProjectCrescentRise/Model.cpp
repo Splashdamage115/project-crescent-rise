@@ -146,3 +146,7 @@ void Model::Render()
 		glDisable(GL_CULL_FACE);
 	}
 }
+
+void Model::playAnimation(std::string t_animationName)
+{
+}

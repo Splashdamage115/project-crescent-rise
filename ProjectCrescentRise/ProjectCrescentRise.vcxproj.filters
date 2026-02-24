@@ -107,6 +107,9 @@
     <Filter Include="Files\Scripts\Planet\MISC\Attachers\AttachToSurface\SurfaceAttacher">
       <UniqueIdentifier>{375a974f-3f69-41b4-b835-aad9eb653e30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Scripts\Player\Gun">
+      <UniqueIdentifier>{4c417c56-4385-4d7a-945a-1b85c80336bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderPrograms.cpp">
@@ -259,7 +262,12 @@
     <ClCompile Include="GunAttachment.cpp">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClCompile>
-    <ClCompile Include="HealthController.cpp" />
+    <ClCompile Include="HealthController.cpp">
+      <Filter>Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GunController.cpp">
+      <Filter>Files\Scripts\Player\Gun</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -443,7 +451,10 @@
       <Filter>Files\Library\Objects</Filter>
     </ClInclude>
     <ClInclude Include="HealthController.h">
-      <Filter>External</Filter>
+      <Filter>Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GunController.h">
+      <Filter>Files\Scripts\Player\Gun</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
