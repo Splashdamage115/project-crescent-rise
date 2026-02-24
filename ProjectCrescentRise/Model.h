@@ -13,7 +13,6 @@ public:
 	void playAnimation(std::string t_animationName);
 
 	std::string loadLocation = "./Assets/Mesh/bottle.fbx";
-	glm::vec3 colour = glm::vec3(255.f, 192.f, 203.f);
 
 	Transform modelOffset;
 	bool useOffset = false;

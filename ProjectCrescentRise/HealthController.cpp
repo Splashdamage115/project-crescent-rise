@@ -45,5 +45,6 @@ void HealthController::changeHealth(float amount)
 
 void HealthController::expire()
 {
+	std::cout << "OBJECT DESTROYED\n";
 	parent->active = false;
 }

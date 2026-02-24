@@ -3,6 +3,7 @@
 
 void CubeSphere::ResetPlanet()
 {
+	renderPriority = ScriptObject::RenderPriority::noCull;
     std::vector<float> vertices;
     vertices.clear();
     vertices.resize(6 * (pointsPerRow * pointsPerRow) * 8);
@@ -86,7 +87,7 @@ void CubeSphere::Render()
     if (uViewLoc >= 0) glUniformMatrix4fv(uViewLoc, 1, GL_FALSE, glm::value_ptr(view));
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);
-    if (uColourLoc >= 0) glUniform3f(uColourLoc, 0.f, 255.f, 255.f);
+    if (uColourLoc >= 0) glUniform3f(uColourLoc, colour.x, colour.y, colour.z);
 
     glDrawElements(GL_TRIANGLES, size, GL_UNSIGNED_INT, 0);
 }

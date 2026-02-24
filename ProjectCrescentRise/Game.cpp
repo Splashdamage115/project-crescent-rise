@@ -22,6 +22,8 @@
 #include "SurfaceGrass.h"
 #include "ModelPartnerScript.h"
 #include "GunAttachment.h"
+#include "HealthController.h"
+#include "GunController.h"
 
 double Game::deltaTime = 0;
 
@@ -54,6 +56,7 @@ void Game::initGame()
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	camObj->addScript(cameraFeed);
 	camObj->addScript(std::make_shared<PlayerInput>());
+	camObj->addScript(std::make_shared<GunController>());
 	camObj->addScript(std::make_shared<SurfaceFollower>());
 	//camObj->addScript(std::make_shared<CubeSphere>());
 
@@ -129,8 +132,9 @@ void Game::initGame()
 	Enemy->addScript(partner);
 	Enemy->addScript(enemyModel);
 	Enemy->addScript(std::make_shared<SurfaceFollower>());
-	Enemy->transform->scale = glm::vec3(300.0f);
+	Enemy->transform->scale = glm::vec3(3.0f);
 	Enemy->tags.emplace_back("interactible");
+	Enemy->tags.emplace_back("shootable");
 	GameObjects::addNewObjectToPool(Enemy);
 	// - - - !ENEMY - - - 
 
@@ -211,7 +215,7 @@ void Game::initFloor()
 	InstancerSettings settings1;
 	settings1.density = 1.0f;
 	settings1.noiseScale = 100.0f;
-	settings1.noiseThreshold = 1.0f;
+	settings1.noiseThreshold = 10.0f;
 	settings1.noiseSeed = rand();
 	settings1.useHeightLayerMask = true;
 	settings1.heightLayerMask = 2;
@@ -304,6 +308,45 @@ void Game::initFloor()
 		};
 
 	instancer2.InstantiateOnSurface(planetScript, creatorFunc2, 32);
+
+
+
+	SurfaceInstancer enemyInstancer;
+
+	InstancerSettings enemySettings;
+	enemySettings.density = 1.0f;
+	enemySettings.noiseScale = 100.0f;
+	enemySettings.noiseThreshold = 1.0f;
+	enemySettings.noiseSeed = rand();
+	enemySettings.useHeightLayerMask = true;
+	enemySettings.heightLayerMask = 1;
+
+	enemyInstancer.SetSettings(enemySettings);
+
+	enemyModel = std::make_shared<Model>();
+
+	auto creatorFuncEnemy = [this]() -> std::shared_ptr<GameObject>
+		{
+			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+
+			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
+			
+			m->m_pairedModel = this->enemyModel;
+			m->colour = glm::vec3(0.f, 125.f, 255.f);
+
+			obj->addScript(m);
+
+			obj->addScript(this->enemyModel);
+			obj->addScript(std::make_shared<OrientToSurface>());
+			obj->addScript(std::make_shared<HealthController>());
+			obj->transform->rotation = { 0.0f, 90.0f, 0.0f };
+			obj->transform->scale = { 1.0f, 1.0f, 1.0f };
+
+			obj->tags.emplace_back("shootable");
+			return obj;
+		};
+
+	enemyInstancer.InstantiateOnSurface(planetScript, creatorFuncEnemy, 16);
 
 
 	static std::shared_ptr<PlanetSurface> g_planetScript = planetScript;

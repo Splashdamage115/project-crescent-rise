@@ -33,6 +33,7 @@ void GunController::shootWeapon()
 		timeSinceLastShot = fireRate;
 		if(gunModel) gunModel->playAnimation("Shoot");
 		// SPAWN SHOOT PARTICLES
+		handleHitScan();
 		
 	}
 	else if (magAmmo == 0)

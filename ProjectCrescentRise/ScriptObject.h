@@ -15,8 +15,10 @@ public:
 
 	RenderPriority renderPriority = RenderPriority::noCull;
 
+	~ScriptObject();
+
 	void setTransform(std::shared_ptr<Transform> t_transform);
-	void setParent(std::shared_ptr<GameObject> t_parent);
+	void setParent(GameObject* t_parent);
 	std::shared_ptr<Transform> getTransform() { return transform; }
 
 	virtual void Start() {}
@@ -25,7 +27,7 @@ public:
 	virtual void sendMessage(const std::string& t_messageType) {}
 	virtual void sendMessage(const std::string& t_messageType, std::any t_messageParameters) {}
 protected:
-	std::shared_ptr<GameObject> parent;
+	GameObject* parent;
 	std::shared_ptr<Transform> transform;
 	bool enabled = true;
 };

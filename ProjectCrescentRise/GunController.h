@@ -26,6 +26,6 @@ protected:
 	float timeSinceLastShot = 0.0f;
 	float timeSinceReloadStart = 0.0f;
 
-	float shotDamage = 10.0f;
+	float shotDamage = 100.0f;
 };
 

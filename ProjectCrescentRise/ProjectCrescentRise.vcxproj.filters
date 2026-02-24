@@ -110,6 +110,9 @@
     <Filter Include="Files\Scripts\Player\Gun">
       <UniqueIdentifier>{4c417c56-4385-4d7a-945a-1b85c80336bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Scripts\Renderables\Base">
+      <UniqueIdentifier>{0a7fc617-416f-4b2a-a187-7ec53bb3f448}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderPrograms.cpp">
@@ -187,9 +190,6 @@
     <ClCompile Include="Window.cpp">
       <Filter>Files\Library\Global</Filter>
     </ClCompile>
-    <ClCompile Include="RenderableObject.cpp">
-      <Filter>Files\Library\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="ScriptObject.cpp">
       <Filter>Files\Library\Objects</Filter>
     </ClCompile>
@@ -262,11 +262,14 @@
     <ClCompile Include="GunAttachment.cpp">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClCompile>
-    <ClCompile Include="HealthController.cpp">
-      <Filter>Files</Filter>
-    </ClCompile>
     <ClCompile Include="GunController.cpp">
       <Filter>Files\Scripts\Player\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthController.cpp">
+      <Filter>Files\Scripts\MISC</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderableObject.cpp">
+      <Filter>Files\Scripts\Renderables\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,9 +325,6 @@
       <Filter>Files\Library\Objects</Filter>
     </ClInclude>
     <ClInclude Include="ModelStore.h">
-      <Filter>Files\Library\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderableObject.h">
       <Filter>Files\Library\Objects</Filter>
     </ClInclude>
     <ClInclude Include="ScriptObject.h">
@@ -450,11 +450,14 @@
     <ClInclude Include="Raycast.h">
       <Filter>Files\Library\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="HealthController.h">
-      <Filter>Files</Filter>
-    </ClInclude>
     <ClInclude Include="GunController.h">
       <Filter>Files\Scripts\Player\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthController.h">
+      <Filter>Files\Scripts\MISC</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderableObject.h">
+      <Filter>Files\Scripts\Renderables\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

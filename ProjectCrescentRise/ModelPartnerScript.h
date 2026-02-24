@@ -9,9 +9,8 @@ public:
 	virtual void Start()override;
 	virtual void Render()override;
 
-	std::shared_ptr<Model> m_pairedModel;
+	std::shared_ptr<RenderableObject> m_pairedModel;
 
-	glm::vec3 colour = glm::vec3(255.f, 192.f, 203.f);
 private:
 
 };
