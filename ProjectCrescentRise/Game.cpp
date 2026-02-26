@@ -324,6 +324,8 @@ void Game::initFloor()
 	enemyInstancer.SetSettings(enemySettings);
 
 	enemyModel = std::make_shared<Model>();
+	enemyModel->loadLocation = "./Assets/Mesh/enemy.fbx";
+	enemyModel->textureLoc1 = "./Assets/Images/DogSkin.png";
 
 	auto creatorFuncEnemy = [this]() -> std::shared_ptr<GameObject>
 		{
@@ -332,7 +334,7 @@ void Game::initFloor()
 			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 			
 			m->m_pairedModel = this->enemyModel;
-			m->colour = glm::vec3(0.f, 125.f, 255.f);
+			m->colour = glm::vec3(1.f, 1.f, 1.f);
 			obj->addScript(m);
 
 
@@ -346,8 +348,8 @@ void Game::initFloor()
 			f->rotationSmooth = 1.0f;
 			obj->addScript(f);
 			obj->addScript(std::make_shared<HealthController>());
-			obj->transform->rotation = { 0.0f, 90.0f, 0.0f };
-			obj->transform->scale = { 1.0f, 1.0f, 1.0f };
+			obj->transform->rotation = { 90.0f, 90.0f, 90.0f };
+			obj->transform->scale = { 0.2f, 0.2f, 0.2f };
 
 			obj->tags.emplace_back("shootable");
 			return obj;
