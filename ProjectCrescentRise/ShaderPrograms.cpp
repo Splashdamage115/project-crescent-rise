@@ -773,7 +773,7 @@ void VertexShaders::setUpPlanetShader()
         "    float fresnel = pow(1.0 - max(dot(viewDir, normal), 0.0), 5.0);\n"
         "\n"
         "    float depth = pow(clamp(heightPercent, 0.0, 1.0), 0.6);\n"
-        "    vec3 waterColor = vec3(0.00, 0.12, 0.6);\n"
+        "    vec3 waterColor = vec3(0.00, 0.808, 0.91);\n"
         "\n"
         "    float foamNoise = fract(sin(dot(WorldPos.xz, vec2(12.9898, 78.233))) * 43758.5453);\n"
         "    float foamFactorDepth = smoothstep(0.0, 0.18, depth);\n"

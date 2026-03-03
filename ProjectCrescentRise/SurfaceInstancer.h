@@ -15,6 +15,7 @@ struct InstancerSettings
 	int noiseSeed = 12345;
 	bool useHeightLayerMask = false;
 	uint32_t heightLayerMask = 0xFFFFFFFFu;
+	int passesPerFace = 16;
 };
 
 using InstanceCreatorFunc = std::function<std::shared_ptr<GameObject>()>;
@@ -31,8 +32,7 @@ public:
 
 	void InstantiateOnSurface(
 		std::shared_ptr<PlanetSurface> planet,
-		InstanceCreatorFunc creator,
-		int samplesPerFace = 64
+		InstanceCreatorFunc creator
 	);
 
 private:

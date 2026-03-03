@@ -6,6 +6,7 @@
 #include "Model.h"
 #include "SurfaceGrass.h"
 #include "CubeSphere.h"
+#include "PlanetSurface.h"
 
 class Game
 {
@@ -14,9 +15,11 @@ public:
 
 	int playGame();
 
-	void initFloor();
+	void initPlanetSurface();
+	void initInstancedObjects();
 
 	static double deltaTime;	
+	static std::shared_ptr<PlanetSurface> g_planetScript;
 private:
 	std::shared_ptr<mouseKeyInput> mski;
 	std::shared_ptr<GameObject> PlanetObj;

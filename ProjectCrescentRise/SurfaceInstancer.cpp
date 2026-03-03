@@ -6,8 +6,7 @@
 
 void SurfaceInstancer::InstantiateOnSurface(
 	std::shared_ptr<PlanetSurface> planet,
-	InstanceCreatorFunc creator,
-	int samplesPerFace
+	InstanceCreatorFunc creator
 )
 {
 	if (!planet || !creator)
@@ -27,7 +26,7 @@ void SurfaceInstancer::InstantiateOnSurface(
 	int totalInstances = 0;
 	for (int faceIdx = 0; faceIdx < 6; ++faceIdx)
 	{
-		int faceInstances = SampleFace(planet, creator, samplesPerFace, faceNormals[faceIdx]);
+		int faceInstances = SampleFace(planet, creator, m_settings.passesPerFace, faceNormals[faceIdx]);
 		totalInstances += faceInstances;
 	}
 

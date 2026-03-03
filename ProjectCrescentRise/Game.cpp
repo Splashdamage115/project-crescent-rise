@@ -24,8 +24,10 @@
 #include "GunAttachment.h"
 #include "HealthController.h"
 #include "GunController.h"
+#include "EnemyMovement.h"
 
 double Game::deltaTime = 0;
+std::shared_ptr<PlanetSurface> Game::g_planetScript;
 
 void Game::initGame()
 {
@@ -138,7 +140,8 @@ void Game::initGame()
 	GameObjects::addNewObjectToPool(Enemy);
 	// - - - !ENEMY - - - 
 
-	initFloor();
+	initPlanetSurface();
+	initInstancedObjects();
 }
 
 int Game::playGame()
@@ -158,17 +161,7 @@ int Game::playGame()
 	return 0;
 }
 
-// ground tile
-	//std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
-	//floorObj2->transform->position = { 0.0f, -2.0f, -2.0f };
-	//floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
-	//floorObj2->addScript(std::make_shared<GroundTile>());
-	//if(floorObj != nullptr) floorObj->active = false;
-	//floorObj = floorObj2;
-	//GameObjects::addNewObjectToPool(floorObj2);
-
-
-void Game::initFloor()
+void Game::initPlanetSurface()
 {
 	// initialise
 	waterObj = std::make_shared<GameObject>();
@@ -208,10 +201,16 @@ void Game::initFloor()
 	Window::Get().initPlanet();
 
 	auto planetScript = std::static_pointer_cast<PlanetSurface>(planet);
-	glm::vec3 planetCenter = planetScript->getTransform()->position;
-	
+
+	g_planetScript = planetScript;
+}
+
+void Game::initInstancedObjects()
+{
+	glm::vec3 planetCenter = g_planetScript->getTransform()->position;
+
 	SurfaceInstancer instancer1;
-	
+
 	InstancerSettings settings1;
 	settings1.density = 1.0f;
 	settings1.noiseScale = 100.0f;
@@ -219,22 +218,23 @@ void Game::initFloor()
 	settings1.noiseSeed = rand();
 	settings1.useHeightLayerMask = true;
 	settings1.heightLayerMask = 2;
-	
+	settings1.passesPerFace = 64;
+
 	instancer1.SetSettings(settings1);
 
 	grassModel = std::make_shared<SurfaceGrass>();
-	
+
 	auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
-	{
-		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-		obj->addScript(this->grassModel);
-		obj->addScript(std::make_shared<OrientToSurface>());
-		obj->transform->rotation = { 180.0f, 0.0f, 0.0f };
-		obj->transform->scale = { 1.0f, 1.0f, 1.0f };
-		return obj;
-	};
-	
-	instancer1.InstantiateOnSurface(planetScript, creatorFunc, 64);
+		{
+			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+			obj->addScript(this->grassModel);
+			obj->addScript(std::make_shared<OrientToSurface>());
+			obj->transform->rotation = { 180.0f, 0.0f, 0.0f };
+			obj->transform->scale = { 1.0f, 1.0f, 1.0f };
+			return obj;
+		};
+
+	instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
 
 	SurfaceInstancer instancerTree;
 
@@ -245,6 +245,7 @@ void Game::initFloor()
 	settingsTree.noiseSeed = rand();
 	settingsTree.useHeightLayerMask = true;
 	settingsTree.heightLayerMask = 2;
+	settingsTree.passesPerFace = 8;
 
 	instancerTree.SetSettings(settingsTree);
 
@@ -266,7 +267,7 @@ void Game::initFloor()
 			return obj;
 		};
 
-	instancerTree.InstantiateOnSurface(planetScript, creatorFuncTree, 8);
+	instancerTree.InstantiateOnSurface(g_planetScript, creatorFuncTree);
 
 
 	SurfaceInstancer instancer2;
@@ -278,6 +279,7 @@ void Game::initFloor()
 	settings2.noiseSeed = rand();
 	settings2.useHeightLayerMask = true;
 	settings2.heightLayerMask = 1;
+	settings2.passesPerFace = 32;
 
 	instancer2.SetSettings(settings2);
 
@@ -301,13 +303,13 @@ void Game::initFloor()
 			obj->addScript(m);
 			obj->addScript(this->rockModel);
 			obj->addScript(std::make_shared<OrientToSurface>());
-			obj->transform->rotation = { 180.0f, rand() % 180, 0.0f};
+			obj->transform->rotation = { 180.0f, rand() % 180, 0.0f };
 			float size = ((rand() % 50) / 100.f) + 0.2f;
 			obj->transform->scale = { size , size, size };
 			return obj;
 		};
 
-	instancer2.InstantiateOnSurface(planetScript, creatorFunc2, 32);
+	instancer2.InstantiateOnSurface(g_planetScript, creatorFunc2);
 
 
 
@@ -320,6 +322,7 @@ void Game::initFloor()
 	enemySettings.noiseSeed = rand();
 	enemySettings.useHeightLayerMask = true;
 	enemySettings.heightLayerMask = 1;
+	enemySettings.passesPerFace = (DEBUG_MODE) ? 8 : 16;
 
 	enemyInstancer.SetSettings(enemySettings);
 
@@ -332,21 +335,21 @@ void Game::initFloor()
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
 			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
-			
+
 			m->m_pairedModel = this->enemyModel;
 			m->colour = glm::vec3(1.f, 1.f, 1.f);
 			obj->addScript(m);
 
-
-			std::shared_ptr<Mover> t = std::make_shared<Mover>();
-			t->velocity = glm::vec3(1.0f, 0.f, 0.f);
-			obj->addScript(t);
-
 			obj->addScript(this->enemyModel);
 			std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
 			f->heightOffset = 0.0f;
-			f->rotationSmooth = 1.0f;
+			f->rotationSmooth = 15.0f;
 			obj->addScript(f);
+			
+			
+			std::shared_ptr<EnemyMovement> t = std::make_shared<EnemyMovement>();
+			obj->addScript(t);
+
 			obj->addScript(std::make_shared<HealthController>());
 			obj->transform->rotation = { 90.0f, 90.0f, 90.0f };
 			obj->transform->scale = { 0.2f, 0.2f, 0.2f };
@@ -355,8 +358,16 @@ void Game::initFloor()
 			return obj;
 		};
 
-	enemyInstancer.InstantiateOnSurface(planetScript, creatorFuncEnemy, 16);
+	enemyInstancer.InstantiateOnSurface(g_planetScript, creatorFuncEnemy);
 
-
-	static std::shared_ptr<PlanetSurface> g_planetScript = planetScript;
 }
+
+// ground tile
+	//std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();
+	//floorObj2->transform->position = { 0.0f, -2.0f, -2.0f };
+	//floorObj2->transform->scale = { 1.0f, 1.0f, 1.0f };
+	//floorObj2->addScript(std::make_shared<GroundTile>());
+	//if(floorObj != nullptr) floorObj->active = false;
+	//floorObj = floorObj2;
+	//GameObjects::addNewObjectToPool(floorObj2);
+

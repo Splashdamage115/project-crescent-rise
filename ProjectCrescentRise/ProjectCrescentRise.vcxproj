@@ -140,12 +140,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedTextureStore.cpp" />
     <ClCompile Include="billboard2D.cpp" />
     <ClCompile Include="CameraFeed.h" />
     <ClCompile Include="ChatBoxText.cpp" />
     <ClCompile Include="CommandInterpreter.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="CubeSphere.cpp" />
+    <ClCompile Include="EnemyMovement.cpp" />
     <ClCompile Include="GunAttachment.cpp" />
     <ClCompile Include="GunController.cpp" />
     <ClCompile Include="HealthController.cpp" />
@@ -194,12 +196,14 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedTextureStore.h" />
     <ClInclude Include="billboard2D.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ChatBoxText.h" />
     <ClInclude Include="CommandInterpreter.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeSphere.h" />
+    <ClInclude Include="EnemyMovement.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="GunAttachment.h" />
     <ClInclude Include="GunController.h" />
