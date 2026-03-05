@@ -7,6 +7,8 @@ class SurfaceGrass : public RenderableObject
 public:
 	virtual void Start()override;
 	virtual void Render()override;
+
+	std::string grassTextureLoc = "./Assets/Images/grass.png";
 private:
 	GLint uColourLoc = -1;
 	GLuint textureLoc = -1;

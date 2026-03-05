@@ -13,7 +13,7 @@ public:
 	float positionSmooth = 15.0f;
 	float rotationSmooth = 10.0f;
 
-	bool preserveYaw = true;
+	bool preserveYaw = false;
 
 	virtual void Start() override;
 	virtual void Update() override;

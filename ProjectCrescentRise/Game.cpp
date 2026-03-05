@@ -209,32 +209,7 @@ void Game::initInstancedObjects()
 {
 	glm::vec3 planetCenter = g_planetScript->getTransform()->position;
 
-	SurfaceInstancer instancer1;
-
-	InstancerSettings settings1;
-	settings1.density = 1.0f;
-	settings1.noiseScale = 100.0f;
-	settings1.noiseThreshold = 10.0f;
-	settings1.noiseSeed = rand();
-	settings1.useHeightLayerMask = true;
-	settings1.heightLayerMask = 2;
-	settings1.passesPerFace = 64;
-
-	instancer1.SetSettings(settings1);
-
-	grassModel = std::make_shared<SurfaceGrass>();
-
-	auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
-		{
-			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-			obj->addScript(this->grassModel);
-			obj->addScript(std::make_shared<OrientToSurface>());
-			obj->transform->rotation = { 180.0f, 0.0f, 0.0f };
-			obj->transform->scale = { 1.0f, 1.0f, 1.0f };
-			return obj;
-		};
-
-	instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
+	initSurfaceGrass();
 
 	SurfaceInstancer instancerTree;
 
@@ -334,6 +309,9 @@ void Game::initInstancedObjects()
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
+			obj->transform->scale = { 0.2f, 0.2f, 0.2f };
+			obj->transform->rotation = { -90.0f, 0.0f, 0.0f };
+
 			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 
 			m->m_pairedModel = this->enemyModel;
@@ -343,16 +321,19 @@ void Game::initInstancedObjects()
 			obj->addScript(this->enemyModel);
 			std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
 			f->heightOffset = 0.0f;
-			f->rotationSmooth = 15.0f;
+			f->positionSmooth = 10.0f;
 			obj->addScript(f);
-			
-			
+
+			std::shared_ptr<OrientToSurface> o = std::make_shared<OrientToSurface>();
+			o->constantOrient = true;
+			o->facePlayer = true;
+			o->rotationSmooth = 3.0f;
+			obj->addScript(o);
+
 			std::shared_ptr<EnemyMovement> t = std::make_shared<EnemyMovement>();
 			obj->addScript(t);
 
 			obj->addScript(std::make_shared<HealthController>());
-			obj->transform->rotation = { 90.0f, 90.0f, 90.0f };
-			obj->transform->scale = { 0.2f, 0.2f, 0.2f };
 
 			obj->tags.emplace_back("shootable");
 			return obj;
@@ -360,6 +341,47 @@ void Game::initInstancedObjects()
 
 	enemyInstancer.InstantiateOnSurface(g_planetScript, creatorFuncEnemy);
 
+}
+
+void Game::initSurfaceGrass()
+{
+	std::vector<std::string> grassTextures =
+	{
+		"./Assets/Images/grass.png",
+	};
+
+	for (int i = 0; i < grassTextures.size(); i++)
+	{
+		SurfaceInstancer instancer1;
+
+		InstancerSettings settings1;
+		settings1.density = 1.0f;
+		settings1.noiseScale = 100.0f;
+		settings1.noiseThreshold = 10.0f;
+		settings1.noiseSeed = rand();
+		settings1.useHeightLayerMask = true;
+		settings1.heightLayerMask = 2;
+		settings1.passesPerFace = 128;
+
+		instancer1.SetSettings(settings1);
+
+		grassModels.emplace_back(std::make_shared<SurfaceGrass>());
+		grassModels.back()->grassTextureLoc = grassTextures[i];
+
+		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
+			{
+				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+				obj->addScript(this->grassModels.back());
+				obj->addScript(std::make_shared<OrientToSurface>());
+				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
+				float randScale = ((rand() % 50) / 100.f) + 0.75f;
+				float extraHeight = ((rand() % 50) / 100.f);
+				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
+				return obj;
+			};
+
+		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
+	}
 }
 
 // ground tile

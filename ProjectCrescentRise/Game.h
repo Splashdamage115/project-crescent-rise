@@ -17,6 +17,7 @@ public:
 
 	void initPlanetSurface();
 	void initInstancedObjects();
+	void initSurfaceGrass();
 
 	static double deltaTime;	
 	static std::shared_ptr<PlanetSurface> g_planetScript;
@@ -34,7 +35,7 @@ private:
 
 	std::shared_ptr <Model> treeModel;
 	std::shared_ptr <Model> rockModel;
-	std::shared_ptr<SurfaceGrass> grassModel;
+	std::vector<std::shared_ptr<SurfaceGrass>> grassModels;
 	std::shared_ptr <Model> enemyModel;
 };
 

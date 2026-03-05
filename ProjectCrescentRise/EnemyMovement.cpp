@@ -35,6 +35,7 @@ void EnemyMovement::Update()
 	if(canSeePlayer)
 	{
 		glm::vec3 direction = glm::normalize(playerPos - enemyPos);
-		transform->position += direction * (float)Game::deltaTime * 5.f;
+		transform->position += direction * (float)Game::deltaTime * m_moveSpeed;
+		//transform->rotation.y = displacementToDegrees(direction);
 	}
 }

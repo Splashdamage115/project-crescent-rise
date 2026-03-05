@@ -8,12 +8,12 @@ void SurfaceGrass::Start()
 
     float points[] = {
         // positions          // texture coords
-        0.5f,   0.5f,  0.0f,   1.0f, 1.0f,
-        0.5f,  -0.5f,  0.0f,   1.0f, 0.0f,
-        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f,
-        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f,
-        -0.5f,  0.5f,  0.0f,   0.0f, 1.0f,
-        0.5f,   0.5f,  0.0f,   1.0f, 1.0f
+        0.5f,   0.5f,  0.0f,   0.0f, 0.0f,
+        0.5f,  -0.5f,  0.0f,   0.0f, 1.0f,
+        -0.5f, -0.5f,  0.0f,   1.0f, 1.0f,
+        -0.5f, -0.5f,  0.0f,   1.0f, 1.0f,
+        -0.5f,  0.5f,  0.0f,   1.0f, 0.0f,
+        0.5f,   0.5f,  0.0f,   0.0f, 0.0f
     };
 
     glGenBuffers(1, &m_body.vbo);
@@ -42,10 +42,10 @@ void SurfaceGrass::Start()
 
     m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::billboard, Shader::FragmentShaderType::billboard);
 
-    textureID = TextureStore::RetrieveTexture("./Assets/Images/grass.png");
+    textureID = TextureStore::RetrieveTexture(grassTextureLoc);
 
 
-    heightMapID = TextureStore::RetrieveNormals("./Assets/Images/grass.png");
+    heightMapID = TextureStore::RetrieveNormals(grassTextureLoc);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");

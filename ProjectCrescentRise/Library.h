@@ -25,6 +25,18 @@ inline static float radiansToDegrees(float t_radians)
     return t_radians * 180.f / PI;
 }
 
+static float displacementToDegrees(glm::vec3 t_displacement)
+{
+    float angle = radiansToDegrees(std::atan2f(t_displacement.x, t_displacement.z));
+    if (angle < 0.f)
+        angle = 360.f + angle;
+    if (angle > 360.f)
+    {
+        angle = angle - 360.f;
+    }
+    return angle;
+}
+
 struct Transform {
 	glm::vec3 position = glm::vec3(0.0f);
 	glm::vec3 rotation = glm::vec3(0.0f);

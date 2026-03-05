@@ -9,5 +9,6 @@ public:
 	void Update() override;
 private:
 	bool canSeePlayer = false;
+	float m_moveSpeed = 5.0f;
 };
 
