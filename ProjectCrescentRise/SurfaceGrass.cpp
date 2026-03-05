@@ -4,7 +4,7 @@
 
 void SurfaceGrass::Start()
 {
-    renderPriority = RenderPriority::Cull;
+    renderPriority = (cull) ? RenderPriority::Cull : RenderPriority::noCull;
 
     float points[] = {
         // positions          // texture coords
@@ -86,7 +86,9 @@ void SurfaceGrass::Render()
     static const float kTiltAngles[6] = { 20.f, -30.f,10.f, 3.f, 3.5f, -1.f };
     static const float kHeightScales[6] = { 0.85f, 1.00f, 1.10f, 0.90f, 1.05f, 0.95f };
 
-    glDepthMask(GL_FALSE);
+    //glDepthMask(GL_FALSE);
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.5f);
     for (int i = 0; i < billboardAmt; ++i)
     {
         glm::mat4 newModel = model;

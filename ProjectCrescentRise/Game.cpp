@@ -209,7 +209,6 @@ void Game::initInstancedObjects()
 {
 	glm::vec3 planetCenter = g_planetScript->getTransform()->position;
 
-	initSurfaceGrass();
 
 	SurfaceInstancer instancerTree;
 
@@ -341,6 +340,9 @@ void Game::initInstancedObjects()
 
 	enemyInstancer.InstantiateOnSurface(g_planetScript, creatorFuncEnemy);
 
+	initSurfaceGrass();
+
+
 }
 
 void Game::initSurfaceGrass()
@@ -348,6 +350,17 @@ void Game::initSurfaceGrass()
 	std::vector<std::string> grassTextures =
 	{
 		"./Assets/Images/grass.png",
+		"./Assets/Images/grass2.png",
+		"./Assets/Images/grass3.png"
+	};
+	int sizeDecrease = 1;
+	if (DEBUG_MODE) sizeDecrease = 4;
+
+	std::vector<int> spawnAmt =
+	{
+		256 / sizeDecrease,
+		32  / sizeDecrease,
+		128 / sizeDecrease
 	};
 
 	for (int i = 0; i < grassTextures.size(); i++)
@@ -361,7 +374,7 @@ void Game::initSurfaceGrass()
 		settings1.noiseSeed = rand();
 		settings1.useHeightLayerMask = true;
 		settings1.heightLayerMask = 2;
-		settings1.passesPerFace = 128;
+		settings1.passesPerFace = spawnAmt.at(i);
 
 		instancer1.SetSettings(settings1);
 
@@ -382,7 +395,72 @@ void Game::initSurfaceGrass()
 
 		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
 	}
+
+	{
+		SurfaceInstancer instancer1;
+
+		InstancerSettings settings1;
+		settings1.density = 1.0f;
+		settings1.noiseScale = 100.0f;
+		settings1.noiseThreshold = 10.0f;
+		settings1.noiseSeed = rand();
+		settings1.useHeightLayerMask = true;
+		settings1.heightLayerMask = 2;
+		settings1.passesPerFace = 16 / sizeDecrease;
+
+		instancer1.SetSettings(settings1);
+
+		grassModels.emplace_back(std::make_shared<SurfaceGrass>());
+		grassModels.back()->grassTextureLoc = "./Assets/Images/bush.png";
+
+		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
+			{
+				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+				obj->addScript(this->grassModels.back());
+				obj->addScript(std::make_shared<OrientToSurface>());
+				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
+				float randScale = ((rand() % 50) / 100.f) + 3.75f;
+				float extraHeight = ((rand() % 50) / 100.f);
+				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
+				return obj;
+			};
+
+		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
+	}
+
+	{
+		SurfaceInstancer instancer1;
+
+		InstancerSettings settings1;
+		settings1.density = 1.0f;
+		settings1.noiseScale = 100.0f;
+		settings1.noiseThreshold = 10.0f;
+		settings1.noiseSeed = rand();
+		settings1.useHeightLayerMask = true;
+		settings1.heightLayerMask = 2;
+		settings1.passesPerFace = 8 / sizeDecrease;
+
+		instancer1.SetSettings(settings1);
+
+		grassModels.emplace_back(std::make_shared<SurfaceGrass>());
+		grassModels.back()->grassTextureLoc = "./Assets/Images/bush.png";
+		grassModels.back()->cull = false;
+		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
+			{
+				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+				obj->addScript(this->grassModels.back());
+				obj->addScript(std::make_shared<OrientToSurface>());
+				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
+				float randScale = ((rand() % 50) / 100.f) + 3.75f;
+				float extraHeight = ((rand() % 50) / 100.f);
+				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
+				return obj;
+			};
+
+		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
+	}
 }
+
 
 // ground tile
 	//std::shared_ptr<GameObject> floorObj2 = std::make_shared<GameObject>();

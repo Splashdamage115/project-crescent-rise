@@ -8,6 +8,7 @@ public:
 	virtual void Start()override;
 	virtual void Render()override;
 
+	bool cull = true;
 	std::string grassTextureLoc = "./Assets/Images/grass.png";
 private:
 	GLint uColourLoc = -1;
