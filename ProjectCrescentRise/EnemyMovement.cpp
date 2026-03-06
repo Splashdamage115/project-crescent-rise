@@ -10,6 +10,8 @@ void EnemyMovement::Start()
 
 void EnemyMovement::Update()
 {
+	if (!moving) return;
+
 	glm::vec3 playerPos = PlayerInput::playerPosition;
 	
 	glm::vec3 enemyPos = transform->position;

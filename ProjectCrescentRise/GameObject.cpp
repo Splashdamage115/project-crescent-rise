@@ -74,3 +74,15 @@ void GameObject::sendMessage(const std::string& t_messageType, std::any t_messag
 	}
 }
 
+std::shared_ptr<ScriptObject> GameObject::getScriptOfType(const std::type_info& t_type)
+{
+	for (auto& i : m_scripts)
+	{
+		if (typeid(*i) == t_type)
+		{
+			return i;
+		}
+	}
+	return nullptr;
+}
+

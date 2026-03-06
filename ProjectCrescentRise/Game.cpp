@@ -230,6 +230,7 @@ void Game::initInstancedObjects()
 	auto creatorFuncTree = [this]() -> std::shared_ptr<GameObject>
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+
 			//std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 			//m->m_pairedModel = this->treeModel;
 			//obj->addScript(m);
@@ -264,6 +265,7 @@ void Game::initInstancedObjects()
 	auto creatorFunc2 = [this]() -> std::shared_ptr<GameObject>
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+
 			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 			obj->tags.emplace_back("interactible");
 
@@ -285,8 +287,20 @@ void Game::initInstancedObjects()
 
 	instancer2.InstantiateOnSurface(g_planetScript, creatorFunc2);
 
+	instantiateEnemies();
+
+	initSurfaceGrass();
 
 
+}
+
+
+
+
+
+
+void Game::instantiateEnemies()
+{
 	SurfaceInstancer enemyInstancer;
 
 	InstancerSettings enemySettings;
@@ -298,52 +312,77 @@ void Game::initInstancedObjects()
 	enemySettings.heightLayerMask = 1;
 	enemySettings.passesPerFace = (DEBUG_MODE) ? 8 : 16;
 
+
+
 	enemyInstancer.SetSettings(enemySettings);
+
+
 
 	enemyModel = std::make_shared<Model>();
 	enemyModel->loadLocation = "./Assets/Mesh/enemy.fbx";
 	enemyModel->textureLoc1 = "./Assets/Images/DogSkin.png";
 
+
+
 	auto creatorFuncEnemy = [this]() -> std::shared_ptr<GameObject>
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
+
+			// set scale
 			obj->transform->scale = { 0.2f, 0.2f, 0.2f };
 			obj->transform->rotation = { -90.0f, 0.0f, 0.0f };
 
-			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 
+
+			// connect model partner and model
+			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 			m->m_pairedModel = this->enemyModel;
 			m->colour = glm::vec3(1.f, 1.f, 1.f);
 			obj->addScript(m);
 
+
+
+			// attach the enemy to the planet surface
 			obj->addScript(this->enemyModel);
 			std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
 			f->heightOffset = 0.0f;
 			f->positionSmooth = 10.0f;
 			obj->addScript(f);
 
+
+
+			// orinet on the surface of the planet
 			std::shared_ptr<OrientToSurface> o = std::make_shared<OrientToSurface>();
 			o->constantOrient = true;
 			o->facePlayer = true;
 			o->rotationSmooth = 3.0f;
 			obj->addScript(o);
 
+
+
+			// enemy movement scripts
 			std::shared_ptr<EnemyMovement> t = std::make_shared<EnemyMovement>();
 			obj->addScript(t);
 
+
+			// control enemy health and death
 			obj->addScript(std::make_shared<HealthController>());
 
+
+			// allow the player to shoot the enemy
 			obj->tags.emplace_back("shootable");
 			return obj;
 		};
 
 	enemyInstancer.InstantiateOnSurface(g_planetScript, creatorFuncEnemy);
 
-	initSurfaceGrass();
-
-
 }
+
+
+
+
+
 
 void Game::initSurfaceGrass()
 {

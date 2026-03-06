@@ -10,6 +10,8 @@ public:
 
 	bool cull = true;
 	std::string grassTextureLoc = "./Assets/Images/grass.png";
+
+	Transform extraOffset;
 private:
 	GLint uColourLoc = -1;
 	GLuint textureLoc = -1;

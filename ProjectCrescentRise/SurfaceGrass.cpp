@@ -61,7 +61,16 @@ void SurfaceGrass::Render()
 
     glBindVertexArray(m_body.vao);
 
-    glm::mat4 model = transform ? ToModelMatrix(*transform) : glm::mat4(1.0f);
+    Transform localOffset = extraOffset;
+    glm::mat4 model;
+    if(transform)
+    {
+        model = ToModelMatrix(*transform + localOffset);
+    }
+    else
+    {
+        model = ToModelMatrix(localOffset);
+    }
     glm::mat4 view = Window::Get().GetView();
     glm::mat4 proj = Window::Get().GetProj();
 

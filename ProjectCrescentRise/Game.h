@@ -17,6 +17,7 @@ public:
 
 	void initPlanetSurface();
 	void initInstancedObjects();
+	void instantiateEnemies();
 	void initSurfaceGrass();
 
 	static double deltaTime;	

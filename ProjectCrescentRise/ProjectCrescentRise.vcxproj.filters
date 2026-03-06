@@ -116,6 +116,9 @@
     <Filter Include="Files\Scripts\Enemy">
       <UniqueIdentifier>{10ec7e72-b7f2-4fac-b322-5e21b1bbef89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Scripts\Enemy\EnemyFiniteStateMachine">
+      <UniqueIdentifier>{f05f82f2-6859-4d01-b749-e82b0c46fbd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderPrograms.cpp">

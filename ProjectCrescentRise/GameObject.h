@@ -15,6 +15,7 @@ public:
 
 	virtual void sendMessage(const std::string& t_messageType);
 	virtual void sendMessage(const std::string& t_messageType, std::any t_messageParameters);
+	std::shared_ptr<ScriptObject> getScriptOfType(const std::type_info& t_type);
 
 	std::shared_ptr<Transform> transform;
 
