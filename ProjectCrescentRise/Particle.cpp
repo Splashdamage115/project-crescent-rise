@@ -5,16 +5,14 @@
 
 void Particle::Start()
 {
-	AnimatedTextureStore::AddAnimatedTexture("./Assets/Images/Particles/basicParticle.png", glm::vec2(92.7777777777f, 88.44444444444f), 835.f, 796.f, 81);
-
-    float points[] = {
+        float points[] = {
         // positions          // texture coords
-        0.5f,   0.5f,  0.0f,   1.0f, 1.0f,
-        0.5f,  -0.5f,  0.0f,   1.0f, 0.0f,
-        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f,
-        -0.5f, -0.5f,  0.0f,   0.0f, 0.0f,
-        -0.5f,  0.5f,  0.0f,   0.0f, 1.0f,
-        0.5f,   0.5f,  0.0f,   1.0f, 1.0f
+        0.5f,   0.5f,  0.0f,   0.0f, 0.0f,
+        0.5f,  -0.5f,  0.0f,   0.0f, 1.0f,
+        -0.5f, -0.5f,  0.0f,   1.0f, 1.0f,
+        -0.5f, -0.5f,  0.0f,   1.0f, 1.0f,
+        -0.5f,  0.5f,  0.0f,   1.0f, 0.0f,
+        0.5f,   0.5f,  0.0f,   0.0f, 0.0f
     };
 
     glGenBuffers(1, &m_body.vbo);
@@ -33,19 +31,22 @@ void Particle::Start()
 
     m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::Particle, Shader::FragmentShaderType::Particle);
 
-    textureID = TextureStore::RetrieveTexture("./Assets/Images/grass.png");
-
-
-    heightMapID = TextureStore::RetrieveNormals("./Assets/Images/grass.png");
-
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
     uViewLoc = glGetUniformLocation(m_shader->shaderPair, "uView");
     uProjLoc = glGetUniformLocation(m_shader->shaderPair, "uProj");
     uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
     textureLoc = glGetUniformLocation(m_shader->shaderPair, "uTexture");
-    heightLoc = glGetUniformLocation(m_shader->shaderPair, "uHeightMap");
 	UVPositionLoc = glGetUniformLocation(m_shader->shaderPair, "UVPosition");
 
+	initialiseData();
+}
+
+void Particle::initialiseData()
+{
+	frameTimeLeft = frameTime;
+	frameSize.x = textureSize.x / frameAmt.x;
+    frameSize.y = textureSize.y / frameAmt.y;
+    AnimatedTextureStore::AddAnimatedTexture(textureLocation, frameSize, textureSize, frameAmt.x * frameAmt.y);
 }
 
 void Particle::Update()
@@ -54,7 +55,7 @@ void Particle::Update()
     if (frameTimeLeft <= 0.f)
     {
         currentFrame++;
-        frameTimeLeft = 0.02f;
+        frameTimeLeft = frameTime;
     }
 }
 
@@ -64,27 +65,27 @@ void Particle::Render()
 
     glBindVertexArray(m_body.vao);
 
-    glm::mat4 model = transform ? ToModelMatrix(*transform) : glm::mat4(1.0f);
     glm::mat4 view = Window::Get().GetView();
+
+    glm::vec3 right = glm::vec3(view[0][0], view[1][0], view[2][0]);
+    glm::vec3 up = glm::vec3(view[0][1], view[1][1], view[2][1]);
+    glm::vec3 forward = glm::vec3(view[0][2], view[1][2], view[2][2]);
+
+    glm::mat4 billboard = glm::mat4(1.0f);
+    billboard[0] = glm::vec4(right, 0.0f);
+    billboard[1] = glm::vec4(up, 0.0f);
+    billboard[2] = glm::vec4(forward, 0.0f);
+
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), transform->position) * billboard;
+    
     glm::mat4 proj = Window::Get().GetProj();
     glm::vec4 uv;
-	if (AnimatedTextureStore::RetrieveAnimatedTexture("./Assets/Images/Particles/basicParticle.png", currentFrame, uv))
+	if (AnimatedTextureStore::RetrieveAnimatedTexture(textureLocation, currentFrame, uv))
     {
         if(UVPositionLoc != -1)
 			glUniform4f(UVPositionLoc, uv.x, uv.y, uv.z, uv.w);
-    }
-    else
-    {
-        if (textureLoc != -1 && heightMapID != -1 && heightLoc != -1 && textureID != -1)
-        {
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D, textureID);
+        if (textureLoc != -1)
             glUniform1i(textureLoc, 0);
-
-            glActiveTexture(GL_TEXTURE1);
-            glBindTexture(GL_TEXTURE_2D, heightMapID);
-            glUniform1i(heightLoc, 1);
-        }
     }
 
     if (uModelLoc >= 0) glUniformMatrix4fv(uModelLoc, 1, GL_FALSE, glm::value_ptr(model));

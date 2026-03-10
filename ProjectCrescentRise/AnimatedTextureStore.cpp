@@ -3,7 +3,7 @@
 
 std::vector<AnimatedTexture> AnimatedTextureStore::m_animatedTextures;
 
-void AnimatedTextureStore::AddAnimatedTexture(std::string t_textureLocation, glm::vec2 t_frameSize, float t_frameWidth, float frameHeight, int t_frameAmt)
+void AnimatedTextureStore::AddAnimatedTexture(std::string t_textureLocation, glm::vec2 t_frameSize, glm::vec2 t_textureSize, int t_frameAmt)
 {
 	for (unsigned int i = 0; i < m_animatedTextures.size(); i++)
 	{
@@ -16,8 +16,8 @@ void AnimatedTextureStore::AddAnimatedTexture(std::string t_textureLocation, glm
 	newTexture.textureLocation = t_textureLocation;
 	newTexture.textureID = TextureStore::RetrieveTexture(t_textureLocation);
 	newTexture.frameSize = t_frameSize;
-	newTexture.frameWidth = t_frameWidth;
-	newTexture.frameHeight = frameHeight;
+	newTexture.frameWidth = t_textureSize.x;
+	newTexture.frameHeight = t_textureSize.y;
 	newTexture.frameAmt = t_frameAmt;
 
 	float yPos = 0.f;
@@ -28,7 +28,7 @@ void AnimatedTextureStore::AddAnimatedTexture(std::string t_textureLocation, glm
 	{
 		xPos += t_frameSize.x;
 
-		if (xPos + t_frameSize.x > t_frameWidth)
+		if (xPos + t_frameSize.x > t_textureSize.x)
 		{
 			xPos = 0.f;
 			yPos += t_frameSize.y;

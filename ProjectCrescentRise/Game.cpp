@@ -517,9 +517,31 @@ void Game::initSurfaceGrass()
 				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 				obj->addScript(std::make_shared<OrientToSurface>());
 				std::shared_ptr<Particle> muzzleFlash = std::make_shared<Particle>();
+				int chosen = rand() % 2;
+
+				switch (chosen)
+				{
+					case 0:
+						muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
+						muzzleFlash->frameAmt = glm::vec2(9, 9);
+						muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
+						break;
+					case 1:
+						muzzleFlash->textureLocation = "./Assets/Images/Particles/explosion1.png";
+						muzzleFlash->frameAmt = glm::vec2(10, 5);
+						muzzleFlash->textureSize = glm::vec2(1000.f, 500.f);
+						break;
+					case 2:
+						muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
+						muzzleFlash->frameAmt = glm::vec2(9, 9);
+						muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
+						break;
+					default:
+					break;
+				}
+
 				obj->addScript(muzzleFlash);
-				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
-				float randScale = ((rand() % 50) / 100.f) + 3.75f;
+				float randScale = ((rand() % 50) / 100.f) + 30.75f;
 				float extraHeight = ((rand() % 50) / 100.f);
 				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
 				return obj;
