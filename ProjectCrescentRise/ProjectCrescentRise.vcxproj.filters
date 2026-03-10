@@ -283,6 +283,9 @@
     <ClCompile Include="EnemyMovement.cpp">
       <Filter>Files\Scripts\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Files\Scripts\Renderables\Billboard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -476,6 +479,9 @@
     </ClInclude>
     <ClInclude Include="EnemyMovement.h">
       <Filter>Files\Scripts\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Files\Scripts\Renderables\Billboard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

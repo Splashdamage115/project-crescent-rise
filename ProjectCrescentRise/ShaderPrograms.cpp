@@ -409,6 +409,160 @@ void VertexShaders::initialise()
 
     mountShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
 
+
+    // - - - - - - - - - - - - - - - 
+    //  Lit Particle
+    // - - - - - - - - - - - - - - - 
+
+
+    const char* LitParticleVert =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTex;\n"
+        "\n"
+        "out vec2 vTex;\n"
+        "\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "void main() {\n"
+        "    vTex = aTex;\n"
+        "    gl_Position = uProj * uView * uModel * vec4(aPos, 1.0);\n"
+        "}\n";
+
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTex;\n"
+        "layout (location = 2) in vec3 aNormal;\n"
+        "layout (location = 3) in float aMaterialID;\n"
+
+        "uniform vec4 UVPosition;\n"
+        "uniform vec3 CenterPoint;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+
+		"out vec2 vUV;\n"
+        "out vec2 vTex;\n"
+        "out vec3 WorldPos;\n"
+        "out vec3 bNormal;\n"
+        "out float vMaterialID;\n"
+
+        "void main() {\n"
+        "    vUV = mix(UVPosition.xy, UVPosition.zw, aTex);\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    WorldPos = worldPos.xyz;\n"
+        "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
+        "    vTex = aTex;\n"
+        "    vMaterialID = aMaterialID;\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::LitParticle;
+    newVertexPair.file = LitParticleVert;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* LitParticleFragment =
+        "#version 410 core\n"
+        "in vec2 vTex;\n"
+        "in vec3 WorldPos;\n"
+        "in vec3 bNormal;\n"
+        "in float vMaterialID;\n"
+        "in vec2 vUV;\n"
+        "out vec4 FragColor;\n"
+        "uniform sampler2D uTexture;\n"
+        "uniform sampler2D uTexture2;\n"
+        "uniform vec3 colour;\n"
+        "uniform sampler2D uHeightMap;\n"
+        "uniform bool uHighlight;\n"
+        "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
+        "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
+        "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
+        "void main() {\n"
+        "    vec3 norm = normalize(bNormal);\n"
+        "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
+        "    float height = texture(uHeightMap, vUV).r;\n"
+        "    vec2 parallaxUV = vUV - viewDir.xy * (height * 0.08);\n"
+        "    vec4 texColor = vMaterialID < 0.5 ? texture(uTexture, parallaxUV) : texture(uTexture2, parallaxUV);\n"
+        "    float ambientStrength = 0.2;\n"
+        "    vec3 ambient = ambientStrength * lightColor;\n"
+        "    float diff = max(dot(norm, -lightDir), 0.0);\n"
+        "    vec3 diffuse = diff * lightColor;\n"
+        "    float specularStrength = 0.5;\n"
+        "    vec3 reflectDir = reflect(lightDir, norm);\n"
+        "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
+        "    vec3 specular = specularStrength * spec * lightColor;\n"
+        "    vec3 lighting = (ambient + diffuse) + specular;\n"
+        "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);\n"
+        "    if (uHighlight) {\n"
+        "        float rim = 1.0 - max(dot(viewDir, norm), 0.0);\n"
+        "        float outline = smoothstep(0.55, 1.0, rim);\n"
+        "        FragColor = vec4(mix(FragColor.rgb, vec3(1.0, 1.0, 1.0), outline), FragColor.a);\n"
+        "    }\n"
+        "}\n";
+
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::LitParticle;
+    newFragmentPair.file = LitParticleFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::LitParticle, Shader::FragmentShaderType::LitParticle);
+
+
+
+    // - - - - - - - - - - - - - - - 
+    //  Particle
+    // - - - - - - - - - - - - - - - 
+
+
+
+    const char* ParticleVert =
+        "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTex;\n"
+        "\n"
+        "out vec2 vTex;\n"
+		"out vec2 vUV;\n"
+        "\n"
+        "uniform vec4 UVPosition;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+        "\n"
+        "void main() {\n"
+        "    vUV = mix(UVPosition.xy, UVPosition.zw, aTex);\n"
+        "    vTex = aTex;\n"
+        "    gl_Position = uProj * uView * uModel * vec4(aPos, 1.0);\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::Particle;
+    newVertexPair.file = ParticleVert;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* ParticleFragment =
+        "#version 410 core\n"
+        "in vec2 vTex;\n"
+        "in vec2 vUV;\n"
+        "out vec4 frag_colour;\n"
+        "\n"
+        "uniform sampler2D uTexture;\n"
+        "uniform vec3 colour;\n"
+        "\n"
+        "void main() {\n"
+        "    vec4 texColor = texture(uTexture, vUV);\n"
+        "    frag_colour = texColor * vec4(colour, 1.0);\n"
+        "}\n";
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::Particle;
+    newFragmentPair.file = ParticleFragment;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::Particle, Shader::FragmentShaderType::Particle);
     // - - - - - - - - - - - - - - - 
     //  SKY BOX 
     // - - - - - - - - - - - - - - - 

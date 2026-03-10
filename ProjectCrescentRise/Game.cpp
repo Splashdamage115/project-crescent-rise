@@ -25,6 +25,7 @@
 #include "HealthController.h"
 #include "GunController.h"
 #include "EnemyMovement.h"
+#include "Particle.h"
 
 double Game::deltaTime = 0;
 std::shared_ptr<PlanetSurface> Game::g_planetScript;
@@ -328,7 +329,6 @@ void Game::instantiateEnemies()
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
-
 			// set scale
 			obj->transform->scale = { 0.2f, 0.2f, 0.2f };
 			obj->transform->rotation = { -90.0f, 0.0f, 0.0f };
@@ -498,7 +498,38 @@ void Game::initSurfaceGrass()
 
 		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
 	}
+	{
+		SurfaceInstancer instancer1;
+
+		InstancerSettings settings1;
+		settings1.density = 1.0f;
+		settings1.noiseScale = 100.0f;
+		settings1.noiseThreshold = 10.0f;
+		settings1.noiseSeed = rand();
+		settings1.useHeightLayerMask = true;
+		settings1.heightLayerMask = 2;
+		settings1.passesPerFace = 16 / sizeDecrease;
+
+		instancer1.SetSettings(settings1);
+
+		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
+			{
+				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+				obj->addScript(std::make_shared<OrientToSurface>());
+				std::shared_ptr<Particle> muzzleFlash = std::make_shared<Particle>();
+				obj->addScript(muzzleFlash);
+				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
+				float randScale = ((rand() % 50) / 100.f) + 3.75f;
+				float extraHeight = ((rand() % 50) / 100.f);
+				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
+				return obj;
+			};
+
+		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
+	}
 }
+
+
 
 
 // ground tile
