@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "Raycast.h"
 #include "GameObjects.h"
+#include "ParticleController.h"
+#include "Window.h"
 
 void GunController::Start()
 {
@@ -29,10 +31,50 @@ void GunController::shootWeapon()
 	if (magAmmo > 0 && timeSinceLastShot <= 0.f)
 	{
 		std::cout << "Pew Pew!\n";
+
+		glm::vec3 gunCameraSpace = gunModel->modelOffset.position + muzzleOffset.position;
+		glm::mat4 invView = glm::inverse(Window::Get().GetView());
+		glm::vec4 worldPosition = invView * glm::vec4(gunCameraSpace, 1.0f);
+		glm::vec3 particlePos = glm::vec3(worldPosition);
+		Transform positionOverride;
+		positionOverride.position = particlePos;
+		positionOverride.rotation = glm::vec3(0.f, 0.f, 0.f);
+		positionOverride.scale = glm::vec3(0.5f);
+		shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/basicParticle.png", positionOverride, 0.2f, glm::vec2(9,9), glm::vec2(835.f, 796.f));
+		
+		
+		//std::shared_ptr<Particle> muzzleFlash = std::make_shared<Particle>();
+		//int chosen = rand() % 2;
+		//
+		//switch (chosen)
+		//{
+		//case 0:
+		//	muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
+		//	muzzleFlash->frameAmt = glm::vec2(9, 9);
+		//	muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
+		//	break;
+		//case 1:
+		//	muzzleFlash->textureLocation = "./Assets/Images/Particles/explosion1.png";
+		//	muzzleFlash->frameAmt = glm::vec2(10, 5);
+		//	muzzleFlash->textureSize = glm::vec2(1000.f, 500.f);
+		//	break;
+		//case 2:
+		//	muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
+		//	muzzleFlash->frameAmt = glm::vec2(9, 9);
+		//	muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
+		//	break;
+		//default:
+		//	break;
+		//}
+
+
+
+
+
+
 		magAmmo--;
 		timeSinceLastShot = fireRate;
 		if(gunModel) gunModel->playAnimation("Shoot");
-		// SPAWN SHOOT PARTICLES
 		handleHitScan();
 		
 	}
@@ -51,6 +93,8 @@ void GunController::reloadWeapon()
 void GunController::setGunModel(std::shared_ptr<Model> model)
 { 
 	gunModel = model;
+
+	muzzleOffset.position = glm::vec3(-0.2f, 0.1f, -0.5f);
 }
 
 void GunController::refillMagazine()
@@ -78,7 +122,7 @@ void GunController::handleHitScan()
 	for (int i = 0; i < go.size(); i++)
 	{
 		glm::vec3 enemyPos = go.at(i)->transform->position;
-		float enemyRadius = 1.0f; // placeholder for enemy hit box
+		float enemyRadius = 1.0f;
 		if (ray.hitsphere(enemyPos, enemyRadius, hitDist))
 		{
 			if (closestHit > hitDist)

@@ -3,6 +3,8 @@
 #include "ScriptObject.h"
 #include "Model.h"
 
+class Particle;
+
 class GunController : public ScriptObject
 {
 public:
@@ -13,9 +15,13 @@ public:
 	void setGunModel(std::shared_ptr<Model> model);
 
 	std::shared_ptr<Model> gunModel;
+
+	Transform muzzleOffset;
 protected:
 	void refillMagazine();
 	void handleHitScan();
+
+	std::shared_ptr<Particle> shootParticle;
 
 	int magAmmo = 6;
 	int maxMagAmmo = 6;

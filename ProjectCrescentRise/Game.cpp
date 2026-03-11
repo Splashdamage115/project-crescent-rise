@@ -26,6 +26,7 @@
 #include "GunController.h"
 #include "EnemyMovement.h"
 #include "Particle.h"
+#include "ParticleController.h"
 
 double Game::deltaTime = 0;
 std::shared_ptr<PlanetSurface> Game::g_planetScript;
@@ -59,9 +60,13 @@ void Game::initGame()
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	camObj->addScript(cameraFeed);
 	camObj->addScript(std::make_shared<PlayerInput>());
-	camObj->addScript(std::make_shared<GunController>());
+
 	camObj->addScript(std::make_shared<SurfaceFollower>());
 	//camObj->addScript(std::make_shared<CubeSphere>());
+
+	auto g = std::make_shared<GunController>();
+	g->setGunModel(gunModel);
+	camObj->addScript(g);
 
 	GameObjects::addNewObjectToPool(camObj);
 
@@ -122,6 +127,19 @@ void Game::initGame()
 	//grass->transform->scale = { 3000.0f, 3000.0f, 3000.0f };
 	//GameObjects::addNewObjectToPool(grass);
 	// - - - !GRASS - - - 
+
+
+
+
+
+	// - - - PARTICLE CONTROLLER - - -
+	particleController = std::make_shared<GameObject>();
+	particleController->addScript(std::make_shared<ParticleController>());
+	GameObjects::addNewObjectToPool(particleController);
+	// - - - !PARTICLE CONTROLLER - - -
+
+
+
 
 	// - - - ENEMY - - -
 	Enemy = std::make_shared<GameObject>();
@@ -498,57 +516,39 @@ void Game::initSurfaceGrass()
 
 		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
 	}
-	{
-		SurfaceInstancer instancer1;
-
-		InstancerSettings settings1;
-		settings1.density = 1.0f;
-		settings1.noiseScale = 100.0f;
-		settings1.noiseThreshold = 10.0f;
-		settings1.noiseSeed = rand();
-		settings1.useHeightLayerMask = true;
-		settings1.heightLayerMask = 2;
-		settings1.passesPerFace = 16 / sizeDecrease;
-
-		instancer1.SetSettings(settings1);
-
-		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
-			{
-				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-				obj->addScript(std::make_shared<OrientToSurface>());
-				std::shared_ptr<Particle> muzzleFlash = std::make_shared<Particle>();
-				int chosen = rand() % 2;
-
-				switch (chosen)
-				{
-					case 0:
-						muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
-						muzzleFlash->frameAmt = glm::vec2(9, 9);
-						muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
-						break;
-					case 1:
-						muzzleFlash->textureLocation = "./Assets/Images/Particles/explosion1.png";
-						muzzleFlash->frameAmt = glm::vec2(10, 5);
-						muzzleFlash->textureSize = glm::vec2(1000.f, 500.f);
-						break;
-					case 2:
-						muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
-						muzzleFlash->frameAmt = glm::vec2(9, 9);
-						muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
-						break;
-					default:
-					break;
-				}
-
-				obj->addScript(muzzleFlash);
-				float randScale = ((rand() % 50) / 100.f) + 30.75f;
-				float extraHeight = ((rand() % 50) / 100.f);
-				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
-				return obj;
-			};
-
-		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
-	}
+	//{
+	//	SurfaceInstancer instancer1;
+	//
+	//	InstancerSettings settings1;
+	//	settings1.density = 1.0f;
+	//	settings1.noiseScale = 100.0f;
+	//	settings1.noiseThreshold = 10.0f;
+	//	settings1.noiseSeed = rand();
+	//	settings1.useHeightLayerMask = true;
+	//	settings1.heightLayerMask = 2;
+	//	settings1.passesPerFace = 16 / sizeDecrease;
+	//
+	//	instancer1.SetSettings(settings1);
+	//
+	//	auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
+	//		{
+	//			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+	//			obj->addScript(std::make_shared<OrientToSurface>());
+	//
+	//			auto p = std::make_shared<Particle>();
+	//			p->positionOverride = std::make_shared<glm::vec3>(obj->transform->position);
+	//			p->textureLocation = "./Assets/Images/Particles/basicParticle.png";
+	//			p->maxTimeAlive = 500.f;
+	//			obj->addScript(p);
+	//
+	//			float randScale = ((rand() % 50) / 100.f) + 30.75f;
+	//			float extraHeight = ((rand() % 50) / 100.f);
+	//			obj->transform->scale = { randScale, randScale + extraHeight, randScale };
+	//			return obj;
+	//		};
+	//
+	//	instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
+	//}
 }
 
 

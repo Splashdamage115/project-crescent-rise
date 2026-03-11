@@ -15,6 +15,7 @@ void Particle::Start()
         0.5f,   0.5f,  0.0f,   0.0f, 0.0f
     };
 
+
     glGenBuffers(1, &m_body.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
@@ -37,12 +38,21 @@ void Particle::Start()
     uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
     textureLoc = glGetUniformLocation(m_shader->shaderPair, "uTexture");
 	UVPositionLoc = glGetUniformLocation(m_shader->shaderPair, "UVPosition");
+    
+
 
 	initialiseData();
 }
 
 void Particle::initialiseData()
 {
+    if (maxTimeAlive > 0.f)
+    {
+        timeAliveLeft = maxTimeAlive;
+        maxTimeAlive = 0.f;
+		active = true;
+    }
+	currentFrame = 0;
 	frameTimeLeft = frameTime;
 	frameSize.x = textureSize.x / frameAmt.x;
     frameSize.y = textureSize.y / frameAmt.y;
@@ -51,16 +61,24 @@ void Particle::initialiseData()
 
 void Particle::Update()
 {
+	if (!active) return;
 	frameTimeLeft -= static_cast<float>(Game::deltaTime);
+	timeAliveLeft -= static_cast<float>(Game::deltaTime);
     if (frameTimeLeft <= 0.f)
     {
         currentFrame++;
         frameTimeLeft = frameTime;
     }
+	if (timeAliveLeft <= 0.f)
+    {
+        active = false;
+    }
 }
 
 void Particle::Render()
 {
+    if (!active) return;
+
     VertexShaders::LoadShader(m_shader);
 
     glBindVertexArray(m_body.vao);
@@ -71,12 +89,7 @@ void Particle::Render()
     glm::vec3 up = glm::vec3(view[0][1], view[1][1], view[2][1]);
     glm::vec3 forward = glm::vec3(view[0][2], view[1][2], view[2][2]);
 
-    glm::mat4 billboard = glm::mat4(1.0f);
-    billboard[0] = glm::vec4(right, 0.0f);
-    billboard[1] = glm::vec4(up, 0.0f);
-    billboard[2] = glm::vec4(forward, 0.0f);
-
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), transform->position) * billboard;
+    glm::mat4 model = glm::mat4(glm::vec4(right * positionOverride->scale.x, 0.0f), glm::vec4(up * positionOverride->scale.y, 0.0f), glm::vec4(forward * positionOverride->scale.z, 0.0f), glm::vec4(positionOverride->position, 1.0f));
     
     glm::mat4 proj = Window::Get().GetProj();
     glm::vec4 uv;

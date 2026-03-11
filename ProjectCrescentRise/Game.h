@@ -24,6 +24,7 @@ public:
 	static std::shared_ptr<PlanetSurface> g_planetScript;
 private:
 	std::shared_ptr<mouseKeyInput> mski;
+	std::shared_ptr<GameObject> particleController;
 	std::shared_ptr<GameObject> PlanetObj;
 	std::shared_ptr<GameObject> waterObj;
 	std::shared_ptr<GameObject> camObj;
