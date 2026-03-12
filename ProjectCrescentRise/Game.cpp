@@ -216,7 +216,7 @@ void Game::initPlanetSurface()
 	//i->rotation = glm::vec3(0.0f, 30.0f, 0.0f);
 	//waterObj->addScript(i);
 
-	GameObjects::addNewObjectToPool(waterObj);
+	//GameObjects::addNewObjectToPool(waterObj);
 
 	Window::Get().initPlanet();
 
@@ -496,7 +496,7 @@ void Game::initSurfaceGrass()
 		settings1.noiseSeed = rand();
 		settings1.useHeightLayerMask = true;
 		settings1.heightLayerMask = 2;
-		settings1.passesPerFace = 8 / sizeDecrease;
+		settings1.passesPerFace = 16 / sizeDecrease;
 
 		instancer1.SetSettings(settings1);
 

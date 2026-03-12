@@ -24,6 +24,16 @@ inline static float radiansToDegrees(float t_radians)
 {
     return t_radians * 180.f / PI;
 }
+static glm::vec2 degreesToDisplacement(float t_degrees)
+{
+    float rad = degreesToRadians(t_degrees);
+
+    glm::vec2 disp;
+    disp.x = std::cos(rad);
+    disp.y = std::sin(rad);
+
+    return disp;
+}
 
 static float displacementToDegrees(glm::vec3 t_displacement)
 {

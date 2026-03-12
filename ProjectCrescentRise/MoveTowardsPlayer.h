@@ -10,5 +10,7 @@ public:
 	virtual void ExitState(EnemyStateManager& t_manager);
 private:
 	float m_moveSpeed = 5.0f;
+
+	float enemyFollowDetectionRange = 40.0f;
 };
 

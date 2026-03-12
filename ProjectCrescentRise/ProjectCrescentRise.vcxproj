@@ -197,6 +197,7 @@
     <ClCompile Include="ufbx.c" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="ShaderPrograms.cpp" />
+    <ClCompile Include="WanderState.cpp" />
     <ClCompile Include="WaterSphere.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -268,6 +269,7 @@
     <ClInclude Include="ufbx.h" />
     <ClInclude Include="Update.h" />
     <ClInclude Include="ShaderPrograms.h" />
+    <ClInclude Include="WanderState.h" />
     <ClInclude Include="WaterSphere.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
