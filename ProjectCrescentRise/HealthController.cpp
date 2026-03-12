@@ -1,5 +1,6 @@
 #include "HealthController.h"
 #include "GameObject.h"
+#include "ParticleController.h"
 
 void HealthController::Start()
 {
@@ -45,6 +46,9 @@ void HealthController::changeHealth(float amount)
 
 void HealthController::expire()
 {
+	auto p = ParticleController::SpawnNewParticle("./Assets/Images/Particles/blood.png", *transform, 0.2f, glm::vec2(6, 1), glm::vec2(3072.f, 512.f));
+	p->positionOverride->scale = glm::vec3(3.5f);
+
 	std::cout << "OBJECT DESTROYED\n";
 	parent->active = false;
 }

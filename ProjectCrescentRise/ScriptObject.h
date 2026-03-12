@@ -27,8 +27,8 @@ public:
 	virtual void sendMessage(const std::string& t_messageType) {}
 	virtual void sendMessage(const std::string& t_messageType, std::any t_messageParameters) {}
 protected:
-	GameObject* parent;
 	std::shared_ptr<Transform> transform;
+	GameObject* parent;
 	bool enabled = true;
 };
 

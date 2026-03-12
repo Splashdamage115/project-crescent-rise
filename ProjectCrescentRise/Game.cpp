@@ -27,6 +27,7 @@
 #include "EnemyMovement.h"
 #include "Particle.h"
 #include "ParticleController.h"
+#include "EnemyStateManager.h"
 
 double Game::deltaTime = 0;
 std::shared_ptr<PlanetSurface> Game::g_planetScript;
@@ -380,7 +381,7 @@ void Game::instantiateEnemies()
 
 
 			// enemy movement scripts
-			std::shared_ptr<EnemyMovement> t = std::make_shared<EnemyMovement>();
+			std::shared_ptr<EnemyStateManager> t = std::make_shared<EnemyStateManager>();
 			obj->addScript(t);
 
 

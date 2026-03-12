@@ -1,0 +1,19 @@
+#pragma once
+
+#include "ScriptObject.h"
+class EnemyAbstractState;
+
+class EnemyStateManager : public ScriptObject
+{
+public:
+	void Start()override;
+	void Update()override;
+
+	void EnterNewState(std::shared_ptr<EnemyAbstractState> newState);
+	
+	glm::vec3 playerPosition = glm::vec3(0.f);
+private:
+	std::shared_ptr<EnemyAbstractState> m_currentState;
+
+};
+

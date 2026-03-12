@@ -122,6 +122,15 @@
     <Filter Include="Files\Scripts\Renderables\Particles">
       <UniqueIdentifier>{c4b73404-2d71-4fff-ad51-a7488ef6b6ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Scripts\Enemy\EnemyFiniteStateMachine\Abstract">
+      <UniqueIdentifier>{3619873d-7056-47b8-9822-934e3cdfa01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Enemy\EnemyFiniteStateMachine\States">
+      <UniqueIdentifier>{e9b51cd5-4027-4d5d-9723-2c617de8bd9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates">
+      <UniqueIdentifier>{579cc310-8d4a-4f01-b1a8-e2415187c004}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderPrograms.cpp">
@@ -283,14 +292,23 @@
     <ClCompile Include="AnimatedTextureStore.cpp">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyMovement.cpp">
-      <Filter>Files\Scripts\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Particle.cpp">
       <Filter>Files\Scripts\Renderables\Particles</Filter>
     </ClCompile>
     <ClCompile Include="ParticleController.cpp">
       <Filter>Files\Scripts\Renderables\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAbstractState.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveTowardsPlayer.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleEnemy.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyStateManager.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -483,14 +501,23 @@
     <ClInclude Include="AnimatedTextureStore.h">
       <Filter>Files\Scripts\Renderables\Models</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyMovement.h">
-      <Filter>Files\Scripts\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Particle.h">
       <Filter>Files\Scripts\Renderables\Particles</Filter>
     </ClInclude>
     <ClInclude Include="ParticleController.h">
       <Filter>Files\Scripts\Renderables\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAbstractState.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveTowardsPlayer.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleEnemy.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyStateManager.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

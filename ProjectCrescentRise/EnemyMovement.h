@@ -11,6 +11,5 @@ public:
 	bool moving = true;
 private:
 	bool canSeePlayer = false;
-	float m_moveSpeed = 5.0f;
 };
 
