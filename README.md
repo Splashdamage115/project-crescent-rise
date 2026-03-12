@@ -180,12 +180,17 @@
 <ul>
     <li> 🔴 - Weapon variants</li>
     <li> 🔴 - foliage improvements</li>
-    <li> 🔴 - enemy pathfinding</li>
+    <li> 🔴 - enemy variants</li>
+    <li> ✅ - enemy state machine</li>
+    <li> ✅ - enemy idle</li>
+    <li> ✅ - enemy wander</li>
+    <li> ✅ - enemy follow player</li>
+    <li> ✅ - enemy pathfinding</li>
     <li> 🔴 - weapon animation (shooting)</li>
     <li> 🔴 - weapon reload animations</li>
-    <li> 🔴 - weapon hit effect</li>
-    <li> 🔴 - weapon shoot particle effect</li>
-    <li> 🔴 - object pick up </li>
+    <li> ✅🟠 - weapon hit effect</li>
+    <li> ✅ - weapon shoot particle effect</li>
+    <li> ✅ - object pick up </li>
     <li> 🔴 - building collisions</li>
     <li> 🔴 - object with collision instancing</li>
     <li> 🔴 - enemy attack player</li>
