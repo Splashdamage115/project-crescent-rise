@@ -7,6 +7,63 @@
 
 void GunController::Start()
 {
+	std::shared_ptr<Model> m = std::make_shared<Model>();
+
+	switch (m_weaponType)
+	{
+	case WeaponType::ShotGun:
+	{
+		m->modelOffset.scale = { 1.f, 1.f, 1.f };
+		m->modelOffset.rotation = { 90.0f, 180.0f, 180.0f };
+		m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
+		m->loadLocation = "./Assets/Mesh/gun.fbx";
+		m->colour = glm::vec3(1.f, 1.f, 1.f);
+		m->followCam = true;
+
+		//gunModel->useOffsetMover = true;
+		m->rotation = glm::vec3(0.f, 90.f, 0.f);
+		m->textureLoc2 = "./Assets/Images/metal.jpg";
+		m->textureLoc1 = "./Assets/Images/wood.jpg";
+
+		fireRate = 0.7f;
+		magAmmo = 6;
+		maxMagAmmo = 6;
+		reserveAmmo = 24;
+	}
+		break;
+	case WeaponType::AK:
+	{
+		m->modelOffset.scale = { 1.f, 1.f, 1.f };
+		m->modelOffset.rotation = { 90.f, 0.f, 180.f };
+		m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
+		m->loadLocation = "./Assets/Mesh/gunAK.fbx";
+		m->colour = glm::vec3(1.f, 1.f, 1.f);
+		m->followCam = true;
+
+		//gunModel->useOffsetMover = true;
+		m->rotation = glm::vec3(0.f, 90.f, 0.f);
+		m->textureLoc1 = "./Assets/Images/metal.jpg";
+		m->textureLoc2 = "./Assets/Images/wood.jpg";
+
+		fireRate = 0.2f;
+		magAmmo = 30;
+		maxMagAmmo = 30;
+		reserveAmmo = 120;
+		shotDamage = 40;
+		fullAuto = true;
+	}
+		break;
+	default:
+		break;
+	} 
+	
+	
+	*gunModel = *m;
+
+	gunModel->Start();
+
+
+
 	std::shared_ptr<keyboardInput> ki = std::make_shared<keyboardInput>();
 	ki->active = true;
 	ki->keyCode = KeyScan::KeyCode::R;
@@ -16,14 +73,41 @@ void GunController::Start()
 	std::shared_ptr<mouseKeyInput> mski = std::make_shared<mouseKeyInput>();
 	mski->active = true;
 	mski->keyCode = KeyScan::MouseKeyCode::LeftMouse;
-	mski->function = ([this]() { this->shootWeapon(); });
+	mski->function = ([this]() { this->leftClickUp(); });
 	KeyScan::append(mski, true);
+
+	std::shared_ptr<mouseKeyInput> umski = std::make_shared<mouseKeyInput>();
+	umski->active = true;
+	umski->keyCode = KeyScan::MouseKeyCode::LeftMouse;
+	umski->function = ([this]() { this->leftClickDown(); });
+	KeyScan::append(umski, false);
 }
 
 void GunController::Update()
 {
 	if(timeSinceLastShot > 0.f) timeSinceLastShot -= static_cast<float>(Game::deltaTime);
 	if(timeSinceReloadStart > 0.f) timeSinceReloadStart -= static_cast<float>(Game::deltaTime);
+	if (fullAuto && shooting) shootWeapon();
+}
+
+void GunController::leftClickDown()
+{
+	if (fullAuto)
+	{
+		shooting = true;
+	}
+}
+
+void GunController::leftClickUp()
+{
+	if (fullAuto)
+	{
+		shooting = false;
+	}
+	else
+	{
+		shootWeapon();
+	}
 }
 
 void GunController::shootWeapon()
@@ -95,6 +179,11 @@ void GunController::setGunModel(std::shared_ptr<Model> model)
 	gunModel = model;
 
 	muzzleOffset.position = glm::vec3(-0.2f, 0.1f, -0.5f);
+}
+
+void GunController::swapModel()
+{
+
 }
 
 void GunController::refillMagazine()

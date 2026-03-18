@@ -178,6 +178,7 @@
 # Priority Order List : 
 
 <ul>
+    <li> 🔴 - Weapon hud info</li>
     <li> 🔴 - Weapon variants</li>
     <li> 🔴 - foliage improvements</li>
     <li> 🔴 - enemy variants</li>

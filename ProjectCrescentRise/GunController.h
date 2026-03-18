@@ -5,14 +5,25 @@
 
 class Particle;
 
+enum class WeaponType
+{
+	ShotGun, AK
+};
+
 class GunController : public ScriptObject
 {
 public:
 	void Start() override;
 	void Update() override;
 	virtual void shootWeapon();
+	virtual void leftClickDown();
+	virtual void leftClickUp();
+
+
 	virtual void reloadWeapon();
 	void setGunModel(std::shared_ptr<Model> model);
+
+	void swapModel();
 
 	std::shared_ptr<Model> gunModel;
 
@@ -33,5 +44,10 @@ protected:
 	float timeSinceReloadStart = 0.0f;
 
 	float shotDamage = 100.0f;
+
+	bool fullAuto = false;
+	bool shooting = false;
+
+	WeaponType m_weaponType = WeaponType::AK;
 };
 
