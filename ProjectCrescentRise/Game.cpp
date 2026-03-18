@@ -339,7 +339,7 @@ void Game::instantiateEnemies()
 
 			// set scale
 			obj->transform->scale = { 0.2f, 0.2f, 0.2f };
-			obj->transform->rotation = { -90.0f, 0.0f, 0.0f };
+			obj->transform->rotation = { -90.0f, 180.0f, 0.0f };
 
 
 
