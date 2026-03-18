@@ -7,60 +7,63 @@
 
 void GunController::Start()
 {
-	std::shared_ptr<Model> m = std::make_shared<Model>();
-
-	switch (m_weaponType)
-	{
-	case WeaponType::ShotGun:
-	{
-		m->modelOffset.scale = { 1.f, 1.f, 1.f };
-		m->modelOffset.rotation = { 90.0f, 180.0f, 180.0f };
-		m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
-		m->loadLocation = "./Assets/Mesh/gun.fbx";
-		m->colour = glm::vec3(1.f, 1.f, 1.f);
-		m->followCam = true;
-
-		//gunModel->useOffsetMover = true;
-		m->rotation = glm::vec3(0.f, 90.f, 0.f);
-		m->textureLoc2 = "./Assets/Images/metal.jpg";
-		m->textureLoc1 = "./Assets/Images/wood.jpg";
-
-		fireRate = 0.7f;
-		magAmmo = 6;
-		maxMagAmmo = 6;
-		reserveAmmo = 24;
-	}
-		break;
-	case WeaponType::AK:
-	{
-		m->modelOffset.scale = { 1.f, 1.f, 1.f };
-		m->modelOffset.rotation = { 90.f, 0.f, 180.f };
-		m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
-		m->loadLocation = "./Assets/Mesh/gunAK.fbx";
-		m->colour = glm::vec3(1.f, 1.f, 1.f);
-		m->followCam = true;
-
-		//gunModel->useOffsetMover = true;
-		m->rotation = glm::vec3(0.f, 90.f, 0.f);
-		m->textureLoc1 = "./Assets/Images/metal.jpg";
-		m->textureLoc2 = "./Assets/Images/wood.jpg";
-
-		fireRate = 0.2f;
-		magAmmo = 30;
-		maxMagAmmo = 30;
-		reserveAmmo = 120;
-		shotDamage = 40;
-		fullAuto = true;
-	}
-		break;
-	default:
-		break;
-	} 
-	
-	
-	*gunModel = *m;
-
-	gunModel->Start();
+	initialiseWeapons();
+	currentlySelectedObj = -1;
+	swapModel();
+	//std::shared_ptr<Model> m = std::make_shared<Model>();
+	//
+	//switch (m_weaponType)
+	//{
+	//case WeaponType::ShotGun:
+	//{
+	//	m->modelOffset.scale = { 1.f, 1.f, 1.f };
+	//	m->modelOffset.rotation = { 90.0f, 180.0f, 180.0f };
+	//	m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
+	//	m->loadLocation = "./Assets/Mesh/gun.fbx";
+	//	m->colour = glm::vec3(1.f, 1.f, 1.f);
+	//	m->followCam = true;
+	//
+	//	//gunModel->useOffsetMover = true;
+	//	m->rotation = glm::vec3(0.f, 90.f, 0.f);
+	//	m->textureLoc2 = "./Assets/Images/metal.jpg";
+	//	m->textureLoc1 = "./Assets/Images/wood.jpg";
+	//
+	//	fireRate = 0.7f;
+	//	magAmmo = 6;
+	//	maxMagAmmo = 6;
+	//	reserveAmmo = 24;
+	//}
+	//	break;
+	//case WeaponType::AK:
+	//{
+	//	m->modelOffset.scale = { 1.f, 1.f, 1.f };
+	//	m->modelOffset.rotation = { 90.f, 0.f, 180.f };
+	//	m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
+	//	m->loadLocation = "./Assets/Mesh/gunAK.fbx";
+	//	m->colour = glm::vec3(1.f, 1.f, 1.f);
+	//	m->followCam = true;
+	//
+	//	//gunModel->useOffsetMover = true;
+	//	m->rotation = glm::vec3(0.f, 90.f, 0.f);
+	//	m->textureLoc1 = "./Assets/Images/metal.jpg";
+	//	m->textureLoc2 = "./Assets/Images/wood.jpg";
+	//
+	//	fireRate = 0.2f;
+	//	magAmmo = 30;
+	//	maxMagAmmo = 30;
+	//	reserveAmmo = 120;
+	//	shotDamage = 40;
+	//	fullAuto = true;
+	//}
+	//	break;
+	//default:
+	//	break;
+	//} 
+	//
+	//
+	//*gunModel = *m;
+	//
+	//gunModel->Start();
 
 
 
@@ -81,12 +84,25 @@ void GunController::Start()
 	umski->keyCode = KeyScan::MouseKeyCode::LeftMouse;
 	umski->function = ([this]() { this->leftClickDown(); });
 	KeyScan::append(umski, false);
+
+	std::shared_ptr<mouseKeyInput> mmski = std::make_shared<mouseKeyInput>();
+	mmski->active = true;
+	mmski->keyCode = KeyScan::MouseKeyCode::MiddleMouse;
+	mmski->function = ([this]() { this->swapModel(); });
+	KeyScan::append(mmski, true);
 }
 
 void GunController::Update()
 {
 	if(timeSinceLastShot > 0.f) timeSinceLastShot -= static_cast<float>(Game::deltaTime);
-	if(timeSinceReloadStart > 0.f) timeSinceReloadStart -= static_cast<float>(Game::deltaTime);
+	if (reloading)
+		if (timeSinceReloadStart > 0.f) timeSinceReloadStart -= static_cast<float>(Game::deltaTime);
+		else
+		{
+			reloading = false;
+			refillMagazine();
+		}
+	
 	if (fullAuto && shooting) shootWeapon();
 }
 
@@ -164,12 +180,14 @@ void GunController::shootWeapon()
 	}
 	else if (magAmmo == 0)
 	{
+		reloading = true;
 		refillMagazine();
 	}
 }
 
 void GunController::reloadWeapon()
 {
+	reloading = true;
 	if(magAmmo != maxMagAmmo)
 		refillMagazine();
 }
@@ -183,12 +201,97 @@ void GunController::setGunModel(std::shared_ptr<Model> model)
 
 void GunController::swapModel()
 {
+	currentlySelectedObj++;
+	if (m_gunVariants.size() <= currentlySelectedObj) currentlySelectedObj = 0;
 
+	setCurrentWeapon(m_gunVariants.at(currentlySelectedObj).weaponType);
+}
+
+void GunController::setCurrentWeapon(WeaponType t_newType)
+{
+	bool found = false;
+	for (auto i : m_gunVariants)
+	{
+		if (i.weaponType == t_newType)
+		{
+			found = true;
+			setWeaponInfo(i);
+			continue;
+		}
+		else
+		{
+			continue;
+		}
+	}
+	if (!found)
+	{
+		setWeaponInfo(m_gunVariants.at(0));
+	}
+}
+
+void GunController::initialiseWeapons()
+{
+	{
+		weaponInfo newWeapon;
+		std::shared_ptr<Model> m = std::make_shared<Model>();
+
+		m->modelOffset.scale = { 1.f, 1.f, 1.f };
+		m->modelOffset.rotation = { 90.0f, 180.0f, 180.0f };
+		m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
+		m->loadLocation = "./Assets/Mesh/gun.fbx";
+		m->colour = glm::vec3(1.f, 1.f, 1.f);
+		m->followCam = true;
+		//gunModel->useOffsetMover = true;
+		m->rotation = glm::vec3(0.f, 90.f, 0.f);
+		m->textureLoc2 = "./Assets/Images/metal.jpg";
+		m->textureLoc1 = "./Assets/Images/wood.jpg";
+
+		newWeapon.gunModel = m;
+
+		newWeapon.fireRate = 0.7f;
+		newWeapon.reloadTime = 4.0f;
+		newWeapon.fullAuto = false;
+		newWeapon.shotDamage = 80;
+		newWeapon.weaponType = WeaponType::ShotGun;
+		newWeapon.maxMagAmmo = 6;
+		newWeapon.reserveAmmo = 24;
+
+		m_gunVariants.push_back(newWeapon);
+	}
+
+	{
+		weaponInfo newWeapon;
+		std::shared_ptr<Model> m = std::make_shared<Model>();
+
+		m->modelOffset.scale = { 1.f, 1.f, 1.f };
+		m->modelOffset.rotation = { 90.f, 0.f, 180.f };
+		m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
+		m->loadLocation = "./Assets/Mesh/gunAK.fbx";
+		m->colour = glm::vec3(1.f, 1.f, 1.f);
+		m->followCam = true;
+
+		//gunModel->useOffsetMover = true;
+		m->rotation = glm::vec3(0.f, 90.f, 0.f);
+		m->textureLoc1 = "./Assets/Images/metal.jpg";
+		m->textureLoc2 = "./Assets/Images/wood.jpg";
+
+		newWeapon.gunModel = m;
+
+		newWeapon.fireRate = 0.2f;
+		newWeapon.reloadTime = 2.0f;
+		newWeapon.fullAuto = true;
+		newWeapon.shotDamage = 40;
+		newWeapon.weaponType = WeaponType::AK;
+		newWeapon.maxMagAmmo = 30;
+		newWeapon.reserveAmmo = 120;
+
+		m_gunVariants.push_back(newWeapon);
+	}
 }
 
 void GunController::refillMagazine()
 {
-	if (reserveAmmo > 0 && timeSinceReloadStart <= 0.f)
+	if (reserveAmmo > 0 && timeSinceReloadStart <= 0.f && !reloading)
 	{
 		if (gunModel) gunModel->playAnimation("Reload");
 		std::cout << "Reloading...\n";
@@ -226,4 +329,22 @@ void GunController::handleHitScan()
 		go.at(closestNum)->sendMessage("DAMAGE", shotDamage);
 		std::cout << "Hit enemy for " << shotDamage << " damage!\n";
 	}
+}
+
+void GunController::setWeaponInfo(weaponInfo& t_weaponInfo)
+{
+	shotDamage = t_weaponInfo.shotDamage;
+	fireRate = t_weaponInfo.fireRate;
+	maxMagAmmo = t_weaponInfo.maxMagAmmo;
+	reserveAmmo = t_weaponInfo.reserveAmmo;
+	timeSinceReloadStart = 0.f;
+	refillMagazine();
+
+	reloadTime = t_weaponInfo.reloadTime;
+
+	fullAuto = t_weaponInfo.fullAuto;
+
+	*gunModel = *t_weaponInfo.gunModel;
+
+	gunModel->Start();
 }

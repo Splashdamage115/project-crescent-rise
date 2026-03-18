@@ -10,6 +10,22 @@ enum class WeaponType
 	ShotGun, AK
 };
 
+struct weaponInfo
+{
+	WeaponType weaponType;
+	std::shared_ptr<Model> gunModel;
+
+	int maxMagAmmo = 6;
+	int reserveAmmo = 24;
+
+	float fireRate = 0.5f;
+	float reloadTime = 2.0f;
+
+	float shotDamage = 100.0f;
+
+	bool fullAuto = false;
+};
+
 class GunController : public ScriptObject
 {
 public:
@@ -29,8 +45,11 @@ public:
 
 	Transform muzzleOffset;
 protected:
+	void setCurrentWeapon(WeaponType t_newType);
+	void initialiseWeapons();
 	void refillMagazine();
 	void handleHitScan();
+	void setWeaponInfo(weaponInfo& t_weaponInfo);
 
 	std::shared_ptr<Particle> shootParticle;
 
@@ -43,11 +62,17 @@ protected:
 	float timeSinceLastShot = 0.0f;
 	float timeSinceReloadStart = 0.0f;
 
+	bool reloading = false;
+
 	float shotDamage = 100.0f;
 
 	bool fullAuto = false;
 	bool shooting = false;
 
+	int currentlySelectedObj = 0;
+
 	WeaponType m_weaponType = WeaponType::AK;
+
+	std::vector<weaponInfo> m_gunVariants;
 };
 
