@@ -23,7 +23,10 @@ struct weaponInfo
 
 	float shotDamage = 100.0f;
 
+	float equipTime = 1.0f;
+
 	bool fullAuto = false;
+	bool flipXRot = false;
 };
 
 class GunController : public ScriptObject
@@ -74,5 +77,12 @@ protected:
 	WeaponType m_weaponType = WeaponType::AK;
 
 	std::vector<weaponInfo> m_gunVariants;
-};
 
+	float originalXRot = 0.f;
+	float originalPosition = 0.f;
+	float originalYRot = 0.f;
+	bool flipXRot = false;
+
+	float tiltDownTimeLeft = 0.f;
+	float tiltBackTimeLeft = 0.f;
+};

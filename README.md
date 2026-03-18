@@ -179,7 +179,7 @@
 
 <ul>
     <li> 🔴 - Weapon hud info</li>
-    <li> 🔴 - Weapon variants</li>
+    <li> ✅ - Weapon variants</li>
     <li> 🔴 - foliage improvements</li>
     <li> 🔴 - enemy variants</li>
     <li> ✅ - enemy state machine</li>
@@ -188,7 +188,7 @@
     <li> ✅ - enemy follow player</li>
     <li> ✅ - enemy pathfinding</li>
     <li> 🔴 - weapon animation (shooting)</li>
-    <li> 🔴 - weapon reload animations</li>
+    <li> ✅ - weapon reload animations</li>
     <li> ✅🟠 - weapon hit effect</li>
     <li> ✅ - weapon shoot particle effect</li>
     <li> ✅ - object pick up </li>

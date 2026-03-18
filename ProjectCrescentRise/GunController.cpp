@@ -10,62 +10,6 @@ void GunController::Start()
 	initialiseWeapons();
 	currentlySelectedObj = -1;
 	swapModel();
-	//std::shared_ptr<Model> m = std::make_shared<Model>();
-	//
-	//switch (m_weaponType)
-	//{
-	//case WeaponType::ShotGun:
-	//{
-	//	m->modelOffset.scale = { 1.f, 1.f, 1.f };
-	//	m->modelOffset.rotation = { 90.0f, 180.0f, 180.0f };
-	//	m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
-	//	m->loadLocation = "./Assets/Mesh/gun.fbx";
-	//	m->colour = glm::vec3(1.f, 1.f, 1.f);
-	//	m->followCam = true;
-	//
-	//	//gunModel->useOffsetMover = true;
-	//	m->rotation = glm::vec3(0.f, 90.f, 0.f);
-	//	m->textureLoc2 = "./Assets/Images/metal.jpg";
-	//	m->textureLoc1 = "./Assets/Images/wood.jpg";
-	//
-	//	fireRate = 0.7f;
-	//	magAmmo = 6;
-	//	maxMagAmmo = 6;
-	//	reserveAmmo = 24;
-	//}
-	//	break;
-	//case WeaponType::AK:
-	//{
-	//	m->modelOffset.scale = { 1.f, 1.f, 1.f };
-	//	m->modelOffset.rotation = { 90.f, 0.f, 180.f };
-	//	m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
-	//	m->loadLocation = "./Assets/Mesh/gunAK.fbx";
-	//	m->colour = glm::vec3(1.f, 1.f, 1.f);
-	//	m->followCam = true;
-	//
-	//	//gunModel->useOffsetMover = true;
-	//	m->rotation = glm::vec3(0.f, 90.f, 0.f);
-	//	m->textureLoc1 = "./Assets/Images/metal.jpg";
-	//	m->textureLoc2 = "./Assets/Images/wood.jpg";
-	//
-	//	fireRate = 0.2f;
-	//	magAmmo = 30;
-	//	maxMagAmmo = 30;
-	//	reserveAmmo = 120;
-	//	shotDamage = 40;
-	//	fullAuto = true;
-	//}
-	//	break;
-	//default:
-	//	break;
-	//} 
-	//
-	//
-	//*gunModel = *m;
-	//
-	//gunModel->Start();
-
-
 
 	std::shared_ptr<keyboardInput> ki = std::make_shared<keyboardInput>();
 	ki->active = true;
@@ -96,7 +40,51 @@ void GunController::Update()
 {
 	if(timeSinceLastShot > 0.f) timeSinceLastShot -= static_cast<float>(Game::deltaTime);
 	if (reloading)
-		if (timeSinceReloadStart > 0.f) timeSinceReloadStart -= static_cast<float>(Game::deltaTime);
+		if (timeSinceReloadStart > 0.f)
+		{
+			if (timeSinceReloadStart < 0.5f && tiltBackTimeLeft <= 0.f) 
+			{
+				tiltBackTimeLeft = 0.5f;
+			}
+			if (tiltBackTimeLeft >= 0.f)
+			{
+				tiltBackTimeLeft -= Game::deltaTime;
+				if (tiltDownTimeLeft < 0.0f) tiltDownTimeLeft = 0.0f;
+
+				float t = 1.0f - (tiltBackTimeLeft / 0.5f);
+				if (t < 0.0f) t = 0.0f;
+				if (t > 1.0f) t = 1.0f;
+
+				int flip = 1;
+				if (flipXRot) flip = -1;
+				
+				gunModel->modelOffset.rotation.x = glm::mix(originalXRot - (45.0f * flip), originalXRot, t);
+				gunModel->modelOffset.position.y = glm::mix(originalPosition - 0.3f, originalPosition, t);
+				gunModel->modelOffset.rotation.y = glm::mix(originalYRot - 20.f, originalYRot, t);
+			}
+
+			if (tiltDownTimeLeft > 0.0f)
+			{
+				tiltDownTimeLeft -= Game::deltaTime;
+				if (tiltDownTimeLeft < 0.0f) tiltDownTimeLeft = 0.0f;
+
+				float t = 1.0f - (tiltDownTimeLeft / 0.5f);
+				if (t < 0.0f) t = 0.0f;
+				if (t > 1.0f) t = 1.0f;
+
+				int flip = 1;
+				if (flipXRot) flip = -1;
+
+				gunModel->modelOffset.rotation.x = glm::mix(originalXRot, originalXRot - (45.0f * flip), t);
+				gunModel->modelOffset.position.y = glm::mix(originalPosition, originalPosition - 0.3f, t);
+				gunModel->modelOffset.rotation.y = glm::mix(originalYRot, originalYRot - 20.f, t);
+			}
+
+			//gunModel->modelOffset.rotation.x -= 45.f * Game::deltaTime;
+
+
+			timeSinceReloadStart -= static_cast<float>(Game::deltaTime);
+		}
 		else
 		{
 			reloading = false;
@@ -128,7 +116,7 @@ void GunController::leftClickUp()
 
 void GunController::shootWeapon()
 {
-	if (magAmmo > 0 && timeSinceLastShot <= 0.f)
+	if (magAmmo > 0 && timeSinceLastShot <= 0.f && !reloading)
 	{
 		std::cout << "Pew Pew!\n";
 
@@ -181,6 +169,8 @@ void GunController::shootWeapon()
 	else if (magAmmo == 0)
 	{
 		reloading = true;
+		timeSinceReloadStart = reloadTime;
+		tiltDownTimeLeft = 0.5f;
 		refillMagazine();
 	}
 }
@@ -188,6 +178,9 @@ void GunController::shootWeapon()
 void GunController::reloadWeapon()
 {
 	reloading = true;
+	timeSinceReloadStart = reloadTime;
+	tiltDownTimeLeft = 0.5f;
+
 	if(magAmmo != maxMagAmmo)
 		refillMagazine();
 }
@@ -284,6 +277,7 @@ void GunController::initialiseWeapons()
 		newWeapon.weaponType = WeaponType::AK;
 		newWeapon.maxMagAmmo = 30;
 		newWeapon.reserveAmmo = 120;
+		newWeapon.flipXRot = true;
 
 		m_gunVariants.push_back(newWeapon);
 	}
@@ -293,6 +287,12 @@ void GunController::refillMagazine()
 {
 	if (reserveAmmo > 0 && timeSinceReloadStart <= 0.f && !reloading)
 	{
+		tiltBackTimeLeft = 0.f;
+		tiltDownTimeLeft = 0.f;
+		gunModel->modelOffset.position.y = originalPosition;
+		gunModel->modelOffset.rotation.x = originalXRot;
+		gunModel->modelOffset.rotation.y = originalYRot;
+
 		if (gunModel) gunModel->playAnimation("Reload");
 		std::cout << "Reloading...\n";
 		int ammoToReload = std::min(reserveAmmo, maxMagAmmo - magAmmo);
@@ -337,14 +337,21 @@ void GunController::setWeaponInfo(weaponInfo& t_weaponInfo)
 	fireRate = t_weaponInfo.fireRate;
 	maxMagAmmo = t_weaponInfo.maxMagAmmo;
 	reserveAmmo = t_weaponInfo.reserveAmmo;
+
+	*gunModel = *t_weaponInfo.gunModel;
+
+	gunModel->Start();
+	originalYRot = gunModel->modelOffset.rotation.y;
+	originalXRot = gunModel->modelOffset.rotation.x;
+	originalPosition = gunModel->modelOffset.position.y;
+
 	timeSinceReloadStart = 0.f;
 	refillMagazine();
+	flipXRot = t_weaponInfo.flipXRot;
 
 	reloadTime = t_weaponInfo.reloadTime;
 
 	fullAuto = t_weaponInfo.fullAuto;
 
-	*gunModel = *t_weaponInfo.gunModel;
 
-	gunModel->Start();
 }
