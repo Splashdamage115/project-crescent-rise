@@ -398,7 +398,8 @@ void Game::initSurfaceGrass()
 	{
 		"./Assets/Images/grass.png",
 		"./Assets/Images/grass2.png",
-		"./Assets/Images/grass3.png"
+		"./Assets/Images/grass3.png",
+		"./Assets/Images/bush.png"
 	};
 	int sizeDecrease = 1;
 	if (DEBUG_MODE) sizeDecrease = 4;
@@ -407,34 +408,53 @@ void Game::initSurfaceGrass()
 	{
 		256 / sizeDecrease,
 		32  / sizeDecrease,
-		128 / sizeDecrease
+		128 / sizeDecrease,
+		32  / sizeDecrease
 	};
 
-	for (int i = 0; i < grassTextures.size(); i++)
+	std::vector< InstancerSettings> grassInstance;
+
+	for (int i = 0; i < spawnAmt.size(); i++)
+	{
+		grassInstance.emplace_back();
+		grassInstance.at(i).textureLoc = grassTextures.at(i);
+
+		grassInstance.at(i).density = 1.0f;
+		grassInstance.at(i).noiseScale = 100.0f;
+		grassInstance.at(i).noiseThreshold = 10.0f;
+		grassInstance.at(i).noiseSeed = rand();
+		grassInstance.at(i).useHeightLayerMask = true;
+		grassInstance.at(i).heightLayerMask = 2;
+		grassInstance.at(i).passesPerFace = spawnAmt.at(i);
+
+		grassInstance.at(i).maxSize = 1.25f;
+		grassInstance.at(i).minSize = 0.75f;
+
+		grassInstance.at(i).instanceType = InstanceType::Grass;
+	}
+
+	grassInstance.at(spawnAmt.size() - 1).minSize = 3.75f;
+	grassInstance.at(spawnAmt.size() - 1).maxSize = 4.f;
+
+	for (int i = 0; i < grassInstance.size(); i++)
 	{
 		SurfaceInstancer instancer1;
 
-		InstancerSettings settings1;
-		settings1.density = 1.0f;
-		settings1.noiseScale = 100.0f;
-		settings1.noiseThreshold = 10.0f;
-		settings1.noiseSeed = rand();
-		settings1.useHeightLayerMask = true;
-		settings1.heightLayerMask = 2;
-		settings1.passesPerFace = spawnAmt.at(i);
-
-		instancer1.SetSettings(settings1);
+		instancer1.SetSettings(grassInstance.at(i));
 
 		grassModels.emplace_back(std::make_shared<SurfaceGrass>());
-		grassModels.back()->grassTextureLoc = grassTextures[i];
+		grassModels.back()->grassTextureLoc = grassInstance.at(i).textureLoc;
 
-		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
+		InstancerSettings x = grassInstance.at(i);
+
+		auto creatorFunc = [this, x]() -> std::shared_ptr<GameObject>
 			{
 				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 				obj->addScript(this->grassModels.back());
 				obj->addScript(std::make_shared<OrientToSurface>());
 				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
-				float randScale = ((rand() % 50) / 100.f) + 0.75f;
+				int heightOffset = (x.maxSize - x.minSize) * 100;
+				float randScale = ((rand() % heightOffset) / 100.f) + x.minSize;
 				float extraHeight = ((rand() % 50) / 100.f);
 				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
 				return obj;
@@ -442,103 +462,6 @@ void Game::initSurfaceGrass()
 
 		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
 	}
-
-	{
-		SurfaceInstancer instancer1;
-
-		InstancerSettings settings1;
-		settings1.density = 1.0f;
-		settings1.noiseScale = 100.0f;
-		settings1.noiseThreshold = 10.0f;
-		settings1.noiseSeed = rand();
-		settings1.useHeightLayerMask = true;
-		settings1.heightLayerMask = 2;
-		settings1.passesPerFace = 16 / sizeDecrease;
-
-		instancer1.SetSettings(settings1);
-
-		grassModels.emplace_back(std::make_shared<SurfaceGrass>());
-		grassModels.back()->grassTextureLoc = "./Assets/Images/bush.png";
-
-		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
-			{
-				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-				obj->addScript(this->grassModels.back());
-				obj->addScript(std::make_shared<OrientToSurface>());
-				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
-				float randScale = ((rand() % 50) / 100.f) + 3.75f;
-				float extraHeight = ((rand() % 50) / 100.f);
-				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
-				return obj;
-			};
-
-		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
-	}
-
-	{
-		SurfaceInstancer instancer1;
-
-		InstancerSettings settings1;
-		settings1.density = 1.0f;
-		settings1.noiseScale = 100.0f;
-		settings1.noiseThreshold = 10.0f;
-		settings1.noiseSeed = rand();
-		settings1.useHeightLayerMask = true;
-		settings1.heightLayerMask = 2;
-		settings1.passesPerFace = 16 / sizeDecrease;
-
-		instancer1.SetSettings(settings1);
-
-		grassModels.emplace_back(std::make_shared<SurfaceGrass>());
-		grassModels.back()->grassTextureLoc = "./Assets/Images/bush.png";
-		grassModels.back()->cull = false;
-		auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
-			{
-				std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-				obj->addScript(this->grassModels.back());
-				obj->addScript(std::make_shared<OrientToSurface>());
-				obj->transform->rotation = { 0.0f, 0.0f, 180.0f };
-				float randScale = ((rand() % 50) / 100.f) + 3.75f;
-				float extraHeight = ((rand() % 50) / 100.f);
-				obj->transform->scale = { randScale, randScale + extraHeight, randScale };
-				return obj;
-			};
-
-		instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
-	}
-	//{
-	//	SurfaceInstancer instancer1;
-	//
-	//	InstancerSettings settings1;
-	//	settings1.density = 1.0f;
-	//	settings1.noiseScale = 100.0f;
-	//	settings1.noiseThreshold = 10.0f;
-	//	settings1.noiseSeed = rand();
-	//	settings1.useHeightLayerMask = true;
-	//	settings1.heightLayerMask = 2;
-	//	settings1.passesPerFace = 16 / sizeDecrease;
-	//
-	//	instancer1.SetSettings(settings1);
-	//
-	//	auto creatorFunc = [this]() -> std::shared_ptr<GameObject>
-	//		{
-	//			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-	//			obj->addScript(std::make_shared<OrientToSurface>());
-	//
-	//			auto p = std::make_shared<Particle>();
-	//			p->positionOverride = std::make_shared<glm::vec3>(obj->transform->position);
-	//			p->textureLocation = "./Assets/Images/Particles/basicParticle.png";
-	//			p->maxTimeAlive = 500.f;
-	//			obj->addScript(p);
-	//
-	//			float randScale = ((rand() % 50) / 100.f) + 30.75f;
-	//			float extraHeight = ((rand() % 50) / 100.f);
-	//			obj->transform->scale = { randScale, randScale + extraHeight, randScale };
-	//			return obj;
-	//		};
-	//
-	//	instancer1.InstantiateOnSurface(g_planetScript, creatorFunc);
-	//}
 }
 
 

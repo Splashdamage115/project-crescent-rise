@@ -313,6 +313,9 @@
     <ClCompile Include="WanderState.cpp">
       <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
     </ClCompile>
+    <ClCompile Include="SurfaceInstanceHolder.cpp">
+      <Filter>Files\Library\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -524,6 +527,9 @@
     </ClInclude>
     <ClInclude Include="WanderState.h">
       <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceInstanceHolder.h">
+      <Filter>Files\Library\gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
