@@ -7,6 +7,7 @@
 #include "Update.h"
 #include "Game.h"
 #include "jsonPlanetParser.h"
+#include "SurfaceInstanceHolder.h"
 
 void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet, std::shared_ptr<WaterSphere> t_water)
 {
@@ -492,4 +493,7 @@ void PlanetGenHandler::loadPlanet(bool loadNewRandom)
 	{
 		resetPlanet();
 	}
+
+	SurfaceInstanceHolder::m_instancerSettings = planet.instances.m_instances;
+	//SurfaceInstanceHolder::init();
 }

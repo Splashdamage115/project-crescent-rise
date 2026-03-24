@@ -127,6 +127,8 @@ json PlanetData::planetDataToJson()
         j[pos]["planetColour"][posString]["textureScale"] = planetColour.m_textureScale.at(i);
     }
 
+    instances.InstanceToJson(j, pos);
+
     return j;
 }
 
@@ -377,5 +379,137 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
         std::cout << "[jsonToPlanetData] planetColour present but not an object\n";
     }
 
+    p.instances.jsonToInstancers(j);
+
     return p;
+}
+
+void surfaceInstances::InstanceToJson(json& j, std::string pos)
+{
+    // placeholder layers info
+    {
+        std::vector<std::string> grassTextures =
+        {
+            "./Assets/Images/grass.png",
+            "./Assets/Images/grass2.png",
+            "./Assets/Images/grass3.png",
+            "./Assets/Images/bush.png"
+        };
+
+        std::vector<int> spawnAmt =
+        {
+            256 /4,
+            32 /4,
+            128 /4,
+            32 /4
+        };
+
+        for (int i = 0; i < spawnAmt.size(); i++)
+        {
+            m_instances.emplace_back();
+            m_instances.at(i).textureLoc = grassTextures.at(i);
+
+            m_instances.at(i).density = 1.0f;
+            m_instances.at(i).noiseScale = 100.0f;
+            m_instances.at(i).noiseThreshold = 10.0f;
+            m_instances.at(i).noiseSeed = rand();
+            m_instances.at(i).useHeightLayerMask = true;
+            m_instances.at(i).heightLayerMask = 2;
+            m_instances.at(i).passesPerFace = spawnAmt.at(i);
+
+            m_instances.at(i).maxSize = 1.25f;
+            m_instances.at(i).minSize = 0.75f;
+
+            m_instances.at(i).instanceType = InstanceType::Grass;
+        }
+
+        m_instances.at(spawnAmt.size() - 1).minSize = 3.75f;
+        m_instances.at(spawnAmt.size() - 1).maxSize = 4.f;
+    }
+
+
+    //"textureLoc"
+    //"density"
+    //"noiseScale"
+    //"noiseThreshold"
+    //"noiseSeed"
+    //"useHeightLayerMask"
+    //"heightLayerMask"
+    //"passesPerFace"
+    //"maxSize"
+    //"minSize"
+    //"instanceType"
+    
+    for (int i = 0; i < m_instances.size(); i++)
+    {
+        std::string posString = std::to_string(i);
+        auto& ins = m_instances.at(i);
+
+        j[pos]["Instances"][posString]["textureLoc"] = ins.textureLoc;
+        j[pos]["Instances"][posString]["density"] = ins.density;
+        j[pos]["Instances"][posString]["noiseScale"] = ins.noiseScale;
+        j[pos]["Instances"][posString]["noiseThreshold"] = ins.noiseThreshold;
+        j[pos]["Instances"][posString]["noiseSeed"] = ins.noiseSeed;
+        j[pos]["Instances"][posString]["useHeightLayerMask"] = ins.useHeightLayerMask;
+        j[pos]["Instances"][posString]["heightLayerMask"] = ins.heightLayerMask;
+        j[pos]["Instances"][posString]["passesPerFace"] = ins.passesPerFace;
+        j[pos]["Instances"][posString]["maxSize"] = ins.maxSize;
+        j[pos]["Instances"][posString]["minSize"] = ins.minSize;
+        j[pos]["Instances"][posString]["instanceType"] = ins.instanceType;
+    }
+}
+
+std::vector<InstancerSettings> surfaceInstances::jsonToInstancers(const json& input)
+{
+    if (input.contains("Instances"))
+    {
+        const json& insObj = input["Instances"];
+
+        for (auto& [idx, insJson] : insObj.items())
+        {
+            if (!insJson.is_object())
+            {
+                std::cout << "[jsonToInstancers] instanceObj." << idx << " is not an object, skipping\n";
+                continue;
+            }
+
+            // parse index from key (keys are numeric strings in saved JSON)
+            int objIndex = -1;
+            try
+            {
+                objIndex = std::stoi(idx);
+            }
+            catch (...)
+            {
+                std::cout << "[jsonToInstancers] instanceObj key '" << idx << "' is not a number, skipping\n";
+                continue;
+            }
+            if (objIndex < 0)
+            {
+                std::cout << "[jsonToInstancers] instanceObj index negative, skipping\n";
+                continue;
+            }
+
+            if (objIndex >= static_cast<int>(m_instances.size()))
+                m_instances.resize(objIndex + 1);
+
+            auto& instance = m_instances.at(objIndex);
+
+            if (insJson.contains("textureLoc") && insJson["textureLoc"].is_string()) instance.textureLoc = insJson["textureLoc"].get<decltype(instance.textureLoc)>();
+
+            if (insJson.contains("density") && insJson["density"].is_number()) instance.density = insJson["density"].get<decltype(instance.density)>();
+            if (insJson.contains("noiseScale") && insJson["noiseScale"].is_number()) instance.noiseScale = insJson["noiseScale"].get<decltype(instance.noiseScale)>();
+            if (insJson.contains("noiseThreshold") && insJson["noiseThreshold"].is_number()) instance.noiseThreshold = insJson["noiseThreshold"].get<decltype(instance.noiseThreshold)>();
+            if (insJson.contains("noiseSeed") && insJson["noiseSeed"].is_number()) instance.noiseSeed = insJson["noiseSeed"].get<decltype(instance.noiseSeed)>();
+            if (insJson.contains("useHeightLayerMask") && insJson["useHeightLayerMask"].is_boolean()) instance.useHeightLayerMask = insJson["useHeightLayerMask"].get<decltype(instance.useHeightLayerMask)>();
+            if (insJson.contains("heightLayerMask") && insJson["heightLayerMask"].is_number()) instance.heightLayerMask = insJson["heightLayerMask"].get<decltype(instance.heightLayerMask)>();
+            if (insJson.contains("passesPerFace") && insJson["passesPerFace"].is_number()) instance.passesPerFace = insJson["passesPerFace"].get<decltype(instance.passesPerFace)>();
+            if (insJson.contains("maxSize") && insJson["maxSize"].is_number()) instance.maxSize = insJson["maxSize"].get<decltype(instance.maxSize)>();
+            if (insJson.contains("minSize") && insJson["minSize"].is_number()) instance.minSize = insJson["minSize"].get<decltype(instance.minSize)>();
+
+            if (insJson.contains("instanceType") && insJson["instanceType"].is_number()) instance.instanceType = insJson["instanceType"].get<decltype(instance.instanceType)>();
+        }
+    }
+
+    return std::vector<InstancerSettings>();
 }

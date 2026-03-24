@@ -4,20 +4,29 @@
 #include "ShapeSettings.h"
 #include "PlanetColour.h"
 #include "json.hpp"
+#include "SurfaceInstancer.h"
 
 using json = nlohmann::json;
+
+struct surfaceInstances
+{
+	void InstanceToJson(json& j, std::string pos);
+	std::vector<InstancerSettings> jsonToInstancers(const json& input);
+
+	std::vector<InstancerSettings> m_instances;
+};
 
 struct PlanetData
 {
 	json planetDataToJson();
 	static PlanetData jsonToPlanetData(const json& input);
 
-
 	ShapeSettings planetShape;
 	ShapeSettings oceanShapeSettings;
 	PlanetColour planetColour;
 	int planetPointCount;
 	int oceanPointCount;
+	surfaceInstances instances;
 };
 
 class jsonPlanetParser
