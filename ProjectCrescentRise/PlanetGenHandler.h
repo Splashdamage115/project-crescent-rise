@@ -22,6 +22,8 @@ public:
 	void update();
 
 	void AlignLiveUpdate();
+
+	int getLayerAmt();
 private:
 	void resetPlanet();
 	void sendPlanetData();

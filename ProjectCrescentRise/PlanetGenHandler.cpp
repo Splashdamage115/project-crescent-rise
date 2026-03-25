@@ -347,6 +347,8 @@ void PlanetGenHandler::guiRender()
 	ImGui::End();
 
 	JsonPlanetSettings();
+
+	SurfaceInstanceHolder::drawImGui(getLayerAmt());
 }
 
 void PlanetGenHandler::JsonPlanetSettings()
@@ -413,6 +415,17 @@ void PlanetGenHandler::AlignLiveUpdate()
 {
 	m_planet->callChange = LiveUpdate;
 	m_water->callChange = LiveUpdate;
+}
+
+int PlanetGenHandler::getLayerAmt()
+{
+	int layerAmt = 0;
+	for (unsigned int i = 0; i < m_planet->planetColour.COLOUR_MAX; i++)
+	{
+		if (!m_planet->planetColour.active.at(i)) continue;
+		layerAmt++;
+	}
+	return layerAmt;
 }
 
 void PlanetGenHandler::resetPlanet()
@@ -493,7 +506,17 @@ void PlanetGenHandler::loadPlanet(bool loadNewRandom)
 	{
 		resetPlanet();
 	}
+	std::vector< std::vector<InstancerSettings>> t;
+	planet.instances.m_instances;
 
-	SurfaceInstanceHolder::m_instancerSettings = planet.instances.m_instances;
+	for (int i = 0; i < planet.instances.m_instances.size(); i++)
+	{
+		int layer = planet.instances.m_instances.at(i).heightLayerMask;
+		while (t.size() <= layer) t.emplace_back();
+
+		t.at(layer).push_back(planet.instances.m_instances.at(i));
+	}
+
+	SurfaceInstanceHolder::m_instancerSettings = t;
 	//SurfaceInstanceHolder::init();
 }

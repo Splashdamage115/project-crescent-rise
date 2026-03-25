@@ -8,10 +8,10 @@ class SurfaceInstanceHolder
 public:
 	static void init();
 	static void loadInstancer();
-	static void drawImGui();
+	static void drawImGui(int layerAmt);
 
 	static std::vector<std::shared_ptr<SurfaceGrass>> m_surfaceGrass;
-	static std::vector<InstancerSettings> m_instancerSettings;
+	static std::vector< std::vector<InstancerSettings>> m_instancerSettings;
 private:
 };
 
