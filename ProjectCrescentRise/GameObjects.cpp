@@ -24,25 +24,26 @@ void GameObjects::addNewObjectToPool(std::shared_ptr< GameObject> t_newObject)
 }
 
 
-std::vector<std::shared_ptr<GameObject>> GameObjects::getAllOfTag(const std::string& t_tag)
+std::vector<std::shared_ptr<GameObject>> GameObjects::getAllOfTag(const std::string& t_tag, bool visibleOnly)
 {
 	std::vector<std::shared_ptr<GameObject>> go;
 	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 	{
-		if (glm::distance(m_gameObjects.at(i)->transform->position, PlayerInput::playerPosition) < tagDetectDistance)
+		if(visibleOnly)
+			if (glm::distance(m_gameObjects.at(i)->transform->position, PlayerInput::playerPosition) < tagDetectDistance) continue;
+
+		bool foundObj = false;
+		for (int l = 0; l < m_gameObjects.at(i)->tags.size(); l++)
 		{
-			bool foundObj = false;
-			for (int l = 0; l < m_gameObjects.at(i)->tags.size(); l++)
+			if (m_gameObjects.at(i)->tags.at(l) == t_tag)
 			{
-				if (m_gameObjects.at(i)->tags.at(l) == t_tag)
-				{
-					go.push_back(m_gameObjects.at(i));
-					foundObj = true;
-					break;
-				}
+				go.push_back(m_gameObjects.at(i));
+				foundObj = true;
+				break;
 			}
-			if (foundObj) continue;
 		}
+		if (foundObj) continue;
+
 	}
 	return go;
 }

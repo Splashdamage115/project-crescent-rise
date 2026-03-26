@@ -138,13 +138,43 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 
 				if (ImGui::TreeNode(t.c_str()))
 				{
-					ImGui::Text("This is a layer");
-					t = "";
-					t += "Texture location";
-					t += loc;
+					//ImGui::Text("This is a layer");
+					t = ""; t += "Texture location "; t += loc;
 
 					ImGui::InputText(t.c_str(), m_instancerSettings.at(layer).at(i).textureLoc.data(), inputLength); 
 
+					t = ""; t += "density "; t += loc;
+					ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).density, 0.0f, 1.0f);
+
+					t = ""; t += "noiseScale "; t += loc;
+					ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseScale, 0.0f, 300.0f);
+
+					t = ""; t += "noiseThreshold "; t += loc;
+					ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseThreshold, 0.0f, 30.0f);
+
+					//t = ""; t += "noiseSeed "; t += loc;
+					//ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseSeed, 0.0f, 300.0f);
+					
+					t = ""; t += "passesPerFace "; t += loc;
+					ImGui::SliderInt(t.c_str(), &m_instancerSettings.at(layer).at(i).passesPerFace, 1, 512);
+
+					t = ""; t += "minSize "; t += loc;
+					if(ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).minSize, 0.001f, 10.0f))
+					{
+						if (m_instancerSettings.at(layer).at(i).minSize > m_instancerSettings.at(layer).at(i).maxSize)
+						{
+							m_instancerSettings.at(layer).at(i).maxSize = m_instancerSettings.at(layer).at(i).minSize;
+						}
+					}
+
+					t = ""; t += "maxSize "; t += loc;
+					if (ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).maxSize, 0.001f, 10.0f))
+					{
+						if (m_instancerSettings.at(layer).at(i).minSize > m_instancerSettings.at(layer).at(i).maxSize)
+						{
+							m_instancerSettings.at(layer).at(i).minSize = m_instancerSettings.at(layer).at(i).maxSize;
+						}
+					}
 
 					//newInst.density = 1.0f;
 					//newInst.noiseScale = 100.0f;

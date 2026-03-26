@@ -31,7 +31,7 @@
 #include "SurfaceInstanceHolder.h"
 
 double Game::deltaTime = 0;
-std::shared_ptr<PlanetSurface> Game::g_planetScript;
+std::shared_ptr<PlanetSurface> Game::g_planetScript; 
 
 void Game::initGame()
 {
@@ -133,21 +133,21 @@ void Game::initGame()
 
 
 	// - - - ENEMY - - -
-	Enemy = std::make_shared<GameObject>();
-	std::shared_ptr<Mover> t = std::make_shared<Mover>();
-	t->velocity = glm::vec3(1.0f, 0.f, 1.f);
-	Enemy->addScript(t);
-	std::shared_ptr enemyModel = std::make_shared<Model>();
-	std::shared_ptr<ModelPartnerScript> partner = std::make_shared<ModelPartnerScript>();
-	enemyModel->renderPriority = ScriptObject::RenderPriority::noCull;
-	partner->m_pairedModel = enemyModel;
-	Enemy->addScript(partner);
-	Enemy->addScript(enemyModel);
-	Enemy->addScript(std::make_shared<SurfaceFollower>());
-	Enemy->transform->scale = glm::vec3(3.0f);
-	Enemy->tags.emplace_back("interactible");
-	Enemy->tags.emplace_back("shootable");
-	GameObjects::addNewObjectToPool(Enemy);
+	//Enemy = std::make_shared<GameObject>();
+	//std::shared_ptr<Mover> t = std::make_shared<Mover>();
+	//t->velocity = glm::vec3(1.0f, 0.f, 1.f);
+	//Enemy->addScript(t);
+	//std::shared_ptr enemyModel = std::make_shared<Model>();
+	//std::shared_ptr<ModelPartnerScript> partner = std::make_shared<ModelPartnerScript>();
+	//enemyModel->renderPriority = ScriptObject::RenderPriority::noCull;
+	//partner->m_pairedModel = enemyModel;
+	//Enemy->addScript(partner);
+	//Enemy->addScript(enemyModel);
+	//Enemy->addScript(std::make_shared<SurfaceFollower>());
+	//Enemy->transform->scale = glm::vec3(3.0f);
+	//Enemy->tags.emplace_back("interactible");
+	//Enemy->tags.emplace_back("shootable");
+	//GameObjects::addNewObjectToPool(Enemy);
 	// - - - !ENEMY - - - 
 
 	initPlanetSurface();
@@ -381,6 +381,8 @@ void Game::instantiateEnemies()
 
 			// allow the player to shoot the enemy
 			obj->tags.emplace_back("shootable");
+			obj->tags.emplace_back("enemy");
+
 			return obj;
 		};
 

@@ -25,6 +25,8 @@ public:
 
 	int getLayerAmt();
 private:
+	void clearPlanet();
+
 	void resetPlanet();
 	void sendPlanetData();
 	void savePlanet(bool saveAsNew);

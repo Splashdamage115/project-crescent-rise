@@ -372,6 +372,10 @@ void PlanetGenHandler::JsonPlanetSettings()
 	{
 		loadPlanet(false);
 	}
+	if (ImGui::Button("Reset Planet Settings"))
+	{
+		clearPlanet();
+	}
 	ImGui::End();
 }
 
@@ -426,6 +430,50 @@ int PlanetGenHandler::getLayerAmt()
 		layerAmt++;
 	}
 	return layerAmt;
+}
+
+void PlanetGenHandler::clearPlanet()
+{
+	m_planet->shapeSettings.noiseLayers.clear();
+	m_planet->shapeSettings.planetRadius = 1.0f; 
+
+
+	for (int i = 0; i < m_planet->planetColour.COLOUR_MAX; i++)
+	{
+		m_planet->planetColour.m_colours.at(i) = glm::vec3(0.f);
+		m_planet->planetColour.m_heights.at(i) = -1.f;
+		m_planet->planetColour.m_shaderType.at(i) = 0;
+		m_planet->planetColour.m_textureLocation.at(i) = "basic.jpg";
+		m_planet->planetColour.m_normalLocation.at(i) = "basicNormal.jpg";
+		m_planet->planetColour.m_textureScale.at(i) = 1.0f;
+		m_planet->planetColour.m_normalStrength.at(i) = 1.0f;
+		m_planet->planetColour.active.at(i) = false;
+		m_planet->planetColour.m_needsReloading.at(i) = true;
+	}
+
+	
+
+	m_planet->pointsPerRow = 4; 
+
+	m_water->shapeSettings.noiseLayers.clear();
+	m_water->shapeSettings.planetRadius = 1.0f; 
+
+	m_water->pointsPerRow = 4; 
+
+	SurfaceInstanceHolder::m_instancerSettings.clear();
+
+	LiveUpdate = false;
+
+	m_planet->ResetPlanet();
+	m_water->ResetPlanet();
+
+
+	auto enemies = GameObjects::getAllOfTag("enemy", true);
+
+	for (auto& i : enemies)
+	{
+		i->active = false;
+	}
 }
 
 void PlanetGenHandler::resetPlanet()
