@@ -6,6 +6,7 @@ renderObject MeshStore::loadMesh(const ufbx_mesh* mesh_fbx, const ufbx_scene* sc
     renderObject mesh = {};
     std::vector<float> positions;
     std::vector<float> normals;
+    std::vector<float> uvs;
     std::vector<float> materialIDs;
     std::vector<uint32_t> indices;
 
@@ -33,10 +34,20 @@ renderObject MeshStore::loadMesh(const ufbx_mesh* mesh_fbx, const ufbx_scene* sc
         }
 
         for (size_t i = 0; i < m->num_vertices; i++) {
-            ufbx_vec3 pos  = m->vertices[i];
-            ufbx_vec3 norm = m->vertex_normal[i];
-            positions.push_back(pos.x);  positions.push_back(pos.y);  positions.push_back(pos.z);
-            normals.push_back(norm.x);   normals.push_back(norm.y);   normals.push_back(norm.z);
+            ufbx_vec3 pos = m->vertices[i];
+            positions.push_back(pos.x); positions.push_back(pos.y); positions.push_back(pos.z);
+
+            ufbx_vec3 norm = {};
+            if (m->vertex_normal.exists && m->vertex_first_index.count > i && m->vertex_first_index[i] != UFBX_NO_INDEX)
+                norm = m->vertex_normal[m->vertex_first_index[i]];
+            normals.push_back(norm.x); normals.push_back(norm.y); normals.push_back(norm.z);
+
+            ufbx_vec2 uv = {};
+            if (m->vertex_uv.exists && m->vertex_first_index.count > i && m->vertex_first_index[i] != UFBX_NO_INDEX)
+                uv = m->vertex_uv[m->vertex_first_index[i]];
+            uvs.push_back((float)uv.x);
+            uvs.push_back((float)uv.y);
+
             materialIDs.push_back(meshMatIDs[i]);
         }
 
@@ -55,11 +66,17 @@ renderObject MeshStore::loadMesh(const ufbx_mesh* mesh_fbx, const ufbx_scene* sc
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     glEnableVertexAttribArray(0);
 
+    glGenBuffers(1, &mesh.uvs);
+    glBindBuffer(GL_ARRAY_BUFFER, mesh.uvs);
+    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(float), uvs.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glEnableVertexAttribArray(1);
+
     glGenBuffers(1, &mesh.normals);
     glBindBuffer(GL_ARRAY_BUFFER, mesh.normals);
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(float), normals.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+    glEnableVertexAttribArray(2);
 
     GLuint matVBO;
     glGenBuffers(1, &matVBO);

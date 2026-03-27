@@ -62,15 +62,18 @@ void Model::Render()
 	glFrontFace(GL_CW);
 
 	glBindVertexArray(m_body.vao);
-	if (textureLoc != -1 && heightMapID != -1 && heightLoc != -1 && textureID != -1)
+	if (textureLoc != -1 && textureID != -1)
 	{
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureID);
 		glUniform1i(textureLoc, 0);
 
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, heightMapID);
-		glUniform1i(heightLoc, 1);
+		if (heightLoc != -1 && heightMapID != -1)
+		{
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, heightMapID);
+			glUniform1i(heightLoc, 1);
+		}
 
 		if (uTexture2Loc != -1 && textureID2 != -1)
 		{

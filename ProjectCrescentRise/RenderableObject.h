@@ -11,9 +11,10 @@ struct renderObject {
 
 	GLuint ebo;
 	GLuint vbo;
+	GLuint uvs;
 	GLuint vao;
 	GLuint normals;
-    size_t indexLength;
+	size_t indexLength;
 };
 
 class RenderableObject : public ScriptObject
