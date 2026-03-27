@@ -10,51 +10,58 @@ renderObject MeshStore::loadMesh(const ufbx_mesh* mesh_fbx, const ufbx_scene* sc
     std::vector<float> materialIDs;
     std::vector<uint32_t> indices;
 
-    uint32_t vertexOffset = 0;
     for (size_t mi = 0; mi < scene->meshes.count; mi++)
     {
         const ufbx_mesh* m = scene->meshes[mi];
 
-        // Default every vertex in this mesh to the mesh index
-        std::vector<float> meshMatIDs(m->num_vertices, static_cast<float>(mi));
-
-        // If the mesh has per-face material assignments, use those instead
-        if (m->face_material.count > 0)
+        // Iterate per-face and per-corner so each triangle corner gets its own
+        // UV, normal, and materialID directly from the FBX corner data.
+        // This correctly handles UV seams where the same vertex has different
+        // UV coordinates in different faces.
+        for (size_t fi = 0; fi < m->num_faces; fi++)
         {
-            for (size_t fi = 0; fi < m->num_faces; fi++)
+            ufbx_face face = m->faces[fi];
+            float matID = (m->face_material.count > 0)
+                ? static_cast<float>(m->face_material[fi])
+                : static_cast<float>(mi);
+
+            // Fan triangulation: works for triangles, quads, and n-gons
+            for (uint32_t ti = 1; ti + 1 < face.num_indices; ti++)
             {
-                ufbx_face face = m->faces[fi];
-                float matID = static_cast<float>(m->face_material[fi]);
-                for (uint32_t vi = 0; vi < face.num_indices; vi++)
+                uint32_t corners[3] = {
+                    face.index_begin,
+                    face.index_begin + ti,
+                    face.index_begin + ti + 1
+                };
+
+                for (int ci = 0; ci < 3; ci++)
                 {
-                    uint32_t vertIdx = m->vertex_indices[face.index_begin + vi];
-                    meshMatIDs[vertIdx] = matID;
+                    uint32_t corner = corners[ci];
+                    uint32_t vi = m->vertex_indices[corner];
+
+                    ufbx_vec3 pos = m->vertices[vi];
+                    positions.push_back((float)pos.x);
+                    positions.push_back((float)pos.y);
+                    positions.push_back((float)pos.z);
+
+                    ufbx_vec2 uv = {};
+                    if (m->vertex_uv.exists)
+                        uv = m->vertex_uv[corner];
+                    uvs.push_back((float)uv.x);
+                    uvs.push_back(1.0f - (float)uv.y); // flip V: Blender (V=0 bottom) -> OpenGL (V=0 top)
+
+                    ufbx_vec3 norm = {};
+                    if (m->vertex_normal.exists)
+                        norm = m->vertex_normal[corner];
+                    normals.push_back((float)norm.x);
+                    normals.push_back((float)norm.y);
+                    normals.push_back((float)norm.z);
+
+                    materialIDs.push_back(matID);
+                    indices.push_back((uint32_t)indices.size());
                 }
             }
         }
-
-        for (size_t i = 0; i < m->num_vertices; i++) {
-            ufbx_vec3 pos = m->vertices[i];
-            positions.push_back(pos.x); positions.push_back(pos.y); positions.push_back(pos.z);
-
-            ufbx_vec3 norm = {};
-            if (m->vertex_normal.exists && m->vertex_first_index.count > i && m->vertex_first_index[i] != UFBX_NO_INDEX)
-                norm = m->vertex_normal[m->vertex_first_index[i]];
-            normals.push_back(norm.x); normals.push_back(norm.y); normals.push_back(norm.z);
-
-            ufbx_vec2 uv = {};
-            if (m->vertex_uv.exists && m->vertex_first_index.count > i && m->vertex_first_index[i] != UFBX_NO_INDEX)
-                uv = m->vertex_uv[m->vertex_first_index[i]];
-            uvs.push_back((float)uv.x);
-            uvs.push_back((float)uv.y);
-
-            materialIDs.push_back(meshMatIDs[i]);
-        }
-
-        for (size_t i = 0; i < m->num_indices; i++)
-            indices.push_back(m->vertex_indices[i] + vertexOffset);
-
-        vertexOffset += static_cast<uint32_t>(m->num_vertices);
     }
 
     glGenVertexArrays(1, &mesh.vao);

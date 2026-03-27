@@ -75,10 +75,10 @@ void Model::Render()
 			glUniform1i(heightLoc, 1);
 		}
 
-		if (uTexture2Loc != -1 && textureID2 != -1)
+		if (uTexture2Loc != -1)
 		{
 			glActiveTexture(GL_TEXTURE2);
-			glBindTexture(GL_TEXTURE_2D, textureID2);
+			glBindTexture(GL_TEXTURE_2D, textureID2 != (GLuint)-1 ? textureID2 : textureID);
 			glUniform1i(uTexture2Loc, 2);
 		}
 	}
