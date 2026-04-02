@@ -2,7 +2,7 @@
 
 std::vector<std::shared_ptr<Particle>> ParticleController::m_particles;
 
-std::shared_ptr<Particle> ParticleController::SpawnNewParticle(std::string textureLocation, Transform overridePosition, float timeAlive, glm::vec2 frameAmt, glm::vec2 textureSize)
+std::shared_ptr<Particle> ParticleController::SpawnNewParticle(std::string textureLocation, Transform overridePosition, float timeAlive, glm::vec2 frameAmt, glm::vec2 textureSize, float t_frameTime)
 {
 	std::shared_ptr<Particle> newParticle;
 
@@ -28,6 +28,7 @@ std::shared_ptr<Particle> ParticleController::SpawnNewParticle(std::string textu
 	newParticle->maxTimeAlive = timeAlive;
 	newParticle->frameAmt = frameAmt;
 	newParticle->textureSize = textureSize;
+	newParticle->frameTime = t_frameTime;
 
 	newParticle->initialiseData();
 

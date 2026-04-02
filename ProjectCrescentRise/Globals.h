@@ -8,6 +8,8 @@
 #define WINDOW_SIZE_X 1920 // size if not in full screen mode
 #define WINDOW_SIZE_Y 1080 // size if not in full screen mode
 
+#define QUALITY 2
+
 #if defined(_DEBUG) || defined(DEBUG)
 	#define DEBUG_MODE 1
 	#define LOW_RES true // use low resolution texture (for the sky box)

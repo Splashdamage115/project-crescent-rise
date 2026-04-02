@@ -9,12 +9,14 @@
 
 enum class InstanceType
 {
-	None, Grass
+	None, Grass, PickupModel
 };
 
 struct InstancerSettings
 {
 	InstanceType instanceType = InstanceType::None;
+
+	std::string modelLocation = "./Assets/Mesh/rock.fbx";
 
 	float density = 0.1f;
 	float noiseScale = 50.0f;

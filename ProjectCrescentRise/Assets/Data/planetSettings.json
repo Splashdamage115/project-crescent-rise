@@ -1108,7 +1108,7 @@
                 "maxSize": 1.25,
                 "minSize": 0.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 25202,
+                "noiseSeed": 1797,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 64,
                 "textureLoc": "./Assets/Images/grass.png",
@@ -1121,7 +1121,7 @@
                 "maxSize": 1.25,
                 "minSize": 0.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 30498,
+                "noiseSeed": 18303,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/grass2.png",
@@ -1134,7 +1134,7 @@
                 "maxSize": 1.25,
                 "minSize": 0.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 23193,
+                "noiseSeed": 14575,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 32,
                 "textureLoc": "./Assets/Images/grass3.png",
@@ -1147,7 +1147,7 @@
                 "maxSize": 4.0,
                 "minSize": 3.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 17490,
+                "noiseSeed": 24059,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/bush.png",
@@ -1160,9 +1160,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 23360.0,
-                        "y": 19965.0,
-                        "z": 3418.0
+                        "x": 14762.0,
+                        "y": 3784.0,
+                        "z": 25626.0
                     },
                     "filterType": 0,
                     "minValue": 0.5249999761581421,
@@ -1178,9 +1178,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 5299.0,
-                        "y": 18888.0,
-                        "z": 14043.0
+                        "x": 15698.0,
+                        "y": 24726.0,
+                        "z": 31412.0
                     },
                     "filterType": 1,
                     "minValue": 0.5960000157356262,

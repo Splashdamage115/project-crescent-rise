@@ -52,7 +52,7 @@ void HealthController::expire()
 {
 	if (!parent->active) return;
 
-	auto p = ParticleController::SpawnNewParticle("./Assets/Images/Particles/blood.png", *transform, 0.2f, glm::vec2(6, 1), glm::vec2(3072.f, 512.f));
+	auto p = ParticleController::SpawnNewParticle("./Assets/Images/Particles/blood.png", *transform, 0.2f, glm::vec2(6, 1), glm::vec2(3072.f, 512.f), 0.04f);
 	p->positionOverride->scale = glm::vec3(3.5f);
 
 	std::cout << "OBJECT DESTROYED\n";
