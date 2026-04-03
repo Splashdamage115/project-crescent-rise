@@ -127,6 +127,10 @@ json PlanetData::planetDataToJson()
         j[pos]["planetColour"][posString]["textureScale"] = planetColour.m_textureScale.at(i);
     }
 
+    std::string pretty = j.dump(4, ' ', false, json::error_handler_t::replace);
+
+    std::cout << "Entry Count : " << j.size() << "\n" << pretty << "\n";
+
     instances.InstanceToJson(j, pos);
 
     return j;
@@ -387,45 +391,48 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
 void surfaceInstances::InstanceToJson(json& j, std::string pos)
 {
     // placeholder layers info
-    {
-        std::vector<std::string> grassTextures =
-        {
-            "./Assets/Images/grass.png",
-            "./Assets/Images/grass2.png",
-            "./Assets/Images/grass3.png",
-            "./Assets/Images/bush.png"
-        };
 
-        std::vector<int> spawnAmt =
-        {
-            256 /4,
-            32 /4,
-            128 /4,
-            32 /4
-        };
-
-        for (int i = 0; i < spawnAmt.size(); i++)
-        {
-            m_instances.emplace_back();
-            m_instances.at(i).textureLoc = grassTextures.at(i);
-
-            m_instances.at(i).density = 1.0f;
-            m_instances.at(i).noiseScale = 100.0f;
-            m_instances.at(i).noiseThreshold = 10.0f;
-            m_instances.at(i).noiseSeed = rand();
-            m_instances.at(i).useHeightLayerMask = true;
-            m_instances.at(i).heightLayerMask = 2;
-            m_instances.at(i).passesPerFace = spawnAmt.at(i);
-
-            m_instances.at(i).maxSize = 1.25f;
-            m_instances.at(i).minSize = 0.75f;
-
-            m_instances.at(i).instanceType = InstanceType::Grass;
-        }
-
-        m_instances.at(spawnAmt.size() - 1).minSize = 3.75f;
-        m_instances.at(spawnAmt.size() - 1).maxSize = 4.f;
-    }
+    //m_instances.clear();
+    //
+    //{
+    //    std::vector<std::string> grassTextures =
+    //    {
+    //        "./Assets/Images/grass.png",
+    //        "./Assets/Images/grass2.png",
+    //        "./Assets/Images/grass3.png",
+    //        "./Assets/Images/bush.png"
+    //    };
+    //
+    //    std::vector<int> spawnAmt =
+    //    {
+    //        256 /4,
+    //        32 /4,
+    //        128 /4,
+    //        32 /4
+    //    };
+    //
+    //    for (int i = 0; i < spawnAmt.size(); i++)
+    //    {
+    //        m_instances.emplace_back();
+    //        m_instances.at(i).textureLoc = grassTextures.at(i);
+    //
+    //        m_instances.at(i).density = 1.0f;
+    //        m_instances.at(i).noiseScale = 100.0f;
+    //        m_instances.at(i).noiseThreshold = 10.0f;
+    //        m_instances.at(i).noiseSeed = rand();
+    //        m_instances.at(i).useHeightLayerMask = true;
+    //        m_instances.at(i).heightLayerMask = 2;
+    //        m_instances.at(i).passesPerFace = spawnAmt.at(i);
+    //
+    //        m_instances.at(i).maxSize = 1.25f;
+    //        m_instances.at(i).minSize = 0.75f;
+    //
+    //        m_instances.at(i).instanceType = InstanceType::Grass;
+    //    }
+    //
+    //    m_instances.at(spawnAmt.size() - 1).minSize = 3.75f;
+    //    m_instances.at(spawnAmt.size() - 1).maxSize = 4.f;
+    //}
 
 
     //"textureLoc"
@@ -456,6 +463,10 @@ void surfaceInstances::InstanceToJson(json& j, std::string pos)
         j[pos]["Instances"][posString]["maxSize"] = ins.maxSize;
         j[pos]["Instances"][posString]["minSize"] = ins.minSize;
         j[pos]["Instances"][posString]["instanceType"] = ins.instanceType;
+        j[pos]["Instances"][posString]["modelLocation"] = ins.modelLocation;
+        j[pos]["Instances"][posString]["colour"]["r"] = ins.colour.r;
+        j[pos]["Instances"][posString]["colour"]["g"] = ins.colour.g;
+        j[pos]["Instances"][posString]["colour"]["b"] = ins.colour.b;
     }
 }
 
@@ -508,6 +519,15 @@ std::vector<InstancerSettings> surfaceInstances::jsonToInstancers(const json& in
             if (insJson.contains("minSize") && insJson["minSize"].is_number()) instance.minSize = insJson["minSize"].get<decltype(instance.minSize)>();
 
             if (insJson.contains("instanceType") && insJson["instanceType"].is_number()) instance.instanceType = insJson["instanceType"].get<decltype(instance.instanceType)>();
+            if (insJson.contains("modelLocation") && insJson["modelLocation"].is_string()) instance.modelLocation = insJson["modelLocation"].get<decltype(instance.modelLocation)>();
+
+            if (insJson.contains("colour"))
+            {
+                if (insJson["colour"].contains("r") && insJson["colour"]["r"].is_number()) instance.colour.r = insJson["colour"]["r"].get<decltype(instance.colour.r)>();
+                if (insJson["colour"].contains("g") && insJson["colour"]["g"].is_number()) instance.colour.r = insJson["colour"]["g"].get<decltype(instance.colour.g)>();
+                if (insJson["colour"].contains("b") && insJson["colour"]["b"].is_number()) instance.colour.r = insJson["colour"]["b"].get<decltype(instance.colour.b)>();
+
+            }
         }
     }
 

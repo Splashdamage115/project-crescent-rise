@@ -102,7 +102,7 @@ void PlanetGenHandler::guiRender()
 		if (!m_planet->planetColour.active.at(i)) continue;
 
 
-		if (i - 1 > m_planet->planetColour.active.size()) 
+		while (currentColour.size() <= i)
 		{ 
 			inputTextureAddress.emplace_back(m_planet->planetColour.m_textureLocation.at(i));
 			inputNormalAddress.emplace_back(m_planet->planetColour.m_normalLocation.at(i));
@@ -200,11 +200,11 @@ void PlanetGenHandler::guiRender()
 					m_planet->planetColour.m_needsReloading.at(i) = true;
 					resetPlanet();
 				}
-
+				inputTextureAddress.at(i) = m_planet->planetColour.m_textureLocation.at(i);
 				text = "Texture Address " + std::to_string(i);
 				if (ImGui::InputText(text.c_str(), inputTextureAddress.at(i).data(), inputLength))
 				{
-					m_planet->planetColour.m_textureLocation.at(i) = inputTextureAddress.at(i);
+					m_planet->planetColour.m_textureLocation.at(i) = inputTextureAddress.at(i).data();
 				}
 
 				text = "Texture Tiling Density " + std::to_string(i);
@@ -212,11 +212,11 @@ void PlanetGenHandler::guiRender()
 				{
 					
 				}
-
+				inputNormalAddress.at(i) = m_planet->planetColour.m_normalLocation.at(i);
 				text = "Normal Address " + std::to_string(i);
 				if (ImGui::InputText(text.c_str(), inputNormalAddress.at(i).data(), inputLength))
 				{
-					m_planet->planetColour.m_normalLocation.at(i) = inputNormalAddress.at(i);
+					m_planet->planetColour.m_normalLocation.at(i) = inputNormalAddress.at(i).data();
 				}
 
 				text = "Normal Strength " + std::to_string(i);
@@ -474,6 +474,13 @@ void PlanetGenHandler::clearPlanet()
 	{
 		i->active = false;
 	}
+
+	auto gos = GameObjects::getAllOfTag("instance", true);
+
+	for (auto& i : gos)
+	{
+		i->active = false;
+	}
 }
 
 void PlanetGenHandler::resetPlanet()
@@ -509,6 +516,21 @@ void PlanetGenHandler::savePlanet(bool saveAsNew)
 	planet.planetColour = m_planet->planetColour;
 	planet.planetPointCount = m_planet->pointsPerRow;
 	planet.oceanPointCount = m_water->pointsPerRow;
+
+	auto inst = SurfaceInstanceHolder::m_instancerSettings;
+	std::vector<InstancerSettings> set;
+
+	for (int layer = 0; layer < inst.size(); layer++)
+	{
+		for (int i = 0; i < inst.at(layer).size(); i++)
+		{
+			set.emplace_back(inst.at(layer).at(i));
+		}
+	}
+
+	surfaceInstances s;
+	s.m_instances = set;
+	planet.instances = s;
 	
 	jsonPlanetParser::WritePlanetData(planet, saveAsNew);
 }
@@ -566,5 +588,9 @@ void PlanetGenHandler::loadPlanet(bool loadNewRandom)
 	}
 
 	SurfaceInstanceHolder::m_instancerSettings = t;
-	//SurfaceInstanceHolder::init();
+
+	if(!firstEverInstance)
+		SurfaceInstanceHolder::init();
+
+	firstEverInstance = false;
 }

@@ -106,5 +106,7 @@ void Particle::Render()
     if (uProjLoc >= 0) glUniformMatrix4fv(uProjLoc, 1, GL_FALSE, glm::value_ptr(proj));
     if (uColourLoc >= 0) glUniform3f(uColourLoc, 1.f, 1.f, 1.f);
 
+    glEnable(GL_ALPHA_TEST);
+
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }

@@ -57,6 +57,8 @@ void SurfaceGrass::Start()
 
 void SurfaceGrass::Render()
 {
+    if (parent == nullptr) return;
+    
     VertexShaders::LoadShader(m_shader);
 
     glBindVertexArray(m_body.vao);
@@ -109,5 +111,5 @@ void SurfaceGrass::Render()
 
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
-    glDepthMask(GL_TRUE);
+    //glDepthMask(GL_TRUE);
 }

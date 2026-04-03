@@ -217,85 +217,85 @@ void Game::initPlanetSurface()
 
 void Game::initInstancedObjects()
 {
-	glm::vec3 planetCenter = g_planetScript->getTransform()->position;
+	//glm::vec3 planetCenter = g_planetScript->getTransform()->position;
+	//
+	//
+	//SurfaceInstancer instancerTree;
+	//
+	//InstancerSettings settingsTree;
+	//settingsTree.density = 1.0f;
+	//settingsTree.noiseScale = 100.0f;
+	//settingsTree.noiseThreshold = 1.0f;
+	//settingsTree.noiseSeed = rand();
+	//settingsTree.useHeightLayerMask = true;
+	//settingsTree.heightLayerMask = 2;
+	//settingsTree.passesPerFace = 8;
+	//
+	//instancerTree.SetSettings(settingsTree);
+	//
+	//treeModel = std::make_shared<Model>();
+	//treeModel->loadLocation = "./Assets/Mesh/tree.fbx";
+	//treeModel->colour = glm::vec3(143.f, 88.f, 56.f);
+	//
+	//auto creatorFuncTree = [this]() -> std::shared_ptr<GameObject>
+	//	{
+	//		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+	//
+	//		//std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
+	//		//m->m_pairedModel = this->treeModel;
+	//		//obj->addScript(m);
+	//		obj->addScript(this->treeModel);
+	//		obj->addScript(std::make_shared<OrientToCenter>());
+	//		obj->transform->rotation = { 270.0f, rand() % 180, 0.0f };
+	//		float size = (1.f);
+	//		obj->transform->scale = { size , size, size };
+	//		return obj;
+	//	};
+	//
+	//instancerTree.InstantiateOnSurface(g_planetScript, creatorFuncTree);
 
 
-	SurfaceInstancer instancerTree;
-
-	InstancerSettings settingsTree;
-	settingsTree.density = 1.0f;
-	settingsTree.noiseScale = 100.0f;
-	settingsTree.noiseThreshold = 1.0f;
-	settingsTree.noiseSeed = rand();
-	settingsTree.useHeightLayerMask = true;
-	settingsTree.heightLayerMask = 2;
-	settingsTree.passesPerFace = 8;
-
-	instancerTree.SetSettings(settingsTree);
-
-	treeModel = std::make_shared<Model>();
-	treeModel->loadLocation = "./Assets/Mesh/tree.fbx";
-	treeModel->colour = glm::vec3(143.f, 88.f, 56.f);
-
-	auto creatorFuncTree = [this]() -> std::shared_ptr<GameObject>
-		{
-			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-
-			//std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
-			//m->m_pairedModel = this->treeModel;
-			//obj->addScript(m);
-			obj->addScript(this->treeModel);
-			obj->addScript(std::make_shared<OrientToCenter>());
-			obj->transform->rotation = { 270.0f, rand() % 180, 0.0f };
-			float size = (1.f);
-			obj->transform->scale = { size , size, size };
-			return obj;
-		};
-
-	instancerTree.InstantiateOnSurface(g_planetScript, creatorFuncTree);
-
-
-	SurfaceInstancer instancer2;
-
-	InstancerSettings settings2;
-	settings2.density = 1.0f;
-	settings2.noiseScale = 100.0f;
-	settings2.noiseThreshold = 1.0f;
-	settings2.noiseSeed = rand();
-	settings2.useHeightLayerMask = true;
-	settings2.heightLayerMask = 1;
-	settings2.passesPerFace = 32;
-
-	instancer2.SetSettings(settings2);
-
-	rockModel = std::make_shared<Model>();
-	rockModel->loadLocation = "./Assets/Mesh/rock.fbx";
-	rockModel->colour = glm::vec3(133.f, 133.f, 133.f);
-
-	auto creatorFunc2 = [this]() -> std::shared_ptr<GameObject>
-		{
-			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
-
-			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
-			obj->tags.emplace_back("interactible");
-
-			m->m_pairedModel = this->rockModel;
-			float grayScale = (rand() % 128) + 64.f;
-
-			m->colour.x = grayScale;
-			m->colour.y = grayScale;
-			m->colour.z = grayScale;
-
-			obj->addScript(m);
-			obj->addScript(this->rockModel);
-			obj->addScript(std::make_shared<OrientToSurface>());
-			obj->transform->rotation = { 180.0f, rand() % 180, 0.0f };
-			float size = ((rand() % 50) / 100.f) + 0.2f;
-			obj->transform->scale = { size , size, size };
-			return obj;
-		};
-
-	instancer2.InstantiateOnSurface(g_planetScript, creatorFunc2);
+	//SurfaceInstancer instancer2;
+	//
+	//InstancerSettings settings2;
+	//settings2.density = 1.0f;
+	//settings2.noiseScale = 100.0f;
+	//settings2.noiseThreshold = 1.0f;
+	//settings2.noiseSeed = rand();
+	//settings2.useHeightLayerMask = true;
+	//settings2.heightLayerMask = 1;
+	//settings2.passesPerFace = 32;
+	//
+	//instancer2.SetSettings(settings2);
+	//
+	//rockModel = std::make_shared<Model>();
+	//rockModel->loadLocation = "./Assets/Mesh/rock.fbx";
+	//rockModel->colour = glm::vec3(133.f, 133.f, 133.f);
+	//
+	//auto creatorFunc2 = [this]() -> std::shared_ptr<GameObject>
+	//	{
+	//		std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+	//
+	//		std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
+	//		obj->tags.emplace_back("interactible");
+	//
+	//		m->m_pairedModel = this->rockModel;
+	//		float grayScale = (rand() % 128) + 64.f;
+	//
+	//		m->colour.x = grayScale;
+	//		m->colour.y = grayScale;
+	//		m->colour.z = grayScale;
+	//
+	//		obj->addScript(m);
+	//		obj->addScript(this->rockModel);
+	//		obj->addScript(std::make_shared<OrientToSurface>());
+	//		obj->transform->rotation = { 180.0f, rand() % 180, 0.0f };
+	//		float size = ((rand() % 50) / 100.f) + 0.2f;
+	//		obj->transform->scale = { size , size, size };
+	//		return obj;
+	//	};
+	//
+	//instancer2.InstantiateOnSurface(g_planetScript, creatorFunc2);
 
 	instantiateEnemies();
 

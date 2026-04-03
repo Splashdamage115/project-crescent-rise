@@ -32,6 +32,8 @@ std::vector<std::shared_ptr<GameObject>> GameObjects::getAllOfTag(const std::str
 		if(visibleOnly)
 			if (glm::distance(m_gameObjects.at(i)->transform->position, PlayerInput::playerPosition) < tagDetectDistance) continue;
 
+		if (m_gameObjects.at(i)->active == false) continue;
+
 		bool foundObj = false;
 		for (int l = 0; l < m_gameObjects.at(i)->tags.size(); l++)
 		{

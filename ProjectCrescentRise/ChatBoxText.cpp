@@ -225,6 +225,9 @@ void ChatBoxText::CleanRender()
 // these few lines of code should not be considered for my final mark
 void ChatBoxText::RenderTexts(std::string t_textToRender, float x, float y)
 {
+    glDisable(GL_ALPHA_TEST);
+    //glAlphaFunc(GL_GREATER, 0.5f);
+
     float sx = 0.002f;
     float sy = 0.002f;
 

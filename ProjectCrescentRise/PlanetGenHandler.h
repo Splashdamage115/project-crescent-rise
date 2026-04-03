@@ -43,5 +43,7 @@ private:
 
 	float currentWaitForSend = 0.0f;
 	float MaxWaitForSend = 1.0f;
+
+	bool firstEverInstance = true;
 };
 

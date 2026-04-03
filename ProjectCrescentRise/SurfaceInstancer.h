@@ -9,7 +9,7 @@
 
 enum class InstanceType
 {
-	None, Grass, PickupModel
+	None, Grass, PickupModel, model
 };
 
 struct InstancerSettings
@@ -17,6 +17,7 @@ struct InstancerSettings
 	InstanceType instanceType = InstanceType::None;
 
 	std::string modelLocation = "./Assets/Mesh/rock.fbx";
+	glm::vec3 colour = glm::vec3(1.0f);
 
 	float density = 0.1f;
 	float noiseScale = 50.0f;

@@ -8,7 +8,7 @@
                 "maxSize": 1.25,
                 "minSize": 0.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 25047,
+                "noiseSeed": 2194,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 64,
                 "textureLoc": "./Assets/Images/grass.png",
@@ -21,7 +21,7 @@
                 "maxSize": 1.25,
                 "minSize": 0.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 29743,
+                "noiseSeed": 18125,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/grass2.png",
@@ -34,7 +34,7 @@
                 "maxSize": 1.25,
                 "minSize": 0.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 25008,
+                "noiseSeed": 7143,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 32,
                 "textureLoc": "./Assets/Images/grass3.png",
@@ -47,7 +47,7 @@
                 "maxSize": 4.0,
                 "minSize": 3.75,
                 "noiseScale": 100.0,
-                "noiseSeed": 9345,
+                "noiseSeed": 19497,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/bush.png",
@@ -60,9 +60,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 18605.0,
-                        "y": 28542.0,
-                        "z": 20334.0
+                        "x": 21113.0,
+                        "y": 11855.0,
+                        "z": 10704.0
                     },
                     "filterType": 0,
                     "minValue": 0.5249999761581421,
@@ -78,9 +78,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 28387.0,
-                        "y": 23914.0,
-                        "z": 19214.0
+                        "x": 22769.0,
+                        "y": 14995.0,
+                        "z": 3283.0
                     },
                     "filterType": 1,
                     "minValue": 0.5960000157356262,
@@ -557,8 +557,9 @@
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 32005,
+                "noiseSeed": 12534,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 64,
                 "textureLoc": "./Assets/Images/grass.png",
@@ -570,8 +571,9 @@
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 25278,
+                "noiseSeed": 26919,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/grass2.png",
@@ -583,8 +585,9 @@
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 21130,
+                "noiseSeed": 6552,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 32,
                 "textureLoc": "./Assets/Images/grass3.png",
@@ -596,8 +599,9 @@
                 "instanceType": 1,
                 "maxSize": 4.0,
                 "minSize": 3.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 26100,
+                "noiseSeed": 16103,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/bush.png",
@@ -610,9 +614,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 7020.0,
-                        "y": 7516.0,
-                        "z": 3865.0
+                        "x": 26241.0,
+                        "y": 3418.0,
+                        "z": 18583.0
                     },
                     "filterType": 0,
                     "minValue": 0.335999995470047,
@@ -628,9 +632,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 24935.0,
-                        "y": 2394.0,
-                        "z": 13469.0
+                        "x": 24824.0,
+                        "y": 27962.0,
+                        "z": 27958.0
                     },
                     "filterType": 1,
                     "minValue": 0.2549999952316284,
@@ -1102,55 +1106,117 @@
     "2": {
         "Instances": {
             "0": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "heightLayerMask": 1,
+                "instanceType": 2,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 8913,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 32,
+                "textureLoc": "./Assets/Images/grass.png",
+                "useHeightLayerMask": true
+            },
+            "1": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 1797,
+                "noiseSeed": 4109,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 64,
                 "textureLoc": "./Assets/Images/grass.png",
                 "useHeightLayerMask": true
             },
-            "1": {
+            "2": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 18303,
+                "noiseSeed": 6827,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/grass2.png",
                 "useHeightLayerMask": true
             },
-            "2": {
+            "3": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 14575,
+                "noiseSeed": 11213,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 32,
                 "textureLoc": "./Assets/Images/grass3.png",
                 "useHeightLayerMask": true
             },
-            "3": {
+            "4": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 4.0,
                 "minSize": 3.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 24059,
+                "noiseSeed": 23206,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/bush.png",
+                "useHeightLayerMask": true
+            },
+            "5": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "heightLayerMask": 2,
+                "instanceType": 3,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/tree.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 20819,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 8,
+                "textureLoc": "./Assets/Images/grass.png",
                 "useHeightLayerMask": true
             }
         },
@@ -1160,16 +1226,16 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 14762.0,
-                        "y": 3784.0,
-                        "z": 25626.0
+                        "x": 23954.0,
+                        "y": 14890.0,
+                        "z": 9851.0
                     },
-                    "filterType": 0,
+                    "filterType": 1,
                     "minValue": 0.5249999761581421,
                     "numLayers": 1,
                     "persistence": 0.5960000157356262,
-                    "roughness": 1.2000000476837158,
-                    "strength": 0.8149999976158142,
+                    "roughness": 1.0,
+                    "strength": 0.20000000298023224,
                     "weight": 0.800000011920929
                 }
             },
@@ -1178,16 +1244,34 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 15698.0,
-                        "y": 24726.0,
-                        "z": 31412.0
+                        "x": 19240.0,
+                        "y": 4213.0,
+                        "z": 5630.0
                     },
                     "filterType": 1,
                     "minValue": 0.5960000157356262,
-                    "numLayers": 2,
+                    "numLayers": 1,
                     "persistence": 0.5559999942779541,
-                    "roughness": 2.0,
+                    "roughness": 1.0,
                     "strength": 0.5,
+                    "weight": 0.800000011920929
+                }
+            },
+            "2": {
+                "enabled": true,
+                "mask": true,
+                "settings": {
+                    "center": {
+                        "x": 30403.0,
+                        "y": 27466.0,
+                        "z": 18529.0
+                    },
+                    "filterType": 1,
+                    "minValue": 0.5,
+                    "numLayers": 3,
+                    "persistence": 0.5,
+                    "roughness": 3.0,
+                    "strength": 0.6380000114440918,
                     "weight": 0.800000011920929
                 }
             }
@@ -1204,10 +1288,10 @@
                     "r": 255.0
                 },
                 "height": -1.0,
-                "normalLoc": "basicNormal.jpg",
+                "normalLoc": "WetSandNormal.jpg",
                 "normalStrength": 0.800000011920929,
                 "shaderType": 1,
-                "textureLocation": "basic.jpg",
+                "textureLocation": "WetSand.jpg",
                 "textureScale": 20.0
             },
             "1": {
@@ -1218,10 +1302,10 @@
                     "r": 255.0
                 },
                 "height": 0.12600000202655792,
-                "normalLoc": "basicNormal.jpg",
+                "normalLoc": "WetSandNormal.jpg",
                 "normalStrength": 5.0,
                 "shaderType": 1,
-                "textureLocation": "basic.jpg",
+                "textureLocation": "WetSand.jpg",
                 "textureScale": 199.6009979248047
             },
             "10": {
@@ -1372,11 +1456,11 @@
                     "r": 255.0
                 },
                 "height": 0.5339999794960022,
-                "normalLoc": "grassNormal.jpg",
-                "normalStrength": 2.736999988555908,
+                "normalLoc": "largeRockSandN.jpg",
+                "normalStrength": 5.0,
                 "shaderType": 1,
-                "textureLocation": "grass.jpg",
-                "textureScale": 159.4980010986328
+                "textureLocation": "largeRockSand.jpg",
+                "textureScale": 75.55999755859375
             },
             "20": {
                 "active": false,
@@ -1526,11 +1610,11 @@
                     "r": 255.0
                 },
                 "height": 0.8169999718666077,
-                "normalLoc": "rockNormal.jpg\u0000",
+                "normalLoc": "mossRockN.jpg",
                 "normalStrength": 5.0,
                 "shaderType": 1,
-                "textureLocation": "rock.jpg\u0000",
-                "textureScale": 256.0
+                "textureLocation": "mossRock.jpg",
+                "textureScale": 80.07099914550781
             },
             "30": {
                 "active": false,
@@ -1568,10 +1652,10 @@
                     "r": 255.0
                 },
                 "height": 10.0,
-                "normalLoc": "snowNormal.jpg\u0000",
+                "normalLoc": "rockNormal.jpg",
                 "normalStrength": 5.0,
                 "shaderType": 1,
-                "textureLocation": "snow.jpg\u0000",
+                "textureLocation": "rock.jpg",
                 "textureScale": 256.0
             },
             "5": {

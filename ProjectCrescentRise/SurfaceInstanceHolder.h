@@ -16,6 +16,5 @@ public:
 	static std::vector< std::vector<InstancerSettings>> m_instancerSettings;
 private:
 	static std::vector < std::vector< const char* >> currentInstanceType;
-
 };
 
