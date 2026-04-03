@@ -29,15 +29,41 @@
 #include "ParticleController.h"
 #include "EnemyStateManager.h"
 #include "SurfaceInstanceHolder.h"
+#include "mainMenu.h"
 
 double Game::deltaTime = 0;
 std::shared_ptr<PlanetSurface> Game::g_planetScript; 
 
+Game::Game()
+{
+	Window::Get();
+	initMainMenu();
+	//'initGame();
+}
+
+void Game::initMainMenu()
+{
+	mainMenuObj = std::make_shared<GameObject>();
+	auto t = std::make_shared<mainMenu>();
+
+	t->mainGame = this;
+
+	mainMenuObj->addScript(t);
+	GameObjects::addNewObjectToPool(mainMenuObj);
+}
+
 void Game::initGame()
 {
+	if (mainMenuObj != nullptr && mainMenuObj->active == true)
+	{
+		mainMenuObj->sendMessage("DestroyContext");
+		mainMenuObj->active = false;
+		//mainMenuObj = nullptr;
+	}
+
 	OnlineDispatcher::Init();
 
-	Window::Get();
+	Window::Get().StartGame();
 	Window::Get().InitCamera();
 	
 	// - - - PLAYER - - - 

@@ -155,6 +155,7 @@
     <ClCompile Include="IdleEnemy.cpp" />
     <ClCompile Include="jsonPlanetParser.cpp" />
     <ClCompile Include="Library.cpp" />
+    <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelPartnerScript.cpp" />
     <ClCompile Include="ModelStore.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="IdleEnemy.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="jsonPlanetParser.h" />
+    <ClInclude Include="mainMenu.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelPartnerScript.h" />
     <ClInclude Include="ModelStore.h" />

@@ -36,66 +36,13 @@ Window::Window()
     glewInit();
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    VertexShaders::initialise();
     KeyScan::init();
     glfwSetMouseButtonCallback(m_window, KeyScan::mouseClickCallback);
     glfwSetKeyCallback(m_window, KeyScan::key_callback);
     glfwSetCursorPosCallback(m_window, KeyScan::cursorCallback);
 
-    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    if (glfwRawMouseMotionSupported())
-        glfwSetInputMode(m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
-
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-
-    Update::append([this]() { this->Update(); });
-
-    clickIntoWindow = std::make_shared<mouseKeyInput>();
-    clickIntoWindow->active = true;
-    clickIntoWindow->function = [this]() { this->ClickIn(); };
-    clickIntoWindow->keyCode = KeyScan::MouseKeyCode::RightMouse;
-    KeyScan::append(clickIntoWindow, true);
-
-    if (guiActive)
-    {
-        //std::cout << "=== GUI ACTIVE ===\n";
-        //
-        //// Set window hints for floating, transparent, draggable window
-        //glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);           // Always on top
-        //glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);         // No title bar/borders
-        //glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE); // Transparent background
-        //glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);         // Fixed size for simplicity
-        //
-        //// Create smaller GUI window (adjust size as needed)
-        //
-        //guiWindow = glfwCreateWindow(planetGen.guiWidth, planetGen.guiHeight, "GUI WINDOW", NULL, NULL);
-        //if (!guiWindow)
-        //{
-        //    glfwTerminate();
-        //    return;
-        //}
-        //
-        //// Position the window in top-right corner
-        //glfwSetWindowPos(guiWindow, m_width - planetGen.guiWidth - 50, 50);
-        //
-        //// Set window opacity (0.9 = 90% opaque, 10% transparent)
-        //glfwSetWindowOpacity(guiWindow, 0.9f);
-        //
-        ///* Make the window's context current */
-        //glfwMakeContextCurrent(guiWindow);
-        //glewInit();
-        //glEnable(GL_DEPTH_TEST);
-        //glDepthFunc(GL_LESS);
-
-        initGui();
-    }
-    else
-    {
-        std::cout << "=== GUI INACTIVE ===\n";
-    }
-    glfwMakeContextCurrent(m_window);
 }
 
 void Window::initGui()
@@ -114,6 +61,36 @@ void Window::initGui()
 
     // Set up mouse callbacks for dragging
     glfwSetWindowUserPointer(m_window, this);
+}
+
+void Window::StartGame()
+{
+    VertexShaders::initialise();
+
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    if (glfwRawMouseMotionSupported())
+        glfwSetInputMode(m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+
+
+    Update::append([this]() { this->Update(); });
+
+    clickIntoWindow = std::make_shared<mouseKeyInput>();
+    clickIntoWindow->active = true;
+    clickIntoWindow->function = [this]() { this->ClickIn(); };
+    clickIntoWindow->keyCode = KeyScan::MouseKeyCode::RightMouse;
+    KeyScan::append(clickIntoWindow, true);
+
+    if (guiActive)
+    {
+        initGui();
+    }
+    else
+    {
+        std::cout << "=== GUI INACTIVE ===\n";
+    }
+    glfwMakeContextCurrent(m_window);
+
+    planetReady = true;
 }
 
 void Window::SetCameraFromTransform(Transform& t) {
@@ -251,7 +228,8 @@ void Window::render()
     /* Poll for and process events */
     glfwPollEvents();
 
-    planetGen.AlignLiveUpdate();
+    if(planetReady)
+        planetGen.AlignLiveUpdate();
 }
 
 void Window::PassPlanet(std::shared_ptr<PlanetSurface> t_planet, std::shared_ptr<WaterSphere> t_water)

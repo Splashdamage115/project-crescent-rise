@@ -28,6 +28,8 @@ public:
         m_camera.setPerspective(fovDeg, aspect, zNear, zFar);
     }
     
+    void StartGame();
+
     void SetCameraFromTransform(Transform& t);
     
     glm::mat4 GetView() const { return m_camera.GetView(); }
@@ -52,9 +54,9 @@ public:
     void openGui(std::string t_arguement);
 
     void initPlanet();
+    void initGui();
 private:
     Window();
-    void initGui();
     bool escDown = false;
     bool tabbedOut = false;
     std::shared_ptr<mouseKeyInput> clickIntoWindow;
@@ -74,4 +76,6 @@ private:
     std::mutex planetMutex;
     PlanetPayload mostRecentPlanet;
     std::atomic<bool> newPlanetWaitingInBuffer = false;
+
+    bool planetReady = false;
 };

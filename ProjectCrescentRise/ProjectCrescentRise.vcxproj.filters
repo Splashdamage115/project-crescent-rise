@@ -131,6 +131,9 @@
     <Filter Include="Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates">
       <UniqueIdentifier>{579cc310-8d4a-4f01-b1a8-e2415187c004}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\mainMenu">
+      <UniqueIdentifier>{61fe90be-4624-4a55-a74b-e74a1e9347e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderPrograms.cpp">
@@ -315,6 +318,9 @@
     </ClCompile>
     <ClCompile Include="SurfaceInstanceHolder.cpp">
       <Filter>Files\Library\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="mainMenu.cpp">
+      <Filter>Files\mainMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -530,6 +536,9 @@
     </ClInclude>
     <ClInclude Include="SurfaceInstanceHolder.h">
       <Filter>Files\Library\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="mainMenu.h">
+      <Filter>Files\mainMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

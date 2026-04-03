@@ -11,6 +11,8 @@
 class Game
 {
 public:
+	Game();
+	void initMainMenu();
 	void initGame();
 
 	int playGame();
@@ -40,5 +42,6 @@ private:
 	std::vector<std::shared_ptr<SurfaceGrass>> grassModels;
 	std::shared_ptr <Model> enemyModel;
 
+	std::shared_ptr<GameObject> mainMenuObj;
 };
 

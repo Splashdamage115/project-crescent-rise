@@ -30,7 +30,7 @@ void SurfaceInstanceHolder::init()
 
 				if (!DEBUG_MODE)
 				{
-					m_instancerSettings.at(layer).at(i).passesPerFace *= 1;
+					m_instancerSettings.at(layer).at(i).passesPerFace *= QUALITY;
 				}
 
 				instancer1.SetSettings(m_instancerSettings.at(layer).at(i));

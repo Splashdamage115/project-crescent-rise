@@ -12,7 +12,6 @@ int main()
     srand(static_cast<unsigned int>(time(nullptr)));
 
     Game game;
-    game.initGame();
     game.playGame();
 
     glfwTerminate();
