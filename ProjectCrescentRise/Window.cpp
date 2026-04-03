@@ -63,6 +63,11 @@ void Window::initGui()
     glfwSetWindowUserPointer(m_window, this);
 }
 
+void Window::closeGame()
+{
+    glfwDestroyWindow(m_window);
+}
+
 void Window::StartGame()
 {
     VertexShaders::initialise();

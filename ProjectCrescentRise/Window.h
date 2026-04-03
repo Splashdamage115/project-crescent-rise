@@ -27,6 +27,8 @@ public:
         float aspect = static_cast<float>(m_width) / static_cast<float>(m_height);
         m_camera.setPerspective(fovDeg, aspect, zNear, zFar);
     }
+
+    void closeGame();
     
     void StartGame();
 

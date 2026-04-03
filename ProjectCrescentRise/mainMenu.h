@@ -15,5 +15,6 @@ public:
 
 	Game* mainGame = nullptr;
 private:
+	bool gameStarted = false;
 	bool waitingForGame = false;
 };

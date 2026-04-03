@@ -38,7 +38,7 @@ Game::Game()
 {
 	Window::Get();
 	initMainMenu();
-	//'initGame();
+	//initGame();
 }
 
 void Game::initMainMenu()
