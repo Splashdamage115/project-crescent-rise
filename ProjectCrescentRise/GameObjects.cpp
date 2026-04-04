@@ -88,3 +88,11 @@ void GameObjects::renderAll()
 		}
 	}
 }
+
+void GameObjects::clearAll()
+{
+	std::lock_guard<std::mutex> lock(gameObjectsMutex);
+	{
+		m_gameObjects.clear();
+	}
+}

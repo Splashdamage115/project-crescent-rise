@@ -45,6 +45,11 @@ Game::Game()
 
 void Game::initMainMenu()
 {
+	Update::clearAll();
+	GameObjects::clearAll();
+
+	Window::Get().initMenu();
+
 	mainMenuObj = std::make_shared<GameObject>();
 	auto t = std::make_shared<mainMenu>();
 
@@ -56,6 +61,9 @@ void Game::initMainMenu()
 
 void Game::initGame()
 {
+	Update::clearAll();
+	GameObjects::clearAll();
+
 	if (mainMenuObj != nullptr && mainMenuObj->active == true)
 	{
 		mainMenuObj->sendMessage("DestroyContext");
@@ -72,6 +80,7 @@ void Game::initGame()
 	// - - - SCREEN OVERLAY - - -
 	overlayObj = std::make_shared<GameObject>();
 	auto overlay = std::make_shared<ScreenOverlay>();
+	overlay->mainGame = this;
 	overlayObj->addScript(overlay);
 	overlayObj->tags.emplace_back("overlay");
 	GameObjects::addNewObjectToPool(overlayObj);
@@ -216,10 +225,10 @@ void Game::initPlanetSurface()
 	waterObj = std::make_shared<GameObject>();
 	PlanetObj = std::make_shared<GameObject>();
 
-	std::shared_ptr<ScriptObject> planet = std::make_shared<PlanetSurface>();
-	std::shared_ptr<ScriptObject> water = std::make_shared<WaterSphere>();
+	std::shared_ptr<PlanetSurface> planet = std::make_shared<PlanetSurface>();
+	std::shared_ptr<WaterSphere> water = std::make_shared<WaterSphere>();
 
-	Window::Get().PassPlanet(std::static_pointer_cast<PlanetSurface>(planet), std::static_pointer_cast<WaterSphere>(water));
+	Window::Get().PassPlanet(planet, water);
 
 	// Planet
 
@@ -249,9 +258,7 @@ void Game::initPlanetSurface()
 
 	Window::Get().initPlanet();
 
-	auto planetScript = std::static_pointer_cast<PlanetSurface>(planet);
-
-	g_planetScript = planetScript;
+	g_planetScript = planet;
 }
 
 void Game::initInstancedObjects()

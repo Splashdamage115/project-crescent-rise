@@ -28,6 +28,8 @@ public:
         m_camera.setPerspective(fovDeg, aspect, zNear, zFar);
     }
 
+    void initMenu();
+
     void closeGame();
     
     void StartGame();

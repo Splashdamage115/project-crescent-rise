@@ -63,6 +63,11 @@ void Window::initGui()
     glfwSetWindowUserPointer(m_window, this);
 }
 
+void Window::initMenu()
+{
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+}
+
 void Window::closeGame()
 {
     glfwDestroyWindow(m_window);

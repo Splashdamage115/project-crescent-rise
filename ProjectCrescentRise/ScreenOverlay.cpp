@@ -37,6 +37,7 @@ void ScreenOverlay::Start()
 
 void ScreenOverlay::Update()
 {
+	if (deadFadeOut) return;
 	if (Game::deltaTime > 3.0f) return;
 
 	if (m_fadeTimeLeft > 0.f)
@@ -48,6 +49,19 @@ void ScreenOverlay::Update()
 	else
 	{
 		m_opacity = 0.f;
+		if (dead)
+		{
+			deadFadeOut = true;
+			auto& t = GameObjects::getAllObjects();
+
+			for (auto& i : t)
+				i->sendMessage("PLAYER_DEAD");
+
+			if(mainGame != nullptr)
+				mainGame->initMainMenu();
+
+			return;
+		}
 	}
 }
 
@@ -67,7 +81,14 @@ void ScreenOverlay::Render()
 
 	glUniform3f(uColourLoc, colour.x, colour.y, colour.z);
 
-	glBlendColor(0.0f, 0.0f, 0.0f, m_opacity);
+	if (dead)
+	{
+		glBlendColor(0.0f, 0.0f, 0.0f, 1 - m_opacity);
+	}
+	else
+	{
+		glBlendColor(0.0f, 0.0f, 0.0f, m_opacity);
+	}
 	glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -88,6 +109,8 @@ void ScreenOverlay::Render()
 
 void ScreenOverlay::sendMessage(const std::string& t_messageString)
 {
+	if (dead) return;
+
 	if (t_messageString == "DAMAGE")
 	{
 		m_fadeTimeLeft = m_maxFadeTime / 2.0f;
@@ -101,5 +124,12 @@ void ScreenOverlay::sendMessage(const std::string& t_messageString)
 	if (t_messageString == "NOT_UNDERWATER")
 	{
 		staticOverlayActive = false;
+	}
+	if (t_messageString == "DEAD")
+	{
+		m_maxFadeTime = 3.0f;
+		m_fadeTimeLeft = m_maxFadeTime;
+		colour = glm::vec3(255.0f, 0.0f, 0.0f);
+		dead = true;
 	}
 }

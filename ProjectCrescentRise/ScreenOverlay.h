@@ -2,6 +2,8 @@
 
 #include "RenderableObject.h"
 
+class Game;
+
 class ScreenOverlay : public RenderableObject
 {
 public:
@@ -11,8 +13,10 @@ public:
 	
 	virtual void sendMessage(const std::string& t_messageString)override;
 
+	Game* mainGame;
 private:
-	bool firstUpdate = false;
+	bool dead = false;
+	bool deadFadeOut = false;
 
 	glm::vec3 colour = glm::vec3(0.0f);
 	glm::vec3 staticOverlay = glm::vec3(0.0f);

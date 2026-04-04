@@ -24,3 +24,9 @@ void Update::update()
 		m_lateUpdateFunctions.at(i)();
 	}
 }
+
+void Update::clearAll()
+{
+	m_lateUpdateFunctions.clear();
+	m_updateFunctions.clear();
+}
