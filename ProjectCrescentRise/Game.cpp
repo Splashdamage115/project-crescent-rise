@@ -31,6 +31,7 @@
 #include "SurfaceInstanceHolder.h"
 #include "mainMenu.h"
 #include "PlayerHealthController.h"
+#include "ScreenOverlay.h"
 
 double Game::deltaTime = 0;
 std::shared_ptr<PlanetSurface> Game::g_planetScript; 
@@ -97,6 +98,13 @@ void Game::initGame()
 
 	// - - - !PLAYER - - - 
 
+	// - - - SCREEN OVERLAY - - -
+	overlayObj = std::make_shared<GameObject>();
+	auto overlay = std::make_shared<ScreenOverlay>();
+	overlayObj->addScript(overlay);
+	overlayObj->tags.emplace_back("overlay");
+	GameObjects::addNewObjectToPool(overlayObj);
+	// - - - !SCREEN OVERLAY - - -
 
 	// - - - CHAT BOX - - - 
 	guiObject = std::make_shared<GameObject>();
@@ -441,4 +449,6 @@ void Game::initSurfaceGrass()
 	//if(floorObj != nullptr) floorObj->active = false;
 	//floorObj = floorObj2;
 	//GameObjects::addNewObjectToPool(floorObj2);
+
+
 

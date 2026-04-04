@@ -134,6 +134,9 @@
     <Filter Include="Files\mainMenu">
       <UniqueIdentifier>{61fe90be-4624-4a55-a74b-e74a1e9347e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Scripts\Renderables\ScreenOverlay">
+      <UniqueIdentifier>{97d8cfc9-a607-4bce-bd0c-81d4b2811ed1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderPrograms.cpp">
@@ -327,6 +330,9 @@
     </ClCompile>
     <ClCompile Include="PlayerHealthController.cpp">
       <Filter>Files\Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenOverlay.cpp">
+      <Filter>Files\Scripts\Renderables\ScreenOverlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -551,6 +557,9 @@
     </ClInclude>
     <ClInclude Include="PlayerHealthController.h">
       <Filter>Files\Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenOverlay.h">
+      <Filter>Files\Scripts\Renderables\ScreenOverlay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

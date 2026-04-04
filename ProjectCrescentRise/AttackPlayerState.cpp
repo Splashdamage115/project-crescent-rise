@@ -16,6 +16,7 @@ void AttackPlayerState::UpdateState(EnemyStateManager& t_manager)
 		// attack player here
 
 		t_manager.playerObject->sendMessage("DAMAGE", damageDealt);
+		t_manager.screenOverlay->sendMessage("DAMAGE");
 
 		cooldownRemaining = maxCooldown;
 	}

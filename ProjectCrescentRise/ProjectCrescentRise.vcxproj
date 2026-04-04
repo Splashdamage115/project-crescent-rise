@@ -188,6 +188,7 @@
     <ClCompile Include="PlayerHealthController.cpp" />
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="RenderableObject.cpp" />
+    <ClCompile Include="ScreenOverlay.cpp" />
     <ClCompile Include="ScriptObject.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -263,6 +264,7 @@
     <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="Raycast.h" />
     <ClInclude Include="RenderableObject.h" />
+    <ClInclude Include="ScreenOverlay.h" />
     <ClInclude Include="ScriptObject.h" />
     <ClInclude Include="ShapeGenerator.h" />
     <ClInclude Include="ShapeSettings.h" />

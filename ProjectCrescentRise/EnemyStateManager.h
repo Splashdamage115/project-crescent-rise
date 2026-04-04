@@ -18,6 +18,7 @@ public:
 
 
 	std::shared_ptr<GameObject> playerObject;
+	std::shared_ptr<GameObject> screenOverlay;
 private:
 	std::shared_ptr<EnemyAbstractState> m_currentState;
 
