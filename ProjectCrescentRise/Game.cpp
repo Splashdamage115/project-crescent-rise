@@ -30,6 +30,7 @@
 #include "EnemyStateManager.h"
 #include "SurfaceInstanceHolder.h"
 #include "mainMenu.h"
+#include "PlayerHealthController.h"
 
 double Game::deltaTime = 0;
 std::shared_ptr<PlanetSurface> Game::g_planetScript; 
@@ -84,6 +85,9 @@ void Game::initGame()
 	auto g = std::make_shared<GunController>();
 	g->setGunModel(gunModel);
 	camObj->addScript(g);
+	camObj->addScript(std::make_shared<PlayerHealthController>());
+
+	camObj->tags.emplace_back("Player");
 
 	GameObjects::addNewObjectToPool(camObj);
 

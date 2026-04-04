@@ -2,6 +2,7 @@
 #include "PlayerInput.h"
 #include "IdleEnemy.h"
 #include "Raycast.h"
+#include "GameObjects.h"
 
 void EnemyStateManager::Start()
 {
@@ -14,6 +15,14 @@ void EnemyStateManager::Update()
 	playerPosition = PlayerInput::playerPosition;
 
 	m_currentState->UpdateState(*this);
+
+	if (playerObject == nullptr)
+	{
+		auto t = GameObjects::getAllOfTag("Player");
+
+		if (t.size() > 0)
+			playerObject = t.at(0);
+	}
 }
 
 void EnemyStateManager::EnterNewState(std::shared_ptr<EnemyAbstractState> newState)

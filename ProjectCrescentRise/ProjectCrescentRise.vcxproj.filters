@@ -322,6 +322,12 @@
     <ClCompile Include="mainMenu.cpp">
       <Filter>Files\mainMenu</Filter>
     </ClCompile>
+    <ClCompile Include="AttackPlayerState.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHealthController.cpp">
+      <Filter>Files\Scripts\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -539,6 +545,12 @@
     </ClInclude>
     <ClInclude Include="mainMenu.h">
       <Filter>Files\mainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackPlayerState.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHealthController.h">
+      <Filter>Files\Scripts\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

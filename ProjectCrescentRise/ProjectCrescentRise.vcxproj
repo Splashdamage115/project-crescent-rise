@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedTextureStore.cpp" />
+    <ClCompile Include="AttackPlayerState.cpp" />
     <ClCompile Include="billboard2D.cpp" />
     <ClCompile Include="CameraFeed.h" />
     <ClCompile Include="ChatBoxText.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Noise.cpp" />
     <ClCompile Include="OnlineDispatcher.cpp" />
     <ClCompile Include="PlanetGenHandler.cpp" />
+    <ClCompile Include="PlayerHealthController.cpp" />
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="RenderableObject.cpp" />
     <ClCompile Include="ScriptObject.cpp" />
@@ -205,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedTextureStore.h" />
+    <ClInclude Include="AttackPlayerState.h" />
     <ClInclude Include="billboard2D.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ChatBoxText.h" />
@@ -256,6 +259,7 @@
     <ClInclude Include="OnlineDispatcher.h" />
     <ClInclude Include="PlanetColour.h" />
     <ClInclude Include="PlanetGenHandler.h" />
+    <ClInclude Include="PlayerHealthController.h" />
     <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="Raycast.h" />
     <ClInclude Include="RenderableObject.h" />

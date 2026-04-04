@@ -1,6 +1,7 @@
 #include "MoveTowardsPlayer.h"
 #include "Game.h"
 #include "IdleEnemy.h"
+#include "AttackPlayerState.h"
 
 void MoveTowardsPlayer::EnterState(EnemyStateManager& t_manager)
 {
@@ -11,6 +12,12 @@ void MoveTowardsPlayer::UpdateState(EnemyStateManager& t_manager)
 	if (!t_manager.checkPlayerVisibility(enemyFollowDetectionRange))
 	{
 		t_manager.EnterNewState(std::make_shared<IdleEnemy>());
+		return;
+	}
+	else if (t_manager.checkPlayerVisibility(enemyAttackRange))
+	{
+		t_manager.EnterNewState(std::make_shared<AttackPlayerState>());
+		return;
 	}
 
 	glm::vec3 direction = glm::normalize(t_manager.playerPosition - t_manager.getTransform()->position);

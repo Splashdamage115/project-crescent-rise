@@ -21,6 +21,7 @@ void HealthController::sendMessage(const std::string& t_messageString, std::any 
 		{
 			float damageAmount = std::any_cast<float>(amount) * static_cast<float>(sign);
 			changeHealth(damageAmount);
+			return;
 		}
 		catch (const std::bad_any_cast& e)
 		{ }
@@ -28,7 +29,7 @@ void HealthController::sendMessage(const std::string& t_messageString, std::any 
 		{
 			int damageAmt = std::any_cast<int>(amount) * sign;
 			changeHealth(static_cast<float>(damageAmt));
-
+			return;
 		}
 		catch (const std::bad_any_cast& e)
 		{ }
