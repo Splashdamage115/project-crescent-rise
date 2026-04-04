@@ -9,9 +9,6 @@ public:
 	void Update()override;
 	void expire()override;
 
-protected:
-	virtual void changeHealth(float amount)override;
-
 private:
 	bool dead = false;
 };
