@@ -3,6 +3,7 @@
 #include "PlayerInput.h"
 #include "Globals.h"
 #include "stb_image.h"
+#include "PlayerInput.h"
 
 void WaterSphere::ResetPlanet()
 {
@@ -66,6 +67,8 @@ void WaterSphere::ResetPlanet()
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_DYNAMIC_DRAW);
+
+    PlayerInput::waterHeight = shapeGenerator.settings.planetRadius;
 }
 
 void WaterSphere::Start()

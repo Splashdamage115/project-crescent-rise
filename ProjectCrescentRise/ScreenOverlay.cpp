@@ -76,7 +76,7 @@ void ScreenOverlay::Render()
 	{
 		glUniform3f(uColourLoc, staticOverlay.x, staticOverlay.y, staticOverlay.z);
 
-		glBlendColor(0.0f, 0.0f, 0.0f, 0.4f);
+		glBlendColor(0.0f, 0.0f, 0.0f, 0.6f);
 		glBlendFunc(GL_CONSTANT_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
 
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -95,7 +95,11 @@ void ScreenOverlay::sendMessage(const std::string& t_messageString)
 	}
 	if (t_messageString == "UNDERWATER")
 	{
-		staticOverlayActive = !staticOverlayActive;
-		colour = glm::vec3(30.0f, 100.0f, 255.0f);
+		staticOverlayActive = true;
+		staticOverlay = glm::vec3(30.0f, 100.0f, 255.0f);
+	}
+	if (t_messageString == "NOT_UNDERWATER")
+	{
+		staticOverlayActive = false;
 	}
 }

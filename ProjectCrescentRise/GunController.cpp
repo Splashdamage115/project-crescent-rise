@@ -128,8 +128,28 @@ void GunController::shootWeapon()
 		positionOverride.position = particlePos;
 		positionOverride.rotation = glm::vec3(0.f, 0.f, 0.f);
 		positionOverride.scale = glm::vec3(0.5f);
-		shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/basicParticle.png", positionOverride, 0.2f, glm::vec2(9,9), glm::vec2(835.f, 796.f));
-		
+
+		//ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke1.png", positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+		//ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke2.png", positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+
+		int chosen = rand() % 2;
+		int chosenFlare = (rand() % 6) + 1;
+		std::string loc = "./Assets/Images/Particles/flare_";
+		loc += std::to_string(chosenFlare);
+		loc += ".png";
+
+		ParticleController::SpawnNewParticle(loc, positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+
+		if (chosen == 0)
+		{
+			shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/basicParticle.png", positionOverride, 0.2f, glm::vec2(9, 9), glm::vec2(835.f, 796.f));
+			ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke2.png", positionOverride, 0.3f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+		}
+		else if (chosen == 1)
+		{
+			shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/explosion1.png", positionOverride, 0.3f, glm::vec2(10, 3), glm::vec2(1000.f, 277.f), 0.01f);
+			ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke1.png", positionOverride, 0.4f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+		}
 		
 		//std::shared_ptr<Particle> muzzleFlash = std::make_shared<Particle>();
 		//int chosen = rand() % 2;

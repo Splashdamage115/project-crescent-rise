@@ -11,6 +11,7 @@ void EnemyStateManager::Start()
 
 void EnemyStateManager::Update()
 {
+	if (!parent->active) return;
 	if (!m_currentState) return;
 	playerPosition = PlayerInput::playerPosition;
 
@@ -35,6 +36,7 @@ void EnemyStateManager::Update()
 
 void EnemyStateManager::EnterNewState(std::shared_ptr<EnemyAbstractState> newState)
 {
+	if (!parent->active) return;
 	if (!newState) return;
 
 	if(m_currentState) m_currentState->ExitState(*this);
@@ -44,6 +46,7 @@ void EnemyStateManager::EnterNewState(std::shared_ptr<EnemyAbstractState> newSta
 
 bool EnemyStateManager::checkPlayerVisibility(float t_distance)
 {
+	if (!parent->active) return false;
 
 	glm::vec3 playerPos = playerPosition;
 

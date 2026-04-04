@@ -10,9 +10,12 @@ public:
 
 	static glm::vec3 playerPosition;
 	static bool noClipEnabled;
+	static float waterHeight;
+
 
 	void handleInteractRelease();
 private:
+	bool underwater();
 
 	double lastMouseX = 0.;
 	double lastMouseY = 0.;
@@ -24,5 +27,6 @@ private:
 	const float maxSpeed = 20.0f;
 
 	std::shared_ptr<GameObject> highlightedObj;
+	std::shared_ptr<GameObject> overlayObj;
 };
 

@@ -8,6 +8,7 @@
 
 glm::vec3 PlayerInput::playerPosition;
 bool PlayerInput::noClipEnabled = false;
+float PlayerInput::waterHeight = 103.f;
 
 void PlayerInput::Start()
 {
@@ -18,6 +19,15 @@ void PlayerInput::Start()
 	ki->keyCode = KeyScan::KeyCode::F;
 	ki->function = ([this]() { this->handleInteractRelease(); });
 	KeyScan::append(ki, true);
+
+
+	if (overlayObj == nullptr)
+	{
+		auto t = GameObjects::getAllOfTag("overlay");
+
+		if (t.size() > 0)
+			overlayObj = t.at(0);
+	}
 }
 
 void PlayerInput::Update()
@@ -135,6 +145,21 @@ void PlayerInput::Update()
 
 	//std::cout << transform->rotation.x << ", " << transform->rotation.y << ", " << transform->rotation.z << "\n";
 	//std::cout << transform->position.x << ", " << transform->position.y << ", " << transform->position.z << "\n";
+
+	if (underwater())
+	{
+		if (overlayObj != nullptr)
+		{
+			overlayObj->sendMessage("UNDERWATER");
+		}
+	}
+	else
+	{
+		if (overlayObj != nullptr)
+		{
+			overlayObj->sendMessage("NOT_UNDERWATER");
+		}
+	}
 }
 
 void PlayerInput::handleInteractRelease()
@@ -145,4 +170,15 @@ void PlayerInput::handleInteractRelease()
 		highlightedObj->active = false;
 		highlightedObj = nullptr;
 	}
+}
+
+bool PlayerInput::underwater()
+{
+	float waterRad = waterHeight;
+	
+	if (glm::distance(transform->position, glm::vec3(0.0f)) <= waterRad - 1.8f)
+	{
+		return true;
+	}
+	return false;
 }

@@ -67,6 +67,15 @@ void Game::initGame()
 
 	Window::Get().StartGame();
 	Window::Get().InitCamera();
+
+
+	// - - - SCREEN OVERLAY - - -
+	overlayObj = std::make_shared<GameObject>();
+	auto overlay = std::make_shared<ScreenOverlay>();
+	overlayObj->addScript(overlay);
+	overlayObj->tags.emplace_back("overlay");
+	GameObjects::addNewObjectToPool(overlayObj);
+	// - - - !SCREEN OVERLAY - - -
 	
 	// - - - PLAYER - - - 
 
@@ -97,14 +106,6 @@ void Game::initGame()
 	GameObjects::addNewObjectToPool(gunObj);
 
 	// - - - !PLAYER - - - 
-
-	// - - - SCREEN OVERLAY - - -
-	overlayObj = std::make_shared<GameObject>();
-	auto overlay = std::make_shared<ScreenOverlay>();
-	overlayObj->addScript(overlay);
-	overlayObj->tags.emplace_back("overlay");
-	GameObjects::addNewObjectToPool(overlayObj);
-	// - - - !SCREEN OVERLAY - - -
 
 	// - - - CHAT BOX - - - 
 	guiObject = std::make_shared<GameObject>();
