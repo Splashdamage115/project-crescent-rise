@@ -80,9 +80,18 @@ protected:
 
 	float originalXRot = 0.f;
 	float originalPosition = 0.f;
+	float originalPositionx = 0.f;
 	float originalYRot = 0.f;
 	bool flipXRot = false;
 
 	float tiltDownTimeLeft = 0.f;
 	float tiltBackTimeLeft = 0.f;
+
+	float recoilTimeLeft = 0.f;
+	float recoilUpTime = 0.f;
+	glm::vec3 moveUpPos = glm::vec3(0.f);
+
+	float xDelta = 0.f;
+	float yDelta = 0.f;
+	float recoilMoveTimeLeft = 0.f;
 };

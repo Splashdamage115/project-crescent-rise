@@ -40,6 +40,21 @@ void HealthController::changeHealth(float amount)
 {
 	if (!parent->active) return;
 
+	std::shared_ptr<Particle> p;
+
+	if (rand() % 6 == 0)
+	{
+		p = ParticleController::SpawnNewParticle("./Assets/Images/Particles/blood.png", *transform, 0.2f, glm::vec2(6, 1), glm::vec2(3072.f, 512.f), 0.04f);
+		p->positionOverride->scale = glm::vec3(3.5f);
+	}
+	else
+	{
+		int chosen = (rand() % 5) + 1;
+		p = ParticleController::SpawnNewParticle("./Assets/Images/Particles/blood" + std::to_string(chosen) + ".png", *transform, 0.3f, glm::vec2(6, 6), glm::vec2(600.f, 600.f), 0.0f);
+		p->positionOverride->scale = glm::vec3(5.f);
+	}
+
+
 	currentHealth += amount;
 	if (currentHealth > maxHealth) currentHealth = maxHealth;
 	if (currentHealth <= 0.f)

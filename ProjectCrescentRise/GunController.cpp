@@ -40,6 +40,41 @@ void GunController::Start()
 void GunController::Update()
 {
 	if(timeSinceLastShot > 0.f) timeSinceLastShot -= static_cast<float>(Game::deltaTime);
+
+	if (recoilMoveTimeLeft >= 0.f)
+	{
+		recoilMoveTimeLeft -= static_cast<float>(Game::deltaTime);
+
+		transform->rotation.y -= xDelta * (Game::deltaTime);
+		transform->rotation.x -= yDelta * (Game::deltaTime);
+	}
+
+	if (recoilTimeLeft > 0.f)
+	{
+		recoilTimeLeft -= static_cast<float>(Game::deltaTime);
+		if (recoilUpTime > 0.f)
+		{
+			recoilUpTime -= static_cast<float>(Game::deltaTime);
+			float t = 1.0f - (recoilUpTime / 0.1f);				
+			int flip = 1;
+			if (flipXRot) flip = -1;
+			gunModel->modelOffset.rotation.x = glm::mix(originalXRot, originalXRot + (5.0f * flip), t);
+			gunModel->modelOffset.position.y = glm::mix(originalPosition, originalPosition + 0.03f, t);
+			gunModel->modelOffset.position.x = glm::mix(originalPositionx, originalPositionx + 0.07f, t);
+			gunModel->modelOffset.rotation.y = glm::mix(originalYRot, originalYRot + 1.f, t);
+		}
+		else
+		{
+			float t = 1.0f - (tiltBackTimeLeft / 0.1f);
+			int flip = 1;
+			if (flipXRot) flip = -1;
+			gunModel->modelOffset.rotation.x = glm::mix(originalXRot + (5.0f * flip), originalXRot, t);
+			gunModel->modelOffset.position.y = glm::mix(originalPosition + 0.03f, originalPosition, t);
+			gunModel->modelOffset.position.x = glm::mix(originalPositionx + 0.07f, originalPositionx, t);
+			gunModel->modelOffset.rotation.y = glm::mix(originalYRot + 1.f, originalYRot, t);
+		}
+	}
+
 	if (reloading)
 		if (timeSinceReloadStart > 0.f)
 		{
@@ -139,8 +174,11 @@ void GunController::shootWeapon()
 		loc += std::to_string(chosenFlare);
 		loc += ".png";
 
-		ParticleController::SpawnNewParticle(loc, positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+		auto p = ParticleController::SpawnNewParticle(loc, positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
 
+		p->positionOverride->scale = glm::vec3(1.8f);
+
+		positionOverride.position += glm::vec3(0.f, 0.f, 0.05f);
 		if (chosen == 0)
 		{
 			shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/basicParticle.png", positionOverride, 0.2f, glm::vec2(9, 9), glm::vec2(835.f, 796.f));
@@ -151,7 +189,16 @@ void GunController::shootWeapon()
 			shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/explosion1.png", positionOverride, 0.3f, glm::vec2(10, 3), glm::vec2(1000.f, 277.f), 0.01f);
 			//ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke1.png", positionOverride, 0.4f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
 		}
-		
+		shootParticle->positionOverride->scale = glm::vec3(0.25f);
+
+		recoilTimeLeft = 0.2f;
+		recoilUpTime = 0.1f;
+
+		xDelta = static_cast<float>((rand() % 10) - 4);
+		yDelta = static_cast<float>(10);
+
+		recoilMoveTimeLeft = 0.125f;
+
 		//std::shared_ptr<Particle> muzzleFlash = std::make_shared<Particle>();
 		//int chosen = rand() % 2;
 		//
@@ -210,7 +257,7 @@ void GunController::setGunModel(std::shared_ptr<Model> model)
 { 
 	gunModel = model;
 
-	muzzleOffset.position = glm::vec3(-0.2f, 0.1f, -0.5f);
+	muzzleOffset.position = glm::vec3(-0.18f, 0.2f, -0.5f);
 }
 
 void GunController::swapModel()
@@ -311,6 +358,7 @@ void GunController::refillMagazine()
 		tiltBackTimeLeft = 0.f;
 		tiltDownTimeLeft = 0.f;
 		gunModel->modelOffset.position.y = originalPosition;
+		gunModel->modelOffset.position.x = originalPositionx;
 		gunModel->modelOffset.rotation.x = originalXRot;
 		gunModel->modelOffset.rotation.y = originalYRot;
 
@@ -365,6 +413,7 @@ void GunController::setWeaponInfo(weaponInfo& t_weaponInfo)
 	originalYRot = gunModel->modelOffset.rotation.y;
 	originalXRot = gunModel->modelOffset.rotation.x;
 	originalPosition = gunModel->modelOffset.position.y;
+	originalPositionx = gunModel->modelOffset.position.x;
 
 	timeSinceReloadStart = 0.f;
 	refillMagazine();
