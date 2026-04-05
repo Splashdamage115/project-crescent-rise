@@ -39,6 +39,9 @@ void Model::Start()
 	uTexture2Loc = glGetUniformLocation(m_shader->shaderPair, "uTexture2");
 	highlightLoc = glGetUniformLocation(m_shader->shaderPair, "uHighlight");
 	viewPosLoc = glGetUniformLocation(m_shader->shaderPair, "viewPos");
+	if (squashMove)
+		uTime = glGetUniformLocation(m_shader->shaderPair, "time");
+
 
 	m_outlineShader = VertexShaders::retrieveShader(Shader::VertexShaderType::outline, Shader::FragmentShaderType::outline);
 	outlineModelLoc = glGetUniformLocation(m_outlineShader->shaderPair, "uModel");
@@ -46,8 +49,7 @@ void Model::Start()
 	outlineProjLoc  = glGetUniformLocation(m_outlineShader->shaderPair, "uProj");
 	outlineWidthLoc = glGetUniformLocation(m_outlineShader->shaderPair, "uOutlineWidth");
 	outlineColorLoc = glGetUniformLocation(m_outlineShader->shaderPair, "outlineColor");
-	if (squashMove)
-		uTime = glGetUniformLocation(m_outlineShader->shaderPair, "time");
+
 }
 
 void Model::Update()
@@ -137,6 +139,13 @@ void Model::Render()
 		glm::vec3 camPos = Window::Get().GetCameraPosition();
 		glUniform3f(viewPosLoc, camPos.x, camPos.y, camPos.z);
 	}
+	if (squashMove)
+	{
+		if (uTime >= 0)
+		{
+			glUniform1f(uTime, runningTime);
+		}
+	}
 
 	glDrawElements(GL_TRIANGLES, m_body.indexLength, GL_UNSIGNED_INT, 0);
 
@@ -152,7 +161,6 @@ void Model::Render()
 		if (outlineProjLoc  >= 0) glUniformMatrix4fv(outlineProjLoc,  1, GL_FALSE, glm::value_ptr(proj));
 		if (outlineWidthLoc >= 0) glUniform1f(outlineWidthLoc, outlineWidth);
 		if (outlineColorLoc >= 0) glUniform3f(outlineColorLoc, outlineColor.x / 255.f, outlineColor.y / 255.f, outlineColor.z / 255.f);
-		if (uTime >= 0) glUniform1f(uTime, runningTime);
 
 		glDrawElements(GL_TRIANGLES, m_body.indexLength, GL_UNSIGNED_INT, 0);
 

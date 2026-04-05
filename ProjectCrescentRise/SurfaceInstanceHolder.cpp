@@ -431,6 +431,7 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 	enemyModels.emplace_back();
 	int back = enemyModels.size() - 1;
 	enemyModels.at(back) = std::make_shared<Model>();
+	enemyModels.at(back)->squashMove = true;
 
 	enemyModels.at(back)->loadLocation = modelLoc;
 
@@ -451,7 +452,6 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 
 			obj->transform->scale = { randomScale, randomScale, randomScale };
 			obj->transform->rotation = { -90.0f, 90.0f, 0.0f };
-
 
 
 			// connect model partner and model

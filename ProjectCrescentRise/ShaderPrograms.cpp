@@ -419,6 +419,7 @@ void VertexShaders::initialise()
         "layout (location = 2) in vec3 aNormal;\n"
         "layout (location = 3) in float aMaterialID;\n"
 
+        "uniform float time;\n"
         "uniform vec3 CenterPoint;\n"
         "uniform mat4 uModel;\n"
         "uniform mat4 uView;\n"
@@ -430,7 +431,9 @@ void VertexShaders::initialise()
         "out float vMaterialID;\n"
 
         "void main() {\n"
-        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    float breathingScale = 1.0 + sin(time * 0.3) * 0.1;\n"
+        "    vec3 deformedPos = aPos * breathingScale;\n"
+        "    vec4 worldPos = uModel * vec4(deformedPos, 1.0);\n"
         "    gl_Position = uProj * uView * worldPos;\n"
         "    WorldPos = worldPos.xyz;\n"
         "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
