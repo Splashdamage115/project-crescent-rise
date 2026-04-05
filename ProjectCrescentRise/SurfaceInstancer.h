@@ -9,7 +9,7 @@
 
 enum class InstanceType
 {
-	None, Grass, PickupModel, model
+	None, Grass, PickupModel, model, Enemy
 };
 
 struct InstancerSettings

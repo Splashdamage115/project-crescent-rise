@@ -1,9 +1,14 @@
 #include "ScreenOverlay.h"
 #include "ShaderPrograms.h"
 #include "Game.h"
+#include"CommandInterpreter.h"
 
 void ScreenOverlay::Start()
 {
+	CommandInterpreter::append([this](std::string t) { this->EnableGodMode(t); }, "/GODMODE");
+	CommandInterpreter::append([this](std::string t) { this->EnableGodMode(t); }, "/godmode");
+	CommandInterpreter::append([this](std::string t) { this->EnableGodMode(t); }, "/Godmode");
+
 	renderPriority = RenderPriority::GUI;
 
 	m_fadeTimeLeft = m_maxFadeTime;
@@ -85,6 +90,11 @@ void ScreenOverlay::Render()
 	{
 		glBlendColor(0.0f, 0.0f, 0.0f, 1 - m_opacity);
 	}
+	else if (godmode)
+	{
+		glBlendColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+	}
 	else
 	{
 		glBlendColor(0.0f, 0.0f, 0.0f, m_opacity);
@@ -109,6 +119,7 @@ void ScreenOverlay::Render()
 
 void ScreenOverlay::sendMessage(const std::string& t_messageString)
 {
+	if (godmode) return;
 	if (dead) return;
 
 	if (t_messageString == "DAMAGE")
@@ -132,4 +143,9 @@ void ScreenOverlay::sendMessage(const std::string& t_messageString)
 		colour = glm::vec3(255.0f, 0.0f, 0.0f);
 		dead = true;
 	}
+}
+
+void ScreenOverlay::EnableGodMode(std::string _)
+{
+	godmode = !godmode;
 }

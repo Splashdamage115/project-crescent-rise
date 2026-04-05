@@ -12,6 +12,7 @@ public:
 	static void drawImGui(int layerAmt);
 
 	static std::vector<std::shared_ptr<SurfaceGrass>> m_surfaceGrass;
+	static std::vector<std::shared_ptr<Model>> enemyModels;
 	static std::vector< std::shared_ptr<Model>> m_models;
 	static std::vector< std::vector<InstancerSettings>> m_instancerSettings;
 private:

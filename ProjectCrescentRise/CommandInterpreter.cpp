@@ -36,14 +36,14 @@ bool CommandInterpreter::funcCalled(std::string t_commandCalled)
 			arg1 = true;
 		}
 	}
+	bool functionCalled = false;
 	for (auto& t : m_functions)
 	{
 		if (t.command != commandUpToSpace) continue;
 		try
 		{
-
 			t.function(arguement);
-			return true;
+			functionCalled = true;
 		}
 		catch(int errorCode)
 		{
@@ -51,5 +51,5 @@ bool CommandInterpreter::funcCalled(std::string t_commandCalled)
 			return false;
 		}
 	}
-	return false;
+	return functionCalled;
 }

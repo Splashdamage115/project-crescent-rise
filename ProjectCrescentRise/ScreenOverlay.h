@@ -13,6 +13,8 @@ public:
 	
 	virtual void sendMessage(const std::string& t_messageString)override;
 
+	void EnableGodMode(std::string _);
+
 	Game* mainGame;
 private:
 	bool dead = false;
@@ -27,4 +29,6 @@ private:
 	float m_opacity = 1.0f;
 	float m_fadeTimeLeft = 3.0f;
 	float m_maxFadeTime = 3.0f;
+
+	bool godmode = false;
 };
