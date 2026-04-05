@@ -15,7 +15,10 @@ void Model::Start()
 	}
 	else
 	{
-		m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
+		if(squashMove)
+			m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::squashMove, Shader::FragmentShaderType::squashMove);
+		else
+			m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
 		textureID = TextureStore::RetrieveTexture(textureLoc1);
 		heightMapID = TextureStore::RetrieveNormals("./Assets/Images/metal.jpg");
 		colour = glm::vec3(1.0f);
@@ -43,10 +46,13 @@ void Model::Start()
 	outlineProjLoc  = glGetUniformLocation(m_outlineShader->shaderPair, "uProj");
 	outlineWidthLoc = glGetUniformLocation(m_outlineShader->shaderPair, "uOutlineWidth");
 	outlineColorLoc = glGetUniformLocation(m_outlineShader->shaderPair, "outlineColor");
+	if (squashMove)
+		uTime = glGetUniformLocation(m_outlineShader->shaderPair, "time");
 }
 
 void Model::Update()
 {
+	runningTime += static_cast<float>(Game::deltaTime);
 	if (useOffsetMover)
 	{
 		modelOffset.moveAlongForward(velocity * static_cast<float>(Game::deltaTime));
@@ -146,6 +152,7 @@ void Model::Render()
 		if (outlineProjLoc  >= 0) glUniformMatrix4fv(outlineProjLoc,  1, GL_FALSE, glm::value_ptr(proj));
 		if (outlineWidthLoc >= 0) glUniform1f(outlineWidthLoc, outlineWidth);
 		if (outlineColorLoc >= 0) glUniform3f(outlineColorLoc, outlineColor.x / 255.f, outlineColor.y / 255.f, outlineColor.z / 255.f);
+		if (uTime >= 0) glUniform1f(uTime, runningTime);
 
 		glDrawElements(GL_TRIANGLES, m_body.indexLength, GL_UNSIGNED_INT, 0);
 

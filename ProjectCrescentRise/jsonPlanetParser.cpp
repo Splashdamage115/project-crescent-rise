@@ -464,6 +464,8 @@ void surfaceInstances::InstanceToJson(json& j, std::string pos)
         j[pos]["Instances"][posString]["minSize"] = ins.minSize;
         j[pos]["Instances"][posString]["instanceType"] = ins.instanceType;
         j[pos]["Instances"][posString]["modelLocation"] = ins.modelLocation;
+        j[pos]["Instances"][posString]["duplicateModelAmt"] = ins.duplicateModelAmt;
+        j[pos]["Instances"][posString]["duplicateTextureAmt"] = ins.duplicateTextureAmt;
         j[pos]["Instances"][posString]["colour"]["r"] = ins.colour.r;
         j[pos]["Instances"][posString]["colour"]["g"] = ins.colour.g;
         j[pos]["Instances"][posString]["colour"]["b"] = ins.colour.b;
@@ -520,6 +522,9 @@ std::vector<InstancerSettings> surfaceInstances::jsonToInstancers(const json& in
 
             if (insJson.contains("instanceType") && insJson["instanceType"].is_number()) instance.instanceType = insJson["instanceType"].get<decltype(instance.instanceType)>();
             if (insJson.contains("modelLocation") && insJson["modelLocation"].is_string()) instance.modelLocation = insJson["modelLocation"].get<decltype(instance.modelLocation)>();
+
+            if (insJson.contains("duplicateModelAmt") && insJson["duplicateModelAmt"].is_number()) instance.duplicateModelAmt = insJson["duplicateModelAmt"].get<decltype(instance.duplicateModelAmt)>();
+            if (insJson.contains("duplicateTextureAmt") && insJson["duplicateTextureAmt"].is_number()) instance.duplicateTextureAmt = insJson["duplicateTextureAmt"].get<decltype(instance.duplicateTextureAmt)>();
 
             if (insJson.contains("colour"))
             {

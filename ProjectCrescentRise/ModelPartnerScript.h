@@ -9,8 +9,7 @@ public:
 	virtual void Start()override;
 	virtual void Render()override;
 
-	std::shared_ptr<RenderableObject> m_pairedModel;
-
+	std::shared_ptr<Model> m_pairedModel;
 private:
 
 };

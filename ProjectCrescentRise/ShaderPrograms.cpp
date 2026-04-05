@@ -408,6 +408,88 @@ void VertexShaders::initialise()
 
 
     // - - - - - - - - - - - - - - - 
+    //  Squash Texture
+    // - - - - - - - - - - - - - - - 
+
+
+    const char* litSquash =
+    "#version 410 core\n"
+        "layout (location = 0) in vec3 aPos;\n"
+        "layout (location = 1) in vec2 aTex;\n"
+        "layout (location = 2) in vec3 aNormal;\n"
+        "layout (location = 3) in float aMaterialID;\n"
+
+        "uniform vec3 CenterPoint;\n"
+        "uniform mat4 uModel;\n"
+        "uniform mat4 uView;\n"
+        "uniform mat4 uProj;\n"
+
+        "out vec2 vTex;\n"
+        "out vec3 WorldPos;\n"
+        "out vec3 bNormal;\n"
+        "out float vMaterialID;\n"
+
+        "void main() {\n"
+        "    vec4 worldPos = uModel * vec4(aPos, 1.0);\n"
+        "    gl_Position = uProj * uView * worldPos;\n"
+        "    WorldPos = worldPos.xyz;\n"
+        "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
+        "    vTex = aTex;\n"
+        "    vMaterialID = aMaterialID;\n"
+        "}\n";
+
+    newVertexPair = ShaderFilesVertex();
+    newVertexPair.vertexType = Shader::VertexShaderType::squashMove;
+    newVertexPair.file = litSquash;
+    m_vertexFiles.push_back(newVertexPair);
+
+    const char* litSquashFrag =
+    "#version 410 core\n"
+        "in vec2 vTex;\n"
+        "in vec3 WorldPos;\n"
+        "in vec3 bNormal;\n"
+        "in float vMaterialID;\n"
+        "out vec4 FragColor;\n"
+
+        "uniform sampler2D uTexture;\n"
+        "uniform sampler2D uTexture2;\n"
+        "uniform vec3 colour;\n"
+        "uniform bool uHighlight;\n"
+        "uniform vec3 viewPos;\n"
+        "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
+        "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
+
+        "void main() {\n"
+        "    vec3 norm = normalize(bNormal);\n"
+        "    vec3 viewDir = normalize(viewPos - WorldPos);\n"
+        "    vec4 texColor = vMaterialID < 0.5 ? texture(uTexture, vTex) : texture(uTexture2, vTex);\n"
+        "    float ambientStrength = 0.2;\n"
+        "    vec3 ambient = ambientStrength * lightColor;\n"
+        "    float diff = max(dot(norm, -lightDir), 0.0);\n"
+        "    vec3 diffuse = diff * lightColor;\n"
+        "    float specularStrength = 0.5;\n"
+        "    vec3 reflectDir = reflect(lightDir, norm);\n"
+        "    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);\n"
+        "    vec3 specular = specularStrength * spec * lightColor;\n"
+        "    vec3 lighting = (ambient + diffuse) + specular;\n"
+        "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);\n"
+        "    if (uHighlight) {\n"
+        "        float rim = 1.0 - max(dot(viewDir, norm), 0.0);\n"
+        "        float outline = smoothstep(0.55, 1.0, rim);\n"
+        "        FragColor = vec4(mix(FragColor.rgb, vec3(1.0, 1.0, 1.0), outline), FragColor.a);\n"
+        "    }\n"
+        "}\n";
+
+
+    newFragmentPair = ShaderFilesFragment();
+    newFragmentPair.fragmentType = Shader::FragmentShaderType::squashMove;
+    newFragmentPair.file = litSquashFrag;
+    m_fragmentFiles.push_back(newFragmentPair);
+
+    mountShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
+
+
+    // - - - - - - - - - - - - - - - 
     //  Lit Particle
     // - - - - - - - - - - - - - - - 
 

@@ -16,6 +16,9 @@ struct InstancerSettings
 {
 	InstanceType instanceType = InstanceType::None;
 
+	int duplicateModelAmt = -1;
+	int duplicateTextureAmt = -1;
+
 	std::string modelLocation = "./Assets/Mesh/rock.fbx";
 	glm::vec3 colour = glm::vec3(1.0f);
 

@@ -6,6 +6,7 @@
 #include "EnemyStateManager.h"
 #include "HealthController.h"
 #include "SurfaceFollower.h"
+#include "TextureStore.h"
 
 std::vector<std::shared_ptr<SurfaceGrass>> SurfaceInstanceHolder::m_surfaceGrass;
 std::vector< std::vector<InstancerSettings>> SurfaceInstanceHolder::m_instancerSettings;
@@ -130,74 +131,57 @@ void SurfaceInstanceHolder::init()
 			}
 			if (m_instancerSettings.at(layer).at(i).instanceType == InstanceType::Enemy)
 			{
-				SurfaceInstancer enemyInstancer;
+				std::string modelLoc = m_instancerSettings.at(layer).at(i).modelLocation;
+				std::string textureLoc = m_instancerSettings.at(layer).at(i).textureLoc;
 
-				enemyInstancer.SetSettings(m_instancerSettings.at(layer).at(i));
+				if (m_instancerSettings.at(layer).at(i).duplicateModelAmt >= 0 ||
+					m_instancerSettings.at(layer).at(i).duplicateTextureAmt >= 0)
+				{
+					std::string trimModel = m_instancerSettings.at(layer).at(i).modelLocation;
+					trimModel.pop_back(); trimModel.pop_back(); trimModel.pop_back(); trimModel.pop_back();
 
-				enemyModels.emplace_back();
+					std::string trimtexture = m_instancerSettings.at(layer).at(i).textureLoc;
+					trimtexture.pop_back(); trimtexture.pop_back(); trimtexture.pop_back(); trimtexture.pop_back();
 
-				int back = enemyModels.size() - 1;
-
-				enemyModels.at(back) = std::make_shared<Model>();
-				enemyModels.at(back)->renderPriority = ScriptObject::RenderPriority::farCull;
-				enemyModels.at(back)->loadLocation = m_instancerSettings.at(layer).at(i).modelLocation;
-				enemyModels.at(back)->textureLoc1 = m_instancerSettings.at(layer).at(i).textureLoc;
-
-				int modelPosition = back;
-
-				auto creatorFuncEnemy = [modelPosition]() -> std::shared_ptr<GameObject>
+					if (m_instancerSettings.at(layer).at(i).duplicateModelAmt >= 0 &&
+						m_instancerSettings.at(layer).at(i).duplicateTextureAmt >= 0)
 					{
-						std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
-						// set scale
-						obj->transform->scale = { 0.2f, 0.2f, 0.2f };
-						obj->transform->rotation = { -90.0f, 180.0f, 0.0f };
-
-
-
-						// connect model partner and model
-						std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
-						m->m_pairedModel = SurfaceInstanceHolder::enemyModels.at(modelPosition);
-						m->colour = glm::vec3(1.f, 1.f, 1.f);
-						obj->addScript(m);
+						for (int model = 0; model < m_instancerSettings.at(layer).at(i).duplicateModelAmt; model++)
+						{
+							modelLoc = trimModel; modelLoc += std::to_string(model); modelLoc += ".fbx";
+							for (int texture = 0; texture < m_instancerSettings.at(layer).at(i).duplicateTextureAmt; texture++)
+							{
+								textureLoc = trimtexture; textureLoc += std::to_string(texture); textureLoc += ".png";
 
 
+								instanceEnemies(layer, i, modelLoc, textureLoc);
+							}
+						}
+					}
+					else if (m_instancerSettings.at(layer).at(i).duplicateModelAmt >= 0)
+					{
+						for (int model = 0; model < m_instancerSettings.at(layer).at(i).duplicateModelAmt; model++)
+						{
+							modelLoc = trimModel; modelLoc += std::to_string(model); modelLoc += ".fbx";
 
-						// attach the enemy to the planet surface
-						obj->addScript(SurfaceInstanceHolder::enemyModels.at(modelPosition));
-						std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
-						f->heightOffset = 0.0f;
-						f->positionSmooth = 10.0f;
-						obj->addScript(f);
+							instanceEnemies(layer, i, modelLoc, textureLoc);
+						}
+					}
+					else if (m_instancerSettings.at(layer).at(i).duplicateTextureAmt >= 0)
+					{
+						for (int texture = 0; texture < m_instancerSettings.at(layer).at(i).duplicateTextureAmt; texture++)
+						{
+							textureLoc = trimtexture; textureLoc += std::to_string(texture); textureLoc += ".png";
 
-
-
-						// orinet on the surface of the planet
-						std::shared_ptr<OrientToSurface> o = std::make_shared<OrientToSurface>();
-						o->constantOrient = true;
-						o->facePlayer = true;
-						o->rotationSmooth = 3.0f;
-						obj->addScript(o);
-
-
-
-						// enemy movement scripts
-						std::shared_ptr<EnemyStateManager> t = std::make_shared<EnemyStateManager>();
-						obj->addScript(t);
-
-
-						// control enemy health and death
-						obj->addScript(std::make_shared<HealthController>());
-
-
-						// allow the player to shoot the enemy
-						obj->tags.emplace_back("shootable");
-						obj->tags.emplace_back("enemy");
-
-						return obj;
-					};
-
-				enemyInstancer.InstantiateOnSurface(Game::g_planetScript, creatorFuncEnemy);
+							instanceEnemies(layer, i, modelLoc, textureLoc);
+						}
+					}
+				}
+				else
+				{
+					instanceEnemies(layer, i, modelLoc, textureLoc);
+				}
 			}
 			else
 			{
@@ -299,8 +283,8 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 								{
 									m_instancerSettings.at(layer).at(i).instanceType = InstanceType::Enemy;
 
-									m_instancerSettings.at(layer).at(i).textureLoc = "./Assets/Images/DogSkin.png";
-									m_instancerSettings.at(layer).at(i).modelLocation = "./Assets/Mesh/enemy.fbx";
+									m_instancerSettings.at(layer).at(i).textureLoc = "./Assets/Images/EnemyColour.png";
+									m_instancerSettings.at(layer).at(i).modelLocation = "./Assets/Mesh/SlimeEnemy.fbx";
 								}
 							}
 							if (isSelected)
@@ -351,8 +335,22 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 
 					if (EnemyVariant && ImGui::TreeNode(t.c_str()))
 					{
-						t = ""; t += "Enemy setting will be here "; t += loc;
+						t = ""; t += "Enemy duplicates must be named <name> <number> <.png>\n-1 means no duplicates "; t += loc;
 						ImGui::Text(t.c_str());
+
+
+
+						t = ""; t += "model Duplicate amt "; t += loc;
+						ImGui::SliderInt(t.c_str(), &m_instancerSettings.at(layer).at(i).duplicateModelAmt, -1, 10);
+
+						t = ""; t += "texture Duplicate amt "; t += loc;
+						ImGui::SliderInt(t.c_str(), &m_instancerSettings.at(layer).at(i).duplicateTextureAmt, -1, 10);
+
+
+
+
+
+
 
 						ImGui::TreePop();
 					}
@@ -420,4 +418,84 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 	}
 
 	ImGui::End();
+}
+
+void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string modelLoc, std::string texLoc)
+{
+	SurfaceInstancer enemyInstancer;
+
+	m_instancerSettings.at(layer).at(count).noiseSeed = rand();
+
+	enemyInstancer.SetSettings(m_instancerSettings.at(layer).at(count));
+
+	enemyModels.emplace_back();
+	int back = enemyModels.size() - 1;
+	enemyModels.at(back) = std::make_shared<Model>();
+
+	enemyModels.at(back)->loadLocation = modelLoc;
+
+	enemyModels.at(back)->renderPriority = ScriptObject::RenderPriority::farCull;
+
+	enemyModels.at(back)->textureLoc1 = texLoc;
+	
+
+	int modelPosition = back;
+
+	auto creatorFuncEnemy = [modelPosition]() -> std::shared_ptr<GameObject>
+		{
+			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+
+			// set scale
+
+			float randomScale = ((rand() % 5) / 10.f) + 0.5f;
+
+			obj->transform->scale = { randomScale, randomScale, randomScale };
+			obj->transform->rotation = { -90.0f, 90.0f, 0.0f };
+
+
+
+			// connect model partner and model
+			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
+			m->m_pairedModel = SurfaceInstanceHolder::enemyModels.at(modelPosition);
+			m->colour = glm::vec3(1.f, 1.f, 1.f);
+			obj->addScript(m);
+
+
+
+			// attach the enemy to the planet surface
+			obj->addScript(SurfaceInstanceHolder::enemyModels.at(modelPosition));
+			std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
+			f->heightOffset = 0.0f;
+			f->positionSmooth = 10.0f;
+			obj->addScript(f);
+
+
+
+			// orinet on the surface of the planet
+			std::shared_ptr<OrientToSurface> o = std::make_shared<OrientToSurface>();
+			o->constantOrient = true;
+			o->facePlayer = true;
+			o->rotationSmooth = 3.0f;
+			obj->addScript(o);
+
+
+
+			// enemy movement scripts
+			std::shared_ptr<EnemyStateManager> t = std::make_shared<EnemyStateManager>();
+			obj->addScript(t);
+
+
+			// control enemy health and death
+			obj->addScript(std::make_shared<HealthController>());
+
+
+			// allow the player to shoot the enemy
+			obj->tags.emplace_back("shootable");
+			obj->tags.emplace_back("enemy");
+
+			return obj;
+		};
+
+	enemyInstancer.InstantiateOnSurface(Game::g_planetScript, creatorFuncEnemy);
+	
 }

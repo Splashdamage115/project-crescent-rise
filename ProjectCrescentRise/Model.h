@@ -14,6 +14,8 @@ public:
 
 	std::string loadLocation = "./Assets/Mesh/bottle.fbx";
 
+	bool squashMove = false;
+
 	Transform modelOffset;
 	bool useOffset = false;
 	bool useCameraOffset = false;
@@ -31,10 +33,12 @@ public:
 	bool highlight = false;
 	glm::vec3 outlineColor = glm::vec3(255.f, 255.f, 255.f);
 	float outlineWidth = 0.01f;
+
+	GLuint textureID = -1;
 private:
+	float runningTime = 0.0f;
 	GLint uColourLoc = -1;
 	GLuint textureLoc = -1;
-	GLuint textureID = -1;
 	GLuint heightLoc = -1;
 	GLuint heightMapID = -1;
 	GLuint uTexture2Loc = -1;
@@ -48,5 +52,6 @@ private:
 	GLint outlineProjLoc  = -1;
 	GLint outlineWidthLoc = -1;
 	GLint outlineColorLoc = -1;
+	GLint uTime = -1;
 };
 
