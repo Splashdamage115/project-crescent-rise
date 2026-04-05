@@ -39,6 +39,7 @@ void Model::Start()
 	uTexture2Loc = glGetUniformLocation(m_shader->shaderPair, "uTexture2");
 	highlightLoc = glGetUniformLocation(m_shader->shaderPair, "uHighlight");
 	viewPosLoc = glGetUniformLocation(m_shader->shaderPair, "viewPos");
+	flashHighlight = glGetUniformLocation(m_shader->shaderPair, "flash");
 	if (squashMove)
 		uTime = glGetUniformLocation(m_shader->shaderPair, "time");
 
@@ -146,6 +147,7 @@ void Model::Render()
 			glUniform1f(uTime, runningTime);
 		}
 	}
+	if (flashHighlight >= 0) glUniform1i(flashHighlight, hitFlash);
 
 	glDrawElements(GL_TRIANGLES, m_body.indexLength, GL_UNSIGNED_INT, 0);
 
@@ -167,6 +169,7 @@ void Model::Render()
 		glCullFace(GL_BACK);
 		glDisable(GL_CULL_FACE);
 	}
+	hitFlash = false;
 }
 
 void Model::playAnimation(std::string t_animationName)

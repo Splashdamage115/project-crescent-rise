@@ -79,6 +79,7 @@ void GameObject::sendMessage(const std::string& t_messageType, std::any t_messag
 	for (auto& i : m_scripts)
 	{
 		i->sendMessage(t_messageType, t_messageParameters);
+		i->sendMessage(t_messageType);
 	}
 }
 
