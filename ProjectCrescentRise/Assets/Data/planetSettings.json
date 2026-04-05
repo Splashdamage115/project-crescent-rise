@@ -2,11 +2,17 @@
     "0": {
         "Instances": {
             "0": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
                 "noiseSeed": 2194,
                 "noiseThreshold": 10.0,
@@ -15,11 +21,17 @@
                 "useHeightLayerMask": true
             },
             "1": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
                 "noiseSeed": 18125,
                 "noiseThreshold": 10.0,
@@ -28,11 +40,17 @@
                 "useHeightLayerMask": true
             },
             "2": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
                 "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
                 "noiseSeed": 7143,
                 "noiseThreshold": 10.0,
@@ -41,16 +59,41 @@
                 "useHeightLayerMask": true
             },
             "3": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 4.0,
                 "minSize": 3.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
                 "noiseScale": 100.0,
                 "noiseSeed": 19497,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/bush.png",
+                "useHeightLayerMask": true
+            },
+            "4": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "heightLayerMask": 2,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/enemy.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 29030,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 8,
+                "textureLoc": "./Assets/Images/DogSkin.png",
                 "useHeightLayerMask": true
             }
         },
@@ -60,9 +103,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 21113.0,
-                        "y": 11855.0,
-                        "z": 10704.0
+                        "x": 19062.0,
+                        "y": 30020.0,
+                        "z": 697.0
                     },
                     "filterType": 0,
                     "minValue": 0.5249999761581421,
@@ -78,9 +121,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 22769.0,
-                        "y": 14995.0,
-                        "z": 3283.0
+                        "x": 21807.0,
+                        "y": 16382.0,
+                        "z": 8429.0
                     },
                     "filterType": 1,
                     "minValue": 0.5960000157356262,
@@ -552,6 +595,11 @@
     "1": {
         "Instances": {
             "0": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
@@ -566,6 +614,11 @@
                 "useHeightLayerMask": true
             },
             "1": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
@@ -580,6 +633,11 @@
                 "useHeightLayerMask": true
             },
             "2": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
@@ -594,6 +652,11 @@
                 "useHeightLayerMask": true
             },
             "3": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
                 "density": 1.0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
@@ -606,6 +669,25 @@
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/bush.png",
                 "useHeightLayerMask": true
+            },
+            "4": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "heightLayerMask": 2,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/enemy.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 4896,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 8,
+                "textureLoc": "./Assets/Images/DogSkin.png",
+                "useHeightLayerMask": true
             }
         },
         "NoiseLayers": {
@@ -614,9 +696,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 26241.0,
-                        "y": 3418.0,
-                        "z": 18583.0
+                        "x": 2457.0,
+                        "y": 32070.0,
+                        "z": 21042.0
                     },
                     "filterType": 0,
                     "minValue": 0.335999995470047,
@@ -632,9 +714,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 24824.0,
-                        "y": 27962.0,
-                        "z": 27958.0
+                        "x": 2309.0,
+                        "y": 13171.0,
+                        "z": 14435.0
                     },
                     "filterType": 1,
                     "minValue": 0.2549999952316284,
@@ -1111,25 +1193,6 @@
                     "g": 1.0,
                     "r": 1.0
                 },
-                "density": 1.0,
-                "heightLayerMask": 1,
-                "instanceType": 2,
-                "maxSize": 1.25,
-                "minSize": 0.75,
-                "modelLocation": "./Assets/Mesh/rock.fbx",
-                "noiseScale": 100.0,
-                "noiseSeed": 8913,
-                "noiseThreshold": 10.0,
-                "passesPerFace": 32,
-                "textureLoc": "./Assets/Images/grass.png",
-                "useHeightLayerMask": true
-            },
-            "1": {
-                "colour": {
-                    "b": 1.0,
-                    "g": 1.0,
-                    "r": 1.0
-                },
                 "density": 0.10000000149011612,
                 "heightLayerMask": 0,
                 "instanceType": 4,
@@ -1142,6 +1205,25 @@
                 "passesPerFace": 16,
                 "textureLoc": "",
                 "useHeightLayerMask": false
+            },
+            "1": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "heightLayerMask": 1,
+                "instanceType": 2,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 8913,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 32,
+                "textureLoc": "./Assets/Images/grass.png",
+                "useHeightLayerMask": true
             },
             "2": {
                 "colour": {
@@ -1221,9 +1303,9 @@
             },
             "6": {
                 "colour": {
-                    "b": 14.515933990478516,
-                    "g": 85.07228088378906,
-                    "r": 128.75001525878906
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 14.515933990478516
                 },
                 "density": 1.0,
                 "heightLayerMask": 2,
@@ -1237,6 +1319,25 @@
                 "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/grass.png",
                 "useHeightLayerMask": true
+            },
+            "7": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "heightLayerMask": 2,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/enemy.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 14857,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 8,
+                "textureLoc": "./Assets/Images/DogSkin.png",
+                "useHeightLayerMask": true
             }
         },
         "NoiseLayers": {
@@ -1245,9 +1346,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 15229.0,
-                        "y": 4434.0,
-                        "z": 12228.0
+                        "x": 4841.0,
+                        "y": 22678.0,
+                        "z": 20497.0
                     },
                     "filterType": 1,
                     "minValue": 0.5249999761581421,
@@ -1263,9 +1364,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 24203.0,
-                        "y": 13846.0,
-                        "z": 15686.0
+                        "x": 16204.0,
+                        "y": 8973.0,
+                        "z": 3105.0
                     },
                     "filterType": 1,
                     "minValue": 0.5960000157356262,
@@ -1281,9 +1382,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 4594.0,
-                        "y": 23080.0,
-                        "z": 24583.0
+                        "x": 22986.0,
+                        "y": 17488.0,
+                        "z": 32690.0
                     },
                     "filterType": 1,
                     "minValue": 0.5,

@@ -50,6 +50,14 @@ void GameObject::callRenders(ScriptObject::RenderPriority t_currentPriority)
 					m_scripts.at(i)->Render();
 				}
 			}
+			else if (t_currentPriority == ScriptObject::RenderPriority::farCull)
+			{
+				if (glm::distance(transform->position, PlayerInput::playerPosition) < 80.f)
+				{
+					m_scripts.at(i)->setTransform(transform);
+					m_scripts.at(i)->Render();
+				}
+			}
 			else
 			{
 				m_scripts.at(i)->Render();

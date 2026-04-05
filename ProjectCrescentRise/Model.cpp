@@ -5,7 +5,8 @@
 
 void Model::Start()
 {
-	renderPriority = followCam ? RenderPriority::Viewmodel : RenderPriority::Cull;
+	if(renderPriority != RenderPriority::farCull)
+		renderPriority = followCam ? RenderPriority::Viewmodel : RenderPriority::Cull;
 	m_body = MeshStore::getMesh(loadLocation);
 
 	if (textureLoc1.empty())

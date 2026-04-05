@@ -22,8 +22,8 @@ void SurfaceInstanceHolder::init()
 		i->active = false;
 	}
 
-	m_instancerSettings.at(1).emplace_back();
-	m_instancerSettings.at(1).at(m_instancerSettings.at(1).size() - 1).instanceType = InstanceType::Enemy;
+	//m_instancerSettings.at(1).emplace_back();
+	//m_instancerSettings.at(1).at(m_instancerSettings.at(1).size() - 1).instanceType = InstanceType::Enemy;
 
 	//loadInstancer();
 	for (int layer = 0; layer < m_instancerSettings.size(); layer++)
@@ -139,8 +139,9 @@ void SurfaceInstanceHolder::init()
 				int back = enemyModels.size() - 1;
 
 				enemyModels.at(back) = std::make_shared<Model>();
-				enemyModels.at(back)->loadLocation = "./Assets/Mesh/enemy.fbx";
-				enemyModels.at(back)->textureLoc1 = "./Assets/Images/DogSkin.png";
+				enemyModels.at(back)->renderPriority = ScriptObject::RenderPriority::farCull;
+				enemyModels.at(back)->loadLocation = m_instancerSettings.at(layer).at(i).modelLocation;
+				enemyModels.at(back)->textureLoc1 = m_instancerSettings.at(layer).at(i).textureLoc;
 
 				int modelPosition = back;
 
@@ -269,49 +270,52 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 				if (ImGui::TreeNode(t.c_str()))
 				{
 
-						std::string n = "instance type " + loc;
-						const char* items[] = { "Grass", "Pickup Model", "Model", "Enemy"};
+					std::string n = "instance type " + loc;
+					const char* items[] = { "Grass", "Pickup Model", "Model", "Enemy" };
 
-						if (ImGui::BeginCombo(n.c_str(), currentInstanceType.at(layer).at(i)))
+					if (ImGui::BeginCombo(n.c_str(), currentInstanceType.at(layer).at(i)))
+					{
+						for (unsigned int a = 0; a < IM_ARRAYSIZE(items); a++)
 						{
-							for (unsigned int a = 0; a < IM_ARRAYSIZE(items); a++)
+							bool isSelected = (currentInstanceType.at(layer).at(i) == items[a]);
+
+							if (ImGui::Selectable(items[a], isSelected))
 							{
-								bool isSelected = (currentInstanceType.at(layer).at(i) == items[a]);
-						
-								if (ImGui::Selectable(items[a], isSelected))
+								currentInstanceType.at(layer).at(i) = items[a];
+
+								if (currentInstanceType.at(layer).at(i) == "Grass")
 								{
-									currentInstanceType.at(layer).at(i) = items[a];
-						
-									if (currentInstanceType.at(layer).at(i) == "Grass")
-									{
-										m_instancerSettings.at(layer).at(i).instanceType = InstanceType::Grass;
-									}
-									if (currentInstanceType.at(layer).at(i) == "Pickup Model")
-									{
-										m_instancerSettings.at(layer).at(i).instanceType = InstanceType::PickupModel;
-									}
-									if (currentInstanceType.at(layer).at(i) == "Model")
-									{
-										m_instancerSettings.at(layer).at(i).instanceType = InstanceType::model;
-									}
-									if (currentInstanceType.at(layer).at(i) == "Enemy")
-									{
-										m_instancerSettings.at(layer).at(i).instanceType = InstanceType::Enemy;
-									}
+									m_instancerSettings.at(layer).at(i).instanceType = InstanceType::Grass;
 								}
-								if (isSelected)
+								if (currentInstanceType.at(layer).at(i) == "Pickup Model")
 								{
-									ImGui::SetItemDefaultFocus();
+									m_instancerSettings.at(layer).at(i).instanceType = InstanceType::PickupModel;
+								}
+								if (currentInstanceType.at(layer).at(i) == "Model")
+								{
+									m_instancerSettings.at(layer).at(i).instanceType = InstanceType::model;
+								}
+								if (currentInstanceType.at(layer).at(i) == "Enemy")
+								{
+									m_instancerSettings.at(layer).at(i).instanceType = InstanceType::Enemy;
+
+									m_instancerSettings.at(layer).at(i).textureLoc = "./Assets/Images/DogSkin.png";
+									m_instancerSettings.at(layer).at(i).modelLocation = "./Assets/Mesh/enemy.fbx";
 								}
 							}
-						
-						
-							ImGui::EndCombo();
+							if (isSelected)
+							{
+								ImGui::SetItemDefaultFocus();
+							}
 						}
-							
 
 
-					if (m_instancerSettings.at(layer).at(i).instanceType == InstanceType::PickupModel)
+						ImGui::EndCombo();
+					}
+
+					bool EnemyVariant = (m_instancerSettings.at(layer).at(i).instanceType == InstanceType::Enemy);
+
+					if (m_instancerSettings.at(layer).at(i).instanceType == InstanceType::PickupModel || EnemyVariant)
 					{
 						//ImGui::Text("This is a layer");
 						t = ""; t += "model Location "; t += loc;
@@ -325,10 +329,10 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 						ImGui::InputText(t.c_str(), m_instancerSettings.at(layer).at(i).modelLocation.data(), inputLength);
 
 						t = ""; t += "model colour "; t += loc;
-						float col[] = {  m_instancerSettings.at(layer).at(i).colour.r / 255.f,
-									     m_instancerSettings.at(layer).at(i).colour.g / 255.f,
-									     m_instancerSettings.at(layer).at(i).colour.b / 255.f
-									};
+						float col[] = { m_instancerSettings.at(layer).at(i).colour.r / 255.f,
+										 m_instancerSettings.at(layer).at(i).colour.g / 255.f,
+										 m_instancerSettings.at(layer).at(i).colour.b / 255.f
+						};
 						if (ImGui::ColorEdit3(t.c_str(), col))
 						{
 							m_instancerSettings.at(layer).at(i).colour.r = col[0] * 255.f;
@@ -343,39 +347,57 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 
 					ImGui::InputText(t.c_str(), m_instancerSettings.at(layer).at(i).textureLoc.data(), inputLength);
 
-					t = ""; t += "density "; t += loc;
-					ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).density, 0.0f, 1.0f);
+					t = ""; t += "Enemy Settings "; t += loc;
 
-					t = ""; t += "noiseScale "; t += loc;
-					ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseScale, 0.0f, 300.0f);
-
-					t = ""; t += "noiseThreshold "; t += loc;
-					ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseThreshold, 0.0f, 30.0f);
-
-					//t = ""; t += "noiseSeed "; t += loc;
-					//ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseSeed, 0.0f, 300.0f);
-
-					t = ""; t += "passesPerFace "; t += loc;
-					ImGui::SliderInt(t.c_str(), &m_instancerSettings.at(layer).at(i).passesPerFace, 1, 512);
-
-					t = ""; t += "minSize "; t += loc;
-					if (ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).minSize, 0.001f, 10.0f))
+					if (EnemyVariant && ImGui::TreeNode(t.c_str()))
 					{
-						if (m_instancerSettings.at(layer).at(i).minSize > m_instancerSettings.at(layer).at(i).maxSize)
-						{
-							m_instancerSettings.at(layer).at(i).maxSize = m_instancerSettings.at(layer).at(i).minSize;
-						}
+						t = ""; t += "Enemy setting will be here "; t += loc;
+						ImGui::Text(t.c_str());
+
+						ImGui::TreePop();
 					}
 
-					t = ""; t += "maxSize "; t += loc;
-					if (ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).maxSize, 0.001f, 10.0f))
-					{
-						if (m_instancerSettings.at(layer).at(i).minSize > m_instancerSettings.at(layer).at(i).maxSize)
-						{
-							m_instancerSettings.at(layer).at(i).minSize = m_instancerSettings.at(layer).at(i).maxSize;
-						}
-					}
+					t = ""; t += "SpawnSettings "; t += loc;
 
+
+					if (ImGui::TreeNode(t.c_str()))
+					{
+
+						t = ""; t += "density "; t += loc;
+						ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).density, 0.0f, 1.0f);
+
+						t = ""; t += "noiseScale "; t += loc;
+						ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseScale, 0.0f, 300.0f);
+
+						t = ""; t += "noiseThreshold "; t += loc;
+						ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseThreshold, 0.0f, 30.0f);
+
+						//t = ""; t += "noiseSeed "; t += loc;
+						//ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseSeed, 0.0f, 300.0f);
+
+						t = ""; t += "passesPerFace "; t += loc;
+						ImGui::SliderInt(t.c_str(), &m_instancerSettings.at(layer).at(i).passesPerFace, 1, 512);
+
+						t = ""; t += "minSize "; t += loc;
+						if (ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).minSize, 0.001f, 10.0f))
+						{
+							if (m_instancerSettings.at(layer).at(i).minSize > m_instancerSettings.at(layer).at(i).maxSize)
+							{
+								m_instancerSettings.at(layer).at(i).maxSize = m_instancerSettings.at(layer).at(i).minSize;
+							}
+						}
+
+						t = ""; t += "maxSize "; t += loc;
+						if (ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).maxSize, 0.001f, 10.0f))
+						{
+							if (m_instancerSettings.at(layer).at(i).minSize > m_instancerSettings.at(layer).at(i).maxSize)
+							{
+								m_instancerSettings.at(layer).at(i).minSize = m_instancerSettings.at(layer).at(i).maxSize;
+							}
+						}
+
+						ImGui::TreePop();
+					}
 					//newInst.density = 1.0f;
 					//newInst.noiseScale = 100.0f;
 					//newInst.noiseThreshold = 10.0f;

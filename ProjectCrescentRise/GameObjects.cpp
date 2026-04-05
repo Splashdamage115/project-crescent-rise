@@ -62,6 +62,8 @@ void GameObjects::renderAll()
 			{
 				m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::noCull);
 				m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::Cull);
+				m_gameObjects.at(i)->callRenders(ScriptObject::RenderPriority::farCull);
+
 			}
 		}
 	}
