@@ -12,6 +12,6 @@ private:
 	float m_moveSpeed = 5.0f;
 
 	float enemyFollowDetectionRange = 40.0f;
-	float enemyAttackRange = 1.0f;
+	float enemyAttackRange = 4.0f;
 };
 

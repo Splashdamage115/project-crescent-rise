@@ -42,7 +42,7 @@ void Model::Start()
 	flashHighlight = glGetUniformLocation(m_shader->shaderPair, "flash");
 	if (squashMove)
 		uTime = glGetUniformLocation(m_shader->shaderPair, "time");
-
+	attackHighlightLoc = glGetUniformLocation(m_shader->shaderPair, "attackHighlight");
 
 	m_outlineShader = VertexShaders::retrieveShader(Shader::VertexShaderType::outline, Shader::FragmentShaderType::outline);
 	outlineModelLoc = glGetUniformLocation(m_outlineShader->shaderPair, "uModel");
@@ -148,6 +148,7 @@ void Model::Render()
 		}
 	}
 	if (flashHighlight >= 0) glUniform1i(flashHighlight, hitFlash);
+	if (attackHighlightLoc >= 0) glUniform1i(attackHighlightLoc, attackHighlight);
 
 	glDrawElements(GL_TRIANGLES, m_body.indexLength, GL_UNSIGNED_INT, 0);
 

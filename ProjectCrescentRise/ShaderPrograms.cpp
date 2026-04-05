@@ -455,6 +455,7 @@ void VertexShaders::initialise()
         "out vec4 FragColor;\n"
 
         "uniform bool flash;\n"
+        "uniform bool attackHighlight;\n"
         "uniform sampler2D uTexture;\n"
         "uniform sampler2D uTexture2;\n"
         "uniform vec3 colour;\n"
@@ -479,6 +480,9 @@ void VertexShaders::initialise()
         "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);\n"
         "    if(flash) {\n"
         "       FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n"
+        "    }\n"
+        "    if(attackHighlight) {\n"
+        "       FragColor = FragColor + vec4(0.6, 0.0, 0.0, 0.6);\n"
         "    }\n"
         "    if (uHighlight) {\n"
         "        float rim = 1.0 - max(dot(viewDir, norm), 0.0);\n"

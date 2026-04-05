@@ -26,12 +26,14 @@ void ModelPartnerScript::Render()
 	{
 		m_pairedModel->hitFlash = true;
 	}
+	m_pairedModel->attackHighlight = charging;
 
 	if (m_pairedModel)
 	{
 		std::shared_ptr<Model> modelScript = std::dynamic_pointer_cast<Model>(m_pairedModel);
 		if (modelScript) modelScript->highlight = *parent->highlighted;
 	}
+	charging = false;
 }
 
 void ModelPartnerScript::sendMessage(const std::string& t_messageType)
@@ -39,5 +41,9 @@ void ModelPartnerScript::sendMessage(const std::string& t_messageType)
 	if (t_messageType == "DAMAGE")
 	{
 		HighlightTimeLeft = 0.2f;
+	}
+	if (t_messageType == "charging")
+	{
+		charging = true;
 	}
 }

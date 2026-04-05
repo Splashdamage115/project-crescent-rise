@@ -13,6 +13,7 @@ public:
 	virtual void sendMessage(const std::string& t_messageType) override;
 
 	float HighlightTimeLeft = -1.f;
+	bool charging = false;
 
 	std::shared_ptr<Model> m_pairedModel;
 private:

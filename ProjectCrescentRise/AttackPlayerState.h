@@ -10,7 +10,8 @@ public:
 	virtual void ExitState(EnemyStateManager& t_manager);
 private:
 	float damageDealt = 10.f;
-	float attackDistance = 1.5f;
-	float cooldownRemaining = 0.f;
-	float maxCooldown = 1.0f;
+	float attackDistance = 4.0f;
+	float cooldownRemaining = 0.7f;
+	float maxCooldown = 3.0f;
+	float lungeSpeed = 15.0f;
 };

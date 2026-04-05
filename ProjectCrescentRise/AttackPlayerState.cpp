@@ -4,21 +4,30 @@
 
 void AttackPlayerState::EnterState(EnemyStateManager& t_manager)
 {
-	cooldownRemaining = 0.f;
+	cooldownRemaining = 0.7f;
 }
 
 void AttackPlayerState::UpdateState(EnemyStateManager& t_manager)
 {
 	if (cooldownRemaining > 0.f) cooldownRemaining -= static_cast<float>(Game::deltaTime);
 
+	if (cooldownRemaining <= 0.1f)
+	{
+		t_manager.parent->sendMessage("charging");
+	}
 	if(t_manager.checkPlayerVisibility(attackDistance) && cooldownRemaining <= 0.f)
 	{
+		// lunge to player
+		glm::vec3 direction = glm::normalize(t_manager.playerPosition - t_manager.getTransform()->position);
+		t_manager.getTransform()->position += direction * (float)Game::deltaTime * lungeSpeed;
+
 		// attack player here
-
-		t_manager.playerObject->sendMessage("DAMAGE", damageDealt);
-		t_manager.screenOverlay->sendMessage("DAMAGE");
-
-		cooldownRemaining = maxCooldown;
+		if (t_manager.checkPlayerVisibility(0.2f))
+		{
+			t_manager.playerObject->sendMessage("DAMAGE", damageDealt);
+			t_manager.screenOverlay->sendMessage("DAMAGE");
+			cooldownRemaining = maxCooldown;
+		}
 	}
 	else if (!t_manager.checkPlayerVisibility(attackDistance))
 	{
@@ -29,5 +38,5 @@ void AttackPlayerState::UpdateState(EnemyStateManager& t_manager)
 
 void AttackPlayerState::ExitState(EnemyStateManager& t_manager)
 {
-	cooldownRemaining = 0.f;
+	cooldownRemaining = 0.7f;
 }

@@ -15,6 +15,7 @@ public:
 	std::string loadLocation = "./Assets/Mesh/bottle.fbx";
 
 	bool hitFlash = false;
+	bool attackHighlight = false;
 
 	bool squashMove = false;
 
@@ -48,6 +49,7 @@ private:
 	GLint highlightLoc = -1;
 	GLint viewPosLoc = -1;
 	GLint flashHighlight = -1;
+	GLint attackHighlightLoc = -1;
 
 	std::shared_ptr<Shader> m_outlineShader;
 	GLint outlineModelLoc = -1;
