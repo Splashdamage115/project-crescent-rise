@@ -354,6 +354,53 @@ this is because the model can be heavy to instantiate on computation, this desig
 
 ## surface instancing
 
+Surface instancing took a long time to figure out, this is because the data for the planet isnt really stored anywhere outside of the vbo, 
+this is okay for the planet rendering but to place an instance onthe mesh would require a lot of work for the pc to sample all vertices
+so i found another way of doing it by sampling the noise from the original noise class
+this worked very well and allowed me to disperse objects across the mesh randomly
+
+## weapons
+
+weapon creation is also abstracted to a high level
+allowing for very fast creation of new weapons,
+the only things that are needed are the data (full auto, mag size, reload time etc.) and a gun model & texture
+then by simply adding to the array of weapons, it is added as a useable weapon
+this makes it very simple to make new weapons, and makes it very easy to make a weapon editor (if it were saved to json and such)
+this was done for future expansion, but has not yet been implemented.
+
+## interaction
+
+using the tag system i have added an interaction method, this simply uses a hit sphere and ray calculation
+after that it sends a pick up method (caught by a script) for it to destroy, this is easily expandable thanks to the sendMessage function,
+It allows for the creation of new items that can be on the ground / interacted withy, this is currently used for just collecting rocks,
+and has not been expanded much past that, this is due to lack of time, I would in future use this for opening doors, picking up new weapons
+etc.
+
+## enemy
+
+the enemy who uses the enemy state machine has an interesting attack pattern, this was created the way it was thanks to testing
+now it highlights white and has a blood splatter particle whenever it is shot, this clearly shows hit effect
+
+the slime enemy has an interesting attack (tested for fun sake)
+when it gets close it enters the attack state
+it stands still for 0.7 seconds (most balanced time)
+it then turns red 0.1 seconds before charging, if the player doesnt move outside of radius in that 0.1 seconds (rewarding for very fast reaction players)
+it charges at the player, this charge lasts 1 second (so it is possible to avoid if you are fast to sprint out of the way)
+and this damages the player if it hits the player (red during entire charge attack)
+it then waits 3 seconds stationary before it tries to charge again
+
+this sounds complicated, but is very normal when the player is playing, and very clear for the user
+it also rewards players that are payting attention (to the red glow)
+it is also fair as the player has some time to get away after aavoiding / getting hit
+
+
+## main menu
+
+## screen overlay
+
+## future plans
+
+
 ## Research:
     - Rock climbing game, with surface (snowboarding?)
 
