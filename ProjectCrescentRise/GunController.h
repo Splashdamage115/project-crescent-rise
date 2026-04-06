@@ -7,13 +7,15 @@ class Particle;
 
 enum class WeaponType
 {
-	ShotGun, AK
+	ShotGun, AK, glock
 };
 
 struct weaponInfo
 {
-	WeaponType weaponType;
+	WeaponType weaponType = WeaponType::AK;
 	std::shared_ptr<Model> gunModel;
+
+	int recoilStrength = 10;
 
 	int maxMagAmmo = 6;
 	int reserveAmmo = 24;
@@ -73,6 +75,8 @@ protected:
 	bool shooting = false;
 
 	int currentlySelectedObj = 0;
+
+	int recoilStrength = 10;
 
 	WeaponType m_weaponType = WeaponType::AK;
 

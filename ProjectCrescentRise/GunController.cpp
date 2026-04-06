@@ -58,7 +58,7 @@ void GunController::Update()
 			float t = 1.0f - (recoilUpTime / 0.1f);				
 			int flip = 1;
 			if (flipXRot) flip = -1;
-			gunModel->modelOffset.rotation.x = glm::mix(originalXRot, originalXRot + (5.0f * flip), t);
+			gunModel->modelOffset.rotation.x = glm::mix(originalXRot, originalXRot + ((recoilStrength / 2.f) * flip), t);
 			gunModel->modelOffset.position.y = glm::mix(originalPosition, originalPosition + 0.03f, t);
 			gunModel->modelOffset.position.x = glm::mix(originalPositionx, originalPositionx + 0.07f, t);
 			gunModel->modelOffset.rotation.y = glm::mix(originalYRot, originalYRot + 1.f, t);
@@ -68,7 +68,7 @@ void GunController::Update()
 			float t = 1.0f - (tiltBackTimeLeft / 0.1f);
 			int flip = 1;
 			if (flipXRot) flip = -1;
-			gunModel->modelOffset.rotation.x = glm::mix(originalXRot + (5.0f * flip), originalXRot, t);
+			gunModel->modelOffset.rotation.x = glm::mix(originalXRot + ((recoilStrength / 2.f) * flip), originalXRot, t);
 			gunModel->modelOffset.position.y = glm::mix(originalPosition + 0.03f, originalPosition, t);
 			gunModel->modelOffset.position.x = glm::mix(originalPositionx + 0.07f, originalPositionx, t);
 			gunModel->modelOffset.rotation.y = glm::mix(originalYRot + 1.f, originalYRot, t);
@@ -174,6 +174,11 @@ void GunController::shootWeapon()
 		loc += std::to_string(chosenFlare);
 		loc += ".png";
 
+		if (m_weaponType == WeaponType::glock)
+		{
+			positionOverride.position += glm::vec3(0.f, 0.f, -0.2f);
+		}
+
 		auto p = ParticleController::SpawnNewParticle(loc, positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
 
 		p->positionOverride->scale = glm::vec3(1.8f);
@@ -194,8 +199,8 @@ void GunController::shootWeapon()
 		recoilTimeLeft = 0.2f;
 		recoilUpTime = 0.1f;
 
-		xDelta = static_cast<float>((rand() % 10) - 4);
-		yDelta = static_cast<float>(10);
+		xDelta = static_cast<float>((rand() % recoilStrength) - ((recoilStrength / 2) - 1));
+		yDelta = static_cast<float>(recoilStrength);
 
 		recoilMoveTimeLeft = 0.125f;
 
@@ -258,6 +263,7 @@ void GunController::setGunModel(std::shared_ptr<Model> model)
 	gunModel = model;
 
 	muzzleOffset.position = glm::vec3(-0.18f, 0.2f, -0.5f);
+
 }
 
 void GunController::swapModel()
@@ -309,6 +315,7 @@ void GunController::initialiseWeapons()
 
 		newWeapon.gunModel = m;
 
+		newWeapon.recoilStrength = 25;
 		newWeapon.fireRate = 0.7f;
 		newWeapon.reloadTime = 4.0f;
 		newWeapon.fullAuto = false;
@@ -316,6 +323,34 @@ void GunController::initialiseWeapons()
 		newWeapon.weaponType = WeaponType::ShotGun;
 		newWeapon.maxMagAmmo = 6;
 		newWeapon.reserveAmmo = 24;
+
+		m_gunVariants.push_back(newWeapon);
+	}
+
+	{
+		weaponInfo newWeapon;
+		std::shared_ptr<Model> m = std::make_shared<Model>();
+
+		m->modelOffset.scale = { 0.023f, 0.023f, 0.023f };
+		m->modelOffset.rotation = { 90.0f, 180.0f, 180.0f };
+		m->modelOffset.position = { 0.5f, -0.3f, -1.0f };
+		m->loadLocation = "./Assets/Mesh/glock.fbx";
+		m->colour = glm::vec3(1.f, 1.f, 1.f);
+		m->followCam = true;
+		//gunModel->useOffsetMover = true;
+		m->rotation = glm::vec3(0.f, 90.f, 0.f);
+		m->textureLoc1 = "./Assets/Images/glockColour.png";
+
+		newWeapon.gunModel = m;
+
+		newWeapon.recoilStrength = 10;
+		newWeapon.fireRate = 0.f;
+		newWeapon.reloadTime = 2.0f;
+		newWeapon.fullAuto = false;
+		newWeapon.shotDamage = 15;
+		newWeapon.weaponType = WeaponType::glock;
+		newWeapon.maxMagAmmo = 12;
+		newWeapon.reserveAmmo = 120;
 
 		m_gunVariants.push_back(newWeapon);
 	}
@@ -402,6 +437,7 @@ void GunController::handleHitScan()
 
 void GunController::setWeaponInfo(weaponInfo& t_weaponInfo)
 {
+	m_weaponType = t_weaponInfo.weaponType;
 	shotDamage = t_weaponInfo.shotDamage;
 	fireRate = t_weaponInfo.fireRate;
 	maxMagAmmo = t_weaponInfo.maxMagAmmo;
@@ -422,6 +458,6 @@ void GunController::setWeaponInfo(weaponInfo& t_weaponInfo)
 	reloadTime = t_weaponInfo.reloadTime;
 
 	fullAuto = t_weaponInfo.fullAuto;
-
+	recoilStrength = t_weaponInfo.recoilStrength;
 
 }

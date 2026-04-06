@@ -14,7 +14,6 @@ PlanetData jsonPlanetParser::RetrieveData(bool newRandom)
         if(s_amountOfPlanets > 0)
             s_chosenPlanet = rand() % (s_amountOfPlanets);
     }
-
     return PlanetData::jsonToPlanetData(j);
 }
 

@@ -57,7 +57,7 @@ int PlanetSurface::GetHeightLayerIndexFromWorldPosition(glm::vec3 worldPos)
 	if (heights.size() < 2)
 		return 0;
 
-	int maxIndex = static_cast<int>(heights.size()) - 1;
+	int maxIndex = static_cast<int>(heights.size()) - 2;
 	for (int i = maxIndex; i >= 0; --i)
 	{
 		if (heights[i] <= heightPercent && heightPercent < heights[i + 1])

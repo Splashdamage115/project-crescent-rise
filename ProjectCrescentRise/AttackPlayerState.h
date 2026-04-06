@@ -14,4 +14,6 @@ private:
 	float cooldownRemaining = 0.7f;
 	float maxCooldown = 3.0f;
 	float lungeSpeed = 15.0f;
+	float maxLungeTime = 1.0f;
+	float lungeTimeLeft = 0.f;
 };
