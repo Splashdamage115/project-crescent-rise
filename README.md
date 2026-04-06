@@ -316,13 +316,41 @@ i used the ufbx library which is by far the lightest one
 This allowed me to load fbx files, but i still had to parse them manually into my render object
 after figuring all that out, i finally had models in my game
 
+I then proceeded to make a model store, as it seemed that reloading the same model more than once caused errors, and crashes
+this means that every model is loaded and cached allowing for fast retrieval
+
 ## texture store
+
+Texture store functions similar to the fbxstore where it stores the data for each image
+this makes it easy for the code to retrieve the same image for multiple different objects
 
 ## particles
 
+Particle pool and animated textures
+this uses a similar idea to the previous where all the code is abstracted away, and the spawning of particles only takes 1 single line
+this works well and allows for variants, and such to be used by the code, this can be seen in the muzzle flash, where differnt flashes are used for the muzzle
+
 ## enemy abstract state
 
+I used a simple command pattern to abstract the enemy pattern and to keep the code more simple
+this works similar to a finite state machine
+an abstract enemy state is given to the enemy on instantiation
+the enemy then uses this abstract state to move around, attack, idle, die etc
+
+This allows for the fast creation of new enemies with unique states, so this was chosen as the way to handle enemies for that sole reason
+
+this took a while to implement however as there were errors with the manager, and different errors with the enemy movement along the surface
+
 ## model partner script
+
+when grass instancing was created (explained next) there was an issue.
+each instance needed a seperate model
+however this was super inneficient and laggy
+so i tried to replicate the flyweight pattern using my own implementation (flyweight designed by myself, but after research i realised the code mimics fly weight)
+this functions similarly, and works very well and alleviates lag
+the model partner script exists to set object specific parameters
+this being positions, the model is a single instance and the partner script changes the position and such
+this is because the model can be heavy to instantiate on computation, this design worked and alleviated the lag, allowing for more instances for almost free (outside of cost of instancing itself)
 
 ## surface instancing
 
