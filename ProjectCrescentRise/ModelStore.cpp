@@ -14,10 +14,6 @@ renderObject MeshStore::loadMesh(const ufbx_mesh* mesh_fbx, const ufbx_scene* sc
     {
         const ufbx_mesh* m = scene->meshes[mi];
 
-        // Iterate per-face and per-corner so each triangle corner gets its own
-        // UV, normal, and materialID directly from the FBX corner data.
-        // This correctly handles UV seams where the same vertex has different
-        // UV coordinates in different faces.
         for (size_t fi = 0; fi < m->num_faces; fi++)
         {
             ufbx_face face = m->faces[fi];
@@ -25,7 +21,6 @@ renderObject MeshStore::loadMesh(const ufbx_mesh* mesh_fbx, const ufbx_scene* sc
                 ? static_cast<float>(m->face_material[fi])
                 : static_cast<float>(mi);
 
-            // Fan triangulation: works for triangles, quads, and n-gons
             for (uint32_t ti = 1; ti + 1 < face.num_indices; ti++)
             {
                 uint32_t corners[3] = {
@@ -48,7 +43,7 @@ renderObject MeshStore::loadMesh(const ufbx_mesh* mesh_fbx, const ufbx_scene* sc
                     if (m->vertex_uv.exists)
                         uv = m->vertex_uv[corner];
                     uvs.push_back((float)uv.x);
-                    uvs.push_back(1.0f - (float)uv.y); // flip V: Blender (V=0 bottom) -> OpenGL (V=0 top)
+                    uvs.push_back(1.0f - (float)uv.y); 
 
                     ufbx_vec3 norm = {};
                     if (m->vertex_normal.exists)

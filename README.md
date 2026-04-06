@@ -107,9 +107,6 @@
 9. textured cube
     - made a custom cubve with textures, lighting, and height maps
 
-10. sky box
-    - moved through mappingto box, to cubesphere, multiple iterations
-    - added high and low def
 
 ## Make it pretty
 
@@ -153,6 +150,181 @@
     - surface movement from world space
     - surface alignment on local up
 
+## Open GL
+
+The first few weeks of my project was learning how to use Open GL.
+This is because i never really worked in it properlly, this means I had no idea what any of the functions do, how they work, and why theywork the way they do
+this means I researched ll the functions in the basic template and played around with how they work
+
+after this I planned thestructure of my game
+
+## Structure
+
+One thing i dont like about basic game libraries (such as sfml)
+is how every function needs to somehow pass down functions
+for instance the render function in sfml
+a standard structure may have:
+
+    Game ->  Player -> weaponManager -> weapon -> bullet
+
+and this is just one simple structure
+each of those above need to pass down a render function (for instance, in a standard structure)
+this means that Game passes render to player, which passes render to weapon manager etc.
+this is especially bad when something like weapon manager doesnt render anything
+weapon manager may only hold the weapon (which is rendered), but then weapon manager still needs to implement a render function, even though it doesnt render anythinbg itself
+I dont like this
+so i invested a lot of time in creating abstractions for update for instance
+and i also created abstract script classes which are in abstract game objects
+
+## Game objects
+
+I wanted the game objects to function similar to how they work in engines like Unity (one game object, contains scripts)
+This evolved later to also contain things like tags, for quickly getting the objects of cewrtain tags
+The game object needed a few specific simple things
+scripts, transform, and some functions
+each script needed to implement a start, update, render, and send message function
+the send message was to try to ressemble how unity handles objects calling functions in other game objects in a decoupled way
+    this ended up looking like such
+        Game Object 1 needs to call another game objects function (will use player shoot enemy as example)
+                player gets all enemies (through tags)
+                            \/
+                player checks for transform hit scan on enemy
+                            \/
+                player hits enemy
+                sends message of hit, with damage amount ~ explained next
+                            \/
+                enemy health controller recieves hit
+                            \/
+                enemy health cahnges / dies
+
+the send message script also often needs to recieve information,
+this was implemented through the use of std::any
+std::any is a c++ library function which allows for any parameter type (I use this instead of typenames and such for simplicityand faster compilation)
+
+a vector of an abstract script is central to the design I have
+This idea mimics how it works in different game engines like Unity
+My structure allows for the implementation of update functions, or not if it isnt necessary by the script itself
+
+
+so each game object looks like this
+
+GameObject
+    |
+    |
+    |- Array of tags
+    |
+    |- array of scripts
+    |
+    |- Transform
+
+I have abstracted the calling of all the functions to be in a GameObjects class
+this uses a pool of game objects that are also abstracted away
+so that the abstract script class is just appended to the game object, and called
+
+
+Game objects
+    |
+    |
+    |- Array of GameObjects
+    |
+    |- Exposed functions to add new game object
+    |
+    |- exposed functions to get game objects (eg getAllOfTag([tag]))
+
+
+These abstractions make it easy to compose game objects in future
+
+## input
+
+There is no good way to track inputs, and key presses in Open Gl
+so I ended up making my own abstract version of the input system, I tried to mirror this to be similar to how it is done in other game engines
+This ended up being a kind of amalgamation of how Unity handles key inputs in the new input system,
+And how sfml / raylib handles key inputs, with just a ping if KeyDown is true
+I also had to add a mouse button tracker, which i decided to abstract by adding a way to quickly assign a button press to an array, and it is then handled and called as needed 
+so you can just append an abstract function, and assign a mouse key, and it will be called (single line)
+
+## Planet
+
+The main center point of my project is the planet
+What i wanted for the planet is for it to be a fully explorable sphere
+the sphere to have things on it and for enemies to spawn on it that you can shoot
+then you proceed to the next planet after defeating a boss
+So the first thin i needed was the noise to deform the planet
+I originally started by making a ico sphere and trying to apply noise to that
+This failed for one main reason. ICO spheres use subdivisions
+this means that after instantiation and subdivisions, subdivisions after 3 / 4 lag the game tremendously
+so after all the research and work that was put in to make the ico sphere, i had to scrap it because it was too slow
+(this was around 2 weeks of work that was scrapped due to lag)
+so i did more research, then i stumbled on the cube sphere, which allows for very fine control of the vertex count on the sphere, and didnt have the issue of a normal sphere where the poles would distort movement
+
+so i got to work on the sphere
+after creating it and hooking up the mesh i tried to implement the noise function i had for the lflat ground tile
+this obviously didnt work so i proceeded to look up alternatives, I found a noise class available online which allows for the deformation to be even around the surface
+specifically allowing specific points to always be the same height, this got rid of the need to also remeber previous postions as the deformation at specific locations is always the same
+this fixed the lag issue
+
+I then needed the mesh to be coloured
+I used a simple height function, that looks for the highest point, and the lowest point, this is my 0 and 1
+then every height in between can be of different colours eg 0 - 0.3 sand, 0.3 - 0.7 grass, 0.7 - 1.0 rock (mountains)
+this looked very good so i ended up keeping it, i added small blending factor between layers and that was the colours
+
+Later I converted the colours to also accept textures at the certain heights
+
+## planet editor
+
+I contemplated how to make the planet generation more interesting and came up with the idea of making a planet editor
+this proceeded and ended up taking roughly 3 weeks to fully implement correctly and reliably. 
+the editor needed to edit the planet colour, and the noise settings (for now)
+I also needed a way to open and close this menu, and i didnt want to make it into a keybind (too basic in my opinion)
+so i created the chat system, this is very similar to many other games
+I also needed to track commands that are called and the arguements that thgey recieve
+I decided to then abstract this and move it to a seperate static class.
+This was to increase speed of development in future, so all i would need to do is add a single line to add a new command to the command interpreter.
+This included the /GUI command which opens the world editor
+(later added /godmode, / changename, /clear (clear chat), /connect /reconnect, etc, this was very easy to implement thanks to the abstractions)
+
+## Save / load
+
+Json parser
+I thought of making a manual json parser or parsing the planet into a simple text file,
+however after a quick bit of research io found nhlomanns json parser for c++
+I decided to use it to speed up the process of creating new planets a bit
+
+1. load planet from json
+2. save planet to json
+3. load random from json
+
+these are the main things that were implemented, this also had to get added to the planet editor for ease of use and creation
+after this implementation it meant that the creation of new planets could be done in the matter of minutes, and then saved for the user
+the user then loading a random planet to play on, making every play through unique
+
+## shader store
+
+I added an abstract for shaders, I noticed every shader had similar code for instantiation and after learning that each shader needed to be reset for each object (different variables for objects, but use same shader)
+I realised that the shader can be very easily abstracted to a different file
+so i ended up making the shader store which stores all shader pairs (fragment, and vertex shader)
+this meant that allthe instantiation of the shaders could be abstracted from the normal files. Making them much simpler to read
+
+## model store
+
+Loading of models from FBX files is very complicated due to the encryption of .fbx, and the storage being weird
+this left me a few options, using a premade library, or making my own
+i used the ufbx library which is by far the lightest one
+
+![Comparison of fbx times](.\MarkdownImgs\fbx-parser-times.png "ufbx is the fastest by far, and fbx sdk is the slowest")
+
+This allowed me to load fbx files, but i still had to parse them manually into my render object
+after figuring all that out, i finally had models in my game
+
+## texture store
+
+## particles
+
+## enemy abstract state
+
+## model partner script
+
+## surface instancing
 
 ## Research:
     - Rock climbing game, with surface (snowboarding?)
@@ -180,23 +352,23 @@
 <ul>
     <li> 🔴 - Weapon hud info</li>
     <li> ✅ - Weapon variants</li>
-    <li> 🔴 - foliage improvements</li>
-    <li> 🔴 - enemy variants</li>
+    <li> ✅ - foliage improvements</li>
+    <li> ✅ - enemy variants</li>
     <li> ✅ - enemy state machine</li>
     <li> ✅ - enemy idle</li>
     <li> ✅ - enemy wander</li>
     <li> ✅ - enemy follow player</li>
     <li> ✅ - enemy pathfinding</li>
-    <li> 🔴 - weapon animation (shooting)</li>
+    <li> ✅ - weapon animation (shooting)</li>
     <li> ✅ - weapon reload animations</li>
-    <li> ✅🟠 - weapon hit effect</li>
+    <li> ✅ - weapon hit effect</li>
     <li> ✅ - weapon shoot particle effect</li>
     <li> ✅ - object pick up </li>
     <li> 🔴 - building collisions</li>
     <li> 🔴 - object with collision instancing</li>
     <li> 🔴 - enemy attack player</li>
-    <li> 🔴 - player death</li>
-    <li> 🔴 - main menu screen</li>
+    <li> ✅ - player death</li>
+    <li> ✅ - main menu screen</li>
     <li> 🔴 - orbital station</li>
     <li> 🔴 - orbital station movement</li>
     <li> 🔴 - orbital station collisions</li>
