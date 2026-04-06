@@ -396,7 +396,19 @@ it is also fair as the player has some time to get away after aavoiding / gettin
 
 ## main menu
 
+the main menu was specifically made to be simple and hopefully if needed expandable
+I used ImGui becasue I already knew how it worked and had it implemented elsewhere in the repo
+This also meant I didnt have to overcomplicate the code because it is instanced, and updates live
+this all meant that the main menu could be reliable anduseable
+
 ## screen overlay
+
+The screen overlay is used for 3 things, taking damage overlay (red flash)
+fade in and out of the level
+and underwater overlay
+the underwater overlay is there to mimic how other games handle underwater, making it more believable as it is harder to see underwater
+I used a simple quad that is displayed in the game view, and overlays over everything, this gave the effect I wanted 
+(I wanted it to be clearly visible when you are damaged)
 
 ## future plans
 
@@ -439,15 +451,9 @@ it is also fair as the player has some time to get away after aavoiding / gettin
     <li> ✅ - weapon hit effect</li>
     <li> ✅ - weapon shoot particle effect</li>
     <li> ✅ - object pick up </li>
-    <li> 🔴 - building collisions</li>
-    <li> 🔴 - object with collision instancing</li>
-    <li> 🔴 - enemy attack player</li>
+    <li> ✅ - enemy attack player</li>
     <li> ✅ - player death</li>
     <li> ✅ - main menu screen</li>
-    <li> 🔴 - orbital station</li>
-    <li> 🔴 - orbital station movement</li>
-    <li> 🔴 - orbital station collisions</li>
-    <li> 🔴 - orbital station start</li>
 </ul>
 
 ## Completed
