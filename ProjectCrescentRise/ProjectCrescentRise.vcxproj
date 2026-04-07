@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedTextureStore.cpp" />
+    <ClCompile Include="ApplyDamageRadius.cpp" />
     <ClCompile Include="AttackPlayerShard.cpp" />
     <ClCompile Include="AttackPlayerState.cpp" />
     <ClCompile Include="billboard2D.cpp" />
@@ -211,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedTextureStore.h" />
+    <ClInclude Include="ApplyDamageRadius.h" />
     <ClInclude Include="AttackPlayerShard.h" />
     <ClInclude Include="AttackPlayerState.h" />
     <ClInclude Include="billboard2D.h" />

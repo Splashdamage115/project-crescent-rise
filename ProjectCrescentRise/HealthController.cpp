@@ -1,6 +1,7 @@
 #include "HealthController.h"
 #include "GameObject.h"
 #include "ParticleController.h"
+#include "Game.h"
 
 void HealthController::Start()
 {
@@ -9,10 +10,13 @@ void HealthController::Start()
 
 void HealthController::Update()
 {
+	if(invincibilityTime >= 0.f)
+		invincibilityTime -= static_cast<float>(Game::deltaTime);
 }
 
 void HealthController::sendMessage(const std::string& t_messageString, std::any amount)
 {
+	if (invincibilityTime > 0.f) return;
 	if (parent.expired()) return;
 	if (!parent.lock()->active) return;
 
@@ -38,6 +42,11 @@ void HealthController::sendMessage(const std::string& t_messageString, std::any 
 	}
 }
 
+void HealthController::secondaryHitEffect()
+{
+	// no secondary here now
+}
+
 void HealthController::changeHealth(float amount)
 {
 	if (parent.expired()) return;
@@ -57,6 +66,7 @@ void HealthController::changeHealth(float amount)
 		p->positionOverride->scale = glm::vec3(5.f);
 	}
 
+	secondaryHitEffect();
 
 	currentHealth += amount;
 	if (currentHealth > maxHealth) currentHealth = maxHealth;

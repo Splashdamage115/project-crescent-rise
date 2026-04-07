@@ -7,6 +7,7 @@
 #include "DestroyAfterTime.h"
 #include "CubeSphere.h"
 #include "PlanetSurface.h"
+#include "ApplyDamageRadius.h"
 
 void AttackPlayerShard::EnterState(EnemyStateManager& t_manager)
 {
@@ -74,6 +75,10 @@ void AttackPlayerShard::spawnBullet(glm::vec3 startPosition, glm::vec3 targetPos
 	moverScript->velocity = glm::normalize(targetPosition - startPosition) * bulletSpeed;
 
 	bullet->addScript(moverScript);
+
+	auto damageRad = std::make_shared<ApplyDamageRadius>();
+	damageRad->DamageRadius = bullet->transform->scale.x;
+	bullet->addScript(damageRad);
 
 	auto destroyAfter = std::make_shared<DestroyAfterTime>();
 	destroyAfter->maxTimeAlive = 5.0f;

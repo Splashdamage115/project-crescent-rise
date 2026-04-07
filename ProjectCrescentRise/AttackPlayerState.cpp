@@ -37,7 +37,6 @@ void AttackPlayerState::UpdateState(EnemyStateManager& t_manager)
 		if (t_manager.checkPlayerVisibility(0.2f))
 		{
 			t_manager.playerObject->sendMessage("DAMAGE", damageDealt);
-			t_manager.screenOverlay->sendMessage("DAMAGE");
 			cooldownRemaining = maxCooldown;
 		}
 	}

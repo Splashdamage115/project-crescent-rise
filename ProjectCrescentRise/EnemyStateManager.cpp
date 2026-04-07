@@ -30,13 +30,13 @@ void EnemyStateManager::Update()
 			playerObject = t.at(0);
 	}
 
-	if (screenOverlay == nullptr)
-	{
-		auto t = GameObjects::getAllOfTag("overlay");
-
-		if (t.size() > 0)
-			screenOverlay = t.at(0);
-	}
+	//if (screenOverlay == nullptr)
+	//{
+	//	auto t = GameObjects::getAllOfTag("overlay");
+	//
+	//	if (t.size() > 0)
+	//		screenOverlay = t.at(0);
+	//}
 }
 
 void EnemyStateManager::EnterNewState(std::shared_ptr<EnemyAbstractState> newState)

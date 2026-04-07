@@ -349,6 +349,9 @@
     <ClCompile Include="DestroyAfterTime.cpp">
       <Filter>Files\Scripts\MISC</Filter>
     </ClCompile>
+    <ClCompile Include="ApplyDamageRadius.cpp">
+      <Filter>Files\Scripts\MISC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -583,6 +586,9 @@
       <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Shard</Filter>
     </ClInclude>
     <ClInclude Include="DestroyAfterTime.h">
+      <Filter>Files\Scripts\MISC</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplyDamageRadius.h">
       <Filter>Files\Scripts\MISC</Filter>
     </ClInclude>
   </ItemGroup>
