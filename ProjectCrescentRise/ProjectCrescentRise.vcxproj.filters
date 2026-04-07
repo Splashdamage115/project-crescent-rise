@@ -137,6 +137,12 @@
     <Filter Include="Files\Scripts\Renderables\ScreenOverlay">
       <UniqueIdentifier>{97d8cfc9-a607-4bce-bd0c-81d4b2811ed1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime">
+      <UniqueIdentifier>{39494568-1d4e-424f-8c57-9a20c1a811dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Shard">
+      <UniqueIdentifier>{a6592fc7-90df-4a0d-8665-53e6d3f62344}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ShaderPrograms.cpp">
@@ -307,17 +313,8 @@
     <ClCompile Include="EnemyAbstractState.cpp">
       <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\Abstract</Filter>
     </ClCompile>
-    <ClCompile Include="MoveTowardsPlayer.cpp">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
-    </ClCompile>
-    <ClCompile Include="IdleEnemy.cpp">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyStateManager.cpp">
       <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\States</Filter>
-    </ClCompile>
-    <ClCompile Include="WanderState.cpp">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
     </ClCompile>
     <ClCompile Include="SurfaceInstanceHolder.cpp">
       <Filter>Files\Library\gui</Filter>
@@ -325,14 +322,32 @@
     <ClCompile Include="mainMenu.cpp">
       <Filter>Files\mainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="AttackPlayerState.cpp">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerHealthController.cpp">
       <Filter>Files\Scripts\Player</Filter>
     </ClCompile>
     <ClCompile Include="ScreenOverlay.cpp">
       <Filter>Files\Scripts\Renderables\ScreenOverlay</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackPlayerState.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleEnemy.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveTowardsPlayer.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClCompile>
+    <ClCompile Include="WanderState.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleShard.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Shard</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackPlayerShard.cpp">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Shard</Filter>
+    </ClCompile>
+    <ClCompile Include="DestroyAfterTime.cpp">
+      <Filter>Files\Scripts\MISC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -534,17 +549,8 @@
     <ClInclude Include="EnemyAbstractState.h">
       <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\Abstract</Filter>
     </ClInclude>
-    <ClInclude Include="MoveTowardsPlayer.h">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
-    </ClInclude>
-    <ClInclude Include="IdleEnemy.h">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyStateManager.h">
       <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\States</Filter>
-    </ClInclude>
-    <ClInclude Include="WanderState.h">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
     </ClInclude>
     <ClInclude Include="SurfaceInstanceHolder.h">
       <Filter>Files\Library\gui</Filter>
@@ -552,14 +558,32 @@
     <ClInclude Include="mainMenu.h">
       <Filter>Files\mainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="AttackPlayerState.h">
-      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerHealthController.h">
       <Filter>Files\Scripts\Player</Filter>
     </ClInclude>
     <ClInclude Include="ScreenOverlay.h">
       <Filter>Files\Scripts\Renderables\ScreenOverlay</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackPlayerState.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleEnemy.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveTowardsPlayer.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClInclude>
+    <ClInclude Include="WanderState.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Slime</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleShard.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Shard</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackPlayerShard.h">
+      <Filter>Files\Scripts\Enemy\EnemyFiniteStateMachine\EnemyStates\Shard</Filter>
+    </ClInclude>
+    <ClInclude Include="DestroyAfterTime.h">
+      <Filter>Files\Scripts\MISC</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

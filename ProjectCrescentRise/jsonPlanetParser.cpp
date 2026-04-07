@@ -465,6 +465,7 @@ void surfaceInstances::InstanceToJson(json& j, std::string pos)
         j[pos]["Instances"][posString]["modelLocation"] = ins.modelLocation;
         j[pos]["Instances"][posString]["duplicateModelAmt"] = ins.duplicateModelAmt;
         j[pos]["Instances"][posString]["duplicateTextureAmt"] = ins.duplicateTextureAmt;
+        j[pos]["Instances"][posString]["enemyType"] = ins.enemyType;
         j[pos]["Instances"][posString]["colour"]["r"] = ins.colour.r;
         j[pos]["Instances"][posString]["colour"]["g"] = ins.colour.g;
         j[pos]["Instances"][posString]["colour"]["b"] = ins.colour.b;
@@ -524,6 +525,7 @@ std::vector<InstancerSettings> surfaceInstances::jsonToInstancers(const json& in
 
             if (insJson.contains("duplicateModelAmt") && insJson["duplicateModelAmt"].is_number()) instance.duplicateModelAmt = insJson["duplicateModelAmt"].get<decltype(instance.duplicateModelAmt)>();
             if (insJson.contains("duplicateTextureAmt") && insJson["duplicateTextureAmt"].is_number()) instance.duplicateTextureAmt = insJson["duplicateTextureAmt"].get<decltype(instance.duplicateTextureAmt)>();
+            if (insJson.contains("enemyType") && insJson["enemyType"].is_number()) instance.enemyType = insJson["enemyType"].get<decltype(instance.enemyType)>();
 
             if (insJson.contains("colour"))
             {

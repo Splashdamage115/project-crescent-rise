@@ -6,6 +6,7 @@
 #include "PlanetSurface.h"
 #include <functional>
 #include <cstdint>
+#include "EnemyStateManager.h"
 
 enum class InstanceType
 {
@@ -15,6 +16,8 @@ enum class InstanceType
 struct InstancerSettings
 {
 	InstanceType instanceType = InstanceType::None;
+	EnemyType enemyType = EnemyType::Slime;
+
 
 	int duplicateModelAmt = -1;
 	int duplicateTextureAmt = -1;

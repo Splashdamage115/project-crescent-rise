@@ -105,6 +105,28 @@
                 "passesPerFace": 4,
                 "textureLoc": "./Assets/Images/EnemyColour.png",
                 "useHeightLayerMask": true
+            },
+            "5": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 1,
+                "heightLayerMask": 4,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/ShardEnemy.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 12026,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 16,
+                "textureLoc": "./Assets/Images/ShardEnemySkin.png",
+                "useHeightLayerMask": true
             }
         },
         "NoiseLayers": {
@@ -611,6 +633,9 @@
                     "r": 1.0
                 },
                 "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
@@ -630,6 +655,9 @@
                     "r": 1.0
                 },
                 "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
@@ -649,6 +677,9 @@
                     "r": 1.0
                 },
                 "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 1.25,
@@ -668,6 +699,9 @@
                     "r": 1.0
                 },
                 "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
                 "heightLayerMask": 2,
                 "instanceType": 1,
                 "maxSize": 4.0,
@@ -689,16 +723,39 @@
                 "density": 1.0,
                 "duplicateModelAmt": 2,
                 "duplicateTextureAmt": 5,
+                "enemyType": 0,
                 "heightLayerMask": 2,
                 "instanceType": 4,
                 "maxSize": 1.25,
                 "minSize": 0.75,
                 "modelLocation": "./Assets/Mesh/SlimeEnemy.fbx",
                 "noiseScale": 100.0,
-                "noiseSeed": 29030,
+                "noiseSeed": 8672,
                 "noiseThreshold": 10.0,
                 "passesPerFace": 4,
                 "textureLoc": "./Assets/Images/EnemyColour.png",
+                "useHeightLayerMask": true
+            },
+            "5": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 1,
+                "heightLayerMask": 4,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/ShardEnemy.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 12026,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 16,
+                "textureLoc": "./Assets/Images/ShardEnemySkin.png",
                 "useHeightLayerMask": true
             }
         },
@@ -708,9 +765,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 2425.0,
-                        "y": 23233.0,
-                        "z": 26780.0
+                        "x": 1952.0,
+                        "y": 20599.0,
+                        "z": 23644.0
                     },
                     "filterType": 0,
                     "minValue": 0.335999995470047,
@@ -726,9 +783,9 @@
                 "mask": true,
                 "settings": {
                     "center": {
-                        "x": 9889.0,
-                        "y": 12226.0,
-                        "z": 7426.0
+                        "x": 23705.0,
+                        "y": 10895.0,
+                        "z": 25946.0
                     },
                     "filterType": 1,
                     "minValue": 0.2549999952316284,
@@ -1351,6 +1408,28 @@
                 "noiseThreshold": 10.0,
                 "passesPerFace": 4,
                 "textureLoc": "./Assets/Images/EnemyColour.png",
+                "useHeightLayerMask": true
+            },
+            "8": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 1,
+                "heightLayerMask": 4,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/ShardEnemy.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 12026,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 16,
+                "textureLoc": "./Assets/Images/ShardEnemySkin.png",
                 "useHeightLayerMask": true
             }
         },
@@ -1993,6 +2072,28 @@
                 "noiseThreshold": 10.0,
                 "passesPerFace": 16,
                 "textureLoc": "./Assets/Images/grass.png",
+                "useHeightLayerMask": true
+            },
+            "6": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 1,
+                "heightLayerMask": 3,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/ShardEnemy.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 12026,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 16,
+                "textureLoc": "./Assets/Images/ShardEnemySkin.png",
                 "useHeightLayerMask": true
             }
         },

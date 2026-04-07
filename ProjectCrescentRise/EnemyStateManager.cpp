@@ -3,10 +3,14 @@
 #include "IdleEnemy.h"
 #include "Raycast.h"
 #include "GameObjects.h"
+#include "IdleShard.h"
 
 void EnemyStateManager::Start()
 {
-	EnterNewState(std::make_shared<IdleEnemy>());
+	if(m_enemyType == EnemyType::Slime)
+		EnterNewState(std::make_shared<IdleEnemy>());
+	else if (m_enemyType == EnemyType::Shard)
+		EnterNewState(std::make_shared<IdleShard>());
 }
 
 void EnemyStateManager::Update()

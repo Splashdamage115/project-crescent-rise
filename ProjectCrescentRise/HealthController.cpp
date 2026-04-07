@@ -4,6 +4,7 @@
 
 void HealthController::Start()
 {
+	currentHealth = maxHealth;
 }
 
 void HealthController::Update()

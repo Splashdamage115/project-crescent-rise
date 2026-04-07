@@ -12,6 +12,7 @@ std::vector<std::shared_ptr<SurfaceGrass>> SurfaceInstanceHolder::m_surfaceGrass
 std::vector< std::vector<InstancerSettings>> SurfaceInstanceHolder::m_instancerSettings;
 std::vector< std::shared_ptr<Model>> SurfaceInstanceHolder::m_models;
 std::vector < std::vector< const char* >> SurfaceInstanceHolder::currentInstanceType;
+std::vector < std::vector< const char* >> SurfaceInstanceHolder::currentEnemyType;
 std::vector<std::shared_ptr<Model>> SurfaceInstanceHolder::enemyModels;
 
 void SurfaceInstanceHolder::init()
@@ -205,8 +206,9 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 
 	for (int layer = 0; layer < layerAmt; layer++)
 	{
-		if (m_instancerSettings.size() < layer) m_instancerSettings.emplace_back();
-		if (currentInstanceType.size() < layer) currentInstanceType.emplace_back();
+		if (m_instancerSettings.size() <= layer) m_instancerSettings.emplace_back();
+		if (currentInstanceType.size() <= layer) currentInstanceType.emplace_back();
+		if (currentEnemyType.size() <= layer) currentEnemyType.emplace_back();
 
 		std::string t = "";
 		t += "Surface Layer ";
@@ -244,6 +246,11 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 				while ((int)(currentInstanceType.at(layer).size()) - 1 < i)
 				{
 					currentInstanceType.at(layer).push_back("");
+				}
+
+				while ((int)(currentEnemyType.at(layer).size()) - 1 < i)
+				{
+					currentEnemyType.at(layer).push_back("");
 				}
 
 				t = "";
@@ -335,6 +342,37 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 
 					if (EnemyVariant && ImGui::TreeNode(t.c_str()))
 					{
+
+						std::string n = "Enemy type " + loc;
+						const char* enemyTypes[] = { "Slime", "Shard" };
+
+						if (ImGui::BeginCombo(n.c_str(), currentEnemyType.at(layer).at(i)))
+						{
+							for (unsigned int a = 0; a < IM_ARRAYSIZE(enemyTypes); a++)
+							{
+								bool isSelected = (currentEnemyType.at(layer).at(i) == enemyTypes[a]);
+
+								if (ImGui::Selectable(enemyTypes[a], isSelected))
+								{
+									currentEnemyType.at(layer).at(i) = enemyTypes[a];
+
+									if (currentEnemyType.at(layer).at(i) == "Slime")
+									{
+										m_instancerSettings.at(layer).at(i).enemyType = EnemyType::Slime;
+									}
+									if (currentEnemyType.at(layer).at(i) == "Shard")
+									{
+										m_instancerSettings.at(layer).at(i).enemyType = EnemyType::Shard;
+									}
+								}
+								if (isSelected)
+								{
+									ImGui::SetItemDefaultFocus();
+								}
+							}
+							ImGui::EndCombo();
+						}
+
 						t = ""; t += "Enemy duplicates must be named <name> <number> <.png>\n-1 means no duplicates "; t += loc;
 						ImGui::Text(t.c_str());
 
@@ -441,8 +479,9 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 	
 
 	int modelPosition = back;
+	EnemyType enemyType = m_instancerSettings.at(layer).at(count).enemyType;
 
-	auto creatorFuncEnemy = [modelPosition]() -> std::shared_ptr<GameObject>
+	auto creatorFuncEnemy = [modelPosition, enemyType]() -> std::shared_ptr<GameObject>
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
@@ -482,6 +521,7 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 
 			// enemy movement scripts
 			std::shared_ptr<EnemyStateManager> t = std::make_shared<EnemyStateManager>();
+			t->m_enemyType = enemyType;
 			obj->addScript(t);
 
 
