@@ -31,7 +31,8 @@ void ModelPartnerScript::Render()
 	if (m_pairedModel)
 	{
 		std::shared_ptr<Model> modelScript = std::dynamic_pointer_cast<Model>(m_pairedModel);
-		if (modelScript) modelScript->highlight = *parent->highlighted;
+		if (parent.expired()) return;
+		if (modelScript) modelScript->highlight = *parent.lock()->highlighted;
 	}
 	charging = false;
 }

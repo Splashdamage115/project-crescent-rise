@@ -12,6 +12,7 @@ void DestroyAfterTime::Update()
 
 	if (timeAliveLeft <= 0.f)
 	{
-		parent->active = false;
+		if (parent.expired()) return;
+		parent.lock()->active = false;
 	}
 }

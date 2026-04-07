@@ -124,7 +124,7 @@
                 "noiseScale": 100.0,
                 "noiseSeed": 12026,
                 "noiseThreshold": 10.0,
-                "passesPerFace": 16,
+                "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/ShardEnemySkin.png",
                 "useHeightLayerMask": true
             }
@@ -754,7 +754,7 @@
                 "noiseScale": 100.0,
                 "noiseSeed": 12026,
                 "noiseThreshold": 10.0,
-                "passesPerFace": 16,
+                "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/ShardEnemySkin.png",
                 "useHeightLayerMask": true
             }
@@ -1428,7 +1428,7 @@
                 "noiseScale": 100.0,
                 "noiseSeed": 12026,
                 "noiseThreshold": 10.0,
-                "passesPerFace": 16,
+                "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/ShardEnemySkin.png",
                 "useHeightLayerMask": true
             }
@@ -2092,7 +2092,7 @@
                 "noiseScale": 100.0,
                 "noiseSeed": 12026,
                 "noiseThreshold": 10.0,
-                "passesPerFace": 16,
+                "passesPerFace": 8,
                 "textureLoc": "./Assets/Images/ShardEnemySkin.png",
                 "useHeightLayerMask": true
             }

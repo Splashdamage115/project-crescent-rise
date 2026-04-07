@@ -369,11 +369,14 @@ void VertexShaders::initialise()
         "in float vMaterialID;\n"
         "out vec4 FragColor;\n"
 
+        "uniform bool flash;\n"
+        "uniform bool attackHighlight;\n"
         "uniform sampler2D uTexture;\n"
         "uniform sampler2D uTexture2;\n"
         "uniform vec3 colour;\n"
         "uniform bool uHighlight;\n"
         "uniform vec3 viewPos;\n"
+
         "const vec3 lightDir = normalize(vec3(-1.0, -1.0, -1.0));\n"
         "const vec3 lightColor = vec3(1.0, 1.0, 1.0);\n"
 
@@ -391,6 +394,12 @@ void VertexShaders::initialise()
         "    vec3 specular = specularStrength * spec * lightColor;\n"
         "    vec3 lighting = (ambient + diffuse) + specular;\n"
         "    FragColor = vec4(texColor.rgb * lighting * colour, texColor.a);\n"
+        "    if(flash) {\n"
+        "       FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n"
+        "    }\n"
+        "    if(attackHighlight) {\n"
+        "       FragColor = FragColor + vec4(0.6, 0.0, 0.0, 0.6);\n"
+        "    }\n"
         "    if (uHighlight) {\n"
         "        float rim = 1.0 - max(dot(viewDir, norm), 0.0);\n"
         "        float outline = smoothstep(0.55, 1.0, rim);\n"

@@ -466,10 +466,14 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 
 	enemyInstancer.SetSettings(m_instancerSettings.at(layer).at(count));
 
+	EnemyType enemyType = m_instancerSettings.at(layer).at(count).enemyType;
+
 	enemyModels.emplace_back();
 	int back = enemyModels.size() - 1;
 	enemyModels.at(back) = std::make_shared<Model>();
-	enemyModels.at(back)->squashMove = true;
+
+	if (enemyType == EnemyType::Slime)
+		enemyModels.at(back)->squashMove = true;
 
 	enemyModels.at(back)->loadLocation = modelLoc;
 
@@ -479,7 +483,6 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 	
 
 	int modelPosition = back;
-	EnemyType enemyType = m_instancerSettings.at(layer).at(count).enemyType;
 
 	auto creatorFuncEnemy = [modelPosition, enemyType]() -> std::shared_ptr<GameObject>
 		{
@@ -488,6 +491,8 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 			// set scale
 
 			float randomScale = ((rand() % 5) / 10.f) + 0.5f;
+
+			if (enemyType == EnemyType::Shard) randomScale -= 0.3f;
 
 			obj->transform->scale = { randomScale, randomScale, randomScale };
 			obj->transform->rotation = { -90.0f, 90.0f, 0.0f };

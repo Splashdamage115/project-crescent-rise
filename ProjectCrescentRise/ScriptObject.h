@@ -18,7 +18,7 @@ public:
 	~ScriptObject();
 
 	void setTransform(std::shared_ptr<Transform> t_transform);
-	void setParent(GameObject* t_parent);
+	void setParent(std::shared_ptr<GameObject> t_parent);
 	std::shared_ptr<Transform> getTransform() { return transform; }
 
 	virtual void Start() {}
@@ -26,7 +26,7 @@ public:
 	virtual void Render() {}
 	virtual void sendMessage(const std::string& t_messageType) {}
 	virtual void sendMessage(const std::string& t_messageType, std::any t_messageParameters) {}
-	GameObject* parent;
+	std::weak_ptr<GameObject> parent;
 protected:
 	std::shared_ptr<Transform> transform;
 	bool enabled = true;

@@ -3,7 +3,7 @@
 #include "Library.h"
 #include "ScriptObject.h"
 
-class GameObject
+class GameObject : public std::enable_shared_from_this<GameObject>
 {
 public:
 	GameObject();

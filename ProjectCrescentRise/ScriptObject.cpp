@@ -3,7 +3,7 @@
 
 ScriptObject::~ScriptObject()
 {
-	parent = nullptr;
+	parent.lock() = nullptr;
 }
 
 void ScriptObject::setTransform(std::shared_ptr<Transform> t_transform)
@@ -11,7 +11,7 @@ void ScriptObject::setTransform(std::shared_ptr<Transform> t_transform)
 	transform = t_transform;
 }
 
-void ScriptObject::setParent(GameObject* t_parent)
+void ScriptObject::setParent(std::shared_ptr<GameObject> t_parent)
 {
-	parent = t_parent;
+	 parent = t_parent;
 }

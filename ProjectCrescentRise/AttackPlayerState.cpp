@@ -10,11 +10,14 @@ void AttackPlayerState::EnterState(EnemyStateManager& t_manager)
 
 void AttackPlayerState::UpdateState(EnemyStateManager& t_manager)
 {
+	if (t_manager.parent.expired()) return;
+
 	if (cooldownRemaining > 0.f) cooldownRemaining -= static_cast<float>(Game::deltaTime);
 
 	if (cooldownRemaining <= 0.1f)
 	{
-		t_manager.parent->sendMessage("charging");
+		if (!t_manager.parent.expired() && t_manager.parent.lock()->active)
+			t_manager.parent.lock()->sendMessage("charging");
 	}
 	if(t_manager.checkPlayerVisibility(attackDistance) && cooldownRemaining <= 0.f)
 	{

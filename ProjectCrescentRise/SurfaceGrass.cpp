@@ -57,7 +57,8 @@ void SurfaceGrass::Start()
 
 void SurfaceGrass::Render()
 {
-    if (parent == nullptr) return;
+    if (parent.expired()) return;
+    if (parent.lock() == nullptr) return;
     
     VertexShaders::LoadShader(m_shader);
 

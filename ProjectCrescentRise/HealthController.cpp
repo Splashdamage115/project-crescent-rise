@@ -13,7 +13,8 @@ void HealthController::Update()
 
 void HealthController::sendMessage(const std::string& t_messageString, std::any amount)
 {
-	if (!parent->active) return;
+	if (parent.expired()) return;
+	if (!parent.lock()->active) return;
 
 	if (t_messageString == "DAMAGE" || t_messageString == "HEAL")
 	{
@@ -39,7 +40,8 @@ void HealthController::sendMessage(const std::string& t_messageString, std::any 
 
 void HealthController::changeHealth(float amount)
 {
-	if (!parent->active) return;
+	if (parent.expired()) return;
+	if (!parent.lock()->active) return;
 
 	std::shared_ptr<Particle> p;
 
@@ -67,12 +69,14 @@ void HealthController::changeHealth(float amount)
 
 void HealthController::expire()
 {
-	if (!parent->active) return;
+	if (parent.expired()) return;
+	if (!parent.lock()->active) return;
 
 
 	auto p = ParticleController::SpawnNewParticle("./Assets/Images/Particles/blood.png", *transform, 0.2f, glm::vec2(6, 1), glm::vec2(3072.f, 512.f), 0.04f);
 	p->positionOverride->scale = glm::vec3(3.5f);
 
 	std::cout << "OBJECT DESTROYED\n";
-	parent->active = false;
+	if (parent.expired()) return;
+	parent.lock()->active = false;
 }

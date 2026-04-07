@@ -40,9 +40,14 @@ void AttackPlayerShard::UpdateState(EnemyStateManager& t_manager)
 		bulletsToFireLeft--;
 		burstCooldown = maxBurstCooldown;
 	}
-	if (bulletsToFireLeft < 0)
+	if (bulletsToFireLeft <= 0)
 	{
 		shootCooldown -= Game::deltaTime;
+	}
+	else
+	{
+		if (!t_manager.parent.expired() && t_manager.parent.lock()->active)
+			t_manager.parent.lock()->sendMessage("charging");
 	}
 	if (shootCooldown <= 0.f)
 	{
