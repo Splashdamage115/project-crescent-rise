@@ -95,12 +95,14 @@ void Game::initGame()
 	auto cameraFeed = std::make_shared<CameraFeed>();
 
 	camObj = std::make_shared<GameObject>();
-	camObj->transform->position = { 50.f, 0.f, 0.f };
+	camObj->transform->position = { 1050.f, 0.f, 0.f };
 	camObj->transform->rotation = { 0.0f, 0.0f, 0.0f };
 	camObj->addScript(cameraFeed);
 	camObj->addScript(std::make_shared<PlayerInput>());
 
-	camObj->addScript(std::make_shared<SurfaceFollower>());
+	auto sf = std::make_shared<SurfaceFollower>();
+	sf->floatOnWater = true;
+	camObj->addScript(sf);
 	//camObj->addScript(std::make_shared<CubeSphere>());
 
 	auto g = std::make_shared<GunController>();

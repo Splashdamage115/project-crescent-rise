@@ -6,6 +6,7 @@
 #include "CommandInterpreter.h"
 #include "Raycast.h"
 
+
 glm::vec3 PlayerInput::playerPosition;
 bool PlayerInput::noClipEnabled = false;
 float PlayerInput::waterHeight = 103.f;
@@ -51,16 +52,20 @@ void PlayerInput::Update()
 	{
 		displacement.z += currentSpeed * static_cast<float>(Game::deltaTime);
 	}
+
+	bool isUnderwater = underwater();
+	float speedMultiplier = isUnderwater ? waterSpeedMultiplier : 1.0f;
+
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::LCTRL))
 	{
 		if(noClipEnabled)
 			displacement.y += -currentSpeed * static_cast<float>(Game::deltaTime);
 		else
-			displacement.y += -0.8f;
+			displacement.y += -0.8f * speedMultiplier;
 	}
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::E))
 	{
-		displacement.y += currentSpeed * static_cast<float>(Game::deltaTime);
+		displacement.y += currentSpeed * static_cast<float>(Game::deltaTime) * speedMultiplier;
 	}
 	
 	if (KeyScan::isKeyDown(KeyScan::KeyCode::LSHIFT))
@@ -80,6 +85,9 @@ void PlayerInput::Update()
 	}
 	else
 	{
+		// Apply horizontal movement reduction when underwater
+		displacement.x *= speedMultiplier;
+		displacement.z *= speedMultiplier;
 		transform->moveAlongForwardPlanet(displacement);
 	}
 
@@ -143,12 +151,8 @@ void PlayerInput::Update()
 		if (highlightedObj) *highlightedObj->highlighted = false;
 		highlightedObj = nullptr;
 	}
-	//std::cout << "Hit enemy at distance " << closestHit << "\n";
 
-	//std::cout << transform->rotation.x << ", " << transform->rotation.y << ", " << transform->rotation.z << "\n";
-	//std::cout << transform->position.x << ", " << transform->position.y << ", " << transform->position.z << "\n";
-
-	if (underwater())
+	if (isUnderwater)
 	{
 		if (overlayObj != nullptr)
 		{

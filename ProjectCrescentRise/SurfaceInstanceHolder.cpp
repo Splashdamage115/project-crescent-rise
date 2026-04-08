@@ -509,6 +509,7 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 			// attach the enemy to the planet surface
 			obj->addScript(SurfaceInstanceHolder::enemyModels.at(modelPosition));
 			std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
+			f->floatOnWater = true;
 			f->heightOffset = 0.0f;
 			f->positionSmooth = 10.0f;
 			obj->addScript(f);
