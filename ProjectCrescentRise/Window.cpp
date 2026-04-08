@@ -36,13 +36,14 @@ Window::Window()
     glewInit();
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    KeyScan::init();
     glfwSetMouseButtonCallback(m_window, KeyScan::mouseClickCallback);
     glfwSetKeyCallback(m_window, KeyScan::key_callback);
     glfwSetCursorPosCallback(m_window, KeyScan::cursorCallback);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    VertexShaders::initialise();
 }
 
 void Window::initGui()
@@ -65,6 +66,7 @@ void Window::initGui()
 
 void Window::initMenu()
 {
+    planetReady = false;
     glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
@@ -75,8 +77,8 @@ void Window::closeGame()
 
 void Window::StartGame()
 {
-    VertexShaders::initialise();
-
+    planetReady = false;
+    KeyScan::init();
     glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     if (glfwRawMouseMotionSupported())
         glfwSetInputMode(m_window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);

@@ -17,6 +17,13 @@ float KeyScan::m_typeWaitTime = 0.3f;
 
 void KeyScan::init()
 {
+    pressedKey.clear();
+    mouseReleasedPair.clear();
+    mousePressedPair.clear();
+    pressedMouse.clear();
+    keyboardPressedPair.clear();
+    keyboardReleasedPair.clear();
+
     KeyCode lastNum = static_cast<KeyCode>(KeyCode::LALT);
 
     for (int i = 0; i < static_cast<int>(lastNum); i++)

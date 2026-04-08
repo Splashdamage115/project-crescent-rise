@@ -45,6 +45,8 @@ Game::Game()
 
 void Game::initMainMenu()
 {
+	PlanetSurface::s_instance = nullptr;
+	g_planetScript = nullptr;
 	Update::clearAll();
 	GameObjects::clearAll();
 
