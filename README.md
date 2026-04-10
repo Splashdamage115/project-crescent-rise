@@ -186,6 +186,7 @@ each script needed to implement a start, update, render, and send message functi
 the send message was to try to ressemble how unity handles objects calling functions in other game objects in a decoupled way
     this ended up looking like such
         Game Object 1 needs to call another game objects function (will use player shoot enemy as example)
+        ```md
                 player gets all enemies (through tags)
                             \/
                 player checks for transform hit scan on enemy
@@ -196,6 +197,7 @@ the send message was to try to ressemble how unity handles objects calling funct
                 enemy health controller recieves hit
                             \/
                 enemy health cahnges / dies
+            ```
 
 the send message script also often needs to recieve information,
 this was implemented through the use of std::any
@@ -207,7 +209,7 @@ My structure allows for the implementation of update functions, or not if it isn
 
 
 so each game object looks like this
-
+```md
 GameObject
     |
     |
@@ -216,12 +218,13 @@ GameObject
     |- array of scripts
     |
     |- Transform
+```
 
 I have abstracted the calling of all the functions to be in a GameObjects class
 this uses a pool of game objects that are also abstracted away
 so that the abstract script class is just appended to the game object, and called
 
-
+```md
 Game objects
     |
     |
@@ -230,7 +233,7 @@ Game objects
     |- Exposed functions to add new game object
     |
     |- exposed functions to get game objects (eg getAllOfTag([tag]))
-
+```
 
 These abstractions make it easy to compose game objects in future
 
