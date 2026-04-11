@@ -23,7 +23,7 @@ public:
 	Window(Window const&) = delete;
 	void operator=(Window const&) = delete;
 
-    void InitCamera(float fovDeg = 60.0f, float zNear = 0.1f, float zFar = 1000.0f) {
+    void InitCamera(float fovDeg = 45.0f, float zNear = 0.1f, float zFar = 1000.0f) {
         float aspect = static_cast<float>(m_width) / static_cast<float>(m_height);
         m_camera.setPerspective(fovDeg, aspect, zNear, zFar);
     }

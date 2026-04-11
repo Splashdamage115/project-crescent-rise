@@ -12,10 +12,10 @@
 
 #if defined(_DEBUG) || defined(DEBUG)
 	#define DEBUG_MODE 1
-	#define LOW_RES true // use low resolution texture (for the sky box)
+	#define LOW_RES false // use low resolution texture (for the sky box)
 	#define FULLSCREEN_MODE false
 #else
 	#define DEBUG_MODE 0
 	#define LOW_RES false // use low resolution texture (for the sky box)
-	#define FULLSCREEN_MODE true
+	#define FULLSCREEN_MODE false
 #endif

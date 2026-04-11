@@ -21,7 +21,7 @@ private:
 	double lastMouseY = 0.;
 
 
-	float currentSpeed = 10.0f;
+	float currentSpeed = 5.0f;
 	const float speedIncrease = 5.0f;
 	const float minSpeed = 12.0f;
 	const float maxSpeed = 20.0f;
