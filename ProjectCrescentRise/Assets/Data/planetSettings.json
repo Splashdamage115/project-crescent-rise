@@ -2591,5 +2591,613 @@
         },
         "planetPoints": 128,
         "planetRad": 100.0
+    },
+    "4": {
+        "Instances": {
+            "0": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
+                "heightLayerMask": 1,
+                "instanceType": 1,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 2200,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 32,
+                "textureLoc": "./Assets/Images/dryGrass.png",
+                "useHeightLayerMask": true
+            },
+            "1": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
+                "heightLayerMask": 1,
+                "instanceType": 1,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 13018,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 16,
+                "textureLoc": "./Assets/Images/dg1.png",
+                "useHeightLayerMask": true
+            },
+            "2": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
+                "heightLayerMask": 1,
+                "instanceType": 1,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 23267,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 8,
+                "textureLoc": "./Assets/Images/dg2.png",
+                "useHeightLayerMask": true
+            },
+            "3": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": 2,
+                "duplicateTextureAmt": 5,
+                "enemyType": 0,
+                "heightLayerMask": 1,
+                "instanceType": 4,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/SlimeCap.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 16150,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 2,
+                "textureLoc": "./Assets/Images/EnemyColour.png",
+                "useHeightLayerMask": true
+            },
+            "4": {
+                "colour": {
+                    "b": 1.0,
+                    "g": 1.0,
+                    "r": 1.0
+                },
+                "density": 1.0,
+                "duplicateModelAmt": -1,
+                "duplicateTextureAmt": -1,
+                "enemyType": 0,
+                "heightLayerMask": 1,
+                "instanceType": 2,
+                "maxSize": 1.25,
+                "minSize": 0.75,
+                "modelLocation": "./Assets/Mesh/rock.fbx",
+                "noiseScale": 100.0,
+                "noiseSeed": 26414,
+                "noiseThreshold": 10.0,
+                "passesPerFace": 12,
+                "textureLoc": "./Assets/Images/grass.png",
+                "useHeightLayerMask": true
+            }
+        },
+        "NoiseLayers": {
+            "0": {
+                "enabled": true,
+                "mask": true,
+                "settings": {
+                    "center": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "filterType": 0,
+                    "minValue": 0.0,
+                    "numLayers": 1,
+                    "persistence": 0.5,
+                    "roughness": 3.0,
+                    "strength": 0.10000000149011612,
+                    "weight": 0.800000011920929
+                }
+            },
+            "1": {
+                "enabled": true,
+                "mask": true,
+                "settings": {
+                    "center": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "filterType": 1,
+                    "minValue": 0.9539999961853027,
+                    "numLayers": 2,
+                    "persistence": 0.27900001406669617,
+                    "roughness": 2.8289999961853027,
+                    "strength": 0.5709999799728394,
+                    "weight": 0.800000011920929
+                }
+            }
+        },
+        "name": "First",
+        "oceanPoints": 4,
+        "oceanRad": 118.77799987792969,
+        "planetColour": {
+            "0": {
+                "active": true,
+                "colour": {
+                    "b": 0.0,
+                    "g": 255.0,
+                    "r": 221.0
+                },
+                "height": 0.0,
+                "normalLoc": "s1N.jpg",
+                "normalStrength": 5.0,
+                "shaderType": 1,
+                "textureLocation": "s1.jpg",
+                "textureScale": 133.40199279785156
+            },
+            "1": {
+                "active": true,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": 0.8840000033378601,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 5.0,
+                "shaderType": 1,
+                "textureLocation": "basic.jpg",
+                "textureScale": 151.7220001220703
+            },
+            "10": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "11": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "12": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "13": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "14": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "15": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "16": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "17": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "18": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "19": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "2": {
+                "active": true,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": 1.0,
+                "normalLoc": "R1N.jpg",
+                "normalStrength": 5.0,
+                "shaderType": 1,
+                "textureLocation": "R1.jpg",
+                "textureScale": 159.23699951171875
+            },
+            "20": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "21": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "22": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "23": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "24": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "25": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "26": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "27": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "28": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "29": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "3": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "30": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "31": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "4": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "5": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "6": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "7": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "8": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "9": {
+                "active": false,
+                "colour": {
+                    "b": 0.0,
+                    "g": 0.0,
+                    "r": 0.0
+                },
+                "height": -1.0,
+                "normalLoc": "basicNormal.jpg",
+                "normalStrength": 1.0,
+                "shaderType": 0,
+                "textureLocation": "basic.jpg",
+                "textureScale": 1.0
+            },
+            "lightIntensity": 0.5410000085830688
+        },
+        "planetPoints": 128,
+        "planetRad": 126.19599914550781
     }
 }
