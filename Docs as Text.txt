@@ -1,0 +1,573 @@
+
+
+
+ 
+
+Computer Games Development
+Project Crescent Rise Report
+Year IV
+
+
+
+David Strikaitis
+C00283152
+13/04/2026
+
+
+
+
+
+
+ 
+Contents
+
+Acknowledgements	3
+Project Abstract	4
+Project Introduction and/or Research Question	5
+Literature Review	6
+Evaluation and Discussion	7
+Project Milestones	8
+Major Technical Achievements	10
+Project Review	11
+Conclusions	12
+Future Work	12
+References	12
+
+ 
+Acknowledgements
+I would like to thank the following people who assisted in completing this project including:
+Dr. Noel O’Hara - who gave many insightful ideas and thought on the project as a whole
+All the supervisors who gave me some good ideas on what to do with the gameplay, and what direction I should take with the planets
+
+Project Abstract
+This project is a procedural planet generation system, with an integrated level editor. The project is built entirely in C++ using OpenGL for rendering and using some small libraries; such as ImGui for interface development, and GLM for mathematics. The entire system was built from the ground up relying solely on low level libraries, and no game engine. This provides complete control over rendering, generation and performance, resulting in a computationally efficient system, and technical robustness due to the absence of external dependencies.
+
+The problem is that planet generation is extremely complicated, and making a traversable mesh is significantly more complex and technical. The generation of high-fidelity explorable planets is long and demanding, and the creation of new, unique and interesting planets is even more technically challenging. A 3D world that is random and fully explorable is highly appealing from both a gameplay perspective and technical perspective.
+
+
+To address these problems, I explored the creation of randomized planets based on a set of pre-defined parameters, making planets unique and interesting every time. These follow certain rules as to prevent unplayable planets.
+
+The key technical features are vast, which functions as a fully unique and independent game engine for the creation of custom explorable planets which are traversable through physical interaction. The creation of a custom level editor integrates the game engine into the making of unique gameplay for every playthrough.
+
+In the end I created a highly efficient game engine allowing for many weapons, enemies, unique game objects, and of course planets. The game allows for novel interaction with enemies on a fully unique planet. This reflects how many full-scale AAA titles produce interesting environments through the use of procedural generation, this is tied together through the use of real-time gameplay mechanics to create a polished experience.
+
+This project is a demonstration of my technical competence in the creation and manipulation of low-level graphics programs. It shows the different use cases of procedural generation, and the creation of fully dynamic game worlds. This project has potential to be extended to be release as a fully-fledged commercial title, using the procedural development as the core of the game.
+
+
+Project Introduction and/or Research Question
+The production of game environments has developed over the years, moving from hand crafted environments to procedural generation, which has become very popular in gaming. Procedural generation is the creation of environments through code; this technique was popularized by titles like Minecraft. Procedural generation allows for a rule-based approach for creating many environments quickly.
+
+Due to the popularity of games like Minecraft, Procedural generation has become a focal point of discussion in the gaming community. There are many different approaches to the creation of planets. I decided to make my own, as I believe that many games explore the creation of 3D environments but are often built on top of a game engine. This made me decide to explore the intricacies of creating 3D worlds from scratch and making a game engine tailored towards the optimisation and creation of 3D planets.
+
+
+I realised that the creation of 3D environments, and games is much more technically challenging and fascinating than any other idea I had produced. Scrapped ideas included simple 2D generation, or non-planet like creations. The creation of unique, interesting, and playable planets became a central idea for my project.
+
+I decided to explore the idea of making an explorable 3D planet made from scratch in C++ and OpenGL within a year long time. I also explored the idea of implementing a level editor, allowing for any player to create variations to the planets, without using any code. This also begged the question; how can you make this entire editor work efficiently on any machine. This helped me decide a research question.
+
+Can a simple 3D game engine be created to build planets procedurally, and have the planets editable by the player, as well as interactable and traversable in C++ and OpenGL?
+
+This research question is a good basis as it also allows for future extensibility and the potential of creating a full title in future. This project aims to create this game engine, create these planets, and make it engaging, and customisable by the player.
+Literature Review
+The area of procedural generation is not a new one and has been around in the context of computing for many years. This has also been popularized by video games as they provide a practical application for the mathematical theories of procedural maths. 
+In gaming in specifically the area of space exploration some games have become some of the most prominent games in history thanks to the idea of procedural generation. Games such as Elite Dangerous which has 1:1 Scale of the Milky Way, and No Man’s Sky which has a near infinite number of planets thanks to procedural generation are some of the biggest inspirations for my project. 
+There are many approaches to procedural generation such as search based procedural generation which tries many different solutions, until a suitable solution is found (Ian L. McGathey 2014 [1]). Rule based generation which is what ended up using for my project. Which allows for the setting of predefined rules for the content of generation, after which the rest is random (Chin Kim On et al. 2017[2]). These are the main 2 ways in which content can be procedurally generated which are applicable to my project (Also using machine-based algorithms but this doesn't suit my project)
+
+The popularization of realistic planets through Elite Dangerous and No Man’s Sky, show the practicality of creating spherical planets, procedurally. For this reason, I tailored my project around doing this, in my own engine.
+
+Evaluation and Discussion
+In the end the goal of this project was fulfilled. The plan to make traversable, unique editable planets is now possible. The game engine / planet editor is fully functional and has achieved the intended goals that were set. The level editor stores the levels to a JSON and loads them on each startup, making every game unique. During gameplay this resulted in some very interesting terrain every run, but it also makes some very difficult planets to traverse on occasion, large island based planets may come with one island that may be too far to reach, while this is a difficult thing to play, as a system it is still very fun and unique.
+
+Surface instancing became an issue throughout development. When too many instances were placed on the surface the game would lag heavily or sometimes even fail to load. The instancing system was modified to support editable levels of quality in the code; however this stayed an issue, I added distance culling to help combat this however, which improved the game’s frame rate.
+
+The level editor has many parameters it can modify such as enemies, surface instances, planet quality, planet generation method etc. The main drawback of the editor is that it may be difficult to use for anyone that hasn't used it before. It also could lead to the user breaking something as there are no restrictions on the settings, and the user could theoretically make something way too high quality and crash the game. Other than this, it allows for full editing capabilities of the planet itself without the need to modify the code.
+
+The gameplay system while fun mechanically is very flawed. Outside of the basic running around and shooting targets, as there is no goal, score or story. This makes the system lack long term progression. Outside of the ‘cool’ factor of allowing you to traverse the planet, there is little justification for gameplay. However the gunplay is fun and intuitive, the enemies that are there (2 enemy types) allow for some interesting interactions, with their unique movement and abilities. The hit highlights and enemy glow on attacks are all incredibly fun and intuitive, communicating with the player just enough information that keeps the difficulty, but doesn't subtract from gameplay itself. 
+
+The main limitation on this system is gameplay, making it unattractive for the average user to play. Unfortunately, this project is lacking as a full gameplay experience, however, as a technical project, this still has a lot of value.
+
+Project Milestones
+Development of my project began as soon as I developed the initial concept, this was in September in 2025. I began with some project structure, including Game Objects and abstract script classes. I also came up with a rendering pipeline for OpenGL, As I hadn't worked with it before. The research, setup and development in the early stage took an exceedingly long time. This phase was from the end of September to early November. This was unfortunately the only way as I had to take the time to understand how 3D objects were rendered, how to colour them and how to manipulate them programmatically. This was unfortunately about a month longer than I would have liked, as this meant no Planets were generated at this point.
+
+
+To make planets I decided to start with a flat terrain. I made some noise functions and made terrain that was manipulated randomly by the noise, believing this would transfer to a spherical planet. This was not transferable; due to that I spent the rest of November on this.
+
+Late November to early December saw me create planets that were manipulated by noise functions, during this time I also made a moving character and an online server-based connection for multiplayer, this worked well at the time and allowed for a full multiplayer experience, however this was scrapped due to time complexity in development.
+
+During December to early February, I made the planet surface more interesting, the player could move on it, there was interesting water, and there were the beginnings of surface instancing. At the same time I started work on the level editor, this time period had probably the most errors, as there were crashes, and such I spent a lot of time fixing errors, and even at this point some errors took multiple days to solve due to the decoupling between game objects (one ampersand for instance took 3 days to find was missing).
+
+The final phase of development was February to April. This time was the gameplay and polish phase, main menus, weapons, enemies and much more were the focus during this time. I also had many interesting errors and setbacks during this phase, many of which were due to the nature of the project, for instance the enemy didn't track the surface position properly so would clip through the floor. This was by far the most interesting phase of development however, as I had a good grasp on OpenGL and how I could edit the Game engine to do as I needed at this point.
+
+Throughout the project I feel I was behind of schedule mainly due to the complexity of the low level programming I was dealing with, OpenGL is very complex, and took longer than expected to get the hang of, outside of this the project was on schedule, and was just about finished for the submission deadline.
+ 
+Major Technical Achievements
+Game Engine / framework. The game engine that was built from the ground up using just C++ and OpenGL. This gave me control of all the resources used, allowing for optimisations where needed. The game engine like architecture includes a game object system, abstract script classes, decoupled send Message system and tag-based object retrieval, all mimicking how other game engines function.
+Procedural Planet generation through specific rules, allowing for custom and unique planets, for as many different variants as the developer desires. This is done using a noise deformation on an Ico sphere (originally a cube sphere which was scrapped).
+
+Planet rendering through height-based colouring allowing for variations based on the planet's height. This makes the terrain realistic for the player who can traverse it on foot.
+
+Planet editor allowing for real time in game editing, JSON save and load pipeline for planet retrieval and storage. Also, a random planet loading feature for replayability by the user. This all comes together to make a coherent level editor for the user who can make custom planets, unique and interesting just using the game, and can keep these planets for later games.
+
+Planet surface instancing allows for procedural placementof objects on the planet's surface, for Instance grass can be placed to make the planet look more realistic, this is also saved, making the planet editor even more useable. Simple distance culling was implemented for the optimisation of the placed objects to increase the fps of the user.
+
+Many gameplay system abstractions were implemented. Such as a weapon abstraction allowing for the quick creation of new unique weapons with just adding a few lines of code. Enemy state abstraction with a custom finite state machine. Interaction system abstraction for picking up items with just a single line of code allowing any object to be picked up.
+
+Project Review
+I feel a lot of things went quite right, I ended up exploring my game idea in the correct direction, although slow I believe that the pace of the project was okay. The biggest pacing issue that I faced was the beginning with learning OpenGL and getting accustomed to its rendering pipeline, and all its custom functions. This ended up taking over a month to figure out how to configure things to render efficiently.
+This was the biggest issue by far, learning OpenGL and making all the parts of it work properly together and getting the specific function names to things I wanted done.
+There are unfortunately some things I didn't get fully completed in time for the deadline. These included adding some more UI elements to help the player, such as a reticule ammo count etc. I also wanted to add a boss enemy which would have unique patterns and would allow the player to go to the next planet after defeating the boss. I also wanted to add some more elements such as more particles hit effects, and enemy health bars that would display above them in the world. I also wanted to expand on the interaction system allowing for the pickup of weapons and ammo, and other area specific items. I didn't have time for these and that is the only reason they could not be implemented.
+
+I think that my technology choices for this project were solid, although OpenGL was complicated to learn at first it gave me a good understanding of how things function and behave across the board in 3D development, it also allowed me to explore all the intricacies of developing from the ground up in my own unique environment. The main implication of choosing OpenGL / C++ was that the bar of entry was extremely high from a technical standpoint, which consumed a lot of my early time and made the project complex as a whole.
+
+If someone were to attempt this project, or I started again, I'd tell them to ensure they understand OpenGL. Due to its complexities, they should either understand how it works, or at the very least know what they are in for with it, as it is a complicated library, that does no hand holding whatsoever like other libraries would.
+
+Conclusions
+In conclusion, I think my project went very well. All major features were implemented using OpenGL and C++, this all allowed for immense control over every aspect of the rendering pipeline, the interaction pipeline, and even inputs and updates. I learned a lot about how 3D works, how meshes work, how animations work, how shaders work, how 3D objects work, how to manipulate them and so much more.
+
+I believe this project is unfortunately unfinished due to what I listed in the Project review, but even without those features the projects’ technical achievements are exhaustive, and the implementation of them taught me so much on how to use OpenGL.
+
+Future Work
+A fully fledged environmental editor would be interesting to explore. Also making a proper game engine, with actual editor capabilities like unity would be a great thing to try. It would be great to explore and would have many technical interesting and advanced things to look out for.
+References
+[1] Ian L. McGathey 2014 Title: Search Based Procedural Generation in Games. Accessible here: Mcgathey.pdf (Accessed 10/04/2026)
+[2] Chin Kim On, Ng Wai Foong, Jason Teo, Ag Asri Ag Ibrahim, and Tan Tse Guan 2017 Title: Rule-based Procedural Generation of Item in Role-playing Game. Accessible at: Microsoft Word - 17. Chin Kim On - 1739 (Accessed 10/04/2026)
+
+
+
+
+ 
+
+Computer Games Development CW208
+Technical Design Document 
+Year IV
+
+
+David Strikaitis
+C00283152
+13/04/2026
+
+
+
+
+
+
+ 
+Contents
+
+Contents	2
+Technical Design	3
+Open GL	4
+Structure	4
+Game objects	4
+input	5
+Planet	6
+planet editor	6
+Save / load	7
+shader store	7
+model store	7
+texture store	8
+particles	8
+enemy abstract state	8
+model partner script	8
+surface instancing	8
+weapons	9
+interaction	9
+enemy	9
+main menu	9
+screen overlay	10
+
+ 
+Technical Design 
+Open GL
+The first few weeks of my project was learning how to use Open GL. This is because i never really worked in it properly, this means I had no idea what any of the functions do, how they work, and why they work the way they do this means I researched all the functions in the basic template and played around with how they work
+after this I planned the structure of my game
+Structure
+One thing i dont like about basic game libraries (such as sfml) is how every function needs to somehow pass down functions for instance the render function in sfml a standard structure may have:
+Game -> Player -> weapon Manager -> weapon -> bullet
+ 
+and this is just one simple structure each of those above need to pass down a render function (for instance, in a standard structure) this means that Game passes render to player, which passes render to weapon manager etc. this is especially bad when something like weapon manager doesn't render anything weapon manager may only hold the weapon (which is rendered), but then weapon manager still needs to implement a render function, even though it doesn't render anything itself I don't like this so I invested a lot of time in creating abstractions for update for instance and I also created abstract script classes which are in abstract game objects
+Game objects
+I wanted the game objects to function similar to how they work in engines like Unity (one game object, contains scripts) This evolved later to also contain things like tags, for quickly getting the objects of certain tags The game object needed a few specific simple things scripts, transform, and some functions each script needed to implement a start, update, render, and send message function the send message was to try to resemble how unity handles objects calling functions in other game objects in a decoupled way this ended up looking like such Game Object 1 needs to call another game objects function (will use player shoot enemy as example) 
+
+
+
+player gets all enemies (through tags) 
+\/
+ player checks for transform hit scan on enemy
+\/ 
+player hits enemy sends message of hit, with damage amount ~ explained next
+ \/ 
+enemy health controller receives hit
+ \/ 
+enemy health changes
+ \/ 
+dies
+they send message script also often needs to receive information, this was implemented through the use of std::any std::any is a C++ library function which allows for any parameter type (I use this instead of typenames and such for simplicity and faster compilation)
+a vector of an abstract script is central to the design I have This idea mimics how it works in different game engines like Unity My structure allows for the implementation of update functions, or not if it isn't necessary by the script itself
+so, each game object looks like this
+GameObject 
+| 
+| 
+|- Array of tags 
+| 
+|- array of scripts 
+| 
+|- Transform
+I have abstracted the calling of all the functions to be in a Game Objects class this uses a pool of game objects that are also abstracted away so that the abstract script class is just appended to the game object, and called
+Game objects 
+| 
+| 
+|- Array of GameObjects 
+| 
+|- Exposed functions to add new game object 
+| 
+|- exposed functions to get game objects (eg getAllOfTag([tag]))
+These abstractions make it easy to compose game objects in future
+input
+There is no good way to track inputs, and key presses in OpenGL so I ended up making my own abstract version of the input system, I tried to mirror this to be similar to how it is done in other game engines This ended up being a kind of amalgamation of how Unity handles key inputs in the new input system, And how sfml / raylib handles key inputs, with just a ping if KeyDown is true I also had to add a mouse button tracker, which I decided to abstract by adding a way to quickly assign a button press to an array, and it is then handled and called as needed so you can just append an abstract function, and assign a mouse key, and it will be called (single line)
+Planet
+The main centre point of my project is the planet What i wanted for the planet is for it to be a fully explorable sphere the sphere to have things on it and for enemies to spawn on it that you can shoot then you proceed to the next planet after defeating a boss So the first thin i needed was the noise to deform the planet I originally started by making a Ico sphere and trying to apply noise to that This failed for one main reason. ICO spheres use subdivisions this means that after instantiation and subdivisions, subdivisions after 3 / 4 lag the game tremendously so after all the research and work that was put in to make the Ico sphere, I had to scrap it because it was too slow (this was around 2 weeks of work that was scrapped due to lag) so I did more research, then i stumbled on the cube sphere, which allows for very fine control of the vertex count on the sphere, and didn't have the issue of a normal sphere where the poles would distort movement
+so i got to work on the sphere after creating it and hooking up the mesh i tried to implement the noise function I had for the flat ground tile this obviously didn't work so I proceeded to look up alternatives, I found a noise class available online which allows for the deformation to be even around the surface specifically allowing specific points to always be the same height, this got rid of the need to also remember previous positions as the deformation at specific locations is always the same this fixed the lag issue
+I then needed the mesh to be coloured I used a simple height function, that looks for the highest point, and the lowest point, this is my 0 and 1 then every height in between can be of different colours eg 0 - 0.3 sand, 0.3 - 0.7 grass, 0.7 - 1.0 rock (mountains) this looked very good so i ended up keeping it, i added small blending factor between layers and that was the colours
+Later I converted the colours to also accept textures at the certain heights
+planet editor
+I contemplated how to make the planet generation more interesting and came up with the idea of making a planet editor this proceeded and ended up taking roughly 3 weeks to fully implement correctly and reliably. the editor needed to edit the planet colour, and the noise settings (for now) I also needed a way to open and close this menu, and I didn't want to make it into a key bind (too basic in my opinion) so I created the chat system, this is very similar to many other games I also needed to track commands that are called and the arguments that they receive I decided to then abstract this and move it to a separate static class. This was to increase speed of development in future, so all i would need to do is add a single line to add a new command to the command interpreter. This included the /GUI command which opens the world editor (later added /godmode, / changename, /clear (clear chat), /connect /reconnect, etc, this was very easy to implement thanks to the abstractions)
+Save / load
+Json parser I thought of making a manual Json parser or parsing the planet into a simple text file, however after a quick bit of research io found Nhlomanns Json parser for C++ I decided to use it to speed up the process of creating new planets a bit
+1.	load planet from Json
+2.	save planet to Json
+3.	load random from Json
+these are the main things that were implemented, this also had to get added to the planet editor for ease of use and creation after this implementation it meant that the creation of new planets could be done in the matter of minutes, and then saved for the user the user then loading a random planet to play on, making every play through unique
+shader store
+I added an abstract for shaders, I noticed every shader had similar code for instantiation and after learning that each shader needed to be reset for each object (different variables for objects, but use same shader) I realised that the shader can be very easily abstracted to a different file so i ended up making the shader store which stores all shader pairs (fragment, and vertex shader) this meant that allthe instantiation of the shaders could be abstracted from the normal files. Making them much simpler to read
+model store
+Loading of models from FBX files is very complicated due to the encryption of .fbx, and the storage being weird this left me a few options, using a premade library, or making my own i used the UFBX library which is by far the lightest one
+ 
+This allowed me to load FBX files, but I still had to parse them manually into my render object after figuring all that out, I finally had models in my game
+I then proceeded to make a model store, as it seemed that reloading the same model more than once caused errors, and crashes this means that every model is loaded and cached allowing for fast retrieval
+texture store
+Texture store functions similar to the FBX store where it stores the data for each image this makes it easy for the code to retrieve the same image for multiple different objects
+particles
+Particle pool and animated textures this uses a similar idea to the previous where all the code is abstracted away, and the spawning of particles only takes 1 single line this works well and allows for variants, and such to be used by the code, this can be seen in the muzzle flash, where different flashes are used for the muzzle
+enemy abstract state
+I used a simple command pattern to abstract the enemy pattern and to keep the code more simple this works similar to a finite state machine an abstract enemy state is given to the enemy on instantiation the enemy then uses this abstract state to move around, attack, idle, die etc
+This allows for the fast creation of new enemies with unique states, so this was chosen as the way to handle enemies for that sole reason
+this took a while to implement however as there were errors with the manager, and different errors with the enemy movement along the surface
+model partner script
+when grass instancing was created (explained next) there was an issue. each instance needed a seperate model however this was super inneficient and laggy so i tried to replicate the flyweight pattern using my own implementation (flyweight designed by myself, but after research i realised the code mimics fly weight) this functions similarly, and works very well and alleviates lag the model partner script exists to set object specific parameters this being positions, the model is a single instance and the partner script changes the position and such this is because the model can be heavy to instantiate on computation, this design worked and alleviated the lag, allowing for more instances for almost free (outside of cost of instancing itself)
+surface instancing
+Surface instancing took a long time to figure out, this is because the data for the planet isnt really stored anywhere outside of the vbo, this is okay for the planet rendering but to place an instance on the mesh would require a lot of work for the pc to sample all vertices so i found another way of doing it by sampling the noise from the original noise class this worked very well and allowed me to disperse objects across the mesh randomly
+weapons
+weapon creation is also abstracted to a high level allowing for very fast creation of new weapons, the only things that are needed are the data (full auto, mag size, reload time etc.) and a gun model & texture then by simply adding to the array of weapons, it is added as a useable weapon this makes it very simple to make new weapons, and makes it very easy to make a weapon editor (if it were saved to Json and such) this was done for future expansion, but has not yet been implemented.
+interaction
+using the tag system i have added an interaction method, this simply uses a hit sphere and ray calculation after that it sends a pick up method (caught by a script) for it to destroy, this is easily expandable thanks to the sendMessage function, It allows for the creation of new items that can be on the ground / interacted with, this is currently used for just collecting rocks, and has not been expanded much past that, this is due to lack of time, I would in future use this for opening doors, picking up new weapons etc.
+enemy
+the enemy who uses the enemy state machine has an interesting attack pattern, this was created the way it was thanks to testing now it highlights white and has a blood splatter particle whenever it is shot, this clearly shows hit effect
+the slime enemy has an interesting attack (tested for fun sake) when it gets close it enters the attack state it stands still for 0.7 seconds (most balanced time) it then turns red 0.1 seconds before charging, if the player doesn't move outside of radius in that 0.1 seconds (rewarding for very fast reaction players) it charges at the player, this charge lasts 1 second (so it is possible to avoid if you are fast to sprint out of the way) and this damages the player if it hits the player (red during entire charge attack) it then waits 3 seconds stationary before it tries to charge again
+this sounds complicated, but is very normal when the player is playing, and very clear for the user it also rewards players that are paying attention (to the red glow) it is also fair as the player has some time to get away after avoiding / getting hit
+main menu
+the main menu was specifically made to be simple and hopefully if needed expandable I used ImGui because I already knew how it worked and had it implemented elsewhere in the repo This also meant I didn't have to overcomplicate the code because it is instanced, and updates live this all meant that the main menu could be reliable and useable
+screen overlay
+The screen overlay is used for 3 things, taking damage overlay (red flash) fade in and out of the level and underwater overlay the underwater overlay is there to mimic how other games handle underwater, making it more believable as it is harder to see underwater I used a simple quad that is displayed in the game view, and overlays over everything, this gave the effect I wanted (I wanted it to be clearly visible when you are damaged)
+
+
+
+
+
+
+ 
+
+Computer Games Development CW208
+GDD 
+Year IV
+
+
+
+David Strikaitis
+C00283152
+13/04/2026
+
+
+
+
+
+
+
+ 
+Contents
+
+David Strikaitis	1
+Acknowledgements	3
+Game Overview	4
+Feature Set	6
+General Features	6
+Editor	6
+Gameplay	6
+The Game World	6
+Overview	7
+The Physical World	7
+Overview	7
+Key Locations	7
+Travel	7
+Scale	7
+Objects	8
+Time	8
+Rendering System	8
+Overview	9
+2D/3D Rendering	9
+Camera	9
+Overview	9
+Camera Detail #1	9
+Game Engine	9
+Overview	10
+Water	10
+Collision Detection	10
+The World Layout	10
+Overview	11
+Game Characters	11
+Overview	12
+Enemies and Monsters	12
+User Interface	12
+Overview	13
+GUI	13
+Weapons	13
+Overview	14
+The shotgun	14
+The Pistol	14
+The rifle	14
+Single-Player Game	15
+Overview	16
+Hours of Gameplay	16
+Victory Conditions	16
+Persistence	16
+Saving and Loading	16
+World Editing	16
+Overview	16
+Update Planet	16
+Planet point Count	17
+Planet Radius	17
+Light intensity	17
+Planet Colours	17
+Noise Layers	17
+Json Save / load	17
+
+ 
+Acknowledgements
+I would like to thank the following people who assisted in completing this project including:
+Dr. Noel O’Hara - who gave many insightful ideas and thought on the project as a whole
+ All the supervisors who gave me some good ideas on what to do with the gameplay, and what direction I should take with the planets
+
+
+
+ 
+Game Overview
+My game is a 3D open world procedurally generated planet explorer.
+The game allows for the interaction with unique planets
+Here are screenshots of just some of the generated planets:
+    
+You travel through the planets fighting different enemies and exploring the unique planets until you die from the enemies.
+The 2 enemies who shoot at you or melee you close range are the shard and slime respectively. 
+  
+There is an in built level editor which can be accesed by typing /gui in the chat window. After opening this, the world is under your control, allowing you to change it to whatever you feel.
+  
+
+Common Questions: 
+What is the game? 
+This is a planet exploring game where you can explore procedurally generated planets
+Why create this game?
+This game is a demonstration of what kind of interesting explorable terrain can be created in OpenGL
+ Where does the game take place?
+In space, on the procedurally generated planet
+ What do I control? 
+You control the player who is exploring the planet and attempting to survive
+How many characters do I control? 
+1
+What is the main focus?
+Explore the unique planets available to you
+What’s different?
+The planets change on every run, making every time you load up a unique experience
+Feature Set
+General Features
+Procedurally generated planets allowing for interesting and unique gameplay every time you load in
+Editor
+Comes with a world editor that is useable in game, allows for the save and load of new and unique planets
+Gameplay
+Different weapons
+interesting terrain to walk around
+different enemy types with interesting attack styles
+
+ 
+The Game World
+Overview
+
+Every world is unique
+The game world is unique every time you load up, maybe the islands are different, maybe there's very few, maybe there's many. The terrain could be mountainous or flatter, who know until you try it out.
+ 	 
+
+Planet specific enemies
+Each planet will have a unique twist to the enemies, maybe they'll be wearing sunglasses or maybe they are fancy and wear top hats.
+ 
+The Physical World
+Overview
+The world is unique on every play through, so youll never know what you get. It could be chaotic, or it could be peaceful. Play a little and find out.
+
+Key Locations
+The entire world is key, and unique
+Travel
+Classic WASD to move forward back left and right. Moving around in first person!
+Scale
+The scale of the world depends on your luck, it could be a tiny moon you end up on, or a huge water planet.
+Objects
+Slimes are the main inhabitants of these worlds!
+
+Time
+The player will walk around the world for the first 30 seconds then will encounter an enemy, and kill it, in the next 30 seconds they will encounter more enemies and try to kill most of them, by 1.30 they will be dead. Then they will restart and try again.
+
+ 
+Rendering System
+Overview
+
+The game will use a complex graphics pipeline with shaders, and 3D models. They will all be called through a standard draw call that will happen after every update.
+
+2D/3D Rendering
+3D using OpenGL
+Camera
+Overview
+The camera will move around with your player in a first-person perspective.
+Camera Detail #1
+
+First person movement, using mouse
+ 
+Game Engine
+
+Overview
+
+No Game engine, built from ground up to mimic a gane engine
+
+The game engine uses a game object approach, where every game object has a list of scripts and tags. The scripts will be an abstract class that allows for any unique behaviour that is intended to be inserted into the script. All actions will be decoupled and allow for any function that is needed to be called, while avoiding unnecessary ones.
+
+Water
+
+The water will be an ICO sphere that is deformed by shaders and coloured by them.
+ 
+
+
+Collision Detection
+The game only has simple floor collision which uses the player position which samples the noise map providing the players elevation.
+
+ 
+The World Layout
+
+Overview
+
+The world is a sphere that you can walk around, the world is randomly generated and may look like this:
+
+ 
+Or this
+ 
+Who knows, until you try it out.
+ 
+Game Characters
+Overview
+You the player are the character, you are trying to survive on this alien planet.
+Enemies and Monsters
+
+There are 2 unique enemies
+
+The slime
+The slime comes in many colours and sizes, the slime also comes with many hats and glasses, depending on what planet you are on (different enemies appear on different planets).
+The slime wanders around and idles around a bit until it detects you
+when it detects you it moves in range to attack, but before it attacks it charges up its dash to damage you, once it is charged upit turn red and runs towards you very quickly. If you dont avoid it you take damage. 
+After its dash it takes 3 seconds to reset, and then will try to dash at you again, it will keep doing this until you die, or it dies.
+ 
+The Shard
+Usually found at the tops of mountains; the shard will remain stationary waiting for you to approach it. Once you are in range it will start shooting at you, when it turns red you must dodge its bullets. The shard shoots in 3 round bursts until it must cool down. I will not seek you out and much prefers the comfort of mountain ranges.
+ 
+User Interface
+
+Overview
+The user interface for the main menu is very simple, play or quit. When you play you have no user interface, but you do have the option to open the chat window. When the chat window is opened (using the enter key) you can write different commands.
+
+
+GUI
+The main command is /gui , which allows you to edit the world through a new user interface window. It allows for the manipulation of the world using the different buttons and sliders.
+ 
+ 
+Weapons
+
+Overview
+
+You have the direct use of 3 simple weapons. (Middle mouse button allows for the switching of weapons)
+
+The shotgun
+ 
+High damage, long reload, high recoil, low fire rate
+
+The Pistol
+ 
+As effective as you make it
+Shoots as fast as you can press the mouse
+low damage, fast reload, low recoil, very fast reload
+
+The rifle
+ 
+Full auto, medium damage, moderate fire rate, low recoil fast reloads
+
+ 
+Single-Player Game
+
+Overview
+The player can walk around and explore the world as much as they want, hopefully finding and killing as many enemies as they can
+
+Hours of Gameplay
+The gameplay is roughly 10 –15 minutes, surviving on each world variant a few minutes.
+
+Victory Conditions
+You cant win, there is no ending.
+Persistence
+
+No persistence is saved during reloads
+Saving and Loading
+ The worlds you create are saved / loaded
+
+
+
+World Editing
+
+Overview
+The world editor is the central element to the experience in this game. It allows for the creation of unique worlds with as much variance as you can think of.
+ 
+Update Planet
+This updates the current planet to use the newest settings
+Live Update
+This makes it so that every change made is applied to the planet instantly (very laggy)
+
+Planet point Count
+This controls the amount of vertices the planet and water will have
+
+Planet Radius
+Changes the size of the planet
+Light intensity
+How bright the planet textures are
+
+Planet Colours
+Each planet layer colour has controls of texture or colour, if a texture is applied a normal map can also be used, you can control the tiling density and normal height, you can also control at what layer the texture appears at
+
+Noise Layers
+The noise layers settings allow for controls over how the planet is deformed, this is through 2 different noise functions, either normal (which applies a normal type of noise which produced smooth bumps) and rigid, which provides more spiky terrain which is suitable for mountains. The other settings adjust the layer height, repititions, scale and miniumum height values, all providing fine controls over the noise settings
+
+Json Save / load
+The Json save / load function helps the player save and load planets from / to a json folder. Gives access like save to current, save to new load and reset.
+
+Surface Instances
+Surface instances allow for control of what is spawned on each layer of the world. You can instantiate grass, models, pickup models, and enemies. Each instance type also has different controls that change how the instances are spread around the map and how dense they spawn. Certain variants (like enemies) have even more fine tuned controls, these dont have to be used but can speed up the placing of enemies. For instance, all the slimes have unique texture variants, so I use the model duplicates settings to make it fast to add more variants.
+
+
+
+ 
+
+
+
+
+
+
+

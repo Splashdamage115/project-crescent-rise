@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" role="img" aria-label="Icy ringed planet">
+  <defs>
+    <radialGradient id="ice" cx="32%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#f4feff"/>
+      <stop offset="42%" stop-color="#9fd8ff"/>
+      <stop offset="100%" stop-color="#3565a8"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="160" cy="192" rx="128" ry="33" fill="none" stroke="#d1eeff" stroke-width="11" opacity="0.72"/>
+  <circle cx="160" cy="160" r="102" fill="url(#ice)"/>
+  <path d="M74 189c35-17 54-23 85-20 30 3 49 1 89-14" stroke="#dff4ff" stroke-width="9" fill="none" opacity="0.58"/>
+  <circle cx="129" cy="112" r="15" fill="#ffffff" opacity="0.4"/>
+</svg>

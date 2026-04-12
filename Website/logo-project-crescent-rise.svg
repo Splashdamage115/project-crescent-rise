@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240" role="img" aria-labelledby="title desc">
+  <title id="title">Project Crescent Rise logo</title>
+  <desc id="desc">Provisional logo with a crescent orbit and star accents.</desc>
+  <defs>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4cf5ff"/>
+      <stop offset="100%" stop-color="#8ef4d0"/>
+    </linearGradient>
+    <linearGradient id="flare" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffb248"/>
+      <stop offset="100%" stop-color="#ffd682"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(24,20)">
+    <circle cx="88" cy="100" r="66" fill="none" stroke="url(#ring)" stroke-width="10"/>
+    <circle cx="110" cy="100" r="52" fill="#081126"/>
+    <path d="M150 34l7 12 13 2-9 8 2 13-13-7-12 7 2-13-10-8 14-2z" fill="url(#flare)"/>
+    <path d="M18 124l4 7 8 1-6 5 1 8-7-4-7 4 1-8-6-5 8-1z" fill="#4cf5ff" opacity="0.9"/>
+    <path d="M62 26l3 6 6 1-4 4 1 6-6-3-5 3 1-6-4-4 6-1z" fill="#ffffff" opacity="0.8"/>
+  </g>
+
+  <g transform="translate(206,36)" fill="#edf3ff">
+    <text x="0" y="74" font-family="Orbitron, Chakra Petch, sans-serif" font-size="44" font-weight="700" letter-spacing="4">PROJECT</text>
+    <text x="0" y="145" font-family="Orbitron, Chakra Petch, sans-serif" font-size="66" font-weight="900" letter-spacing="5">CRESCENT RISE</text>
+  </g>
+</svg>

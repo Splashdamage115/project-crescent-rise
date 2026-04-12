@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="460" viewBox="0 0 460 460" role="img" aria-label="Blue gas giant">
+  <defs>
+    <radialGradient id="core" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#7ef6ff"/>
+      <stop offset="44%" stop-color="#2a7bcf"/>
+      <stop offset="100%" stop-color="#0f2d66"/>
+    </radialGradient>
+  </defs>
+  <circle cx="230" cy="230" r="210" fill="url(#core)"/>
+  <path d="M55 255c59-32 98-42 161-31 50 9 87 5 189-29" stroke="#a5dfff" stroke-width="18" fill="none" opacity="0.45"/>
+  <path d="M36 197c67-25 124-35 186-19 62 15 114 8 200-35" stroke="#5ed7f8" stroke-width="13" fill="none" opacity="0.42"/>
+  <circle cx="176" cy="144" r="22" fill="#b7fdff" opacity="0.55"/>
+</svg>

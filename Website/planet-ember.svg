@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" role="img" aria-label="Rocky moon">
+  <defs>
+    <radialGradient id="ember" cx="35%" cy="30%" r="78%">
+      <stop offset="0%" stop-color="#ffd59e"/>
+      <stop offset="45%" stop-color="#dd7a2f"/>
+      <stop offset="100%" stop-color="#6a2d12"/>
+    </radialGradient>
+  </defs>
+  <circle cx="110" cy="110" r="96" fill="url(#ember)"/>
+  <circle cx="78" cy="72" r="14" fill="#8e3f17" opacity="0.5"/>
+  <circle cx="145" cy="136" r="18" fill="#8e3f17" opacity="0.4"/>
+  <circle cx="95" cy="148" r="9" fill="#8e3f17" opacity="0.45"/>
+</svg>
