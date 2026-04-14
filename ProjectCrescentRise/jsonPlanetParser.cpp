@@ -25,7 +25,7 @@ bool jsonPlanetParser::WritePlanetData(PlanetData t_newData, bool saveAsNew)
     }
     else
     {
-        // do nothing and instead use the current selected planet
+        
     }
     json j = t_newData.planetDataToJson();
     json loaded = readPlanetFile();
@@ -61,7 +61,7 @@ void jsonPlanetParser::MergeFiles(json& base, json mergeFile)
         }
 }
 
-// dump file
+
 bool jsonPlanetParser::dumpFile(const json& dumpFile)
 {
     std::string pretty = dumpFile.dump(4);
@@ -172,7 +172,7 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
 
     const json& j = *root;
 
-    // Top-level scalar fields
+    
     if (j.contains("planetRad"))
     {
         if (j["planetRad"].is_number())
@@ -205,7 +205,7 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
             std::cout << "[jsonToPlanetData] oceanPoints present but not an integer\n";
     }
 
-    // Noise layers
+    
     if (j.contains("NoiseLayers") && j["NoiseLayers"].is_object())
     {
         const json& nlObj = j["NoiseLayers"];
@@ -217,7 +217,7 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
                 continue;
             }
 
-            // parse index from key (keys are numeric strings in saved JSON)
+            
             int layerIndex = -1;
             try
             {
@@ -297,7 +297,7 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
                 continue;
             }
 
-            // parse numeric colour index from key
+            
             int colourIndex = -1;
             try
             {
@@ -314,11 +314,11 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
                 continue;
             }
 
-            // ensure all vectors have space for this index
+            
             auto ensureSize = [&](size_t needed) {
                 if (colourIndex >= static_cast<int>(needed))
                 {
-                    // Resize all colour-related vectors to hold index
+                    
                     p.planetColour.m_shaderType.resize(colourIndex + 1);
                     p.planetColour.active.resize(colourIndex + 1);
                     p.planetColour.m_colours.resize(colourIndex + 1);
@@ -331,7 +331,7 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
             };
             ensureSize(p.planetColour.m_shaderType.size());
 
-            // assign values using .at(index) to preserve numeric keys' positions
+            
             if (v.contains("shaderType") && v["shaderType"].is_number_integer())
                 p.planetColour.m_shaderType.at(colourIndex) = v["shaderType"].get<int>();
 
@@ -389,62 +389,62 @@ PlanetData PlanetData::jsonToPlanetData(const json& input)
 
 void surfaceInstances::InstanceToJson(json& j, std::string pos)
 {
-    // placeholder layers info
+    
 
-    //m_instances.clear();
-    //
-    //{
-    //    std::vector<std::string> grassTextures =
-    //    {
-    //        "./Assets/Images/grass.png",
-    //        "./Assets/Images/grass2.png",
-    //        "./Assets/Images/grass3.png",
-    //        "./Assets/Images/bush.png"
-    //    };
-    //
-    //    std::vector<int> spawnAmt =
-    //    {
-    //        256 /4,
-    //        32 /4,
-    //        128 /4,
-    //        32 /4
-    //    };
-    //
-    //    for (int i = 0; i < spawnAmt.size(); i++)
-    //    {
-    //        m_instances.emplace_back();
-    //        m_instances.at(i).textureLoc = grassTextures.at(i);
-    //
-    //        m_instances.at(i).density = 1.0f;
-    //        m_instances.at(i).noiseScale = 100.0f;
-    //        m_instances.at(i).noiseThreshold = 10.0f;
-    //        m_instances.at(i).noiseSeed = rand();
-    //        m_instances.at(i).useHeightLayerMask = true;
-    //        m_instances.at(i).heightLayerMask = 2;
-    //        m_instances.at(i).passesPerFace = spawnAmt.at(i);
-    //
-    //        m_instances.at(i).maxSize = 1.25f;
-    //        m_instances.at(i).minSize = 0.75f;
-    //
-    //        m_instances.at(i).instanceType = InstanceType::Grass;
-    //    }
-    //
-    //    m_instances.at(spawnAmt.size() - 1).minSize = 3.75f;
-    //    m_instances.at(spawnAmt.size() - 1).maxSize = 4.f;
-    //}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
-    //"textureLoc"
-    //"density"
-    //"noiseScale"
-    //"noiseThreshold"
-    //"noiseSeed"
-    //"useHeightLayerMask"
-    //"heightLayerMask"
-    //"passesPerFace"
-    //"maxSize"
-    //"minSize"
-    //"instanceType"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     for (int i = 0; i < m_instances.size(); i++)
     {
@@ -486,7 +486,7 @@ std::vector<InstancerSettings> surfaceInstances::jsonToInstancers(const json& in
                 continue;
             }
 
-            // parse index from key (keys are numeric strings in saved JSON)
+            
             int objIndex = -1;
             try
             {

@@ -301,7 +301,7 @@
 
 
   /* the implementation of MurmurHash3 is taken and adapted from          */
-  /* https://github.com/aappleby/smhasher/blob/master/src/MurmurHash3.cpp */
+  /* https:
 
 #define ROTL32( x, r )  ( x << r ) | ( x >> ( 32 - r ) )
 

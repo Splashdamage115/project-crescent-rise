@@ -66,8 +66,8 @@ void Model::Update()
 
 void Model::Render()
 {
-	//if (parent == nullptr) return;
-	//if (!parent->active) return;
+	
+	
 
 	VertexShaders::LoadShader(m_shader);
 

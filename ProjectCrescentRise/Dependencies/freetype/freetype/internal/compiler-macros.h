@@ -22,21 +22,21 @@
 
 FT_BEGIN_HEADER
 
-  /* Fix compiler warning with sgi compiler. */
+  
 #if defined( __sgi ) && !defined( __GNUC__ )
 #  if defined( _COMPILER_VERSION ) && ( _COMPILER_VERSION >= 730 )
 #    pragma set woff 3505
 #  endif
 #endif
 
-  /* Fix compiler warning with sgi compiler. */
+  
 #if defined( __sgi ) && !defined( __GNUC__ )
 #  if defined( _COMPILER_VERSION ) && ( _COMPILER_VERSION >= 730 )
 #    pragma set woff 3505
 #  endif
 #endif
 
-  /* Newer compilers warn for fall-through case statements. */
+  
 #ifndef FALL_THROUGH
 #  if ( defined( __STDC_VERSION__ ) && __STDC_VERSION__ > 201710L ) || \
       ( defined( __cplusplus ) && __cplusplus > 201402L )
@@ -94,8 +94,8 @@ FT_BEGIN_HEADER
    */
 #  define FT_UINT_TO_POINTER( x )  (void *)(__UINTPTR_TYPE__)(x)
 #elif defined( _WIN64 )
-  /* only 64bit Windows uses the LLP64 data model, i.e., */
-  /* 32-bit integers, 64-bit pointers.                   */
+  
+  
 #  define FT_UINT_TO_POINTER( x )  (void *)(unsigned __int64)(x)
 #else
 #  define FT_UINT_TO_POINTER( x )  (void *)(unsigned long)(x)
@@ -118,7 +118,7 @@ FT_BEGIN_HEADER
       ( defined( __SUNPRO_C ) && __SUNPRO_C >= 0x5110 && !__STDC__ ) )
 #define FT_TYPEOF( type )  ( __typeof__ ( type ) )
 #else
-#define FT_TYPEOF( type )  /* empty */
+#define FT_TYPEOF( type )  
 #endif
 
   /*
@@ -128,21 +128,21 @@ FT_BEGIN_HEADER
    * before a function declaration.
    */
 
-  /* Visual C, MinGW, Cygwin */
+  
 #if defined( _WIN32 ) || defined( __CYGWIN__ )
-#define FT_INTERNAL_FUNCTION_ATTRIBUTE  /* empty */
+#define FT_INTERNAL_FUNCTION_ATTRIBUTE  
 
-  /* gcc, clang */
+  
 #elif ( defined( __GNUC__ ) && __GNUC__ >= 4 ) || defined( __clang__ )
 #define FT_INTERNAL_FUNCTION_ATTRIBUTE  \
           __attribute__(( visibility( "hidden" ) ))
 
-  /* Sun */
+  
 #elif defined( __SUNPRO_C ) && __SUNPRO_C >= 0x550
 #define FT_INTERNAL_FUNCTION_ATTRIBUTE  __hidden
 
 #else
-#define FT_INTERNAL_FUNCTION_ATTRIBUTE  /* empty */
+#define FT_INTERNAL_FUNCTION_ATTRIBUTE  
 #endif
 
   /*
@@ -209,7 +209,7 @@ FT_BEGIN_HEADER
                            FT_FUNCTION_DECLARATION( x )
 #define FT_LOCAL_DEF( x )  FT_FUNCTION_DEFINITION( x )
 
-#endif  /* FT_MAKE_OPTION_SINGLE_OBJECT */
+#endif  
 
   /*
    * Use `FT_LOCAL_ARRAY` and `FT_LOCAL_ARRAY_DEF` to declare and define,
@@ -274,7 +274,7 @@ FT_BEGIN_HEADER
    * To export a variable, use `FT_EXPORT_VAR`.
    */
 
-  /* See `freetype/config/public-macros.h` for the `FT_EXPORT` definition */
+  
 #define FT_EXPORT_DEF( x )  FT_FUNCTION_DEFINITION( x )
 
   /*
@@ -334,10 +334,10 @@ FT_BEGIN_HEADER
 #define FT_CALLBACK_TABLE_DEF  extern "C"
 #else
 #define FT_CALLBACK_TABLE      extern
-#define FT_CALLBACK_TABLE_DEF  /* nothing */
+#define FT_CALLBACK_TABLE_DEF  
 #endif
-#endif /* FT_CALLBACK_TABLE */
+#endif 
 
 FT_END_HEADER
 
-#endif  /* INTERNAL_COMPILER_MACROS_H_ */
+#endif  

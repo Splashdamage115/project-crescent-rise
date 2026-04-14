@@ -593,28 +593,28 @@ FT_BEGIN_HEADER
    *     FT_BitmapGlyph  glyph_bitmap;
    *
    *
-   *     // load glyph
+   *     
    *     error = FT_Load_Char( face, glyph_index, FT_LOAD_DEFAULT );
    *
-   *     // extract glyph image
+   *     
    *     error = FT_Get_Glyph( face->glyph, &glyph );
    *
-   *     // convert to a bitmap (default render mode + destroying old)
+   *     
    *     if ( glyph->format != FT_GLYPH_FORMAT_BITMAP )
    *     {
    *       error = FT_Glyph_To_Bitmap( &glyph, FT_RENDER_MODE_NORMAL,
    *                                   0, 1 );
-   *       if ( error ) // `glyph' unchanged
+   *       if ( error ) 
    *         ...
    *     }
    *
-   *     // access bitmap content by typecasting
+   *     
    *     glyph_bitmap = (FT_BitmapGlyph)glyph;
    *
-   *     // do funny stuff with it, like blitting/drawing
+   *     
    *     ...
    *
-   *     // discard glyph image (bitmap or not)
+   *     
    *     FT_Done_Glyph( glyph );
    *   ```
    *
@@ -639,8 +639,8 @@ FT_BEGIN_HEADER
    *
    *       ...
    *
-   *       // after this call, `bitmap' no longer points into
-   *       // the `glyphs' array (and the old value isn't destroyed)
+   *       
+   *       
    *       FT_Glyph_To_Bitmap( &bitmap, FT_RENDER_MODE_MONO, 0, 0 );
    *
    *       ...

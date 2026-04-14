@@ -57,7 +57,7 @@ FT_BEGIN_HEADER
    * @description:
    *   A list of valid values for the `charset` byte in @FT_WinFNT_HeaderRec.
    *   Exact mapping tables for the various 'cpXXXX' encodings (except for
-   *   'cp1361') can be found at 'ftp://ftp.unicode.org/Public/' in the
+   *   'cp1361') can be found at 'ftp:
    *   `MAPPINGS/VENDORS/MICSFT/WINDOWS` subdirectory.  'cp1361' is roughly a
    *   superset of `MAPPINGS/OBSOLETE/EASTASIA/KSC/JOHAB.TXT`.
    *
@@ -93,7 +93,7 @@ FT_BEGIN_HEADER
    *     second default codepage that most international versions of Windows
    *     have.  It is one of the OEM codepages from
    *
-   *     https://learn.microsoft.com/windows/win32/intl/code-page-identifiers ,
+   *     https:
    *
    *     and is used for the 'DOS boxes', to support legacy applications.  A
    *     German Windows version for example usually uses ANSI codepage 1252
@@ -259,17 +259,17 @@ FT_BEGIN_HEADER
   FT_Get_WinFNT_Header( FT_Face               face,
                         FT_WinFNT_HeaderRec  *aheader );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTWINFNT_H_ */
+#endif 
 
 
-/* END */
 
 
-/* Local Variables: */
-/* coding: utf-8    */
-/* End:             */
+
+
+
+

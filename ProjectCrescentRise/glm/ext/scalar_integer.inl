@@ -154,7 +154,7 @@ namespace detail
 			}
 		}
 	};
-}//namespace detail
+}
 
 	template<typename genIUType>
 	GLM_FUNC_QUALIFIER bool isPowerOfTwo(genIUType Value)
@@ -240,4 +240,4 @@ namespace detail
 
 		return static_cast<int>(bitPos);
 	}
-}//namespace glm
+}

@@ -12,7 +12,7 @@
         <meta name="author" content="FreeType Contributors">
       
       
-        <link rel="canonical" href="http://freetype.org/freetype2/docs/reference/ft2-properties.html">
+        <link rel="canonical" href="http:
       
       
         <link rel="prev" href="ft2-ot_svg_driver.html">
@@ -46,8 +46,8 @@
       
         
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <link rel="preconnect" href="https:
+        <link rel="stylesheet" href="https:
         <style>:root{--md-text-font:"Noto Serif";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -101,7 +101,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http:
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -127,7 +127,7 @@
     
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http:
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -136,15 +136,15 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http:
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http:
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http:
         </button>
       </nav>
       
@@ -2352,7 +2352,7 @@
 
 
 
-<p><a href="https://www.freetype.org">FreeType</a> &raquo; <a href="../">Docs</a> &raquo; <a href="index.html#controlling-freetype-modules">Controlling FreeType Modules</a> &raquo; Driver properties</p>
+<p><a href="https:
 <hr />
 <h1 id="driver-properties">Driver properties<a class="headerlink" href="#driver-properties" title="Permanent link">&para;</a></h1>
 <h2 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h2>
@@ -2455,10 +2455,10 @@
 </code></pre></div></p>
 <h4>example</h4>
 <div class="highlight"><pre><span></span><code>  FT_Library  library;
-  FT_Int      darken_params[8] = {  500, 300,   // x1, y1
-                                   1000, 200,   // x2, y2
-                                   1500, 100,   // x3, y3
-                                   2000,   0 }; // x4, y4
+  FT_Int      darken_params[8] = {  500, 300,   
+                                   1000, 200,   
+                                   1500, 100,   
+                                   2000,   0 }; 
 
 
   FT_Init_FreeType( &amp;library );
@@ -2580,7 +2580,7 @@
 <h2 id="interpreter-version">interpreter-version<a class="headerlink" href="#interpreter-version" title="Permanent link">&para;</a></h2>
 <p>Currently, three versions are available, two representing the bytecode interpreter with subpixel hinting support (old &lsquo;Infinality&rsquo; code and new stripped-down and higher performance &lsquo;minimal&rsquo; code) and one without, respectively. The default is subpixel support if <code>TT_CONFIG_OPTION_SUBPIXEL_HINTING</code> is defined, and no subpixel support otherwise (since it isn't available then).</p>
 <p>If subpixel hinting is on, many TrueType bytecode instructions behave differently compared to B/W or grayscale rendering (except if &lsquo;native ClearType&rsquo; is selected by the font). Microsoft's main idea is to render at a much increased horizontal resolution, then sampling down the created output to subpixel precision. However, many older fonts are not suited to this and must be specially taken care of by applying (hardcoded) tweaks in Microsoft's interpreter.</p>
-<p>Details on subpixel hinting and some of the necessary tweaks can be found in Greg Hitchcock's whitepaper at &lsquo;<a href="https://learn.microsoft.com/typography/cleartype/truetypecleartype">https://learn.microsoft.com/typography/cleartype/truetypecleartype</a>&rsquo;. Note that FreeType currently doesn't really &lsquo;subpixel hint&rsquo; (6x1, 6x2, or 6x5 supersampling) like discussed in the paper. Depending on the chosen interpreter, it simply ignores instructions on vertical stems to arrive at very similar results.</p>
+<p>Details on subpixel hinting and some of the necessary tweaks can be found in Greg Hitchcock's whitepaper at &lsquo;<a href="https:
 <h4>note</h4>
 
 <p>This property can be used with <code><a href="ft2-module_management.html#ft_property_get">FT_Property_Get</a></code> also.</p>
@@ -2694,7 +2694,7 @@
   FT_Property_Get( library, &quot;autofitter&quot;,
                             &quot;glyph-to-script-map&quot;, &amp;prop );
 
-  // adjust `prop.map&#39; as needed right here
+  
 
   FT_Load_Glyph( face, ..., FT_LOAD_FORCE_AUTOHINT );
 </code></pre></div></p>
@@ -2721,83 +2721,83 @@
 <tr><td class="val" id="ft_autohinter_script_latin">FT_AUTOHINTER_SCRIPT_LATIN</td><td class="desc">
 <p>Apply the latin auto-hinter. For the auto-hinter, ‘latin’ is a very broad term, including Cyrillic and Greek also since characters from those scripts share the same design constraints.</p>
 <p>By default, characters from the following Unicode ranges are assigned to this submodule.</p>
-<pre><code>  U+0020 - U+007F  // Basic Latin (no control characters)
-  U+00A0 - U+00FF  // Latin-1 Supplement (no control characters)
-  U+0100 - U+017F  // Latin Extended-A
-  U+0180 - U+024F  // Latin Extended-B
-  U+0250 - U+02AF  // IPA Extensions
-  U+02B0 - U+02FF  // Spacing Modifier Letters
-  U+0300 - U+036F  // Combining Diacritical Marks
-  U+0370 - U+03FF  // Greek and Coptic
-  U+0400 - U+04FF  // Cyrillic
-  U+0500 - U+052F  // Cyrillic Supplement
-  U+1D00 - U+1D7F  // Phonetic Extensions
-  U+1D80 - U+1DBF  // Phonetic Extensions Supplement
-  U+1DC0 - U+1DFF  // Combining Diacritical Marks Supplement
-  U+1E00 - U+1EFF  // Latin Extended Additional
-  U+1F00 - U+1FFF  // Greek Extended
-  U+2000 - U+206F  // General Punctuation
-  U+2070 - U+209F  // Superscripts and Subscripts
-  U+20A0 - U+20CF  // Currency Symbols
-  U+2150 - U+218F  // Number Forms
-  U+2460 - U+24FF  // Enclosed Alphanumerics
-  U+2C60 - U+2C7F  // Latin Extended-C
-  U+2DE0 - U+2DFF  // Cyrillic Extended-A
-  U+2E00 - U+2E7F  // Supplemental Punctuation
-  U+A640 - U+A69F  // Cyrillic Extended-B
-  U+A720 - U+A7FF  // Latin Extended-D
-  U+FB00 - U+FB06  // Alphab. Present. Forms (Latin Ligatures)
- U+1D400 - U+1D7FF // Mathematical Alphanumeric Symbols
- U+1F100 - U+1F1FF // Enclosed Alphanumeric Supplement
+<pre><code>  U+0020 - U+007F  
+  U+00A0 - U+00FF  
+  U+0100 - U+017F  
+  U+0180 - U+024F  
+  U+0250 - U+02AF  
+  U+02B0 - U+02FF  
+  U+0300 - U+036F  
+  U+0370 - U+03FF  
+  U+0400 - U+04FF  
+  U+0500 - U+052F  
+  U+1D00 - U+1D7F  
+  U+1D80 - U+1DBF  
+  U+1DC0 - U+1DFF  
+  U+1E00 - U+1EFF  
+  U+1F00 - U+1FFF  
+  U+2000 - U+206F  
+  U+2070 - U+209F  
+  U+20A0 - U+20CF  
+  U+2150 - U+218F  
+  U+2460 - U+24FF  
+  U+2C60 - U+2C7F  
+  U+2DE0 - U+2DFF  
+  U+2E00 - U+2E7F  
+  U+A640 - U+A69F  
+  U+A720 - U+A7FF  
+  U+FB00 - U+FB06  
+ U+1D400 - U+1D7FF 
+ U+1F100 - U+1F1FF 
 </code></pre>
 </td></tr>
 <tr><td class="val" id="ft_autohinter_script_cjk">FT_AUTOHINTER_SCRIPT_CJK</td><td class="desc">
 <p>Apply the CJK auto-hinter, covering Chinese, Japanese, Korean, old Vietnamese, and some other scripts.</p>
 <p>By default, characters from the following Unicode ranges are assigned to this submodule.</p>
-<pre><code>  U+1100 - U+11FF  // Hangul Jamo
-  U+2E80 - U+2EFF  // CJK Radicals Supplement
-  U+2F00 - U+2FDF  // Kangxi Radicals
-  U+2FF0 - U+2FFF  // Ideographic Description Characters
-  U+3000 - U+303F  // CJK Symbols and Punctuation
-  U+3040 - U+309F  // Hiragana
-  U+30A0 - U+30FF  // Katakana
-  U+3100 - U+312F  // Bopomofo
-  U+3130 - U+318F  // Hangul Compatibility Jamo
-  U+3190 - U+319F  // Kanbun
-  U+31A0 - U+31BF  // Bopomofo Extended
-  U+31C0 - U+31EF  // CJK Strokes
-  U+31F0 - U+31FF  // Katakana Phonetic Extensions
-  U+3200 - U+32FF  // Enclosed CJK Letters and Months
-  U+3300 - U+33FF  // CJK Compatibility
-  U+3400 - U+4DBF  // CJK Unified Ideographs Extension A
-  U+4DC0 - U+4DFF  // Yijing Hexagram Symbols
-  U+4E00 - U+9FFF  // CJK Unified Ideographs
-  U+A960 - U+A97F  // Hangul Jamo Extended-A
-  U+AC00 - U+D7AF  // Hangul Syllables
-  U+D7B0 - U+D7FF  // Hangul Jamo Extended-B
-  U+F900 - U+FAFF  // CJK Compatibility Ideographs
-  U+FE10 - U+FE1F  // Vertical forms
-  U+FE30 - U+FE4F  // CJK Compatibility Forms
-  U+FF00 - U+FFEF  // Halfwidth and Fullwidth Forms
- U+1B000 - U+1B0FF // Kana Supplement
- U+1D300 - U+1D35F // Tai Xuan Hing Symbols
- U+1F200 - U+1F2FF // Enclosed Ideographic Supplement
- U+20000 - U+2A6DF // CJK Unified Ideographs Extension B
- U+2A700 - U+2B73F // CJK Unified Ideographs Extension C
- U+2B740 - U+2B81F // CJK Unified Ideographs Extension D
- U+2F800 - U+2FA1F // CJK Compatibility Ideographs Supplement
+<pre><code>  U+1100 - U+11FF  
+  U+2E80 - U+2EFF  
+  U+2F00 - U+2FDF  
+  U+2FF0 - U+2FFF  
+  U+3000 - U+303F  
+  U+3040 - U+309F  
+  U+30A0 - U+30FF  
+  U+3100 - U+312F  
+  U+3130 - U+318F  
+  U+3190 - U+319F  
+  U+31A0 - U+31BF  
+  U+31C0 - U+31EF  
+  U+31F0 - U+31FF  
+  U+3200 - U+32FF  
+  U+3300 - U+33FF  
+  U+3400 - U+4DBF  
+  U+4DC0 - U+4DFF  
+  U+4E00 - U+9FFF  
+  U+A960 - U+A97F  
+  U+AC00 - U+D7AF  
+  U+D7B0 - U+D7FF  
+  U+F900 - U+FAFF  
+  U+FE10 - U+FE1F  
+  U+FE30 - U+FE4F  
+  U+FF00 - U+FFEF  
+ U+1B000 - U+1B0FF 
+ U+1D300 - U+1D35F 
+ U+1F200 - U+1F2FF 
+ U+20000 - U+2A6DF 
+ U+2A700 - U+2B73F 
+ U+2B740 - U+2B81F 
+ U+2F800 - U+2FA1F 
 </code></pre>
 </td></tr>
 <tr><td class="val" id="ft_autohinter_script_indic">FT_AUTOHINTER_SCRIPT_INDIC</td><td class="desc">
 <p>Apply the indic auto-hinter, covering all major scripts from the Indian sub-continent and some other related scripts like Thai, Lao, or Tibetan.</p>
 <p>By default, characters from the following Unicode ranges are assigned to this submodule.</p>
-<pre><code>  U+0900 - U+0DFF  // Indic Range
-  U+0F00 - U+0FFF  // Tibetan
-  U+1900 - U+194F  // Limbu
-  U+1B80 - U+1BBF  // Sundanese
-  U+A800 - U+A82F  // Syloti Nagri
-  U+ABC0 - U+ABFF  // Meetei Mayek
- U+11800 - U+118DF // Sharada
+<pre><code>  U+0900 - U+0DFF  
+  U+0F00 - U+0FFF  
+  U+1900 - U+194F  
+  U+1B80 - U+1BBF  
+  U+A800 - U+A82F  
+  U+ABC0 - U+ABFF  
+ U+11800 - U+118DF 
 </code></pre>
 <p>Note that currently Indic support is rudimentary only, missing blue zone support.</p>
 </td></tr>
@@ -2947,12 +2947,12 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2025 <a href = "https://www.freetype.org/license.html">The FreeType Project</a>.
+      Copyright 2025 <a href = "https:
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https:
       Material for MkDocs
     </a>
   

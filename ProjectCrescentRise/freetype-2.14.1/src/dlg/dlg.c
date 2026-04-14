@@ -1,12 +1,12 @@
-// Copyright (c) 2019 nyorain
-// Distributed under the Boost Software License, Version 1.0.
-// See accompanying file LICENSE or copy at http://www.boost.org/LICENSE_1_0.txt
+
+
+
 
 #define _XOPEN_SOURCE 600
 #define _POSIX_C_SOURCE 200809L
 #define _WIN32_WINNT 0x0600
 
-// Needed on windows so that we can use sprintf without warning.
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <dlg/output.h>
@@ -45,8 +45,8 @@ struct dlg_tag_func_pair {
 };
 
 struct dlg_data {
-	const char** tags; // vec
-	struct dlg_tag_func_pair* pairs; // vec
+	const char** tags; 
+	struct dlg_tag_func_pair* pairs; 
 	char* buffer;
 	size_t buffer_size;
 };
@@ -57,7 +57,7 @@ static void* g_data = NULL;
 static void dlg_free_data(void* data);
 static struct dlg_data* dlg_create_data(void);
 
-// platform-specific
+
 #if defined(__unix__) || defined(__unix) || defined(__linux__) || defined(__APPLE__) || defined(__MACH__)
 	#define DLG_OS_UNIX
 	#include <unistd.h>
@@ -110,7 +110,7 @@ static struct dlg_data* dlg_create_data(void);
 		return tv.tv_usec;
 	}
 
-// platform switch -- end unix
+
 #elif defined(WIN32) || defined(_WIN32) || defined(_WIN64)
 	#define DLG_OS_WIN
 	#define WIN32_LEAN_AND_MEAN
@@ -118,19 +118,19 @@ static struct dlg_data* dlg_create_data(void);
 	#include <windows.h>
 	#include <io.h>
 
-	// thanks for nothing, microsoft
+	
 	#ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
 	#define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
 	#endif
 
-	// the max buffer size we will convert on the stack
+	
 	#define DLG_MAX_STACK_BUF_SIZE 1024
 
 	static void WINAPI dlg_fls_destructor(void* data) {
 		dlg_free_data(data);
 	}
 
-	// TODO: error handling
+	
 	static BOOL CALLBACK dlg_init_fls(PINIT_ONCE io, void* param, void** lpContext) {
 		(void) io;
 		(void) param;
@@ -200,7 +200,7 @@ static struct dlg_data* dlg_create_data(void);
 	    needed = MultiByteToWideChar(CP_UTF8, 0, buf1, needed, buf2, needed + 1);
 		return (needed != 0 && WriteConsoleW(handle, buf2, needed, NULL, NULL) != 0);
 	}
-#endif // DLG_WIN_CONSOLE
+#endif 
 
 	static unsigned get_msecs() {
 		SYSTEMTIME st;
@@ -208,11 +208,11 @@ static struct dlg_data* dlg_create_data(void);
 		return st.wMilliseconds;
 	}
 
-#else // platform switch -- end windows
+#else 
 	#error Cannot determine platform (needed for color and utf-8 and stuff)
 #endif
 
-// general
+
 void dlg_escape_sequence(struct dlg_style style, char buf[12]) {
 	int nums[3];
 	unsigned int count = 0;
@@ -256,9 +256,9 @@ int dlg_vfprintf(FILE* stream, const char* format, va_list args) {
 			return needed;
 		}
 
-		// We don't allocate too much on the stack
-		// but we also don't want to call alloc every logging call
-		// or use another cached buffer
+		
+		
+		
 		if(needed >= DLG_MAX_STACK_BUF_SIZE) {
 			if(win_write_heap(handle, needed, format, args)) {
 				return needed;
@@ -298,8 +298,8 @@ int dlg_styled_fprintf(FILE* stream, struct dlg_style style, const char* format,
 void dlg_generic_output(dlg_generic_output_handler output, void* data,
 		unsigned int features, const struct dlg_origin* origin, const char* string,
 		const struct dlg_style styles[6]) {
-	// We never print any dynamic content below so we can be sure at compile
-	// time that a buffer of size 64 is large enough.
+	
+	
 	char format_buf[64];
 	char* format = format_buf;
 
@@ -377,7 +377,7 @@ void dlg_generic_outputf(dlg_generic_output_handler output, void* data,
 			continue;
 		}
 
-		char next = *(it + 1); // must be valid since *it is not '\0'
+		char next = *(it + 1); 
 		if(next == 'h') {
 			time_t t = time(NULL);
 			struct tm tm_info;
@@ -437,7 +437,7 @@ void dlg_generic_outputf(dlg_generic_output_handler output, void* data,
 			output(data, "%s", "%");
 			++it;
 		} else {
-			// in this case it's a '%' without known format specifier following
+			
 			output(data, "%s", "%");
 		}
 	}
@@ -562,23 +562,23 @@ void dlg_default_output(const struct dlg_origin* origin, const char* string, voi
 
 bool dlg_win_init_ansi(void) {
 #if defined(DLG_OS_WIN) && defined(DLG_WIN_CONSOLE)
-	// TODO: use init once
+	
 	static volatile LONG status = 0;
 	LONG res = InterlockedCompareExchange(&status, 1, 0);
-	if(res == 0) { // not initialized
+	if(res == 0) { 
 		InterlockedExchange(&status, 3 + init_ansi_console());
 	}
 
-	while(status == 1); // currently initialized in another thread, spinlock
+	while(status == 1); 
 	return (status == 4);
 #else
 	return true;
 #endif
 }
 
-// small dynamic vec/array implementation
-// Since the macros vec_init and vec_add[c]/vec_push might
-// change the pointers value it must not be referenced somewhere else.
+
+
+
 #define vec__raw(vec) (((unsigned int*) vec) - 2)
 
 static void* vec_do_create(unsigned int typesize, unsigned int cap, unsigned int size) {
@@ -590,7 +590,7 @@ static void* vec_do_create(unsigned int typesize, unsigned int cap, unsigned int
 	return begin + 2;
 }
 
-// NOTE: can be more efficient if we are allowed to reorder vector
+
 static void vec_do_erase(void* vec, unsigned int pos, unsigned int size) {
 	unsigned int* begin = vec__raw(vec);
 	begin[0] -= size;
@@ -721,12 +721,12 @@ void dlg__do_log(enum dlg_level lvl, const char* const* tags, const char* file, 
 	struct dlg_data* data = dlg_data();
 	unsigned int tag_count = 0;
 
-	// push default tags
+	
 	while(tags[tag_count]) {
 		vec_push(data->tags, tags[tag_count++]);
 	}
 
-	// push current global tags
+	
 	for(size_t i = 0; i < vec_size(data->pairs); ++i) {
 		const struct dlg_tag_func_pair pair = data->pairs[i];
 		if(pair.func == NULL || !strcmp(pair.func, func)) {
@@ -734,13 +734,13 @@ void dlg__do_log(enum dlg_level lvl, const char* const* tags, const char* file, 
 		}
 	}
 
-	// push call-specific tags, skip first terminating NULL
+	
 	++tag_count;
 	while(tags[tag_count]) {
 		vec_push(data->tags, tags[tag_count++]);
 	}
 
-	vec_push(data->tags, NULL); // terminating NULL
+	vec_push(data->tags, NULL); 
 	struct dlg_origin origin;
 	origin.level = lvl;
 	origin.file = file;
@@ -754,9 +754,9 @@ void dlg__do_log(enum dlg_level lvl, const char* const* tags, const char* file, 
 }
 
 #ifdef _MSC_VER
-// shitty msvc compatbility
-// meson gives us sane paths (separated by '/') while on MSVC,
-// __FILE__ contains a '\\' separator.
+
+
+
 static bool path_same(char a, char b) {
 	return (a == b) ||
 		(a == '/' && b == '\\') ||
@@ -776,16 +776,16 @@ const char* dlg__strip_root_path(const char* file, const char* base) {
 	}
 
 	const char* saved = file;
-	if(*file == '.') { // relative path detected
+	if(*file == '.') { 
 		while(*(++file) == '.' || *file == '/' || *file == '\\');
-		if(*file == '\0') { // weird case: purely relative path without file
+		if(*file == '\0') { 
 			return saved;
 		}
 
 		return file;
 	}
 
-	// strip base from file if it is given
+	
 	if(base) {
 		char fn = *file;
 		char bn = *base;
@@ -794,7 +794,7 @@ const char* dlg__strip_root_path(const char* file, const char* base) {
 			bn = *(++base);
 		}
 
-		if(fn == '\0' || bn != '\0') { // weird case: base isn't prefix of file
+		if(fn == '\0' || bn != '\0') { 
 			return saved;
 		}
 	}

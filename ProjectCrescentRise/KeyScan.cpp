@@ -146,7 +146,7 @@ void KeyScan::key_callback(GLFWwindow* window, int key, int scancode, int action
             }
             else if (pressedKey.at(i).first == KeyCode::ENTER && key == GLFW_KEY_ENTER)
             {
-                // WE SPECIFICALLY SET THE TYPING
+                
                 if (action == GLFW_PRESS)
                 {
                     pressedKey.at(i).second = true;

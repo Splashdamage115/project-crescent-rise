@@ -545,7 +545,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=35312
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_JMPR): Use `ADD_LONG`.
 
@@ -557,7 +557,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=35309
+	  https:
 
 	* src/autofit/aflatin.c (af_latin_hints_compute_segments): Implement
 	it.
@@ -804,7 +804,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=31543
+	  https:
 
 	* include/freetype/internal/fttrace.h: Add 'afmparse' trace
 	component.
@@ -834,12 +834,12 @@
 
 	1. Fixes CMake using any found HarfBuzz version lower than the minimum
 	required. This is based on HALX99's merge request at
-	https://gitlab.freedesktop.org/freetype/freetype/-/merge_requests/31
+	https:
 	2. Update FindHarfBuzz.cmake from
-	https://github.com/WebKit/WebKit/blob/1ce32454/Source/cmake/FindHarfBuzz.cmake
+	https:
 	and guard post-CMake-3.1 features to keep the minimum version unchanged
 	3. Update FindBrotliDec.cmake to stop the warnings, based on what
-	https://github.com/google/woff2/blob/a0d0ed7d/cmake/FindBrotliDec.cmake
+	https:
 	is doing
 
 	* CMakeLists.txt, builds/cmake/FindHarfBuzz.cmake: Implement 1 and 2.
@@ -878,7 +878,7 @@
 
 	Fixes timeout (#1055) analyzed by Ben Wagner, reported as
 
-	  https://crbug.com/1194092
+	  https:
 
 	* src/sfnt/ttload.c (tt_face_load_post): Check POST format.
 	* src/sfnt/sfobjs.c (sfnt_load_face): Synthesize the missing unicode
@@ -892,7 +892,7 @@
 
 	Fixes timeout reported as
 
-	  https://crbug.com/1206181
+	  https:
 
 	* src/psaux/psarrst.c (cf2_arrstack_{push,init}): Implement it.
 	* src/psaux/psarrst.h (CF2_ArrStackiRec): Drop `chunk'.
@@ -981,7 +981,7 @@
 
 	First reported as
 
-	  https://crbug.com/1203240
+	  https:
 
 2021-05-03  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -1057,7 +1057,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=33637
+	  https:
 
 2021-04-26  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -1348,7 +1348,7 @@
 
 	See
 
-	  https://gitlab.freedesktop.org/freetype/docwriter/-/merge_requests/101
+	  https:
 
 	for more information.
 
@@ -1365,7 +1365,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1182552
+	  https:
 
 	Memory is allocated and the pointer assigned to `rows` inside a
 	'setjmp' scope.  This memory must be freed outside the 'setjmp'
@@ -1433,7 +1433,7 @@
 	* meson.build (ft2_sources): Always use `windows/ftsystem.c` on
 	Windows unless mmap has been disabled.
 
-	  https://gitlab.freedesktop.org/freetype/freetype/-/merge_requests/5#note_829289
+	  https:
 
 2021-03-07  Tim-Philipp Müller  <tim@centricular.com>
 
@@ -1466,7 +1466,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=28148
+	  https:
 
 	* src/sfnt/sfwoff2.c (woff2_open_font): Reject fonts that have
 	multiple tables with the same tag.  While not explicitly forbidden
@@ -1571,7 +1571,7 @@
 
 	See
 
-	  https://github.com/harfbuzz/harfbuzz/issues/2428
+	  https:
 
 	for some reasons to introduce this function.
 
@@ -1759,7 +1759,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=30154
+	  https:
 
 	* src/psaux/psblues.c (cf2_blues_capture): Use `SUB_INT32`.
 
@@ -1847,7 +1847,7 @@
 
 	* autofit/afshaper.c (af_shaper_get_coverage): Copy the source code
 	of the function as suggested in
-	https://github.com/harfbuzz/harfbuzz/issues/2737 and adjust to handle
+	https:
 	at most three tags.
 
 2021-01-17  Werner Lemberg  <wl@gnu.org>
@@ -3039,7 +3039,7 @@
 
 	Segmentation fault reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=24729
+	  https:
 
 2020-08-22  Werner Lemberg  <wl@gnu.org>
 
@@ -3396,7 +3396,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=23166
+	  https:
 
 	* src/base/ftoutln.c (FT_Outline_Get_Orientation): Avoid values
 	larger than 32 bits.
@@ -3407,7 +3407,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=23402
+	  https:
 
 	* src/sfnt/sfwoff2.c (get_x_mins): Check whether `loca' table
 	exists.
@@ -3571,10 +3571,10 @@
 	* builds/wince/vc2005-ce/freetype.vcproj,
 	builds/wince/vc2008-ce/freetype.vcproj,
 	builds/windows/visualce/freetype.vcproj,
-	builds/windows/visualce/freetype.dsp: s/2101//g, but add `ftver.rc'.
+	builds/windows/visualce/freetype.dsp: s/2101
 	* builds/wince/vc2008-ce/index.html,
 	builds/wince/vc2005-ce/index.html,
-	builds/windows/visualce/index.html: s/2101//g.
+	builds/windows/visualce/index.html: s/2101
 
 2020-05-01  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -3623,7 +3623,7 @@
 	Python versions < 3.5 have reached end-of-life and as such, no
 	security or bug fixes will be provided for those versions.  See
 
-	  https://devguide.python.org/#status-of-python-branches
+	  https:
 
 	for more information.
 
@@ -3655,7 +3655,7 @@
 
 	Problem report in
 
-	  https://lists.nongnu.org/archive/html/freetype-devel/2020-02/msg00023.html
+	  https:
 
 	* src/gzip/ftgzip.c (FT_Gzip_Uncompress): Change the the call to
 	`inflateInit2' depending on whether the system installation is
@@ -3687,7 +3687,7 @@
 
 	See
 
-	  https://github.com/freetype/docwriter/issues/36
+	  https:
 
 	for more information.
 
@@ -3727,7 +3727,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=20778
+	  https:
 
 	* src/sfnt/sfwoff2.c (get_x_mins): Explicitly check for presence of
 	`head' table, which might not have been processed yet.
@@ -3786,8 +3786,8 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19773
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=18101
+	  https:
+	  https:
 
 	* src/sfnt/sfwoff2.c (compute_ULong_sum): Add missing cast.
 	(reconstruct_hmtx): Add missing deallocation calls.
@@ -3842,7 +3842,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1032152
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_FDEF, Ins_IDEF): Use `FT_OFFSET'.
 
@@ -3852,7 +3852,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19305
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_MIRP): Use `ADD_LONG'.
 
@@ -3862,12 +3862,12 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19427
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19433
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19441
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19451
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19452
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=19457
+	  https:
+	  https:
+	  https:
+	  https:
+	  https:
+	  https:
 
 	* src/autofit/aflatin.c (af_latin_hints_compute_segments,
 	af_latin_hints_compute_edges): Use `FT_OFFSET'.
@@ -3895,7 +3895,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1030614
+	  https:
 
 2019-12-03  Werner Lemberg  <wl@gnu.org>
 
@@ -3992,7 +3992,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=18494
+	  https:
 
 2019-10-22  Werner Lemberg  <wl@gnu.org>
 
@@ -4002,7 +4002,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=18390
+	  https:
 
 2019-10-10  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -4014,7 +4014,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=18108
+	  https:
 
 2019-10-09  John Tytgat  <John.Tytgat@esko.com>
 
@@ -4031,7 +4031,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=18065
+	  https:
 
 	* include/freetype/internal/wofftypes.h (WOFF2_InfoRec): Add fields
 	`glyf_table', `loca_table', and `head_table'.
@@ -4051,7 +4051,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=18046
+	  https:
 
 2019-10-06  Werner Lemberg  <wl@gnu.org>
 
@@ -4069,7 +4069,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=17966
+	  https:
 
 2019-10-01  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -4081,7 +4081,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=17804
+	  https:
 
 2019-09-30  Werner Lemberg  <wl@gnu.org>
 
@@ -4089,7 +4089,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=17812
+	  https:
 
 2019-09-30  Werner Lemberg  <wl@gnu.org>
 
@@ -4099,7 +4099,7 @@
 
 	`head' problem reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=17820
+	  https:
 
 	* src/sfnt/sfwoff2.c (reconstruct_glyf): Don't use `stream_close'.
 	Abort if `head_table' is NULL.
@@ -4128,7 +4128,7 @@
 
 	One of them reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=17766
+	  https:
 
 	* src/sfnt/sfwoff2.c (woff2_open_font): Free `info->x_mins' and
 	`woff2->ttc_fonts'.
@@ -4150,7 +4150,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=17684
+	  https:
 
 2019-09-23  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -4162,7 +4162,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=16896
+	  https:
 
 	* src/sfnt/sfwoff2.c (woff2_open_font): Fix error handling.
 	Free `uncompressed_buf'.
@@ -4180,7 +4180,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=17100
+	  https:
 
 2019-09-15  Avi Halachmi (:avih)  <avihpit@yahoo.com>
 
@@ -4231,7 +4231,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=16933
+	  https:
 
 2019-09-01  Werner Lemberg  <wl@gnu.org>
 
@@ -4241,7 +4241,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=16893
+	  https:
 
 2019-08-27  Dominik Röttsches  <drott@chromium.org>
 
@@ -4313,7 +4313,7 @@
 
 	The full discussion is at:
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2019-08/msg00000.html
+	  https:
 
 	* src/sfnt/sfobjs.c (sfnt_open_font): Add parameter
 	`woff2_num_faces'.
@@ -4429,7 +4429,7 @@
 	(triplet_decode): Decode variable-length (flag, xCoordinate,
 	yCoordinate) triplet for a simple glyph.   See
 
-	  https://www.w3.org/TR/WOFF2/#triplet_decoding
+	  https:
 
 	(store_points, compute_bbox, composteGlyph_size, reconstruct_glyf):
 	New functions.
@@ -4590,7 +4590,7 @@
 	Add constants required for WOFF2, and known table tags as defined in
 	the specification.  See
 
-	  https://www.w3.org/TR/WOFF2/#table_dir_format
+	  https:
 
 	for details.
 
@@ -4631,7 +4631,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=16470
+	  https:
 
 2019-08-26  Werner Lemberg  <wl@gnu.org>
 
@@ -4958,9 +4958,9 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=14701
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=14705
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=14710
+	  https:
+	  https:
+	  https:
 
 	* src/truetype/ttgload.c (IS_DEFAULT_INSTANCE): Move up and add
 	argument; update all callers.
@@ -5177,7 +5177,7 @@
 
 	Reported as
 
-	  https://savannah.nongnu.org/patch/index.php?9755
+	  https:
 
 2019-04-15  JDG  <JonathanG@iQmetrix.com>
 
@@ -5185,7 +5185,7 @@
 
 	Reported as
 
-	  https://savannah.nongnu.org/patch/?9796
+	  https:
 
 2019-04-11  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -5243,7 +5243,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=12137
+	  https:
 
 2019-03-20  Werner Lemberg  <wl@gnu.org>
 
@@ -5365,8 +5365,8 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=11681
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=11734
+	  https:
+	  https:
 
 2019-02-21  Armin Hasitzka  <prince.cherusker@gmail.com>
 
@@ -5377,7 +5377,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=13041
+	  https:
 
 2019-02-16  Wink Saville  <wink@saville.com>
 
@@ -5436,7 +5436,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=11915
+	  https:
 
 2018-12-12  Werner Lemberg  <wl@gnu.org>
 
@@ -5459,7 +5459,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10798
+	  https:
 
 	* src/bdf/bdflib.c (_bdf_parse_end): New function.
 	(_bdf_parse_glyphs): Switch to `_bdf_parse_end' after `ENDFONT' has
@@ -5537,8 +5537,8 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9869
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10869
+	  https:
+	  https:
 
 	* src/cff/cffparse.c (destruct_t2s_item, cff_parser_run): Store
 	evaluated T2 charstrings in separately allocated memory.
@@ -5589,7 +5589,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=11242
+	  https:
 
 	* src/pshinter/pshrec.c (ps_dimension_add_t1stem): Implement it.
 
@@ -5599,7 +5599,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=11260
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings)
 	<cff_op_sqrt> [CFF_CONFIG_OPTION_OLD_ENGINE]: Fix potential endless
@@ -5633,7 +5633,7 @@
 
 	See
 
-	  https://bugs.ghostscript.com/show_bug.cgi?id=697545
+	  https:
 
 	for more details on how the bug was found.
 
@@ -5661,7 +5661,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=11080
+	  https:
 
 	* src/base/ftoutln.c (FT_Outline_Get_Orientation): Use `MUL_LONG'.
 
@@ -5671,7 +5671,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10988
+	  https:
 
 	* src/cff/cffparse.c (cff_parser_run)
 	[CFF_CONFIG_OPTION_OLD_ENGINE]: Use `NEG_LONG'.
@@ -5695,7 +5695,7 @@
 
 	Triggered by
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=11157
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings) <cff_op_blend>
 	[CFF_CONFIG_OPTION_OLD_ENGINE]: Fix integer overflow.
@@ -5744,7 +5744,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10768
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings)
 	<cff_op_callothersubr> [CFF_CONFIG_OPTION_OLD_ENGINE]: Check
@@ -5756,7 +5756,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10740
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings) <cff_op_roll>
 	[CFF_CONFIG_OPTION_OLD_ENGINE]: Use NEG_INT.
@@ -5767,7 +5767,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10550
+	  https:
 
 	* src/pshinter/pshglob.c (psh_blues_snap_stem): Mask numeric
 	overflow.
@@ -5909,7 +5909,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10396
+	  https:
 
 	* src/pshinter/pshglob.c: Include FT_INTERNAL_CALC_H.
 	(psh_blues_snap_stem): Mask numeric overflow.
@@ -5920,7 +5920,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10317
+	  https:
 
 	* src/truetype/ttgxvar.c (ft_var_load_gvar): Properly exit memory
 	frame if we have invalid glyph variation data offsets.
@@ -5937,7 +5937,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10316
+	  https:
 
 2018-09-12  John Tytgat  <John.Tytgat@esko.com>
 
@@ -5958,7 +5958,7 @@
 
 	Triggered by
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10255
+	  https:
 
 	* src/truetype/ttgxvar.c (ft_var_load_gvar): Use better limit check
 	for `tupleCount'.
@@ -5973,7 +5973,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10215
+	  https:
 
 2018-09-09  Ben Wagner  <bungeman@google.com>
 
@@ -5985,7 +5985,7 @@
 
 	Triggered by
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10212
+	  https:
 
 	* src/truetype/ttgload.c (load_truetype_glyph): Reintroduce
 	`opened_frame' (removed in a change from 2018-08-26) to handle
@@ -6014,7 +6014,7 @@
 
 	Reported as
 
-	  https://lists.nongnu.org/archive/html/freetype-devel/2018-08/msg00124.html
+	  https:
 
 	* docs/reference/markdown/stylesheets/extra.css (.md-typeset code):
 	Add rule `white-space'.
@@ -6138,7 +6138,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10083
+	  https:
 
 2018-08-29  Werner Lemberg  <wl@gnu.org>
 
@@ -6146,7 +6146,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10080
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings) <cff_op_roll>
 	[CFF_CONFIG_OPTION_OLD_ENGINE]: Use modulo for loop count, as
@@ -6167,7 +6167,7 @@
 
 	Reported as
 
-	  https://lists.nongnu.org/archive/html/freetype-devel/2018-08/msg00083.html
+	  https:
 
 2018-08-26  Werner Lemberg  <wl@gnu.org>
 
@@ -6175,7 +6175,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10057
+	  https:
 
 2018-08-26  Werner Lemberg  <wl@gnu.org>
 
@@ -6192,7 +6192,7 @@
 
 	Triggered by
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10054
+	  https:
 
 	* src/truetype/ttgload.c (load_truetype_glyph): Don't use variable
 	`opened_frame' to trace whether a frame must be closed at the end of
@@ -6234,7 +6234,7 @@
 	* src/tools/docmaker/*: Removed.  It has been replaced with
 	`docwriter', a python package available at
 
-	  https://pypi.org/project/docwriter/
+	  https:
 
 	* Jamfile: Updated.
 	* builds/ansi/ansi-def.mk, builds/beos/beos-def.mk,
@@ -6263,7 +6263,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=10028
+	  https:
 
 2018-08-22  Werner Lemberg  <wl@gnu.org>
 
@@ -6281,7 +6281,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9981
+	  https:
 
 2018-08-18  Werner Lemberg  <wl@gnu.org>
 
@@ -6289,7 +6289,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9955
+	  https:
 
 	* src/psaux/psobjs.c (ps_parser_to_bytes): Set `parser->cursor' even
 	in case of error to avoid potential re-scanning.
@@ -6300,7 +6300,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9967
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings)
 	<cff_op_blend> [CFF_CONFIG_OPTION_OLD_ENGINE]: `num_designs' must be
@@ -6367,7 +6367,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9872
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings)
 	[CFF_CONFIG_OPTION_OLD_ENGINE]: Disallow invalid T1 opcodes in
@@ -6379,7 +6379,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9865
+	  https:
 
 	* src/psaux/cffparse.c (cff_parser_run)
 	[CFF_CONFIG_OPTION_OLD_ENGINE]: Don't ignore return value of
@@ -6399,7 +6399,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9864
+	  https:
 
 	* src/psaux/cffdecode.c (cff_decoder_parse_charstrings)
 	<cff_op_random> [CFF_CONFIG_OPTION_OLD_ENGINE]: Use top dict's
@@ -6423,7 +6423,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9832
+	  https:
 
 2018-08-11  Werner Lemberg  <wl@gnu.org>
 
@@ -6431,7 +6431,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9811
+	  https:
 
 2018-08-10  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -6557,7 +6557,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=777151
+	  https:
 
 2018-08-04  Werner Lemberg  <wl@gnu.org>
 
@@ -6598,7 +6598,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9409
+	  https:
 
 	* src/cff/cffdrivr.c (cff_get_cid_from_glyph_index): Fix boundary
 	check.
@@ -6609,7 +6609,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9608
+	  https:
 
 2018-07-28  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -6617,7 +6617,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9501
+	  https:
 
 	* src/smooth/ftgrays.c (ft_smooth_render_generic): Restore buffer
 	after each rendering in case of failure.
@@ -6628,7 +6628,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9610
+	  https:
 
 	* src/type1/t1driver.c (t1_ps_get_font_value): Protect against NULL.
 
@@ -6715,7 +6715,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9557
+	  https:
 
 	* src/type1/t1load.c (T1_Open_Face): Ensure above constraint.
 	(T1_Get_MM_Var): Remove now redundant test.
@@ -6734,7 +6734,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9561
+	  https:
 
 2018-07-22  Werner Lemberg  <wl@gnu.org>
 
@@ -6742,7 +6742,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9527
+	  https:
 
 2018-07-22  Werner Lemberg  <wl@gnu.org>
 
@@ -6752,7 +6752,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9524
+	  https:
 
 2018-07-22  Werner Lemberg  <wl@gnu.org>
 
@@ -6762,7 +6762,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9510
+	  https:
 
 	* src/cid/cidload.c (parse_fd_array): Set some private dict default
 	values.
@@ -6796,7 +6796,7 @@
 
 	It can now be found at
 
-	  https://github.com/freetype/freetype2-testing/tree/master/fuzzing/src/legacy
+	  https:
 
 	* src/tools/ftfuzzer: Remove this folder and its contents from the
 	repository.
@@ -6830,7 +6830,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9423
+	  https:
 
 2018-07-16  Werner Lemberg  <wl@gnu.org>
 
@@ -6838,7 +6838,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9412
+	  https:
 
 2018-07-12  Werner Lemberg  <wl@gnu.org>
 
@@ -6927,7 +6927,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9071
+	  https:
 
 2018-06-25  Werner Lemberg  <wl@gnu.org>
 
@@ -6935,7 +6935,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=9070
+	  https:
 
 2018-06-24  Werner Lemberg  <wl@gnu.org>
 
@@ -6995,7 +6995,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=8968
+	  https:
 
 	* src/sfnt/ttcpal.c (tt_face_load_cpal): Guard CPAL version 1
 	offsets.
@@ -7020,7 +7020,7 @@
 	rendering engine for custom glyphs. This can be quite useful for
 	consistent rendering of mathematical and chemical formulas, e.g.
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=757078
+	  https:
 
 	* include/freetype/ftglyph.h, src/base/ftglyph.c (FT_New_Glyph): New
 	function.
@@ -7069,7 +7069,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=8933
+	  https:
 
 	* src/sfnt/ttcpal.c (Cpal): Add `table_size' field.
 	(tt_face_load_cpal): Set it.
@@ -7282,7 +7282,7 @@
 	CMakeLists: also accept IOS_PLATFORM=SIMULATOR64
 
 	This might be needed to build FreeType for the iOS simulator. See
-	https://savannah.nongnu.org/bugs/index.php?54048. Patch contributed
+	https:
 	by Steve Robinson.
 
 	* CMakeLists.txt: Accept IOS_PLATFORM=SIMULATOR64
@@ -7394,7 +7394,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=8706
+	  https:
 
 2018-06-02  Werner Lemberg  <wl@gnu.org>
 
@@ -7501,7 +7501,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=8413
+	  https:
 
 	* src/truetype/ttgload.c (TT_Load_Composite_Glyph): Implement it.
 
@@ -7758,7 +7758,7 @@
 	Support symbol visibility features of Sun / Oracle C compilers.
 
 	Reported by Kiyoshi Kanazawa:
-	https://lists.gnu.org/archive/html/freetype-devel/2018-05/msg00008.html
+	https:
 	Thanks to the suggestions by Alexei and Alan Coopersmith.
 
 	* builds/unix/configure.raw: Check if "-xldscope=hidden" is

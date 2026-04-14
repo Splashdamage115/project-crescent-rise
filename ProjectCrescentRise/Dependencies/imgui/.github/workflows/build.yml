@@ -29,15 +29,15 @@ jobs:
       - name: Install Dependencies
         shell: powershell
         run: |
-          Invoke-WebRequest -Uri "https://www.libsdl.org/release/SDL2-devel-2.32.8-VC.zip" -OutFile "SDL2-devel-2.32.8-VC.zip"
+          Invoke-WebRequest -Uri "https:
           Expand-Archive -Path SDL2-devel-2.32.8-VC.zip
           echo "SDL2_DIR=$(pwd)\SDL2-devel-2.32.8-VC\SDL2-2.32.8\" >>${env:GITHUB_ENV}
 
-          Invoke-WebRequest -Uri "https://www.libsdl.org/release/SDL3-devel-3.2.18-VC.zip" -OutFile "SDL3-devel-3.2.18-VC.zip"
+          Invoke-WebRequest -Uri "https:
           Expand-Archive -Path SDL3-devel-3.2.18-VC.zip
           echo "SDL3_DIR=$(pwd)\SDL3-devel-3.2.18-VC\SDL3-3.2.18\" >>${env:GITHUB_ENV}
 
-          Invoke-WebRequest -Uri "https://github.com/user-attachments/files/22464296/vulkan_windows_libs_1.4.326.zip" -OutFile vulkan_windows_libs_1.4.326.zip
+          Invoke-WebRequest -Uri "https:
           Expand-Archive -Path vulkan_windows_libs_1.4.326.zip
           echo "VULKAN_SDK=$(pwd)\vulkan_windows_libs_1.4.326\" >>${env:GITHUB_ENV}
 
@@ -565,7 +565,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        wget -q https://github.com/emscripten-core/emsdk/archive/master.tar.gz
+        wget -q https:
         tar -xvf master.tar.gz
         emsdk-master/emsdk update
         emsdk-master/emsdk install latest

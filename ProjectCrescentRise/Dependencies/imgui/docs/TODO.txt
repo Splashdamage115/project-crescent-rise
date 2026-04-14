@@ -1,7 +1,7 @@
 dear imgui
 ISSUES & TODO LIST
 
-Issue numbers (#) refer to GitHub issues listed at https://github.com/ocornut/imgui/issues/XXXX
+Issue numbers (#) refer to GitHub issues listed at https:
 THIS LIST IS NOT WELL MAINTAINED. MOST OF THE WORK HAPPENS ON GITHUB NOWADAYS.
 The list below consist mostly of ideas noted down before they are requested/discussed by users (at which point they usually exist on the github issue tracker).
 It's mostly a bunch of personal notes, probably incomplete. Feel free to query if you have any questions.
@@ -102,7 +102,7 @@ It's mostly a bunch of personal notes, probably incomplete. Feel free to query i
  - layout: (R&D) local multi-pass layout mode.
  - layout: (R&D) bind authored layout data (created by an off-line tool), items fetch their pos/size at submission, self-optimize data structures to stable linear access.
 
- - tables: see https://github.com/ocornut/imgui/issues/2957#issuecomment-569726095
+ - tables: see https:
 
  - group: BeginGroup() needs a border option. (~#1496)
  - group: IsItemHovered() after EndGroup() covers whole AABB rather than the intersection of individual items. Is that desirable?
@@ -215,7 +215,7 @@ It's mostly a bunch of personal notes, probably incomplete. Feel free to query i
 
  - drag and drop: focus drag target window on hold (even without open)
  - drag and drop: releasing a drop shows the "..." tooltip for one frame - since e13e598 (#1725)
- - drag and drop: drag source on a group object (would need e.g. an invisible button covering group in EndGroup) https://twitter.com/paniq/status/1121446364909535233
+ - drag and drop: drag source on a group object (would need e.g. an invisible button covering group in EndGroup) https:
  - drag and drop: have some way to know when a drag begin from BeginDragDropSource() pov. (see 2018/01/11 post in #143)
  - drag and drop: allow preview tooltip to be submitted from a different place than the drag source. (#1725)
  - drag and drop: make it easier and provide a demo to have tooltip both are source and target site, with a more detailed one on target site (tooltip ordering problem)
@@ -230,7 +230,7 @@ It's mostly a bunch of personal notes, probably incomplete. Feel free to query i
 
  - text: selectable text (for copy) as a generic feature (ItemFlags?)
  - text: proper alignment options in imgui_internal.h
- - text: provided a framed text helper, e.g. https://pastebin.com/1Laxy8bT
+ - text: provided a framed text helper, e.g. https:
  - text: refactor TextUnformatted (or underlying function) to more explicitly request if we need width measurement or not
  - text/layout/tabs: \t pulling position from base pos + step, or offset array (e.g. could be used in text edit, menus for simple icon+text alignment, etc.)
  - text link/url button: underlined. should api expose an ID or use text contents as ID? which colors enum to use?
@@ -310,15 +310,15 @@ It's mostly a bunch of personal notes, probably incomplete. Feel free to query i
  - examples: provide a zero frame-rate/idle example.
  - examples: dx11/dx12: try to use new swapchain blit models (#2970)
  - backends: report it better when not able to create texture?
- - backends: glfw: could go idle when minimized? if (glfwGetWindowAttrib(window, GLFW_ICONIFIED)) { glfwWaitEvents(); continue; } // issue: DeltaTime will be super high on resume, perhaps provide a way to let impl know (#440)
+ - backends: glfw: could go idle when minimized? if (glfwGetWindowAttrib(window, GLFW_ICONIFIED)) { glfwWaitEvents(); continue; } 
  - backends: opengl: rename imgui_impl_opengl2 to impl_opengl_legacy and imgui_impl_opengl3 to imgui_impl_opengl? (#1900)
  - backends: opengl: could use a single vertex buffer and glBufferSubData for uploads?
  - backends: opengl: explicitly disable GL_STENCIL_TEST in bindings.
  - backends: vulkan: viewport: support for synchronized swapping of multiple swap chains.
- - backends: bgfx: https://gist.github.com/RichardGale/6e2b74bc42b3005e08397236e4be0fd0
- - backends: emscripten: with refactored examples, we could provide a direct imgui_impl_emscripten platform layer (see eg. https://github.com/floooh/sokol-samples/blob/master/html5/imgui-emsc.cc#L42)
+ - backends: bgfx: https:
+ - backends: emscripten: with refactored examples, we could provide a direct imgui_impl_emscripten platform layer (see eg. https:
 
- - bindings: ways to use clang ast dump to generate bindings or helpers for bindings? (e.g. clang++ -Xclang -ast-dump=json imgui.h) (--> use https://github.com/dearimgui/dear_bindings)
+ - bindings: ways to use clang ast dump to generate bindings or helpers for bindings? (e.g. clang++ -Xclang -ast-dump=json imgui.h) (--> use https:
 
  - optimization: replace vsnprintf with stb_printf? using IMGUI_USE_STB_SPRINTF. (#1038 + needed for string_view)
  - optimization: add clipping for multi-component widgets (SliderFloatX, ColorEditX, etc.). one problem is that nav branch can't easily clip parent group when there is a move request.

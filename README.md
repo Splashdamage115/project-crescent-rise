@@ -425,12 +425,12 @@ I used a simple quad that is displayed in the game view, and overlays over every
 
 ## Links
 - cube sphere implementation documentation
-- https://songho.ca/opengl/gl_sphere.html
+- https:
 - Cube sphere has been used to make the process of joining faces easier, and so that uv coordinates are even across faces, as oposed to the ico sphere where faces are not even
     Also gives a higher level of control of the vertices of the asset
 
 - Noise Map generation
-- https://github.com/SaintGimp/LibNoise
+- https:
 - this noise has been converted from c# to c++
     used to keep terrain changes consistent
 
@@ -511,10 +511,10 @@ I used a simple quad that is displayed in the game view, and overlays over every
     visible in video, 3d green bottles whcih are read in from fbx files
     bottles instanced on planet surface
     world changes on each load
-  (Surface Instancing)[https://setuo365-my.sharepoint.com/personal/c00283152_setu_ie/_layouts/15/stream.aspx?id=%2Fpersonal%2Fc00283152%5Fsetu%5Fie%2FDocuments%2FProject%2F2026%2D01%2D21%20SurfaceInstancing%20surfaceLoading%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ee5881e58%2D63c3%2D4145%2D926a%2D112de3e674e1]
+  (Surface Instancing)[https:
 
 
   - Video of grass instancing on planet surface
     also visible, distance culling, trees instancing, and rock instancing
     (trees need orientation fixes)
-  (Grass Instancing)[https://setuo365-my.sharepoint.com/:v:/g/personal/c00283152_setu_ie/IQCzBRn4ryxbRp1zUIiUIIdpAamoiizAmQmZiyVDSb__JR4?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=hiBhH6]
+  (Grass Instancing)[https:

@@ -2,7 +2,7 @@
 
 namespace glm
 {
-	// -- Constructors --
+	
 
 #	if GLM_CONFIG_DEFAULTED_DEFAULT_CTOR == GLM_DISABLE
 		template<typename T, qualifier Q>
@@ -77,7 +77,7 @@ namespace glm
 #		endif
 	}
 
-	// -- Conversion constructors --
+	
 
 	template<typename T, qualifier Q>
 	template<
@@ -115,7 +115,7 @@ namespace glm
 #		endif
 	}
 
-	// -- Matrix conversions --
+	
 
 	template<typename T, qualifier Q>
 	template<typename U, qualifier P>
@@ -235,7 +235,7 @@ namespace glm
 #		endif
 	}
 
-	// -- Accesses --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR typename mat<3, 3, T, Q>::col_type & mat<3, 3, T, Q>::operator[](typename mat<3, 3, T, Q>::length_type i) GLM_NOEXCEPT
@@ -251,7 +251,7 @@ namespace glm
 		return this->value[i];
 	}
 
-	// -- Unary updatable operators --
+	
 
 	template<typename T, qualifier Q>
 	template<typename U>
@@ -337,7 +337,7 @@ namespace glm
 		return *this *= inverse(m);
 	}
 
-	// -- Increment and decrement operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<3, 3, T, Q> & mat<3, 3, T, Q>::operator++()
@@ -373,7 +373,7 @@ namespace glm
 		return Result;
 	}
 
-	// -- Unary arithmetic operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<3, 3, T, Q> operator+(mat<3, 3, T, Q> const& m)
@@ -390,7 +390,7 @@ namespace glm
 			-m[2]);
 	}
 
-	// -- Binary arithmetic operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR mat<3, 3, T, Q> operator+(mat<3, 3, T, Q> const& m, T scalar)
@@ -585,7 +585,7 @@ namespace glm
 		return m1_copy /= m2;
 	}
 
-	// -- Boolean operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator==(mat<3, 3, T, Q> const& m1, mat<3, 3, T, Q> const& m2)
@@ -598,4 +598,4 @@ namespace glm
 	{
 		return (m1[0] != m2[0]) || (m1[1] != m2[1]) || (m1[2] != m2[2]);
 	}
-} //namespace glm
+} 

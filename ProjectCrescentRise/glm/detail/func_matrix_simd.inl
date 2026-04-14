@@ -56,7 +56,7 @@ namespace detail
 			return Result;
 		}
 	};
-}//namespace detail
+}
 
 #	if GLM_CONFIG_ALIGNED_GENTYPES == GLM_ENABLE
 	template<>
@@ -89,7 +89,7 @@ namespace detail
 		return Result;
 	}
 #	endif
-}//namespace glm
+}
 
 #elif GLM_ARCH & GLM_ARCH_NEON_BIT
 
@@ -119,7 +119,7 @@ namespace glm {
 
 		return Result;
 	}
-#endif // CXX11
+#endif 
 
 namespace detail
 {
@@ -133,10 +133,10 @@ namespace detail
 			float32x4_t const& m2 = m[2].data;
 			float32x4_t const& m3 = m[3].data;
 
-			// m[2][2] * m[3][3] - m[3][2] * m[2][3];
-			// m[2][2] * m[3][3] - m[3][2] * m[2][3];
-			// m[1][2] * m[3][3] - m[3][2] * m[1][3];
-			// m[1][2] * m[2][3] - m[2][2] * m[1][3];
+			
+			
+			
+			
 
 			float32x4_t Fac0;
 			{
@@ -147,10 +147,10 @@ namespace detail
 				Fac0 = w0 * w1 -  w2 * w3;
 			}
 
-			// m[2][1] * m[3][3] - m[3][1] * m[2][3];
-			// m[2][1] * m[3][3] - m[3][1] * m[2][3];
-			// m[1][1] * m[3][3] - m[3][1] * m[1][3];
-			// m[1][1] * m[2][3] - m[2][1] * m[1][3];
+			
+			
+			
+			
 
 			float32x4_t Fac1;
 			{
@@ -161,10 +161,10 @@ namespace detail
 				Fac1 = w0 * w1 - w2 * w3;
 			}
 
-			// m[2][1] * m[3][2] - m[3][1] * m[2][2];
-			// m[2][1] * m[3][2] - m[3][1] * m[2][2];
-			// m[1][1] * m[3][2] - m[3][1] * m[1][2];
-			// m[1][1] * m[2][2] - m[2][1] * m[1][2];
+			
+			
+			
+			
 
 			float32x4_t Fac2;
 			{
@@ -175,10 +175,10 @@ namespace detail
 				Fac2 = w0 * w1 - w2 * w3;
 			}
 
-			// m[2][0] * m[3][3] - m[3][0] * m[2][3];
-			// m[2][0] * m[3][3] - m[3][0] * m[2][3];
-			// m[1][0] * m[3][3] - m[3][0] * m[1][3];
-			// m[1][0] * m[2][3] - m[2][0] * m[1][3];
+			
+			
+			
+			
 
 			float32x4_t Fac3;
 			{
@@ -189,10 +189,10 @@ namespace detail
 				Fac3 = w0 * w1 - w2 * w3;
 			}
 
-			// m[2][0] * m[3][2] - m[3][0] * m[2][2];
-			// m[2][0] * m[3][2] - m[3][0] * m[2][2];
-			// m[1][0] * m[3][2] - m[3][0] * m[1][2];
-			// m[1][0] * m[2][2] - m[2][0] * m[1][2];
+			
+			
+			
+			
 
 			float32x4_t Fac4;
 			{
@@ -203,10 +203,10 @@ namespace detail
 				Fac4 = w0 * w1 - w2 * w3;
 			}
 
-			// m[2][0] * m[3][1] - m[3][0] * m[2][1];
-			// m[2][0] * m[3][1] - m[3][0] * m[2][1];
-			// m[1][0] * m[3][1] - m[3][0] * m[1][1];
-			// m[1][0] * m[2][1] - m[2][0] * m[1][1];
+			
+			
+			
+			
 
 			float32x4_t Fac5;
 			{
@@ -217,10 +217,10 @@ namespace detail
 				Fac5 = w0 * w1 - w2 * w3;
 			}
 
-			float32x4_t Vec0 = neon::copy_lane(neon::dupq_lane(m0, 0), 0, m1, 0); // (m[1][0], m[0][0], m[0][0], m[0][0]);
-			float32x4_t Vec1 = neon::copy_lane(neon::dupq_lane(m0, 1), 0, m1, 1); // (m[1][1], m[0][1], m[0][1], m[0][1]);
-			float32x4_t Vec2 = neon::copy_lane(neon::dupq_lane(m0, 2), 0, m1, 2); // (m[1][2], m[0][2], m[0][2], m[0][2]);
-			float32x4_t Vec3 = neon::copy_lane(neon::dupq_lane(m0, 3), 0, m1, 3); // (m[1][3], m[0][3], m[0][3], m[0][3]);
+			float32x4_t Vec0 = neon::copy_lane(neon::dupq_lane(m0, 0), 0, m1, 0); 
+			float32x4_t Vec1 = neon::copy_lane(neon::dupq_lane(m0, 1), 0, m1, 1); 
+			float32x4_t Vec2 = neon::copy_lane(neon::dupq_lane(m0, 2), 0, m1, 2); 
+			float32x4_t Vec3 = neon::copy_lane(neon::dupq_lane(m0, 3), 0, m1, 3); 
 
 			float32x4_t Inv0 = Vec1 * Fac0 - Vec2 * Fac1 + Vec3 * Fac2;
 			float32x4_t Inv1 = Vec0 * Fac0 - Vec2 * Fac3 + Vec3 * Fac4;
@@ -247,6 +247,6 @@ namespace detail
 			return r;
 		}
 	};
-}//namespace detail
-}//namespace glm
+}
+}
 #endif

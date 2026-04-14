@@ -1,5 +1,5 @@
-/// @ref core
-/// @file glm/detail/func_common_simd.inl
+
+
 
 #if GLM_ARCH & GLM_ARCH_SSE2_BIT
 
@@ -225,7 +225,7 @@ namespace detail
 			return Result;
 		}
 	};
-}//namespace detail
-}//namespace glm
+}
+}
 
-#endif//GLM_ARCH & GLM_ARCH_SSE2_BIT
+#endif

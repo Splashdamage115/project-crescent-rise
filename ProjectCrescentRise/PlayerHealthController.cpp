@@ -5,7 +5,7 @@
 
 void PlayerHealthController::Start()
 {
-	// gui will enable god mode automatically
+	
 	CommandInterpreter::append([this](std::string t) { this->EnableGodMode(t); }, "/GUI");
 
 	CommandInterpreter::append([this](std::string t) { this->EnableGodMode(t); }, "/GODMODE");

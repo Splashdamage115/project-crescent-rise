@@ -1,4 +1,4 @@
-/// @ref gtx_projection
+
 
 namespace glm
 {
@@ -7,4 +7,4 @@ namespace glm
 	{
 		return glm::dot(x, Normal) / glm::dot(Normal, Normal) * Normal;
 	}
-}//namespace glm
+}

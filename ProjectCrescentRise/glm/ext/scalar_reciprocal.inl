@@ -1,11 +1,11 @@
-/// @ref ext_scalar_reciprocal
+
 
 #include "../trigonometric.hpp"
 #include <limits>
 
 namespace glm
 {
-	// sec
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType sec(genType angle)
 	{
@@ -13,7 +13,7 @@ namespace glm
 		return genType(1) / glm::cos(angle);
 	}
 
-	// csc
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType csc(genType angle)
 	{
@@ -21,7 +21,7 @@ namespace glm
 		return genType(1) / glm::sin(angle);
 	}
 
-	// cot
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType cot(genType angle)
 	{
@@ -31,7 +31,7 @@ namespace glm
 		return glm::tan(pi_over_2 - angle);
 	}
 
-	// asec
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType asec(genType x)
 	{
@@ -39,7 +39,7 @@ namespace glm
 		return acos(genType(1) / x);
 	}
 
-	// acsc
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType acsc(genType x)
 	{
@@ -47,7 +47,7 @@ namespace glm
 		return asin(genType(1) / x);
 	}
 
-	// acot
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType acot(genType x)
 	{
@@ -57,7 +57,7 @@ namespace glm
 		return pi_over_2 - atan(x);
 	}
 
-	// sech
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType sech(genType angle)
 	{
@@ -65,7 +65,7 @@ namespace glm
 		return genType(1) / glm::cosh(angle);
 	}
 
-	// csch
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType csch(genType angle)
 	{
@@ -73,7 +73,7 @@ namespace glm
 		return genType(1) / glm::sinh(angle);
 	}
 
-	// coth
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType coth(genType angle)
 	{
@@ -81,7 +81,7 @@ namespace glm
 		return glm::cosh(angle) / glm::sinh(angle);
 	}
 
-	// asech
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType asech(genType x)
 	{
@@ -89,7 +89,7 @@ namespace glm
 		return acosh(genType(1) / x);
 	}
 
-	// acsch
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType acsch(genType x)
 	{
@@ -97,11 +97,11 @@ namespace glm
 		return asinh(genType(1) / x);
 	}
 
-	// acoth
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType acoth(genType x)
 	{
 		GLM_STATIC_ASSERT(std::numeric_limits<genType>::is_iec559 || GLM_CONFIG_UNRESTRICTED_FLOAT, "'acoth' only accept floating-point values");
 		return atanh(genType(1) / x);
 	}
-}//namespace glm
+}

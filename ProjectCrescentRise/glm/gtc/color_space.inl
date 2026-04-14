@@ -1,4 +1,4 @@
-/// @ref gtc_color_space
+
 
 namespace glm{
 namespace detail
@@ -46,7 +46,7 @@ namespace detail
 			return vec<4, T, Q>(compute_srgbToRgb<3, T, Q>::call(vec<3, T, Q>(ColorSRGB), Gamma), ColorSRGB.w);
 		}
 	};
-}//namespace detail
+}
 
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> convertLinearToSRGB(vec<L, T, Q> const& ColorLinear)
@@ -54,7 +54,7 @@ namespace detail
 		return detail::compute_rgbToSrgb<L, T, Q>::call(ColorLinear, static_cast<T>(0.41666));
 	}
 
-	// Based on Ian Taylor http://chilliant.blogspot.fr/2012/08/srgb-approximations-for-hlsl.html
+	
 	template<>
 	GLM_FUNC_QUALIFIER vec<3, float, lowp> convertLinearToSRGB(vec<3, float, lowp> const& ColorLinear)
 	{
@@ -81,4 +81,4 @@ namespace detail
 	{
 		return detail::compute_srgbToRgb<L, T, Q>::call(ColorSRGB, Gamma);
 	}
-}//namespace glm
+}

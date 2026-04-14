@@ -1,4 +1,4 @@
-/// @ref gtx_color_encoding
+
 
 namespace glm
 {
@@ -42,4 +42,4 @@ namespace glm
 		return M * ColorD65XYZ + N * ColorD65XYZ + O * ColorD65XYZ;
 	}
 
-}//namespace glm
+}

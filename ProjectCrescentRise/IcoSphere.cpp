@@ -56,7 +56,7 @@ void IcoSphere::generateIcosphere()
     const float a = 1.0f;
     const float b = 1.0f / phi;
 
-    // generate first 12 vertices
+    
     std::vector<glm::vec3> icosahedronVertices = {
         MathUtils::normalize(glm::vec3(-b,  a,  0)), MathUtils::normalize(glm::vec3( b,  a,  0)),
         MathUtils::normalize(glm::vec3(-b, -a,  0)), MathUtils::normalize(glm::vec3( b, -a,  0)),
@@ -66,7 +66,7 @@ void IcoSphere::generateIcosphere()
         MathUtils::normalize(glm::vec3(-a,  0, -b)), MathUtils::normalize(glm::vec3(-a,  0,  b))
     };
 
-    // link faces
+    
     std::vector<std::vector<unsigned int>> icosahedronFaces = {
         {0, 11, 5}, {0, 5, 1}, {0, 1, 7}, {0, 7, 10}, {0, 10, 11},
         {1, 5, 9}, {5, 11, 4}, {11, 10, 2}, {10, 7, 6}, {7, 1, 8},

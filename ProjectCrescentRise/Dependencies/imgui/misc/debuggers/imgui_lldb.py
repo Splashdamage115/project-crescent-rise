@@ -3,9 +3,9 @@
 
 #
 # Useful links/documentation related to the feature:
-# - https://lldb.llvm.org/use/variable.html#summary-strings
-# - https://lldb.llvm.org/use/variable.html#synthetic-children
-# - https://lldb.llvm.org/python_reference/lldb-module.html
+# - https:
+# - https:
+# - https:
 #
 # To use it in a debug session:
 # > (lldb) command script import <path-to-this-file>

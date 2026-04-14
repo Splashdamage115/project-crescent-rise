@@ -188,23 +188,23 @@ FT_BEGIN_HEADER
     FT_PIXEL_MODE_LCD_V,
     FT_PIXEL_MODE_BGRA,
 
-    FT_PIXEL_MODE_MAX      /* do not remove */
+    FT_PIXEL_MODE_MAX      
 
   } FT_Pixel_Mode;
 
 
-  /* these constants are deprecated; use the corresponding `FT_Pixel_Mode` */
-  /* values instead.                                                       */
+  
+  
 #define ft_pixel_mode_none   FT_PIXEL_MODE_NONE
 #define ft_pixel_mode_mono   FT_PIXEL_MODE_MONO
 #define ft_pixel_mode_grays  FT_PIXEL_MODE_GRAY
 #define ft_pixel_mode_pal2   FT_PIXEL_MODE_GRAY2
 #define ft_pixel_mode_pal4   FT_PIXEL_MODE_GRAY4
 
-  /* */
+  
 
-  /* For debugging, the @FT_Pixel_Mode enumeration must stay in sync */
-  /* with the `pixel_modes` array in file `ftobjs.c`.                */
+  
+  
 
 
   /**************************************************************************
@@ -350,21 +350,21 @@ FT_BEGIN_HEADER
    */
   typedef struct  FT_Outline_
   {
-    unsigned short   n_contours;  /* number of contours in glyph        */
-    unsigned short   n_points;    /* number of points in the glyph      */
+    unsigned short   n_contours;  
+    unsigned short   n_points;    
 
-    FT_Vector*       points;      /* the outline's points               */
-    unsigned char*   tags;        /* the points flags                   */
-    unsigned short*  contours;    /* the contour end points             */
+    FT_Vector*       points;      
+    unsigned char*   tags;        
+    unsigned short*  contours;    
 
-    int              flags;       /* outline masks                      */
+    int              flags;       
 
   } FT_Outline;
 
-  /* */
+  
 
-  /* Following limits must be consistent with */
-  /* FT_Outline.{n_contours,n_points}         */
+  
+  
 #define FT_OUTLINE_CONTOURS_MAX  USHRT_MAX
 #define FT_OUTLINE_POINTS_MAX    USHRT_MAX
 
@@ -443,7 +443,7 @@ FT_BEGIN_HEADER
    *   rasterizer; see the `tags` field in @FT_Outline.
    *
    *   Please refer to the description of the 'SCANTYPE' instruction in the
-   *   [OpenType specification](https://learn.microsoft.com/typography/opentype/spec/tt_instructions#scantype)
+   *   [OpenType specification](https:
    *   how simple drop-outs, smart drop-outs, and stubs are defined.
    */
 #define FT_OUTLINE_NONE             0x0
@@ -459,8 +459,8 @@ FT_BEGIN_HEADER
 #define FT_OUTLINE_SINGLE_PASS      0x200
 
 
-  /* these constants are deprecated; use the corresponding */
-  /* `FT_OUTLINE_XXX` values instead                       */
+  
+  
 #define ft_outline_none             FT_OUTLINE_NONE
 #define ft_outline_owner            FT_OUTLINE_OWNER
 #define ft_outline_even_odd_fill    FT_OUTLINE_EVEN_ODD_FILL
@@ -469,27 +469,27 @@ FT_BEGIN_HEADER
 #define ft_outline_high_precision   FT_OUTLINE_HIGH_PRECISION
 #define ft_outline_single_pass      FT_OUTLINE_SINGLE_PASS
 
-  /* */
+  
 
 #define FT_CURVE_TAG( flag )  ( flag & 0x03 )
 
-  /* see the `tags` field in `FT_Outline` for a description of the values */
+  
 #define FT_CURVE_TAG_ON            0x01
 #define FT_CURVE_TAG_CONIC         0x00
 #define FT_CURVE_TAG_CUBIC         0x02
 
 #define FT_CURVE_TAG_HAS_SCANMODE  0x04
 
-#define FT_CURVE_TAG_TOUCH_X       0x08  /* reserved for TrueType hinter */
-#define FT_CURVE_TAG_TOUCH_Y       0x10  /* reserved for TrueType hinter */
+#define FT_CURVE_TAG_TOUCH_X       0x08  
+#define FT_CURVE_TAG_TOUCH_Y       0x10  
 
 #define FT_CURVE_TAG_TOUCH_BOTH    ( FT_CURVE_TAG_TOUCH_X | \
                                      FT_CURVE_TAG_TOUCH_Y )
-  /* values 0x20, 0x40, and 0x80 are reserved */
+  
 
 
-  /* these constants are deprecated; use the corresponding */
-  /* `FT_CURVE_TAG_XXX` values instead                     */
+  
+  
 #define FT_Curve_Tag_On       FT_CURVE_TAG_ON
 #define FT_Curve_Tag_Conic    FT_CURVE_TAG_CONIC
 #define FT_Curve_Tag_Cubic    FT_CURVE_TAG_CUBIC
@@ -717,7 +717,7 @@ FT_BEGIN_HEADER
                     ( FT_STATIC_BYTE_CAST( unsigned long, _x3 ) << 8  ) | \
                       FT_STATIC_BYTE_CAST( unsigned long, _x4 )         )
 
-#endif /* FT_IMAGE_TAG */
+#endif 
 
 
   /**************************************************************************
@@ -774,8 +774,8 @@ FT_BEGIN_HEADER
   } FT_Glyph_Format;
 
 
-  /* these constants are deprecated; use the corresponding */
-  /* `FT_Glyph_Format` values instead.                     */
+  
+  
 #define ft_glyph_format_none       FT_GLYPH_FORMAT_NONE
 #define ft_glyph_format_composite  FT_GLYPH_FORMAT_COMPOSITE
 #define ft_glyph_format_bitmap     FT_GLYPH_FORMAT_BITMAP
@@ -783,15 +783,15 @@ FT_BEGIN_HEADER
 #define ft_glyph_format_plotter    FT_GLYPH_FORMAT_PLOTTER
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*****                                                               *****/
-  /*****            R A S T E R   D E F I N I T I O N S                *****/
-  /*****                                                               *****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 
@@ -993,8 +993,8 @@ FT_BEGIN_HEADER
 #define FT_RASTER_FLAG_CLIP     0x4
 #define FT_RASTER_FLAG_SDF      0x8
 
-  /* these constants are deprecated; use the corresponding */
-  /* `FT_RASTER_FLAG_XXX` values instead                   */
+  
+  
 #define ft_raster_flag_default  FT_RASTER_FLAG_DEFAULT
 #define ft_raster_flag_aa       FT_RASTER_FLAG_AA
 #define ft_raster_flag_direct   FT_RASTER_FLAG_DIRECT
@@ -1063,9 +1063,9 @@ FT_BEGIN_HEADER
     const void*             source;
     int                     flags;
     FT_SpanFunc             gray_spans;
-    FT_SpanFunc             black_spans;  /* unused */
-    FT_Raster_BitTest_Func  bit_test;     /* unused */
-    FT_Raster_BitSet_Func   bit_set;      /* unused */
+    FT_SpanFunc             black_spans;  
+    FT_Raster_BitTest_Func  bit_test;     
+    FT_Raster_BitSet_Func   bit_set;      
     void*                   user;
     FT_BBox                 clip_box;
 
@@ -1277,17 +1277,17 @@ FT_BEGIN_HEADER
 
   } FT_Raster_Funcs;
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTIMAGE_H_ */
+#endif 
 
 
-/* END */
 
 
-/* Local Variables: */
-/* coding: utf-8    */
-/* End:             */
+
+
+
+

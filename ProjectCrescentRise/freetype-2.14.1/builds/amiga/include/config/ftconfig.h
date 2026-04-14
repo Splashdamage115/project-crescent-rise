@@ -5,7 +5,7 @@
 /*    Amiga-specific configuration file (specification only).              */
 /*                                                                         */
 /*  Copyright (C) 2005-2025 by                                             */
-/*  Werner Lemberg and Detlef Würkner.                                     */
+/*  Werner Lemberg and Detlef Wï¿½rkner.                                     */
 /*                                                                         */
 /*  This file is part of the FreeType project, and may only be used,       */
 /*  modified, and distributed under the terms of the FreeType project      */
@@ -42,7 +42,7 @@
 /* We must define that, it seems that
  * lib/gcc-lib/ppc-morphos/2.95.3/include/syslimits.h is missing in
  * ppc-morphos-gcc-2.95.3-bin.tgz (gcc for 68k producing MorphOS PPC elf
- * binaries from http://www.morphos.de)
+ * binaries from http:
  */
 #define _LIBC_LIMITS_H_
 #include "/FT/include/freetype/config/ftconfig.h"

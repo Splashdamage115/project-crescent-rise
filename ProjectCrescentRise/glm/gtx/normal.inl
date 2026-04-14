@@ -1,4 +1,4 @@
-/// @ref gtx_normal
+
 
 namespace glm
 {
@@ -12,4 +12,4 @@ namespace glm
 	{
 		return normalize(cross(p1 - p2, p1 - p3));
 	}
-}//namespace glm
+}

@@ -109,7 +109,7 @@ General Formatting Conventions
 * Use two spaces after a full stop ending a sentence.
 * Use appropriate uppercasing in titles.  Refer
 
-  https://english.stackexchange.com/a/34
+  https:
 
   for more information.
 * Do not add trailing parentheses when citing a C function.
@@ -122,7 +122,7 @@ All tags, except the ones that define the name and title for a block
 support markdown in them.  Docwriter uses a markdown parser that
 follows rules given in John Gruber's markdown guide:
 
-  https://daringfireball.net/projects/markdown/syntax
+  https:
 
 with a few exceptions and extensions, detailed below.  This may also
 be referred to as the **FreeType Flavored Markdown**.
@@ -191,7 +191,7 @@ four spaces.  For example:
 
 More information on lists in markdown is available at
 
-  https://daringfireball.net/projects/markdown/syntax#list
+  https:
 
 
 Cross-references

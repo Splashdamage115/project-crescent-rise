@@ -231,7 +231,7 @@
 
 	* src/base/md5.c, src/base/md5.h: New files, taken from
 
-	  https://openwall.info/wiki/people/solar/software/public-domain-source-code/md5
+	  https:
 
 	* include/freetype/internal/fttrace.h: Add `bitmap'.
 
@@ -1427,7 +1427,7 @@
 	This is an improved version of a similar fix contained in the
 	so-called `Infinality patch', taken from
 
-	  http://www.infinality.net/fedora/linux/zips/freetype-infinality-2.4.10-20120616_01-x86_64.tar.bz2
+	  http:
 
 	which addresses various enhancements of the auto-hinter.  Without
 	properties to control a module's metadata it wasn't possible to
@@ -1970,14 +1970,14 @@
 
 	This is the large, famous `Infinality' patch to support ClearType
 	bytecode which has been available from
-	http://www.infinality.net/blog/ for some time, and which has been
+	http:
 	refined over the last years.  While still experimental, it is now
 	mature enough to be included directly into FreeType.
 
 	Most of the code is based on the ClearType whitepaper written by
 	Greg Hitchcock
 
-	  https://www.microsoft.com/typography/cleartype/truetypecleartype.aspx
+	  https:
 
 	which gives a detailed overview of the necessary changes to the
 	Microsoft rasterizer so that older fonts are supported.  However, a
@@ -2103,7 +2103,7 @@
 	NEC FA family dated in 1996 have different checksum.
 	Reported by Johnson Y. Yan <yinsen_yan@foxitsoftware.com>; see
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2012-06/msg00023.html
+	  https:
 
 	* src/truetype/ttobjs.c (tt_check_trickyness_sfnt_ids): 4 sets
 	of fpgm & prep table checksums for FA-Gothic, FA-Minchou,
@@ -2117,7 +2117,7 @@
 
 	Problem reported by jola <hans-jochen.lau@lhsystems.com>; see
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2012-05/msg00036.html
+	  https:
 
 	* src/raster/ftraster.c (SMulDiv_No_Round): New macro.
 	(Line_Up): Use it.
@@ -2603,7 +2603,7 @@
 
 	See discussion starting at
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2012-01/msg00037.html
+	  https:
 
 	* src/smooth/ftgrays.c: s/TBand/gray_TBand/.
 	* src/raster/ftraster.c: s/TBand/black_TBand/.
@@ -2616,7 +2616,7 @@
 	`outline.flags' so that this information is preserved.  See
 	discussion starting at
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2012-02/msg00046.html
+	  https:
 
 2012-02-11  Werner Lemberg  <wl@gnu.org>
 
@@ -2677,7 +2677,7 @@
 	[raccess] Modify for PIC build.
 
 	Based on the patch provided by Erik Dahlstrom <ed@opera.com>,
-	https://lists.gnu.org/archive/html/freetype-devel/2012-01/msg00010.html
+	https:
 
 	Also `raccess_guess_table[]' and `raccess_rule_by_darwin_vfs()'
 	are renamed with `ft_' suffixes.
@@ -3127,7 +3127,7 @@
 
 	According to
 
-	  https://www.gnu.org/prep/maintain/html_node/Copyright-Notices.html
+	  https:
 
 	this should be mentioned explicitly.
 
@@ -3284,7 +3284,7 @@
 	constructed correctly.  It's even less than that, see e.g.
 	libarchive code comment for a better size upper bound:
 
-	  http://code.google.com/p/libarchive/source/browse/trunk/libarchive/archive_read_support_filter_compress.c?r=3635#121
+	  http:
 
 	This patch adds explicit stack size limit, enforced when stack is
 	realloced.
@@ -3456,7 +3456,7 @@
 
 	See
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2011-07/msg00049.html
+	  https:
 
 	for some comparison images.
 
@@ -3556,7 +3556,7 @@
 
 	See
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2011-07/msg00001.html
+	  https:
 
 	for example documents.  The FreeType stroker now produces results
 	very similar to that produced by GhostScript and Distiller for these
@@ -4005,9 +4005,9 @@
 	aligned, bluezones for CJK Ideographs are calculated from
 	sample glyphs.  At present, vertical bluezones (bluezones
 	to align vertical stems) are disabled by default.  For detail, see
-	https://lists.gnu.org/archive/html/freetype-devel/2011-04/msg00070.html
-	https://lists.gnu.org/archive/html/freetype-devel/2011-04/msg00092.html
-	https://lists.gnu.org/archive/html/freetype-devel/2011-05/msg00001.html
+	https:
+	https:
+	https:
 
 	* include/freetype/internal/fttrace.h: New trace component `afcjk'.
 	* src/autofit/afcjk.h (AF_CJK{Blue,Axis,Metric}Rec): Add CJK version
@@ -4075,8 +4075,8 @@
 	the TrueType font header.  Some bad PDF generators write
 	wrong values.  For details see examples and benchmark tests
 	of the latency by recalculation:
-	https://lists.gnu.org/archive/html/freetype-devel/2011-04/msg00091.html
-	https://lists.gnu.org/archive/html/freetype-devel/2011-04/msg00096.html
+	https:
+	https:
 
 2011-04-30  suzuki toshiya  <mpsuzuki@hiroshima-u.ac.jp>
 
@@ -4109,7 +4109,7 @@
 	Because some PDF generators mangle the family name badly,
 	the trickyness check by the checksum should be invoked always.
 	For sample PDF, see
-	https://lists.gnu.org/archive/html/freetype-devel/2011-04/msg00073.html
+	https:
 
 	* src/truetype/ttobjs.c (tt_check_trickyness): Even when
 	tt_check_trickyness_family() finds no trickyness,
@@ -4146,8 +4146,8 @@
 	When there are too many stems to preserve their gaps in the
 	rasterization of CJK Ideographs at a low resolution, blur the
 	stems instead of showing clumped stems.  See
-	https://lists.gnu.org/archive/html/freetype-devel/2011-02/msg00011.html
-	https://lists.gnu.org/archive/html/freetype-devel/2011-04/msg00046.html
+	https:
+	https:
 	for details.
 
 	* src/autofit/afcjk.c (af_cjk_hint_edges): Store the position of
@@ -4343,7 +4343,7 @@
 	[cache] Fix an off-by-one bug in `FTC_Manager_RemoveFaceID'.
 	Found by <ychen1392001@yahoo.com.cn>, see detail in
 
-	  https://lists.gnu.org/archive/html/freetype/2011-01/msg00023.html
+	  https:
 
 	* src/cache/ftccache.c (FTC_Cache_RemoveFaceID): Check the node
 	buckets[cache->p + cache->mask] too.
@@ -4464,7 +4464,7 @@
 	Johnson Y. Yan.  The bug report by Qt developers is
 	considered too.
 
-	https://bugreports.qt.io/browse/QTBUG-6521
+	https:
 
 2011-01-15  Werner Lemberg  <wl@gnu.org>
 
@@ -4923,7 +4923,7 @@
 	Partially undo change from 2010-10-15 by using ONE_PIXEL/4; this has
 	been tested with demo images sent to the mailing list.  See
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2010-10/msg00055.html
+	  https:
 
 	and later mails in this thread.
 
@@ -4943,7 +4943,7 @@
 	Problem reported by Tom Bishop <wenlin@wenlin.com>; see
 	thread starting with
 
-	  https://lists.gnu.org/archive/html/freetype/2010-10/msg00049.html
+	  https:
 
 	* src/raster/ftraster.c (Line_Up): Replace FMulDiv with SMulDiv
 	since the involved multiplication exceeds 32 bits.
@@ -5007,7 +5007,7 @@
 	normal clients.
 
 	For the history of these macros, see the investigation:
-	https://lists.gnu.org/archive/html/freetype/2010-10/msg00022.html
+	https:
 
 2010-10-24  suzuki toshiya  <mpsuzuki@hiroshima-u.ac.jp>
 
@@ -5054,7 +5054,7 @@
 	by Darwin VFS are skipped.  It reduces the warnings of the
 	deprecated resource fork access method by recent Darwin kernel.
 	Fix MacPorts ticket #18859:
-		https://trac.macports.org/ticket/18859
+		https:
 
 	* src/base/ftobjs.c (load_face_in_embedded_rfork):
 	When `FT_Stream_New' returns FT_Err_Cannot_Open_Stream, it
@@ -5182,7 +5182,7 @@
 	[smooth] Fix splitting of cubics for negative values.
 
 	Reported by Róbert Márki <gsmiko@gmail.com>; see
-	https://lists.gnu.org/archive/html/freetype/2010-09/msg00019.html.
+	https:
 
 	* src/smooth/ftgrays.c (gray_render_cubic): Fix thinko.
 
@@ -5349,7 +5349,7 @@
 	Ignore the environmental setting of LIBTOOL.
 	Patch is suggested by Adrian Bunk, to prevent unexpected
 	reflection of environmental LIBTOOL.  See:
-	https://savannah.nongnu.org/patch/?7290
+	https:
 
 	* builds/unix/unix-cc.in: LIBTOOL is unconditionally set to
 	$(FT_LIBTOOL_DIR)/libtool.  FT_LIBTOOL_DIR is set to $(BUILD_DIR)
@@ -5406,8 +5406,8 @@
 	for nameless fonts is safer for PDFs including embedded Chinese
 	fonts.  Written by David Bevan, see:
 
-	https://lists.gnu.org/archive/html/freetype-devel/2010-08/msg00021.html
-	https://lists.freedesktop.org/archives/poppler/2010-August/006310.html
+	https:
+	https:
 
 	* src/truetype/ttobjs.c (tt_check_trickyness): If a NULL pointer by
 	nameless font is given, TRUE is returned to enable hinting.
@@ -5968,7 +5968,7 @@
 
 	* src/smooth/ftgrays.c (gray_render_cubic): Fix algorithm.
 	The previous version was too aggressive, as demonstrated in
-	https://lists.gnu.org/archive/html/freetype-devel/2010-06/msg00020.html.
+	https:
 
 2010-06-24  Werner Lemberg  <wl@gnu.org>
 
@@ -6065,7 +6065,7 @@
 	simplified algorithm to find out whether the spline can be replaced
 	with two straight lines.  See this thread for more:
 
-	  https://lists.gnu.org/archive/html/freetype-devel/2010-06/msg00000.html
+	  https:
 
 2010-06-09  Werner Lemberg  <wl@gnu.org>
 
@@ -6220,7 +6220,7 @@
 	Add new function `FT_Library_SetLcdFilterWeights'.
 
 	This is based on code written by Lifter
-	<https://unixforum.org/index.php?showuser=11691>.  It fixes
+	<https:
 	FreeDesktop bug #27386.
 
 	* src/base/ftlcdfil.c (FT_Library_SetLcdFilterWeights): New

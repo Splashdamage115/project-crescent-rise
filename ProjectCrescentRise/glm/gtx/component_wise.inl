@@ -1,4 +1,4 @@
-/// @ref gtx_component_wise
+
 
 #include "../ext/scalar_common.hpp"
 #include <limits>
@@ -73,7 +73,7 @@ namespace detail
 			return v;
 		}
 	};
-}//namespace detail
+}
 
 	template<typename floatType, length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, floatType, Q> compNormalize(vec<L, T, Q> const& v)
@@ -144,4 +144,4 @@ namespace detail
 			Result = fmax(Result, v[i]);
 		return Result;
 	}
-}//namespace glm
+}

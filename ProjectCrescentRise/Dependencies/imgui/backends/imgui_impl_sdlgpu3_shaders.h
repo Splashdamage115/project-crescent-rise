@@ -2,11 +2,11 @@
 #ifndef IMGUI_DISABLE
 #include <stdint.h>
 
-// Data exported using
-//   misc/fonts/binary_to_compressed_c.exe -u8 -nocompress filename symbolname >filename.h
-// With some manual pasting.
 
-// Check sdlgpu3/ folder for the shaders' source code and instruction on how to build them
+
+
+
+
 const uint8_t spirv_vertex[1732] = {
     3,2,35,7,0,0,1,0,11,0,13,0,55,0,0,0,0,0,0,0,17,0,2,0,1,0,0,0,11,0,6,0,1,0,0,0,71,76,83,76,46,115,116,100,46,52,53,48,0,0,0,0,14,0,3,0,0,0,0,0,1,0,0,0,15,0,10,0,0,0,0,0,4,0,0,0,109,
     97,105,110,0,0,0,0,11,0,0,0,15,0,0,0,21,0,0,0,30,0,0,0,31,0,0,0,3,0,3,0,2,0,0,0,194,1,0,0,4,0,10,0,71,76,95,71,79,79,71,76,69,95,99,112,112,95,115,116,121,108,101,95,108,105,110,101,
@@ -369,4 +369,4 @@ const uint8_t metallib_fragment[3771]  = {
 #endif
 #endif
 
-#endif // #ifndef IMGUI_DISABLE
+#endif 

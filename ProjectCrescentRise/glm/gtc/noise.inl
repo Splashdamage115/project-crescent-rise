@@ -1,9 +1,9 @@
-/// @ref gtc_noise
-///
-// Based on the work of Stefan Gustavson and Ashima Arts on "webgl-noise":
-// https://github.com/ashima/webgl-noise
-// Following Stefan Gustavson's paper "Simplex noise demystified":
-// http://www.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf
+
+
+
+
+
+
 
 namespace glm{
 namespace detail
@@ -17,15 +17,15 @@ namespace detail
 		pXYZ = pXYZ + (vec<3, T, Q>(s) * T(2) - T(1)) * s.w;
 		return vec<4, T, Q>(pXYZ, pW);
 	}
-}//namespace detail
+}
 
-	// Classic Perlin noise
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<2, T, Q> const& Position)
 	{
 		vec<4, T, Q> Pi = glm::floor(vec<4, T, Q>(Position.x, Position.y, Position.x, Position.y)) + vec<4, T, Q>(0.0, 0.0, 1.0, 1.0);
 		vec<4, T, Q> Pf = glm::fract(vec<4, T, Q>(Position.x, Position.y, Position.x, Position.y)) - vec<4, T, Q>(0.0, 0.0, 1.0, 1.0);
-		Pi = mod(Pi, vec<4, T, Q>(289)); // To avoid truncation effects in permutation
+		Pi = mod(Pi, vec<4, T, Q>(289)); 
 		vec<4, T, Q> ix(Pi.x, Pi.z, Pi.x, Pi.z);
 		vec<4, T, Q> iy(Pi.y, Pi.y, Pi.w, Pi.w);
 		vec<4, T, Q> fx(Pf.x, Pf.z, Pf.x, Pf.z);
@@ -60,16 +60,16 @@ namespace detail
 		return T(2.3) * n_xy;
 	}
 
-	// Classic Perlin noise
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<3, T, Q> const& Position)
 	{
-		vec<3, T, Q> Pi0 = floor(Position); // Integer part for indexing
-		vec<3, T, Q> Pi1 = Pi0 + T(1); // Integer part + 1
+		vec<3, T, Q> Pi0 = floor(Position); 
+		vec<3, T, Q> Pi1 = Pi0 + T(1); 
 		Pi0 = detail::mod289(Pi0);
 		Pi1 = detail::mod289(Pi1);
-		vec<3, T, Q> Pf0 = fract(Position); // Fractional part for interpolation
-		vec<3, T, Q> Pf1 = Pf0 - T(1); // Fractional part - 1.0
+		vec<3, T, Q> Pf0 = fract(Position); 
+		vec<3, T, Q> Pf1 = Pf0 - T(1); 
 		vec<4, T, Q> ix(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
 		vec<4, T, Q> iy = vec<4, T, Q>(vec<2, T, Q>(Pi0.y), vec<2, T, Q>(Pi1.y));
 		vec<4, T, Q> iz0(Pi0.z);
@@ -131,16 +131,16 @@ namespace detail
 		return T(2.2) * n_xyz;
 	}
 	/*
-	// Classic Perlin noise
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<3, T, Q> const& P)
 	{
-		vec<3, T, Q> Pi0 = floor(P); // Integer part for indexing
-		vec<3, T, Q> Pi1 = Pi0 + T(1); // Integer part + 1
+		vec<3, T, Q> Pi0 = floor(P); 
+		vec<3, T, Q> Pi1 = Pi0 + T(1); 
 		Pi0 = mod(Pi0, T(289));
 		Pi1 = mod(Pi1, T(289));
-		vec<3, T, Q> Pf0 = fract(P); // Fractional part for interpolation
-		vec<3, T, Q> Pf1 = Pf0 - T(1); // Fractional part - 1.0
+		vec<3, T, Q> Pf0 = fract(P); 
+		vec<3, T, Q> Pf1 = Pf0 - T(1); 
 		vec<4, T, Q> ix(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
 		vec<4, T, Q> iy(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
 		vec<4, T, Q> iz0(Pi0.z);
@@ -204,16 +204,16 @@ namespace detail
 		return T(2.2) * n_xyz;
 	}
 	*/
-	// Classic Perlin noise
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<4, T, Q> const& Position)
 	{
-		vec<4, T, Q> Pi0 = floor(Position);	// Integer part for indexing
-		vec<4, T, Q> Pi1 = Pi0 + T(1);		// Integer part + 1
+		vec<4, T, Q> Pi0 = floor(Position);	
+		vec<4, T, Q> Pi1 = Pi0 + T(1);		
 		Pi0 = mod(Pi0, vec<4, T, Q>(289));
 		Pi1 = mod(Pi1, vec<4, T, Q>(289));
-		vec<4, T, Q> Pf0 = fract(Position);	// Fractional part for interpolation
-		vec<4, T, Q> Pf1 = Pf0 - T(1);		// Fractional part - 1.0
+		vec<4, T, Q> Pf0 = fract(Position);	
+		vec<4, T, Q> Pf1 = Pf0 - T(1);		
 		vec<4, T, Q> ix(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
 		vec<4, T, Q> iy(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
 		vec<4, T, Q> iz0(Pi0.z);
@@ -340,14 +340,14 @@ namespace detail
 		return T(2.2) * n_xyzw;
 	}
 
-	// Classic Perlin noise, periodic variant
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<2, T, Q> const& Position, vec<2, T, Q> const& rep)
 	{
 		vec<4, T, Q> Pi = floor(vec<4, T, Q>(Position.x, Position.y, Position.x, Position.y)) + vec<4, T, Q>(0.0, 0.0, 1.0, 1.0);
 		vec<4, T, Q> Pf = fract(vec<4, T, Q>(Position.x, Position.y, Position.x, Position.y)) - vec<4, T, Q>(0.0, 0.0, 1.0, 1.0);
-		Pi = mod(Pi, vec<4, T, Q>(rep.x, rep.y, rep.x, rep.y)); // To create noise with explicit period
-		Pi = mod(Pi, vec<4, T, Q>(289)); // To avoid truncation effects in permutation
+		Pi = mod(Pi, vec<4, T, Q>(rep.x, rep.y, rep.x, rep.y)); 
+		Pi = mod(Pi, vec<4, T, Q>(289)); 
 		vec<4, T, Q> ix(Pi.x, Pi.z, Pi.x, Pi.z);
 		vec<4, T, Q> iy(Pi.y, Pi.y, Pi.w, Pi.w);
 		vec<4, T, Q> fx(Pf.x, Pf.z, Pf.x, Pf.z);
@@ -382,16 +382,16 @@ namespace detail
 		return T(2.3) * n_xy;
 	}
 
-	// Classic Perlin noise, periodic variant
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<3, T, Q> const& Position, vec<3, T, Q> const& rep)
 	{
-		vec<3, T, Q> Pi0 = mod(floor(Position), rep); // Integer part, modulo period
-		vec<3, T, Q> Pi1 = mod(Pi0 + vec<3, T, Q>(T(1)), rep); // Integer part + 1, mod period
+		vec<3, T, Q> Pi0 = mod(floor(Position), rep); 
+		vec<3, T, Q> Pi1 = mod(Pi0 + vec<3, T, Q>(T(1)), rep); 
 		Pi0 = mod(Pi0, vec<3, T, Q>(289));
 		Pi1 = mod(Pi1, vec<3, T, Q>(289));
-		vec<3, T, Q> Pf0 = fract(Position); // Fractional part for interpolation
-		vec<3, T, Q> Pf1 = Pf0 - vec<3, T, Q>(T(1)); // Fractional part - 1.0
+		vec<3, T, Q> Pf0 = fract(Position); 
+		vec<3, T, Q> Pf1 = Pf0 - vec<3, T, Q>(T(1)); 
 		vec<4, T, Q> ix = vec<4, T, Q>(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
 		vec<4, T, Q> iy = vec<4, T, Q>(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
 		vec<4, T, Q> iz0(Pi0.z);
@@ -453,14 +453,14 @@ namespace detail
 		return T(2.2) * n_xyz;
 	}
 
-	// Classic Perlin noise, periodic version
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T perlin(vec<4, T, Q> const& Position, vec<4, T, Q> const& rep)
 	{
-		vec<4, T, Q> Pi0 = mod(floor(Position), rep); // Integer part modulo rep
-		vec<4, T, Q> Pi1 = mod(Pi0 + T(1), rep); // Integer part + 1 mod rep
-		vec<4, T, Q> Pf0 = fract(Position); // Fractional part for interpolation
-		vec<4, T, Q> Pf1 = Pf0 - T(1); // Fractional part - 1.0
+		vec<4, T, Q> Pi0 = mod(floor(Position), rep); 
+		vec<4, T, Q> Pi1 = mod(Pi0 + T(1), rep); 
+		vec<4, T, Q> Pf0 = fract(Position); 
+		vec<4, T, Q> Pf1 = Pf0 - T(1); 
 		vec<4, T, Q> ix = vec<4, T, Q>(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
 		vec<4, T, Q> iy = vec<4, T, Q>(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
 		vec<4, T, Q> iz0(Pi0.z);
@@ -591,27 +591,27 @@ namespace detail
 	GLM_FUNC_QUALIFIER T simplex(glm::vec<2, T, Q> const& v)
 	{
 		vec<4, T, Q> const C = vec<4, T, Q>(
-			T( 0.211324865405187),  // (3.0 -  sqrt(3.0)) / 6.0
-			T( 0.366025403784439),  //  0.5 * (sqrt(3.0)  - 1.0)
-			T(-0.577350269189626),	// -1.0 + 2.0 * C.x
-			T( 0.024390243902439)); //  1.0 / 41.0
+			T( 0.211324865405187),  
+			T( 0.366025403784439),  
+			T(-0.577350269189626),	
+			T( 0.024390243902439)); 
 
-		// First corner
+		
 		vec<2, T, Q> i  = floor(v + dot(v, vec<2, T, Q>(C[1])));
 		vec<2, T, Q> x0 = v -   i + dot(i, vec<2, T, Q>(C[0]));
 
-		// Other corners
-		//i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0
-		//i1.y = 1.0 - i1.x;
+		
+		
+		
 		vec<2, T, Q> i1 = (x0.x > x0.y) ? vec<2, T, Q>(1, 0) : vec<2, T, Q>(0, 1);
-		// x0 = x0 - 0.0 + 0.0 * C.xx ;
-		// x1 = x0 - i1 + 1.0 * C.xx ;
-		// x2 = x0 - 1.0 + 2.0 * C.xx ;
+		
+		
+		
 		vec<4, T, Q> x12 = vec<4, T, Q>(x0.x, x0.y, x0.x, x0.y) + vec<4, T, Q>(C.x, C.x, C.z, C.z);
 		x12 = vec<4, T, Q>(vec<2, T, Q>(x12) - i1, x12.z, x12.w);
 
-		// Permutations
-		i = mod(i, vec<2, T, Q>(289)); // Avoid truncation effects in permutation
+		
+		i = mod(i, vec<2, T, Q>(289)); 
 		vec<3, T, Q> p = detail::permute(
 			detail::permute(i.y + vec<3, T, Q>(T(0), i1.y, T(1)))
 			+ i.x + vec<3, T, Q>(T(0), i1.x, T(1)));
@@ -623,22 +623,22 @@ namespace detail
 		m = m * m ;
 		m = m * m ;
 
-		// Gradients: 41 points uniformly over a line, mapped onto a diamond.
-		// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)
+		
+		
 
 		vec<3, T, Q> x = static_cast<T>(2) * fract(p * C.w) - T(1);
 		vec<3, T, Q> h = abs(x) - T(0.5);
 		vec<3, T, Q> ox = floor(x + T(0.5));
 		vec<3, T, Q> a0 = x - ox;
 
-		// Normalise gradients implicitly by scaling m
-		// Inlined for speed: m *= taylorInvSqrt( a0*a0 + h*h );
+		
+		
 		m *= static_cast<T>(1.79284291400159) - T(0.85373472095314) * (a0 * a0 + h * h);
 
-		// Compute final noise value at P
+		
 		vec<3, T, Q> g;
 		g.x  = a0.x  * x0.x  + h.x  * x0.y;
-		//g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+		
 		g.y = a0.y * x12.x + h.y * x12.y;
 		g.z = a0.z * x12.z + h.z * x12.w;
 		return T(130) * dot(m, g);
@@ -650,40 +650,40 @@ namespace detail
 		vec<2, T, Q> const C(1.0 / 6.0, 1.0 / 3.0);
 		vec<4, T, Q> const D(0.0, 0.5, 1.0, 2.0);
 
-		// First corner
+		
 		vec<3, T, Q> i(floor(v + dot(v, vec<3, T, Q>(C.y))));
 		vec<3, T, Q> x0(v - i + dot(i, vec<3, T, Q>(C.x)));
 
-		// Other corners
+		
 		vec<3, T, Q> g(step(vec<3, T, Q>(x0.y, x0.z, x0.x), x0));
 		vec<3, T, Q> l(T(1) - g);
 		vec<3, T, Q> i1(min(g, vec<3, T, Q>(l.z, l.x, l.y)));
 		vec<3, T, Q> i2(max(g, vec<3, T, Q>(l.z, l.x, l.y)));
 
-		//   x0 = x0 - 0.0 + 0.0 * C.xxx;
-		//   x1 = x0 - i1  + 1.0 * C.xxx;
-		//   x2 = x0 - i2  + 2.0 * C.xxx;
-		//   x3 = x0 - 1.0 + 3.0 * C.xxx;
+		
+		
+		
+		
 		vec<3, T, Q> x1(x0 - i1 + C.x);
-		vec<3, T, Q> x2(x0 - i2 + C.y); // 2.0*C.x = 1/3 = C.y
-		vec<3, T, Q> x3(x0 - D.y);      // -1.0+3.0*C.x = -0.5 = -D.y
+		vec<3, T, Q> x2(x0 - i2 + C.y); 
+		vec<3, T, Q> x3(x0 - D.y);      
 
-		// Permutations
+		
 		i = detail::mod289(i);
 		vec<4, T, Q> p(detail::permute(detail::permute(detail::permute(
 			i.z + vec<4, T, Q>(T(0), i1.z, i2.z, T(1))) +
 			i.y + vec<4, T, Q>(T(0), i1.y, i2.y, T(1))) +
 			i.x + vec<4, T, Q>(T(0), i1.x, i2.x, T(1))));
 
-		// Gradients: 7x7 points over a square, mapped onto an octahedron.
-		// The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)
-		T n_ = static_cast<T>(0.142857142857); // 1.0/7.0
+		
+		
+		T n_ = static_cast<T>(0.142857142857); 
 		vec<3, T, Q> ns(n_ * vec<3, T, Q>(D.w, D.y, D.z) - vec<3, T, Q>(D.x, D.z, D.x));
 
-		vec<4, T, Q> j(p - T(49) * floor(p * ns.z * ns.z));  //  mod(p,7*7)
+		vec<4, T, Q> j(p - T(49) * floor(p * ns.z * ns.z));  
 
 		vec<4, T, Q> x_(floor(j * ns.z));
-		vec<4, T, Q> y_(floor(j - T(7) * x_));    // mod(j,N)
+		vec<4, T, Q> y_(floor(j - T(7) * x_));    
 
 		vec<4, T, Q> x(x_ * ns.x + ns.y);
 		vec<4, T, Q> y(y_ * ns.x + ns.y);
@@ -692,8 +692,8 @@ namespace detail
 		vec<4, T, Q> b0(x.x, x.y, y.x, y.y);
 		vec<4, T, Q> b1(x.z, x.w, y.z, y.w);
 
-		// vec4 s0 = vec4(lessThan(b0,0.0))*2.0 - 1.0;
-		// vec4 s1 = vec4(lessThan(b1,0.0))*2.0 - 1.0;
+		
+		
 		vec<4, T, Q> s0(floor(b0) * T(2) + T(1));
 		vec<4, T, Q> s1(floor(b1) * T(2) + T(1));
 		vec<4, T, Q> sh(-step(h, vec<4, T, Q>(0.0)));
@@ -706,14 +706,14 @@ namespace detail
 		vec<3, T, Q> p2(a1.x, a1.y, h.z);
 		vec<3, T, Q> p3(a1.z, a1.w, h.w);
 
-		// Normalise gradients
+		
 		vec<4, T, Q> norm = detail::taylorInvSqrt(vec<4, T, Q>(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)));
 		p0 *= norm.x;
 		p1 *= norm.y;
 		p2 *= norm.z;
 		p3 *= norm.w;
 
-		// Mix final noise value
+		
 		vec<4, T, Q> m = max(T(0.6) - vec<4, T, Q>(dot(x0, x0), dot(x1, x1), dot(x2, x2), dot(x3, x3)), vec<4, T, Q>(0));
 		m = m * m;
 		return T(42) * dot(m * m, vec<4, T, Q>(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3)));
@@ -723,52 +723,52 @@ namespace detail
 	GLM_FUNC_QUALIFIER T simplex(vec<4, T, Q> const& v)
 	{
 		vec<4, T, Q> const C(
-			0.138196601125011,  // (5 - sqrt(5))/20  G4
-			0.276393202250021,  // 2 * G4
-			0.414589803375032,  // 3 * G4
-			-0.447213595499958); // -1 + 4 * G4
+			0.138196601125011,  
+			0.276393202250021,  
+			0.414589803375032,  
+			-0.447213595499958); 
 
-		// (sqrt(5) - 1)/4 = F4, used once below
+		
 		T const F4 = static_cast<T>(0.309016994374947451);
 
-		// First corner
+		
 		vec<4, T, Q> i  = floor(v + dot(v, vec<4, T, Q>(F4)));
 		vec<4, T, Q> x0 = v -   i + dot(i, vec<4, T, Q>(C.x));
 
-		// Other corners
+		
 
-		// Rank sorting originally contributed by Bill Licea-Kane, AMD (formerly ATI)
+		
 		vec<4, T, Q> i0;
 		vec<3, T, Q> isX = step(vec<3, T, Q>(x0.y, x0.z, x0.w), vec<3, T, Q>(x0.x));
 		vec<3, T, Q> isYZ = step(vec<3, T, Q>(x0.z, x0.w, x0.w), vec<3, T, Q>(x0.y, x0.y, x0.z));
-		//  i0.x = dot(isX, vec3(1.0));
-		//i0.x = isX.x + isX.y + isX.z;
-		//i0.yzw = static_cast<T>(1) - isX;
+		
+		
+		
 		i0 = vec<4, T, Q>(isX.x + isX.y + isX.z, T(1) - isX);
-		//  i0.y += dot(isYZ.xy, vec2(1.0));
+		
 		i0.y += isYZ.x + isYZ.y;
-		//i0.zw += 1.0 - vec<2, T, Q>(isYZ.x, isYZ.y);
+		
 		i0.z += static_cast<T>(1) - isYZ.x;
 		i0.w += static_cast<T>(1) - isYZ.y;
 		i0.z += isYZ.z;
 		i0.w += static_cast<T>(1) - isYZ.z;
 
-		// i0 now contains the unique values 0,1,2,3 in each channel
+		
 		vec<4, T, Q> i3 = clamp(i0, T(0), T(1));
 		vec<4, T, Q> i2 = clamp(i0 - T(1), T(0), T(1));
 		vec<4, T, Q> i1 = clamp(i0 - T(2), T(0), T(1));
 
-		//  x0 = x0 - 0.0 + 0.0 * C.xxxx
-		//  x1 = x0 - i1  + 0.0 * C.xxxx
-		//  x2 = x0 - i2  + 0.0 * C.xxxx
-		//  x3 = x0 - i3  + 0.0 * C.xxxx
-		//  x4 = x0 - 1.0 + 4.0 * C.xxxx
+		
+		
+		
+		
+		
 		vec<4, T, Q> x1 = x0 - i1 + C.x;
 		vec<4, T, Q> x2 = x0 - i2 + C.y;
 		vec<4, T, Q> x3 = x0 - i3 + C.z;
 		vec<4, T, Q> x4 = x0 + C.w;
 
-		// Permutations
+		
 		i = mod(i, vec<4, T, Q>(289));
 		T j0 = detail::permute(detail::permute(detail::permute(detail::permute(i.w) + i.z) + i.y) + i.x);
 		vec<4, T, Q> j1 = detail::permute(detail::permute(detail::permute(detail::permute(
@@ -777,8 +777,8 @@ namespace detail
 			i.y + vec<4, T, Q>(i1.y, i2.y, i3.y, T(1))) +
 			i.x + vec<4, T, Q>(i1.x, i2.x, i3.x, T(1)));
 
-		// Gradients: 7x7x6 points over a cube, mapped onto a 4-cross polytope
-		// 7*7*6 = 294, which is close to the ring size 17*17 = 289.
+		
+		
 		vec<4, T, Q> ip = vec<4, T, Q>(T(1) / T(294), T(1) / T(49), T(1) / T(7), T(0));
 
 		vec<4, T, Q> p0 = detail::grad4(j0,   ip);
@@ -787,7 +787,7 @@ namespace detail
 		vec<4, T, Q> p3 = detail::grad4(j1.z, ip);
 		vec<4, T, Q> p4 = detail::grad4(j1.w, ip);
 
-		// Normalise gradients
+		
 		vec<4, T, Q> norm = detail::taylorInvSqrt(vec<4, T, Q>(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)));
 		p0 *= norm.x;
 		p1 *= norm.y;
@@ -795,7 +795,7 @@ namespace detail
 		p3 *= norm.w;
 		p4 *= detail::taylorInvSqrt(dot(p4, p4));
 
-		// Mix contributions from the five corners
+		
 		vec<3, T, Q> m0 = max(T(0.6) - vec<3, T, Q>(dot(x0, x0), dot(x1, x1), dot(x2, x2)), vec<3, T, Q>(0));
 		vec<2, T, Q> m1 = max(T(0.6) - vec<2, T, Q>(dot(x3, x3), dot(x4, x4)             ), vec<2, T, Q>(0));
 		m0 = m0 * m0;
@@ -804,4 +804,4 @@ namespace detail
 			(dot(m0 * m0, vec<3, T, Q>(dot(p0, x0), dot(p1, x1), dot(p2, x2))) +
 			dot(m1 * m1, vec<2, T, Q>(dot(p3, x3), dot(p4, x4))));
 	}
-}//namespace glm
+}

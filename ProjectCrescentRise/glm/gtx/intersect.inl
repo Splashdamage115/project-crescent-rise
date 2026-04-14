@@ -1,4 +1,4 @@
-/// @ref gtx_intersect
+
 
 namespace glm
 {
@@ -13,10 +13,10 @@ namespace glm
 		typename genType::value_type d = glm::dot(dir, planeNormal);
 		typename genType::value_type Epsilon = std::numeric_limits<typename genType::value_type>::epsilon();
 
-		if(glm::abs(d) > Epsilon)  // if dir and planeNormal are not perpendicular
+		if(glm::abs(d) > Epsilon)  
 		{
 			typename genType::value_type const tmp_intersectionDistance = 	glm::dot(planeOrig - orig, planeNormal) / d;
-			if (tmp_intersectionDistance > static_cast<typename genType::value_type>(0)) { // allow only intersections
+			if (tmp_intersectionDistance > static_cast<typename genType::value_type>(0)) { 
 				intersectionDistance = tmp_intersectionDistance;
 				return true;
 			}
@@ -33,60 +33,60 @@ namespace glm
 		vec<2, T, Q>& baryPosition, T& distance
 	)
 	{
-		// find vectors for two edges sharing vert0
+		
 		vec<3, T, Q> const edge1 = vert1 - vert0;
 		vec<3, T, Q> const edge2 = vert2 - vert0;
 
-		// begin calculating determinant - also used to calculate U parameter
+		
 		vec<3, T, Q> const p = glm::cross(dir, edge2);
 
-		// if determinant is near zero, ray lies in plane of triangle
+		
 		T const det = glm::dot(edge1, p);
 
 		vec<3, T, Q> Perpendicular(0);
 
 		if (det > static_cast<T>(0))
 		{
-			// calculate distance from vert0 to ray origin
+			
 			vec<3, T, Q> const dist = orig - vert0;
 
-			// calculate U parameter and test bounds
+			
 			baryPosition.x = glm::dot(dist, p);
 			if(baryPosition.x < static_cast<T>(0) || baryPosition.x > det)
 				return false;
 
-			// prepare to test V parameter
+			
 			Perpendicular = glm::cross(dist, edge1);
 
-			// calculate V parameter and test bounds
+			
 			baryPosition.y = glm::dot(dir, Perpendicular);
 			if((baryPosition.y < static_cast<T>(0)) || ((baryPosition.x + baryPosition.y) > det))
 				return false;
 		}
 		else if(det < static_cast<T>(0))
 		{
-			// calculate distance from vert0 to ray origin
+			
 			vec<3, T, Q> const dist = orig - vert0;
 
-			// calculate U parameter and test bounds
+			
 			baryPosition.x = glm::dot(dist, p);
 			if((baryPosition.x > static_cast<T>(0)) || (baryPosition.x < det))
 				return false;
 
-			// prepare to test V parameter
+			
 			Perpendicular = glm::cross(dist, edge1);
 
-			// calculate V parameter and test bounds
+			
 			baryPosition.y = glm::dot(dir, Perpendicular);
 			if((baryPosition.y > static_cast<T>(0)) || (baryPosition.x + baryPosition.y < det))
 				return false;
 		}
 		else
-			return false; // ray is parallel to the plane of the triangle
+			return false; 
 
 		T inv_det = static_cast<T>(1) / det;
 
-		// calculate distance, ray intersects triangle
+		
 		distance = glm::dot(edge2, Perpendicular) * inv_det;
 		baryPosition *= inv_det;
 
@@ -197,4 +197,4 @@ namespace glm
 		intersectionNormal2 = (intersectionPoint2 - sphereCenter) / sphereRadius;
 		return true;
 	}
-}//namespace glm
+}

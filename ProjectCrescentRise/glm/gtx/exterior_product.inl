@@ -1,4 +1,4 @@
-/// @ref gtx_exterior_product
+
 
 #include <limits>
 
@@ -15,12 +15,12 @@ namespace detail
 			return v.x * u.y - u.x * v.y;
 		}
 	};
-}//namespace detail
+}
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T cross(vec<2, T, Q> const& x, vec<2, T, Q> const& y)
 	{
 		return detail::compute_cross_vec2<T, Q, detail::is_aligned<Q>::value>::call(x, y);
 	}
-}//namespace glm
+}
 

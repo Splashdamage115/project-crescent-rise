@@ -26,7 +26,7 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http:
 
 
 PROGRAM=libtool
@@ -75,14 +75,14 @@ scriptversion=2019-02-19.15; # UTC
 # Copyright (C) 2004-2019, 2021, 2023-2024 Bootstrap Authors
 #
 # This file is dual licensed under the terms of the MIT license
-# <https://opensource.org/licenses/MIT>, and GPL version 2 or later
-# <https://www.gnu.org/licenses/gpl-2.0.html>.  You must apply one of
+# <https:
+# <https:
 # these licenses when using or redistributing this software or any of
 # the files within it.  See the URLs above, or the file `LICENSE`
 # included in the Bootstrap distribution for the full license texts.
 
 # Please report bugs or propose patches to:
-# <https://github.com/gnulib-modules/bootstrap/issues>
+# <https:
 
 
 ## ------ ##
@@ -372,7 +372,7 @@ sed_double_backslash="\
 /g
   s/^$_G_bs2$_G_dollar/$_G_bs&/
   s/\\([^$_G_bs]\\)$_G_bs2$_G_dollar/\\1$_G_bs2$_G_bs$_G_dollar/g
-  s/\n//g"
+  s/\n
 
 # require_check_ifs_backslash
 # ---------------------------
@@ -996,11 +996,11 @@ func_normal_abspath ()
       # The next three entries are used to spot a run of precisely
       # two leading slashes without using negated character classes;
       # we take advantage of case's first-match behaviour.
-      ///*)
+      
         # Unusual form of absolute path, do nothing.
         ;;
-      //*)
-        # Not necessarily an ordinary path; POSIX reserves leading '//'
+      
+        # Not necessarily an ordinary path; POSIX reserves leading '
         # and for example Cygwin uses it to access remote file shares
         # over CIFS/SMB, so we conserve a leading double slash if found.
         func_normal_abspath_altnamespace=/
@@ -1539,14 +1539,14 @@ func_lt_ver ()
 # Copyright (C) 2010-2019, 2021, 2023-2024 Bootstrap Authors
 #
 # This file is dual licensed under the terms of the MIT license
-# <https://opensource.org/licenses/MIT>, and GPL version 2 or later
-# <https://www.gnu.org/licenses/gpl-2.0.html>.  You must apply one of
+# <https:
+# <https:
 # these licenses when using or redistributing this software or any of
 # the files within it.  See the URLs above, or the file `LICENSE`
 # included in the Bootstrap distribution for the full license texts.
 
 # Please report bugs or propose patches to:
-# <https://github.com/gnulib-modules/bootstrap/issues>
+# <https:
 
 # Set a version string for this script.
 scriptversion=2019-02-19.15; # UTC
@@ -2229,7 +2229,7 @@ func_version ()
 	cat <<EOF
 $progname $scriptversion
 Copyright (C) $year Free Software Foundation, Inc.
-License GPLv2+: GNU GPL version 2 or later <https://gnu.org/licenses/gpl.html>
+License GPLv2+: GNU GPL version 2 or later <https:
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
@@ -2326,8 +2326,8 @@ include the following information:
        autoconf:       `($AUTOCONF --version) 2>/dev/null |$SED 1q`
 
 Report bugs to <bug-libtool@gnu.org>.
-GNU libtool home page: <https://www.gnu.org/software/libtool/>.
-General help using GNU software: <https://www.gnu.org/gethelp/>."
+GNU libtool home page: <https:
+General help using GNU software: <https:
     exit 0
 }
 
@@ -2721,8 +2721,8 @@ libtool_validate_options ()
     test : = "$debug_cmd" || func_append preserve_args " --debug"
 
     case $host_os in
-      # Solaris2 added to fix http://debbugs.gnu.org/cgi/bugreport.cgi?bug=16452
-      # see also: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
+      # Solaris2 added to fix http:
+      # see also: http:
       cygwin* | mingw* | windows* | pw32* | cegcc* | solaris2* | os2*)
         # don't eliminate duplications in $postdeps and $predeps
         opt_duplicate_compiler_generated_deps=:
@@ -3163,8 +3163,8 @@ func_convert_core_msys_to_w32 ()
   $debug_cmd
 
   # awkward: cmd appends spaces to result
-  func_convert_core_msys_to_w32_result=`( cmd //c echo "$1" ) 2>/dev/null |
-    $SED -e 's/[ ]*$//' -e "$sed_naive_backslashify"`
+  func_convert_core_msys_to_w32_result=`( cmd 
+    $SED -e 's/[ ]*$
 }
 #end: func_convert_core_msys_to_w32
 
@@ -3567,7 +3567,7 @@ func_dll_def_p ()
   $debug_cmd
 
   func_dll_def_p_tmp=`$SED -n \
-    -e 's/^[	 ]*//' \
+    -e 's/^[	 ]*
     -e '/^\(;.*\)*$/d' \
     -e 's/^\(EXPORTS\|LIBRARY\)\([	 ].*\)*$/DEF/p' \
     -e q \
@@ -5105,11 +5105,11 @@ extern \"C\" {
 	          case $host in
 	            i[3456]86-*-mingw32*)
 	              eval "$NM \"$func_to_tool_file_result\" 2>/dev/null | $global_symbol_pipe |
-	                $SED -e '/I __imp/d' -e 's/I __nm_/D /;s/_nm__//' >> '$nlist'"
+	                $SED -e '/I __imp/d' -e 's/I __nm_/D /;s/_nm__
 	            ;;
 	            *)
 	              eval "$NM \"$func_to_tool_file_result\" 2>/dev/null | $global_symbol_pipe |
-	                $SED -e '/I __imp/d' -e 's/I __nm_/D /;s/__nm_//' >> '$nlist'"
+	                $SED -e '/I __imp/d' -e 's/I __nm_/D /;s/__nm_
 	            ;;
 	          esac
 	        }
@@ -5427,7 +5427,7 @@ func_cygming_dll_for_implib_fallback_core ()
     # Remove all lines with less than 43 characters
     /^.\{43\}/!d
     # From remaining lines, remove first 43 characters
-    s/^.\{43\}//' |
+    s/^.\{43\}
     $SED -n '
       # Join marker and all lines until next marker into a single line
       /^====MARK====/ b para
@@ -5436,11 +5436,11 @@ func_cygming_dll_for_implib_fallback_core ()
       b
       :para
       x
-      s/\n//g
+      s/\n
       # Remove the marker
-      s/^====MARK====//
+      s/^====MARK====
       # Remove trailing dots and whitespace
-      s/[\. \t]*$//
+      s/[\. \t]*$
       # Print
       /./p' |
     # we now have a list, one entry per line, of the stringified
@@ -5560,7 +5560,7 @@ func_extract_archives ()
 	  darwin_base_archive=$func_basename_result
 	  darwin_arches=`$LIPO -info "$darwin_archive" 2>/dev/null | $GREP Architectures 2>/dev/null || true`
 	  if test -n "$darwin_arches"; then
-	    darwin_arches=`$ECHO "$darwin_arches" | $SED -e 's/.*are://'`
+	    darwin_arches=`$ECHO "$darwin_arches" | $SED -e 's/.*are:
 	    darwin_arch=
 	    func_verbose "$darwin_base_archive has multiple architectures $darwin_arches"
 	    for darwin_arch in  $darwin_arches; do
@@ -5698,9 +5698,9 @@ func_parse_lt_options ()
     case \"\$lt_opt\" in
     --lt-debug) lt_option_debug=1 ;;
     --lt-dump-script)
-        lt_dump_D=\`\$ECHO \"X\$lt_script_arg0\" | $SED -e 's/^X//' -e 's%/[^/]*$%%'\`
+        lt_dump_D=\`\$ECHO \"X\$lt_script_arg0\" | $SED -e 's/^X
         test \"X\$lt_dump_D\" = \"X\$lt_script_arg0\" && lt_dump_D=.
-        lt_dump_F=\`\$ECHO \"X\$lt_script_arg0\" | $SED -e 's/^X//' -e 's%^.*/%%'\`
+        lt_dump_F=\`\$ECHO \"X\$lt_script_arg0\" | $SED -e 's/^X
         cat \"\$lt_dump_D/\$lt_dump_F\"
         exit 0
       ;;
@@ -5787,7 +5787,7 @@ func_exec_program ()
   test \"x\$thisdir\" = \"x\$file\" && thisdir=.
 
   # Follow symbolic links until we get to the real thisdir.
-  file=\`ls -ld \"\$file\" | $SED -n 's/.*-> //p'\`
+  file=\`ls -ld \"\$file\" | $SED -n 's/.*-> 
   while test -n \"\$file\"; do
     destdir=\`\$ECHO \"\$file\" | $SED 's%/[^/]*\$%%'\`
 
@@ -5800,7 +5800,7 @@ func_exec_program ()
     fi
 
     file=\`\$ECHO \"\$file\" | $SED 's%^.*/%%'\`
-    file=\`ls -ld \"\$thisdir/\$file\" | $SED -n 's/.*-> //p'\`
+    file=\`ls -ld \"\$thisdir/\$file\" | $SED -n 's/.*-> 
   done
 
   # Usually 'no', except on cygwin/mingw/windows when embedded into
@@ -5888,7 +5888,7 @@ func_exec_program ()
 
     # Some systems cannot cope with colon-terminated $shlibpath_var
     # The second colon is a workaround for a bug in BeOS R4 sed
-    $shlibpath_var=\`\$ECHO \"\$$shlibpath_var\" | $SED 's/::*\$//'\`
+    $shlibpath_var=\`\$ECHO \"\$$shlibpath_var\" | $SED 's/::*\$
 
     export $shlibpath_var
 "
@@ -9688,7 +9688,7 @@ func_mode_link ()
 		      # but so what?
 		      potlib=$potent_lib
 		      while test -h "$potlib" 2>/dev/null; do
-			potliblink=`ls -ld $potlib | $SED 's/.* -> //'`
+			potliblink=`ls -ld $potlib | $SED 's/.* -> 
 			case $potliblink in
 			[\\/]* | [A-Za-z]:[\\/]*) potlib=$potliblink;;
 			*) potlib=`$ECHO "$potlib" | $SED 's|[^/]*$||'`"$potliblink";;
@@ -9781,7 +9781,7 @@ func_mode_link ()
 	  ;;
 	none | unknown | *)
 	  newdeplibs=
-	  tmp_deplibs=`$ECHO " $deplibs" | $SED 's/ -lc$//; s/ -[LR][^ ]*//g'`
+	  tmp_deplibs=`$ECHO " $deplibs" | $SED 's/ -lc$
 	  if test yes = "$allow_libtool_libs_with_static_runtimes"; then
 	    for i in $predeps $postdeps; do
 	      # can't use Xsed below, because $i might contain '/'

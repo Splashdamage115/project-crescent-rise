@@ -1222,7 +1222,7 @@
 
 	* builds/unix/freetype-config.in: Suppress -L$libdir for
 	/usr/lib64 as well as /usr/lib.  (Reported by Dan Winship -
-	https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=139199)
+	https:
 
 2004-11-11  Werner Lemberg  <wl@gnu.org>
 
@@ -7919,7 +7919,7 @@
 	(FT_Get_PS_Font_Info): Make it work with CID and Type 42 drivers
 	also.
 
-2002-06-19  Sebastien BARRE  <http://barre.nom.fr/contact.html#email>
+2002-06-19  Sebastien BARRE  <http:
 
 	* src/type42/t42parse.c (t42_parse_sfnts): Fix compiler warning.
 

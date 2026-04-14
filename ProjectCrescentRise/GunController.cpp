@@ -116,7 +116,7 @@ void GunController::Update()
 				gunModel->modelOffset.rotation.y = glm::mix(originalYRot, originalYRot - 20.f, t);
 			}
 
-			//gunModel->modelOffset.rotation.x -= 45.f * Game::deltaTime;
+			
 
 
 			timeSinceReloadStart -= static_cast<float>(Game::deltaTime);
@@ -165,8 +165,8 @@ void GunController::shootWeapon()
 		positionOverride.rotation = glm::vec3(0.f, 0.f, 0.f);
 		positionOverride.scale = glm::vec3(0.5f);
 
-		//ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke1.png", positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
-		//ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke2.png", positionOverride, 0.1f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+		
+		
 
 		int chosen = rand() % 2;
 		int chosenFlare = (rand() % 6) + 1;
@@ -187,12 +187,12 @@ void GunController::shootWeapon()
 		if (chosen == 0)
 		{
 			shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/basicParticle.png", positionOverride, 0.2f, glm::vec2(9, 9), glm::vec2(835.f, 796.f));
-			//ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke2.png", positionOverride, 0.3f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+			
 		}
 		else if (chosen == 1)
 		{
 			shootParticle = ParticleController::SpawnNewParticle("./Assets/Images/Particles/explosion1.png", positionOverride, 0.3f, glm::vec2(10, 3), glm::vec2(1000.f, 277.f), 0.01f);
-			//ParticleController::SpawnNewParticle("./Assets/Images/Particles/smoke1.png", positionOverride, 0.4f, glm::vec2(1, 1), glm::vec2(512.f, 512.f));
+			
 		}
 		shootParticle->positionOverride->scale = glm::vec3(0.25f);
 
@@ -204,29 +204,29 @@ void GunController::shootWeapon()
 
 		recoilMoveTimeLeft = 0.125f;
 
-		//std::shared_ptr<Particle> muzzleFlash = std::make_shared<Particle>();
-		//int chosen = rand() % 2;
-		//
-		//switch (chosen)
-		//{
-		//case 0:
-		//	muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
-		//	muzzleFlash->frameAmt = glm::vec2(9, 9);
-		//	muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
-		//	break;
-		//case 1:
-		//	muzzleFlash->textureLocation = "./Assets/Images/Particles/explosion1.png";
-		//	muzzleFlash->frameAmt = glm::vec2(10, 5);
-		//	muzzleFlash->textureSize = glm::vec2(1000.f, 500.f);
-		//	break;
-		//case 2:
-		//	muzzleFlash->textureLocation = "./Assets/Images/Particles/basicParticle.png";
-		//	muzzleFlash->frameAmt = glm::vec2(9, 9);
-		//	muzzleFlash->textureSize = glm::vec2(835.f, 796.f);
-		//	break;
-		//default:
-		//	break;
-		//}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 
 
@@ -308,7 +308,7 @@ void GunController::initialiseWeapons()
 		m->loadLocation = "./Assets/Mesh/gun.fbx";
 		m->colour = glm::vec3(1.f, 1.f, 1.f);
 		m->followCam = true;
-		//gunModel->useOffsetMover = true;
+		
 		m->rotation = glm::vec3(0.f, 90.f, 0.f);
 		m->textureLoc2 = "./Assets/Images/metal.jpg";
 		m->textureLoc1 = "./Assets/Images/wood.jpg";
@@ -337,7 +337,7 @@ void GunController::initialiseWeapons()
 		m->loadLocation = "./Assets/Mesh/glock.fbx";
 		m->colour = glm::vec3(1.f, 1.f, 1.f);
 		m->followCam = true;
-		//gunModel->useOffsetMover = true;
+		
 		m->rotation = glm::vec3(0.f, 90.f, 0.f);
 		m->textureLoc1 = "./Assets/Images/glockColour.png";
 
@@ -366,7 +366,7 @@ void GunController::initialiseWeapons()
 		m->colour = glm::vec3(1.f, 1.f, 1.f);
 		m->followCam = true;
 
-		//gunModel->useOffsetMover = true;
+		
 		m->rotation = glm::vec3(0.f, 90.f, 0.f);
 		m->textureLoc1 = "./Assets/Images/metal.jpg";
 		m->textureLoc2 = "./Assets/Images/wood.jpg";

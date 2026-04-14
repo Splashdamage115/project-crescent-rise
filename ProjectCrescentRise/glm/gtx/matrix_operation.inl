@@ -1,4 +1,4 @@
-/// @ref gtx_matrix_operation
+
 
 namespace glm
 {
@@ -173,4 +173,4 @@ namespace glm
 			+m02, -m12, +m22, -m32,
 			-m03, +m13, -m23, +m33);
 	}
-}//namespace glm
+}

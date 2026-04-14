@@ -1,4 +1,4 @@
-/// @ref gtx_rotate_vector
+
 
 namespace glm
 {
@@ -10,17 +10,17 @@ namespace glm
 		T const& a
 	)
 	{
-		// get cosine of angle between vectors (-1 -> 1)
+		
 		T CosAlpha = dot(x, y);
-		// get angle (0 -> pi)
+		
 		T Alpha = acos(CosAlpha);
-		// get sine of angle between vectors (0 -> 1)
+		
 		T SinAlpha = sin(Alpha);
-		// this breaks down when SinAlpha = 0, i.e. Alpha = 0 or pi
+		
 		T t1 = sin((static_cast<T>(1) - a) * Alpha) / SinAlpha;
 		T t2 = sin(a * Alpha) / SinAlpha;
 
-		// interpolate src vectors
+		
 		return x * t1 + y * t2;
 	}
 
@@ -184,4 +184,4 @@ namespace glm
 
 		return rotate(Angle, RotationAxis);
 	}
-}//namespace glm
+}

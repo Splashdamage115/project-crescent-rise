@@ -1,16 +1,16 @@
-_(You may browse this at https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md or view this file with any Markdown viewer)_
+_(You may browse this at https:
 
 ## Dear ImGui: Examples
 
-**The [examples/](https://github.com/ocornut/imgui/blob/master/examples) folder example applications (standalone, ready-to-build) for variety of
-platforms and graphics APIs.** They all use standard backends from the [backends/](https://github.com/ocornut/imgui/blob/master/backends) folder (see [docs/BACKENDS.md](https://github.com/ocornut/imgui/blob/master/docs/BACKENDS.md)).
+**The [examples/](https:
+platforms and graphics APIs.** They all use standard backends from the [backends/](https:
 
 The purpose of Examples is to showcase integration with backends, let you try Dear ImGui, and guide you toward
 integrating Dear ImGui in your own application/game/engine.
 **Once Dear ImGui is setup and running, run and refer to `ImGui::ShowDemoWindow()` in imgui_demo.cpp for usage of the end-user API.**
 
 You can find Windows binaries for some of those example applications at:
-  https://www.dearimgui.com/binaries
+  https:
 
 
 ### Getting Started
@@ -36,10 +36,10 @@ At shutdown:
 ```
 
 Main resource:
-- Read **[Getting Started](https://github.com/ocornut/imgui/wiki/Getting-Started) wiki guide** for detailed examples of how to integrate Dear ImGui in an existing application.
+- Read **[Getting Started](https:
 
 Additional resources:
-- Read FAQ at https://www.dearimgui.com/faq
+- Read FAQ at https:
 - Read 'PROGRAMMER GUIDE' section in imgui.cpp.
 - Read the comments and instruction at the top of each file.
 
@@ -50,37 +50,37 @@ Changelog, so if you want to update them later it will be easier to catch up wit
 
 ### Examples Applications
 
-[example_allegro5/](https://github.com/ocornut/imgui/blob/master/examples/example_allegro5/) <BR>
+[example_allegro5/](https:
 Allegro 5 example. <BR>
 = main.cpp + imgui_impl_allegro5.cpp
 
-[example_android_opengl3/](https://github.com/ocornut/imgui/blob/master/examples/example_android_opengl3/) <BR>
+[example_android_opengl3/](https:
 Android + OpenGL3 (ES) example. <BR>
 = main.cpp + imgui_impl_android.cpp + imgui_impl_opengl3.cpp
 
-[example_apple_metal/](https://github.com/ocornut/imgui/tree/master/examples/example_apple_metal/) <BR>
+[example_apple_metal/](https:
 OSX & iOS + Metal example. <BR>
 = main.m + imgui_impl_osx.mm + imgui_impl_metal.mm <BR>
 It is based on the "cross-platform" game template provided with Xcode as of Xcode 9.
 (NB: imgui_impl_osx.mm is currently not as feature complete as other platforms backends.
 You may prefer to use the GLFW Or SDL backends, which will also support Windows and Linux.)
 
-[example_apple_opengl2/](https://github.com/ocornut/imgui/blob/master/examples/example_apple_opengl2/) <BR>
+[example_apple_opengl2/](https:
 OSX + OpenGL2 example. <BR>
 = main.mm + imgui_impl_osx.mm + imgui_impl_opengl2.cpp <BR>
 (NB: imgui_impl_osx.mm is currently not as feature complete as other platforms backends.
  You may prefer to use the GLFW Or SDL backends, which will also support Windows and Linux.)
 
-[example_glfw_wgpu/](https://github.com/ocornut/imgui/blob/master/examples/example_glfw_wgpu/) <BR>
+[example_glfw_wgpu/](https:
 GLFW + WebGPU example. Supports Emscripten (web), Dawn (native), WGPU (native). <BR>
 = main.cpp + imgui_impl_glfw.cpp + imgui_impl_wgpu.cpp
 Note that the 'example_glfw_opengl3' and 'example_sdl2_opengl3' examples also supports Emscripten!
 
-[example_glfw_metal/](https://github.com/ocornut/imgui/blob/master/examples/example_glfw_metal/) <BR>
+[example_glfw_metal/](https:
 GLFW (Mac) + Metal example. <BR>
 = main.mm + imgui_impl_glfw.cpp + imgui_impl_metal.mm
 
-[example_glfw_opengl2/](https://github.com/ocornut/imgui/blob/master/examples/example_glfw_opengl2/) <BR>
+[example_glfw_opengl2/](https:
 GLFW + OpenGL2 example (legacy, fixed pipeline). <BR>
 = main.cpp + imgui_impl_glfw.cpp + imgui_impl_opengl2.cpp <BR>
 **DO NOT USE THIS IF YOUR CODE/ENGINE IS USING MODERN GL or WEBGL (SHADERS, VBO, VAO, etc.)** <BR>
@@ -89,40 +89,40 @@ If your code is using GL3+ context or any semi modern GL calls, using this rende
 make things more complicated, will require your code to reset many GL attributes to their initial
 state, and might confuse your GPU driver. One star, not recommended.
 
-[example_glfw_opengl3/](https://github.com/ocornut/imgui/blob/master/examples/example_glfw_opengl3/) <BR>
+[example_glfw_opengl3/](https:
 GLFW (Win32, Mac, Linux) + OpenGL3+/ES2/ES3 example (modern, programmable pipeline). <BR>
 = main.cpp + imgui_impl_glfw.cpp + imgui_impl_opengl3.cpp <BR>
 This uses more modern GL calls and custom shaders.<BR>
 This support building with Emscripten and targeting WebGL.<BR>
 Prefer using that if you are using modern GL or WebGL in your application.
 
-[example_glfw_vulkan/](https://github.com/ocornut/imgui/blob/master/examples/example_glfw_vulkan/) <BR>
+[example_glfw_vulkan/](https:
 GLFW (Win32, Mac, Linux) + Vulkan example. <BR>
 = main.cpp + imgui_impl_glfw.cpp + imgui_impl_vulkan.cpp <BR>
 This is quite long and tedious, because: Vulkan.
 For this example, the main.cpp file exceptionally use helpers function from imgui_impl_vulkan.h/cpp.
 
-[example_glut_opengl2/](https://github.com/ocornut/imgui/blob/master/examples/example_glut_opengl2/) <BR>
+[example_glut_opengl2/](https:
 GLUT (e.g., FreeGLUT on Linux/Windows, GLUT framework on OSX) + OpenGL2 example. <BR>
 = main.cpp + imgui_impl_glut.cpp + imgui_impl_opengl2.cpp <BR>
 Note that GLUT/FreeGLUT is largely obsolete software, prefer using GLFW or SDL.
 
-[example_null/](https://github.com/ocornut/imgui/blob/master/examples/example_null/) <BR>
+[example_null/](https:
 Null example, compile and link imgui, create context, run headless with no inputs and no graphics output. <BR>
 = main.cpp <BR>
 This is used to quickly test compilation of core imgui files in as many setups as possible.
 Because this application doesn't create a window nor a graphic context, there's no graphics output.
 
-[example_sdl2_directx11/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_directx11/) <BR>
+[example_sdl2_directx11/](https:
 SDL2 + DirectX11 example, Windows only. <BR>
 = main.cpp + imgui_impl_sdl2.cpp + imgui_impl_dx11.cpp <BR>
 This to demonstrate usage of DirectX with SDL2.
 
-[example_sdl2_metal/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_metal/) <BR>
+[example_sdl2_metal/](https:
 SDL2 + Metal example, Mac only. <BR>
 = main.mm + imgui_impl_sdl2.cpp + imgui_impl_metal.mm
 
-[example_sdl2_opengl2/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_opengl2/) <BR>
+[example_sdl2_opengl2/](https:
 SDL2 (Win32, Mac, Linux etc.) + OpenGL example (legacy, fixed pipeline). <BR>
 = main.cpp + imgui_impl_sdl2.cpp + imgui_impl_opengl2.cpp <BR>
 **DO NOT USE OPENGL2 CODE IF YOUR CODE/ENGINE IS USING GL OR WEBGL (SHADERS, VBO, VAO, etc.)** <BR>
@@ -131,84 +131,84 @@ If your code is using GL3+ context or any semi modern GL calls, using this rende
 make things more complicated, will require your code to reset many GL attributes to their initial
 state, and might confuse your GPU driver. One star, not recommended.
 
-[example_sdl2_opengl3/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_opengl3/) <BR>
+[example_sdl2_opengl3/](https:
 SDL2 (Win32, Mac, Linux, etc.) + OpenGL3+/ES2/ES3 example. <BR>
 = main.cpp + imgui_impl_sdl2.cpp + imgui_impl_opengl3.cpp <BR>
 This uses more modern GL calls and custom shaders. <BR>
 This support building with Emscripten and targeting WebGL.<BR>
 Prefer using that if you are using modern GL or WebGL in your application.
 
-[example_sdl2_sdlrenderer2/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_sdlrenderer2/) <BR>
+[example_sdl2_sdlrenderer2/](https:
 SDL2 (Win32, Mac, Linux, etc.) + SDL_Renderer for SDL2 example.<BR>
 = main.cpp + imgui_impl_sdl2.cpp + imgui_impl_sdlrenderer2.cpp <BR>
 This requires SDL 2.0.18+ (released November 2021) <BR>
 
-[example_sdl2_vulkan/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_vulkan/) <BR>
+[example_sdl2_vulkan/](https:
 SDL2 (Win32, Mac, Linux, etc.) + Vulkan example. <BR>
 = main.cpp + imgui_impl_sdl2.cpp + imgui_impl_vulkan.cpp <BR>
 This is quite long and tedious, because: Vulkan. <BR>
 For this example, the main.cpp file exceptionally use helpers function from imgui_impl_vulkan.h/cpp.
 
-[example_sdl2_wgpu/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl2_wgpu/) <BR>
+[example_sdl2_wgpu/](https:
 SDL2 + WebGPU example. Supports Emscripten (web), Dawn (native), WGPU (native). <BR>
 = main.cpp + imgui_impl_sdl2.cpp + imgui_impl_wgpu.cpp
 (note that the 'example_sdl2_opengl3' example also supports Emscripten!)
 
-[example_sdl3_directx11/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl3_directx11/) <BR>
+[example_sdl3_directx11/](https:
 SDL3 + DirectX11 examples, Windows only. <BR>
 = main.cpp + imgui_impl_sdl3.cpp + imgui_impl_dx11.cpp <BR>
 
-[example_sdl3_metal/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl3_metal/) <BR>
+[example_sdl3_metal/](https:
 SDL3 + Metal example, Mac only. <BR>
 = main.cpp + imgui_impl_sdl3.cpp + imgui_impl_metal.mm <BR>
 
-[example_sdl3_opengl3/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl3_opengl3/) <BR>
+[example_sdl3_opengl3/](https:
 SDL3 (Win32, Mac, Linux, etc.) + OpenGL3+/ES2/ES3 example. <BR>
 = main.cpp + imgui_impl_sdl3.cpp + imgui_impl_opengl3.cpp <BR>
 This uses more modern GL calls and custom shaders. <BR>
 This support building with Emscripten and targeting WebGL.<BR>
 
-[example_sdl3_sdlgpu3/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl3_sdlgpu3/) <BR>
+[example_sdl3_sdlgpu3/](https:
 SDL3 (Win32, Mac, Linux, etc.) + SDL_GPU for SDL3 example.<BR>
 = main.cpp + imgui_impl_sdl3.cpp + imgui_impl_sdlrenderer3.cpp <BR>
 
-[example_sdl3_sdlrenderer3/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl3_sdlrenderer3/) <BR>
+[example_sdl3_sdlrenderer3/](https:
 SDL3 (Win32, Mac, Linux, etc.) + SDL_Renderer for SDL3 example.<BR>
 = main.cpp + imgui_impl_sdl3.cpp + imgui_impl_sdlrenderer3.cpp <BR>
 
-[example_sdl3_vulkan/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl3_vulkan/) <BR>
+[example_sdl3_vulkan/](https:
 SDL3 (Win32, Mac, Linux, etc.) + Vulkan example. <BR>
 = main.cpp + imgui_impl_sdl3.cpp + imgui_impl_vulkan.cpp <BR>
 This is quite long and tedious, because: Vulkan. <BR>
 For this example, the main.cpp file exceptionally use helpers function from imgui_impl_vulkan.h/cpp.
 
-[example_sdl3_wgpu/](https://github.com/ocornut/imgui/blob/master/examples/example_sdl3_wgpu/) <BR>
+[example_sdl3_wgpu/](https:
 SDL3 + WebGPU example. Supports Emscripten (web), Dawn (native), WGPU (native). <BR>
 = main.cpp + imgui_impl_sdl3.cpp + imgui_impl_wgpu.cpp
 (note that the 'example_sdl3_opengl3' example also supports Emscripten!)
 
-[example_win32_directx9/](https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx9/) <BR>
+[example_win32_directx9/](https:
 DirectX9 example, Windows only. <BR>
 = main.cpp + imgui_impl_win32.cpp + imgui_impl_dx9.cpp
 
-[example_win32_directx10/](https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx10/) <BR>
+[example_win32_directx10/](https:
 DirectX10 example, Windows only. <BR>
 = main.cpp + imgui_impl_win32.cpp + imgui_impl_dx10.cpp
 
-[example_win32_directx11/](https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx11/) <BR>
+[example_win32_directx11/](https:
 DirectX11 example, Windows only. <BR>
 = main.cpp + imgui_impl_win32.cpp + imgui_impl_dx11.cpp
 
-[example_win32_directx12/](https://github.com/ocornut/imgui/blob/master/examples/example_win32_directx12/) <BR>
+[example_win32_directx12/](https:
 DirectX12 example, Windows only. <BR>
 = main.cpp + imgui_impl_win32.cpp + imgui_impl_dx12.cpp <BR>
 This is quite long and tedious, because: DirectX12.
 
-[example_win32_opengl3/](https://github.com/ocornut/imgui/blob/master/examples/example_win32_opengl3/) <BR>
+[example_win32_opengl3/](https:
 Raw Windows + OpenGL3 example (modern, programmable pipeline) <BR>
 = main.cpp + imgui_impl_win32.cpp + imgui_impl_opengl3.cpp <BR>
 
-[example_win32_vulkan/](https://github.com/ocornut/imgui/blob/master/examples/example_win32_vulkan/) <BR>
+[example_win32_vulkan/](https:
 Raw Windows + Vulkan example <BR>
 = main.cpp + imgui_impl_win32.cpp + imgui_impl_vulkan.cpp <BR>
 
@@ -229,7 +229,7 @@ You can probably just import the imgui_impl_xxx.cpp/.h files into your own codeb
 directly with a command-line compiler.
 
 If you are interested in using Cmake to build and links examples, see:
-  https://github.com/ocornut/imgui/pull/1713 and https://github.com/ocornut/imgui/pull/3027
+  https:
 
 **About mouse cursor latency**
 

@@ -28,7 +28,7 @@ void GroundTile::Start()
     disp *= scaleFactor;
     tileSize *= scaleFactor;
 
-    //generateVornoi(heights, width);
+    
 
     int iterX = 0;
     int iterY = 0;
@@ -38,17 +38,17 @@ void GroundTile::Start()
 
     for (int i = 0; i < width * width; i++)
     {
-//                        x                                  y                                 z                                 u                               v
-// 0
+
+
 vertices.emplace_back( -tileSize + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at((x == 0) ? iterY : iterY - 1) ); vertices.emplace_back( -tileSize + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  1.0f );
 
-// 1
+
 vertices.emplace_back( -tileSize + (x * disp) ); vertices.emplace_back( heights.at(iterX).at((x == 0) ? iterY : iterY - 1)); vertices.emplace_back(tileSize + (y * disp) ); vertices.emplace_back(  0.0f ); vertices.emplace_back(  0.0f );
 
-// 2
+
 vertices.emplace_back(  tileSize + (x * disp) ); vertices.emplace_back( heights.at((y == 0) ? iterX : iterX - 1).at(iterY)); vertices.emplace_back( -tileSize + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  1.0f );
 
-// 3
+
 vertices.emplace_back(  tileSize + (x * disp) ); vertices.emplace_back( heights.at(iterX).at(iterY)); vertices.emplace_back(tileSize + (y * disp) ); vertices.emplace_back(  1.0f ); vertices.emplace_back(  0.0f );
 
         
@@ -63,7 +63,7 @@ if (x >= width)
 }
     }
 
-    // Define indices for two triangles (counter-clockwise)
+    
     std::vector<unsigned int> indices;
 
     for (int i = 0; i < width * width; i++)
@@ -74,30 +74,30 @@ if (x >= width)
     }
 
 
-    // Generate and setup VAO
+    
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
 
-    // Generate and setup VBO
+    
     glGenBuffers(1, &m_body.vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
 
-    // Generate and setup EBO
+    
     glGenBuffers(1, &m_body.ebo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_STATIC_DRAW);
 
-    // Setup vertex attributes
-    // Position attribute (location = 0)
+    
+    
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    // Texture coordinate attribute (location = 1)
+    
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    // Get shader and uniform locations
+    
     m_shader = VertexShaders::retrieveShader(Shader::VertexShaderType::terrain, Shader::FragmentShaderType::terrain);
 
     uModelLoc = glGetUniformLocation(m_shader->shaderPair, "uModel");
@@ -153,7 +153,7 @@ void GroundTile::generateVornoi(std::vector<std::vector<float>>& t_heights, int 
         height = 0.f;
         for (int y = 0; y < width; y++)
         {
-            //int closest = 0;
+            
             float closestDistance = distance(static_cast<float>(x), static_cast<float>(y), vornoiPositions.at(0).x, vornoiPositions.at(0).y);
             float secondClosest = distance(static_cast<float>(x), static_cast<float>(y), vornoiPositions.at(1).x, vornoiPositions.at(1).y);
             for (unsigned int i = 0; i < vornoiPositions.size(); i++)

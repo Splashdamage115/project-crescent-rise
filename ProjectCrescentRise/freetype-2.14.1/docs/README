@@ -30,4 +30,4 @@ installed and available as `python3'/`python'.
 `make refdoc' uses (python3/python).
 
 * If none of this works, send a mail to `freetype-devel@nongnu.org' or file
-an issue at `https://github.com/freetype/docwriter/issues'.
+an issue at `https:

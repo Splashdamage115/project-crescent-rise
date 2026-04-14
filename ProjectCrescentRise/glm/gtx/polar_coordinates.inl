@@ -1,4 +1,4 @@
-/// @ref gtx_polar_coordinates
+
 
 namespace glm
 {
@@ -13,9 +13,9 @@ namespace glm
 		T const xz_dist(sqrt(tmp.x * tmp.x + tmp.z * tmp.z));
 
 		return vec<3, T, Q>(
-			asin(tmp.y),	// latitude
-			atan(tmp.x, tmp.z),		// longitude
-			xz_dist);				// xz distance
+			asin(tmp.y),	
+			atan(tmp.x, tmp.z),		
+			xz_dist);				
 	}
 
 	template<typename T, qualifier Q>
@@ -33,4 +33,4 @@ namespace glm
 			cos(latitude) * cos(longitude));
 	}
 
-}//namespace glm
+}

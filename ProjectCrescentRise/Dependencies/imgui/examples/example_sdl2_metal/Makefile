@@ -1,5 +1,5 @@
 #
-# You will need SDL2 (http://www.libsdl.org):
+# You will need SDL2 (http:
 #   brew install sdl2
 #
 

@@ -18,7 +18,7 @@ namespace glm
 		T const y = static_cast<T>(2) * (q.x * q.y + q.w * q.z);
 		T const x = q.w * q.w + q.x * q.x - q.y * q.y - q.z * q.z;
 
-		if(all(equal(vec<2, T, Q>(x, y), vec<2, T, Q>(0), epsilon<T>()))) //avoid atan2(0,0) - handle singularity - Matiis
+		if(all(equal(vec<2, T, Q>(x, y), vec<2, T, Q>(0), epsilon<T>()))) 
 			return static_cast<T>(0);
 
 		return static_cast<T>(atan(y, x));
@@ -27,11 +27,11 @@ namespace glm
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER T pitch(qua<T, Q> const& q)
 	{
-		//return T(atan(T(2) * (q.y * q.z + q.w * q.x), q.w * q.w - q.x * q.x - q.y * q.y + q.z * q.z));
+		
 		T const y = static_cast<T>(2) * (q.y * q.z + q.w * q.x);
 		T const x = q.w * q.w - q.x * q.x - q.y * q.y + q.z * q.z;
 
-		if(all(equal(vec<2, T, Q>(x, y), vec<2, T, Q>(0), epsilon<T>()))) //avoid atan2(0,0) - handle singularity - Matiis
+		if(all(equal(vec<2, T, Q>(x, y), vec<2, T, Q>(0), epsilon<T>()))) 
 			return static_cast<T>(static_cast<T>(2) * atan(q.x, q.w));
 
 		return static_cast<T>(atan(y, x));
@@ -116,7 +116,7 @@ namespace glm
 			return qua<T, Q>::wxyz((m[2][0] - m[0][2]) * mult, (m[0][1] + m[1][0]) * mult, biggestVal, (m[1][2] + m[2][1]) * mult);
 		case 3:
 			return qua<T, Q>::wxyz((m[0][1] - m[1][0]) * mult, (m[2][0] + m[0][2]) * mult, (m[1][2] + m[2][1]) * mult, biggestVal);
-		default: // Silence a -Wswitch-default warning in GCC. Should never actually get here. Assert is just for sanity.
+		default: 
 			assert(false);
 			return qua<T, Q>::wxyz(1, 0, 0, 0);
 		}
@@ -200,7 +200,7 @@ namespace glm
 
 		return quat_cast(Result);
 	}
-}//namespace glm
+}
 
 #if GLM_CONFIG_SIMD == GLM_ENABLE
 #	include "quaternion_simd.inl"

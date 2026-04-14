@@ -25,7 +25,7 @@ void AttackPlayerShard::UpdateState(EnemyStateManager& t_manager)
 	if (burstCooldown <= 0.f && bulletsToFireLeft > 0)
 	{
 
-		// adjust start position of the bullet to be higher
+		
 		glm::vec3 upDirection = glm::vec3(0.0f, 1.0f, 0.0f);
 		if (PlanetSurface::s_instance && PlanetSurface::s_instance->getTransform())
 		{

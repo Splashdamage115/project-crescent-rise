@@ -24,10 +24,10 @@ void SurfaceInstanceHolder::init()
 		i->active = false;
 	}
 
-	//m_instancerSettings.at(1).emplace_back();
-	//m_instancerSettings.at(1).at(m_instancerSettings.at(1).size() - 1).instanceType = InstanceType::Enemy;
+	
+	
 
-	//loadInstancer();
+	
 	for (int layer = 0; layer < m_instancerSettings.size(); layer++)
 	{
 		for (int i = 0; i < m_instancerSettings.at(layer).size(); i++)
@@ -111,12 +111,12 @@ void SurfaceInstanceHolder::init()
 						{
 							std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
-							//std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
+							
 
-							//m->m_pairedModel = SurfaceInstanceHolder::m_models.at(m_models.size() - 1);
-							//m->colour = glm::vec3(1.0f);
+							
+							
 
-							//obj->addScript(m);
+							
 							obj->addScript(SurfaceInstanceHolder::m_models.at(m_models.size() - 1));
 							obj->addScript(std::make_shared<OrientToSurface>());
 							obj->transform->rotation = { 180.0f, rand() % 180, 0.0f };
@@ -198,7 +198,7 @@ void SurfaceInstanceHolder::loadInstancer()
 
 void SurfaceInstanceHolder::drawImGui(int layerAmt)
 {
-	int inputLength = 128; // length of input boxes
+	int inputLength = 128; 
 
 	ImGui::Begin("Surface Instances");
 
@@ -308,7 +308,7 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 
 					if (m_instancerSettings.at(layer).at(i).instanceType == InstanceType::PickupModel || EnemyVariant)
 					{
-						//ImGui::Text("This is a layer");
+						
 						t = ""; t += "model Location "; t += loc;
 
 						ImGui::InputText(t.c_str(), m_instancerSettings.at(layer).at(i).modelLocation.data(), inputLength);
@@ -333,7 +333,7 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 					}
 
 
-					//ImGui::Text("This is a layer");
+					
 					t = ""; t += "Texture location "; t += loc;
 
 					ImGui::InputText(t.c_str(), m_instancerSettings.at(layer).at(i).textureLoc.data(), inputLength);
@@ -408,8 +408,8 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 						t = ""; t += "noiseThreshold "; t += loc;
 						ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseThreshold, 0.0f, 30.0f);
 
-						//t = ""; t += "noiseSeed "; t += loc;
-						//ImGui::SliderFloat(t.c_str(), &m_instancerSettings.at(layer).at(i).noiseSeed, 0.0f, 300.0f);
+						
+						
 
 						t = ""; t += "passesPerFace "; t += loc;
 						ImGui::SliderInt(t.c_str(), &m_instancerSettings.at(layer).at(i).passesPerFace, 1, 512);
@@ -434,16 +434,16 @@ void SurfaceInstanceHolder::drawImGui(int layerAmt)
 
 						ImGui::TreePop();
 					}
-					//newInst.density = 1.0f;
-					//newInst.noiseScale = 100.0f;
-					//newInst.noiseThreshold = 10.0f;
-					//newInst.noiseSeed = rand();
-					//newInst.useHeightLayerMask = true;
-					//newInst.heightLayerMask = 2;
-					//newInst.passesPerFace = 32;
-					//
-					//newInst.maxSize = 1.25f;
-					//newInst.minSize = 0.75f;
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 
 
 					ImGui::TreePop();
@@ -488,7 +488,7 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 		{
 			std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 
-			// set scale
+			
 
 			float randomScale = ((rand() % 5) / 10.f) + 0.5f;
 
@@ -498,7 +498,7 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 			obj->transform->rotation = { -90.0f, 90.0f, 0.0f };
 
 
-			// connect model partner and model
+			
 			std::shared_ptr<ModelPartnerScript> m = std::make_shared<ModelPartnerScript>();
 			m->m_pairedModel = SurfaceInstanceHolder::enemyModels.at(modelPosition);
 			m->colour = glm::vec3(1.f, 1.f, 1.f);
@@ -506,7 +506,7 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 
 
 
-			// attach the enemy to the planet surface
+			
 			obj->addScript(SurfaceInstanceHolder::enemyModels.at(modelPosition));
 			std::shared_ptr<SurfaceFollower> f = std::make_shared<SurfaceFollower>();
 			f->floatOnWater = true;
@@ -516,7 +516,7 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 
 
 
-			// orinet on the surface of the planet
+			
 			std::shared_ptr<OrientToSurface> o = std::make_shared<OrientToSurface>();
 			o->constantOrient = true;
 			o->facePlayer = true;
@@ -525,17 +525,17 @@ void SurfaceInstanceHolder::instanceEnemies(int layer, int count, std::string mo
 
 
 
-			// enemy movement scripts
+			
 			std::shared_ptr<EnemyStateManager> t = std::make_shared<EnemyStateManager>();
 			t->m_enemyType = enemyType;
 			obj->addScript(t);
 
 
-			// control enemy health and death
+			
 			obj->addScript(std::make_shared<HealthController>());
 
 
-			// allow the player to shoot the enemy
+			
 			obj->tags.emplace_back("shootable");
 			obj->tags.emplace_back("enemy");
 

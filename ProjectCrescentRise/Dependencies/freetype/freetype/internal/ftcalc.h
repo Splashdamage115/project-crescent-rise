@@ -74,7 +74,7 @@ FT_BEGIN_HEADER
 #define NEG_INT64( a )                                  \
           (FT_Int64)( (FT_UInt64)0 - (FT_UInt64)(a) )
 
-#endif /* FT_INT64 */
+#endif 
 
 
   /**************************************************************************
@@ -94,7 +94,7 @@ FT_BEGIN_HEADER
     FT_Int64  ab = MUL_INT64( a, b );
 
 
-    ab = ADD_INT64( ab, 0x8000 + ( ab >> 63 ) );  /* rounding phase */
+    ab = ADD_INT64( ab, 0x8000 + ( ab >> 63 ) );  
 
     return (FT_Long)( ab >> 16 );
   }
@@ -103,15 +103,15 @@ FT_BEGIN_HEADER
 #define FT_MulFix( a, b )  FT_MulFix_64( a, b )
 
 #elif !defined( FT_CONFIG_OPTION_NO_ASSEMBLER )
-  /* Provide 32-bit assembler fragments for optimized FT_MulFix. */
-  /* These must be defined `static __inline__' or similar.       */
+  
+  
 
 #if defined( __arm__ )                                 && \
     ( defined( __thumb2__ ) || !defined( __thumb__ ) )
 
 #define FT_MULFIX_ASSEMBLER  FT_MulFix_arm
 
-  /* documentation is in freetype.h */
+  
 
   static __inline FT_Int32
   FT_MulFix_arm( FT_Int32  a,
@@ -119,33 +119,33 @@ FT_BEGIN_HEADER
   {
     FT_Int32  t, t2;
 
-#if defined( __CC_ARM ) || defined( __ARMCC__ )  /* RVCT */
+#if defined( __CC_ARM ) || defined( __ARMCC__ )  
 
     __asm
     {
-      smull t2, t,  b,  a           /* (lo=t2,hi=t) = a*b */
-      mov   a,  t,  asr #31         /* a   = (hi >> 31) */
-      add   a,  a,  #0x8000         /* a  += 0x8000 */
-      adds  t2, t2, a               /* t2 += a */
-      adc   t,  t,  #0              /* t  += carry */
-      mov   a,  t2, lsr #16         /* a   = t2 >> 16 */
-      orr   a,  a,  t,  lsl #16     /* a  |= t << 16 */
+      smull t2, t,  b,  a           
+      mov   a,  t,  asr #31         
+      add   a,  a,  #0x8000         
+      adds  t2, t2, a               
+      adc   t,  t,  #0              
+      mov   a,  t2, lsr #16         
+      orr   a,  a,  t,  lsl #16     
     }
 
 #elif defined( __GNUC__ )
 
     __asm__ __volatile__ (
-      "smull  %1, %2, %4, %3\n\t"       /* (lo=%1,hi=%2) = a*b */
-      "mov    %0, %2, asr #31\n\t"      /* %0  = (hi >> 31) */
+      "smull  %1, %2, %4, %3\n\t"       
+      "mov    %0, %2, asr #31\n\t"      
 #if defined( __clang__ ) && defined( __thumb2__ )
-      "add.w  %0, %0, #0x8000\n\t"      /* %0 += 0x8000 */
+      "add.w  %0, %0, #0x8000\n\t"      
 #else
-      "add    %0, %0, #0x8000\n\t"      /* %0 += 0x8000 */
+      "add    %0, %0, #0x8000\n\t"      
 #endif
-      "adds   %1, %1, %0\n\t"           /* %1 += %0 */
-      "adc    %2, %2, #0\n\t"           /* %2 += carry */
-      "mov    %0, %1, lsr #16\n\t"      /* %0  = %1 >> 16 */
-      "orr    %0, %0, %2, lsl #16\n\t"  /* %0 |= %2 << 16 */
+      "adds   %1, %1, %0\n\t"           
+      "adc    %2, %2, #0\n\t"           
+      "mov    %0, %1, lsr #16\n\t"      
+      "orr    %0, %0, %2, lsl #16\n\t"  
       : "=r"(a), "=&r"(t2), "=&r"(t)
       : "r"(a), "r"(b)
       : "cc" );
@@ -159,7 +159,7 @@ FT_BEGIN_HEADER
 
 #define FT_MULFIX_ASSEMBLER  FT_MulFix_i386
 
-  /* documentation is in freetype.h */
+  
 
   static __inline FT_Int32
   FT_MulFix_i386( FT_Int32  a,
@@ -206,15 +206,15 @@ FT_BEGIN_HEADER
     return result;
   }
 
-#endif /* __i386__ || _M_IX86 */
+#endif 
 
 #ifdef FT_MULFIX_ASSEMBLER
 #define FT_MulFix( a, b )  FT_MULFIX_ASSEMBLER( (FT_Int32)(a), (FT_Int32)(b) )
 #endif
 
-#endif /* !FT_CONFIG_OPTION_NO_ASSEMBLER */
+#endif 
 
-#endif /* FT_CONFIG_OPTION_INLINE_MULFIX */
+#endif 
 
 
   /**************************************************************************
@@ -414,9 +414,9 @@ FT_BEGIN_HEADER
 
 #define FT_MSB( x )  (FT_Int)( 31 - _leadz32( x ) )
 
-#endif /* FT_MSB macro definitions */
+#endif 
 
-#endif /* !FT_CONFIG_OPTION_NO_ASSEMBLER */
+#endif 
 
 
 #ifndef FT_MSB
@@ -459,10 +459,10 @@ FT_BEGIN_HEADER
   FT_SqrtFixed( FT_UInt32  x );
 
 
-#define INT_TO_F26DOT6( x )    ( (FT_Long)(x) * 64  )    /* << 6  */
-#define INT_TO_F2DOT14( x )    ( (FT_Long)(x) * 16384 )  /* << 14 */
-#define INT_TO_FIXED( x )      ( (FT_Long)(x) * 65536 )  /* << 16 */
-#define F2DOT14_TO_FIXED( x )  ( (FT_Long)(x) * 4 )      /* << 2  */
+#define INT_TO_F26DOT6( x )    ( (FT_Long)(x) * 64  )    
+#define INT_TO_F2DOT14( x )    ( (FT_Long)(x) * 16384 )  
+#define INT_TO_FIXED( x )      ( (FT_Long)(x) * 65536 )  
+#define F2DOT14_TO_FIXED( x )  ( (FT_Long)(x) * 4 )      
 #define FIXED_TO_INT( x )      ( FT_RoundFix( x ) >> 16 )
 
 #define ROUND_F26DOT6( x )     ( ( (x) + 32 - ( x < 0 ) ) & -64 )
@@ -470,7 +470,7 @@ FT_BEGIN_HEADER
 
 FT_END_HEADER
 
-#endif /* FTCALC_H_ */
+#endif 
 
 
-/* END */
+

@@ -1,4 +1,4 @@
-/// @ref gtx_common
+
 
 #include <cmath>
 #include "../gtc/epsilon.hpp"
@@ -24,7 +24,7 @@ namespace detail
 			return a % b;
 		}
 	};
-}//namespace detail
+}
 
 	template<typename T>
 	GLM_FUNC_QUALIFIER bool isdenormal(T const& x)
@@ -92,7 +92,7 @@ namespace detail
 			isdenormal(x.w));
 	}
 
-	// fmod
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType fmod(genType x, genType y)
 	{
@@ -122,4 +122,4 @@ namespace detail
 	{
 		return greaterThanEqual(Value, Min) && lessThanEqual(Value, Max);
 	}
-}//namespace glm
+}

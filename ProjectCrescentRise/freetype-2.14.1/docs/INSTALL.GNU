@@ -20,7 +20,7 @@ instructions in the file `INSTALL.UNIX' instead.
     Note that  make++, a  make tool written  in Perl,  supports enough
     features of GNU make to compile FreeType.  See
 
-      https://makepp.sourceforge.net
+      https:
 
     for more information;  you need version 2.0 or newer, and you must
     pass option `--norc-substitution'.

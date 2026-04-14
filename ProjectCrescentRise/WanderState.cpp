@@ -31,8 +31,8 @@ void WanderState::UpdateState(EnemyStateManager& t_manager)
 
 	t_manager.getTransform()->position += wanderMovement;
 
-	//glm::vec3 direction = glm::normalize(wanderMovement - t_manager.getTransform()->position);
-	//t_manager.getTransform()->rotation = direction;
+	
+	
 }
 
 void WanderState::ExitState(EnemyStateManager& t_manager)

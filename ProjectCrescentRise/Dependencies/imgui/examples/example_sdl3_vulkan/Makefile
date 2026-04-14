@@ -2,7 +2,7 @@
 # Cross Platform Makefile
 # Compatible with MSYS2/MINGW, Ubuntu 14.04.1 and Mac OS X
 #
-# You will need SDL3 (http://www.libsdl.org) which is still unreleased/unpackaged.
+# You will need SDL3 (http:
 # Mac OS X:
 #   brew install sdl3
 

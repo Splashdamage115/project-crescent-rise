@@ -1,10 +1,10 @@
-// Dear ImGui: standalone example application for OSX + Metal.
 
-// Learn about Dear ImGui:
-// - FAQ                  https://dearimgui.com/faq
-// - Getting Started      https://dearimgui.com/getting-started
-// - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
-// - Introduction, links and more at the top of imgui.cpp
+
+
+
+
+
+
 
 #import <Foundation/Foundation.h>
 
@@ -34,9 +34,9 @@
 @property (nonatomic, strong) id <MTLCommandQueue> commandQueue;
 @end
 
-//-----------------------------------------------------------------------------------
-// AppViewController
-//-----------------------------------------------------------------------------------
+
+
+
 
 @implementation AppViewController
 
@@ -53,36 +53,36 @@
         abort();
     }
 
-    // Setup Dear ImGui context
-    // FIXME: This example doesn't have proper cleanup...
+    
+    
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      
 
-    // Setup Dear ImGui style
+    
     ImGui::StyleColorsDark();
-    //ImGui::StyleColorsLight();
+    
 
-    // Setup Renderer backend
+    
     ImGui_ImplMetal_Init(_device);
 
-    // Load Fonts
-    // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
-    // - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
-    // - If the file cannot be loaded, the function will return a nullptr. Please handle those errors in your application (e.g. use an assertion, or display an error and quit).
-    // - Use '#define IMGUI_ENABLE_FREETYPE' in your imconfig file to use Freetype for higher quality font rendering.
-    // - Read 'docs/FONTS.md' for more instructions and details. If you like the default font but want it to scale better, consider using the 'ProggyVector' from the same author!
-    // - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
-    //style.FontSizeBase = 20.0f;
-    //io.Fonts->AddFontDefault();
-    //io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf");
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf");
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf");
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf");
-    //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf");
-    //IM_ASSERT(font != nullptr);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     return self;
 }
@@ -132,37 +132,37 @@
         return;
     }
 
-    // Start the Dear ImGui frame
+    
     ImGui_ImplMetal_NewFrame(renderPassDescriptor);
 #if TARGET_OS_OSX
     ImGui_ImplOSX_NewFrame(view);
 #endif
     ImGui::NewFrame();
 
-    // Our state (make them static = more or less global) as a convenience to keep the example terse.
+    
     static bool show_demo_window = true;
     static bool show_another_window = false;
     static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-    // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
+    
     if (show_demo_window)
         ImGui::ShowDemoWindow(&show_demo_window);
 
-    // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
+    
     {
         static float f = 0.0f;
         static int counter = 0;
 
-        ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+        ImGui::Begin("Hello, world!");                          
 
-        ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
-        ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+        ImGui::Text("This is some useful text.");               
+        ImGui::Checkbox("Demo Window", &show_demo_window);      
         ImGui::Checkbox("Another Window", &show_another_window);
 
-        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-        ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            
+        ImGui::ColorEdit3("clear color", (float*)&clear_color); 
 
-        if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+        if (ImGui::Button("Button"))                            
             counter++;
         ImGui::SameLine();
         ImGui::Text("counter = %d", counter);
@@ -171,17 +171,17 @@
         ImGui::End();
     }
 
-    // 3. Show another simple window.
+    
     if (show_another_window)
     {
-        ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+        ImGui::Begin("Another Window", &show_another_window);   
         ImGui::Text("Hello from another window!");
         if (ImGui::Button("Close Me"))
             show_another_window = false;
         ImGui::End();
     }
 
-    // Rendering
+    
     ImGui::Render();
     ImDrawData* draw_data = ImGui::GetDrawData();
 
@@ -192,7 +192,7 @@
     [renderEncoder popDebugGroup];
     [renderEncoder endEncoding];
 
-    // Present
+    
     [commandBuffer presentDrawable:view.currentDrawable];
     [commandBuffer commit];
 }
@@ -201,9 +201,9 @@
 {
 }
 
-//-----------------------------------------------------------------------------------
-// Input processing
-//-----------------------------------------------------------------------------------
+
+
+
 
 #if TARGET_OS_OSX
 
@@ -222,11 +222,11 @@
 
 #else
 
-// This touch mapping is super cheesy/hacky. We treat any touch on the screen
-// as if it were a depressed left mouse button, and we don't bother handling
-// multitouch correctly at all. This causes the "cursor" to behave very erratically
-// when there are multiple active touches. But for demo purposes, single-touch
-// interaction actually works surprisingly well.
+
+
+
+
+
 -(void)updateIOWithTouchEvent:(UIEvent *)event
 {
     UITouch *anyTouch = event.allTouches.anyObject;
@@ -256,9 +256,9 @@
 
 @end
 
-//-----------------------------------------------------------------------------------
-// AppDelegate
-//-----------------------------------------------------------------------------------
+
+
+
 
 #if TARGET_OS_OSX
 
@@ -313,9 +313,9 @@
 
 #endif
 
-//-----------------------------------------------------------------------------------
-// Application main() function
-//-----------------------------------------------------------------------------------
+
+
+
 
 #if TARGET_OS_OSX
 
@@ -326,7 +326,7 @@ int main(int, const char**)
         [NSApplication sharedApplication];
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
 
-        AppDelegate *appDelegate = [[AppDelegate alloc] init];   // creates window
+        AppDelegate *appDelegate = [[AppDelegate alloc] init];   
         [NSApp setDelegate:appDelegate];
 
         [NSApp activateIgnoringOtherApps:YES];

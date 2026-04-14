@@ -21,4 +21,4 @@ namespace glm
 	{
 		return genType(0.877582561890372716130286068203503191);
 	}
-} //namespace glm
+} 

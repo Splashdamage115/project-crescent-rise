@@ -109,16 +109,16 @@ FT_BEGIN_HEADER
 #define TTAG_wOFF  FT_MAKE_TAG( 'w', 'O', 'F', 'F' )
 #define TTAG_wOF2  FT_MAKE_TAG( 'w', 'O', 'F', '2' )
 
-/* used by "Keyboard.dfont" on legacy Mac OS X */
+
 #define TTAG_0xA5kbd  FT_MAKE_TAG( 0xA5, 'k', 'b', 'd' )
 
-/* used by "LastResort.dfont" on legacy Mac OS X */
+
 #define TTAG_0xA5lst  FT_MAKE_TAG( 0xA5, 'l', 's', 't' )
 
 
 FT_END_HEADER
 
-#endif /* TTAGS_H_ */
+#endif 
 
 
-/* END */
+

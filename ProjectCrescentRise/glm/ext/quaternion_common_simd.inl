@@ -11,8 +11,8 @@ namespace detail
 			return _mm_cvtss_f32(glm_vec1_dot(x.data, y.data));
 		}
 	};
-}//namespace detail
-}//namespace glm
+}
+}
 
-#endif//GLM_ARCH & GLM_ARCH_SSE2_BIT
+#endif
 

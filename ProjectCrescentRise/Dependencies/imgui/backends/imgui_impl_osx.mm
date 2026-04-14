@@ -1,23 +1,23 @@
-// dear imgui: Platform Backend for OSX / Cocoa
-// This needs to be used along with a Renderer (e.g. OpenGL2, OpenGL3, Vulkan, Metal..)
-// - Not well tested. If you want a portable application, prefer using the GLFW or SDL platform Backends on Mac.
-// - Requires linking with the GameController framework ("-framework GameController").
 
-// Implemented features:
-//  [X] Platform: Clipboard support is part of core Dear ImGui (no specific code in this backend).
-//  [X] Platform: Mouse support. Can discriminate Mouse/Pen.
-//  [X] Platform: Keyboard support. Since 1.87 we are using the io.AddKeyEvent() function. Pass ImGuiKey values to all key functions e.g. ImGui::IsKeyPressed(ImGuiKey_Space). [Legacy kVK_* values are obsolete since 1.87 and not supported since 1.91.5]
-//  [X] Platform: Gamepad support.
-//  [X] Platform: Mouse cursor shape and visibility (ImGuiBackendFlags_HasMouseCursors). Disable with 'io.ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange'.
-//  [X] Platform: IME support.
 
-// You can use unmodified imgui_impl_* files in your project. See examples/ folder for examples of using this.
-// Prefer including the entire imgui/ repository into your project (either as a copy or as a submodule), and only build the backends you need.
-// Learn about Dear ImGui:
-// - FAQ                  https://dearimgui.com/faq
-// - Getting Started      https://dearimgui.com/getting-started
-// - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
-// - Introduction, links and more at the top of imgui.cpp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #import "imgui.h"
 #ifndef IMGUI_DISABLE
@@ -27,51 +27,51 @@
 #import <GameController/GameController.h>
 #import <time.h>
 
-// CHANGELOG
-// (minor and older changes stripped away, please see git history for details)
-//  2025-09-18: Call platform_io.ClearPlatformHandlers() on shutdown.
-//  2025-06-27: Added ImGuiMouseCursor_Wait and ImGuiMouseCursor_Progress mouse cursor support.
-//  2025-06-12: ImGui_ImplOSX_HandleEvent() only process event for window containing our view. (#8644)
-//  2025-03-21: Fill gamepad inputs and set ImGuiBackendFlags_HasGamepad regardless of ImGuiConfigFlags_NavEnableGamepad being set.
-//  2025-01-20: Removed notification observer when shutting down. (#8331)
-//  2024-08-22: moved some OS/backend related function pointers from ImGuiIO to ImGuiPlatformIO:
-//               - io.GetClipboardTextFn    -> platform_io.Platform_GetClipboardTextFn
-//               - io.SetClipboardTextFn    -> platform_io.Platform_SetClipboardTextFn
-//               - io.PlatformSetImeDataFn  -> platform_io.Platform_SetImeDataFn
-//  2024-07-02: Update for io.SetPlatformImeDataFn() -> io.PlatformSetImeDataFn() renaming in main library.
-//  2023-10-05: Inputs: Added support for extra ImGuiKey values: F13 to F20 function keys. Stopped mapping F13 into PrintScreen.
-//  2023-04-09: Inputs: Added support for io.AddMouseSourceEvent() to discriminate ImGuiMouseSource_Mouse/ImGuiMouseSource_Pen.
-//  2023-02-01: Fixed scroll wheel scaling for devices emitting events with hasPreciseScrollingDeltas==false (e.g. non-Apple mice).
-//  2022-11-02: Fixed mouse coordinates before clicking the host window.
-//  2022-10-06: Fixed mouse inputs on flipped views.
-//  2022-09-26: Inputs: Renamed ImGuiKey_ModXXX introduced in 1.87 to ImGuiMod_XXX (old names still supported).
-//  2022-05-03: Inputs: Removed ImGui_ImplOSX_HandleEvent() from backend API in favor of backend automatically handling event capture.
-//  2022-04-27: Misc: Store backend data in a per-context struct, allowing to use this backend with multiple contexts.
-//  2022-03-22: Inputs: Monitor NSKeyUp events to catch missing keyUp for key when user press Cmd + key
-//  2022-02-07: Inputs: Forward keyDown/keyUp events to OS when unused by dear imgui.
-//  2022-01-31: Fixed building with old Xcode versions that are missing gamepad features.
-//  2022-01-26: Inputs: replaced short-lived io.AddKeyModsEvent() (added two weeks ago) with io.AddKeyEvent() using ImGuiKey_ModXXX flags. Sorry for the confusion.
-//  2021-01-20: Inputs: calling new io.AddKeyAnalogEvent() for gamepad support, instead of writing directly to io.NavInputs[].
-//  2022-01-17: Inputs: calling new io.AddMousePosEvent(), io.AddMouseButtonEvent(), io.AddMouseWheelEvent() API (1.87+).
-//  2022-01-12: Inputs: Added basic Platform IME support, hooking the io.SetPlatformImeDataFn() function.
-//  2022-01-10: Inputs: calling new io.AddKeyEvent(), io.AddKeyModsEvent() + io.SetKeyEventNativeData() API (1.87+). Support for full ImGuiKey range.
-//  2021-12-13: *BREAKING CHANGE* Add NSView parameter to ImGui_ImplOSX_Init(). Generally fix keyboard support. Using kVK_* codes for keyboard keys.
-//  2021-12-13: Add game controller support.
-//  2021-09-21: Use mach_absolute_time as CFAbsoluteTimeGetCurrent can jump backwards.
-//  2021-08-17: Calling io.AddFocusEvent() on NSApplicationDidBecomeActiveNotification/NSApplicationDidResignActiveNotification events.
-//  2021-06-23: Inputs: Added a fix for shortcuts using CTRL key instead of CMD key.
-//  2021-04-19: Inputs: Added a fix for keys remaining stuck in pressed state when CMD-tabbing into different application.
-//  2021-01-27: Inputs: Added a fix for mouse position not being reported when mouse buttons other than left one are down.
-//  2020-10-28: Inputs: Added a fix for handling keypad-enter key.
-//  2020-05-25: Inputs: Added a fix for missing trackpad clicks when done with "soft tap".
-//  2019-12-05: Inputs: Added support for ImGuiMouseCursor_NotAllowed mouse cursor.
-//  2019-10-11: Inputs:  Fix using Backspace key.
-//  2019-07-21: Re-added clipboard handlers as they are not enabled by default in core imgui.cpp (reverted 2019-05-18 change).
-//  2019-05-28: Inputs: Added mouse cursor shape and visibility support.
-//  2019-05-18: Misc: Removed clipboard handlers as they are now supported by core imgui.cpp.
-//  2019-05-11: Inputs: Don't filter character values before calling AddInputCharacter() apart from 0xF700..0xFFFF range.
-//  2018-11-30: Misc: Setting up io.BackendPlatformName so it can be displayed in the About Window.
-//  2018-07-07: Initial version.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #define APPLE_HAS_BUTTON_OPTIONS (__IPHONE_OS_VERSION_MIN_REQUIRED >= 130000 || __MAC_OS_X_VERSION_MIN_REQUIRED >= 101500 || __TV_OS_VERSION_MIN_REQUIRED >= 130000)
 #define APPLE_HAS_CONTROLLER     (__IPHONE_OS_VERSION_MIN_REQUIRED >= 140000 || __MAC_OS_X_VERSION_MIN_REQUIRED >= 110000 || __TV_OS_VERSION_MIN_REQUIRED >= 140000)
@@ -80,7 +80,7 @@
 @class ImGuiObserver;
 @class KeyEventResponder;
 
-// Data
+
 struct ImGui_ImplOSX_Data
 {
     CFTimeInterval              Time;
@@ -100,11 +100,11 @@ static void                     ImGui_ImplOSX_DestroyBackendData()  { IM_DELETE(
 
 static inline CFTimeInterval    GetMachAbsoluteTimeInSeconds()      { return (CFTimeInterval)(double)(clock_gettime_nsec_np(CLOCK_UPTIME_RAW) / 1e9); }
 
-// Forward Declarations
+
 static void ImGui_ImplOSX_AddTrackingArea(NSView* _Nonnull view);
 static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view);
 
-// Undocumented methods for creating cursors.
+
 @interface NSCursor()
 + (id)_windowResizeNorthWestSouthEastCursor;
 + (id)_windowResizeNorthEastSouthWestCursor;
@@ -121,9 +121,9 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view);
  insertText:replacementRange method.
 
  This is the same approach employed by other cross-platform libraries such as SDL2:
-  https://github.com/spurious/SDL-mirror/blob/e17aacbd09e65a4fd1e166621e011e581fb017a8/src/video/cocoa/SDL_cocoakeyboard.m#L53
+  https:
  and GLFW:
-  https://github.com/glfw/glfw/blob/b55a517ae0c7b5127dffa79a64f5406021bf9076/src/cocoa_window.m#L722-L723
+  https:
  */
 @interface KeyEventResponder: NSView<NSTextInputClient>
 @end
@@ -155,7 +155,7 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view);
 
 - (void)viewDidMoveToWindow
 {
-    // Ensure self is a first responder to receive the input events.
+    
     [self.window makeFirstResponder:self];
 }
 
@@ -164,7 +164,7 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view);
     if (!ImGui_ImplOSX_HandleEvent(event, self))
         [super keyDown:event];
 
-    // Call to the macOS input manager system.
+    
     [self interpretKeyEvents:@[event]];
 }
 
@@ -264,9 +264,9 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view);
 
 @end
 
-// Functions
 
-// Not static to allow third-party code to use that if they want to (but undocumented)
+
+
 ImGuiKey ImGui_ImplOSX_KeyCodeToImGuiKey(int key_code);
 ImGuiKey ImGui_ImplOSX_KeyCodeToImGuiKey(int key_code)
 {
@@ -351,10 +351,10 @@ ImGuiKey ImGui_ImplOSX_KeyCodeToImGuiKey(int key_code)
         case kVK_RightShift: return ImGuiKey_RightShift;
         case kVK_RightOption: return ImGuiKey_RightAlt;
         case kVK_RightCommand: return ImGuiKey_RightSuper;
-//      case kVK_Function: return ImGuiKey_;
-//      case kVK_VolumeUp: return ImGuiKey_;
-//      case kVK_VolumeDown: return ImGuiKey_;
-//      case kVK_Mute: return ImGuiKey_;
+
+
+
+
         case kVK_F1: return ImGuiKey_F1;
         case kVK_F2: return ImGuiKey_F2;
         case kVK_F3: return ImGuiKey_F3;
@@ -410,19 +410,19 @@ bool ImGui_ImplOSX_Init(NSView* view)
     IMGUI_CHECKVERSION();
     IM_ASSERT(io.BackendPlatformUserData == nullptr && "Already initialized a platform backend!");
 
-    // Setup backend capabilities flags
+    
     ImGui_ImplOSX_Data* bd = IM_NEW(ImGui_ImplOSX_Data)();
     io.BackendPlatformUserData = (void*)bd;
     io.BackendPlatformName = "imgui_impl_osx";
-    io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;           // We can honor GetMouseCursor() values (optional)
-    //io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;          // We can honor io.WantSetMousePos requests (optional, rarely used)
+    io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;           
+    
 
     bd->Observer = [ImGuiObserver new];
     bd->Window = view.window ?: NSApp.orderedWindows.firstObject;
     ImGuiViewport* main_viewport = ImGui::GetMainViewport();
     main_viewport->PlatformHandle = main_viewport->PlatformHandleRaw = (__bridge_retained void*)bd->Window;
 
-    // Load cursors. Some of them are undocumented.
+    
     bd->MouseCursorHidden = false;
     bd->MouseCursors[ImGuiMouseCursor_Arrow] = [NSCursor arrowCursor];
     bd->MouseCursors[ImGuiMouseCursor_TextInput] = [NSCursor IBeamCursor];
@@ -435,9 +435,9 @@ bool ImGui_ImplOSX_Init(NSView* view)
     bd->MouseCursors[ImGuiMouseCursor_Wait] = bd->MouseCursors[ImGuiMouseCursor_Progress] = [NSCursor respondsToSelector:@selector(busyButClickableCursor)] ? [NSCursor busyButClickableCursor] : [NSCursor arrowCursor];
     bd->MouseCursors[ImGuiMouseCursor_NotAllowed] = [NSCursor operationNotAllowedCursor];
 
-    // Note that imgui.cpp also include default OSX clipboard handlers which can be enabled
-    // by adding '#define IMGUI_ENABLE_OSX_DEFAULT_CLIPBOARD_FUNCTIONS' in imconfig.h and adding '-framework ApplicationServices' to your linker command-line.
-    // Since we are already in ObjC land here, it is easy for us to add a clipboard handler using the NSPasteboard api.
+    
+    
+    
     platform_io.Platform_SetClipboardTextFn = [](ImGuiContext*, const char* str) -> void
     {
         NSPasteboard* pasteboard = [NSPasteboard generalPasteboard];
@@ -473,8 +473,8 @@ bool ImGui_ImplOSX_Init(NSView* view)
                                                  name:NSApplicationDidResignActiveNotification
                                                object:nil];
 
-    // Add the NSTextInputClient to the view hierarchy,
-    // to receive keyboard events and translate them to input text.
+    
+    
     bd->KeyEventResponder = [[KeyEventResponder alloc] initWithFrame:NSZeroRect];
     bd->InputContext = [[NSTextInputContext alloc] initWithClient:bd->KeyEventResponder];
     [view addSubview:bd->KeyEventResponder];
@@ -533,7 +533,7 @@ static void ImGui_ImplOSX_UpdateMouseCursor()
     ImGuiMouseCursor imgui_cursor = ImGui::GetMouseCursor();
     if (io.MouseDrawCursor || imgui_cursor == ImGuiMouseCursor_None)
     {
-        // Hide OS mouse cursor if imgui is drawing it or if it wants no cursor
+        
         if (!bd->MouseCursorHidden)
         {
             bd->MouseCursorHidden = true;
@@ -543,7 +543,7 @@ static void ImGui_ImplOSX_UpdateMouseCursor()
     else
     {
         NSCursor* desired = bd->MouseCursors[imgui_cursor] ?: bd->MouseCursors[ImGuiMouseCursor_Arrow];
-        // -[NSCursor set] generates measurable overhead if called unconditionally.
+        
         if (desired != NSCursor.currentCursor)
         {
             [desired set];
@@ -573,7 +573,7 @@ static void ImGui_ImplOSX_UpdateGamepads()
 
     GCExtendedGamepad* gp = controller.extendedGamepad;
 
-    // Update gamepad inputs
+    
     #define IM_SATURATE(V)                        (V < 0.0f ? 0.0f : V > 1.0f ? 1.0f : V)
     #define MAP_BUTTON(KEY_NO, BUTTON_NAME)       { io.AddKeyEvent(KEY_NO, gp.BUTTON_NAME.isPressed); }
     #define MAP_ANALOG(KEY_NO, AXIS_NAME, V0, V1) { float vn = (float)(gp.AXIS_NAME.value - V0) / (float)(V1 - V0); vn = IM_SATURATE(vn); io.AddKeyAnalogEvent(KEY_NO, vn > 0.1f, vn); }
@@ -582,10 +582,10 @@ static void ImGui_ImplOSX_UpdateGamepads()
 #if APPLE_HAS_BUTTON_OPTIONS
     MAP_BUTTON(ImGuiKey_GamepadBack,            buttonOptions);
 #endif
-    MAP_BUTTON(ImGuiKey_GamepadFaceLeft,        buttonX);              // Xbox X, PS Square
-    MAP_BUTTON(ImGuiKey_GamepadFaceRight,       buttonB);              // Xbox B, PS Circle
-    MAP_BUTTON(ImGuiKey_GamepadFaceUp,          buttonY);              // Xbox Y, PS Triangle
-    MAP_BUTTON(ImGuiKey_GamepadFaceDown,        buttonA);              // Xbox A, PS Cross
+    MAP_BUTTON(ImGuiKey_GamepadFaceLeft,        buttonX);              
+    MAP_BUTTON(ImGuiKey_GamepadFaceRight,       buttonB);              
+    MAP_BUTTON(ImGuiKey_GamepadFaceUp,          buttonY);              
+    MAP_BUTTON(ImGuiKey_GamepadFaceDown,        buttonA);              
     MAP_BUTTON(ImGuiKey_GamepadDpadLeft,        dpad.left);
     MAP_BUTTON(ImGuiKey_GamepadDpadRight,       dpad.right);
     MAP_BUTTON(ImGuiKey_GamepadDpadUp,          dpad.up);
@@ -626,7 +626,7 @@ void ImGui_ImplOSX_NewFrame(NSView* view)
     IM_ASSERT(bd != nullptr && "Context or backend not initialized! Did you call ImGui_ImplOSX_Init()?");
     ImGuiIO& io = ImGui::GetIO();
 
-    // Setup display size
+    
     if (view)
     {
         const float dpi = (float)[view.window backingScaleFactor];
@@ -634,7 +634,7 @@ void ImGui_ImplOSX_NewFrame(NSView* view)
         io.DisplayFramebufferScale = ImVec2(dpi, dpi);
     }
 
-    // Setup time step
+    
     if (bd->Time == 0.0)
         bd->Time = GetMachAbsoluteTimeInSeconds();
 
@@ -647,20 +647,20 @@ void ImGui_ImplOSX_NewFrame(NSView* view)
     ImGui_ImplOSX_UpdateImePosWithView(view);
 }
 
-// Must only be called for a mouse event, otherwise an exception occurs
-// (Note that NSEventTypeScrollWheel is considered "other input". Oddly enough an exception does not occur with it, but the value will sometimes be wrong!)
+
+
 static ImGuiMouseSource GetMouseSource(NSEvent* event)
 {
     switch (event.subtype)
     {
         case NSEventSubtypeTabletPoint:
             return ImGuiMouseSource_Pen;
-        // macOS considers input from relative touch devices (like the trackpad or Apple Magic Mouse) to be touch input.
-        // This doesn't really make sense for Dear ImGui, which expects absolute touch devices only.
-        // There does not seem to be a simple way to disambiguate things here so we consider NSEventSubtypeTouch events to always come from mice.
-        // See https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/HandlingTouchEvents/HandlingTouchEvents.html#//apple_ref/doc/uid/10000060i-CH13-SW24
-        //case NSEventSubtypeTouch:
-        //    return ImGuiMouseSource_TouchScreen;
+        
+        
+        
+        
+        
+        
         case NSEventSubtypeMouseEvent:
         default:
             return ImGuiMouseSource_Mouse;
@@ -669,7 +669,7 @@ static ImGuiMouseSource GetMouseSource(NSEvent* event)
 
 static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view)
 {
-    // Only process events from the window containing ImGui view
+    
     if (event.window != view.window)
         return false;
     ImGuiIO& io = ImGui::GetIO();
@@ -713,18 +713,18 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view)
 
     if (event.type == NSEventTypeScrollWheel)
     {
-        // Ignore canceled events.
-        //
-        // From macOS 12.1, scrolling with two fingers and then decelerating
-        // by tapping two fingers results in two events appearing:
-        //
-        // 1. A scroll wheel NSEvent, with a phase == NSEventPhaseMayBegin, when the user taps
-        // two fingers to decelerate or stop the scroll events.
-        //
-        // 2. A scroll wheel NSEvent, with a phase == NSEventPhaseCancelled, when the user releases the
-        // two-finger tap. It is this event that sometimes contains large values for scrollingDeltaX and
-        // scrollingDeltaY. When these are added to the current x and y positions of the scrolling view,
-        // it appears to jump up or down. It can be observed in Preview, various JetBrains IDEs and here.
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         if (event.phase == NSEventPhaseCancelled)
             return false;
 
@@ -743,7 +743,7 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view)
             }
         }
         else
-        #endif // MAC_OS_X_VERSION_MAX_ALLOWED
+        #endif 
         {
             wheel_dx = [event deltaX] * 0.1;
             wheel_dy = [event deltaY] * 0.1;
@@ -762,7 +762,7 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view)
         int key_code = (int)[event keyCode];
         ImGuiKey key = ImGui_ImplOSX_KeyCodeToImGuiKey(key_code);
         io.AddKeyEvent(key, event.type == NSEventTypeKeyDown);
-        io.SetKeyEventNativeData(key, key_code, -1); // To support legacy indexing (<1.87 user code)
+        io.SetKeyEventNativeData(key, key_code, -1); 
 
         return io.WantCaptureKeyboard;
     }
@@ -780,9 +780,9 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view)
         ImGuiKey key = ImGui_ImplOSX_KeyCodeToImGuiKey(key_code);
         if (key != ImGuiKey_None)
         {
-            // macOS does not generate down/up event for modifiers. We're trying
-            // to use hardware dependent masks to extract that information.
-            // 'imgui_mask' is left as a fallback.
+            
+            
+            
             NSEventModifierFlags mask = 0;
             switch (key)
             {
@@ -798,7 +798,7 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view)
                     return io.WantCaptureKeyboard;
             }
             io.AddKeyEvent(key, (modifier_flags & mask) != 0);
-            io.SetKeyEventNativeData(key, key_code, -1); // To support legacy indexing (<1.87 user code)
+            io.SetKeyEventNativeData(key, key_code, -1); 
         }
 
         return io.WantCaptureKeyboard;
@@ -809,11 +809,11 @@ static bool ImGui_ImplOSX_HandleEvent(NSEvent* event, NSView* view)
 
 static void ImGui_ImplOSX_AddTrackingArea(NSView* _Nonnull view)
 {
-    // If we want to receive key events, we either need to be in the responder chain of the key view,
-    // or else we can install a local monitor. The consequence of this heavy-handed approach is that
-    // we receive events for all controls, not just Dear ImGui widgets. If we had native controls in our
-    // window, we'd want to be much more careful than just ingesting the complete event stream.
-    // To match the behavior of other backends, we pass every event down to the OS.
+    
+    
+    
+    
+    
     ImGui_ImplOSX_Data* bd = ImGui_ImplOSX_GetBackendData();
     if (bd->Monitor)
         return;
@@ -831,6 +831,6 @@ static void ImGui_ImplOSX_AddTrackingArea(NSView* _Nonnull view)
     }];
 }
 
-//-----------------------------------------------------------------------------
 
-#endif // #ifndef IMGUI_DISABLE
+
+#endif 

@@ -1,4 +1,4 @@
-/// @ref gtx_perpendicular
+
 
 namespace glm
 {
@@ -7,4 +7,4 @@ namespace glm
 	{
 		return x - proj(x, Normal);
 	}
-}//namespace glm
+}

@@ -1,4 +1,4 @@
-/// @ref gtx_color_space_YCoCg
+
 
 namespace glm
 {
@@ -104,4 +104,4 @@ namespace glm
 	{
 		return compute_YCoCgR<T, Q, std::numeric_limits<T>::is_integer>::YCoCgR2rgb(YCoCgRColor);
 	}
-}//namespace glm
+}

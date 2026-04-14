@@ -368,7 +368,7 @@ FT_BEGIN_HEADER
    *   iteratively retrieve the colored glyph layers associated with the
    *   current glyph slot.
    *
-   *     https://learn.microsoft.com/typography/opentype/spec/colr
+   *     https:
    *
    *   The glyph layer data for a given glyph index, if present, provides an
    *   alternative, multi-color glyph representation: Instead of rendering
@@ -454,9 +454,9 @@ FT_BEGIN_HEADER
    *         else
    *           layer_color = palette[layer_color_index];
    *
-   *         // Load and render glyph `layer_glyph_index', then
-   *         // blend resulting pixmap (using color `layer_color')
-   *         // with previously created pixmaps.
+   *         
+   *         
+   *         
    *
    *       } while ( FT_Get_Color_Glyph_Layer( face,
    *                                           glyph_index,
@@ -485,7 +485,7 @@ FT_BEGIN_HEADER
    * @description:
    *   Enumeration describing the different paint format types of the v1
    *   extensions to the 'COLR' table, see
-   *   'https://github.com/googlefonts/colr-gradients-spec'.
+   *   'https:
    *
    *   The enumeration values loosely correspond with the format numbers of
    *   the specification: FreeType always returns a fully specified 'Paint'
@@ -533,7 +533,7 @@ FT_BEGIN_HEADER
    *   This iterator object is needed for @FT_Get_Colorline_Stops.  It keeps
    *   state while iterating over the stops of an @FT_ColorLine, representing
    *   the `ColorLine` struct of the v1 extensions to 'COLR', see
-   *   'https://github.com/googlefonts/colr-gradients-spec'.  Do not manually
+   *   'https:
    *   modify fields of this iterator.
    *
    * @fields:
@@ -574,7 +574,7 @@ FT_BEGIN_HEADER
    *
    * @description:
    *   A structure representing a `ColorIndex` value of the 'COLR' v1
-   *   extensions, see 'https://github.com/googlefonts/colr-gradients-spec'.
+   *   extensions, see 'https:
    *
    * @fields:
    *   palette_index ::
@@ -601,7 +601,7 @@ FT_BEGIN_HEADER
    *
    * @description:
    *   A structure representing a `ColorStop` value of the 'COLR' v1
-   *   extensions, see 'https://github.com/googlefonts/colr-gradients-spec'.
+   *   extensions, see 'https:
    *
    * @fields:
    *   stop_offset ::
@@ -629,7 +629,7 @@ FT_BEGIN_HEADER
    *
    * @description:
    *   An enumeration representing the 'Extend' mode of the 'COLR' v1
-   *   extensions, see 'https://github.com/googlefonts/colr-gradients-spec'.
+   *   extensions, see 'https:
    *   It describes how the gradient fill continues at the other boundaries.
    *
    * @since:
@@ -651,7 +651,7 @@ FT_BEGIN_HEADER
    *
    * @description:
    *   A structure representing a `ColorLine` value of the 'COLR' v1
-   *   extensions, see 'https://github.com/googlefonts/colr-gradients-spec'.
+   *   extensions, see 'https:
    *   It describes a list of color stops along the defined gradient.
    *
    * @fields:
@@ -725,7 +725,7 @@ FT_BEGIN_HEADER
    * @description:
    *   An enumeration listing the 'COLR' v1 composite modes used in
    *   @FT_PaintComposite.  For more details on each paint mode, see
-   *   'https://www.w3.org/TR/compositing-1/#porterduffcompositingoperators'.
+   *   'https:
    *
    * @since:
    *   2.13
@@ -833,7 +833,7 @@ FT_BEGIN_HEADER
    *
    * @description:
    *   A structure representing a `PaintSolid` value of the 'COLR' v1
-   *   extensions, see 'https://github.com/googlefonts/colr-gradients-spec'.
+   *   extensions, see 'https:
    *   Using a `PaintSolid` value means that the glyph layer filled with
    *   this paint is solid-colored and does not contain a gradient.
    *
@@ -859,7 +859,7 @@ FT_BEGIN_HEADER
    * @description:
    *   A structure representing a `PaintLinearGradient` value of the 'COLR'
    *   v1 extensions, see
-   *   'https://github.com/googlefonts/colr-gradients-spec'.  The glyph
+   *   'https:
    *   layer filled with this paint is drawn filled with a linear gradient.
    *
    * @fields:
@@ -887,7 +887,7 @@ FT_BEGIN_HEADER
   {
     FT_ColorLine  colorline;
 
-    /* TODO: Potentially expose those as x0, y0 etc. */
+    
     FT_Vector  p0;
     FT_Vector  p1;
     FT_Vector  p2;
@@ -903,7 +903,7 @@ FT_BEGIN_HEADER
    * @description:
    *   A structure representing a `PaintRadialGradient` value of the 'COLR'
    *   v1 extensions, see
-   *   'https://github.com/googlefonts/colr-gradients-spec'.  The glyph
+   *   'https:
    *   layer filled with this paint is drawn filled with a radial gradient.
    *
    * @fields:
@@ -950,7 +950,7 @@ FT_BEGIN_HEADER
    * @description:
    *   A structure representing a `PaintSweepGradient` value of the 'COLR'
    *   v1 extensions, see
-   *   'https://github.com/googlefonts/colr-gradients-spec'.  The glyph
+   *   'https:
    *   layer filled with this paint is drawn filled with a sweep gradient
    *   from `start_angle` to `end_angle`.
    *
@@ -1288,7 +1288,7 @@ FT_BEGIN_HEADER
    * @description:
    *   A union object representing format and details of a paint table of a
    *   'COLR' v1 font, see
-   *   'https://github.com/googlefonts/colr-gradients-spec'.  Use
+   *   'https:
    *   @FT_Get_Paint to retrieve a @FT_COLR_Paint for an @FT_OpaquePaint
    *   object.
    *
@@ -1422,7 +1422,7 @@ FT_BEGIN_HEADER
    *   retrieve the paint tables for the directed acyclic graph of a colored
    *   glyph, given a glyph ID.
    *
-   *     https://github.com/googlefonts/colr-gradients-spec
+   *     https:
    *
    *   In a 'COLR' v1 font, each color glyph defines a directed acyclic
    *   graph of nested paint tables, such as `PaintGlyph`, `PaintSolid`,
@@ -1600,7 +1600,7 @@ FT_BEGIN_HEADER
    *   solid fill information for colored glyph layers for a specified glyph
    *   ID.
    *
-   *     https://github.com/googlefonts/colr-gradients-spec
+   *     https:
    *
    * @input:
    *   face ::
@@ -1665,12 +1665,12 @@ FT_BEGIN_HEADER
                 FT_OpaquePaint  opaque_paint,
                 FT_COLR_Paint*  paint );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTCOLOR_H_ */
+#endif 
 
 
-/* END */
+

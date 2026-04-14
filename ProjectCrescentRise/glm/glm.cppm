@@ -1,8 +1,8 @@
 module;
 
-// #define GLM_GTC_INLINE_NAMESPACE to inline glm::gtc into glm
-// #define GLM_EXT_INLINE_NAMESPACE to inline glm::ext into glm
-// #define GLM_GTX_INLINE_NAMESPACE to inline glm::gtx into glm
+
+
+
 
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
@@ -10,7 +10,7 @@ module;
 export module glm;
 
 export namespace glm {
-	// Base types
+	
 	using glm::qualifier;
 	using glm::precision;
 	using glm::vec;
@@ -1032,7 +1032,7 @@ export namespace glm {
 	using glm::highp_f64quat;
 	using glm::f64quat;
 
-	// Operators
+	
 	using glm::operator+;
 	using glm::operator-;
 	using glm::operator*;
@@ -1049,7 +1049,7 @@ export namespace glm {
 	using glm::operator&&;
 	using glm::operator||;
 
-	// Core functions
+	
 	using glm::abs;
 	using glm::acos;
 	using glm::acosh;
@@ -1476,7 +1476,7 @@ export namespace glm {
 		using glm::packed_mat4x2;
 		using glm::packed_mat4x3;
 		using glm::packed_mat4x4;
-#       else //defined(GLM_PRECISION_HIGHP_FLOAT)
+#       else 
 		using glm::aligned_vec1;
 		using glm::aligned_vec2;
 		using glm::aligned_vec3;
@@ -1509,7 +1509,7 @@ export namespace glm {
 		using glm::packed_mat4x2;
 		using glm::packed_mat4x3;
 		using glm::packed_mat4x4;
-#       endif//GLM_PRECISION
+#       endif
 #       if(defined(GLM_PRECISION_LOWP_DOUBLE))
 		using glm::aligned_dvec1;
 		using glm::aligned_dvec2;
@@ -1576,7 +1576,7 @@ export namespace glm {
 		using glm::packed_dmat4x2;
 		using glm::packed_dmat4x3;
 		using glm::packed_dmat4x4;
-#       else //defined(GLM_PRECISION_HIGHP_DOUBLE)
+#       else 
 		using glm::aligned_dvec1;
 		using glm::aligned_dvec2;
 		using glm::aligned_dvec3;
@@ -1609,7 +1609,7 @@ export namespace glm {
 		using glm::packed_dmat4x2;
 		using glm::packed_dmat4x3;
 		using glm::packed_dmat4x4;
-#       endif//GLM_PRECISION
+#       endif
 #       if(defined(GLM_PRECISION_LOWP_INT))
 		using glm::aligned_ivec1;
 		using glm::aligned_ivec2;
@@ -1620,7 +1620,7 @@ export namespace glm {
 		using glm::aligned_ivec2;
 		using glm::aligned_ivec3;
 		using glm::aligned_ivec4;
-#       else //defined(GLM_PRECISION_HIGHP_INT)
+#       else 
 		using glm::aligned_ivec1;
 		using glm::aligned_ivec2;
 		using glm::aligned_ivec3;
@@ -1629,7 +1629,7 @@ export namespace glm {
 		using glm::packed_ivec2;
 		using glm::packed_ivec3;
 		using glm::packed_ivec4;
-#       endif//GLM_PRECISION
+#       endif
 #       if(defined(GLM_PRECISION_LOWP_UINT))
 		using glm::aligned_uvec1;
 		using glm::aligned_uvec2;
@@ -1640,7 +1640,7 @@ export namespace glm {
 		using glm::aligned_uvec2;
 		using glm::aligned_uvec3;
 		using glm::aligned_uvec4;
-#       else //defined(GLM_PRECISION_HIGHP_UINT)
+#       else 
 		using glm::aligned_uvec1;
 		using glm::aligned_uvec2;
 		using glm::aligned_uvec3;
@@ -1649,7 +1649,7 @@ export namespace glm {
 		using glm::packed_uvec2;
 		using glm::packed_uvec3;
 		using glm::packed_uvec4;
-#       endif//GLM_PRECISION
+#       endif
 #       if(defined(GLM_PRECISION_LOWP_BOOL))
 		using glm::aligned_bvec1;
 		using glm::aligned_bvec2;
@@ -1660,7 +1660,7 @@ export namespace glm {
 		using glm::aligned_bvec2;
 		using glm::aligned_bvec3;
 		using glm::aligned_bvec4;
-#       else //defined(GLM_PRECISION_HIGHP_BOOL)
+#       else 
 		using glm::aligned_bvec1;
 		using glm::aligned_bvec2;
 		using glm::aligned_bvec3;
@@ -1669,7 +1669,7 @@ export namespace glm {
 		using glm::packed_bvec2;
 		using glm::packed_bvec3;
 		using glm::packed_bvec4;
-#       endif//GLM_PRECISION
+#       endif
 #       endif
 
 
@@ -2667,9 +2667,9 @@ export namespace glm {
 #   endif
 }
 
-#if defined(_MSC_VER) // Workaround
-// Partial template specialization doesn't need to be exported explicitly, but this may not work otherwise on MSVC.
+#if defined(_MSC_VER) 
+
 export namespace std {
-	using std::hash; // See GLM_GTX_hash
+	using std::hash; 
 }
 #endif

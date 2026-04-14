@@ -400,7 +400,7 @@
    * Decode variable-length (flag, xCoordinate, yCoordinate) triplet for a
    * simple glyph.  See
    *
-   *   https://www.w3.org/TR/WOFF2/#triplet_decoding
+   *   https:
    */
   static FT_Error
   triplet_decode( const FT_Byte*  flags_in,
@@ -876,7 +876,7 @@
     info->num_glyphs = num_glyphs;
 
     /* Calculate expected length of loca and compare.          */
-    /* See https://www.w3.org/TR/WOFF2/#conform-mustRejectLoca */
+    /* See https:
     /* index_format = 0 => Short version `loca'.               */
     /* index_format = 1 => Long version `loca'.                */
     expected_loca_length = ( index_format ? 4 : 2 ) *

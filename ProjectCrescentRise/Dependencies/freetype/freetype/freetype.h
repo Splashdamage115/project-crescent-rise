@@ -374,13 +374,13 @@ FT_BEGIN_HEADER
    */
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*                                                                       */
-  /*                        B A S I C   T Y P E S                          */
-  /*                                                                       */
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -516,13 +516,13 @@ FT_BEGIN_HEADER
   } FT_Bitmap_Size;
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*                                                                       */
-  /*                     O B J E C T   C L A S S E S                       */
-  /*                                                                       */
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
 
   /**************************************************************************
    *
@@ -775,7 +775,7 @@ FT_BEGIN_HEADER
                     ( FT_STATIC_BYTE_CAST( FT_UInt32, c ) <<  8 ) | \
                       FT_STATIC_BYTE_CAST( FT_UInt32, d )         )
 
-#endif /* FT_ENC_TAG */
+#endif 
 
 
   /**************************************************************************
@@ -811,16 +811,16 @@ FT_BEGIN_HEADER
    *   FT_ENCODING_MS_SYMBOL ::
    *     Microsoft Symbol encoding, used to encode mathematical symbols and
    *     wingdings.  For more information, see
-   *     'https://learn.microsoft.com/typography/opentype/spec/recom#non-standard-symbol-fonts',
-   *     'http://www.kostis.net/charsets/symbol.htm', and
-   *     'http://www.kostis.net/charsets/wingding.htm'.
+   *     'https:
+   *     'http:
+   *     'http:
    *
    *     This encoding uses character codes from the PUA (Private Unicode
    *     Area) in the range U+F020-U+F0FF.
    *
    *   FT_ENCODING_SJIS ::
    *     Shift JIS encoding for Japanese.  More info at
-   *     'https://en.wikipedia.org/wiki/Shift_JIS'.  See note on multi-byte
+   *     'https:
    *     encodings below.
    *
    *   FT_ENCODING_PRC ::
@@ -835,7 +835,7 @@ FT_BEGIN_HEADER
    *   FT_ENCODING_WANSUNG ::
    *     Corresponds to the Korean encoding system known as Extended Wansung
    *     (MS Windows code page 949).  For more information see
-   *     'https://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit949.txt'.
+   *     'https:
    *
    *   FT_ENCODING_JOHAB ::
    *     The Korean standard character set (KS~C 5601-1992), which
@@ -915,7 +915,7 @@ FT_BEGIN_HEADER
    *   @FT_Get_CMap_Language_ID to query the Mac language ID that may be
    *   needed to be able to distinguish Apple encoding variants.  See
    *
-   *     https://www.unicode.org/Public/MAPPINGS/VENDORS/APPLE/Readme.txt
+   *     https:
    *
    *   to get an idea how to do that.  Basically, if the language ID is~0,
    *   don't use it, otherwise subtract 1 from the language ID.  Then examine
@@ -937,7 +937,7 @@ FT_BEGIN_HEADER
     FT_ENC_TAG( FT_ENCODING_WANSUNG, 'w', 'a', 'n', 's' ),
     FT_ENC_TAG( FT_ENCODING_JOHAB,   'j', 'o', 'h', 'a' ),
 
-    /* for backward compatibility */
+    
     FT_ENCODING_GB2312     = FT_ENCODING_PRC,
     FT_ENCODING_MS_SJIS    = FT_ENCODING_SJIS,
     FT_ENCODING_MS_GB2312  = FT_ENCODING_PRC,
@@ -957,8 +957,8 @@ FT_BEGIN_HEADER
   } FT_Encoding;
 
 
-  /* these constants are deprecated; use the corresponding `FT_Encoding` */
-  /* values instead                                                      */
+  
+  
 #define ft_encoding_none            FT_ENCODING_NONE
 #define ft_encoding_unicode         FT_ENCODING_UNICODE
 #define ft_encoding_symbol          FT_ENCODING_MS_SYMBOL
@@ -1011,13 +1011,13 @@ FT_BEGIN_HEADER
   } FT_CharMapRec;
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*                                                                       */
-  /*                 B A S E   O B J E C T   C L A S S E S                 */
-  /*                                                                       */
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -1247,9 +1247,9 @@ FT_BEGIN_HEADER
 
     FT_Generic        generic;
 
-    /* The following member variables (down to `underline_thickness`) */
-    /* are only relevant to scalable outlines; cf. @FT_Bitmap_Size    */
-    /* for bitmap fonts.                                              */
+    
+    
+    
     FT_BBox           bbox;
 
     FT_UShort         units_per_EM;
@@ -1267,7 +1267,7 @@ FT_BEGIN_HEADER
     FT_Size           size;
     FT_CharMap        charmap;
 
-    /* private fields, internal to FreeType */
+    
 
     FT_Driver         driver;
     FT_Memory         memory;
@@ -1275,8 +1275,8 @@ FT_BEGIN_HEADER
 
     FT_ListRec        sizes_list;
 
-    FT_Generic        autohint;   /* face-specific auto-hinter data */
-    void*             extensions; /* unused                         */
+    FT_Generic        autohint;   
+    void*             extensions; 
 
     FT_Face_Internal  internal;
 
@@ -1732,7 +1732,7 @@ FT_BEGIN_HEADER
    * ```
    *   if ( FT_HAS_SBIX( face ) )
    *   {
-   *     // open font as a scalable one without sbix handling
+   *     
    *     FT_Face       face2;
    *     FT_Parameter  param = { FT_PARAM_TAG_IGNORE_SBIX, NULL };
    *     FT_Open_Args  args  = { FT_OPEN_PARAMS | ...,
@@ -1752,7 +1752,7 @@ FT_BEGIN_HEADER
    *       error = FT_Set_Pixel_Sizes( face, size, size );
    *       <error handling omitted>
    *
-   *       // check whether we have a glyph in a bitmap strike
+   *       
    *       error = FT_Load_Glyph( face,
    *                              glyph_index,
    *                              FT_LOAD_SBITS_ONLY          |
@@ -1973,16 +1973,16 @@ FT_BEGIN_HEADER
    */
   typedef struct  FT_Size_Metrics_
   {
-    FT_UShort  x_ppem;      /* horizontal pixels per EM               */
-    FT_UShort  y_ppem;      /* vertical pixels per EM                 */
+    FT_UShort  x_ppem;      
+    FT_UShort  y_ppem;      
 
-    FT_Fixed   x_scale;     /* scaling values used to convert font    */
-    FT_Fixed   y_scale;     /* units to 26.6 fractional pixels        */
+    FT_Fixed   x_scale;     
+    FT_Fixed   y_scale;     
 
-    FT_Pos     ascender;    /* ascender in 26.6 frac. pixels          */
-    FT_Pos     descender;   /* descender in 26.6 frac. pixels         */
-    FT_Pos     height;      /* text height in 26.6 frac. pixels       */
-    FT_Pos     max_advance; /* max horizontal advance, in 26.6 pixels */
+    FT_Pos     ascender;    
+    FT_Pos     descender;   
+    FT_Pos     height;      
+    FT_Pos     max_advance; 
 
   } FT_Size_Metrics;
 
@@ -2010,9 +2010,9 @@ FT_BEGIN_HEADER
    */
   typedef struct  FT_SizeRec_
   {
-    FT_Face           face;      /* parent face object              */
-    FT_Generic        generic;   /* generic pointer for client uses */
-    FT_Size_Metrics   metrics;   /* size metrics                    */
+    FT_Face           face;      
+    FT_Generic        generic;   
+    FT_Size_Metrics   metrics;   
     FT_Size_Internal  internal;
 
   } FT_SizeRec;
@@ -2266,7 +2266,7 @@ FT_BEGIN_HEADER
     FT_Library        library;
     FT_Face           face;
     FT_GlyphSlot      next;
-    FT_UInt           glyph_index; /* new in 2.10; was reserved previously */
+    FT_UInt           glyph_index; 
     FT_Generic        generic;
 
     FT_Glyph_Metrics  metrics;
@@ -2298,13 +2298,13 @@ FT_BEGIN_HEADER
   } FT_GlyphSlotRec;
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*                                                                       */
-  /*                         F U N C T I O N S                             */
-  /*                                                                       */
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -2414,8 +2414,8 @@ FT_BEGIN_HEADER
 #define FT_OPEN_PARAMS    0x10
 
 
-  /* these constants are deprecated; use the corresponding `FT_OPEN_XXX` */
-  /* values instead                                                      */
+  
+  
 #define ft_open_memory    FT_OPEN_MEMORY
 #define ft_open_stream    FT_OPEN_STREAM
 #define ft_open_pathname  FT_OPEN_PATHNAME
@@ -3078,7 +3078,7 @@ FT_BEGIN_HEADER
    *   is dependent entirely on how the size is defined in the source face.
    *   The font designer chooses the final size of each glyph relative to
    *   this size.  For more information refer to
-   *   'https://freetype.org/freetype2/docs/glyphs/glyphs-2.html'.
+   *   'https:
    *
    *   Contrary to @FT_Set_Char_Size, this function doesn't have special code
    *   to normalize zero-valued widths, heights, or resolutions, which are
@@ -3513,15 +3513,15 @@ FT_BEGIN_HEADER
 #define FT_LOAD_LINEAR_DESIGN                ( 1L << 13 )
 #define FT_LOAD_SBITS_ONLY                   ( 1L << 14 )
 #define FT_LOAD_NO_AUTOHINT                  ( 1L << 15 )
-  /* Bits 16-19 are used by `FT_LOAD_TARGET_` */
+  
 #define FT_LOAD_COLOR                        ( 1L << 20 )
 #define FT_LOAD_COMPUTE_METRICS              ( 1L << 21 )
 #define FT_LOAD_BITMAP_METRICS_ONLY          ( 1L << 22 )
 #define FT_LOAD_NO_SVG                       ( 1L << 24 )
 
-  /* */
+  
 
-  /* used internally only by certain font drivers */
+  
 #define FT_LOAD_ADVANCE_ONLY                 ( 1L << 8  )
 #define FT_LOAD_SVG_ONLY                     ( 1L << 23 )
 
@@ -3800,8 +3800,8 @@ FT_BEGIN_HEADER
   } FT_Render_Mode;
 
 
-  /* these constants are deprecated; use the corresponding */
-  /* `FT_Render_Mode` values instead                       */
+  
+  
 #define ft_render_mode_normal  FT_RENDER_MODE_NORMAL
 #define ft_render_mode_mono    FT_RENDER_MODE_MONO
 
@@ -3897,9 +3897,9 @@ FT_BEGIN_HEADER
    *
    *   This process can cost performance.  There is an approximation that
    *   does not need to know about the background color; see
-   *   https://web.archive.org/web/20211019204945/https://bel.fi/alankila/lcd/
+   *   https:
    *   and
-   *   https://web.archive.org/web/20210211002939/https://bel.fi/alankila/lcd/alpcor.html
+   *   https:
    *   for details.
    *
    *   **ATTENTION**: Linear blending is even more important when dealing
@@ -3953,8 +3953,8 @@ FT_BEGIN_HEADER
   } FT_Kerning_Mode;
 
 
-  /* these constants are deprecated; use the corresponding */
-  /* `FT_Kerning_Mode` values instead                      */
+  
+  
 #define ft_kerning_default   FT_KERNING_DEFAULT
 #define ft_kerning_unfitted  FT_KERNING_UNFITTED
 #define ft_kerning_unscaled  FT_KERNING_UNSCALED
@@ -4425,7 +4425,7 @@ FT_BEGIN_HEADER
    *
    * @note:
    *   Acceptable glyph names might come from the [Adobe Glyph
-   *   List](https://github.com/adobe-type-tools/agl-aglfn).  See
+   *   List](https:
    *   @FT_Get_Glyph_Name for the inverse functionality.
    *
    *   This function has limited capabilities if the config macro
@@ -4511,7 +4511,7 @@ FT_BEGIN_HEADER
    *   retrieve it.  FreeType follows Adobe TechNote #5902, 'Generating
    *   PostScript Names for Fonts Using OpenType Font Variations'.
    *
-   *     https://download.macromedia.com/pub/developer/opentype/tech-notes/5902.AdobePSNameGeneration.html
+   *     https:
    *
    *   [Since 2.9] Special PostScript names for named instances are only
    *   returned if the named instance is set with @FT_Set_Named_Instance (and
@@ -4534,7 +4534,7 @@ FT_BEGIN_HEADER
    *   table description in the OpenType specification for the meaning of the
    *   various flags (which get synthesized for non-OpenType subglyphs).
    *
-   *     https://learn.microsoft.com/typography/opentype/spec/glyf#composite-glyph-description
+   *     https:
    *
    * @values:
    *   FT_SUBGLYPH_FLAG_ARGS_ARE_WORDS ::
@@ -4597,7 +4597,7 @@ FT_BEGIN_HEADER
    *   interpreted depending on the flags returned in `*p_flags`.  See the
    *   OpenType specification for details.
    *
-   *     https://learn.microsoft.com/typography/opentype/spec/glyf#composite-glyph-description
+   *     https:
    *
    */
   FT_EXPORT( FT_Error )
@@ -4623,7 +4623,7 @@ FT_BEGIN_HEADER
    *   associated with a font.
    *
    *   See
-   *   https://adobe-type-tools.github.io/font-tech-notes/pdfs/AcrobatDC_FontPolicies.pdf
+   *   https:
    *   for more details.
    *
    * @values:
@@ -4723,8 +4723,8 @@ FT_BEGIN_HEADER
    *   Sequences' and registered 'Ideographic Variation Sequences' (IVS),
    *   collected in the 'Ideographic Variation Database' (IVD).
    *
-   *     https://unicode.org/Public/UCD/latest/ucd/StandardizedVariants.txt
-   *     https://unicode.org/reports/tr37/ https://unicode.org/ivd/
+   *     https:
+   *     https:
    *
    *   To date (January 2017), the character with the most ideographic
    *   variations is U+9089, having 32 such IVS.
@@ -5282,12 +5282,12 @@ FT_BEGIN_HEADER
   FT_Face_SetUnpatentedHinting( FT_Face  face,
                                 FT_Bool  value );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FREETYPE_H_ */
+#endif 
 
 
-/* END */
+

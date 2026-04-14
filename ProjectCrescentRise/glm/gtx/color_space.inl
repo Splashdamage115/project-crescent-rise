@@ -1,4 +1,4 @@
-/// @ref gtx_color_space
+
 
 #include <glm/ext/scalar_relational.hpp>
 #include <glm/ext/scalar_constants.hpp>
@@ -12,13 +12,13 @@ namespace glm
 		vec<3, T, Q> rgbColor;
 
 		if(equal(hsv.y, static_cast<T>(0), epsilon<T>()))
-			// achromatic (grey)
+			
 			rgbColor = vec<3, T, Q>(hsv.z);
 		else
 		{
 			T sector = floor(hsv.x * (T(1) / T(60)));
 			T frac = (hsv.x * (T(1) / T(60))) - sector;
-			// factorial part of h
+			
 			T o = hsv.z * (T(1) - hsv.y);
 			T p = hsv.z * (T(1) - hsv.y * frac);
 			T q = hsv.z * (T(1) - hsv.y * (T(1) - frac));
@@ -78,13 +78,13 @@ namespace glm
 			T h = static_cast<T>(0);
 
 			if(equal(rgbColor.r, Max, epsilon<T>()))
-				// between yellow & magenta
+				
 				h = static_cast<T>(0) + T(60) * (rgbColor.g - rgbColor.b) / Delta;
 			else if(equal(rgbColor.g, Max, epsilon<T>()))
-				// between cyan & yellow
+				
 				h = static_cast<T>(120) + T(60) * (rgbColor.b - rgbColor.r) / Delta;
 			else
-				// between magenta & cyan
+				
 				h = static_cast<T>(240) + T(60) * (rgbColor.r - rgbColor.g) / Delta;
 
 			if(h < T(0))
@@ -94,7 +94,7 @@ namespace glm
 		}
 		else
 		{
-			// If r = g = b = 0 then s = 0, h is undefined
+			
 			hsv.y = static_cast<T>(0);
 			hsv.x = static_cast<T>(0);
 		}
@@ -141,4 +141,4 @@ namespace glm
 		const vec<3, T, Q> tmp = vec<3, T, Q>(0.33, 0.59, 0.11);
 		return dot(color, tmp);
 	}
-}//namespace glm
+}

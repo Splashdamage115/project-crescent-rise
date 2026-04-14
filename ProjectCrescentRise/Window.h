@@ -19,7 +19,7 @@ public:
 		return instance;
 	}
 
-	// DELETE FUNCTIONS TO AVOID MORE INSTANCES
+	
 	Window(Window const&) = delete;
 	void operator=(Window const&) = delete;
 

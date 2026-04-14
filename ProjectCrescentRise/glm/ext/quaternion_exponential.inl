@@ -40,28 +40,28 @@ namespace glm
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER qua<T, Q> pow(qua<T, Q> const& x, T y)
 	{
-		//Raising to the power of 0 should yield 1
-		//Needed to prevent a division by 0 error later on
+		
+		
 		if(y > -epsilon<T>() && y < epsilon<T>())
 			return qua<T, Q>::wxyz(1,0,0,0);
 
-		//To deal with non-unit quaternions
+		
 		T magnitude = sqrt(x.x * x.x + x.y * x.y + x.z * x.z + x.w *x.w);
 
 		T Angle;
 		if(abs(x.w / magnitude) > cos_one_over_two<T>())
 		{
-			//Scalar component is close to 1; using it to recover angle would lose precision
-			//Instead, we use the non-scalar components since sin() is accurate around 0
+			
+			
 
-			//Prevent a division by 0 error later on
+			
 			T VectorMagnitude = x.x * x.x + x.y * x.y + x.z * x.z;
-			//Despite the compiler might say, we actually want to compare
-			//VectorMagnitude to 0. here; we could use denorm_int() compiling a
-			//project with unsafe maths optimizations might make the comparison
-			//always false, even when VectorMagnitude is 0.
+			
+			
+			
+			
 			if (VectorMagnitude < std::numeric_limits<T>::min()) {
-				//Equivalent to raising a real number to a power
+				
 				return qua<T, Q>::wxyz(pow(x.w, y), 0, 0, 0);
 			}
 
@@ -69,7 +69,7 @@ namespace glm
 		}
 		else
 		{
-			//Scalar component is small, shouldn't cause loss of precision
+			
 			Angle = acos(x.w / magnitude);
 		}
 
@@ -84,6 +84,6 @@ namespace glm
 	{
 		return pow(x, static_cast<T>(0.5));
 	}
-}//namespace glm
+}
 
 

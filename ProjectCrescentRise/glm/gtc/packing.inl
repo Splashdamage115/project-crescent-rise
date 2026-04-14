@@ -1,4 +1,4 @@
-/// @ref gtc_packing
+
 
 #include "../ext/scalar_relational.hpp"
 #include "../ext/vector_relational.hpp"
@@ -15,98 +15,98 @@ namespace detail
 {
 	GLM_FUNC_QUALIFIER glm::uint16 float2half(glm::uint32 f)
 	{
-		// 10 bits    =>                         EE EEEFFFFF
-		// 11 bits    =>                        EEE EEFFFFFF
-		// Half bits  =>                   SEEEEEFF FFFFFFFF
-		// Float bits => SEEEEEEE EFFFFFFF FFFFFFFF FFFFFFFF
+		
+		
+		
+		
 
-		// 0x00007c00 => 00000000 00000000 01111100 00000000
-		// 0x000003ff => 00000000 00000000 00000011 11111111
-		// 0x38000000 => 00111000 00000000 00000000 00000000
-		// 0x7f800000 => 01111111 10000000 00000000 00000000
-		// 0x00008000 => 00000000 00000000 10000000 00000000
+		
+		
+		
+		
+		
 		return
-			((f >> 16) & 0x8000) | // sign
-			((((f & 0x7f800000) - 0x38000000) >> 13) & 0x7c00) | // exponential
-			((f >> 13) & 0x03ff); // Mantissa
+			((f >> 16) & 0x8000) | 
+			((((f & 0x7f800000) - 0x38000000) >> 13) & 0x7c00) | 
+			((f >> 13) & 0x03ff); 
 	}
 
 	GLM_FUNC_QUALIFIER glm::uint32 float2packed11(glm::uint32 f)
 	{
-		// 10 bits    =>                         EE EEEFFFFF
-		// 11 bits    =>                        EEE EEFFFFFF
-		// Half bits  =>                   SEEEEEFF FFFFFFFF
-		// Float bits => SEEEEEEE EFFFFFFF FFFFFFFF FFFFFFFF
+		
+		
+		
+		
 
-		// 0x000007c0 => 00000000 00000000 00000111 11000000
-		// 0x00007c00 => 00000000 00000000 01111100 00000000
-		// 0x000003ff => 00000000 00000000 00000011 11111111
-		// 0x38000000 => 00111000 00000000 00000000 00000000
-		// 0x7f800000 => 01111111 10000000 00000000 00000000
-		// 0x00008000 => 00000000 00000000 10000000 00000000
+		
+		
+		
+		
+		
+		
 		return
-			((((f & 0x7f800000) - 0x38000000) >> 17) & 0x07c0) | // exponential
-			((f >> 17) & 0x003f); // Mantissa
+			((((f & 0x7f800000) - 0x38000000) >> 17) & 0x07c0) | 
+			((f >> 17) & 0x003f); 
 	}
 
 	GLM_FUNC_QUALIFIER glm::uint32 packed11ToFloat(glm::uint32 p)
 	{
-		// 10 bits    =>                         EE EEEFFFFF
-		// 11 bits    =>                        EEE EEFFFFFF
-		// Half bits  =>                   SEEEEEFF FFFFFFFF
-		// Float bits => SEEEEEEE EFFFFFFF FFFFFFFF FFFFFFFF
+		
+		
+		
+		
 
-		// 0x000007c0 => 00000000 00000000 00000111 11000000
-		// 0x00007c00 => 00000000 00000000 01111100 00000000
-		// 0x000003ff => 00000000 00000000 00000011 11111111
-		// 0x38000000 => 00111000 00000000 00000000 00000000
-		// 0x7f800000 => 01111111 10000000 00000000 00000000
-		// 0x00008000 => 00000000 00000000 10000000 00000000
+		
+		
+		
+		
+		
+		
 		return
-			((((p & 0x07c0) << 17) + 0x38000000) & 0x7f800000) | // exponential
-			((p & 0x003f) << 17); // Mantissa
+			((((p & 0x07c0) << 17) + 0x38000000) & 0x7f800000) | 
+			((p & 0x003f) << 17); 
 	}
 
 	GLM_FUNC_QUALIFIER glm::uint32 float2packed10(glm::uint32 f)
 	{
-		// 10 bits    =>                         EE EEEFFFFF
-		// 11 bits    =>                        EEE EEFFFFFF
-		// Half bits  =>                   SEEEEEFF FFFFFFFF
-		// Float bits => SEEEEEEE EFFFFFFF FFFFFFFF FFFFFFFF
+		
+		
+		
+		
 
-		// 0x0000001F => 00000000 00000000 00000000 00011111
-		// 0x0000003F => 00000000 00000000 00000000 00111111
-		// 0x000003E0 => 00000000 00000000 00000011 11100000
-		// 0x000007C0 => 00000000 00000000 00000111 11000000
-		// 0x00007C00 => 00000000 00000000 01111100 00000000
-		// 0x000003FF => 00000000 00000000 00000011 11111111
-		// 0x38000000 => 00111000 00000000 00000000 00000000
-		// 0x7f800000 => 01111111 10000000 00000000 00000000
-		// 0x00008000 => 00000000 00000000 10000000 00000000
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return
-			((((f & 0x7f800000) - 0x38000000) >> 18) & 0x03E0) | // exponential
-			((f >> 18) & 0x001f); // Mantissa
+			((((f & 0x7f800000) - 0x38000000) >> 18) & 0x03E0) | 
+			((f >> 18) & 0x001f); 
 	}
 
 	GLM_FUNC_QUALIFIER glm::uint32 packed10ToFloat(glm::uint32 p)
 	{
-		// 10 bits    =>                         EE EEEFFFFF
-		// 11 bits    =>                        EEE EEFFFFFF
-		// Half bits  =>                   SEEEEEFF FFFFFFFF
-		// Float bits => SEEEEEEE EFFFFFFF FFFFFFFF FFFFFFFF
+		
+		
+		
+		
 
-		// 0x0000001F => 00000000 00000000 00000000 00011111
-		// 0x0000003F => 00000000 00000000 00000000 00111111
-		// 0x000003E0 => 00000000 00000000 00000011 11100000
-		// 0x000007C0 => 00000000 00000000 00000111 11000000
-		// 0x00007C00 => 00000000 00000000 01111100 00000000
-		// 0x000003FF => 00000000 00000000 00000011 11111111
-		// 0x38000000 => 00111000 00000000 00000000 00000000
-		// 0x7f800000 => 01111111 10000000 00000000 00000000
-		// 0x00008000 => 00000000 00000000 10000000 00000000
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return
-			((((p & 0x03E0) << 18) + 0x38000000) & 0x7f800000) | // exponential
-			((p & 0x001f) << 18); // Mantissa
+			((((p & 0x03E0) << 18) + 0x38000000) & 0x7f800000) | 
+			((p & 0x001f) << 18); 
 	}
 
 	GLM_FUNC_QUALIFIER glm::uint half2float(glm::uint h)
@@ -133,9 +133,9 @@ namespace detail
 		if(x == 0)
 			return 0.0f;
 		else if(x == ((1 << 11) - 1))
-			return ~0;//NaN
+			return ~0;
 		else if(x == (0x1f << 6))
-			return ~0;//Inf
+			return ~0;
 
 		uint Result = packed11ToFloat(x);
 
@@ -163,9 +163,9 @@ namespace detail
 		if(x == 0)
 			return 0.0f;
 		else if(x == ((1 << 10) - 1))
-			return ~0;//NaN
+			return ~0;
 		else if(x == (0x1f << 5))
-			return ~0;//Inf
+			return ~0;
 
 		uint Result = packed10ToFloat(x);
 
@@ -174,10 +174,10 @@ namespace detail
 		return Temp;
 	}
 
-//	GLM_FUNC_QUALIFIER glm::uint f11_f11_f10(float x, float y, float z)
-//	{
-//		return ((floatTo11bit(x) & ((1 << 11) - 1)) << 0) |  ((floatTo11bit(y) & ((1 << 11) - 1)) << 11) | ((floatTo10bit(z) & ((1 << 10) - 1)) << 22);
-//	}
+
+
+
+
 
 #if GLM_SILENT_WARNINGS == GLM_ENABLE
 #	if defined(__clang__)
@@ -363,7 +363,7 @@ namespace detail
 			return vec<4, float, Q>(detail::toFloat32(Unpack.x), detail::toFloat32(Unpack.y), detail::toFloat32(Unpack.z), detail::toFloat32(Unpack.w));
 		}
 	};
-}//namespace detail
+}
 
 	GLM_FUNC_QUALIFIER uint8 packUnorm1x8(float v)
 	{
@@ -373,7 +373,7 @@ namespace detail
 	GLM_FUNC_QUALIFIER float unpackUnorm1x8(uint8 p)
 	{
 		float const Unpack(p);
-		return Unpack * static_cast<float>(0.0039215686274509803921568627451); // 1 / 255
+		return Unpack * static_cast<float>(0.0039215686274509803921568627451); 
 	}
 
 	GLM_FUNC_QUALIFIER uint16 packUnorm2x8(vec2 const& v)
@@ -389,7 +389,7 @@ namespace detail
 	{
 		u8vec2 Unpack;
 		memcpy(&Unpack, &p, sizeof(Unpack));
-		return vec2(Unpack) * float(0.0039215686274509803921568627451); // 1 / 255
+		return vec2(Unpack) * float(0.0039215686274509803921568627451); 
 	}
 
 	GLM_FUNC_QUALIFIER uint8 packSnorm1x8(float v)
@@ -405,7 +405,7 @@ namespace detail
 		int8 Unpack = 0;
 		memcpy(&Unpack, &p, sizeof(Unpack));
 		return clamp(
-			static_cast<float>(Unpack) * 0.00787401574803149606299212598425f, // 1.0f / 127.0f
+			static_cast<float>(Unpack) * 0.00787401574803149606299212598425f, 
 			-1.0f, 1.0f);
 	}
 
@@ -422,7 +422,7 @@ namespace detail
 		i8vec2 Unpack;
 		memcpy(&Unpack, &p, sizeof(Unpack));
 		return clamp(
-			vec2(Unpack) * 0.00787401574803149606299212598425f, // 1.0f / 127.0f
+			vec2(Unpack) * 0.00787401574803149606299212598425f, 
 			-1.0f, 1.0f);
 	}
 
@@ -434,7 +434,7 @@ namespace detail
 	GLM_FUNC_QUALIFIER float unpackUnorm1x16(uint16 p)
 	{
 		float const Unpack(p);
-		return Unpack * 1.5259021896696421759365224689097e-5f; // 1.0 / 65535.0
+		return Unpack * 1.5259021896696421759365224689097e-5f; 
 	}
 
 	GLM_FUNC_QUALIFIER uint64 packUnorm4x16(vec4 const& v)
@@ -449,7 +449,7 @@ namespace detail
 	{
 		u16vec4 Unpack;
 		memcpy(&Unpack, &p, sizeof(Unpack));
-		return vec4(Unpack) * 1.5259021896696421759365224689097e-5f; // 1.0 / 65535.0
+		return vec4(Unpack) * 1.5259021896696421759365224689097e-5f; 
 	}
 
 	GLM_FUNC_QUALIFIER uint16 packSnorm1x16(float v)
@@ -465,7 +465,7 @@ namespace detail
 		int16 Unpack = 0;
 		memcpy(&Unpack, &p, sizeof(Unpack));
 		return clamp(
-			static_cast<float>(Unpack) * 3.0518509475997192297128208258309e-5f, //1.0f / 32767.0f,
+			static_cast<float>(Unpack) * 3.0518509475997192297128208258309e-5f, 
 			-1.0f, 1.0f);
 	}
 
@@ -482,7 +482,7 @@ namespace detail
 		i16vec4 Unpack;
 		memcpy(&Unpack, &p, sizeof(Unpack));
 		return clamp(
-			vec4(Unpack) * 3.0518509475997192297128208258309e-5f, //1.0f / 32767.0f,
+			vec4(Unpack) * 3.0518509475997192297128208258309e-5f, 
 			-1.0f, 1.0f);
 	}
 
@@ -653,7 +653,7 @@ namespace detail
 		return vec3(Unpack.data.x, Unpack.data.y, Unpack.data.z) * pow(2.0f, static_cast<float>(Unpack.data.w) - 15.f - 9.f);
 	}
 
-	// Based on Brian Karis http://graphicrants.blogspot.fr/2009/04/rgbm-color-encoding.html
+	
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<4, T, Q> packRGBM(vec<3, T, Q> const& rgb)
 	{
@@ -947,5 +947,5 @@ namespace detail
 		memcpy(&Unpack, &p, sizeof(Unpack));
 		return Unpack;
 	}
-}//namespace glm
+}
 

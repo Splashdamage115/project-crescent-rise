@@ -8,7 +8,7 @@ Instructions to rebuild imgui_impl_sdlgpu3_shaders.h
     glslc -o fragment.spv -c shader.frag
 
 
-2) Build SDL_shadercross (https://github.com/libsdl-org/SDL_shadercross)
+2) Build SDL_shadercross (https:
 
 
 3-A) Compiling for the Vulkan Driver:
@@ -37,4 +37,4 @@ Instructions to rebuild imgui_impl_sdlgpu3_shaders.h
     Proceed to step 4
 
 
-4) Use a tool like https://notisrac.github.io/FileToCArray/ or misc/fonts/binary_to_compressed_c.cpp in imgui repository to convert the file to a uint8_t array.
+4) Use a tool like https:

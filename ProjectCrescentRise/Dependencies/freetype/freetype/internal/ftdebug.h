@@ -37,22 +37,22 @@
 #include <dlg/dlg.h>
 
 #include <freetype/ftlogging.h>
-#endif /* FT_DEBUG_LOGGING */
+#endif 
 
 
 FT_BEGIN_HEADER
 
-  /* force the definition of FT_DEBUG_LEVEL_TRACE if FT_DEBUG_LOGGING is */
-  /* already defined.                                                    */
-  /*                                                                     */
+  
+  
+  
 #ifdef FT_DEBUG_LOGGING
 #undef  FT_DEBUG_LEVEL_TRACE
 #define FT_DEBUG_LEVEL_TRACE
 #endif
 
-  /* force the definition of FT_DEBUG_LEVEL_ERROR if FT_DEBUG_LEVEL_TRACE */
-  /* is already defined; this simplifies the following #ifdefs            */
-  /*                                                                      */
+  
+  
+  
 #ifdef FT_DEBUG_LEVEL_TRACE
 #undef  FT_DEBUG_LEVEL_ERROR
 #define FT_DEBUG_LEVEL_ERROR
@@ -70,7 +70,7 @@ FT_BEGIN_HEADER
 
 #define FT_TRACE_DEF( x )  trace_ ## x ,
 
-  /* defining the enumeration */
+  
   typedef enum  FT_Trace_
   {
 #include <freetype/internal/fttrace.h>
@@ -79,13 +79,13 @@ FT_BEGIN_HEADER
   } FT_Trace;
 
 
-  /* a pointer to the array of trace levels, */
-  /* provided by `src/base/ftdebug.c'        */
+  
+  
   extern int*  ft_trace_levels;
 
 #undef FT_TRACE_DEF
 
-#endif /* FT_DEBUG_LEVEL_TRACE */
+#endif 
 
 
   /**************************************************************************
@@ -111,12 +111,12 @@ FT_BEGIN_HEADER
    */
 #ifdef FT_DEBUG_LOGGING
 
-  /* we need two macros to convert the names of `FT_COMPONENT` to a string */
+  
 #define FT_LOGGING_TAG( x )   FT_LOGGING_TAG_( x )
 #define FT_LOGGING_TAG_( x )  #x
 
-  /* we need two macros to convert the component and the trace level */
-  /* to a string that combines them                                  */
+  
+  
 #define FT_LOGGING_TAGX( x, y )   FT_LOGGING_TAGX_( x, y )
 #define FT_LOGGING_TAGX_( x, y )  #x ":" #y
 
@@ -138,7 +138,7 @@ FT_BEGIN_HEADER
             ft_remove_tag( dlg_tag );                                      \
           } while( 0 )
 
-#else /* !FT_DEBUG_LOGGING */
+#else 
 
 #define FT_LOG( level, varformat )                                         \
           do                                                               \
@@ -147,22 +147,22 @@ FT_BEGIN_HEADER
               FT_Message varformat;                                        \
           } while ( 0 )
 
-#endif /* !FT_DEBUG_LOGGING */
+#endif 
 
 
 #ifdef FT_DEBUG_LEVEL_TRACE
 
-  /* we need two macros here to make cpp expand `FT_COMPONENT' */
+  
 #define FT_TRACE_COMP( x )   FT_TRACE_COMP_( x )
 #define FT_TRACE_COMP_( x )  trace_ ## x
 
 #define FT_TRACE( level, varformat )  FT_LOG( level, varformat )
 
-#else /* !FT_DEBUG_LEVEL_TRACE */
+#else 
 
-#define FT_TRACE( level, varformat )  do { } while ( 0 )      /* nothing */
+#define FT_TRACE( level, varformat )  do { } while ( 0 )      
 
-#endif /* !FT_DEBUG_LEVEL_TRACE */
+#endif 
 
 
   /**************************************************************************
@@ -285,18 +285,18 @@ FT_BEGIN_HEADER
             ft_remove_tag( dlg_tag );                              \
           } while ( 0 )
 
-#else /* !FT_DEBUG_LOGGING */
+#else 
 
 #define FT_ERROR( varformat )  FT_Message varformat
 
-#endif /* !FT_DEBUG_LOGGING */
+#endif 
 
 
-#else  /* !FT_DEBUG_LEVEL_ERROR */
+#else  
 
-#define FT_ERROR( varformat )  do { } while ( 0 )      /* nothing */
+#define FT_ERROR( varformat )  do { } while ( 0 )      
 
-#endif /* !FT_DEBUG_LEVEL_ERROR */
+#endif 
 
 
   /**************************************************************************
@@ -322,13 +322,13 @@ FT_BEGIN_HEADER
                       __FILE__ )                      | \
             FT_ERR_CAT( FT_ERR_PREFIX, e )            )
 
-#else /* !FT_DEBUG_LEVEL_ERROR */
+#else 
 
 #define FT_ASSERT( condition )  do { } while ( 0 )
 
 #define FT_THROW( e )  FT_ERR_CAT( FT_ERR_PREFIX, e )
 
-#endif /* !FT_DEBUG_LEVEL_ERROR */
+#endif 
 
 
   /**************************************************************************
@@ -339,25 +339,25 @@ FT_BEGIN_HEADER
 
 #ifdef FT_DEBUG_LEVEL_ERROR
 
-#include "stdio.h"  /* for vfprintf() */
+#include "stdio.h"  
 
-  /* print a message */
+  
   FT_BASE( void )
   FT_Message( const char*  fmt,
               ... );
 
-  /* print a message and exit */
+  
   FT_BASE( void )
   FT_Panic( const char*  fmt,
             ... );
 
-  /* report file name and line number of an error */
+  
   FT_BASE( int )
   FT_Throw( FT_Error     error,
             int          line,
             const char*  file );
 
-#endif /* FT_DEBUG_LEVEL_ERROR */
+#endif 
 
 
   FT_BASE( void )
@@ -431,12 +431,12 @@ FT_BEGIN_HEADER
   FT_Logging_Callback( const char*  fmt,
                        ... );
 
-#endif /* FT_DEBUG_LOGGING */
+#endif 
 
 
 FT_END_HEADER
 
-#endif /* FTDEBUG_H_ */
+#endif 
 
 
-/* END */
+

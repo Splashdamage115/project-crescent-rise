@@ -43,7 +43,7 @@ m4_define([_LT_COPYING], [dnl
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http:
 ])
 
 # serial 63 LT_INIT
@@ -1297,7 +1297,7 @@ case $with_sysroot in #(
  yes)
    if test yes = "$GCC"; then
      # Trim trailing / since we'll always append absolute paths and we want
-     # to avoid //, if only for less confusing output for the user.
+     # to avoid 
      lt_sysroot=`$CC --print-sysroot 2>/dev/null | $SED 's:/\+$::'`
    fi
    ;; #(
@@ -1803,7 +1803,7 @@ AC_CACHE_VAL([lt_cv_sys_max_cmd_len], [dnl
   sysv5* | sco5v6* | sysv4.2uw2*)
     kargmax=`grep ARG_MAX /etc/conf/cf.d/stune 2>/dev/null`
     if test -n "$kargmax"; then
-      lt_cv_sys_max_cmd_len=`echo $kargmax | $SED 's/.*[[	 ]]//'`
+      lt_cv_sys_max_cmd_len=`echo $kargmax | $SED 's/.*[[	 ]]
     else
       lt_cv_sys_max_cmd_len=32768
     fi
@@ -2318,8 +2318,8 @@ func_munge_path_list ()
         eval @S|@1=\"\@S|@@S|@1 `$ECHO @S|@2 | $SED 's/:/ /g'`\"
         ;;
     *::*)
-        eval @S|@1=\"\@S|@@S|@1\ `$ECHO @S|@2 | $SED -e 's/.*:://' -e 's/:/ /g'`\"
-        eval @S|@1=\"`$ECHO @S|@2 | $SED -e 's/::.*//' -e 's/:/ /g'`\ \@S|@@S|@1\"
+        eval @S|@1=\"\@S|@@S|@1\ `$ECHO @S|@2 | $SED -e 's/.*::
+        eval @S|@1=\"`$ECHO @S|@2 | $SED -e 's/::.*
         ;;
     *)
         eval @S|@1=\"`$ECHO @S|@2 | $SED 's/:/ /g'`\"
@@ -2352,7 +2352,7 @@ if test yes = "$GCC"; then
     mingw* | windows* | cegcc*) lt_sed_strip_eq='s|=\([[A-Za-z]]:\)|\1|g' ;;
     *) lt_sed_strip_eq='s|=/|/|g' ;;
   esac
-  lt_search_path_spec=`$CC -print-search-dirs | awk $lt_awk_arg | $SED -e "s/^libraries://" -e $lt_sed_strip_eq`
+  lt_search_path_spec=`$CC -print-search-dirs | awk $lt_awk_arg | $SED -e "s/^libraries:
   case $lt_search_path_spec in
   *\;*)
     # if the path contains ";" then we assume it to be the separator
@@ -2649,7 +2649,7 @@ m4_if([$1], [],[
       do
         IFS=$lt_save_ifs
         # Let DOS variable expansion print the short 8.3 style file name.
-        lt_path=`cd "$lt_path" 2>/dev/null && cmd //C "for %i in (".") do @echo %~si"`
+        lt_path=`cd "$lt_path" 2>/dev/null && cmd 
         sys_lib_search_path_spec="$sys_lib_search_path_spec $lt_path"
       done
       IFS=$lt_save_ifs
@@ -2751,7 +2751,7 @@ freebsd* | dragonfly* | midnightbsd*)
   case $host_cpu in
     powerpc64)
       # On FreeBSD bi-arch platforms, a different variable is used for 32-bit
-      # binaries.  See <https://man.freebsd.org/cgi/man.cgi?query=ld.so>.
+      # binaries.  See <https:
       AC_COMPILE_IFELSE(
         [AC_LANG_SOURCE(
            [[int test_pointer_size[sizeof (void *) - 5];
@@ -2959,7 +2959,7 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu | gnu*)
   # even though it is searched at run-time.  Try to do the best guess by
   # appending ld.so.conf contents (and includes) to the search path.
   if test -f /etc/ld.so.conf; then
-    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;s/"//g;/^$/d' | tr '\n' ' '`
+    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*
     sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
   fi
 
@@ -3968,7 +3968,7 @@ _LT_DECL([], [MANIFEST_TOOL], [1], [Manifest tool])dnl
 AC_DEFUN([_LT_DLL_DEF_P],
 [dnl
   test DEF = "`$SED -n dnl
-    -e '\''s/^[[	 ]]*//'\'' dnl Strip leading whitespace
+    -e '\''s/^[[	 ]]*
     -e '\''/^\(;.*\)*$/d'\'' dnl      Delete empty lines and comments
     -e '\''s/^\(EXPORTS\|LIBRARY\)\([[	 ]].*\)*$/DEF/p'\'' dnl
     -e q dnl                          Only consider the first "real" line
@@ -5066,7 +5066,7 @@ m4_require([_LT_CMD_GLOBAL_SYMBOLS])dnl
 m4_require([_LT_TAG_COMPILER])dnl
 AC_MSG_CHECKING([whether the $compiler linker ($LD) supports shared libraries])
 m4_if([$1], [CXX], [
-  _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
+  _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* 
   _LT_TAGVAR(exclude_expsyms, $1)=['_GLOBAL_OFFSET_TABLE_|_GLOBAL__F[ID]_.*']
   case $host_os in
   aix[[4-9]]*)
@@ -5093,13 +5093,13 @@ m4_if([$1], [CXX], [
       _LT_TAGVAR(exclude_expsyms, $1)='_NULL_IMPORT_DESCRIPTOR|_IMPORT_DESCRIPTOR_.*'
       ;;
     *)
-      _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1 DATA/;s/^.*[[ ]]__nm__\([[^ ]]*\)[[ ]][[^ ]]*/\1 DATA/;/^I[[ ]]/d;/^[[AITW]][[ ]]/s/.* //'\'' | sort | uniq > $export_symbols'
+      _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1 DATA/;s/^.*[[ ]]__nm__\([[^ ]]*\)[[ ]][[^ ]]*/\1 DATA/;/^I[[ ]]/d;/^[[AITW]][[ ]]/s/.* 
       _LT_TAGVAR(exclude_expsyms, $1)=['[_]+GLOBAL_OFFSET_TABLE_|[_]+GLOBAL__[FID]_.*|[_]+head_[A-Za-z0-9_]+_dll|[A-Za-z0-9_]+_dll_iname']
       ;;
     esac
     ;;
   *)
-    _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
+    _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* 
     ;;
   esac
 ], [
@@ -5111,7 +5111,7 @@ m4_if([$1], [CXX], [
   _LT_TAGVAR(compiler_needs_object, $1)=no
   _LT_TAGVAR(enable_shared_with_static_runtimes, $1)=no
   _LT_TAGVAR(export_dynamic_flag_spec, $1)=
-  _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
+  _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* 
   _LT_TAGVAR(hardcode_automatic, $1)=no
   _LT_TAGVAR(hardcode_direct, $1)=no
   _LT_TAGVAR(hardcode_direct_absolute, $1)=no
@@ -5203,7 +5203,7 @@ dnl Note also adjust exclude_expsyms for C++ above.
       _LT_TAGVAR(whole_archive_flag_spec, $1)=
     fi
     supports_anon_versioning=no
-    case `$LD -v | $SED -e 's/([[^)]]\+)\s\+//' 2>&1` in
+    case `$LD -v | $SED -e 's/([[^)]]\+)\s\+
       *GNU\ gold*) supports_anon_versioning=yes ;;
       *\ [[01]].* | *\ 2.[[0-9]].* | *\ 2.10.*) ;; # catch versions < 2.11
       *\ 2.11.93.0.2\ *) supports_anon_versioning=yes ;; # RH7.3 ...
@@ -5265,7 +5265,7 @@ _LT_EOF
       _LT_TAGVAR(allow_undefined_flag, $1)=unsupported
       _LT_TAGVAR(always_export_symbols, $1)=no
       _LT_TAGVAR(enable_shared_with_static_runtimes, $1)=yes
-      _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1 DATA/;s/^.*[[ ]]__nm__\([[^ ]]*\)[[ ]][[^ ]]*/\1 DATA/;/^I[[ ]]/d;/^[[AITW]][[ ]]/s/.* //'\'' | sort | uniq > $export_symbols'
+      _LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1 DATA/;s/^.*[[ ]]__nm__\([[^ ]]*\)[[ ]][[^ ]]*/\1 DATA/;/^I[[ ]]/d;/^[[AITW]][[ ]]/s/.* 
       _LT_TAGVAR(exclude_expsyms, $1)=['[_]+GLOBAL_OFFSET_TABLE_|[_]+GLOBAL__[FID]_.*|[_]+head_[A-Za-z0-9_]+_dll|[A-Za-z0-9_]+_dll_iname']
       _LT_TAGVAR(file_list_spec, $1)='@'
 
@@ -5751,7 +5751,7 @@ _LT_EOF
 	# _LT_TAGVAR(old_archive_from_new_cmds, $1)='true'
 	_LT_TAGVAR(enable_shared_with_static_runtimes, $1)=yes
 	_LT_TAGVAR(exclude_expsyms, $1)='_NULL_IMPORT_DESCRIPTOR|_IMPORT_DESCRIPTOR_.*'
-	_LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1,DATA/'\'' | $SED -e '\''/^[[AITW]][[ ]]/s/.*[[ ]]//'\'' | sort | uniq > $export_symbols'
+	_LT_TAGVAR(export_symbols_cmds, $1)='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[[BCDGRS]][[ ]]/s/.*[[ ]]\([[^ ]]*\)/\1,DATA/'\'' | $SED -e '\''/^[[AITW]][[ ]]/s/.*[[ ]]
 	# Don't use ranlib
 	_LT_TAGVAR(old_postinstall_cmds, $1)='chmod 644 $oldlib'
 	_LT_TAGVAR(postlink_cmds, $1)='lt_outputfile="@OUTPUT@"~
@@ -5777,7 +5777,7 @@ _LT_EOF
 	# Tell ltmain to make .dll files, not .so files.
 	shrext_cmds=.dll
 	# FIXME: Setting linknames here is a bad hack.
-	_LT_TAGVAR(archive_cmds, $1)='$CC -o $lib $libobjs $compiler_flags `func_echo_all "$deplibs" | $SED '\''s/ -lc$//'\''` -link -dll~linknames='
+	_LT_TAGVAR(archive_cmds, $1)='$CC -o $lib $libobjs $compiler_flags `func_echo_all "$deplibs" | $SED '\''s/ -lc$
 	# The linker will automatically build a .lib file if we build a DLL.
 	_LT_TAGVAR(old_archive_from_new_cmds, $1)='true'
 	# FIXME: Should let the user specify the lib program.
@@ -8376,9 +8376,9 @@ _LT_DECL([], [FILECMD], [1], [A file(cmd) program that detects file types])
 m4_defun([_LT_DECL_SED],
 [AC_PROG_SED
 test -z "$SED" && SED=sed
-Xsed="$SED -e 1s/^X//"
+Xsed="$SED -e 1s/^X
 _LT_DECL([], [SED], [1], [A sed program that does not truncate output])
-_LT_DECL([], [Xsed], ["\$SED -e 1s/^X//"],
+_LT_DECL([], [Xsed], ["\$SED -e 1s/^X
     [Sed that helps us avoid accidentally triggering echo(1) options like -n])
 ])# _LT_DECL_SED
 dnl aclocal-1.4 backwards compatibility:

@@ -12,7 +12,7 @@
         <meta name="author" content="FreeType Contributors">
       
       
-        <link rel="canonical" href="http://freetype.org/freetype2/docs/reference/ft2-layer_management.html">
+        <link rel="canonical" href="http:
       
       
         <link rel="prev" href="ft2-color_management.html">
@@ -46,8 +46,8 @@
       
         
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <link rel="preconnect" href="https:
+        <link rel="stylesheet" href="https:
         <style>:root{--md-text-font:"Noto Serif";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -101,7 +101,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http:
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -127,7 +127,7 @@
     
       <label class="md-header__button md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http:
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -136,15 +136,15 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http:
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http:
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http:
         </button>
       </nav>
       
@@ -2604,7 +2604,7 @@
 
 
 
-<p><a href="https://www.freetype.org">FreeType</a> &raquo; <a href="../">Docs</a> &raquo; <a href="index.html#extended-api">Extended API</a> &raquo; Glyph Layer Management</p>
+<p><a href="https:
 <hr />
 <h1 id="glyph-layer-management">Glyph Layer Management<a class="headerlink" href="#glyph-layer-management" title="Permanent link">&para;</a></h1>
 <h2 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h2>
@@ -2648,7 +2648,7 @@
 </code></pre></div>
 
 <p>This is an interface to the &lsquo;COLR&rsquo; table in OpenType fonts to iteratively retrieve the colored glyph layers associated with the current glyph slot.</p>
-<p><a href="https://learn.microsoft.com/typography/opentype/spec/colr">https://learn.microsoft.com/typography/opentype/spec/colr</a></p>
+<p><a href="https:
 <p>The glyph layer data for a given glyph index, if present, provides an alternative, multi-color glyph representation: Instead of rendering the outline or bitmap with the given glyph index, glyphs with the indices and colors returned by this function are rendered layer by layer.</p>
 <p>The returned elements are ordered in the z&nbsp;direction from bottom to top; the 'n'th element should be rendered with the associated palette color and blended on top of the already rendered layers (elements 0, 1, &hellip;, n-1).</p>
 <h4>input</h4>
@@ -2718,9 +2718,9 @@
       else
         layer_color = palette[layer_color_index];
 
-      // Load and render glyph `layer_glyph_index&#39;, then
-      // blend resulting pixmap (using color `layer_color&#39;)
-      // with previously created pixmaps.
+      
+      
+      
 
     } while ( FT_Get_Color_Glyph_Layer( face,
                                         glyph_index,
@@ -2757,7 +2757,7 @@
   } <b>FT_PaintFormat</b>;
 </code></pre></div>
 
-<p>Enumeration describing the different paint format types of the v1 extensions to the &lsquo;COLR&rsquo; table, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;.</p>
+<p>Enumeration describing the different paint format types of the v1 extensions to the &lsquo;COLR&rsquo; table, see &lsquo;<a href="https:
 <p>The enumeration values loosely correspond with the format numbers of the specification: FreeType always returns a fully specified &lsquo;Paint&rsquo; structure for the &lsquo;Transform&rsquo;, &lsquo;Translate&rsquo;, &lsquo;Scale&rsquo;, &lsquo;Rotate&rsquo;, and &lsquo;Skew&rsquo; table types even though the specification has different formats depending on whether or not a center is specified, whether the scale is uniform in x and y&nbsp;direction or not, etc. Also, only non-variable format identifiers are listed in this enumeration; as soon as support for variable &lsquo;COLR&rsquo; v1 fonts is implemented, interpolation is performed dependent on axis coordinates, which are configured on the <code><a href="ft2-face_creation.html#ft_face">FT_Face</a></code> through <code><a href="ft2-multiple_masters.html#ft_set_var_design_coordinates">FT_Set_Var_Design_Coordinates</a></code>. This implies that always static, readily interpolated values are returned in the &lsquo;Paint&rsquo; structures.</p>
 <h4>since</h4>
 
@@ -2778,7 +2778,7 @@
   } <b>FT_ColorStopIterator</b>;
 </code></pre></div>
 
-<p>This iterator object is needed for <code><a href="ft2-layer_management.html#ft_get_colorline_stops">FT_Get_Colorline_Stops</a></code>. It keeps state while iterating over the stops of an <code><a href="ft2-layer_management.html#ft_colorline">FT_ColorLine</a></code>, representing the <code>ColorLine</code> struct of the v1 extensions to &lsquo;COLR&rsquo;, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. Do not manually modify fields of this iterator.</p>
+<p>This iterator object is needed for <code><a href="ft2-layer_management.html#ft_get_colorline_stops">FT_Get_Colorline_Stops</a></code>. It keeps state while iterating over the stops of an <code><a href="ft2-layer_management.html#ft_colorline">FT_ColorLine</a></code>, representing the <code>ColorLine</code> struct of the v1 extensions to &lsquo;COLR&rsquo;, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="num_color_stops">num_color_stops</td><td class="desc">
@@ -2810,7 +2810,7 @@
   } <b>FT_ColorIndex</b>;
 </code></pre></div>
 
-<p>A structure representing a <code>ColorIndex</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;.</p>
+<p>A structure representing a <code>ColorIndex</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="palette_index">palette_index</td><td class="desc">
@@ -2836,7 +2836,7 @@
   } <b>FT_ColorStop</b>;
 </code></pre></div>
 
-<p>A structure representing a <code>ColorStop</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;.</p>
+<p>A structure representing a <code>ColorStop</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="stop_offset">stop_offset</td><td class="desc">
@@ -2863,7 +2863,7 @@
   } <b>FT_PaintExtend</b>;
 </code></pre></div>
 
-<p>An enumeration representing the &lsquo;Extend&rsquo; mode of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. It describes how the gradient fill continues at the other boundaries.</p>
+<p>An enumeration representing the &lsquo;Extend&rsquo; mode of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>since</h4>
 
 <p>2.13</p>
@@ -2879,7 +2879,7 @@
   } <b>FT_ColorLine</b>;
 </code></pre></div>
 
-<p>A structure representing a <code>ColorLine</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. It describes a list of color stops along the defined gradient.</p>
+<p>A structure representing a <code>ColorLine</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="extend">extend</td><td class="desc">
@@ -2973,7 +2973,7 @@
   } <b>FT_Composite_Mode</b>;
 </code></pre></div>
 
-<p>An enumeration listing the &lsquo;COLR&rsquo; v1 composite modes used in <code><a href="ft2-layer_management.html#ft_paintcomposite">FT_PaintComposite</a></code>. For more details on each paint mode, see &lsquo;<a href="https://www.w3.org/TR/compositing-1/#porterduffcompositingoperators">https://www.w3.org/TR/compositing-1/#porterduffcompositingoperators</a>&rsquo;.</p>
+<p>An enumeration listing the &lsquo;COLR&rsquo; v1 composite modes used in <code><a href="ft2-layer_management.html#ft_paintcomposite">FT_PaintComposite</a></code>. For more details on each paint mode, see &lsquo;<a href="https:
 <h4>since</h4>
 
 <p>2.13</p>
@@ -3035,7 +3035,7 @@
   } <b>FT_PaintSolid</b>;
 </code></pre></div>
 
-<p>A structure representing a <code>PaintSolid</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. Using a <code>PaintSolid</code> value means that the glyph layer filled with this paint is solid-colored and does not contain a gradient.</p>
+<p>A structure representing a <code>PaintSolid</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="color">color</td><td class="desc">
@@ -3062,7 +3062,7 @@
   } <b>FT_PaintLinearGradient</b>;
 </code></pre></div>
 
-<p>A structure representing a <code>PaintLinearGradient</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. The glyph layer filled with this paint is drawn filled with a linear gradient.</p>
+<p>A structure representing a <code>PaintLinearGradient</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="colorline">colorline</td><td class="desc">
@@ -3098,7 +3098,7 @@
   } <b>FT_PaintRadialGradient</b>;
 </code></pre></div>
 
-<p>A structure representing a <code>PaintRadialGradient</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. The glyph layer filled with this paint is drawn filled with a radial gradient.</p>
+<p>A structure representing a <code>PaintRadialGradient</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="colorline">colorline</td><td class="desc">
@@ -3136,7 +3136,7 @@
   } <b>FT_PaintSweepGradient</b>;
 </code></pre></div>
 
-<p>A structure representing a <code>PaintSweepGradient</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. The glyph layer filled with this paint is drawn filled with a sweep gradient from <code>start_angle</code> to <code>end_angle</code>.</p>
+<p>A structure representing a <code>PaintSweepGradient</code> value of the &lsquo;COLR&rsquo; v1 extensions, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="colorline">colorline</td><td class="desc">
@@ -3436,7 +3436,7 @@
   } <b>FT_COLR_Paint</b>;
 </code></pre></div>
 
-<p>A union object representing format and details of a paint table of a &lsquo;COLR&rsquo; v1 font, see &lsquo;<a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a>&rsquo;. Use <code><a href="ft2-layer_management.html#ft_get_paint">FT_Get_Paint</a></code> to retrieve a <code><a href="ft2-layer_management.html#ft_colr_paint">FT_COLR_Paint</a></code> for an <code><a href="ft2-layer_management.html#ft_opaquepaint">FT_OpaquePaint</a></code> object.</p>
+<p>A union object representing format and details of a paint table of a &lsquo;COLR&rsquo; v1 font, see &lsquo;<a href="https:
 <h4>fields</h4>
 <table class="fields">
 <tr><td class="val" id="format">format</td><td class="desc">
@@ -3527,7 +3527,7 @@
 </code></pre></div>
 
 <p>This is the starting point and interface to color gradient information in a &lsquo;COLR&rsquo; v1 table in OpenType fonts to recursively retrieve the paint tables for the directed acyclic graph of a colored glyph, given a glyph ID.</p>
-<p><a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a></p>
+<p><a href="https:
 <p>In a &lsquo;COLR&rsquo; v1 font, each color glyph defines a directed acyclic graph of nested paint tables, such as <code>PaintGlyph</code>, <code>PaintSolid</code>, <code>PaintLinearGradient</code>, <code>PaintRadialGradient</code>, and so on. Using this function and specifying a glyph ID, one retrieves the root paint table for this glyph ID.</p>
 <p>This function allows control whether an initial root transform is returned to configure scaling, transform, and translation correctly on the client's graphics context. The initial root transform is computed and returned according to the values configured for <code><a href="ft2-sizing_and_scaling.html#ft_size">FT_Size</a></code> and <code><a href="ft2-sizing_and_scaling.html#ft_set_transform">FT_Set_Transform</a></code> on the <code><a href="ft2-face_creation.html#ft_face">FT_Face</a></code> object, see below for details of the <code>root_transform</code> parameter. This has implications for a client &lsquo;COLR&rsquo; v1 implementation: When this function returns an initially computed root transform, at the time of executing the <code><a href="ft2-layer_management.html#ft_paintglyph">FT_PaintGlyph</a></code> operation, the contours should be retrieved using <code><a href="ft2-glyph_retrieval.html#ft_load_glyph">FT_Load_Glyph</a></code> at unscaled, untransformed size. This is because the root transform applied to the graphics context will take care of correct scaling.</p>
 <p>Alternatively, to allow hinting of contours, at the time of executing <code><a href="ft2-glyph_retrieval.html#ft_load_glyph">FT_Load_Glyph</a></code>, the current graphics context transformation matrix can be decomposed into a scaling matrix and a remainder, and <code><a href="ft2-glyph_retrieval.html#ft_load_glyph">FT_Load_Glyph</a></code> can be used to retrieve the contours at scaled size. Care must then be taken to blit or clip to the graphics context with taking this remainder transformation into account.</p>
@@ -3647,7 +3647,7 @@
 </code></pre></div>
 
 <p>This is an interface to color gradient information in a &lsquo;COLR&rsquo; v1 table in OpenType fonts to iteratively retrieve the gradient and solid fill information for colored glyph layers for a specified glyph ID.</p>
-<p><a href="https://github.com/googlefonts/colr-gradients-spec">https://github.com/googlefonts/colr-gradients-spec</a></p>
+<p><a href="https:
 <h4>input</h4>
 <table class="fields">
 <tr><td class="val" id="face">face</td><td class="desc">
@@ -3739,12 +3739,12 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright 2025 <a href = "https://www.freetype.org/license.html">The FreeType Project</a>.
+      Copyright 2025 <a href = "https:
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https:
       Material for MkDocs
     </a>
   

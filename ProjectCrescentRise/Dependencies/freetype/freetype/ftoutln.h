@@ -572,17 +572,17 @@ FT_BEGIN_HEADER
   FT_Outline_Get_Orientation( FT_Outline*  outline );
 
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTOUTLN_H_ */
+#endif 
 
 
-/* END */
 
 
-/* Local Variables: */
-/* coding: utf-8    */
-/* End:             */
+
+
+
+

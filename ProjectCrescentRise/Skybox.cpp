@@ -64,7 +64,7 @@ void Skybox::Start()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	// Generate and setup EBO
+	
 	glGenBuffers(1, &m_body.ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_body.ebo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indices.size(), indices.data(), GL_STATIC_DRAW);
@@ -76,21 +76,21 @@ void Skybox::Start()
 
 	if (LOW_RES)
 	{
-		faces.at(0) = "./Assets/Images/SkyBox/LowRes_px.png"; // +X
-		faces.at(1) = "./Assets/Images/SkyBox/LowRes_nx.png"; // -X
-		faces.at(2) = "./Assets/Images/SkyBox/LowRes_py.png"; // +Y
-		faces.at(3) = "./Assets/Images/SkyBox/LowRes_ny.png"; // -Y
-		faces.at(4) = "./Assets/Images/SkyBox/LowRes_pz.png"; // +Z
-		faces.at(5) = "./Assets/Images/SkyBox/LowRes_nz.png"; // -Z
+		faces.at(0) = "./Assets/Images/SkyBox/LowRes_px.png"; 
+		faces.at(1) = "./Assets/Images/SkyBox/LowRes_nx.png"; 
+		faces.at(2) = "./Assets/Images/SkyBox/LowRes_py.png"; 
+		faces.at(3) = "./Assets/Images/SkyBox/LowRes_ny.png"; 
+		faces.at(4) = "./Assets/Images/SkyBox/LowRes_pz.png"; 
+		faces.at(5) = "./Assets/Images/SkyBox/LowRes_nz.png"; 
 	}
 	else
 	{
-		faces.at(0) = "./Assets/Images/SkyBox/HighRes_px.png"; // +X
-		faces.at(1) = "./Assets/Images/SkyBox/HighRes_nx.png"; // -X
-		faces.at(2) = "./Assets/Images/SkyBox/HighRes_py.png"; // +Y
-		faces.at(3) = "./Assets/Images/SkyBox/HighRes_ny.png"; // -Y
-		faces.at(4) = "./Assets/Images/SkyBox/HighRes_pz.png"; // +Z
-		faces.at(5) = "./Assets/Images/SkyBox/HighRes_nz.png"; // -Z
+		faces.at(0) = "./Assets/Images/SkyBox/HighRes_px.png"; 
+		faces.at(1) = "./Assets/Images/SkyBox/HighRes_nx.png"; 
+		faces.at(2) = "./Assets/Images/SkyBox/HighRes_py.png"; 
+		faces.at(3) = "./Assets/Images/SkyBox/HighRes_ny.png"; 
+		faces.at(4) = "./Assets/Images/SkyBox/HighRes_pz.png"; 
+		faces.at(5) = "./Assets/Images/SkyBox/HighRes_nz.png"; 
 	}
 
 	glGenTextures(1, &textureID);

@@ -1,4 +1,4 @@
-/// @ref gtx_optimum_pow
+
 
 namespace glm
 {
@@ -19,4 +19,4 @@ namespace glm
 	{
 		return (x * x) * (x * x);
 	}
-}//namespace glm
+}

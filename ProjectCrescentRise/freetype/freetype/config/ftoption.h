@@ -704,7 +704,7 @@ FT_BEGIN_HEADER
    * defined.
    *
    * [1]
-   * https://learn.microsoft.com/typography/cleartype/truetypecleartype
+   * https:
    */
 #define TT_CONFIG_OPTION_SUBPIXEL_HINTING
 
@@ -722,8 +722,8 @@ FT_BEGIN_HEADER
    * flags array which can be used to disambiguate, but old fonts will not
    * have them.
    *
-   *   https://learn.microsoft.com/typography/opentype/spec/glyf
-   *   https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6glyf.html
+   *   https:
+   *   https:
    */
 #undef TT_CONFIG_OPTION_COMPONENT_OFFSET_SCALED
 
@@ -743,7 +743,7 @@ FT_BEGIN_HEADER
    * Define `TT_CONFIG_OPTION_NO_BORING_EXPANSION` if you want to exclude
    * support for 'boring' OpenType specification expansions.
    *
-   *   https://github.com/harfbuzz/boring-expansion-spec
+   *   https:
    *
    * Right now, the following features are covered:
    *

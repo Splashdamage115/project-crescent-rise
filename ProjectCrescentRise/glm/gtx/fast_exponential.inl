@@ -1,8 +1,8 @@
-/// @ref gtx_fast_exponential
+
 
 namespace glm
 {
-	// fastPow:
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType fastPow(genType x, genType y)
 	{
@@ -33,20 +33,20 @@ namespace glm
 		return Result;
 	}
 
-	// fastExp
-	// Note: This function provides accurate results only for value between -1 and 1, else avoid it.
+	
+	
 	template<typename T>
 	GLM_FUNC_QUALIFIER T fastExp(T x)
 	{
-		// This has a better looking and same performance in release mode than the following code. However, in debug mode it's slower.
-		// return 1.0f + x * (1.0f + x * 0.5f * (1.0f + x * 0.3333333333f * (1.0f + x * 0.25 * (1.0f + x * 0.2f))));
+		
+		
 		T x2 = x * x;
 		T x3 = x2 * x;
 		T x4 = x3 * x;
 		T x5 = x4 * x;
 		return T(1) + x + (x2 * T(0.5)) + (x3 * T(0.1666666667)) + (x4 * T(0.041666667)) + (x5 * T(0.008333333333));
 	}
-	/*  // Try to handle all values of float... but often shower than std::exp, glm::floor and the loop kill the performance
+	/*  
 	GLM_FUNC_QUALIFIER float fastExp(float x)
 	{
 		const float e = 2.718281828f;
@@ -64,11 +64,11 @@ namespace glm
 		return z * (1.0f + FloatPart + (x2 * 0.5f) + (x3 * 0.1666666667f) + (x4 * 0.041666667f) + (x5 * 0.008333333333f));
 	}
 
-	// Increase accuracy on number bigger that 1 and smaller than -1 but it's not enough for high and negative numbers
+	
 	GLM_FUNC_QUALIFIER float fastExp(float x)
 	{
-		// This has a better looking and same performance in release mode than the following code. However, in debug mode it's slower.
-		// return 1.0f + x * (1.0f + x * 0.5f * (1.0f + x * 0.3333333333f * (1.0f + x * 0.25 * (1.0f + x * 0.2f))));
+		
+		
 		float x2 = x * x;
 		float x3 = x2 * x;
 		float x4 = x3 * x;
@@ -86,7 +86,7 @@ namespace glm
 		return detail::functor1<vec, L, T, T, Q>::call(fastExp, x);
 	}
 
-	// fastLog
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType fastLog(genType x)
 	{
@@ -108,7 +108,7 @@ namespace glm
 		return detail::functor1<vec, L, T, T, Q>::call(fastLog, x);
 	}
 
-	//fastExp2, ln2 = 0.69314718055994530941723212145818f
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType fastExp2(genType x)
 	{
@@ -121,7 +121,7 @@ namespace glm
 		return detail::functor1<vec, L, T, T, Q>::call(fastExp2, x);
 	}
 
-	// fastLog2, ln2 = 0.69314718055994530941723212145818f
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType fastLog2(genType x)
 	{
@@ -133,4 +133,4 @@ namespace glm
 	{
 		return detail::functor1<vec, L, T, T, Q>::call(fastLog2, x);
 	}
-}//namespace glm
+}

@@ -1,5 +1,5 @@
 # ===========================================================================
-#        https://www.gnu.org/software/autoconf-archive/ax_pthread.html
+#        https:
 # ===========================================================================
 #
 # SYNOPSIS
@@ -48,7 +48,7 @@
 #
 #   Please let the authors know if this macro fails on any platform, or if
 #   you have any other suggestions or comments. This macro was based on work
-#   by SGJ on autoconf scripts for FFTW (http://www.fftw.org/) (with help
+#   by SGJ on autoconf scripts for FFTW (http:
 #   from M. Frigo), as well as ac_pthread and hb_pthread macros posted by
 #   Alejandro Forero Cuervo to the autoconf macro repository. We are also
 #   grateful for the helpful feedback of numerous users.
@@ -72,7 +72,7 @@
 #   Public License for more details.
 #
 #   You should have received a copy of the GNU General Public License along
-#   with this program. If not, see <https://www.gnu.org/licenses/>.
+#   with this program. If not, see <https:
 #
 #   As a special exception, the respective Autoconf Macro's copyright owner
 #   gives unlimited permission to copy, distribute and modify the configure
@@ -230,9 +230,9 @@ ax_pthread_clang="$ax_cv_PTHREAD_CLANG"
 # Note that for GCC and Clang -pthread generally implies -lpthread,
 # except when -nostdlib is passed.
 # This is problematic using libtool to build C++ shared libraries with pthread:
-# [1] https://gcc.gnu.org/bugzilla/show_bug.cgi?id=25460
-# [2] https://bugzilla.redhat.com/show_bug.cgi?id=661333
-# [3] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=468555
+# [1] https:
+# [2] https:
+# [3] https:
 # To solve this, first try -pthread together with -lpthread for GCC
 
 AS_IF([test "x$GCC" = "xyes"],

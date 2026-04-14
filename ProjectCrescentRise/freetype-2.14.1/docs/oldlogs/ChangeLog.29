@@ -41,7 +41,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=8003
+	  https:
 
 	* src/sfnt/ttcmap.c (tt_cmap2_char_next): Adjust condition to avoid
 	an endless loop.
@@ -75,7 +75,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7928
+	  https:
 
 	* src/sfnt/ttcmap.c (tt_cmap2_char_next): Adjust condition to avoid
 	an endless loop.
@@ -99,7 +99,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7828
+	  https:
 
 	* src/sfnt/ttcmap.c (tt_cmap2_char_next): Avoid endless loop.
 
@@ -109,7 +109,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7739
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_CEILING): Use FT_PIX_CEIL_LONG.
 
@@ -119,7 +119,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7718
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_MIRP): Use ADD_LONG.
 
@@ -142,7 +142,7 @@
 
 	This fixes
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7707
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_SLOOP): Do it.
 
@@ -152,7 +152,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7652
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_MDAP): Use SUB_LONG.
 
@@ -212,7 +212,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7453
+	  https:
 
 	* src/truetype/ttinterp.c (Round_Super, Round_Super_45): Use
 	ADD_LONG and SUB_LONG.
@@ -236,7 +236,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=7371
+	  https:
 
 	* src/cff/cffload.c (cff_load_private_dict): Sanitize
 	`priv->blue_shift' and `priv->blue_fuzz' to avoid overflows later
@@ -386,7 +386,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=6027
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_MSIRP, Ins_MIAP, Ins_MIRP): Use
 	SUB_LONG; avoid FT_ABS.
@@ -411,7 +411,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=5739
+	  https:
 
 	Bug introduced in commit 08cd62deedefe217f2ea50e392923ce8b5bc7ac7.
 
@@ -424,7 +424,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=5736
+	  https:
 
 2018-01-27  Werner Lemberg  <wl@gnu.org>
 
@@ -637,7 +637,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=4838
+	  https:
 
 2017-12-31  Werner Lemberg  <wl@gnu.org>
 
@@ -885,7 +885,7 @@
 
 	Also reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=791317
+	  https:
 
 	* src/base/ftbitmap.c (ft_bitmap_assure_buffer): If increasing the
 	bitmap size needs a larger bitmap buffer, assure that the new memory
@@ -1037,7 +1037,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=4377
+	  https:
 
 2017-11-22  Ewald Hew  <ewaldhew@gmail.com>
 
@@ -1108,7 +1108,7 @@
 	[truetype] Add more tricky fonts.
 
 	See the report by Yang Yinsen.
-	https://lists.gnu.org/archive/html/freetype-devel/2017-11/msg00000.html
+	https:
 
 	* src/truetype/ttobjs.c (trick_names): Add `DFGothic-EB',
 	`DFGyoSho-Lt', `DFHSGothic-W5', `DFHSMincho-W3' and `DFHSMincho-W7'.
@@ -1256,7 +1256,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=772775
+	  https:
 
 2017-10-08  Werner Lemberg  <wl@gnu.org>
 
@@ -1264,7 +1264,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3579
+	  https:
 
 2017-10-07  Werner Lemberg  <wl@gnu.org>
 
@@ -1380,7 +1380,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3539
+	  https:
 
 2017-10-05  Werner Lemberg  <wl@gnu.org>
 
@@ -1412,7 +1412,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3514.
+	  https:
 
 	* src/raster/ftrend1.c (ft_raster1_render): Explicitly signed height.
 	* src/smooth/ftsmooth.c (ft_smooth_render_generic): Ditto.
@@ -1448,7 +1448,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3510
+	  https:
 
 2017-09-28  Ewald Hew  <ewaldhew@gmail.com>
 
@@ -1456,7 +1456,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3489
+	  https:
 
 2017-09-28  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -2294,7 +2294,7 @@
 
 	Changes triggered by
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=3429
+	  https:
 
 	* src/truetype/ttinterp.c (Ins_SHPIX, Ins_DELTAP): Use NEG_LONG.
 	(Ins_MIAP): Use SUB_LONG.

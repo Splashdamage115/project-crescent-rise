@@ -48,7 +48,7 @@
    *       Fields.  Master's thesis.  Czech Technical University in Prague,
    *       Faculty of InformationTechnology, 2015.
    *
-   *     For more information: https://github.com/Chlumsky/msdfgen
+   *     For more information: https:
    *
    * ========================================================================
    *
@@ -79,7 +79,7 @@
    *       {
    *         foreach edge in contour:
    *         {
-   *           // get shortest distance from point (x, y) to the edge
+   *           
    *           d = get_min_dist(x, y, edge);
    *
    *           if (d < min_dist)
@@ -1528,7 +1528,7 @@
   /*                                                                */
   /* The procedure can be found at                                  */
   /*                                                                */
-  /*   https://mathworld.wolfram.com/QuadraticFormula.html          */
+  /*   https:
   static FT_UShort
   solve_quadratic_equation( FT_26D6   a,
                             FT_26D6   b,
@@ -1581,7 +1581,7 @@
   /*                                                            */
   /* The procedure can be found at                              */
   /*                                                            */
-  /*   https://mathworld.wolfram.com/CubicFormula.html          */
+  /*   https:
   static FT_UShort
   solve_cubic_equation( FT_26D6   a,
                         FT_26D6   b,
@@ -2218,7 +2218,7 @@
        *
        * For more details see
        *
-       *   https://lists.nongnu.org/archive/html/freetype-devel/2020-06/msg00147.html
+       *   https:
        */
 
       if ( t < 0 )

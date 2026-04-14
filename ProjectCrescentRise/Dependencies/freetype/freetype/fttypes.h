@@ -120,7 +120,7 @@ FT_BEGIN_HEADER
    *   A signed 16-bit integer used to store a distance in original font
    *   units.
    */
-  typedef signed short  FT_FWord;   /* distance in FUnits */
+  typedef signed short  FT_FWord;   
 
 
   /**************************************************************************
@@ -132,7 +132,7 @@ FT_BEGIN_HEADER
    *   An unsigned 16-bit integer used to store a distance in original font
    *   units.
    */
-  typedef unsigned short  FT_UFWord;  /* unsigned distance */
+  typedef unsigned short  FT_UFWord;  
 
 
   /**************************************************************************
@@ -495,13 +495,13 @@ FT_BEGIN_HEADER
               FT_STATIC_BYTE_CAST( FT_Tag, _x4 )         )
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*                                                                       */
-  /*                    L I S T   M A N A G E M E N T                      */
-  /*                                                                       */
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -586,17 +586,17 @@ FT_BEGIN_HEADER
 
   } FT_ListRec;
 
-  /* */
+  
 
 
 #define FT_IS_EMPTY( list )  ( (list).head == 0 )
 #define FT_BOOL( x )         FT_STATIC_CAST( FT_Bool, (x) != 0 )
 
-  /* concatenate C tokens */
+  
 #define FT_ERR_XCAT( x, y )  x ## y
 #define FT_ERR_CAT( x, y )   FT_ERR_XCAT( x, y )
 
-  /* see `ftmoderr.h` for descriptions of the following macros */
+  
 
 #define FT_ERR( e )  FT_ERR_CAT( FT_ERR_PREFIX, e )
 
@@ -611,7 +611,7 @@ FT_BEGIN_HEADER
 
 FT_END_HEADER
 
-#endif /* FTTYPES_H_ */
+#endif 
 
 
-/* END */
+

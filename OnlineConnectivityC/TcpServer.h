@@ -12,8 +12,8 @@
 #define DEFAULT_PORT "54000"
 #define BUFFER_SIZE 4096
 
-#define BUFLEN 512	//Max length of buffer
-#define PORT 8888	//The port on which to listen for incoming data
+#define BUFLEN 512	
+#define PORT 8888	
 
 class TcpServer
 {

@@ -94,7 +94,7 @@ extern "C" {
  */
 #if !defined(_WIN32) && (defined(__WIN32__) || defined(WIN32) || defined(__MINGW32__))
  #define _WIN32
-#endif /* _WIN32 */
+#endif 
 
 /* Include because most Windows GLU headers need wchar_t and
  * the macOS OpenGL header blocks the definition of ptrdiff_t by glext.h.
@@ -109,7 +109,7 @@ extern "C" {
 
 #if defined(GLFW_INCLUDE_VULKAN)
   #include <vulkan/vulkan.h>
-#endif /* Vulkan header */
+#endif 
 
 /* The Vulkan header may have indirectly included windows.h (because of
  * VK_USE_PLATFORM_WIN32_KHR) so we offer our replacement symbols after it.
@@ -125,21 +125,21 @@ extern "C" {
   #define APIENTRY
  #endif
  #define GLFW_APIENTRY_DEFINED
-#endif /* APIENTRY */
+#endif 
 
 /* Some Windows OpenGL headers need this.
  */
 #if !defined(WINGDIAPI) && defined(_WIN32)
  #define WINGDIAPI __declspec(dllimport)
  #define GLFW_WINGDIAPI_DEFINED
-#endif /* WINGDIAPI */
+#endif 
 
 /* Some Windows GLU headers need this.
  */
 #if !defined(CALLBACK) && defined(_WIN32)
  #define CALLBACK __stdcall
  #define GLFW_CALLBACK_DEFINED
-#endif /* CALLBACK */
+#endif 
 
 /* Include the chosen OpenGL or OpenGL ES headers.
  */
@@ -185,16 +185,16 @@ extern "C" {
   #include <OpenGL/gl3.h>
   #if defined(GLFW_INCLUDE_GLEXT)
    #include <OpenGL/gl3ext.h>
-  #endif /*GLFW_INCLUDE_GLEXT*/
+  #endif 
 
- #else /*__APPLE__*/
+ #else 
 
   #include <GL/glcorearb.h>
   #if defined(GLFW_INCLUDE_GLEXT)
    #include <GL/glext.h>
   #endif
 
- #endif /*__APPLE__*/
+ #endif 
 
 #elif defined(GLFW_INCLUDE_GLU)
 
@@ -204,13 +204,13 @@ extern "C" {
    #include <OpenGL/glu.h>
   #endif
 
- #else /*__APPLE__*/
+ #else 
 
   #if defined(GLFW_INCLUDE_GLU)
    #include <GL/glu.h>
   #endif
 
- #endif /*__APPLE__*/
+ #endif 
 
 #elif !defined(GLFW_INCLUDE_NONE) && \
       !defined(__gl_h_) && \
@@ -220,14 +220,14 @@ extern "C" {
       !defined(__gles2_gl31_h_) && \
       !defined(__gles2_gl32_h_) && \
       !defined(__gl_glcorearb_h_) && \
-      !defined(__gl2_h_) /*legacy*/ && \
-      !defined(__gl3_h_) /*legacy*/ && \
-      !defined(__gl31_h_) /*legacy*/ && \
-      !defined(__gl32_h_) /*legacy*/ && \
-      !defined(__glcorearb_h_) /*legacy*/ && \
-      !defined(__GL_H__) /*non-standard*/ && \
-      !defined(__gltypes_h_) /*non-standard*/ && \
-      !defined(__glee_h_) /*non-standard*/
+      !defined(__gl2_h_)  && \
+      !defined(__gl3_h_)  && \
+      !defined(__gl31_h_)  && \
+      !defined(__gl32_h_)  && \
+      !defined(__glcorearb_h_)  && \
+      !defined(__GL_H__)  && \
+      !defined(__gltypes_h_)  && \
+      !defined(__glee_h_) 
 
  #if defined(__APPLE__)
 
@@ -236,16 +236,16 @@ extern "C" {
   #endif
   #include <OpenGL/gl.h>
 
- #else /*__APPLE__*/
+ #else 
 
   #include <GL/gl.h>
   #if defined(GLFW_INCLUDE_GLEXT)
    #include <GL/glext.h>
   #endif
 
- #endif /*__APPLE__*/
+ #endif 
 
-#endif /* OpenGL and OpenGL ES headers */
+#endif 
 
 #if defined(GLFW_DLL) && defined(_GLFW_BUILD_DLL)
  /* GLFW_DLL must be defined by applications that are linking against the DLL
@@ -259,13 +259,13 @@ extern "C" {
  * from the DLL / shared library / dynamic library.
  */
 #if defined(_WIN32) && defined(_GLFW_BUILD_DLL)
- /* We are building GLFW as a Win32 DLL */
+ 
  #define GLFWAPI __declspec(dllexport)
 #elif defined(_WIN32) && defined(GLFW_DLL)
- /* We are calling a GLFW Win32 DLL */
+ 
  #define GLFWAPI __declspec(dllimport)
 #elif defined(__GNUC__) && defined(_GLFW_BUILD_DLL)
- /* We are building GLFW as a Unix shared library */
+ 
  #define GLFWAPI __attribute__((visibility("default")))
 #else
  #define GLFWAPI
@@ -299,7 +299,7 @@ extern "C" {
  *  @ingroup init
  */
 #define GLFW_VERSION_REVISION       0
-/*! @} */
+
 
 /*! @brief One.
  *
@@ -343,7 +343,7 @@ extern "C" {
  *  @ingroup input
  */
 #define GLFW_REPEAT                 2
-/*! @} */
+
 
 /*! @defgroup hat_state Joystick hat states
  *  @brief Joystick hat states.
@@ -366,7 +366,7 @@ extern "C" {
  */
 #define GLFW_KEY_UNKNOWN            -1
 
-/*! @} */
+
 
 /*! @defgroup keys Keyboard key tokens
  *  @brief Keyboard key tokens.
@@ -392,13 +392,13 @@ extern "C" {
  *  @{
  */
 
-/* Printable keys */
+
 #define GLFW_KEY_SPACE              32
-#define GLFW_KEY_APOSTROPHE         39  /* ' */
-#define GLFW_KEY_COMMA              44  /* , */
-#define GLFW_KEY_MINUS              45  /* - */
-#define GLFW_KEY_PERIOD             46  /* . */
-#define GLFW_KEY_SLASH              47  /* / */
+#define GLFW_KEY_APOSTROPHE         39  
+#define GLFW_KEY_COMMA              44  
+#define GLFW_KEY_MINUS              45  
+#define GLFW_KEY_PERIOD             46  
+#define GLFW_KEY_SLASH              47  
 #define GLFW_KEY_0                  48
 #define GLFW_KEY_1                  49
 #define GLFW_KEY_2                  50
@@ -409,8 +409,8 @@ extern "C" {
 #define GLFW_KEY_7                  55
 #define GLFW_KEY_8                  56
 #define GLFW_KEY_9                  57
-#define GLFW_KEY_SEMICOLON          59  /* ; */
-#define GLFW_KEY_EQUAL              61  /* = */
+#define GLFW_KEY_SEMICOLON          59  
+#define GLFW_KEY_EQUAL              61  
 #define GLFW_KEY_A                  65
 #define GLFW_KEY_B                  66
 #define GLFW_KEY_C                  67
@@ -437,14 +437,14 @@ extern "C" {
 #define GLFW_KEY_X                  88
 #define GLFW_KEY_Y                  89
 #define GLFW_KEY_Z                  90
-#define GLFW_KEY_LEFT_BRACKET       91  /* [ */
-#define GLFW_KEY_BACKSLASH          92  /* \ */
-#define GLFW_KEY_RIGHT_BRACKET      93  /* ] */
-#define GLFW_KEY_GRAVE_ACCENT       96  /* ` */
-#define GLFW_KEY_WORLD_1            161 /* non-US #1 */
-#define GLFW_KEY_WORLD_2            162 /* non-US #2 */
+#define GLFW_KEY_LEFT_BRACKET       91  
+#define GLFW_KEY_BACKSLASH          92  
+#define GLFW_KEY_RIGHT_BRACKET      93  
+#define GLFW_KEY_GRAVE_ACCENT       96  
+#define GLFW_KEY_WORLD_1            161 
+#define GLFW_KEY_WORLD_2            162 
 
-/* Function keys */
+
 #define GLFW_KEY_ESCAPE             256
 #define GLFW_KEY_ENTER              257
 #define GLFW_KEY_TAB                258
@@ -518,7 +518,7 @@ extern "C" {
 
 #define GLFW_KEY_LAST               GLFW_KEY_MENU
 
-/*! @} */
+
 
 /*! @defgroup mods Modifier key flags
  *  @brief Modifier key flags.
@@ -561,7 +561,7 @@ extern "C" {
  */
 #define GLFW_MOD_NUM_LOCK        0x0020
 
-/*! @} */
+
 
 /*! @defgroup buttons Mouse buttons
  *  @brief Mouse button IDs.
@@ -582,7 +582,7 @@ extern "C" {
 #define GLFW_MOUSE_BUTTON_LEFT      GLFW_MOUSE_BUTTON_1
 #define GLFW_MOUSE_BUTTON_RIGHT     GLFW_MOUSE_BUTTON_2
 #define GLFW_MOUSE_BUTTON_MIDDLE    GLFW_MOUSE_BUTTON_3
-/*! @} */
+
 
 /*! @defgroup joysticks Joysticks
  *  @brief Joystick IDs.
@@ -608,7 +608,7 @@ extern "C" {
 #define GLFW_JOYSTICK_15            14
 #define GLFW_JOYSTICK_16            15
 #define GLFW_JOYSTICK_LAST          GLFW_JOYSTICK_16
-/*! @} */
+
 
 /*! @defgroup gamepad_buttons Gamepad buttons
  *  @brief Gamepad buttons.
@@ -638,7 +638,7 @@ extern "C" {
 #define GLFW_GAMEPAD_BUTTON_CIRCLE      GLFW_GAMEPAD_BUTTON_B
 #define GLFW_GAMEPAD_BUTTON_SQUARE      GLFW_GAMEPAD_BUTTON_X
 #define GLFW_GAMEPAD_BUTTON_TRIANGLE    GLFW_GAMEPAD_BUTTON_Y
-/*! @} */
+
 
 /*! @defgroup gamepad_axes Gamepad axes
  *  @brief Gamepad axes.
@@ -654,7 +654,7 @@ extern "C" {
 #define GLFW_GAMEPAD_AXIS_LEFT_TRIGGER  4
 #define GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER 5
 #define GLFW_GAMEPAD_AXIS_LAST          GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER
-/*! @} */
+
 
 /*! @defgroup errors Error codes
  *  @brief Error codes.
@@ -713,7 +713,7 @@ extern "C" {
  *  A memory allocation failed.
  *
  *  @analysis A bug in GLFW or the underlying operating system.  Report the bug
- *  to our [issue tracker](https://github.com/glfw/glfw/issues).
+ *  to our [issue tracker](https:
  */
 #define GLFW_OUT_OF_MEMORY          0x00010005
 /*! @brief GLFW could not find support for the requested API on the system.
@@ -757,7 +757,7 @@ extern "C" {
  *
  *  @analysis A bug or configuration error in GLFW, the underlying operating
  *  system or its drivers, or a lack of required resources.  Report the issue to
- *  our [issue tracker](https://github.com/glfw/glfw/issues).
+ *  our [issue tracker](https:
  */
 #define GLFW_PLATFORM_ERROR         0x00010008
 /*! @brief The requested format is not supported or available.
@@ -847,7 +847,7 @@ extern "C" {
  *  check whether a specific platform is supported by a library binary.
  */
 #define GLFW_PLATFORM_UNAVAILABLE   0x0001000E
-/*! @} */
+
 
 /*! @addtogroup window
  *  @{ */
@@ -1135,7 +1135,7 @@ extern "C" {
  *  Allows specification of the Wayland app_id.
  */
 #define GLFW_WAYLAND_APP_ID         0x00026001
-/*! @} */
+
 
 #define GLFW_NO_API                          0
 #define GLFW_OPENGL_API             0x00030001
@@ -1285,7 +1285,7 @@ extern "C" {
  *  This is an alias for compatibility with earlier versions.
  */
 #define GLFW_HAND_CURSOR            GLFW_POINTING_HAND_CURSOR
-/*! @} */
+
 
 #define GLFW_CONNECTED              0x00040001
 #define GLFW_DISCONNECTED           0x00040002
@@ -1327,7 +1327,7 @@ extern "C" {
  *  Wayland specific [init hint](@ref GLFW_WAYLAND_LIBDECOR_hint).
  */
 #define GLFW_WAYLAND_LIBDECOR       0x00053001
-/*! @} */
+
 
 /*! @addtogroup init
  *  @{ */
@@ -1341,7 +1341,7 @@ extern "C" {
 #define GLFW_PLATFORM_WAYLAND       0x00060003
 #define GLFW_PLATFORM_X11           0x00060004
 #define GLFW_PLATFORM_NULL          0x00060005
-/*! @} */
+
 
 #define GLFW_DONT_CARE              -1
 
@@ -2345,7 +2345,7 @@ GLFWAPI void glfwInitAllocator(const GLFWallocator* allocator);
  *  PFN_vkVoidFunction vkGetInstanceProcAddr(VkInstance instance, const char* name)
  *  @endcode
  *  For more information about this function, see the
- *  [Vulkan Registry](https://www.khronos.org/registry/vulkan/).
+ *  [Vulkan Registry](https:
  *
  *  @errors None.
  *
@@ -2362,7 +2362,7 @@ GLFWAPI void glfwInitAllocator(const GLFWallocator* allocator);
  */
 GLFWAPI void glfwInitVulkanLoader(PFN_vkGetInstanceProcAddr loader);
 
-#endif /*VK_VERSION_1_0*/
+#endif 
 
 /*! @brief Retrieves the version of the GLFW library.
  *
@@ -2665,7 +2665,7 @@ GLFWAPI void glfwGetMonitorWorkarea(GLFWmonitor* monitor, int* xpos, int* ypos, 
  *  because the monitor [EDID][] data is incorrect or because the driver does
  *  not report it accurately.
  *
- *  [EDID]: https://en.wikipedia.org/wiki/Extended_display_identification_data
+ *  [EDID]: https:
  *
  *  Any or all of the size arguments may be `NULL`.  If an error occurs, all
  *  non-`NULL` size arguments will be set to zero.
@@ -3180,7 +3180,7 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value);
  *  For more information on bundles, see the
  *  [Bundle Programming Guide][bundle-guide] in the Mac Developer Library.
  *
- *  [bundle-guide]: https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/
+ *  [bundle-guide]: https:
  *
  *  @remark @macos On OS X 10.10 and later the window frame will not be rendered
  *  at full resolution on Retina displays unless the
@@ -3192,7 +3192,7 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value);
  *  template for this, which can be found as `CMake/Info.plist.in` in the source
  *  tree.
  *
- *  [hidpi-guide]: https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Explained/Explained.html
+ *  [hidpi-guide]: https:
  *
  *  @remark @macos When activating frame autosaving with
  *  [GLFW_COCOA_FRAME_NAME](@ref GLFW_COCOA_FRAME_NAME_hint), the specified
@@ -3205,7 +3205,7 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value);
  *  a very simple set of window decorations that only support moving, resizing
  *  and the window manager's right-click menu.
  *
- *  [libdecor]: https://gitlab.freedesktop.org/libdecor/libdecor
+ *  [libdecor]: https:
  *
  *  @remark @x11 Some window managers will not respect the placement of
  *  initially hidden windows.
@@ -3396,7 +3396,7 @@ GLFWAPI void glfwSetWindowTitle(GLFWwindow* window, const char* title);
  *  the application bundle's icon.  For more information on bundles, see the
  *  [Bundle Programming Guide][bundle-guide] in the Mac Developer Library.
  *
- *  [bundle-guide]: https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/
+ *  [bundle-guide]: https:
  *
  *  @remark @wayland There is no existing protocol to change an icon, the
  *  window will thus inherit the one defined in the application's desktop file.
@@ -5573,7 +5573,7 @@ GLFWAPI const unsigned char* glfwGetJoystickButtons(int jid, int* count);
  *  @code
  *  if (hats[2] & GLFW_HAT_RIGHT)
  *  {
- *      // State of hat 2 could be right-up, right or right-down
+ *      
  *  }
  *  @endcode
  *
@@ -6509,14 +6509,14 @@ GLFWAPI int glfwGetPhysicalDevicePresentationSupport(VkInstance instance, VkPhys
  */
 GLFWAPI VkResult glfwCreateWindowSurface(VkInstance instance, GLFWwindow* window, const VkAllocationCallbacks* allocator, VkSurfaceKHR* surface);
 
-#endif /*VK_VERSION_1_0*/
+#endif 
 
 
 /*************************************************************************
  * Global definition cleanup
  *************************************************************************/
 
-/* ------------------- BEGIN SYSTEM/COMPILER SPECIFIC -------------------- */
+
 
 #ifdef GLFW_WINGDIAPI_DEFINED
  #undef WINGDIAPI
@@ -6536,12 +6536,12 @@ GLFWAPI VkResult glfwCreateWindowSurface(VkInstance instance, GLFWwindow* window
  #define GLFW_GLAPIENTRY_DEFINED
 #endif
 
-/* -------------------- END SYSTEM/COMPILER SPECIFIC --------------------- */
+
 
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _glfw3_h_ */
+#endif 
 

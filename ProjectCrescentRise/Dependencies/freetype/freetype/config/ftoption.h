@@ -68,13 +68,13 @@ FT_BEGIN_HEADER
    */
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /**** G E N E R A L   F R E E T Y P E   2   C O N F I G U R A T I O N ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
 
 
   /*#************************************************************************
@@ -123,7 +123,7 @@ FT_BEGIN_HEADER
    * When this macro is not defined, FreeType offers alternative LCD
    * rendering technology that produces excellent output.
    */
-/* #define FT_CONFIG_OPTION_SUBPIXEL_RENDERING */
+
 
 
   /**************************************************************************
@@ -153,7 +153,7 @@ FT_BEGIN_HEADER
    * that to verify that the assembler function works properly, or to execute
    * benchmark tests of the various implementations.
    */
-/* #define FT_CONFIG_OPTION_NO_ASSEMBLER */
+
 
 
   /**************************************************************************
@@ -224,7 +224,7 @@ FT_BEGIN_HEADER
    *   `configure` script) and you define this macro, you also have to pass
    *   `SYSTEM_ZLIB=yes` as an argument to make.
    */
-/* #define FT_CONFIG_OPTION_SYSTEM_ZLIB */
+
 
 
   /**************************************************************************
@@ -244,7 +244,7 @@ FT_BEGIN_HEADER
    *   options set by those programs have precedence, overwriting the value
    *   here with the configured one.
    */
-/* #define FT_CONFIG_OPTION_USE_BZIP2 */
+
 
 
   /**************************************************************************
@@ -255,7 +255,7 @@ FT_BEGIN_HEADER
    * stream support, in the cases where file stream support is not necessary
    * such as memory loading of font files.
    */
-/* #define FT_CONFIG_OPTION_DISABLE_STREAM_SUPPORT */
+
 
 
   /**************************************************************************
@@ -273,7 +273,7 @@ FT_BEGIN_HEADER
    *   options set by those programs have precedence, overwriting the value
    *   here with the configured one.
    */
-/* #define FT_CONFIG_OPTION_USE_PNG */
+
 
 
   /**************************************************************************
@@ -290,7 +290,7 @@ FT_BEGIN_HEADER
    *   options set by those programs have precedence, overwriting the value
    *   here with the configured one.
    */
-/* #define FT_CONFIG_OPTION_USE_HARFBUZZ */
+
 
 
   /**************************************************************************
@@ -315,7 +315,7 @@ FT_BEGIN_HEADER
    *   options set by those programs have precedence, overwriting the value
    *   here with the configured one.
    */
-/* #define FT_CONFIG_OPTION_USE_HARFBUZZ_DYNAMIC */
+
 
 
   /**************************************************************************
@@ -331,7 +331,7 @@ FT_BEGIN_HEADER
    *   options set by those programs have precedence, overwriting the value
    *   here with the configured one.
    */
-/* #define FT_CONFIG_OPTION_USE_BROTLI */
+
 
 
   /**************************************************************************
@@ -455,8 +455,8 @@ FT_BEGIN_HEADER
    *   Do not `#undef` these macros here since the build system might define
    *   them for certain configurations only.
    */
-/* #define FT_DEBUG_LEVEL_ERROR */
-/* #define FT_DEBUG_LEVEL_TRACE */
+
+
 
 
   /**************************************************************************
@@ -473,7 +473,7 @@ FT_BEGIN_HEADER
    *
    *   This option needs a C99 compiler.
    */
-/* #define FT_DEBUG_LOGGING */
+
 
 
   /**************************************************************************
@@ -514,7 +514,7 @@ FT_BEGIN_HEADER
    *   Do not `#undef` these macros here since the build system might define
    *   them for certain configurations only.
    */
-/* #define FT_DEBUG_AUTOFIT */
+
 
 
   /**************************************************************************
@@ -532,7 +532,7 @@ FT_BEGIN_HEADER
    *   Do not `#undef` this macro here since the build system might define it
    *   for certain configurations only.
    */
-/* #define FT_DEBUG_MEMORY */
+
 
 
   /**************************************************************************
@@ -576,16 +576,16 @@ FT_BEGIN_HEADER
    *
    *   More details can be found in the file `fterrors.h`.
    */
-/* #define FT_CONFIG_OPTION_ERROR_STRINGS */
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****        S F N T   D R I V E R    C O N F I G U R A T I O N       ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
+
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -653,13 +653,13 @@ FT_BEGIN_HEADER
 #define TT_CONFIG_CMAP_FORMAT_14
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****    T R U E T Y P E   D R I V E R    C O N F I G U R A T I O N   ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
 
   /**************************************************************************
    *
@@ -704,7 +704,7 @@ FT_BEGIN_HEADER
    * defined.
    *
    * [1]
-   * https://learn.microsoft.com/typography/cleartype/truetypecleartype
+   * https:
    */
 #define TT_CONFIG_OPTION_SUBPIXEL_HINTING
 
@@ -722,8 +722,8 @@ FT_BEGIN_HEADER
    * flags array which can be used to disambiguate, but old fonts will not
    * have them.
    *
-   *   https://learn.microsoft.com/typography/opentype/spec/glyf
-   *   https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6glyf.html
+   *   https:
+   *   https:
    */
 #undef TT_CONFIG_OPTION_COMPONENT_OFFSET_SCALED
 
@@ -743,7 +743,7 @@ FT_BEGIN_HEADER
    * Define `TT_CONFIG_OPTION_NO_BORING_EXPANSION` if you want to exclude
    * support for 'boring' OpenType specification expansions.
    *
-   *   https://github.com/harfbuzz/boring-expansion-spec
+   *   https:
    *
    * Right now, the following features are covered:
    *
@@ -753,7 +753,7 @@ FT_BEGIN_HEADER
    * the near future, since it is assumed that eventually those features are
    * added to the OpenType standard.
    */
-/* #define TT_CONFIG_OPTION_NO_BORING_EXPANSION */
+
 
 
   /**************************************************************************
@@ -795,16 +795,16 @@ FT_BEGIN_HEADER
    * sophisticated kerning variants.  Use a higher-level library like
    * HarfBuzz instead for that.
    */
-/* #define TT_CONFIG_OPTION_GPOS_KERNING */
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****      T Y P E 1   D R I V E R    C O N F I G U R A T I O N       ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
+
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -859,16 +859,16 @@ FT_BEGIN_HEADER
    * switch between the two engines using the `hinting-engine` property of
    * the 'type1' driver module.
    */
-/* #define T1_CONFIG_OPTION_OLD_ENGINE */
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****         C F F   D R I V E R    C O N F I G U R A T I O N        ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
+
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -901,16 +901,16 @@ FT_BEGIN_HEADER
    * between the two engines using the `hinting-engine` property of the 'cff'
    * driver module.
    */
-/* #define CFF_CONFIG_OPTION_OLD_ENGINE */
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****         P C F   D R I V E R    C O N F I G U R A T I O N        ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
+
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -928,16 +928,16 @@ FT_BEGIN_HEADER
    * If this option is activated, it can be controlled with the
    * `no-long-family-names` property of the 'pcf' driver module.
    */
-/* #define PCF_CONFIG_OPTION_LONG_FAMILY_NAMES */
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****    A U T O F I T   M O D U L E    C O N F I G U R A T I O N     ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
+
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -979,16 +979,16 @@ FT_BEGIN_HEADER
    *
    * This problematic commit is now reverted (more or less).
    */
-/* #define AF_CONFIG_OPTION_TT_SIZE_METRICS */
 
-  /* */
+
+  
 
 
   /*
    * This macro is obsolete.  Support has been removed in FreeType version
    * 2.5.
    */
-/* #define FT_CONFIG_OPTION_OLD_INTERNALS */
+
 
 
   /*
@@ -1049,7 +1049,7 @@ FT_BEGIN_HEADER
 
 FT_END_HEADER
 
-#endif /* FTOPTION_H_ */
+#endif 
 
 
-/* END */
+

@@ -125,8 +125,8 @@ it's up to you to specify -f if you want it.
 If -S is not specified, no backups are attempted.
 
 Report bugs to <bug-automake@gnu.org>.
-GNU Automake home page: <https://www.gnu.org/software/automake/>.
-General help using GNU software: <https://www.gnu.org/gethelp/>."
+GNU Automake home page: <https:
+General help using GNU software: <https:
 
 while test $# -ne 0; do
   case $1 in

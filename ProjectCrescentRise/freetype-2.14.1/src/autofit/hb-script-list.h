@@ -38,7 +38,7 @@
  * FreeType imports types and enums from hb-common.h,
  * and since this enum is large and growing, we want to
  * make it easy to just copy the file over to FreeType.
- * https://github.com/harfbuzz/harfbuzz/issues/5271
+ * https:
  */
 
 /* Dummy lines to make our checks happy.  */
@@ -226,13 +226,13 @@ HB_END_DECLS
  * @HB_SCRIPT_INVALID: No script set
  *
  * Data type for scripts. Each #hb_script_t's value is an #hb_tag_t corresponding
- * to the four-letter values defined by [ISO 15924](https://unicode.org/iso15924/).
+ * to the four-letter values defined by [ISO 15924](https:
  *
  * See also the Script (sc) property of the Unicode Character Database.
  *
  **/
 
-/* https://docs.google.com/spreadsheets/d/1Y90M0Ie3MUJ6UVCRDOypOtijlMDLNNyyLk36T6iMu0o */
+/* https:
 typedef enum
 {
   HB_SCRIPT_COMMON			= HB_TAG ('Z','y','y','y'), /*1.1*/
@@ -473,7 +473,7 @@ typedef enum
    *
    * See this thread for technicalities:
    *
-   *   https://lists.freedesktop.org/archives/harfbuzz/2014-March/004150.html
+   *   https:
    */
   _HB_SCRIPT_MAX_VALUE				= HB_TAG_MAX_SIGNED, /*< skip >*/
   _HB_SCRIPT_MAX_VALUE_SIGNED			= HB_TAG_MAX_SIGNED /*< skip >*/

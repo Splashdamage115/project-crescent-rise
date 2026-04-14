@@ -1,4 +1,4 @@
-/// @ref gtx_pca
+
 
 #ifndef GLM_HAS_CXX11_STL
 #include <algorithm>
@@ -103,15 +103,15 @@ namespace glm {
 		using _internal_::transferSign;
 		using _internal_::pythag;
 
-		T a[D * D]; // matrix -- input and workspace for algorithm (will be changed inplace)
-		T d[D]; // diagonal elements
-		T e[D]; // off-diagonal elements
+		T a[D * D]; 
+		T d[D]; 
+		T e[D]; 
 
 		for(length_t r = 0; r < D; r++)
 			for(length_t c = 0; c < D; c++)
 				a[(r) * D + (c)] = covarMat[c][r];
 
-		// 1. Householder reduction.
+		
 		length_t l, k, j, i;
 		T scale, hh, h, g, f;
 		static const T epsilon = static_cast<T>(0.0000001);
@@ -204,7 +204,7 @@ namespace glm {
 			}
 		}
 
-		// 2. Calculation of eigenvalues and eigenvectors (QL algorithm)
+		
 		length_t m, iter;
 		T s, r, p, dd, c, b;
 		const length_t MAX_ITER = 30;
@@ -230,7 +230,7 @@ namespace glm {
 				{
 					if(iter++ == MAX_ITER)
 					{
-						return 0; // Too many iterations in FindEigenvalues
+						return 0; 
 					}
 					g = (d[l - 1 + 1] - d[l - 1]) / (2 * e[l - 1]);
 					r = pythag<T>(g, 1);
@@ -270,7 +270,7 @@ namespace glm {
 			} while(m != l);
 		}
 
-		// 3. output
+		
 		for(i = 0; i < D; i++)
 			outEigenvalues[i] = d[i];
 		for(i = 0; i < D; i++)
@@ -340,4 +340,4 @@ namespace glm {
 		}
 	}
 
-}//namespace glm
+}

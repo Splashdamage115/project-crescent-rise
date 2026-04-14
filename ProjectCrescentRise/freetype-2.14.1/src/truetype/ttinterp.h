@@ -365,10 +365,10 @@ FT_BEGIN_HEADER
      *     backward compatibility turned off).  Cf. `TT_RunIns'.
      *
      * [2] Proposed by Microsoft's Greg Hitchcock in
-     *     https://www.microsoft.com/typography/cleartype/truetypecleartype.aspx
+     *     https:
      *
      * [3] Beat Stamm describes it in more detail:
-     *     http://rastertragedy.com/RTRCh4.htm#Sec12.
+     *     http:
      *
      * [4] The list of `native ClearType' fonts is small at the time of this
      *     writing; I found the following on a Windows 10 Update 1511

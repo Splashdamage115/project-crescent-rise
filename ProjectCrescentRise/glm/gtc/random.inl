@@ -199,7 +199,7 @@ namespace detail
 			return vec<L, long double, Q>(compute_rand<L, uint64, Q>::call()) / static_cast<long double>(std::numeric_limits<uint64>::max()) * (Max - Min) + Min;
 		}
 	};
-}//namespace detail
+}
 
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType linearRand(genType Min, genType Max)
@@ -300,4 +300,4 @@ namespace detail
 
 		return vec<3, T, defaultp>(x, y, z) * Radius;
 	}
-}//namespace glm
+}

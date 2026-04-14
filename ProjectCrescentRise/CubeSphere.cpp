@@ -13,12 +13,12 @@ void CubeSphere::ResetPlanet()
 
     std::vector<glm::vec3> direction;
 
-    direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   // Up
-    direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  // Down
-    direction.emplace_back(glm::vec3(-1.0f, 0.0f, 0.0f));  // Left
-    direction.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));   // Right
-    direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  // Forward
-    direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   // Back
+    direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   
+    direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  
+    direction.emplace_back(glm::vec3(-1.0f, 0.0f, 0.0f));  
+    direction.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));   
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   
 
     for (int i = 0; i < 6; i++)
     {
@@ -37,7 +37,7 @@ void CubeSphere::ResetPlanet()
 
 void CubeSphere::Start()
 {
-    // Generate and setup VAO
+    
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
 
@@ -66,7 +66,7 @@ void CubeSphere::Start()
     CenterPoint = glGetUniformLocation(m_shader->shaderPair, "CenterPoint");
     uColourLoc = glGetUniformLocation(m_shader->shaderPair, "colour");
 
-    // Generate initial mesh data
+    
     ResetPlanet();
 }
 

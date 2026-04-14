@@ -152,7 +152,7 @@ FT_BEGIN_HEADER
 FT_END_HEADER
 
 
-#endif /* FTHASH_H_ */
+#endif 
 
 
-/* END */
+

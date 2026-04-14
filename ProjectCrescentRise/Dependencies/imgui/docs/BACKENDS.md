@@ -1,4 +1,4 @@
-_(You may browse this at https://github.com/ocornut/imgui/blob/master/docs/BACKENDS.md or view this file with any Markdown viewer)_
+_(You may browse this at https:
 
 # Dear ImGui: Backends
 
@@ -19,8 +19,8 @@ _(You may browse this at https://github.com/ocornut/imgui/blob/master/docs/BACKE
 
 ### Getting Started
 
-💡 The **[Getting Started](https://github.com/ocornut/imgui/wiki/Getting-Started) wiki guide** has examples of how to integrate Dear ImGui into an existing application.
-<BR> The [EXAMPLES.MD](https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md) documentation may also be worth a read.
+💡 The **[Getting Started](https:
+<BR> The [EXAMPLES.MD](https:
 
 ### What are Backends?
 
@@ -51,34 +51,34 @@ and the backends which we are describing here (backends/ folder).
 
 ## Using standard Backends
 
-**The [backends/](https://github.com/ocornut/imgui/blob/master/backends) folder contains backends for popular platforms/graphics API, which you can use in
+**The [backends/](https:
 your application or engine to easily integrate Dear ImGui.** Each backend is typically self-contained in a pair of files: imgui_impl_XXXX.cpp + imgui_impl_XXXX.h.
 
 - The 'Platform' backends are in charge of: mouse/keyboard/gamepad inputs, cursor shape, timing, and windowing.<BR>
-  e.g. Windows ([imgui_impl_win32.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_win32.cpp)), SDL3 ([imgui_impl_sdl3.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_sdl3.cpp)), GLFW ([imgui_impl_glfw.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_glfw.cpp)), etc.
+  e.g. Windows ([imgui_impl_win32.cpp](https:
 
 - The 'Renderer' backends are in charge of: creating atlas texture, and rendering imgui draw data.<BR>
-  e.g. DirectX11 ([imgui_impl_dx11.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_dx11.cpp)), OpenGL/WebGL ([imgui_impl_opengl3.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_opengl3.cpp)), Vulkan ([imgui_impl_vulkan.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_vulkan.cpp)), etc.
+  e.g. DirectX11 ([imgui_impl_dx11.cpp](https:
 
 - For some high-level frameworks, a single backend usually handles both 'Platform' and 'Renderer' parts.<BR>
-  e.g. Allegro 5 ([imgui_impl_allegro5.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_allegro5.cpp)). If you end up creating a custom backend for your engine, you may want to do the same.
+  e.g. Allegro 5 ([imgui_impl_allegro5.cpp](https:
 
 An application usually combines one Platform backend + one Renderer backend + main Dear ImGui sources.
-For example, the [example_win32_directx11](https://github.com/ocornut/imgui/tree/master/examples/example_win32_directx11) application combines imgui_impl_win32.cpp + imgui_impl_dx11.cpp. There are 20+ examples in the [examples/](https://github.com/ocornut/imgui/blob/master/examples/) folder. See [EXAMPLES.MD](https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md) for details.
+For example, the [example_win32_directx11](https:
 
 **Once Dear ImGui is setup and running, run and refer to `ImGui::ShowDemoWindow()` in imgui_demo.cpp for usage of the end-user API.**
 
 ### List of standard Backends
 
-In the [backends/](https://github.com/ocornut/imgui/blob/master/backends) folder:
+In the [backends/](https:
 
 List of Platforms Backends:
 
     imgui_impl_android.cpp      ; Android native app API
-    imgui_impl_glfw.cpp         ; GLFW (Windows, macOS, Linux, etc.) http://www.glfw.org/
+    imgui_impl_glfw.cpp         ; GLFW (Windows, macOS, Linux, etc.) http:
     imgui_impl_osx.mm           ; macOS native API (not as feature complete as glfw/sdl backends)
-    imgui_impl_sdl2.cpp         ; SDL2 (Windows, macOS, Linux, iOS, Android) https://www.libsdl.org
-    imgui_impl_sdl3.cpp         ; SDL3 (Windows, macOS, Linux, iOS, Android) https://www.libsdl.org
+    imgui_impl_sdl2.cpp         ; SDL2 (Windows, macOS, Linux, iOS, Android) https:
+    imgui_impl_sdl3.cpp         ; SDL3 (Windows, macOS, Linux, iOS, Android) https:
     imgui_impl_win32.cpp        ; Win32 native API (Windows)
     imgui_impl_glut.cpp         ; GLUT/FreeGLUT (this is prehistoric software and absolutely not recommended today!)
 
@@ -110,16 +110,16 @@ If you are not sure which backend to use, the recommended platform/frameworks fo
 
 |Library |Website |Backend |Note |
 |--------|--------|--------|-----|
-| SDL3 | https://www.libsdl.org | imgui_impl_sdl3.cpp | Recommended |
-| SDL2 | https://www.libsdl.org | imgui_impl_sdl2.cpp | |
-| GLFW | https://github.com/glfw/glfw | imgui_impl_glfw.cpp | |
-| Sokol | https://github.com/floooh/sokol | [util/sokol_imgui.h](https://github.com/floooh/sokol/blob/master/util/sokol_imgui.h) | Lower-level than GLFW/SDL |
+| SDL3 | https:
+| SDL2 | https:
+| GLFW | https:
+| Sokol | https:
 
 If your application runs on Windows or if you are using multi-viewport, the win32 backend handles some details a little better than other backends.
 
 ## Using third-party Backends
 
-See https://github.com/ocornut/imgui/wiki/Bindings for the full list (e.g. Adventure Game Studio, Cinder, Cocos2d-x, Game Maker Studio2, Godot, LÖVE+LUA, Magnum, Monogame, Ogre, openFrameworks, OpenSceneGraph, SFML, Sokol, Unity, Unreal Engine and many others).
+See https:
 
 ## Writing your own Backend
 
@@ -158,7 +158,7 @@ your desktop builds working first. This will get you running faster and get your
 how Dear ImGui works and is setup. You can then rewrite a custom backend using your own engine API...
 
 Also:
-The [multi-viewports feature](https://github.com/ocornut/imgui/wiki/Multi-Viewports) of the 'docking' branch allows
+The [multi-viewports feature](https:
 Dear ImGui windows to be seamlessly detached from the main application window. This is achieved using an
 extra layer to the Platform and Renderer backends, which allows Dear ImGui to communicate platform-specific
 requests such as: "create an additional OS window", "create a render context", "get the OS position of this
@@ -217,38 +217,38 @@ As an alternative, you may also use `#define ImDrawIdx unsigned int` in your `im
 ```cpp
 void MyImGuiBackend_RenderDrawData(ImDrawData* draw_data)
 {
-    // TODO: Update textures.
-    // - Most of the times, the list will have 1 element with an OK status, aka nothing to do.
-    // - This almost always points to ImGui::GetPlatformIO().Textures[] but is part of ImDrawData to allow overriding or disabling texture updates.
+    
+    
+    
     if (draw_data->Textures != nullptr)
         for (ImTextureData* tex : *draw_data->Textures)
             if (tex->Status != ImTextureStatus_OK)
                 MyImGuiBackend_UpdateTexture(tex);
 
-    // TODO: Setup render state:
-    // - Alpha-blending enabled
-    // - No backface culling
-    // - No depth testing, no depth writing
-    // - Scissor enabled
+    
+    
+    
+    
+    
     MyEngineSetupenderState();
 
-    // TODO: Setup texture sampling state
-    // - Sample with bilinear filtering (NOT point/nearest filtering).
-    // - Use 'io.Fonts->Flags |= ImFontAtlasFlags_NoBakedLines;' to allow point/nearest filtering.
+    
+    
+    
 
-    // TODO: Setup viewport covering draw_data->DisplayPos to draw_data->DisplayPos + draw_data->DisplaySize
+    
 
-    // TODO: Setup orthographic projection matrix cover draw_data->DisplayPos to draw_data->DisplayPos + draw_data->DisplaySize
+    
 
-    // TODO: Setup shader: vertex { float2 pos, float2 uv, u32 color }, fragment shader sample color from 1 texture, multiply by vertex color.
+    
 
-    // Render command lists
+    
     ImVec2 clip_off = draw_data->DisplayPos;
     ImVec2 clip_scale = draw_data->FramebufferScale;
     for (const ImDrawList* draw_list : draw_data->CmdLists)
     {
-        const ImDrawVert* vtx_buffer = cmd_list->VtxBuffer.Data;  // vertex buffer generated by Dear ImGui
-        const ImDrawIdx* idx_buffer = cmd_list->IdxBuffer.Data;   // index buffer generated by Dear ImGui
+        const ImDrawVert* vtx_buffer = cmd_list->VtxBuffer.Data;  
+        const ImDrawIdx* idx_buffer = cmd_list->IdxBuffer.Data;   
         for (int cmd_i = 0; cmd_i < cmd_list->CmdBuffer.Size; cmd_i++)
         {
             const ImDrawCmd* pcmd = &cmd_list->CmdBuffer[cmd_i];
@@ -261,29 +261,29 @@ void MyImGuiBackend_RenderDrawData(ImDrawData* draw_data)
             }
             else
             {
-                // Project scissor/clipping rectangles into framebuffer space
-                // - Clipping coordinates are provided in imgui coordinates space:
-                //   - For a given viewport, draw_data->DisplayPos == viewport->Pos and draw_data->DisplaySize == viewport->Size
-                //   - In a single viewport application, draw_data->DisplayPos == (0,0) and draw_data->DisplaySize == io.DisplaySize, but always use GetMainViewport()->Pos/Size instead of hardcoding those values.
-                //   - In the interest of supporting multi-viewport applications (see 'docking' branch on github),
-                //     always subtract draw_data->DisplayPos from clipping bounds to convert them to your viewport space.
-                // - Note that pcmd->ClipRect contains Min+Max bounds. Some graphics API may use Min+Max, other may use Min+Size (size being Max-Min)
+                
+                
+                
+                
+                
+                
+                
                 ImVec2 clip_min((pcmd->ClipRect.x - clip_off.x) * clip_scale.x, (pcmd->ClipRect.y - clip_off.y) * clip_scale.y);
                 ImVec2 clip_max((pcmd->ClipRect.z - clip_off.x) * clip_scale.x, (pcmd->ClipRect.w - clip_off.y) * clip_scale.y);
                 if (clip_max.x <= clip_min.x || clip_max.y <= clip_min.y)
                     continue;
 
-                // We are using scissoring to clip some objects. All low-level graphics API should support it.
-                // - If your engine doesn't support scissoring yet, you may ignore this at first. You will get some small glitches
-                //   (some elements visible outside their bounds) but you can fix that once everything else works!
+                
+                
+                
                 MyEngineSetScissor(clip_min.x, clip_min.y, clip_max.x, clip_max.y);
 
-                // The texture for the draw call is specified by pcmd->GetTexID().
-                // The vast majority of draw calls will use the Dear ImGui texture atlas, which value you have set yourself during initialization.
+                
+                
                 MyEngineBindTexture((MyTexture*)pcmd->GetTexID());
 
-                // Render 'pcmd->ElemCount/3' indexed triangles.
-                // By default the indices ImDrawIdx are 16-bit, you can change them to 32-bit in imconfig.h if your engine doesn't support 16-bit indices.
+                
+                
                 MyEngineDrawIndexedTriangles(pcmd->ElemCount, sizeof(ImDrawIdx) == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT, idx_buffer + pcmd->IdxOffset, vtx_buffer, pcmd->VtxOffset);
             }
         }
@@ -293,7 +293,7 @@ void MyImGuiBackend_RenderDrawData(ImDrawData* draw_data)
 
 ### Rendering: Adding support for `ImGuiBackendFlags_RendererHasTextures` (1.92+)
 
-Version [1.92.0](https://github.com/ocornut/imgui/releases/tag/v1.92.0) (June 2025), added texture support in Rendering Backends, which is the backbone for supporting dynamic font scaling among other things.
+Version [1.92.0](https:
 
 **In order to move forward and take advantage of all new features, support for `ImGuiBackendFlags_RendererHasTextures` will likely be REQUIRED for all backends before June 2026.**
 
@@ -301,19 +301,19 @@ Version [1.92.0](https://github.com/ocornut/imgui/releases/tag/v1.92.0) (June 20
 
 **TD;DR: List of commits which added support for `ImGuiBackendFlags_RendererHasTextures` in standard backends:**
 
-- Allegro5: [ee8941e](https://github.com/ocornut/imgui/commit/ee8941e) (+35 lines)
-- DirectX9: [75efba7](https://github.com/ocornut/imgui/commit/75efba7) (+48 lines)
-- DirectX10: [2d2b1bc](https://github.com/ocornut/imgui/commit/2d2b1bc) (+40 lines)
-- DirectX11: [372fd27](https://github.com/ocornut/imgui/commit/372fd27) (+40 lines)
-- DirectX12: [eefe5d5](https://github.com/ocornut/imgui/commit/eefe5d5) (+87 lines)
-- Metal: [26c017d](https://github.com/ocornut/imgui/commit/26c017d) (+55 lines)
-- OpenGL Legacy: [0430c55](https://github.com/ocornut/imgui/commit/0430c55) (+25 lines)
-- OpenGL3/WebGL/ES: [dbb91a5](https://github.com/ocornut/imgui/commit/dbb91a5) (+47 lines)
-- SDL_Renderer2: [9fa65cd](https://github.com/ocornut/imgui/commit/9fa65cd) (+20 lines)
-- SDL_Renderer3: [e538883](https://github.com/ocornut/imgui/commit/e538883) (+19 lines)
-- SDL_GPU: [16fe666](https://github.com/ocornut/imgui/commit/16fe666) (+41 lines)
-- Vulkan: [abe294b](https://github.com/ocornut/imgui/commit/abe294b) (+33 lines)
-- WGPU: [571dae9](https://github.com/ocornut/imgui/commit/571dae9) (+30 lines)
+- Allegro5: [ee8941e](https:
+- DirectX9: [75efba7](https:
+- DirectX10: [2d2b1bc](https:
+- DirectX11: [372fd27](https:
+- DirectX12: [eefe5d5](https:
+- Metal: [26c017d](https:
+- OpenGL Legacy: [0430c55](https:
+- OpenGL3/WebGL/ES: [dbb91a5](https:
+- SDL_Renderer2: [9fa65cd](https:
+- SDL_Renderer3: [e538883](https:
+- SDL_GPU: [16fe666](https:
+- Vulkan: [abe294b](https:
+- WGPU: [571dae9](https:
 
 **Instructions:**
 
@@ -334,41 +334,41 @@ void MyImGuiBackend_UpdateTexture(ImTextureData* tex)
 {
     if (tex->Status == ImTextureStatus_WantCreate)
     {
-        // Create texture based on tex->Width, tex->Height.
-        // - Most backends only support tex->Format == ImTextureFormat_RGBA32.
-        // - Backends for particularly memory constrainted platforms may support tex->Format == ImTextureFormat_Alpha8.
+        
+        
+        
 
-        // Upload all texture pixels
-        // - Read from our CPU-side copy of the texture and copy to your graphics API.
-        // - Use tex->Width, tex->Height, tex->GetPixels(), tex->GetPixelsAt(), tex->GetPitch() as needed.
+        
+        
+        
 
-        // Store your data, and acknowledge creation.
-        tex->SetTexID(xxxx); // Specify backend-specific ImTextureID identifier which will be stored in ImDrawCmd.
+        
+        tex->SetTexID(xxxx); 
         tex->SetStatus(ImTextureStatus_OK);
-        tex->BackendUserData = xxxx; // Store more backend data if needed (most backend allocate a small texture to store data in there)
+        tex->BackendUserData = xxxx; 
     }
     if (tex->Status == ImTextureStatus_WantUpdates)
     {
-        // Upload a rectangle of pixels to the existing texture
-        // - We only ever write to textures regions which have never been used before!
-        // - Use tex->TexID or tex->BackendUserData to retrieve your stored data.
-        // - Use tex->UpdateRect.x/y, tex->UpdateRect.w/h to obtain the block position and size.
-        //   - Use tex->Updates[] to obtain individual sub-regions within tex->UpdateRect. Not recommended.
-        // - Read from our CPU-side copy of the texture and copy to your graphics API.
-        // - Use tex->Width, tex->Height, tex->GetPixels(), tex->GetPixelsAt(), tex->GetPitch() as needed.
+        
+        
+        
+        
+        
+        
+        
 
-        // Acknowledge update
+        
         tex->SetStatus(ImTextureStatus_OK);
     }
     if (tex->Status == ImTextureStatus_WantDestroy && tex->UnusedFrames > 0)
     {
-        // If you use staged rendering and have in-flight renders, changed tex->UnusedFrames > 0 check to higher count as needed e.g. > 2
+        
 
-        // Destroy texture
-        // - Use tex->TexID or tex->BackendUserData to retrieve your stored data.
-        // - Destroy texture in your graphics API.
+        
+        
+        
 
-        // Acknowledge destruction
+        
         tex->SetTexID(ImTextureID_Invalid);
         tex->SetStatus(ImTextureStatus_Destroyed);
     }

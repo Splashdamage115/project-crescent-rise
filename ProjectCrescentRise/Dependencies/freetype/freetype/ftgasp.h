@@ -132,12 +132,12 @@ FT_BEGIN_HEADER
   FT_Get_Gasp( FT_Face  face,
                FT_UInt  ppem );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTGASP_H_ */
+#endif 
 
 
-/* END */
+

@@ -60,7 +60,7 @@ FT_BEGIN_HEADER
    *
    * by David Turner and Werner Lemberg
    *
-   *   https://www.tug.org/TUGboat/Articles/tb24-3/lemberg.pdf
+   *   https:
    *
    * with appropriate updates.
    *

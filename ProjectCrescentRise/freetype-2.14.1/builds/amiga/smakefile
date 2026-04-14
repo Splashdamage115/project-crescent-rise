@@ -4,7 +4,7 @@
 
 
 # Copyright (C) 2005-2025 by
-# Werner Lemberg and Detlef Würkner.
+# Werner Lemberg and Detlef Wï¿½rkner.
 #
 # This file is part of the FreeType project, and may only be used, modified,
 # and distributed under the terms of the FreeType project license,
@@ -21,20 +21,20 @@
 # Your programs source code should start with this
 # (uncomment the parts you do not need to keep the program small):
 # ---8<---
-#define FT_USE_AUTOFIT // autofitter
-#define FT_USE_RASTER  // monochrome rasterizer
-#define FT_USE_SMOOTH  // anti-aliasing rasterizer
-#define FT_USE_TT      // truetype font driver
-#define FT_USE_T1      // type1 font driver
-#define FT_USE_T42     // type42 font driver
-#define FT_USE_T1CID   // cid-keyed type1 font driver
-#define FT_USE_CFF     // opentype font driver
-#define FT_USE_BDF     // bdf bitmap font driver
-#define FT_USE_PCF     // pcf bitmap font driver
-#define FT_USE_PFR     // pfr font driver
-#define FT_USE_WINFNT  // windows .fnt|.fon bitmap font driver
-#define FT_USE_OTV     // opentype validator
-#define FT_USE_GXV     // truetype gx validator
+#define FT_USE_AUTOFIT 
+#define FT_USE_RASTER  
+#define FT_USE_SMOOTH  
+#define FT_USE_TT      
+#define FT_USE_T1      
+#define FT_USE_T42     
+#define FT_USE_T1CID   
+#define FT_USE_CFF     
+#define FT_USE_BDF     
+#define FT_USE_PCF     
+#define FT_USE_PFR     
+#define FT_USE_WINFNT  
+#define FT_USE_OTV     
+#define FT_USE_GXV     
 #include "FT:src/base/ftinit.c"
 # ---8<---
 #
@@ -94,7 +94,7 @@ OPTS = link lib=$(LIB),lib:sc.lib,lib:amiga.lib,lib:debug.lib\
 all:	$(LIB) $(OBJSYSTEM) $(OBJDEBUG)
 
 assign:
-	assign FT: //
+	assign FT: 
 
 # uses separate object modules in lib to make for easier debugging
 # also, can make smaller programs if entire engine is not used

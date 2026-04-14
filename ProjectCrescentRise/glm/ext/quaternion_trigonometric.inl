@@ -34,4 +34,4 @@ namespace glm
 
 		return qua<T, Q>(glm::cos(a * static_cast<T>(0.5)), v * s);
 	}
-}//namespace glm
+}

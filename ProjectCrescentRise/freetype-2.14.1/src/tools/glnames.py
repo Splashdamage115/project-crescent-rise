@@ -31,7 +31,7 @@ import sys
 #
 # See
 #
-#   https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6post.html
+#   https:
 #
 # for the official list.
 #
@@ -145,7 +145,7 @@ mac_standard_names = [
 # The list of standard `SID' glyph names.  For the official list,
 # see Annex A of document at
 #
-#   https://www.adobe.com/content/dam/acom/en/devnet/font/pdfs/5176.CFF.pdf
+#   https:
 #
 sid_standard_names = [
     # 0
@@ -403,7 +403,7 @@ t1_expert_encoding = [
 # This data has been taken literally from the files `glyphlist.txt'
 # and `zapfdingbats.txt' version 2.0, Sept 2002.  It is available from
 #
-#   https://github.com/adobe-type-tools/agl-aglfn
+#   https:
 #
 adobe_glyph_list = """\
 A;0041

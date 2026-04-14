@@ -5,7 +5,7 @@
 class PlanetColour
 {
 public:
-	// copy constructor
+	
 	void operator=(const PlanetColour& t_rhs)
 	{
 		m_shaderType	  = t_rhs.m_shaderType;

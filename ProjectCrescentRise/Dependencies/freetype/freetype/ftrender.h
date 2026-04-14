@@ -35,12 +35,12 @@ FT_BEGIN_HEADER
    */
 
 
-  /* create a new glyph object */
+  
   typedef FT_Error
   (*FT_Glyph_InitFunc)( FT_Glyph      glyph,
                         FT_GlyphSlot  slot );
 
-  /* destroys a given glyph object */
+  
   typedef void
   (*FT_Glyph_DoneFunc)( FT_Glyph  glyph );
 
@@ -61,7 +61,7 @@ FT_BEGIN_HEADER
   (*FT_Glyph_PrepareFunc)( FT_Glyph      glyph,
                            FT_GlyphSlot  slot );
 
-/* deprecated */
+
 #define FT_Glyph_Init_Func       FT_Glyph_InitFunc
 #define FT_Glyph_Done_Func       FT_Glyph_DoneFunc
 #define FT_Glyph_Transform_Func  FT_Glyph_TransformFunc
@@ -108,7 +108,7 @@ FT_BEGIN_HEADER
                               FT_ULong     mode_tag,
                               FT_Pointer   mode_ptr );
 
-/* deprecated identifiers */
+
 #define FTRenderer_render  FT_Renderer_RenderFunc
 #define FTRenderer_transform  FT_Renderer_TransformFunc
 #define FTRenderer_getCBox  FT_Renderer_GetCBoxFunc
@@ -233,12 +233,12 @@ FT_BEGIN_HEADER
                    FT_UInt        num_params,
                    FT_Parameter*  parameters );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTRENDER_H_ */
+#endif 
 
 
-/* END */
+

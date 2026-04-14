@@ -1,5 +1,5 @@
-/// @ref core
-/// @file glm/detail/func_common.inl
+
+
 
 #include "../vector_relational.hpp"
 #include "compute_common.hpp"
@@ -12,7 +12,7 @@
 
 namespace glm
 {
-	// min
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR genType min(genType x, genType y)
 	{
@@ -20,7 +20,7 @@ namespace glm
 		return (y < x) ? y : x;
 	}
 
-	// max
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR genType max(genType x, genType y)
 	{
@@ -29,7 +29,7 @@ namespace glm
 		return (x < y) ? y : x;
 	}
 
-	// abs
+	
 	template<>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR int abs(int x)
 	{
@@ -37,7 +37,7 @@ namespace glm
 		return (x ^ y) - y;
 	}
 
-	// round
+	
 #	if GLM_HAS_CXX11_STL
 		using ::std::round;
 #	else
@@ -50,7 +50,7 @@ namespace glm
 		}
 #	endif
 
-	// trunc
+	
 #	if GLM_HAS_CXX11_STL
 		using ::std::trunc;
 #	else
@@ -63,7 +63,7 @@ namespace glm
 		}
 #	endif
 
-}//namespace glm
+}
 
 namespace glm{
 namespace detail
@@ -264,7 +264,7 @@ namespace detail
 			return tmp * tmp * (static_cast<T>(3) - static_cast<T>(2) * tmp);
 		}
 	};
-}//namespace detail
+}
 
 	template<typename genFIType>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR genFIType abs(genFIType x)
@@ -278,8 +278,8 @@ namespace detail
 		return detail::compute_abs_vector<L, T, Q, detail::is_aligned<Q>::value>::call(x);
 	}
 
-	// sign
-	// fast and works for any type
+	
+	
 	template<typename genFIType>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR genFIType sign(genFIType x)
 	{
@@ -301,7 +301,7 @@ namespace detail
 		return detail::compute_sign<L, T, Q, std::numeric_limits<T>::is_iec559, detail::is_aligned<Q>::value>::call(x);
 	}
 
-	// floor
+	
 	using ::std::floor;
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> floor(vec<L, T, Q> const& x)
@@ -325,7 +325,7 @@ namespace detail
 	}
 
 /*
-	// roundEven
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType roundEven(genType const& x)
 	{
@@ -335,7 +335,7 @@ namespace detail
 	}
 */
 
-	// roundEven
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType roundEven(genType x)
 	{
@@ -353,7 +353,7 @@ namespace detail
 		{
 			return IntegerPart;
 		}
-		else if(x <= static_cast<genType>(0)) // Work around...
+		else if(x <= static_cast<genType>(0)) 
 		{
 			return IntegerPart - static_cast<genType>(1);
 		}
@@ -361,10 +361,10 @@ namespace detail
 		{
 			return IntegerPart + static_cast<genType>(1);
 		}
-		//else // Bug on MinGW 4.5.2
-		//{
-		//	return mix(IntegerPart + genType(-1), IntegerPart + genType(1), x <= genType(0));
-		//}
+		
+		
+		
+		
 	}
 
 	template<length_t L, typename T, qualifier Q>
@@ -374,7 +374,7 @@ namespace detail
 		return detail::functor1<vec, L, T, T, Q>::call(roundEven, x);
 	}
 
-	// ceil
+	
 	using ::std::ceil;
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER vec<L, T, Q> ceil(vec<L, T, Q> const& x)
@@ -383,7 +383,7 @@ namespace detail
 		return detail::compute_ceil<L, T, Q, detail::is_aligned<Q>::value>::call(x);
 	}
 
-	// fract
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType fract(genType x)
 	{
@@ -397,12 +397,12 @@ namespace detail
 		return detail::compute_fract<L, T, Q, detail::is_aligned<Q>::value>::call(x);
 	}
 
-	// mod
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType mod(genType x, genType y)
 	{
 #		if (GLM_COMPILER & GLM_COMPILER_CUDA) || (GLM_COMPILER & GLM_COMPILER_HIP)
-			// Another Cuda compiler bug https://github.com/g-truc/glm/issues/530
+			
 			vec<1, genType, defaultp> Result(mod(vec<1, genType, defaultp>(x), y));
 			return Result.x;
 #		else
@@ -422,7 +422,7 @@ namespace detail
 		return detail::compute_mod<L, T, Q, detail::is_aligned<Q>::value>::call(x, y);
 	}
 
-	// modf
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType modf(genType x, genType & i)
 	{
@@ -464,15 +464,15 @@ namespace detail
 			modf(x.w, i.w));
 	}
 
-	//// Only valid if (INT_MIN <= x-y <= INT_MAX)
-	//// min(x,y)
-	//r = y + ((x - y) & ((x - y) >> (sizeof(int) *
-	//CHAR_BIT - 1)));
-	//// max(x,y)
-	//r = x - ((x - y) & ((x - y) >> (sizeof(int) *
-	//CHAR_BIT - 1)));
+	
+	
+	
+	
+	
+	
+	
 
-	// min
+	
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<L, T, Q> min(vec<L, T, Q> const& a, T b)
 	{
@@ -486,7 +486,7 @@ namespace detail
 		return detail::compute_min_vector<L, T, Q, detail::is_aligned<Q>::value>::call(a, b);
 	}
 
-	// max
+	
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<L, T, Q> max(vec<L, T, Q> const& a, T b)
 	{
@@ -500,7 +500,7 @@ namespace detail
 		return detail::compute_max_vector<L, T, Q, detail::is_aligned<Q>::value>::call(a, b);
 	}
 
-	// clamp
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR genType clamp(genType x, genType minVal, genType maxVal)
 	{
@@ -540,7 +540,7 @@ namespace detail
 		return detail::compute_mix_vector<L, T, U, Q, detail::is_aligned<Q>::value>::call(x, y, a);
 	}
 
-	// step
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType step(genType edge, genType x)
 	{
@@ -559,7 +559,7 @@ namespace detail
 		return detail::compute_step_vector<L, T, Q, detail::is_aligned<Q>::value>::call(edge, x);
 	}
 
-	// smoothstep
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType smoothstep(genType edge0, genType edge1, genType x)
 	{
@@ -643,7 +643,7 @@ namespace detail
 					return std::isinf(x);
 #				endif
 #			elif (GLM_COMPILER & GLM_COMPILER_CUDA) || (GLM_COMPILER & GLM_COMPILER_HIP)
-				// http://developer.download.nvidia.com/compute/cuda/4_2/rel/toolkit/docs/online/group__CUDA__MATH__DOUBLE_g13431dd2b40b51f9139cbb7f50c18fab.html#g13431dd2b40b51f9139cbb7f50c18fab
+				
 				return ::isinf(double(x)) != 0;
 #			else
 				return std::isinf(x);
@@ -785,7 +785,7 @@ namespace detail
 			Result[l] = std::ldexp(v[l], exp[l]);
 		return Result;
 	}
-}//namespace glm
+}
 
 #if GLM_CONFIG_SIMD == GLM_ENABLE
 #	include "func_common_simd.inl"

@@ -112,8 +112,8 @@
 	Original patch is designed by Werner Lemberg.  Extra part
 	for otvalid and gxvalid are added by suzuki toshiya, see
 	discussion:
-	https://lists.nongnu.org/archive/html/freetype-devel/2014-12/msg00002.html
-	https://lists.nongnu.org/archive/html/freetype-devel/2014-12/msg00007.html
+	https:
+	https:
 
 	* include/internal/ftvalid.h: Introduce FT_THROW() in FT_INVALID_().
 	* src/gxvalid/gxvcommn.h: Ditto.
@@ -139,12 +139,12 @@
 
 	See
 
-	  http://qc.embarcadero.com/wc/qcmain.aspx?d=118998
+	  http:
 
 	for Borland's bug tracker entry.
 
 	Reported by Yuliana Zigangirova <zigangirova@inbox.ru>,
-	https://lists.gnu.org/archive/html/freetype-devel/2014-04/msg00001.html.
+	https:
 
 	* include/internal/ftvalid.h (FT_ValidatorRec), src/smooth/ftgrays.c
 	(gray_TWorker_): Move `ft_jmp_buf' field to be the first element.
@@ -1083,7 +1083,7 @@
 
 	We have been hit by
 
-	  https://connect.microsoft.com/VisualStudio/feedback/details/718976/msvc-pr
+	  https:
 
 	* devel/ftoption.h, include/config/ftoption.h: Replace
 	`CFF_CONFIG_OPTION_DARKENING_PARAMETERS' with eight macros
@@ -1193,7 +1193,7 @@
 	The valid range for delta shift is zero through six.  Negative values
 	are invalid according to
 
-	  https://developer.apple.com/fonts/TrueType-Reference-Manual/RM04/Chap4.html#delta%20shift
+	  https:
 
 	* src/truetype/ttobjs.h (delta_shift, delta_base): Make unsigned.
 	* src/truetype/ttinterp.h (DO_SDS): Throw an error if `delta_shift'
@@ -2013,7 +2013,7 @@
 2014-03-05  suzuki toshiya  <mpsuzuki@hiroshima-u.ac.jp>
 
 	Fix a bug in configure in library dependency setting
-	Reported in https://bugs.freedesktop.org/show_bug.cgi?id=75652.
+	Reported in https:
 
 	* builds/unix/configure.raw: Use `x"${xxx}" != xno' style.
 
@@ -2194,7 +2194,7 @@
 
 	Patch taken from
 
-	  https://code.google.com/p/sumatrapdf/source/browse/trunk/ext/_patches/freetype2.patch?spec=svn8620&r=8620#87
+	  https:
 
 	with slight modifications.
 
@@ -2299,8 +2299,8 @@
 	due to bugs in header files of mingwrt 4.0.3 in strict ANSI mode,
 	cf.
 
-	  https://sourceforge.net/p/mingw/bugs/2024/
-	  https://sourceforge.net/p/mingw/bugs/2046/
+	  https:
+	  https:
 
 	* builds/unix/configure.raw: Don't set `-ansi' flag for MinGW.
 
@@ -2669,8 +2669,8 @@
 	with Carbon framework is incompatible with that by FreeType 2
 	without Carbon framework.)  Found by Khaled Hosny and Hin-Tak Leung.
 
-	https://lists.gnu.org/archive/html/freetype-devel/2013-02/msg00035.html
-	https://lists.gnu.org/archive/html/freetype-devel/2013-12/msg00027.html
+	https:
+	https:
 
 	* src/base/ftrfork.c (FT_Raccess_Get_DataOffsets): Add a switch
 	`sort_by_res_id' to control the fragmented resource ordering.
@@ -3181,7 +3181,7 @@
 
 	Problem reported by Hin-Tak Leung <htl10@users.sourceforge.net>; see
 
-	  https://lists.nongnu.org/archive/html/freetype-devel/2013-08/msg00005.html
+	  https:
 
 	for details.
 
@@ -3361,7 +3361,7 @@
 
 	See
 
-	  http://typedrawers.com/discussion/470/new-microsoft-size-specific-design-selection-mechanism
+	  http:
 
 	for the announcement.
 
@@ -3405,7 +3405,7 @@
 
 	The canonical URL to get updates for this file is
 
-	  https://cvsweb.openwall.com/cgi/cvsweb.cgi/Owl/packages/popa3d/popa3d/md5/
+	  https:
 
 	as the author told me in private communication.
 
@@ -3556,7 +3556,7 @@
 
 	Suggested by Akira Tagoh, see
 
-	  https://lists.gnu.org/archive/html/freetype/2013-09/msg00030.html
+	  https:
 
 	* src/bdf/bdfdrivr.c (BDF_Face_Init): Return `Invalid_Argument'
 	error if the font could be opened but non-zero `face_index' is
@@ -3597,7 +3597,7 @@
 
 	Fix vertical size of emboldened glyphs.
 
-	Cf. https://bugzilla.gnome.org/show_bug.cgi?id=686709
+	Cf. https:
 
 	* src/base/ftsynth.c (FT_GlyphSlot_Embolden): Adjust `horiBearingY'
 	also.
@@ -4837,7 +4837,7 @@
 
 	Apply fixes for cppcheck nitpicks.
 
-	  https://cppcheck.sourceforge.net/
+	  https:
 
 	The call was (from the top-level of the FreeType tree):
 
@@ -4898,7 +4898,7 @@
 	A new load flag, FT_LOAD_COLOR, makes FreeType load color
 	embedded-bitmaps, following this draft specification
 
-	  https://color-emoji.googlecode.com/git/specification/v1.html
+	  https:
 
 	which defines two new SFNT tables, `CBDT' and `CBLC' (named and
 	modeled after `EBDT' and `EBLC', respectively).  The color bitmaps

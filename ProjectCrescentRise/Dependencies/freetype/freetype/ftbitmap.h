@@ -77,7 +77,7 @@ FT_BEGIN_HEADER
   FT_Bitmap_Init( FT_Bitmap  *abitmap );
 
 
-  /* deprecated */
+  
   FT_EXPORT( void )
   FT_Bitmap_New( FT_Bitmap  *abitmap );
 
@@ -318,12 +318,12 @@ FT_BEGIN_HEADER
                   FT_Bitmap  *bitmap );
 
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTBITMAP_H_ */
+#endif 
 
 
-/* END */
+

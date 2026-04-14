@@ -17,7 +17,7 @@ timestamp='2025-07-10'
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, see <https://www.gnu.org/licenses/>.
+# along with this program; if not, see <https:
 #
 # As a special exception to the GNU General Public License, if you
 # distribute this file as part of a program that contains a
@@ -35,7 +35,7 @@ timestamp='2025-07-10'
 # Otherwise, we print the canonical config type on stdout and succeed.
 
 # You can get the latest version of this script from:
-# https://git.savannah.gnu.org/cgit/config.git/plain/config.sub
+# https:
 
 # This file is supposed to be the same for all GNU packages
 # and recognize all the CPU types, system types and aliases
@@ -773,9 +773,9 @@ case $basic_machine in
 		;;
 	# This used to be dpx2*, but that gets the RS6000-based
 	# DPX/20 and the x86-based DPX/2-100 wrong.  See
-	# https://oldskool.silicium.org/stations/bull_dpx20.htm
-	# https://www.feb-patrimoine.com/english/bull_dpx2.htm
-	# https://www.feb-patrimoine.com/english/unix_and_bull.htm
+	# https:
+	# https:
+	# https:
 	dpx2 | dpx2[23]00 | dpx2[23]xx)
 		cpu=m68k
 		vendor=bull
@@ -985,7 +985,7 @@ case $basic_machine in
 		;;
 	leon-*|leon[3-9]-*)
 		cpu=sparc
-		vendor=`echo "$basic_machine" | sed 's/-.*//'`
+		vendor=`echo "$basic_machine" | sed 's/-.*
 		;;
 
 	*-*)

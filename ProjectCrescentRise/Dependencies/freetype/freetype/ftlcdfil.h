@@ -164,7 +164,7 @@ FT_BEGIN_HEADER
     FT_LCD_FILTER_LEGACY1 = 3,
     FT_LCD_FILTER_LEGACY  = 16,
 
-    FT_LCD_FILTER_MAX   /* do not remove */
+    FT_LCD_FILTER_MAX   
 
   } FT_LcdFilter;
 
@@ -312,12 +312,12 @@ FT_BEGIN_HEADER
   FT_Library_SetLcdGeometry( FT_Library  library,
                              FT_Vector   sub[3] );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTLCDFIL_H_ */
+#endif 
 
 
-/* END */
+

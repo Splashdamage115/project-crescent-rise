@@ -1,10 +1,10 @@
-/// @ref gtx_io
-/// @author Jan P Springer (regnirpsj@gmail.com)
 
-#include <iomanip>                  // std::fixed, std::setfill<>, std::setprecision, std::right, std::setw
-#include <ostream>                  // std::basic_ostream<>
-#include "../gtc/matrix_access.hpp" // glm::col, glm::row
-#include "../gtx/type_trait.hpp"    // glm::type<>
+
+
+#include <iomanip>                  
+#include <ostream>                  
+#include "../gtc/matrix_access.hpp" 
+#include "../gtx/type_trait.hpp"    
 
 #if GLM_COMPILER & GLM_COMPILER_CLANG
 #	pragma clang diagnostic push
@@ -154,7 +154,7 @@ namespace io
 		const_cast<format_punct<CTy>&>(get_facet<format_punct<CTy> >(os)).order = a.value;
 		return os;
 	}
-} // namespace io
+} 
 
 namespace detail
 {
@@ -199,7 +199,7 @@ namespace detail
 
 		return os;
 	}
-}//namespace detail
+}
 
 	template<typename CTy, typename CTr, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER std::basic_ostream<CTy,CTr>& operator<<(std::basic_ostream<CTy,CTr>& os, qua<T, Q> const& a)
@@ -317,7 +317,7 @@ namespace detail
 
 		return os;
 	}
-}//namespace detail
+}
 
 	template<typename CTy, typename CTr, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER std::basic_ostream<CTy,CTr>& operator<<(std::basic_ostream<CTy,CTr>& os, mat<2, 2, T, Q> const& a)
@@ -434,7 +434,7 @@ namespace detail
 
 		return os;
 	}
-}//namespace detail
+}
 
 	template<typename CTy, typename CTr, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER std::basic_ostream<CTy, CTr>& operator<<(
@@ -444,7 +444,7 @@ namespace detail
 	{
 		return detail::print_matrix_pair_on(os, a);
 	}
-}//namespace glm
+}
 
 #if GLM_COMPILER & GLM_COMPILER_CLANG
 #	pragma clang diagnostic pop

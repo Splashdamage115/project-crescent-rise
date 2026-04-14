@@ -1,4 +1,4 @@
-See BACKENDS and EXAMPLES files in the docs/ folder, or on the web at: https://github.com/ocornut/imgui/tree/master/docs
+See BACKENDS and EXAMPLES files in the docs/ folder, or on the web at: https:
 
 Backends = Helper code to facilitate integration with platforms/graphics api (used by Examples + should be used by your app).
 Examples = Standalone applications showcasing integration with platforms/graphics api.

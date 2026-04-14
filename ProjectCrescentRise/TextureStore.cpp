@@ -17,11 +17,11 @@ GLuint TextureStore::RetrieveTexture(std::string location)
         }
     }
 
-    // if the texture doesnt exist, intialise it
+    
     Texture textureInstance;
     if (textureInstance.InitialiseTexture(location))
     {
-        // try find empty
+        
         for (int i = 0; i < textures.size(); i++)
         {
             if (textures.at(i).active)continue;
@@ -30,7 +30,7 @@ GLuint TextureStore::RetrieveTexture(std::string location)
             return textures.at(i).texture;
         }
 
-        // add new instance
+        
         textures.emplace_back(textureInstance);
 
         return textures.at(textures.size() - 1).texture;
@@ -52,11 +52,11 @@ GLuint TextureStore::RetrieveNormals(std::string location)
         }
     }
 
-    // if the normal doesnt exist, intialise it
+    
     NormalMap normalInstance;
     if (normalInstance.InitialiseNormal(location))
     {
-        // try find empty
+        
         for (int i = 0; i < normals.size(); i++)
         {
             if (normals.at(i).active)continue;
@@ -65,7 +65,7 @@ GLuint TextureStore::RetrieveNormals(std::string location)
             return normals.at(i).normal;
         }
 
-        // add new instance
+        
         normals.emplace_back(normalInstance);
 
         return normals.at(normals.size() - 1).normal;

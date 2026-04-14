@@ -1,9 +1,9 @@
-/// @ref core
-/// @file glm/detail/type_quat.hpp
+
+
 
 #pragma once
 
-// Dependency:
+
 #include "../detail/type_mat3x3.hpp"
 #include "../detail/type_mat4x4.hpp"
 #include "../detail/type_vec3.hpp"
@@ -25,19 +25,19 @@ namespace glm
 #				pragma clang diagnostic ignored "-Wnested-anon-types"
 #			elif GLM_COMPILER & GLM_COMPILER_VC
 #				pragma warning(push)
-#				pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
+#				pragma warning(disable: 4201)  
 #			endif
 #		endif
 
 	template<typename T, qualifier Q>
 	struct qua
 	{
-		// -- Implementation detail --
+		
 
 		typedef qua<T, Q> type;
 		typedef T value_type;
 
-		// -- Data --
+		
 
 #		if GLM_LANG & GLM_LANG_CXXMS_FLAG
 			union
@@ -58,24 +58,24 @@ namespace glm
 #			endif
 #		endif
 
-		// -- Component accesses --
+		
 
 		typedef length_t length_type;
 
-		/// Return the count of components of a quaternion
+		
 		GLM_FUNC_DECL static GLM_CONSTEXPR length_type length(){return 4;}
 
 		GLM_FUNC_DECL GLM_CONSTEXPR T & operator[](length_type i);
 		GLM_FUNC_DECL GLM_CONSTEXPR T const& operator[](length_type i) const;
 
-		// -- Implicit basic constructors --
+		
 
 		GLM_DEFAULTED_DEFAULT_CTOR_DECL GLM_CONSTEXPR qua() GLM_DEFAULT_CTOR;
 		GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR qua(qua<T, Q> const& q) GLM_DEFAULT;
 		template<qualifier P>
 		GLM_CTOR_DECL qua(qua<T, P> const& q);
 
-		// -- Explicit basic constructors --
+		
 
 		GLM_CTOR_DECL qua(T s, vec<3, T, Q> const& v);
 
@@ -87,31 +87,31 @@ namespace glm
 
 		GLM_FUNC_DECL static GLM_CONSTEXPR qua<T, Q> wxyz(T w, T x, T y, T z);
 
-		// -- Conversion constructors --
+		
 
 		template<typename U, qualifier P>
 		GLM_CTOR_DECL GLM_EXPLICIT qua(qua<U, P> const& q);
 
-		/// Explicit conversion operators
+		
 #		if GLM_HAS_EXPLICIT_CONVERSION_OPERATORS
 			GLM_FUNC_DECL explicit operator mat<3, 3, T, Q>() const;
 			GLM_FUNC_DECL explicit operator mat<4, 4, T, Q>() const;
 #		endif
 
-		/// Create a quaternion from two normalized axis
-		///
-		/// @param u A first normalized axis
-		/// @param v A second normalized axis
-		/// @see gtc_quaternion
-		/// @see http://lolengine.net/blog/2013/09/18/beautiful-maths-quaternion-from-vectors
+		
+		
+		
+		
+		
+		
 		GLM_FUNC_DISCARD_DECL qua(vec<3, T, Q> const& u, vec<3, T, Q> const& v);
 
-		/// Build a quaternion from euler angles (pitch, yaw, roll), in radians.
+		
 		GLM_CTOR_DECL GLM_EXPLICIT qua(vec<3, T, Q> const& eulerAngles);
 		GLM_CTOR_DECL GLM_EXPLICIT qua(mat<3, 3, T, Q> const& q);
 		GLM_CTOR_DECL GLM_EXPLICIT qua(mat<4, 4, T, Q> const& q);
 
-		// -- Unary arithmetic operators --
+		
 
 		GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR qua<T, Q>& operator=(qua<T, Q> const& q) GLM_DEFAULT;
 
@@ -139,7 +139,7 @@ namespace glm
 #			endif
 #		endif
 
-	// -- Unary bit operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR qua<T, Q> operator+(qua<T, Q> const& q);
@@ -147,7 +147,7 @@ namespace glm
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR qua<T, Q> operator-(qua<T, Q> const& q);
 
-	// -- Binary operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR qua<T, Q> operator+(qua<T, Q> const& q, qua<T, Q> const& p);
@@ -179,15 +179,15 @@ namespace glm
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR qua<T, Q> operator/(qua<T, Q> const& q, T const& s);
 
-	// -- Boolean operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR bool operator==(qua<T, Q> const& q1, qua<T, Q> const& q2);
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR bool operator!=(qua<T, Q> const& q1, qua<T, Q> const& q2);
-} //namespace glm
+} 
 
 #ifndef GLM_EXTERNAL_TEMPLATE
 #include "type_quat.inl"
-#endif//GLM_EXTERNAL_TEMPLATE
+#endif

@@ -1,4 +1,4 @@
-/// @ref gtx_orthonormalize
+
 
 namespace glm
 {
@@ -26,4 +26,4 @@ namespace glm
 	{
 		return normalize(x - y * dot(y, x));
 	}
-}//namespace glm
+}

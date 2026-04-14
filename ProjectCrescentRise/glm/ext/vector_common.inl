@@ -144,4 +144,4 @@ namespace glm
 
 		return vec<L, uint, Q>(x + static_cast<T>(0.5));
 	}
-}//namespace glm
+}

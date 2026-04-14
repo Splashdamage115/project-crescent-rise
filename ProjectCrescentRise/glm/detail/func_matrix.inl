@@ -403,7 +403,7 @@ namespace detail
 			return Inverse * OneOverDeterminant;
 		}
 	};
-}//namespace detail
+}
 
 	template<length_t C, length_t R, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER mat<C, R, T, Q> matrixCompMult(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y)
@@ -435,7 +435,7 @@ namespace detail
 		GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559 || GLM_CONFIG_UNRESTRICTED_GENTYPE, "'inverse' only accept floating-point inputs");
 		return detail::compute_inverse<C, R, T, Q, detail::is_aligned<Q>::value>::call(m);
 	}
-}//namespace glm
+}
 
 #if GLM_CONFIG_SIMD == GLM_ENABLE
 #	include "func_matrix_simd.inl"

@@ -204,11 +204,11 @@ FT_BEGIN_HEADER
     FT_Short   Descender;
     FT_Short   Line_Gap;
 
-    FT_UShort  advance_Width_Max;      /* advance width maximum */
+    FT_UShort  advance_Width_Max;      
 
-    FT_Short   min_Left_Side_Bearing;  /* minimum left-sb       */
-    FT_Short   min_Right_Side_Bearing; /* minimum right-sb      */
-    FT_Short   xMax_Extent;            /* xmax extents          */
+    FT_Short   min_Left_Side_Bearing;  
+    FT_Short   min_Right_Side_Bearing; 
+    FT_Short   xMax_Extent;            
     FT_Short   caret_Slope_Rise;
     FT_Short   caret_Slope_Run;
     FT_Short   caret_Offset;
@@ -218,9 +218,9 @@ FT_BEGIN_HEADER
     FT_Short   metric_Data_Format;
     FT_UShort  number_Of_HMetrics;
 
-    /* The following fields are not defined by the OpenType specification */
-    /* but they are used to connect the metrics header to the relevant    */
-    /* 'hmtx' table.                                                      */
+    
+    
+    
 
     void*      long_metrics;
     void*      short_metrics;
@@ -322,11 +322,11 @@ FT_BEGIN_HEADER
     FT_Short   Descender;
     FT_Short   Line_Gap;
 
-    FT_UShort  advance_Height_Max;      /* advance height maximum */
+    FT_UShort  advance_Height_Max;      
 
-    FT_Short   min_Top_Side_Bearing;    /* minimum top-sb          */
-    FT_Short   min_Bottom_Side_Bearing; /* minimum bottom-sb       */
-    FT_Short   yMax_Extent;             /* ymax extents            */
+    FT_Short   min_Top_Side_Bearing;    
+    FT_Short   min_Bottom_Side_Bearing; 
+    FT_Short   yMax_Extent;             
     FT_Short   caret_Slope_Rise;
     FT_Short   caret_Slope_Run;
     FT_Short   caret_Offset;
@@ -336,9 +336,9 @@ FT_BEGIN_HEADER
     FT_Short   metric_Data_Format;
     FT_UShort  number_Of_VMetrics;
 
-    /* The following fields are not defined by the OpenType specification */
-    /* but they are used to connect the metrics header to the relevant    */
-    /* 'vmtx' table.                                                      */
+    
+    
+    
 
     void*      long_metrics;
     void*      short_metrics;
@@ -374,7 +374,7 @@ FT_BEGIN_HEADER
 
   typedef struct  TT_OS2_
   {
-    FT_UShort  version;                /* 0x0001 - more or 0xFFFF */
+    FT_UShort  version;                
     FT_Short   xAvgCharWidth;
     FT_UShort  usWeightClass;
     FT_UShort  usWidthClass;
@@ -393,10 +393,10 @@ FT_BEGIN_HEADER
 
     FT_Byte    panose[10];
 
-    FT_ULong   ulUnicodeRange1;        /* Bits 0-31   */
-    FT_ULong   ulUnicodeRange2;        /* Bits 32-63  */
-    FT_ULong   ulUnicodeRange3;        /* Bits 64-95  */
-    FT_ULong   ulUnicodeRange4;        /* Bits 96-127 */
+    FT_ULong   ulUnicodeRange1;        
+    FT_ULong   ulUnicodeRange2;        
+    FT_ULong   ulUnicodeRange3;        
+    FT_ULong   ulUnicodeRange4;        
 
     FT_Char    achVendID[4];
 
@@ -409,12 +409,12 @@ FT_BEGIN_HEADER
     FT_UShort  usWinAscent;
     FT_UShort  usWinDescent;
 
-    /* only version 1 and higher: */
+    
 
-    FT_ULong   ulCodePageRange1;       /* Bits 0-31   */
-    FT_ULong   ulCodePageRange2;       /* Bits 32-63  */
+    FT_ULong   ulCodePageRange1;       
+    FT_ULong   ulCodePageRange2;       
 
-    /* only version 2 and higher: */
+    
 
     FT_Short   sxHeight;
     FT_Short   sCapHeight;
@@ -422,10 +422,10 @@ FT_BEGIN_HEADER
     FT_UShort  usBreakChar;
     FT_UShort  usMaxContext;
 
-    /* only version 5 and higher: */
+    
 
-    FT_UShort  usLowerOpticalPointSize;       /* in twips (1/20 points) */
-    FT_UShort  usUpperOpticalPointSize;       /* in twips (1/20 points) */
+    FT_UShort  usLowerOpticalPointSize;       
+    FT_UShort  usUpperOpticalPointSize;       
 
   } TT_OS2;
 
@@ -459,8 +459,8 @@ FT_BEGIN_HEADER
     FT_ULong  minMemType1;
     FT_ULong  maxMemType1;
 
-    /* Glyph names follow in the 'post' table, but we don't */
-    /* load them by default.                                */
+    
+    
 
   } TT_Postscript;
 
@@ -631,8 +631,8 @@ FT_BEGIN_HEADER
 
   } FT_Sfnt_Tag;
 
-  /* these constants are deprecated; use the corresponding `FT_Sfnt_Tag` */
-  /* values instead                                                      */
+  
+  
 #define ft_sfnt_head  FT_SFNT_HEAD
 #define ft_sfnt_maxp  FT_SFNT_MAXP
 #define ft_sfnt_os2   FT_SFNT_OS2
@@ -848,12 +848,12 @@ FT_BEGIN_HEADER
   FT_EXPORT( FT_Long )
   FT_Get_CMap_Format( FT_CharMap  charmap );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* TTTABLES_H_ */
+#endif 
 
 
-/* END */
+

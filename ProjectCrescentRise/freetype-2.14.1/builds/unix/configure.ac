@@ -1047,12 +1047,12 @@ PKGCONFIG_REQUIRES_PRIVATE="$zlib_reqpriv,     \
                             $brotli_reqpriv"
 # beautify
 PKGCONFIG_REQUIRES_PRIVATE=`echo "$PKGCONFIG_REQUIRES_PRIVATE" \
-                            | sed -e 's/^  *//'      \
-                                  -e 's/  *$//'      \
+                            | sed -e 's/^  *
+                                  -e 's/  *$
                                   -e 's/, */,/g'     \
                                   -e 's/,,*/,/g'     \
-                                  -e 's/^,*//'       \
-                                  -e 's/,*$//'       \
+                                  -e 's/^,*
+                                  -e 's/,*$
                                   -e 's/,/, /g'`
 
 PKGCONFIG_LIBS_PRIVATE="$zlib_libspriv     \
@@ -1063,8 +1063,8 @@ PKGCONFIG_LIBS_PRIVATE="$zlib_libspriv     \
                         $ft2_extra_libs"
 # beautify
 PKGCONFIG_LIBS_PRIVATE=`echo "$PKGCONFIG_LIBS_PRIVATE"  \
-                        | sed -e 's/^  *//'   \
-                              -e 's/  *$//'   \
+                        | sed -e 's/^  *
+                              -e 's/  *$
                               -e 's/  */ /g'`
 
 LIBSSTATIC_CONFIG="-lfreetype               \
@@ -1079,8 +1079,8 @@ LIBSSTATIC_CONFIG="-lfreetype               \
 LIBSSTATIC_CONFIG=`echo "$LIBSSTATIC_CONFIG"          \
                    | sed -e 's|-L */usr/lib64/* | |g' \
                          -e 's|-L */usr/lib/* | |g'   \
-                         -e 's/^  *//'                \
-                         -e 's/  *$//'                \
+                         -e 's/^  *
+                         -e 's/  *$
                          -e 's/  */ /g'`
 
 # If FreeType gets installed with `--disable-shared', don't use

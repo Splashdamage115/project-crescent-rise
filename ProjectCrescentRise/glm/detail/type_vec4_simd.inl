@@ -46,7 +46,7 @@ namespace glm {
 				return Result;
 			}
 		};
-#	endif// GLM_CONFIG_SWIZZLE == GLM_SWIZZLE_OPERATOR
+#	endif
 
 		template<qualifier Q>
 		struct compute_vec4_add<float, Q, true>
@@ -314,7 +314,7 @@ namespace glm {
 		{
 			static bool call(vec<4, int, Q> const& v1, vec<4, int, Q> const& v2)
 			{
-				//return _mm_movemask_epi8(_mm_cmpeq_epi32(v1.data, v2.data)) != 0;
+				
 				__m128i neq = _mm_xor_si128(v1.data, v2.data);
 				return _mm_test_all_zeros(neq, neq) == 0;
 			}
@@ -336,13 +336,13 @@ namespace glm {
 		{
 			static bool call(vec<4, int, Q> const& v1, vec<4, int, Q> const& v2)
 			{
-				//return _mm_movemask_epi8(_mm_cmpneq_epi32(v1.data, v2.data)) != 0;
+				
 				__m128i neq = _mm_xor_si128(v1.data, v2.data);
 				return _mm_test_all_zeros(neq, neq) != 0;
 			}
 		};
 #	endif
-	}//namespace detail
+	}
 
 	template<>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<4, float, aligned_lowp>::vec(float _s) :
@@ -458,9 +458,9 @@ namespace glm {
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<4, float, aligned_highp>::vec(int _x, int _y, int _z, int _w) :
 		data(_mm_cvtepi32_ps(_mm_set_epi32(_w, _z, _y, _x)))
 	{}
-}//namespace glm
+}
 
-#endif//GLM_ARCH & GLM_ARCH_SSE2_BIT
+#endif
 
 #if GLM_ARCH & GLM_ARCH_NEON_BIT
 namespace glm {
@@ -679,7 +679,7 @@ namespace glm {
 			}
 		};
 
-	}//namespace detail
+	}
 
 #if !GLM_CONFIG_XYZW_ONLY
 	template<>
@@ -783,6 +783,6 @@ namespace glm {
 	{}
 
 #endif
-}//namespace glm
+}
 
 #endif

@@ -27,7 +27,7 @@
    *
    * See
    *
-   *       https://www.w3.org/TR/WOFF2/#table_dir_format
+   *       https:
    *
    * for details.
    */

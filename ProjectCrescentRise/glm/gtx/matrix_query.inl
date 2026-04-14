@@ -1,4 +1,4 @@
-/// @ref gtx_matrix_query
+
 
 namespace glm
 {
@@ -116,4 +116,4 @@ namespace glm
 		}
 		return result;
 	}
-}//namespace glm
+}

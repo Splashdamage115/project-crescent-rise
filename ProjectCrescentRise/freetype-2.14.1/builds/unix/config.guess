@@ -17,7 +17,7 @@ timestamp='2025-07-10'
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, see <https://www.gnu.org/licenses/>.
+# along with this program; if not, see <https:
 #
 # As a special exception to the GNU General Public License, if you
 # distribute this file as part of a program that contains a
@@ -29,7 +29,7 @@ timestamp='2025-07-10'
 # Originally written by Per Bothner; maintained since 2000 by Ben Elliston.
 #
 # You can get the latest version of this script from:
-# https://git.savannah.gnu.org/cgit/config.git/plain/config.guess
+# https:
 #
 # Please send patches to <config-patches@gnu.org>.
 
@@ -251,7 +251,7 @@ case $UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION in
 	# Determine ABI tags.
 	case $UNAME_MACHINE_ARCH in
 	    earm*)
-		expr='s/^earmv[0-9]/-eabi/;s/eb$//'
+		expr='s/^earmv[0-9]/-eabi/;s/eb$
 		abi=`echo "$UNAME_MACHINE_ARCH" | sed -e "$expr"`
 		;;
 	esac
@@ -265,7 +265,7 @@ case $UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION in
 		release='-gnu'
 		;;
 	    *)
-		release=`echo "$UNAME_RELEASE" | sed -e 's/[-_].*//' | cut -d. -f1,2`
+		release=`echo "$UNAME_RELEASE" | sed -e 's/[-_].*
 		;;
 	esac
 	# Since CPU_TYPE-MANUFACTURER-KERNEL-OPERATING_SYSTEM:
@@ -274,19 +274,19 @@ case $UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION in
 	GUESS=$machine-${os}${release}${abi-}
 	;;
     *:Bitrig:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/Bitrig.//'`
+	UNAME_MACHINE_ARCH=`arch | sed 's/Bitrig.
 	GUESS=$UNAME_MACHINE_ARCH-unknown-bitrig$UNAME_RELEASE
 	;;
     *:OpenBSD:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/OpenBSD.//'`
+	UNAME_MACHINE_ARCH=`arch | sed 's/OpenBSD.
 	GUESS=$UNAME_MACHINE_ARCH-unknown-openbsd$UNAME_RELEASE
 	;;
     *:SecBSD:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/SecBSD.//'`
+	UNAME_MACHINE_ARCH=`arch | sed 's/SecBSD.
 	GUESS=$UNAME_MACHINE_ARCH-unknown-secbsd$UNAME_RELEASE
 	;;
     *:LibertyBSD:*:*)
-	UNAME_MACHINE_ARCH=`arch | sed 's/^.*BSD\.//'`
+	UNAME_MACHINE_ARCH=`arch | sed 's/^.*BSD\.
 	GUESS=$UNAME_MACHINE_ARCH-unknown-libertybsd$UNAME_RELEASE
 	;;
     *:MidnightBSD:*:*)
@@ -372,7 +372,7 @@ case $UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION in
 	# A Tn.n version is a released field test version.
 	# A Xn.n version is an unreleased experimental baselevel.
 	# 1.2 uses "1.2" for uname -r.
-	OSF_REL=`echo "$UNAME_RELEASE" | sed -e 's/^[PVTX]//' | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz`
+	OSF_REL=`echo "$UNAME_RELEASE" | sed -e 's/^[PVTX]
 	GUESS=$UNAME_MACHINE-dec-osf$OSF_REL
 	;;
     Amiga*:UNIX_System_V:4.0:*)
@@ -421,15 +421,15 @@ case $UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION in
 	esac
 	;;
     s390x:SunOS:*:*)
-	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*//'`
+	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*
 	GUESS=$UNAME_MACHINE-ibm-solaris2$SUN_REL
 	;;
     sun4H:SunOS:5.*:*)
-	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*//'`
+	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*
 	GUESS=sparc-hal-solaris2$SUN_REL
 	;;
     sun4*:SunOS:5.*:* | tadpole*:SunOS:5.*:*)
-	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*//'`
+	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*
 	GUESS=sparc-sun-solaris2$SUN_REL
 	;;
     i86pc:AuroraUX:5.*:* | i86xen:AuroraUX:5.*:*)
@@ -449,14 +449,14 @@ case $UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION in
 		SUN_ARCH=x86_64
 	    fi
 	fi
-	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*//'`
+	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*
 	GUESS=$SUN_ARCH-pc-solaris2$SUN_REL
 	;;
     sun4*:SunOS:6*:*)
 	# According to config.sub, this is the proper way to canonicalize
 	# SunOS6.  Hard to guess exactly what SunOS6 will be like, but
 	# it's likely to be more like Solaris than SunOS4.
-	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*//'`
+	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*
 	GUESS=sparc-sun-solaris3$SUN_REL
 	;;
     sun4*:SunOS:*:*)
@@ -533,7 +533,7 @@ case $UNAME_MACHINE:$UNAME_SYSTEM:$UNAME_RELEASE:$UNAME_VERSION in
 	;;
     mips:*:*:UMIPS | mips:*:*:RISCos)
 	set_cc_for_build
-	sed 's/^	//' << EOF > "$dummy.c"
+	sed 's/^	
 #ifdef __cplusplus
 #include <stdio.h>  /* for printf() prototype */
 	int main (int argc, char *argv[]) {
@@ -631,7 +631,7 @@ EOF
     *:AIX:2:3)
 	if grep bos325 /usr/include/stdio.h >/dev/null 2>&1; then
 		set_cc_for_build
-		sed 's/^		//' << EOF > "$dummy.c"
+		sed 's/^		
 		#include <sys/systemcfg.h>
 
 		int
@@ -692,7 +692,7 @@ EOF
 	GUESS=m68k-hp-bsd4.4
 	;;
     9000/[34678]??:HP-UX:*:*)
-	HPUX_REV=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*.[0B]*//'`
+	HPUX_REV=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*.[0B]*
 	case $UNAME_MACHINE in
 	    9000/31?)            HP_ARCH=m68000 ;;
 	    9000/[34]??)         HP_ARCH=m68k ;;
@@ -713,7 +713,7 @@ EOF
 		fi
 		if test "$HP_ARCH" = ""; then
 		    set_cc_for_build
-		    sed 's/^		//' << EOF > "$dummy.c"
+		    sed 's/^		
 
 		#define _HPUX_SOURCE
 		#include <stdlib.h>
@@ -775,12 +775,12 @@ EOF
 	GUESS=$HP_ARCH-hp-hpux$HPUX_REV
 	;;
     ia64:HP-UX:*:*)
-	HPUX_REV=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*.[0B]*//'`
+	HPUX_REV=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*.[0B]*
 	GUESS=ia64-hp-hpux$HPUX_REV
 	;;
     3050*:HI-UX:*:*)
 	set_cc_for_build
-	sed 's/^	//' << EOF > "$dummy.c"
+	sed 's/^	
 	#include <unistd.h>
 	int
 	main ()
@@ -880,12 +880,12 @@ EOF
 	;;
     F30[01]:UNIX_System_V:*:* | F700:UNIX_System_V:*:*)
 	FUJITSU_PROC=`uname -m | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz`
-	FUJITSU_SYS=`uname -p | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz | sed -e 's/\///'`
+	FUJITSU_SYS=`uname -p | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz | sed -e 's/\
 	FUJITSU_REL=`echo "$UNAME_RELEASE" | sed -e 's/ /_/'`
 	GUESS=${FUJITSU_PROC}-fujitsu-${FUJITSU_SYS}${FUJITSU_REL}
 	;;
     5000:UNIX_System_V:4.*:*)
-	FUJITSU_SYS=`uname -p | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz | sed -e 's/\///'`
+	FUJITSU_SYS=`uname -p | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz | sed -e 's/\
 	FUJITSU_REL=`echo "$UNAME_RELEASE" | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz | sed -e 's/ /_/'`
 	GUESS=sparc-fujitsu-${FUJITSU_SYS}${FUJITSU_REL}
 	;;
@@ -904,10 +904,10 @@ EOF
 	if echo __ARM_PCS_VFP | $CC_FOR_BUILD -E - 2>/dev/null \
 	    | grep -q __ARM_PCS_VFP
 	then
-	    FREEBSD_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*//'`
+	    FREEBSD_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*
 	    GUESS=$UNAME_PROCESSOR-unknown-freebsd$FREEBSD_REL-gnueabi
 	else
-	    FREEBSD_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*//'`
+	    FREEBSD_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*
 	    GUESS=$UNAME_PROCESSOR-unknown-freebsd$FREEBSD_REL-gnueabihf
 	fi
 	;;
@@ -919,7 +919,7 @@ EOF
 	    i386)
 		UNAME_PROCESSOR=i586 ;;
 	esac
-	FREEBSD_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*//'`
+	FREEBSD_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*
 	GUESS=$UNAME_PROCESSOR-unknown-freebsd$FREEBSD_REL
 	;;
     i*:CYGWIN*:*)
@@ -959,7 +959,7 @@ EOF
 	GUESS=x86_64-pc-cygwin
 	;;
     prep*:SunOS:5.*:*)
-	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*//'`
+	SUN_REL=`echo "$UNAME_RELEASE" | sed -e 's/[^.]*
 	GUESS=powerpcle-unknown-solaris2$SUN_REL
 	;;
     *:GNU:*:*)
@@ -971,7 +971,7 @@ EOF
     *:GNU/*:*:*)
 	# other systems with GNU libc and userland
 	GNU_SYS=`echo "$UNAME_SYSTEM" | sed 's,^[^/]*/,,' | tr "[:upper:]" "[:lower:]"`
-	GNU_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*//'`
+	GNU_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*
 	GUESS=$UNAME_MACHINE-unknown-$GNU_SYS$GNU_REL-$LIBC
 	;;
     x86_64:[Mm]anagarm:*:*|i?86:[Mm]anagarm:*:*)
@@ -989,7 +989,7 @@ EOF
 	LIBCABI=$LIBC
 	if test "$CC_FOR_BUILD" != no_compiler_found; then
 	    ABI=64
-	    sed 's/^	    //' << EOF > "$dummy.c"
+	    sed 's/^	    
 	    #ifdef __ARM_EABI__
 	    #ifdef __ARM_PCS_VFP
 	    ABI=eabihf
@@ -1092,7 +1092,7 @@ EOF
 	set_cc_for_build
 	IS_GLIBC=0
 	test x"${LIBC}" = xgnu && IS_GLIBC=1
-	sed 's/^	//' << EOF > "$dummy.c"
+	sed 's/^	
 	#undef CPU
 	#undef mips
 	#undef mipsel
@@ -1198,7 +1198,7 @@ EOF
 	LIBCABI=$LIBC
 	if test "$CC_FOR_BUILD" != no_compiler_found; then
 	    ABI=64
-	    sed 's/^	    //' << EOF > "$dummy.c"
+	    sed 's/^	    
 	    #ifdef __i386__
 	    ABI=x86
 	    #else
@@ -1254,7 +1254,7 @@ EOF
 	GUESS=$UNAME_MACHINE-pc-msdosdjgpp
 	;;
     i*86:*:4.*:*)
-	UNAME_REL=`echo "$UNAME_RELEASE" | sed 's/\/MP$//'`
+	UNAME_REL=`echo "$UNAME_RELEASE" | sed 's/\/MP$
 	if grep Novell /usr/include/link.h >/dev/null 2>/dev/null; then
 		GUESS=$UNAME_MACHINE-univel-sysv$UNAME_REL
 	else
@@ -1272,10 +1272,10 @@ EOF
 	;;
     i*86:*:3.2:*)
 	if test -f /usr/options/cb.name; then
-		UNAME_REL=`sed -n 's/.*Version //p' </usr/options/cb.name`
+		UNAME_REL=`sed -n 's/.*Version 
 		GUESS=$UNAME_MACHINE-pc-isc$UNAME_REL
 	elif /bin/uname -X 2>/dev/null >/dev/null ; then
-		UNAME_REL=`(/bin/uname -X|grep Release|sed -e 's/.*= //')`
+		UNAME_REL=`(/bin/uname -X|grep Release|sed -e 's/.*= 
 		(/bin/uname -X|grep i80486 >/dev/null) && UNAME_MACHINE=i486
 		(/bin/uname -X|grep '^Machine.*Pentium' >/dev/null) \
 			&& UNAME_MACHINE=i586
@@ -1562,7 +1562,7 @@ EOF
 	GUESS=mips-sei-seiux$UNAME_RELEASE
 	;;
     *:DragonFly:*:*)
-	DRAGONFLY_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*//'`
+	DRAGONFLY_REL=`echo "$UNAME_RELEASE" | sed -e 's/[-(].*
 	GUESS=$UNAME_MACHINE-unknown-dragonfly$DRAGONFLY_REL
 	;;
     *:*VMS:*:*)
@@ -1576,7 +1576,7 @@ EOF
 	GUESS=i386-pc-xenix
 	;;
     i*86:skyos:*:*)
-	SKYOS_REL=`echo "$UNAME_RELEASE" | sed -e 's/ .*$//'`
+	SKYOS_REL=`echo "$UNAME_RELEASE" | sed -e 's/ .*$
 	GUESS=$UNAME_MACHINE-pc-skyos$SKYOS_REL
 	;;
     i*86:rdos:*:*)
@@ -1768,9 +1768,9 @@ This script (version $timestamp), has failed to recognize the
 operating system you are using. If your script is old, overwrite *all*
 copies of config.guess and config.sub with the latest versions from:
 
-  https://git.savannah.gnu.org/cgit/config.git/plain/config.guess
+  https:
 and
-  https://git.savannah.gnu.org/cgit/config.git/plain/config.sub
+  https:
 EOF
 
 our_year=`echo $timestamp | sed 's,-.*,,'`

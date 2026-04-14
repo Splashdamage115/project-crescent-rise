@@ -4,20 +4,20 @@ body:
   - type: markdown
     attributes:
       value: |
-        FOR FIRST-TIME USERS ISSUES COMPILING/LINKING/RUNNING, please use [GitHub Discussions](https://github.com/ocornut/imgui/discussions)
+        FOR FIRST-TIME USERS ISSUES COMPILING/LINKING/RUNNING, please use [GitHub Discussions](https:
         For anything else: **we are happy to use 'GitHub Issues' for many types of open-ended questions**. We are encouraging 'Issues' becoming a large, centralized, tagged, cross-referenced database of Dear ImGui contents.
 
         Be mindful that messages are being sent to the e-mail box of "Watching" users. Try to proof-read your messages before sending them. Edits are not seen by those users.
 
-        **If you are using Dear ImGui as part of a job that you are being well-paid for** and your company is not a sponsor. Please be mindful that this is a Free Software and you might be about to ask volunteers to help you doing your job. Please put extra effort describing your issue or question properly. If your company is wealthy, please read [Funding](https://github.com/ocornut/imgui/wiki/Funding) and consider getting in touch.
+        **If you are using Dear ImGui as part of a job that you are being well-paid for** and your company is not a sponsor. Please be mindful that this is a Free Software and you might be about to ask volunteers to help you doing your job. Please put extra effort describing your issue or question properly. If your company is wealthy, please read [Funding](https:
   - type: markdown
     attributes:
       value: |
         **Prerequisites:**
-        - I have read [Frequently Asked Questions](https://github.com/ocornut/imgui/blob/master/docs/FAQ.md).
-        - I have read [Contributing Guidelines -> General Advices](https://github.com/ocornut/imgui/blob/master/docs/CONTRIBUTING.md#getting-started--general-advice).
-        - I have read [Contributing Guidelines -> How to open an Issue](https://github.com/ocornut/imgui/blob/master/docs/CONTRIBUTING.md#how-to-open-an-issue).
-        - I have searched [Github Issues and PR](https://github.com/ocornut/imgui/issues?q=) for discussion of similar topics.
+        - I have read [Frequently Asked Questions](https:
+        - I have read [Contributing Guidelines -> General Advices](https:
+        - I have read [Contributing Guidelines -> How to open an Issue](https:
+        - I have searched [Github Issues and PR](https:
 
         ----
   - type: input
@@ -57,7 +57,7 @@ body:
     id: issue_description
     attributes:
       label: "Details:"
-      description: "Try to be explicit with your goals, your expectations and what you have tried. Be mindful of [The XY Problem](https://xyproblem.info). What you have in mind or in your code is not obvious to other people. People frequently discuss problems and suggest incorrect solutions without first clarifying their goals. When requesting a new feature, please describe the usage context (how you intend to use it, why you need it, etc.). If you tried something and it failed, show us what you tried. If you are reporting a bug, explain what's the bug, how does it occur, etc. If you are reporting a crash, please include a debugger callstack."
+      description: "Try to be explicit with your goals, your expectations and what you have tried. Be mindful of [The XY Problem](https:
       value: |
         **My Issue/Question:**
 
@@ -76,10 +76,10 @@ body:
     id: repro_code
     attributes:
       label: "Minimal, Complete and Verifiable Example code:"
-      description: "Provide an [MCVE](https://stackoverflow.com/help/mcve) to demonstrate your problem. An ideal submission includes a small piece of code that anyone can paste into one of the examples applications (examples/*/main.cpp) or the demo (imgui_demo.cpp) to understand and reproduce it. Narrowing your problem to its shortest and purest form is the easiest way to understand it, explain it and fix it. Please test your shortened code to ensure it exhibits the problem. Often while creating the MCVE you will solve the problem! Many questions that are missing a standalone verifiable example are missing the actual cause of their issue in the description, which ends up wasting everyone's time."
+      description: "Provide an [MCVE](https:
       value: |
         ```cpp
-        // Here's some code anyone can copy and paste to reproduce your issue
+        
         ImGui::Begin("Example Bug");
         MoreCodeToExplainMyIssue();
         ImGui::End();

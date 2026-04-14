@@ -7,7 +7,7 @@ void SurfaceGrass::Start()
     renderPriority = (cull) ? RenderPriority::Cull : RenderPriority::noCull;
 
     float points[] = {
-        // positions          // texture coords
+        
         0.5f,   0.5f,  0.0f,   0.0f, 0.0f,
         0.5f,  -0.5f,  0.0f,   0.0f, 1.0f,
         -0.5f, -0.5f,  0.0f,   1.0f, 1.0f,
@@ -31,8 +31,8 @@ void SurfaceGrass::Start()
     glEnableVertexAttribArray(1);
 
 
-    // planet position buffer
-    //PlanetSurface::s_instance->GetSurfacePointFromWorldPosition()
+    
+    
 
     glBindBuffer(GL_ARRAY_BUFFER, m_body.vbo);
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -98,7 +98,7 @@ void SurfaceGrass::Render()
     static const float kTiltAngles[6] = { 20.f, -30.f,10.f, 3.f, 3.5f, -1.f };
     static const float kHeightScales[6] = { 0.85f, 1.00f, 1.10f, 0.90f, 1.05f, 0.95f };
 
-    //glDepthMask(GL_FALSE);
+    
     glEnable(GL_ALPHA_TEST);
     glAlphaFunc(GL_GREATER, 0.5f);
     for (int i = 0; i < billboardAmt; ++i)
@@ -112,5 +112,5 @@ void SurfaceGrass::Render()
 
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
-    //glDepthMask(GL_TRUE);
+    
 }

@@ -1,4 +1,4 @@
-/// @ref gtx_vector_query
+
 
 #include <cassert>
 
@@ -74,7 +74,7 @@ namespace detail
 		}
 	};
 
-}//namespace detail
+}
 
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER bool areCollinear(vec<L, T, Q> const& v0, vec<L, T, Q> const& v1, T const& epsilon)
@@ -151,4 +151,4 @@ namespace detail
 		return isNormalized(v0, epsilon) && isNormalized(v1, epsilon) && (abs(dot(v0, v1)) <= epsilon);
 	}
 
-}//namespace glm
+}

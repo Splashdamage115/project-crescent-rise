@@ -111,8 +111,8 @@ FT_BEGIN_HEADER
     FT_UShort  language_id;
     FT_UShort  name_id;
 
-    FT_Byte*   string;      /* this string is *not* null-terminated! */
-    FT_UInt    string_len;  /* in bytes                              */
+    FT_Byte*   string;      
+    FT_UInt    string_len;  
 
   } FT_SfntName;
 
@@ -208,8 +208,8 @@ FT_BEGIN_HEADER
    */
   typedef struct  FT_SfntLangTag_
   {
-    FT_Byte*  string;      /* this string is *not* null-terminated! */
-    FT_UInt   string_len;  /* in bytes                              */
+    FT_Byte*  string;      
+    FT_UInt   string_len;  
 
   } FT_SfntLangTag;
 
@@ -261,12 +261,12 @@ FT_BEGIN_HEADER
                        FT_SfntLangTag  *alangTag );
 
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTSNAMES_H_ */
+#endif 
 
 
-/* END */
+

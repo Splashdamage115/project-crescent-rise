@@ -1,6 +1,6 @@
-/// @ref gtc_epsilon
 
-// Dependency:
+
+
 #include "../vector_relational.hpp"
 #include "../common.hpp"
 
@@ -77,4 +77,4 @@ namespace glm
 		vec<4, T, Q> v(x.x - y.x, x.y - y.y, x.z - y.z, x.w - y.w);
 		return greaterThanEqual(abs(v), vec<4, T, Q>(epsilon));
 	}
-}//namespace glm
+}

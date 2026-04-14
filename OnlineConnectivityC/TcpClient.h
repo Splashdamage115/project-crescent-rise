@@ -11,7 +11,7 @@
 
 
 #define SERVER_IP "127.0.0.1"
-//#define SERVER_IP "149.153.106.6"
+
 #define DEFAULT_PORT "54000"
 #define UDP_PORT 8888
 #define BUFFER_SIZE 512

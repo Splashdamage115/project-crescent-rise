@@ -21,7 +21,7 @@ void AttackPlayerState::UpdateState(EnemyStateManager& t_manager)
 	}
 	if(t_manager.checkPlayerVisibility(attackDistance) && cooldownRemaining <= 0.f)
 	{
-		// lunge to player
+		
 		glm::vec3 direction = glm::normalize(t_manager.playerPosition - t_manager.getTransform()->position);
 		t_manager.getTransform()->position += direction * (float)Game::deltaTime * lungeSpeed;
 
@@ -33,7 +33,7 @@ void AttackPlayerState::UpdateState(EnemyStateManager& t_manager)
 			cooldownRemaining = maxCooldown;
 		}
 
-		// attack player here
+		
 		if (t_manager.checkPlayerVisibility(0.2f))
 		{
 			t_manager.playerObject->sendMessage("DAMAGE", damageDealt);

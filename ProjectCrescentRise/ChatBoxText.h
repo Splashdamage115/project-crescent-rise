@@ -19,7 +19,7 @@ public:
 
 	static void SentNewText(std::string name, std::string text);
 
-	// debug function
+	
 	void ClearTextFields(std::string t_arguement);
 	void ChangePlayerName(std::string t_arguement);
 	void changeDebug(std::string _);

@@ -1,28 +1,28 @@
-// ***************************************************************************
-//
-//					How to Use
-//
-// ***************************************************************************
-//
-//
-// Submit a new command to the append command function
-//
-//			String arguements are passed throught the string in the function call
-//			a call may look like: 
-// 
-//		   <command> <arguement>
-//			/rename coolNewName
-//				
-//		    CommandInterpreter::append(std::function pointer with string arguement, <command name>);
-//
-//
-//	example Implementation
-// 
-//		    CommandInterpreter::append([this](std::string t) { this->ClearTextFields(t); }, "/clear");
-//			
-//
-//	after this append call, nothing else is required, except the implementation of the actual function, everything else is handled elsewhere
-//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #pragma once

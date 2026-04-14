@@ -39,7 +39,7 @@ FT_BEGIN_HEADER
    * @fields:
    *   See
    *
-   *     https://www.w3.org/TR/WOFF/#WOFFHeader
+   *     https:
    */
   typedef struct  WOFF_HeaderRec_
   {
@@ -142,7 +142,7 @@ FT_BEGIN_HEADER
    * @fields:
    *   See
    *
-   *     https://www.w3.org/TR/WOFF2/#woff20Header
+   *     https:
    *
    * @note:
    *   We don't care about the fields `reserved`, `majorVersion` and
@@ -186,7 +186,7 @@ FT_BEGIN_HEADER
    * @fields:
    *   See
    *
-   *     https://www.w3.org/TR/WOFF2/#table_dir_format
+   *     https:
    */
   typedef struct  WOFF2_TableRec_
   {

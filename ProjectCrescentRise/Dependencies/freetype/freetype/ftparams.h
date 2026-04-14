@@ -69,7 +69,7 @@ FT_BEGIN_HEADER
           FT_MAKE_TAG( 'i', 'g', 'p', 'f' )
 
 
-  /* this constant is deprecated */
+  
 #define FT_PARAM_TAG_IGNORE_PREFERRED_FAMILY \
           FT_PARAM_TAG_IGNORE_TYPOGRAPHIC_FAMILY
 
@@ -93,7 +93,7 @@ FT_BEGIN_HEADER
           FT_MAKE_TAG( 'i', 'g', 'p', 's' )
 
 
-  /* this constant is deprecated */
+  
 #define FT_PARAM_TAG_IGNORE_PREFERRED_SUBFAMILY \
           FT_PARAM_TAG_IGNORE_TYPOGRAPHIC_SUBFAMILY
 
@@ -206,13 +206,13 @@ FT_BEGIN_HEADER
           FT_MAKE_TAG( 'u', 'n', 'p', 'a' )
 
 
-  /* */
+  
 
 
 FT_END_HEADER
 
 
-#endif /* FTPARAMS_H_ */
+#endif 
 
 
-/* END */
+

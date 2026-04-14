@@ -1,4 +1,4 @@
-/// @ref gtx_normalize_dot
+
 
 namespace glm
 {
@@ -13,4 +13,4 @@ namespace glm
 	{
 		return glm::dot(x, y) * glm::fastInverseSqrt(glm::dot(x, x) * glm::dot(y, y));
 	}
-}//namespace glm
+}

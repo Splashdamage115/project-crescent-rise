@@ -490,7 +490,7 @@ pkgconfig.generate(ft2_lib,
   filebase: 'freetype2',
   name: 'FreeType 2',
   description: 'A free, high-quality, and portable font engine.',
-  url: 'https://freetype.org',
+  url: 'https:
   subdirs: 'freetype2',
   version: ft2_pkgconfig_version,
 )

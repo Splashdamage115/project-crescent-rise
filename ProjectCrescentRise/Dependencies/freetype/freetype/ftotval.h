@@ -195,12 +195,12 @@ FT_BEGIN_HEADER
                     FT_Bytes  table );
 
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTOTVAL_H_ */
+#endif 
 
 
-/* END */
+

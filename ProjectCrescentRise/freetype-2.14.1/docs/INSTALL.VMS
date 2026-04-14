@@ -38,7 +38,7 @@ i.e., if the directory in which  this `INSTALL.VMS` file is located is
 
   define freetype $disk:[freetype.include.freetype]
 
-See  http://nchrem.tnw.tudelft.nl/openvms/software2.html#Freetype  for
+See  http:
 the packages FreeType depends on.
 
 The latest versions were tested using

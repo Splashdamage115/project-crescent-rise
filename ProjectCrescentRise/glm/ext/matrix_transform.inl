@@ -204,4 +204,4 @@ namespace glm
             return lookAtRH(eye, center, up);
 #       endif
 	}
-}//namespace glm
+}

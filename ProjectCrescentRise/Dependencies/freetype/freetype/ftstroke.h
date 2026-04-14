@@ -758,16 +758,16 @@ FT_BEGIN_HEADER
                          FT_Bool      inside,
                          FT_Bool      destroy );
 
-  /* */
+  
 
 FT_END_HEADER
 
-#endif /* FTSTROKE_H_ */
+#endif 
 
 
-/* END */
 
 
-/* Local Variables: */
-/* coding: utf-8    */
-/* End:             */
+
+
+
+

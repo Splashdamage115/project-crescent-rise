@@ -65,7 +65,7 @@ FT_BEGIN_HEADER
    */
 
 
-  /* forward declaration to a private type */
+  
   typedef struct FT_Glyph_Class_  FT_Glyph_Class;
 
 
@@ -463,8 +463,8 @@ FT_BEGIN_HEADER
   } FT_Glyph_BBox_Mode;
 
 
-  /* these constants are deprecated; use the corresponding */
-  /* `FT_Glyph_BBox_Mode` values instead                   */
+  
+  
 #define ft_glyph_bbox_unscaled   FT_GLYPH_BBOX_UNSCALED
 #define ft_glyph_bbox_subpixels  FT_GLYPH_BBOX_SUBPIXELS
 #define ft_glyph_bbox_gridfit    FT_GLYPH_BBOX_GRIDFIT
@@ -593,28 +593,28 @@ FT_BEGIN_HEADER
    *     FT_BitmapGlyph  glyph_bitmap;
    *
    *
-   *     // load glyph
+   *     
    *     error = FT_Load_Char( face, glyph_index, FT_LOAD_DEFAULT );
    *
-   *     // extract glyph image
+   *     
    *     error = FT_Get_Glyph( face->glyph, &glyph );
    *
-   *     // convert to a bitmap (default render mode + destroying old)
+   *     
    *     if ( glyph->format != FT_GLYPH_FORMAT_BITMAP )
    *     {
    *       error = FT_Glyph_To_Bitmap( &glyph, FT_RENDER_MODE_NORMAL,
    *                                   0, 1 );
-   *       if ( error ) // `glyph' unchanged
+   *       if ( error ) 
    *         ...
    *     }
    *
-   *     // access bitmap content by typecasting
+   *     
    *     glyph_bitmap = (FT_BitmapGlyph)glyph;
    *
-   *     // do funny stuff with it, like blitting/drawing
+   *     
    *     ...
    *
-   *     // discard glyph image (bitmap or not)
+   *     
    *     FT_Done_Glyph( glyph );
    *   ```
    *
@@ -639,8 +639,8 @@ FT_BEGIN_HEADER
    *
    *       ...
    *
-   *       // after this call, `bitmap' no longer points into
-   *       // the `glyphs' array (and the old value isn't destroyed)
+   *       
+   *       
    *       FT_Glyph_To_Bitmap( &bitmap, FT_RENDER_MODE_MONO, 0, 0 );
    *
    *       ...
@@ -676,10 +676,10 @@ FT_BEGIN_HEADER
   FT_EXPORT( void )
   FT_Done_Glyph( FT_Glyph  glyph );
 
-  /* */
+  
 
 
-  /* other helpful functions */
+  
 
   /**************************************************************************
    *
@@ -734,17 +734,17 @@ FT_BEGIN_HEADER
   FT_EXPORT( FT_Error )
   FT_Matrix_Invert( FT_Matrix*  matrix );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTGLYPH_H_ */
+#endif 
 
 
-/* END */
 
 
-/* Local Variables: */
-/* coding: utf-8    */
-/* End:             */
+
+
+
+

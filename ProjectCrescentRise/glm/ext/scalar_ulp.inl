@@ -1,9 +1,9 @@
-/// Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
-///
-/// Developed at SunPro, a Sun Microsystems, Inc. business.
-/// Permission to use, copy, modify, and distribute this
-/// software is freely granted, provided that this notice
-/// is preserved.
+
+
+
+
+
+
 
 #include "../detail/type_float.hpp"
 #include "../ext/scalar_constants.hpp"
@@ -13,7 +13,7 @@
 #if GLM_COMPILER & GLM_COMPILER_VC
 #	pragma warning(push)
 #	pragma warning(disable : 4127)
-#	pragma warning(disable : 4365) // '=': signed/unsigned mismatch
+#	pragma warning(disable : 4365) 
 #elif GLM_COMPILER & GLM_COMPILER_CLANG
 #	pragma clang diagnostic push
 #	pragma clang diagnostic ignored "-Wsign-conversion"
@@ -77,45 +77,45 @@ namespace detail
 
 		GLM_GET_FLOAT_WORD(hx, x);
 		GLM_GET_FLOAT_WORD(hy, y);
-		ix = hx & 0x7fffffff;		// |x|
-		iy = hy & 0x7fffffff;		// |y|
+		ix = hx & 0x7fffffff;		
+		iy = hy & 0x7fffffff;		
 
-		if((ix > 0x7f800000) ||	// x is nan
-			(iy > 0x7f800000))	// y is nan
+		if((ix > 0x7f800000) ||	
+			(iy > 0x7f800000))	
 			return x + y;
 		if(abs(y - x) <= epsilon<float>())
-			return y;		// x=y, return y
+			return y;		
 		if(ix == 0)
-		{				// x == 0
-			GLM_SET_FLOAT_WORD(x, (hy & 0x80000000) | 1);// return +-minsubnormal
+		{				
+			GLM_SET_FLOAT_WORD(x, (hy & 0x80000000) | 1);
 			t = x * x;
 			if(abs(t - x) <= epsilon<float>())
 				return t;
 			else
-				return x;	// raise underflow flag
+				return x;	
 		}
 		if(hx >= 0)
-		{						// x > 0
-			if(hx > hy)			// x > y, x -= ulp
+		{						
+			if(hx > hy)			
 				hx -= 1;
-			else				// x < y, x += ulp
+			else				
 				hx += 1;
 		}
 		else
-		{						// x < 0
-			if(hy >= 0 || hx > hy)	// x < y, x -= ulp
+		{						
+			if(hy >= 0 || hx > hy)	
 				hx -= 1;
-			else				// x > y, x += ulp
+			else				
 				hx += 1;
 		}
 		hy = hx & 0x7f800000;
 		if(hy >= 0x7f800000)
-			return x + x;  		// overflow
-		if(hy < 0x00800000)		// underflow
+			return x + x;  		
+		if(hy < 0x00800000)		
 		{
 			t = x * x;
 			if(abs(t - x) > epsilon<float>())
-			{					// raise underflow flag
+			{					
 				GLM_SET_FLOAT_WORD(y, hx);
 				return y;
 			}
@@ -132,51 +132,51 @@ namespace detail
 
 		GLM_EXTRACT_WORDS(hx, lx, x);
 		GLM_EXTRACT_WORDS(hy, ly, y);
-		ix = hx & 0x7fffffff;								// |x|
-		iy = hy & 0x7fffffff;								// |y|
+		ix = hx & 0x7fffffff;								
+		iy = hy & 0x7fffffff;								
 
-		if(((ix >= 0x7ff00000) && ((ix - 0x7ff00000) | lx) != 0) ||	// x is nan
-			((iy >= 0x7ff00000) && ((iy - 0x7ff00000) | ly) != 0))	// y is nan
+		if(((ix >= 0x7ff00000) && ((ix - 0x7ff00000) | lx) != 0) ||	
+			((iy >= 0x7ff00000) && ((iy - 0x7ff00000) | ly) != 0))	
 			return x + y;
 		if(abs(y - x) <= epsilon<double>())
-			return y;									// x=y, return y
+			return y;									
 		if((ix | lx) == 0)
-		{													// x == 0
-			GLM_INSERT_WORDS(x, hy & 0x80000000, 1);		// return +-minsubnormal
+		{													
+			GLM_INSERT_WORDS(x, hy & 0x80000000, 1);		
 			t = x * x;
 			if(abs(t - x) <= epsilon<double>())
 				return t;
 			else
-				return x;   // raise underflow flag
+				return x;   
 		}
-		if(hx >= 0) {                             // x > 0
-			if(hx > hy || ((hx == hy) && (lx > ly))) {    // x > y, x -= ulp
+		if(hx >= 0) {                             
+			if(hx > hy || ((hx == hy) && (lx > ly))) {    
 				if(lx == 0) hx -= 1;
 				lx -= 1;
 			}
-			else {                            // x < y, x += ulp
+			else {                            
 				lx += 1;
 				if(lx == 0) hx += 1;
 			}
 		}
-		else {                                // x < 0
-			if(hy >= 0 || hx > hy || ((hx == hy) && (lx > ly))){// x < y, x -= ulp
+		else {                                
+			if(hy >= 0 || hx > hy || ((hx == hy) && (lx > ly))){
 				if(lx == 0) hx -= 1;
 				lx -= 1;
 			}
-			else {                            // x > y, x += ulp
+			else {                            
 				lx += 1;
 				if(lx == 0) hx += 1;
 			}
 		}
 		hy = hx & 0x7ff00000;
 		if(hy >= 0x7ff00000)
-			return x + x;			// overflow
+			return x + x;			
 		if(hy < 0x00100000)
-		{						// underflow
+		{						
 			t = x * x;
 			if(abs(t - x) > epsilon<double>())
-			{					// raise underflow flag
+			{					
 				GLM_INSERT_WORDS(y, hx, lx);
 				return y;
 			}
@@ -184,8 +184,8 @@ namespace detail
 		GLM_INSERT_WORDS(x, hx, lx);
 		return x;
 	}
-}//namespace detail
-}//namespace glm
+}
+}
 
 #if GLM_COMPILER & GLM_COMPILER_VC
 #	pragma warning(pop)
@@ -288,4 +288,4 @@ namespace glm
 
 		return abs(a.i - b.i);
 	}
-}//namespace glm
+}

@@ -50,26 +50,26 @@ else
 fi
 
 ft2_dir=`(dirname "$0") 2>/dev/null                         ||
-         $ft_expr X"$0" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
-                  X"$0" : 'X\(//\)[^/]' \| \
-                  X"$0" : 'X\(//\)$' \| \
+         $ft_expr X"$0" : 'X\(.*[^/]\)
+                  X"$0" : 'X\(
+                  X"$0" : 'X\(
                   X"$0" : 'X\(/\)' \| \
                   .     : '\(.\)' 2>/dev/null               ||
          echo X"$0" |
            sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
-                  s//\1/
+                  s
                   q
                 }
                 /^X\(\/\/\)[^/].*/{
-                  s//\1/
+                  s
                   q
                 }
                 /^X\(\/\/\)$/{
-                  s//\1/
+                  s
                   q
                 }
                 /^X\(\/\).*/{
-                  s//\1/
+                  s
                   q
                 }
                 s/.*/./; q'`
@@ -83,7 +83,7 @@ if test $# -gt 0; then
   for x in "$@"; do
     case x"$x" in
     x--srcdir=*)
-      abs_ft2_dir=`echo $x | sed 's/^--srcdir=//'` ;;
+      abs_ft2_dir=`echo $x | sed 's/^--srcdir=
     esac
   done
 fi

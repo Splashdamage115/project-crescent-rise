@@ -82,4 +82,4 @@ namespace glm
 
 		return detail::functor2_vec_int<L, T, Q>::call(findNSB, Source, SignificantBitCount);
 	}
-}//namespace glm
+}

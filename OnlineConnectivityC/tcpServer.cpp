@@ -43,8 +43,8 @@ int TcpServer::setUpListenSocket()
     }
 
     addrinfo hints = {}, * addrResult = nullptr;
-    hints.ai_family = AF_INET;        // IPv4
-    hints.ai_socktype = SOCK_STREAM;  // TCP
+    hints.ai_family = AF_INET;        
+    hints.ai_socktype = SOCK_STREAM;  
     hints.ai_protocol = IPPROTO_TCP;
     hints.ai_flags = AI_PASSIVE;
 
@@ -190,14 +190,14 @@ void TcpServer::listenOnSocket(int socketNum)
         {
             if(debug)
                 std::cout << "Received: " << std::string(buffer, bytesReceived) << std::endl;
-            // add interpretation here for commands and such
+            
             std::string spitBack = recieveData(std::string(buffer, bytesReceived));
 
             if (spitBack.size() <= 0) continue;
 
             for (int i = 0; i < m_sockets.size(); i++)
             {
-                int result = send(m_sockets.at(i), spitBack.c_str(), spitBack.size(), 0); // Echo back
+                int result = send(m_sockets.at(i), spitBack.c_str(), spitBack.size(), 0); 
 
                 if (result == SOCKET_ERROR)
                 {
@@ -241,7 +241,7 @@ std::string TcpServer::recieveData(std::string t_data)
     senderNum = std::stoi(accumulate);
     if (itemSent.at(0) == '/')
     {
-        // handle commands
+        
         bool arg1 = false;
         std::string command = "";
         std::string modifier = "";
@@ -306,7 +306,7 @@ int TcpServer::listenForUDP()
 
     printf("\nUDP Server starting...\n");
 
-    //Create a socket
+    
     if ((m_udpSocket = socket(AF_INET, SOCK_DGRAM, 0)) == INVALID_SOCKET)
     {
         printf("Could not create socket : %d", WSAGetLastError());
@@ -314,12 +314,12 @@ int TcpServer::listenForUDP()
     }
     printf("Socket created.\n");
 
-    //Prepare the sockaddr_in structure
+    
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
     server.sin_port = htons(PORT);
 
-    //Bind
+    
     if (bind(m_udpSocket, (struct sockaddr*)&server, sizeof(server)) == SOCKET_ERROR)
     {
         printf("Bind failed with error code : %d", WSAGetLastError());
@@ -331,12 +331,12 @@ int TcpServer::listenForUDP()
 
     memset(buf, '\0', BUFLEN);
 
-    //try to receive some data, this is a blocking call
-    //if ((recv_len = recvfrom(m_udpSocket, buf, BUFLEN, 0, (struct sockaddr*)&si_other, &slen)) == SOCKET_ERROR)
-    //{
-    //    printf("recvfrom() failed with error code : %d", WSAGetLastError());
-    //    //return 1;
-    //}
+    
+    
+    
+    
+    
+    
 
     while (1)
     {
@@ -345,10 +345,10 @@ int TcpServer::listenForUDP()
             std::cout << "Waiting for data..." << std::endl;
         }
 
-        // clear buffer data
+        
         memset(buf, '\0', BUFLEN);
 
-        //try to receive some data, this is a blocking call
+        
         if ((recv_len = recvfrom(m_udpSocket, buf, BUFLEN, 0, (struct sockaddr*)&si_other, &slen)) == SOCKET_ERROR)
         {
             int error = WSAGetLastError();
@@ -361,13 +361,13 @@ int TcpServer::listenForUDP()
             continue;
         }
 
-        // Only process if we actually received data
+        
         if (recv_len > 0)
         {
-            // Lock mutex to protect ports vector from race conditions
+            
             std::lock_guard<std::mutex> lock(m_udpMutex);
             
-            // add new port if not in sendable ports yet
+            
             bool foundPort = false;
             for(int i = 0; i < ports.size(); i++)
             { 
@@ -380,14 +380,14 @@ int TcpServer::listenForUDP()
             if(!foundPort)
                 ports.emplace_back(si_other);
 
-            //print details of the client/peer and the data received
+            
             if (debug)
             {
                 printf("Received packet from %s:%d\n", inet_ntoa(si_other.sin_addr), ntohs(si_other.sin_port));
                 printf("Data: %s\n", buf);
             }
 
-            // send back to all ports, removing failed ones
+            
             for(auto it = ports.begin(); it != ports.end();)
             {
                 if (sendto(m_udpSocket, buf, recv_len, 0, (struct sockaddr*)&(*it), slen) == SOCKET_ERROR)

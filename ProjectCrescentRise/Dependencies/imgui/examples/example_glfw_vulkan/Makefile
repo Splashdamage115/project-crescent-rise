@@ -2,7 +2,7 @@
 # Cross Platform Makefile
 # Compatible with MSYS2/MINGW, Ubuntu 14.04.1 and Mac OS X
 #
-# You will need GLFW (http://www.glfw.org):
+# You will need GLFW (http:
 # Linux:
 #   apt-get install libglfw-dev
 # Mac OS X:

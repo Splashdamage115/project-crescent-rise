@@ -31,4 +31,4 @@ namespace glm
 		return compute_abs_matrix<C, R, T, Q, detail::is_aligned<Q>::value>::call(x);
 	}
 
-}//namespace glm
+}

@@ -1,4 +1,4 @@
-/// @ref gtx_transform2
+
 
 namespace glm
 {
@@ -121,5 +121,5 @@ namespace glm
 	{
 		return m * scaleBias<T, Q>(scale, bias);
 	}
-}//namespace glm
+}
 

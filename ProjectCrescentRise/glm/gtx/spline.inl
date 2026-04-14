@@ -1,4 +1,4 @@
-/// @ref gtx_spline
+
 
 namespace glm
 {
@@ -57,4 +57,4 @@ namespace glm
 	{
 		return ((v1 * s + v2) * s + v3) * s + v4;
 	}
-}//namespace glm
+}

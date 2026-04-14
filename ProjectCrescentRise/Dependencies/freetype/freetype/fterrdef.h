@@ -53,7 +53,7 @@
    *
    */
 
-  /* generic errors */
+  
 
   FT_NOERRORDEF_( Ok,                                        0x00,
                   "no error" )
@@ -83,7 +83,7 @@
   FT_ERRORDEF_( Missing_Property,                            0x0C,
                 "missing property" )
 
-  /* glyph/character errors */
+  
 
   FT_ERRORDEF_( Invalid_Glyph_Index,                         0x10,
                 "invalid glyph index" )
@@ -104,7 +104,7 @@
   FT_ERRORDEF_( Invalid_SVG_Document,                        0x18,
                 "invalid SVG document" )
 
-  /* handle errors */
+  
 
   FT_ERRORDEF_( Invalid_Handle,                              0x20,
                 "invalid object handle" )
@@ -125,21 +125,21 @@
   FT_ERRORDEF_( Invalid_Stream_Handle,                       0x28,
                 "invalid stream handle" )
 
-  /* driver errors */
+  
 
   FT_ERRORDEF_( Too_Many_Drivers,                            0x30,
                 "too many modules" )
   FT_ERRORDEF_( Too_Many_Extensions,                         0x31,
                 "too many extensions" )
 
-  /* memory errors */
+  
 
   FT_ERRORDEF_( Out_Of_Memory,                               0x40,
                 "out of memory" )
   FT_ERRORDEF_( Unlisted_Object,                             0x41,
                 "unlisted object" )
 
-  /* stream errors */
+  
 
   FT_ERRORDEF_( Cannot_Open_Stream,                          0x51,
                 "cannot open stream" )
@@ -158,7 +158,7 @@
   FT_ERRORDEF_( Invalid_Frame_Read,                          0x58,
                 "invalid frame read" )
 
-  /* raster errors */
+  
 
   FT_ERRORDEF_( Raster_Uninitialized,                        0x60,
                 "raster uninitialized" )
@@ -169,12 +169,12 @@
   FT_ERRORDEF_( Raster_Negative_Height,                      0x63,
                 "negative height while rastering" )
 
-  /* cache errors */
+  
 
   FT_ERRORDEF_( Too_Many_Caches,                             0x70,
                 "too many registered caches" )
 
-  /* TrueType and SFNT errors */
+  
 
   FT_ERRORDEF_( Invalid_Opcode,                              0x80,
                 "invalid opcode" )
@@ -239,7 +239,7 @@
   FT_ERRORDEF_( Missing_SVG_Hooks,                           0x9E,
                 "SVG hooks have not been set" )
 
-  /* CFF, CID, and Type 1 errors */
+  
 
   FT_ERRORDEF_( Syntax_Error,                                0xA0,
                 "opcode syntax error" )
@@ -252,7 +252,7 @@
   FT_ERRORDEF_( Glyph_Too_Big,                               0xA4,
                 "glyph too big for hinting" )
 
-  /* BDF errors */
+  
 
   FT_ERRORDEF_( Missing_Startfont_Field,                     0xB0,
                 "`STARTFONT' field missing" )
@@ -277,7 +277,7 @@
   FT_ERRORDEF_( Corrupted_Font_Glyphs,                       0xBA,
                 "Font glyphs corrupted or missing fields" )
 
-  /* */
+  
 
 
-/* END */
+

@@ -1,4 +1,4 @@
-/// @ref core
+
 
 #if GLM_ARCH & GLM_ARCH_SSE2_BIT
 
@@ -11,8 +11,8 @@ namespace detail
 	{
 		static qua<float, Q> call(qua<float, Q> const& q1, qua<float, Q> const& q2)
 		{
-			// SSE2 STATS: 11 shuffle, 8 mul, 8 add
-			// SSE4 STATS: 3 shuffle, 4 mul, 4 dpps
+			
+			
 
 			__m128 const mul0 = _mm_mul_ps(q1.data, _mm_shuffle_ps(q2.data, q2.data, _MM_SHUFFLE(0, 1, 2, 3)));
 			__m128 const mul1 = _mm_mul_ps(q1.data, _mm_shuffle_ps(q2.data, q2.data, _MM_SHUFFLE(1, 0, 3, 2)));
@@ -42,13 +42,13 @@ namespace detail
 				__m128 const add7 = _mm_add_ss(add3, _mm_shuffle_ps(add3, add3, 1));
 		#endif
 
-			// This SIMD code is a politically correct way of doing this, but in every test I've tried it has been slower than
-			// the final code below. I'll keep this here for reference - maybe somebody else can do something better...
-			//
-			//__m128 xxyy = _mm_shuffle_ps(add4, add5, _MM_SHUFFLE(0, 0, 0, 0));
-			//__m128 zzww = _mm_shuffle_ps(add6, add7, _MM_SHUFFLE(0, 0, 0, 0));
-			//
-			//return _mm_shuffle_ps(xxyy, zzww, _MM_SHUFFLE(2, 0, 2, 0));
+			
+			
+			
+			
+			
+			
+			
 
 			qua<float, Q> Result;
 			_mm_store_ss(&Result.x, add4);
@@ -202,7 +202,7 @@ namespace detail
 #			endif
 		}
 	};
-}//namespace detail
-}//namespace glm
+}
+}
 
-#endif//GLM_ARCH & GLM_ARCH_SSE2_BIT
+#endif

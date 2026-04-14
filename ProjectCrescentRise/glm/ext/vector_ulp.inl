@@ -71,4 +71,4 @@ namespace glm
 			Result[i] = floatDistance(x[i], y[i]);
 		return Result;
 	}
-}//namespace glm
+}

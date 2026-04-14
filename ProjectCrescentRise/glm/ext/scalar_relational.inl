@@ -23,11 +23,11 @@ namespace glm
 		detail::float_t<genType> const a(x);
 		detail::float_t<genType> const b(y);
 
-		// Different signs means they do not match.
+		
 		if(a.negative() != b.negative())
 			return false;
 
-		// Find the difference in ULPs.
+		
 		typename detail::float_t<genType>::int_type const DiffULPs = abs(a.i - b.i);
 		return DiffULPs <= MaxULPs;
 	}
@@ -37,4 +37,4 @@ namespace glm
 	{
 		return !equal(x, y, ULPs);
 	}
-}//namespace glm
+}

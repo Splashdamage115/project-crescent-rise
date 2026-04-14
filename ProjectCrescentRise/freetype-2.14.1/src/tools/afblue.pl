@@ -65,7 +65,7 @@ my $enum_element_re = qr/ ^ \s* ( [A-Za-z0-9_]+ ) \s* $ /x;
 my $preprocessor_re = qr/ ^ \# /x;
 
 # [<ws>] '/' '/' <comment> '\n'
-my $comment_re = qr| ^ \s* // |x;
+my $comment_re = qr| ^ \s* 
 
 # empty line
 my $whitespace_only_re = qr/ ^ \s* $ /x;
@@ -109,7 +109,7 @@ sub warn_before
 sub strip_newline
 {
   chomp;
-  s/ \x0D $ //x;
+  s/ \x0D $ 
 }
 
 

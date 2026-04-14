@@ -4,7 +4,7 @@
 
 #
 # Makefile to use with SDL+emscripten
-# See https://emscripten.org/docs/getting_started/downloads.html
+# See https:
 # for installation instructions.
 #
 # This Makefile assumes you have loaded emscripten's environment.
@@ -43,13 +43,13 @@ LDFLAGS += -s WASM=1 -s ALLOW_MEMORY_GROWTH=1 -s NO_EXIT_RUNTIME=0 -s ASSERTIONS
 # Build as single file (binary text encoded in .html file)
 #LDFLAGS += -sSINGLE_FILE
 
-# Uncomment next line to fix possible rendering bugs with Emscripten version older then 1.39.0 (https://github.com/ocornut/imgui/issues/2877)
+# Uncomment next line to fix possible rendering bugs with Emscripten version older then 1.39.0 (https:
 #EMS += -s BINARYEN_TRAP_MODE=clamp
 #EMS += -s SAFE_HEAP=1    ## Adds overhead
 
 # Emscripten allows preloading a file or folder to be accessible at runtime.
 # The Makefile for this example project suggests embedding the misc/fonts/ folder into our application, it will then be accessible as "/fonts"
-# See documentation for more details: https://emscripten.org/docs/porting/files/packaging_files.html
+# See documentation for more details: https:
 # (Default value is 0. Set to 1 to enable file-system and include the misc/fonts/ folder as part of the build.)
 USE_FILE_SYSTEM ?= 0
 ifeq ($(USE_FILE_SYSTEM), 0)

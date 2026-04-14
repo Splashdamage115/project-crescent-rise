@@ -46,7 +46,7 @@ void OnlineConnection::callReConnect(std::string _)
     Start();
 }
 
-// start the online connection client
+
 int OnlineConnection::Start()
 {
     if (connected) return 1;
@@ -131,7 +131,7 @@ int OnlineConnection::initiliseDataFromServer()
     return 0;
 }
 
-// set up the tcp & udp connections
+
 int OnlineConnection::SetUpConnections()
 {
     WSADATA wsaData;
@@ -160,7 +160,7 @@ int OnlineConnection::SetUpConnections()
     return 0;
 }
 
-// set up the udp connection
+
 int OnlineConnection::SetUpUdp()
 {
     if ((udpSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR)
@@ -173,7 +173,7 @@ int OnlineConnection::SetUpUdp()
     return 0;
 }
 
-// set up the tcp connection
+
 int OnlineConnection::SetUpTcp()
 {
     addrinfo hints = {}, * addrResult = nullptr;
@@ -211,7 +211,7 @@ int OnlineConnection::SetUpTcp()
     return 0;
 }
 
-// safely push data, ready to send
+
 void OnlineConnection::pushTcp(std::string& data)
 {
     std::lock_guard<std::mutex> lock(tcpMutex);
@@ -290,7 +290,7 @@ void OnlineConnection::pullPosition(std::string positionData)
             }
         }
 
-        // Handle the last coordinate if string doesn't end with comma
+        
         if (locPos == 2 && !placeholder.empty())
         {
             pos.z = std::stof(placeholder);
@@ -324,7 +324,7 @@ void OnlineConnection::pullPosition(std::string positionData)
     }
 }
 
-// safely pop the data, and send it
+
 bool OnlineConnection::popTcp(std::string& data)
 {
     std::lock_guard<std::mutex> lock(tcpMutex);
@@ -383,7 +383,7 @@ void OnlineConnection::LoopConnection()
     timeout.tv_sec = 0;
     timeout.tv_usec = 1000;
 
-    // loop the data transfer
+    
     while (connected && loopActive)
     {
         FD_ZERO(&readFds);
@@ -395,12 +395,12 @@ void OnlineConnection::LoopConnection()
         FD_SET(tcpSocket, &writeFds);
         FD_SET(udpSocket, &writeFds);
 
-        // check if buffers are ready for data
+        
         int result = select(0, &readFds, &writeFds, nullptr, &timeout);
 
         if (result > 0)
         {
-            // recieve data udp
+            
             if (FD_ISSET(udpSocket, &readFds))
             {
                 int bytesReceived = recvfrom(udpSocket, buffer, BUFFER_SIZE, 0, (struct sockaddr*)&si_other, &slen);
@@ -415,14 +415,14 @@ void OnlineConnection::LoopConnection()
                 }
             }
 
-            // recieve data tcp
+            
             if (FD_ISSET(tcpSocket, &readFds))
             {
                 int bytesReceived = recv(tcpSocket, buffer, BUFFER_SIZE, 0);
                 if (bytesReceived > 0)
                 {
                     OnlineDispatcher::RecieveDispatch(OnlineDispatcher::DispatchType::ChatText, std::string(buffer, bytesReceived));
-                    //recievedData.push(std::string(buffer, bytesReceived));
+                    
                 }
                 else if (bytesReceived == SOCKET_ERROR)
                 {
@@ -431,7 +431,7 @@ void OnlineConnection::LoopConnection()
                 }
             }
 
-            // send data tcp
+            
             if (FD_ISSET(tcpSocket, &writeFds) && popTcp(topOfQueue))
             {
                 int result = -1;
@@ -444,7 +444,7 @@ void OnlineConnection::LoopConnection()
                 }
             }
 
-            // send data udp
+            
             if (FD_ISSET(udpSocket, &writeFds))
             {
                 int result = -1;

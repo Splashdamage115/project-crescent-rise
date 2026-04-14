@@ -1,4 +1,4 @@
-/// @ref gtx_handed_coordinate_space
+
 
 namespace glm
 {
@@ -23,4 +23,4 @@ namespace glm
 	{
 		return dot(cross(normal, tangent), binormal) < T(0);
 	}
-}//namespace glm
+}

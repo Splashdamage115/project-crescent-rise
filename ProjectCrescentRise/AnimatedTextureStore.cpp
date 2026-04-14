@@ -9,7 +9,7 @@ void AnimatedTextureStore::AddAnimatedTexture(std::string t_textureLocation, glm
 	{
 		if (m_animatedTextures.at(i).textureLocation == t_textureLocation)
 		{
-			return; // texture already exists, no need to add again
+			return; 
 		}
 	}
 	AnimatedTexture newTexture;

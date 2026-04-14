@@ -113,7 +113,7 @@ namespace glm
 		return max(a, b, c, d);
 	}
 
-	// fclamp
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType fclamp(genType x, genType minVal, genType maxVal)
 	{
@@ -167,4 +167,4 @@ namespace glm
 
 		return static_cast<uint>(x + static_cast<genType>(0.5));
 	}
-}//namespace glm
+}

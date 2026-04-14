@@ -7,10 +7,10 @@ namespace glm
 
 		T const cosTheta = dot(x, y);
 
-		// Perform a linear interpolation when cosTheta is close to 1 to avoid side effect of sin(angle) becoming a zero denominator
+		
 		if(cosTheta > static_cast<T>(1) - epsilon<T>())
 		{
-			// Linear interpolation
+			
 			return qua<T, Q>::wxyz(
 				mix(x.w, y.w, a),
 				mix(x.x, y.x, a),
@@ -19,7 +19,7 @@ namespace glm
 		}
 		else
 		{
-			// Essential Mathematics, page 467
+			
 			T angle = acos(cosTheta);
 			return (sin((static_cast<T>(1) - a) * angle) * x + sin(a * angle) * y) / sin(angle);
 		}
@@ -30,7 +30,7 @@ namespace glm
 	{
 		GLM_STATIC_ASSERT(std::numeric_limits<T>::is_iec559 || GLM_CONFIG_UNRESTRICTED_FLOAT, "'lerp' only accept floating-point inputs");
 
-		// Lerp is only defined in [0, 1]
+		
 		assert(a >= static_cast<T>(0));
 		assert(a <= static_cast<T>(1));
 
@@ -46,18 +46,18 @@ namespace glm
 
 		T cosTheta = dot(x, y);
 
-		// If cosTheta < 0, the interpolation will take the long way around the sphere.
-		// To fix this, one quat must be negated.
+		
+		
 		if(cosTheta < static_cast<T>(0))
 		{
 			z = -y;
 			cosTheta = -cosTheta;
 		}
 
-		// Perform a linear interpolation when cosTheta is close to 1 to avoid side effect of sin(angle) becoming a zero denominator
+		
 		if(cosTheta > static_cast<T>(1) - epsilon<T>())
 		{
-			// Linear interpolation
+			
 			return qua<T, Q>::wxyz(
 				mix(x.w, z.w, a),
 				mix(x.x, z.x, a),
@@ -66,7 +66,7 @@ namespace glm
 		}
 		else
 		{
-			// Essential Mathematics, page 467
+			
 			T angle = acos(cosTheta);
 			return (sin((static_cast<T>(1) - a) * angle) * x + sin(a * angle) * z) / sin(angle);
 		}
@@ -82,18 +82,18 @@ namespace glm
 
         T cosTheta = dot(x, y);
 
-        // If cosTheta < 0, the interpolation will take the long way around the sphere.
-        // To fix this, one quat must be negated.
+        
+        
         if (cosTheta < static_cast<T>(0))
         {
             z = -y;
             cosTheta = -cosTheta;
         }
 
-        // Perform a linear interpolation when cosTheta is close to 1 to avoid side effect of sin(angle) becoming a zero denominator
+        
         if (cosTheta > static_cast<T>(1) - epsilon<T>())
         {
-            // Linear interpolation
+            
             return qua<T, Q>::wxyz(
                 mix(x.w, z.w, a),
                 mix(x.x, z.x, a),
@@ -102,7 +102,7 @@ namespace glm
         }
         else
         {
-            // Graphics Gems III, page 96
+            
             T angle = acos(cosTheta);
             T phi = angle + static_cast<T>(k) * glm::pi<T>();
             return (sin(angle - a * phi)* x + sin(a * phi) * z) / sin(angle);
@@ -136,7 +136,7 @@ namespace glm
 
 		return vec<4, bool, Q>(isinf(q.x), isinf(q.y), isinf(q.z), isinf(q.w));
 	}
-}//namespace glm
+}
 
 #if GLM_CONFIG_SIMD == GLM_ENABLE
 #	include "quaternion_common_simd.inl"

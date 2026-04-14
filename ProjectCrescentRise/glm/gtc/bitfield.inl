@@ -1,4 +1,4 @@
-/// @ref gtc_bitfield
+
 
 #include "../simd/integer.h"
 
@@ -219,7 +219,7 @@ namespace detail
 
 		return REG1 | (REG2 << 1) | (REG3 << 2) | (REG4 << 3);
 	}
-}//namespace detail
+}
 
 #if GLM_COMPILER & GLM_COMPILER_CLANG
 #	pragma clang diagnostic push
@@ -632,4 +632,4 @@ namespace detail
 	{
 		return detail::bitfieldInterleave<uint16, uint64>(v.x, v.y, v.z, v.w);
 	}
-}//namespace glm
+}

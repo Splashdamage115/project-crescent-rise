@@ -1,13 +1,13 @@
 #pragma once
 
-///////////////////////////////////////////////////////////////////////////////////
-// Platform
+
+
 
 #define GLM_PLATFORM_UNKNOWN		0x00000000
 #define GLM_PLATFORM_WINDOWS		0x00010000
 #define GLM_PLATFORM_LINUX			0x00020000
 #define GLM_PLATFORM_APPLE			0x00040000
-//#define GLM_PLATFORM_IOS			0x00080000
+
 #define GLM_PLATFORM_ANDROID		0x00100000
 #define GLM_PLATFORM_CHROME_NACL	0x00200000
 #define GLM_PLATFORM_UNIX			0x00400000
@@ -37,14 +37,14 @@
 #	define GLM_PLATFORM GLM_PLATFORM_UNIX
 #else
 #	define GLM_PLATFORM GLM_PLATFORM_UNKNOWN
-#endif//
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////
-// Compiler
+
+
 
 #define GLM_COMPILER_UNKNOWN		0x00000000
 
-// Intel
+
 #define GLM_COMPILER_INTEL			0x00100000
 #define GLM_COMPILER_INTEL14		0x00100040
 #define GLM_COMPILER_INTEL15		0x00100050
@@ -54,21 +54,21 @@
 #define GLM_COMPILER_INTEL19		0x00100090
 #define GLM_COMPILER_INTEL21		0x001000A0
 
-// Visual C++ defines
+
 #define GLM_COMPILER_VC				0x01000000
-#define GLM_COMPILER_VC12			0x01000001 // Visual Studio 2013
-#define GLM_COMPILER_VC14			0x01000002 // Visual Studio 2015
-#define GLM_COMPILER_VC15			0x01000003 // Visual Studio 2017
+#define GLM_COMPILER_VC12			0x01000001 
+#define GLM_COMPILER_VC14			0x01000002 
+#define GLM_COMPILER_VC15			0x01000003 
 #define GLM_COMPILER_VC15_3			0x01000004
 #define GLM_COMPILER_VC15_5			0x01000005
 #define GLM_COMPILER_VC15_6			0x01000006
 #define GLM_COMPILER_VC15_7			0x01000007
 #define GLM_COMPILER_VC15_8			0x01000008
 #define GLM_COMPILER_VC15_9			0x01000009
-#define GLM_COMPILER_VC16			0x0100000A // Visual Studio 2019
-#define GLM_COMPILER_VC17			0x0100000B // Visual Studio 2022
+#define GLM_COMPILER_VC16			0x0100000A 
+#define GLM_COMPILER_VC17			0x0100000B 
 
-// GCC defines
+
 #define GLM_COMPILER_GCC			0x02000000
 #define GLM_COMPILER_GCC46			0x020000D0
 #define GLM_COMPILER_GCC47			0x020000E0
@@ -86,14 +86,14 @@
 #define GLM_COMPILER_GCC13			0x02000A00
 #define GLM_COMPILER_GCC14			0x02000B00
 
-// CUDA
+
 #define GLM_COMPILER_CUDA			0x10000000
 #define GLM_COMPILER_CUDA75			0x10000001
 #define GLM_COMPILER_CUDA80			0x10000002
 #define GLM_COMPILER_CUDA90			0x10000004
 #define GLM_COMPILER_CUDA_RTC		0x10000100
 
-// Clang
+
 #define GLM_COMPILER_CLANG			0x20000000
 #define GLM_COMPILER_CLANG34		0x20000050
 #define GLM_COMPILER_CLANG35		0x20000060
@@ -118,14 +118,14 @@
 #define GLM_COMPILER_CLANG18		0x20000A00
 #define GLM_COMPILER_CLANG19		0x20000B00
 
-// HIP
+
 #define GLM_COMPILER_HIP			0x40000000
 
-// Build model
+
 #define GLM_MODEL_32				0x00000010
 #define GLM_MODEL_64				0x00000020
 
-// Force generic C++ compiler
+
 #ifdef GLM_FORCE_COMPILER_UNKNOWN
 #	define GLM_COMPILER GLM_COMPILER_UNKNOWN
 
@@ -148,10 +148,10 @@
 #		error "GLM requires ICC 2013 SP1 or newer"
 #	endif
 
-// CUDA
+
 #elif defined(__CUDACC__)
 #	if !defined(CUDA_VERSION) && !defined(GLM_FORCE_CUDA)
-#		include <cuda.h>  // make sure version is defined since nvcc does not define it itself!
+#		include <cuda.h>  
 #	endif
 #	if defined(__CUDACC_RTC__)
 #		define GLM_COMPILER GLM_COMPILER_CUDA_RTC
@@ -165,11 +165,11 @@
 #		error "GLM requires CUDA 7.0 or higher"
 #	endif
 
-// HIP
+
 #elif defined(__HIP__)
 #	define GLM_COMPILER GLM_COMPILER_HIP
 
-// Clang
+
 #elif defined(__clang__)
 #	if defined(__apple_build_version__)
 #		if (__clang_major__ < 6)
@@ -231,7 +231,7 @@
 #		endif
 #	endif
 
-// Visual C++
+
 #elif defined(_MSC_VER)
 #   if _MSC_VER >= 1930
 #		define GLM_COMPILER GLM_COMPILER_VC17
@@ -257,9 +257,9 @@
 #		define GLM_COMPILER GLM_COMPILER_VC12
 #	elif _MSC_VER < 1800
 #		error "GLM requires Visual C++ 12 - 2013 or higher"
-#	endif//_MSC_VER
+#	endif
 
-// G++
+
 #elif defined(__GNUC__) || defined(__MINGW32__)
 #	if __GNUC__ >= 14
 #		define GLM_COMPILER GLM_COMPILER_GCC14
@@ -299,12 +299,12 @@
 
 #ifndef GLM_COMPILER
 #	error "GLM_COMPILER undefined, your compiler may not be supported by GLM. Add #define GLM_COMPILER 0 to ignore this message."
-#endif//GLM_COMPILER
+#endif
 
-///////////////////////////////////////////////////////////////////////////////////
-// Instruction sets
 
-// User defines: GLM_FORCE_PURE GLM_FORCE_INTRINSICS GLM_FORCE_SSE2 GLM_FORCE_SSE3 GLM_FORCE_AVX GLM_FORCE_AVX2 GLM_FORCE_AVX2
+
+
+
 
 #define GLM_ARCH_MIPS_BIT	  (0x10000000)
 #define GLM_ARCH_PPC_BIT	  (0x20000000)
@@ -436,7 +436,7 @@
 #	include <emmintrin.h>
 #elif GLM_ARCH & GLM_ARCH_NEON_BIT
 #	include "neon.h"
-#endif//GLM_ARCH
+#endif
 
 #if GLM_ARCH & GLM_ARCH_SSE2_BIT
 	typedef __m128			glm_f32vec4;

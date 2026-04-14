@@ -1,4 +1,4 @@
-/// @ref gtx_matrix_major_storage
+
 
 namespace glm
 {
@@ -163,4 +163,4 @@ namespace glm
 	{
 		return mat<4, 4, T, Q>(m);
 	}
-}//namespace glm
+}

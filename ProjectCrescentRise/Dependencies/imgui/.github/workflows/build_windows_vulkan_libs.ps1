@@ -1,6 +1,6 @@
 # This is current meant to be run manually, occasionally:
 # - Run then zip the contents of vulkanArtifact/ into e.g. vulkan_windows_libs_1.4.326
-# - Upload as an attachment to https://github.com/ocornut/imgui/pull/8925 then change filename in build.yml
+# - Upload as an attachment to https:
 # - There is a build_windows_vulkan_libs.yml in commit history that we removed thinking this is run so rarely we don't need to pollute CI UI with it.
 
 # Set default vulkan version if none provided
@@ -11,7 +11,7 @@ mkdir vulkanArtifact
 
 # Download Vulkan Headers
 
-Invoke-WebRequest -Uri "https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v$($env:VULKAN_TAG).zip" -OutFile Vulkan-Headers-$($env:VULKAN_TAG).zip
+Invoke-WebRequest -Uri "https:
 Expand-Archive -Path Vulkan-Headers-$($env:VULKAN_TAG).zip
 
 # Copy Vulkan Headers to artifact folder
@@ -20,7 +20,7 @@ cp -R Vulkan-Headers-$($env:VULKAN_TAG)\Vulkan-Headers-$($env:VULKAN_TAG)\includ
 
 # Download Vulkan Loader
 
-Invoke-WebRequest -Uri "https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v$($env:VULKAN_TAG).zip" -OutFile Vulkan-Loader-$($env:VULKAN_TAG).zip
+Invoke-WebRequest -Uri "https:
 Expand-Archive -Path Vulkan-Loader-$($env:VULKAN_TAG).zip
 
 # Build Vulkan Loader x64

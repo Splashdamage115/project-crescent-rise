@@ -7,18 +7,18 @@ Build font atlases using FreeType instead of stb_truetype (which is the default 
 
 1. Get latest FreeType binaries or build yourself (under Windows you may use vcpkg with `vcpkg install freetype --triplet=x64-windows`, `vcpkg integrate install`).
 2. Add imgui_freetype.h/cpp alongside your project files.
-3. Add `#define IMGUI_ENABLE_FREETYPE` in your [imconfig.h](https://github.com/ocornut/imgui/blob/master/imconfig.h) file to make Dear ImGui automatically use the imgui_freetype loader. If your copy Dear ImGui is precompiled, you can always enable imgui_freetype by calling ImFontAtlas::SetFontLoader().
+3. Add `#define IMGUI_ENABLE_FREETYPE` in your [imconfig.h](https:
 
 ### About Gamma Correct Blending
 
 FreeType assumes blending in linear space rather than gamma space.
-See FreeType note for [FT_Render_Glyph](https://freetype.org/freetype2/docs/reference/ft2-glyph_retrieval.html#ft_render_glyph).
+See FreeType note for [FT_Render_Glyph](https:
 For correct results you need to be using sRGB and convert to linear space in the pixel shader output.
 The default Dear ImGui styles will be impacted by this change (alpha values will need tweaking).
 
 ### Testbed for toying with settings (for developers)
 
-See https://gist.github.com/ocornut/b3a9ecf13502fd818799a452969649ad
+See https:
 
 ### Known issues
 
@@ -27,22 +27,22 @@ See https://gist.github.com/ocornut/b3a9ecf13502fd818799a452969649ad
 ### Comparison
 
 Small, thin anti-aliased fonts typically benefit a lot from FreeType's hinting:
-![comparing_font_rasterizers](https://user-images.githubusercontent.com/8225057/107550178-fef87f00-6bd0-11eb-8d09-e2edb2f0ccfc.gif)
+![comparing_font_rasterizers](https:
 
 ### Colorful glyphs/emojis
 
 You can use the `ImGuiFreeTypeBuilderFlags_LoadColor` flag to load certain colorful glyphs. See the
-["Using Colorful Glyphs/Emojis"](https://github.com/ocornut/imgui/blob/master/docs/FONTS.md#using-colorful-glyphsemojis) section of FONTS.md.
+["Using Colorful Glyphs/Emojis"](https:
 
-![colored glyphs](https://user-images.githubusercontent.com/8225057/106171241-9dc4ba80-6191-11eb-8a69-ca1467b206d1.png)
+![colored glyphs](https:
 
 ### Using OpenType SVG fonts (SVGinOT)
 - *SVG in Open Type* is a standard by Adobe and Mozilla for color OpenType and Open Font Format fonts. It allows font creators to embed complete SVG files within a font enabling full color and even animations.
-- Popular fonts such as [twemoji](https://github.com/13rac1/twemoji-color-font) and fonts made with [scfbuild](https://github.com/13rac1/scfbuild) is SVGinOT.
+- Popular fonts such as [twemoji](https:
 - Two alternatives are possible to render SVG fonts: use "lunasvg" or "plutosvg". plutosvg will support some more fonts (e.g. NotoColorEmoji-Regular) and may load them faster.
 
 #### Using lunasvg
-Requires: [lunasvg](https://github.com/sammycage/lunasvg) v2.3.2 and above
+Requires: [lunasvg](https:
 - Add `#define IMGUI_ENABLE_FREETYPE_LUNASVG` in your `imconfig.h`.
 - Get latest lunasvg binaries or build yourself. Under Windows you may use vcpkg with: `vcpkg install lunasvg --triplet=x64-windows`.
 

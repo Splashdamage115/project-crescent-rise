@@ -1,4 +1,4 @@
-/// @ref gtc_matrix_access
+
 
 namespace glm
 {
@@ -59,4 +59,4 @@ namespace glm
 
 		return m[index];
 	}
-}//namespace glm
+}

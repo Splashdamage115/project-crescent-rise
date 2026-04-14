@@ -1,4 +1,4 @@
-/// @ref gtx_mixed_product
+
 
 namespace glm
 {
@@ -12,4 +12,4 @@ namespace glm
 	{
 		return dot(cross(v1, v2), v3);
 	}
-}//namespace glm
+}

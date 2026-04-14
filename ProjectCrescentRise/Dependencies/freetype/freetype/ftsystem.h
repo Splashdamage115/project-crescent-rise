@@ -339,12 +339,12 @@ FT_BEGIN_HEADER
 
   } FT_StreamRec;
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTSYSTEM_H_ */
+#endif 
 
 
-/* END */
+

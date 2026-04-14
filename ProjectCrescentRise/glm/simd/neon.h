@@ -1,5 +1,5 @@
-/// @ref simd_neon
-/// @file glm/simd/neon.h
+
+
 
 #pragma once
 
@@ -150,6 +150,6 @@ namespace glm {
 			return vaddq_f32(acc, vmulq_f32(v, dupq_lane(vlane, lane)));
 #endif
 		}
-	} //namespace neon
-} // namespace glm
-#endif // GLM_ARCH & GLM_ARCH_NEON_BIT
+	} 
+} 
+#endif 

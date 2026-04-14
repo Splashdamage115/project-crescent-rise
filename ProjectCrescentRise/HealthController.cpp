@@ -44,7 +44,7 @@ void HealthController::sendMessage(const std::string& t_messageString, std::any 
 
 void HealthController::secondaryHitEffect()
 {
-	// no secondary here now
+	
 }
 
 void HealthController::changeHealth(float amount)

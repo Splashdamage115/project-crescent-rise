@@ -1,10 +1,10 @@
-/// @ref core
+
 
 #include "compute_vector_relational.hpp"
 
 namespace glm
 {
-	// -- Implicit basic constructors --
+	
 
 #	if GLM_CONFIG_DEFAULTED_DEFAULT_CTOR == GLM_DISABLE
 		template<typename T, qualifier Q>
@@ -28,7 +28,7 @@ namespace glm
 		: x(v.x), y(v.y), z(v.z)
 	{}
 
-	// -- Explicit basic constructors --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<3, T, Q>::vec(T scalar)
@@ -40,7 +40,7 @@ namespace glm
 		: x(_x), y(_y), z(_z)
 	{}
 
-	// -- Conversion scalar constructors --
+	
 
 	template<typename T, qualifier Q>
 	template<typename U, qualifier P>
@@ -114,7 +114,7 @@ namespace glm
 		, z(static_cast<T>(_z.x))
 	{}
 
-	// -- Conversion vector constructors --
+	
 
 	template<typename T, qualifier Q>
 	template<typename A, typename B, qualifier P>
@@ -164,7 +164,7 @@ namespace glm
 		, z(static_cast<T>(v.z))
 	{}
 
-	// -- Component accesses --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T & vec<3, T, Q>::operator[](typename vec<3, T, Q>::length_type i)
@@ -198,7 +198,7 @@ namespace glm
 		}
 	}
 
-	// -- Unary arithmetic operators --
+	
 
 #	if GLM_CONFIG_DEFAULTED_FUNCTIONS == GLM_DISABLE
 		template<typename T, qualifier Q>
@@ -341,7 +341,7 @@ namespace glm
 		return *this;
 	}
 
-	// -- Increment and decrement operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<3, T, Q> & vec<3, T, Q>::operator++()
@@ -377,7 +377,7 @@ namespace glm
 		return Result;
 	}
 
-	// -- Unary bit operators --
+	
 
 	template<typename T, qualifier Q>
 	template<typename U>
@@ -559,7 +559,7 @@ namespace glm
 		return *this;
 	}
 
-	// -- Unary arithmetic operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<3, T, Q> operator+(vec<3, T, Q> const& v)
@@ -576,7 +576,7 @@ namespace glm
 			-v.z);
 	}
 
-	// -- Binary arithmetic operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<3, T, Q> operator+(vec<3, T, Q> const& v, T scalar)
@@ -758,7 +758,7 @@ namespace glm
 			v1.z / v2.z);
 	}
 
-	// -- Binary bit operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR vec<3, T, Q> operator%(vec<3, T, Q> const& v, T scalar)
@@ -1039,7 +1039,7 @@ namespace glm
 			~v.z);
 	}
 
-	// -- Boolean operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator==(vec<3, T, Q> const& v1, vec<3, T, Q> const& v2)
@@ -1067,4 +1067,4 @@ namespace glm
 	{
 		return vec<3, bool, Q>(v1.x || v2.x, v1.y || v2.y, v1.z || v2.z);
 	}
-}//namespace glm
+}

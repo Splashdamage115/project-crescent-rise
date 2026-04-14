@@ -1,4 +1,4 @@
-/// @ref gtx_vector_angle
+
 
 namespace glm
 {
@@ -42,4 +42,4 @@ namespace glm
 		T const Angle(acos(clamp(dot(x, y), T(-1), T(1))));
 		return mix(Angle, -Angle, dot(ref, cross(x, y)) < T(0));
 	}
-}//namespace glm
+}

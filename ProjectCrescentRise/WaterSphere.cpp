@@ -14,9 +14,9 @@ void WaterSphere::ResetPlanet()
 
     std::vector<float> vertices;
     std::vector<unsigned int> indices;
-    int vertLength = 8; // x y z NormalX NormalY NormalZ u v
-    int faceAmt = 6; // face for each side
-    int triIntCount = 6; // top left, top right, bottom left ~ bootom left, top right, bottom right ~ these are the triangle positions
+    int vertLength = 8; 
+    int faceAmt = 6; 
+    int triIntCount = 6; 
     int pointAmt = (pointsPerRow * pointsPerRow);
     int indiceAmt = (pointsPerRow - 1) * (pointsPerRow - 1);
 
@@ -28,12 +28,12 @@ void WaterSphere::ResetPlanet()
     glm::vec3 playerPos = PlayerInput::playerPosition;
 
 
-    direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   // Up
-    direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  // Down
-    direction.emplace_back(glm::vec3(-1.0f, 0.0f, 0.0f));  // Left
-    direction.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));   // Right
-    direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  // Forward
-    direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   // Back
+    direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   
+    direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  
+    direction.emplace_back(glm::vec3(-1.0f, 0.0f, 0.0f));  
+    direction.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));   
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   
 
     int closestNum = 0;
 
@@ -53,7 +53,7 @@ void WaterSphere::ResetPlanet()
 
     for (int i = 0; i < 6; i++)
     {
-        //if (i == closestNum); // i is now the closest face
+        
 
         CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator);
 
@@ -73,7 +73,7 @@ void WaterSphere::ResetPlanet()
 
 void WaterSphere::Start()
 {
-    // Generate and setup VAO
+    
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
 
@@ -185,7 +185,7 @@ void WaterSphere::Start()
 
     WaterColorMap = glGetUniformLocation(m_shader->shaderPair, "uWaterColorMap");
 
-    // Generate initial mesh data
+    
     ResetPlanet();
     callChange = false;
 }

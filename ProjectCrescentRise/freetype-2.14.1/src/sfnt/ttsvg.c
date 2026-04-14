@@ -20,7 +20,7 @@
    *
    * 'SVG' table specification:
    *
-   *    https://learn.microsoft.com/typography/opentype/spec/svg
+   *    https:
    *
    */
 

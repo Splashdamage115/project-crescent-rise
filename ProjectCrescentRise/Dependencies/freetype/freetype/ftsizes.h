@@ -148,12 +148,12 @@ FT_BEGIN_HEADER
   FT_EXPORT( FT_Error )
   FT_Activate_Size( FT_Size  size );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTSIZES_H_ */
+#endif 
 
 
-/* END */
+

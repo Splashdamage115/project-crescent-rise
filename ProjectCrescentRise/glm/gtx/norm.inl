@@ -1,4 +1,4 @@
-/// @ref gtx_norm
+
 
 #include "../detail/qualifier.hpp"
 
@@ -13,7 +13,7 @@ namespace detail
 			return dot(v, v);
 		}
 	};
-}//namespace detail
+}
 
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType length2(genType x)
@@ -92,4 +92,4 @@ namespace detail
 		return compMax(abs(v));
 	}
 
-}//namespace glm
+}

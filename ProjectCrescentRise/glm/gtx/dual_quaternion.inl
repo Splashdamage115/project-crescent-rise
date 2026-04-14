@@ -1,11 +1,11 @@
-/// @ref gtx_dual_quaternion
+
 
 #include "../geometric.hpp"
 #include <limits>
 
 namespace glm
 {
-	// -- Component accesses --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER typename tdualquat<T, Q>::part_type & tdualquat<T, Q>::operator[](typename tdualquat<T, Q>::length_type i)
@@ -21,7 +21,7 @@ namespace glm
 		return (&real)[i];
 	}
 
-	// -- Implicit basic constructors --
+	
 
 #	if GLM_CONFIG_DEFAULTED_FUNCTIONS == GLM_DISABLE
 		template<typename T, qualifier Q>
@@ -46,7 +46,7 @@ namespace glm
 		, dual(d.dual)
 	{}
 
-	// -- Explicit basic constructors --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR tdualquat<T, Q>::tdualquat(qua<T, Q> const& r)
@@ -67,7 +67,7 @@ namespace glm
 		: real(r), dual(d)
 	{}
 
-	// -- Conversion constructors --
+	
 
 	template<typename T, qualifier Q>
 	template<typename U, qualifier P>
@@ -88,7 +88,7 @@ namespace glm
 		*this = dualquat_cast(m);
 	}
 
-	// -- Unary arithmetic operators --
+	
 
 #	if GLM_CONFIG_DEFAULTED_FUNCTIONS == GLM_DISABLE
 		template<typename T, qualifier Q>
@@ -127,7 +127,7 @@ namespace glm
 		return *this;
 	}
 
-	// -- Unary bit operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER tdualquat<T, Q> operator+(tdualquat<T, Q> const& q)
@@ -141,7 +141,7 @@ namespace glm
 		return tdualquat<T, Q>(-q.real, -q.dual);
 	}
 
-	// -- Binary operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER tdualquat<T, Q> operator+(tdualquat<T, Q> const& q, tdualquat<T, Q> const& p)
@@ -199,7 +199,7 @@ namespace glm
 		return tdualquat<T, Q>(q.real / s, q.dual / s);
 	}
 
-	// -- Boolean operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER bool operator==(tdualquat<T, Q> const& q1, tdualquat<T, Q> const& q2)
@@ -213,7 +213,7 @@ namespace glm
 		return (q1.real != q2.real) || (q1.dual != q2.dual);
 	}
 
-	// -- Operations --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER tdualquat<T, Q> dual_quat_identity()
@@ -232,8 +232,8 @@ namespace glm
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER tdualquat<T, Q> lerp(tdualquat<T, Q> const& x, tdualquat<T, Q> const& y, T const& a)
 	{
-		// Dual Quaternion Linear blend aka DLB:
-		// Lerp is only defined in [0, 1]
+		
+		
 		assert(a >= static_cast<T>(0));
 		assert(a <= static_cast<T>(1));
 		T const k = dot(x.real,y.real) < static_cast<T>(0) ? -a : a;
@@ -349,4 +349,4 @@ namespace glm
 		dual.w = -static_cast<T>(0.5) * ( x[0].w * real.x + x[1].w * real.y + x[2].w * real.z);
 		return tdualquat<T, Q>(real, dual);
 	}
-}//namespace glm
+}

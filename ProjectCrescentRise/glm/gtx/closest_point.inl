@@ -1,4 +1,4 @@
-/// @ref gtx_closest_point
+
 
 namespace glm
 {
@@ -14,7 +14,7 @@ namespace glm
 		vec<3, T, Q> Vector = point - a;
 		vec<3, T, Q> LineDirection = (b - a) / LineLength;
 
-		// Project Vector to LineDirection to get the distance of point from a
+		
 		T Distance = dot(Vector, LineDirection);
 
 		if(Distance <= T(0)) return a;
@@ -34,7 +34,7 @@ namespace glm
 		vec<2, T, Q> Vector = point - a;
 		vec<2, T, Q> LineDirection = (b - a) / LineLength;
 
-		// Project Vector to LineDirection to get the distance of point from a
+		
 		T Distance = dot(Vector, LineDirection);
 
 		if(Distance <= T(0)) return a;
@@ -42,4 +42,4 @@ namespace glm
 		return a + LineDirection * Distance;
 	}
 
-}//namespace glm
+}

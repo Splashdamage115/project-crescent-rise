@@ -1,4 +1,4 @@
-/// @ref gtx_matrix_cross_product
+
 
 namespace glm
 {
@@ -34,4 +34,4 @@ namespace glm
 		return Result;
 	}
 
-}//namespace glm
+}

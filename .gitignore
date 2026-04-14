@@ -80,5 +80,5 @@ _ReSharper*/
 FakesAssemblies/
 
 # Re-include DLLs inside Debug/Release folders
-!**/Debug/**/*.dll
-!**/Release/**/*.dll
+!**/Debug*.dll
+!**/Release*.dll

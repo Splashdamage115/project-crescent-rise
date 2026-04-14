@@ -4,13 +4,13 @@ std::vector<std::shared_ptr<Shader>> VertexShaders::m_shaders;
 std::vector<ShaderFilesVertex> VertexShaders::m_vertexFiles;
 std::vector<ShaderFilesFragment> VertexShaders::m_fragmentFiles;
 
-// load fragment and vertex shader files
+
 void VertexShaders::initialise()
 {
 
-    // - - - - - - - - - - - - - - - 
-    //  pink shader, basic
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     const char* newVertex =
         "#version 410 core\n"
@@ -45,9 +45,9 @@ void VertexShaders::initialise()
     mountShader(Shader::VertexShaderType::standard, Shader::FragmentShaderType::standard);
 
 
-    // - - - - - - - - - - - - - - - 
-    //  checkerboard 
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     const char* newFragment2 =
         "#version 410 core\n"
@@ -71,9 +71,9 @@ void VertexShaders::initialise()
 
 
 
-    // - - - - - - - - - - - - - - - 
-    //  colour, pass colour to frag
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     const char* colouredVertex =
         "#version 410 core\n"
@@ -114,9 +114,9 @@ void VertexShaders::initialise()
     mountShader(Shader::VertexShaderType::Colour, Shader::FragmentShaderType::Colour);
 
 
-    // - - - - - - - - - - - - - - - 
-    //  terrain (flat terrain)
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     const char* terrainVertex =
         "#version 410 core\n"
@@ -156,12 +156,12 @@ void VertexShaders::initialise()
         "\n"
         "vec4 getHeightColor(float y) {\n"
         "    if (y < midHeight) {\n"
-        "        // Blend yellow to green\n"
+        "        
         "        float t = clamp((y - lowHeight) / (midHeight - lowHeight), 0.0, 1.0);\n"
         "        return mix(vec4(1.0, 1.0, 0.0, 1.0), vec4(0.0, 1.0, 0.0, 1.0), t);\n"
         "    }\n"
         "    else {\n"
-        "        // Blend green to grey\n"
+        "        
         "        float t = clamp((y - midHeight) / (highHeight - midHeight), 0.0, 1.0);\n"
         "        return mix(vec4(0.0, 1.0, 0.0, 1.0), vec4(0.5, 0.5, 0.5, 1.0), t);\n"
         "    }\n"
@@ -181,18 +181,18 @@ void VertexShaders::initialise()
 
 
 
-    // - - - - - - - - - - - - - - - 
-    //  lit ~ this is for the planet
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     
     setUpPlanetShader();
 
 
 
-    // - - - - - - - - - - - - - - - 
-    //  text
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     const char* textVertex =
         "#version 410\n"
@@ -233,9 +233,9 @@ void VertexShaders::initialise()
 
 
 
-    // - - - - - - - - - - - - - - - 
-    //  Line 
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
 
     const char* lineVertex =
@@ -272,9 +272,9 @@ void VertexShaders::initialise()
     
 
 
-    // - - - - - - - - - - - - - - - 
-    //  Texture
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
 
 
@@ -325,9 +325,9 @@ void VertexShaders::initialise()
 
 
 
-    // - - - - - - - - - - - - - - - 
-    //  Lit Texture
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
 
     const char* LitTextureVertex =
@@ -416,9 +416,9 @@ void VertexShaders::initialise()
     mountShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
 
 
-    // - - - - - - - - - - - - - - - 
-    //  Squash Texture
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
 
     const char* litSquash =
@@ -509,9 +509,9 @@ void VertexShaders::initialise()
     mountShader(Shader::VertexShaderType::litTexture, Shader::FragmentShaderType::litTexture);
 
 
-    // - - - - - - - - - - - - - - - 
-    //  Lit Particle
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
 
     const char* LitParticleVert =
@@ -612,9 +612,9 @@ void VertexShaders::initialise()
 
 
 
-    // - - - - - - - - - - - - - - - 
-    //  Particle
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
 
 
@@ -662,9 +662,9 @@ void VertexShaders::initialise()
     m_fragmentFiles.push_back(newFragmentPair);
 
     mountShader(Shader::VertexShaderType::Particle, Shader::FragmentShaderType::Particle);
-    // - - - - - - - - - - - - - - - 
-    //  SKY BOX 
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     const char* skyBoxVertex =
         "#version 410 core\n"
@@ -721,10 +721,10 @@ void VertexShaders::initialise()
 
 
 
-// *** NEVER USE THIS ***
+
 void VertexShaders::LoadShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment)
 {
-    // find the shader and try to use it
+    
     for (unsigned int i = 0; i < m_shaders.size(); i++)
     {
         if (m_shaders.at(i)->vertexType == t_vertex &&
@@ -736,30 +736,30 @@ void VertexShaders::LoadShader(Shader::VertexShaderType t_vertex, Shader::Fragme
     }
 
 
-    // if the combo requested doesnt exist yet, try to mount it, and use it
+    
     try {
         mountShader(t_vertex, t_fragment);
         glUseProgram(m_shaders.at(m_shaders.size() - 1)->shaderPair);
     }
     catch(std::errc)
     {
-        glUseProgram(m_shaders.at(0)->shaderPair); // otherwise revert to basic shader
+        glUseProgram(m_shaders.at(0)->shaderPair); 
     }
 
 }
 
-// try to keep the used shader in memory somewhere, otherwise call the other type
-// we use this to speed up execution
+
+
 void VertexShaders::LoadShader(std::shared_ptr<Shader> t_shader)
 {
     glActiveTexture(GL_TEXTURE0);
     glUseProgram(t_shader->shaderPair);
 }
 
-// retrieve the pointer to the wanted shader
+
 std::shared_ptr<Shader> VertexShaders::retrieveShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment)
 {
-    // find the shader and try to use it
+    
     for (unsigned int i = 0; i < m_shaders.size(); i++)
     {
         if (m_shaders.at(i)->vertexType == t_vertex &&
@@ -770,7 +770,7 @@ std::shared_ptr<Shader> VertexShaders::retrieveShader(Shader::VertexShaderType t
     }
 
 
-    // if the combo requested doesnt exist yet, try to mount it, and use it
+    
     try {
         mountShader(t_vertex, t_fragment);
         return m_shaders.at(m_shaders.size() - 1);
@@ -782,12 +782,12 @@ std::shared_ptr<Shader> VertexShaders::retrieveShader(Shader::VertexShaderType t
 
 }
 
-// mount any non existent shaders, and make a new shader for it
+
 std::errc VertexShaders::mountShader(Shader::VertexShaderType t_vertex, Shader::FragmentShaderType t_fragment)
 {
     std::shared_ptr< Shader > newShader = std::make_shared<Shader>();
 
-    // find the file location (if either doesnt exist, exit)
+    
     int vertexNum = -1;
     int fragNum = -1;
 
@@ -811,7 +811,7 @@ std::errc VertexShaders::mountShader(Shader::VertexShaderType t_vertex, Shader::
     if (vertexNum == -1 || fragNum == -1) return std::errc::timed_out;
 
 
-    // initialise the new shader
+    
     newShader->vertexType = m_vertexFiles.at(vertexNum).vertexType;
     newShader->fragmentType = m_fragmentFiles.at(fragNum).fragmentType;
 
@@ -853,7 +853,7 @@ static std::string composeFragmentShader(
     const char* baseTemplate,
     const char* waterModule) 
 {
-    char buffer[16384];  // Large enough for all modules combined
+    char buffer[16384];  
     snprintf(buffer, sizeof(buffer), baseTemplate, waterModule);
     return std::string(buffer);
 }
@@ -917,21 +917,21 @@ void VertexShaders::setUpPlanetShader()
         "%s\n"
         "void main()\n"
         "{\n"
-        "    // Apply Gerstner displacement to ALL vertices\n"
+        "    
         "    vec3 displacedPos = applyGerstnerDisplacement(aPos, uTime);\n"
         "\n"
-        "    // Transform to world space\n"
+        "    
         "    vec4 worldPos = uModel * vec4(displacedPos, 1.0);\n"
         "    gl_Position = uProj * uView * worldPos;\n"
         "    WorldPos = worldPos.xyz;\n"
         "\n"
-        "    // Normal passthrough\n"
+        "    
         "    bNormal = mat3(transpose(inverse(uModel))) * aNormal;\n"
         "\n"
-        "    // UV passthrough\n"
+        "    
         "    TexCoords = aTexCoord;\n"
         "\n"
-        "    // Height for depth tinting\n"
+        "    
         "    height = length(worldPos.xyz - CenterPoint);\n"
         "}\n";
 
@@ -1034,13 +1034,13 @@ void VertexShaders::setUpPlanetShader()
         "    float foamMaskSlope = smoothstep(0.2, 0.6, slope);\n"
         "    float foam = foamFactorDepth * foamMaskSlope * smoothstep(0.3, 1.0, foamNoise);\n"
         "\n"
-        //"    vec3 foamColor = vec3(0.9, 0.95, 1.0);\n"
-        //"    waterColor = mix(waterColor, foamColor, foam * 0.6);\n"
+        
+        
         "\n"
         "    float fresnelStrength = 0.3;\n"
         "    float baseStrength = 0.7;\n"
-        //"    vec3 colorTex = texture(uWaterColorMap, uv1).rgb;\n"
-        //"    waterColor = mix(waterColor, colorTex, 0.2);\n"
+        
+        
         "    vec3 finalColor = waterColor * (baseStrength + fresnelStrength * fresnel);\n"
         "\n"
         "    FragColor = vec4(finalColor, 0.9);\n"
@@ -1235,7 +1235,7 @@ void VertexShaders::setUpPlanetShader()
         "const vec3 viewPos = vec3(0.0, 0.0, 10.0);\n"
 
         "void main() {\n"
-        "    // Normalize the interpolated normal\n"
+        "    
         "    vec3 norm = normalize(bNormal);\n"
         ""
         "    float height = texture(uHeightMap, vTex).r;\n"
@@ -1265,15 +1265,15 @@ void VertexShaders::setUpPlanetShader()
 
     mountShader(Shader::VertexShaderType::billboard, Shader::FragmentShaderType::billboard);
     const char* grassShader =
-        "// Random function implementation"
+        "
         "float rand(vec2 co) {\n"
         "    return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);\n"
         "}\n";
 
 
-    // - - - - - - - - - - - - - - - 
-    //  Outline (backface expand, second pass)
-    // - - - - - - - - - - - - - - - 
+    
+    
+    
 
     const char* outlineVertex =
         "#version 410 core\n"

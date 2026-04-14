@@ -45,15 +45,15 @@ namespace glm
 			detail::float_t<T> const a(x[i]);
 			detail::float_t<T> const b(y[i]);
 
-			// Different signs means they do not match.
+			
 			if(a.negative() != b.negative())
 			{
-				// Check for equality to make sure +0==-0
+				
 				Result[i] = a.mantissa() == b.mantissa() && a.exponent() == b.exponent();
 			}
 			else
 			{
-				// Find the difference in ULPs.
+				
 				typename detail::float_t<T>::int_type const DiffULPs = abs(a.i - b.i);
 				Result[i] = DiffULPs <= MaxULPs[i];
 			}
@@ -72,4 +72,4 @@ namespace glm
 	{
 		return not_(equal(x, y, MaxULPs));
 	}
-}//namespace glm
+}

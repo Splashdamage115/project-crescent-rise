@@ -52,18 +52,18 @@ void SpherePlanet::generateIcosphere()
     vertices.clear();
     indices.clear();
 
-    // Generate 3D Voronoi points in two layers (coarse and fine)
+    
     std::vector<glm::vec3> coarseVoronoiPoints;
     std::vector<glm::vec3> fineVoronoiPoints;
     
-    generate3DVoronoi(coarseVoronoiPoints, 32);   // Coarse layer
-    generate3DVoronoi(fineVoronoiPoints, 128);    // Fine layer
+    generate3DVoronoi(coarseVoronoiPoints, 32);   
+    generate3DVoronoi(fineVoronoiPoints, 128);    
 
     const float phi = (1.0f + std::sqrt(5.0f)) * 0.5f;
     const float a = 1.0f;
     const float b = 1.0f / phi;
 
-    // generate first 12 vertices
+    
     std::vector<glm::vec3> icosahedronVertices = {
         MathUtils::normalize(glm::vec3(-b,  a,  0)), MathUtils::normalize(glm::vec3(b,  a,  0)),
         MathUtils::normalize(glm::vec3(-b, -a,  0)), MathUtils::normalize(glm::vec3(b, -a,  0)),
@@ -73,7 +73,7 @@ void SpherePlanet::generateIcosphere()
         MathUtils::normalize(glm::vec3(-a,  0, -b)), MathUtils::normalize(glm::vec3(-a,  0,  b))
     };
 
-    // link faces
+    
     std::vector<std::vector<unsigned int>> icosahedronFaces = {
         {0, 11, 5}, {0, 5, 1}, {0, 1, 7}, {0, 7, 10}, {0, 10, 11},
         {1, 5, 9}, {5, 11, 4}, {11, 10, 2}, {10, 7, 6}, {7, 1, 8},
@@ -117,34 +117,34 @@ void SpherePlanet::generateIcosphere()
         subdivisionFaces = newFaces;
     }
 
-    // Create a map to avoid duplicate vertices using the original vertex index
+    
     std::map<unsigned int, unsigned int> vertexIndexMap;
 
     for (const auto& face : subdivisionFaces) {
         for (unsigned int vertexIndex : face) {
             unsigned int finalIndex;
             
-            // Check if we've already processed this original vertex
+            
             auto it = vertexIndexMap.find(vertexIndex);
             if (it != vertexIndexMap.end()) {
                 finalIndex = it->second;
             } else {
-                // Get normalized vertex position (unit sphere)
+                
                 glm::vec3 normalizedVertex = subdivisionVertices[vertexIndex];
                 
-                // Calculate UV coordinates for texture mapping
+                
                 glm::vec2 uv = MathUtils::calculateUV(normalizedVertex);
                 
-                // Calculate 3D Voronoi displacement using both layers
+                
                 float coarseHeight = calculate3DVoronoiHeight(normalizedVertex, coarseVoronoiPoints);
                 float fineHeight = calculate3DVoronoiHeight(normalizedVertex, fineVoronoiPoints);
                 float combinedHeight = coarseHeight + (fineHeight * 0.5f);
                 
-                // Apply radial displacement (outward from center)
+                
                 float totalRadius = ICOSPHERE_RADIUS + (combinedHeight * displacementScale);
                 glm::vec3 displacedVertex = normalizedVertex * totalRadius * ICOSPHERE_SCALE;
 
-                // Add vertex data
+                
                 vertices.push_back(displacedVertex.x);
                 vertices.push_back(displacedVertex.y);
                 vertices.push_back(displacedVertex.z);
@@ -167,15 +167,15 @@ void SpherePlanet::generate3DVoronoi(std::vector<glm::vec3>& voronoiPoints, int 
 
     for (int i = 0; i < pointCount; i++)
     {
-        // Generate random points on unit sphere using spherical coordinates
-        float u = static_cast<float>(rand()) / RAND_MAX;  // [0, 1]
-        float v = static_cast<float>(rand()) / RAND_MAX;  // [0, 1]
         
-        // Convert uniform random values to spherical coordinates
-        float theta = 2.0f * MathUtils::PI * u;  // Azimuth [0, 2π]
-        float phi = std::acos(2.0f * v - 1.0f);  // Polar angle [0, π] (uniform distribution on sphere)
+        float u = static_cast<float>(rand()) / RAND_MAX;  
+        float v = static_cast<float>(rand()) / RAND_MAX;  
         
-        // Convert spherical to Cartesian coordinates
+        
+        float theta = 2.0f * MathUtils::PI * u;  
+        float phi = std::acos(2.0f * v - 1.0f);  
+        
+        
         float sinPhi = std::sin(phi);
         glm::vec3 point(
             sinPhi * std::cos(theta),
@@ -191,16 +191,16 @@ float SpherePlanet::calculate3DVoronoiHeight(const glm::vec3& position, const st
 {
     if (voronoiPoints.size() < 2) return 0.0f;
 
-    // Find the two closest Voronoi points to the given position
+    
     float closestDistance = glm::distance(position, voronoiPoints[0]);
     float secondClosest = glm::distance(position, voronoiPoints[1]);
     
-    // Ensure closestDistance <= secondClosest
+    
     if (closestDistance > secondClosest) {
         std::swap(closestDistance, secondClosest);
     }
     
-    // Check all other points
+    
     for (size_t i = 2; i < voronoiPoints.size(); i++)
     {
         float currentDistance = glm::distance(position, voronoiPoints[i]);
@@ -216,7 +216,7 @@ float SpherePlanet::calculate3DVoronoiHeight(const glm::vec3& position, const st
         }
     }
     
-    // Return combined distance scaled by height factor
-    // This creates the characteristic Voronoi cell pattern
+    
+    
     return (closestDistance + secondClosest) * heightFactor;
 }

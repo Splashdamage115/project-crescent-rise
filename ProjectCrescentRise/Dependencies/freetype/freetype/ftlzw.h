@@ -89,12 +89,12 @@ FT_BEGIN_HEADER
   FT_Stream_OpenLZW( FT_Stream  stream,
                      FT_Stream  source );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTLZW_H_ */
+#endif 
 
 
-/* END */
+

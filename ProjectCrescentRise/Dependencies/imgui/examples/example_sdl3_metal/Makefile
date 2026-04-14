@@ -1,5 +1,5 @@
 #
-# You will need SDL3 (http://www.libsdl.org):
+# You will need SDL3 (http:
 #   brew install sdl3
 #
 

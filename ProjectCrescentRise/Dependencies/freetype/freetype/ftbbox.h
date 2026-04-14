@@ -85,17 +85,17 @@ FT_BEGIN_HEADER
   FT_Outline_Get_BBox( FT_Outline*  outline,
                        FT_BBox     *abbox );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTBBOX_H_ */
+#endif 
 
 
-/* END */
 
 
-/* Local Variables: */
-/* coding: utf-8    */
-/* End:             */
+
+
+
+

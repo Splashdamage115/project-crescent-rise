@@ -102,7 +102,7 @@ FT_BEGIN_HEADER
    */
 #define FT_VALIDATE_GX_LENGTH  ( FT_VALIDATE_GX_LAST_INDEX + 1 )
 
-  /* */
+  
 
   /* Up to 0x1000 is used by otvalid.
      Ox2xxx is reserved for feature OT extension. */
@@ -343,12 +343,12 @@ FT_BEGIN_HEADER
   FT_ClassicKern_Free( FT_Face   face,
                        FT_Bytes  table );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTGXVAL_H_ */
+#endif 
 
 
-/* END */
+

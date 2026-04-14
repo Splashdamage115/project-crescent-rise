@@ -45,24 +45,24 @@ FT_BEGIN_HEADER
 
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /****                           M E M O R Y                           ****/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
-  /* The calculation `NULL + n' is undefined in C.  Even if the resulting */
-  /* pointer doesn't get dereferenced, this causes warnings with          */
-  /* sanitizers.                                                          */
-  /*                                                                      */
-  /* We thus provide a macro that should be used if `base' can be NULL.   */
+  
+  
+  
+  
+  
 #define FT_OFFSET( base, count )  ( (base) ? (base) + (count) : NULL )
 
 
@@ -107,12 +107,12 @@ extern "C++"
                                       ft_debug_lineno_ = __LINE__, \
                                       FT_ASSIGNP( p, exp ) )
 
-#else /* !FT_DEBUG_MEMORY */
+#else 
 
 #define FT_DEBUG_INNER( exp )       (exp)
 #define FT_ASSIGNP_INNER( p, exp )  FT_ASSIGNP( p, exp )
 
-#endif /* !FT_DEBUG_MEMORY */
+#endif 
 
 
   /*
@@ -120,8 +120,8 @@ extern "C++"
    * to through the `p_error' parameter.
    */
 
-  /* The `q' variants of the functions below (`q' for `quick') don't fill */
-  /* the allocated or reallocated memory with zero bytes.                 */
+  
+  
 
   FT_BASE( FT_Pointer )
   ft_mem_alloc( FT_Memory  memory,
@@ -154,8 +154,8 @@ extern "C++"
                const void*  P );
 
 
-  /* The `Q' variants of the macros below (`Q' for `quick') don't fill */
-  /* the allocated or reallocated memory with zero bytes.              */
+  
+  
 
 #define FT_MEM_ALLOC( ptr, size )                               \
           FT_ASSIGNP_INNER( ptr, ft_mem_alloc( memory,          \
@@ -381,9 +381,9 @@ extern "C++"
           FT_MEM_SET_ERROR( FT_MEM_DUP( dst, address, size ) )
 
 
-  /* Return >= 1 if a truncation occurs.            */
-  /* Return 0 if the source string fits the buffer. */
-  /* This is *not* the same as strlcpy().           */
+  
+  
+  
   FT_BASE( FT_Int )
   ft_mem_strcpyn( char*        dst,
                   const char*  src,
@@ -395,7 +395,7 @@ extern "C++"
 
 FT_END_HEADER
 
-#endif /* FTMEMORY_H_ */
+#endif 
 
 
-/* END */
+

@@ -34,5 +34,5 @@ namespace detail
 			return detail::compute_determinant<C, R, T, Q, detail::is_aligned<Q>::value>::call(m);
 		}
 	};
-}//namespace detail
-}//namespace glm
+}
+}

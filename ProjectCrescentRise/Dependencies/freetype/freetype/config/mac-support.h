@@ -25,11 +25,11 @@
    *   providing a new configuration file.
    */
 #if defined( __APPLE__ ) || ( defined( __MWERKS__ ) && defined( macintosh ) )
-  /* No Carbon frameworks for 64bit 10.4.x.                         */
-  /* `AvailabilityMacros.h` is available since Mac OS X 10.2,       */
-  /* so guess the system version by maximum errno before inclusion. */
+  
+  
+  
 #include <errno.h>
-#ifdef ECANCELED /* defined since 10.2 */
+#ifdef ECANCELED 
 #include "AvailabilityMacros.h"
 #endif
 #if defined( __LP64__ ) && \
@@ -38,12 +38,12 @@
 #endif
 
 #elif defined( __SC__ ) || defined( __MRC__ )
-  /* Classic MacOS compilers */
+  
 #include "ConditionalMacros.h"
 #if TARGET_OS_MAC
 #define FT_MACINTOSH 1
 #endif
 
-#endif  /* Mac support */
+#endif  
 
-#endif  /* FREETYPE_CONFIG_MAC_SUPPORT_H_ */
+#endif  

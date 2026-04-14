@@ -811,16 +811,16 @@ FT_BEGIN_HEADER
    *   FT_ENCODING_MS_SYMBOL ::
    *     Microsoft Symbol encoding, used to encode mathematical symbols and
    *     wingdings.  For more information, see
-   *     'https://learn.microsoft.com/typography/opentype/spec/recom#non-standard-symbol-fonts',
-   *     'http://www.kostis.net/charsets/symbol.htm', and
-   *     'http://www.kostis.net/charsets/wingding.htm'.
+   *     'https:
+   *     'http:
+   *     'http:
    *
    *     This encoding uses character codes from the PUA (Private Unicode
    *     Area) in the range U+F020-U+F0FF.
    *
    *   FT_ENCODING_SJIS ::
    *     Shift JIS encoding for Japanese.  More info at
-   *     'https://en.wikipedia.org/wiki/Shift_JIS'.  See note on multi-byte
+   *     'https:
    *     encodings below.
    *
    *   FT_ENCODING_PRC ::
@@ -835,7 +835,7 @@ FT_BEGIN_HEADER
    *   FT_ENCODING_WANSUNG ::
    *     Corresponds to the Korean encoding system known as Extended Wansung
    *     (MS Windows code page 949).  For more information see
-   *     'https://www.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit949.txt'.
+   *     'https:
    *
    *   FT_ENCODING_JOHAB ::
    *     The Korean standard character set (KS~C 5601-1992), which
@@ -915,7 +915,7 @@ FT_BEGIN_HEADER
    *   @FT_Get_CMap_Language_ID to query the Mac language ID that may be
    *   needed to be able to distinguish Apple encoding variants.  See
    *
-   *     https://www.unicode.org/Public/MAPPINGS/VENDORS/APPLE/Readme.txt
+   *     https:
    *
    *   to get an idea how to do that.  Basically, if the language ID is~0,
    *   don't use it, otherwise subtract 1 from the language ID.  Then examine
@@ -1732,7 +1732,7 @@ FT_BEGIN_HEADER
    * ```
    *   if ( FT_HAS_SBIX( face ) )
    *   {
-   *     // open font as a scalable one without sbix handling
+   *     
    *     FT_Face       face2;
    *     FT_Parameter  param = { FT_PARAM_TAG_IGNORE_SBIX, NULL };
    *     FT_Open_Args  args  = { FT_OPEN_PARAMS | ...,
@@ -1752,7 +1752,7 @@ FT_BEGIN_HEADER
    *       error = FT_Set_Pixel_Sizes( face, size, size );
    *       <error handling omitted>
    *
-   *       // check whether we have a glyph in a bitmap strike
+   *       
    *       error = FT_Load_Glyph( face,
    *                              glyph_index,
    *                              FT_LOAD_SBITS_ONLY          |
@@ -3078,7 +3078,7 @@ FT_BEGIN_HEADER
    *   is dependent entirely on how the size is defined in the source face.
    *   The font designer chooses the final size of each glyph relative to
    *   this size.  For more information refer to
-   *   'https://freetype.org/freetype2/docs/glyphs/glyphs-2.html'.
+   *   'https:
    *
    *   Contrary to @FT_Set_Char_Size, this function doesn't have special code
    *   to normalize zero-valued widths, heights, or resolutions, which are
@@ -3897,9 +3897,9 @@ FT_BEGIN_HEADER
    *
    *   This process can cost performance.  There is an approximation that
    *   does not need to know about the background color; see
-   *   https://web.archive.org/web/20211019204945/https://bel.fi/alankila/lcd/
+   *   https:
    *   and
-   *   https://web.archive.org/web/20210211002939/https://bel.fi/alankila/lcd/alpcor.html
+   *   https:
    *   for details.
    *
    *   **ATTENTION**: Linear blending is even more important when dealing
@@ -4425,7 +4425,7 @@ FT_BEGIN_HEADER
    *
    * @note:
    *   Acceptable glyph names might come from the [Adobe Glyph
-   *   List](https://github.com/adobe-type-tools/agl-aglfn).  See
+   *   List](https:
    *   @FT_Get_Glyph_Name for the inverse functionality.
    *
    *   This function has limited capabilities if the config macro
@@ -4511,7 +4511,7 @@ FT_BEGIN_HEADER
    *   retrieve it.  FreeType follows Adobe TechNote #5902, 'Generating
    *   PostScript Names for Fonts Using OpenType Font Variations'.
    *
-   *     https://download.macromedia.com/pub/developer/opentype/tech-notes/5902.AdobePSNameGeneration.html
+   *     https:
    *
    *   [Since 2.9] Special PostScript names for named instances are only
    *   returned if the named instance is set with @FT_Set_Named_Instance (and
@@ -4534,7 +4534,7 @@ FT_BEGIN_HEADER
    *   table description in the OpenType specification for the meaning of the
    *   various flags (which get synthesized for non-OpenType subglyphs).
    *
-   *     https://learn.microsoft.com/typography/opentype/spec/glyf#composite-glyph-description
+   *     https:
    *
    * @values:
    *   FT_SUBGLYPH_FLAG_ARGS_ARE_WORDS ::
@@ -4597,7 +4597,7 @@ FT_BEGIN_HEADER
    *   interpreted depending on the flags returned in `*p_flags`.  See the
    *   OpenType specification for details.
    *
-   *     https://learn.microsoft.com/typography/opentype/spec/glyf#composite-glyph-description
+   *     https:
    *
    */
   FT_EXPORT( FT_Error )
@@ -4623,7 +4623,7 @@ FT_BEGIN_HEADER
    *   associated with a font.
    *
    *   See
-   *   https://adobe-type-tools.github.io/font-tech-notes/pdfs/AcrobatDC_FontPolicies.pdf
+   *   https:
    *   for more details.
    *
    * @values:
@@ -4723,8 +4723,8 @@ FT_BEGIN_HEADER
    *   Sequences' and registered 'Ideographic Variation Sequences' (IVS),
    *   collected in the 'Ideographic Variation Database' (IVD).
    *
-   *     https://unicode.org/Public/UCD/latest/ucd/StandardizedVariants.txt
-   *     https://unicode.org/reports/tr37/ https://unicode.org/ivd/
+   *     https:
+   *     https:
    *
    *   To date (January 2017), the character with the most ideographic
    *   variations is U+9089, having 32 such IVS.

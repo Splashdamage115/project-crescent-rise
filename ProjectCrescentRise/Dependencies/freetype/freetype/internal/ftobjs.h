@@ -83,7 +83,7 @@ FT_BEGIN_HEADER
             x > y ? x + ( 3 * y >> 3 )   \
                   : y + ( 3 * x >> 3 ) )
 
-  /* we use FT_TYPEOF to suppress signedness compilation warnings */
+  
 #define FT_PAD_FLOOR( x, n )  ( (x) & ~FT_TYPEOF( x )( (n) - 1 ) )
 #define FT_PAD_ROUND( x, n )  FT_PAD_FLOOR( (x) + (n) / 2, n )
 #define FT_PAD_CEIL( x, n )   FT_PAD_FLOOR( (x) + (n) - 1, n )
@@ -92,8 +92,8 @@ FT_BEGIN_HEADER
 #define FT_PIX_ROUND( x )     FT_PIX_FLOOR( (x) + 32 )
 #define FT_PIX_CEIL( x )      FT_PIX_FLOOR( (x) + 63 )
 
-  /* specialized versions (for signed values)                   */
-  /* that don't produce run-time errors due to integer overflow */
+  
+  
 #define FT_PAD_ROUND_LONG( x, n )  FT_PAD_FLOOR( ADD_LONG( (x), (n) / 2 ), \
                                                  n )
 #define FT_PAD_CEIL_LONG( x, n )   FT_PAD_FLOOR( ADD_LONG( (x), (n) - 1 ), \
@@ -119,7 +119,7 @@ FT_BEGIN_HEADER
                              ( (unsigned)(x) - 'a' ) < 6U  || \
                              ( (unsigned)(x) - 'A' ) < 6U  )
 
-  /* the next two macros assume ASCII representation */
+  
 #define  ft_isupper( x )  ( ( (unsigned)(x) - 'A' ) < 26U )
 #define  ft_islower( x )  ( ( (unsigned)(x) - 'a' ) < 26U )
 
@@ -127,25 +127,25 @@ FT_BEGIN_HEADER
 #define  ft_isalnum( x )  ( ft_isdigit( x ) || ft_isalpha( x ) )
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /****                       C H A R M A P S                           ****/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  /* handle to internal charmap object */
+  
   typedef struct FT_CMapRec_*              FT_CMap;
 
-  /* handle to charmap class structure */
+  
   typedef const struct FT_CMap_ClassRec_*  FT_CMap_Class;
 
-  /* internal charmap object structure */
+  
   typedef struct  FT_CMapRec_
   {
     FT_CharMapRec  charmap;
@@ -153,17 +153,17 @@ FT_BEGIN_HEADER
 
   } FT_CMapRec;
 
-  /* typecast any pointer to a charmap handle */
+  
 #define FT_CMAP( x )  ( (FT_CMap)( x ) )
 
-  /* obvious macros */
+  
 #define FT_CMAP_PLATFORM_ID( x )  FT_CMAP( x )->charmap.platform_id
 #define FT_CMAP_ENCODING_ID( x )  FT_CMAP( x )->charmap.encoding_id
 #define FT_CMAP_ENCODING( x )     FT_CMAP( x )->charmap.encoding
 #define FT_CMAP_FACE( x )         FT_CMAP( x )->charmap.face
 
 
-  /* class method definitions */
+  
   typedef FT_Error
   (*FT_CMap_InitFunc)( FT_CMap     cmap,
                        FT_Pointer  init_data );
@@ -214,8 +214,8 @@ FT_BEGIN_HEADER
     FT_CMap_CharIndexFunc  char_index;
     FT_CMap_CharNextFunc   char_next;
 
-    /* Subsequent entries are special ones for format 14 -- the variant */
-    /* selector subtable which behaves like no other                    */
+    
+    
 
     FT_CMap_CharVarIndexFunc      char_var_index;
     FT_CMap_CharVarIsDefaultFunc  char_var_default;
@@ -257,19 +257,19 @@ FT_BEGIN_HEADER
   };
 
 
-  /* create a new charmap and add it to charmap->face */
+  
   FT_BASE( FT_Error )
   FT_CMap_New( FT_CMap_Class  clazz,
                FT_Pointer     init_data,
                FT_CharMap     charmap,
                FT_CMap       *acmap );
 
-  /* destroy a charmap and remove it from face's list */
+  
   FT_BASE( void )
   FT_CMap_Done( FT_CMap  cmap );
 
 
-  /* add LCD padding to CBox */
+  
   FT_BASE( void )
   ft_lcd_padding( FT_BBox*        cbox,
                   FT_GlyphSlot    slot,
@@ -303,12 +303,12 @@ FT_BEGIN_HEADER
                                             FT_Byte*        weights );
 
 
-  /* This is the default LCD filter, an in-place, 5-tap FIR filter. */
+  
   FT_BASE( void )
   ft_lcd_filter_fir( FT_Bitmap*           bitmap,
                      FT_LcdFiveTapFilter  weights );
 
-#endif /* FT_CONFIG_OPTION_SUBPIXEL_RENDERING */
+#endif 
 
   /**************************************************************************
    *
@@ -392,8 +392,8 @@ FT_BEGIN_HEADER
     FT_Int32             random_seed;
 
 #ifdef FT_CONFIG_OPTION_SUBPIXEL_RENDERING
-    FT_LcdFiveTapFilter      lcd_weights;      /* filter weights, if any */
-    FT_Bitmap_LcdFilterFunc  lcd_filter_func;  /* filtering callback     */
+    FT_LcdFiveTapFilter      lcd_weights;      
+    FT_Bitmap_LcdFilterFunc  lcd_filter_func;  
 #endif
 
     FT_Int  refcount;
@@ -487,17 +487,17 @@ FT_BEGIN_HEADER
   } FT_Size_InternalRec;
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /****                         M O D U L E S                           ****/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -527,7 +527,7 @@ FT_BEGIN_HEADER
   } FT_ModuleRec;
 
 
-  /* typecast an object to an FT_Module */
+  
 #define FT_MODULE( x )  ( (FT_Module)(x) )
 
 #define FT_MODULE_CLASS( x )    FT_MODULE( x )->clazz
@@ -600,22 +600,22 @@ FT_BEGIN_HEADER
                           FT_String*        value );
 #endif
 
-  /* */
+  
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /****   F A C E,   S I Z E   &   G L Y P H   S L O T   O B J E C T S  ****/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  /* a few macros used to perform easy typecasts with minimal brain damage */
+  
 
 #define FT_FACE( x )          ( (FT_Face)(x) )
 #define FT_SIZE( x )          ( (FT_Size)(x) )
@@ -670,7 +670,7 @@ FT_BEGIN_HEADER
   FT_BASE( void )
   FT_Done_GlyphSlot( FT_GlyphSlot  slot );
 
-  /* */
+  
 
 #define FT_REQUEST_WIDTH( req )                                            \
           ( (req)->horiResolution                                          \
@@ -683,19 +683,19 @@ FT_BEGIN_HEADER
               : (req)->height )
 
 
-  /* Set the metrics according to a bitmap strike. */
+  
   FT_BASE( void )
   FT_Select_Metrics( FT_Face   face,
                      FT_ULong  strike_index );
 
 
-  /* Set the metrics according to a size request. */
+  
   FT_BASE( FT_Error )
   FT_Request_Metrics( FT_Face          face,
                       FT_Size_Request  req );
 
 
-  /* Match a size request against `available_sizes'. */
+  
   FT_BASE( FT_Error )
   FT_Match_Size( FT_Face          face,
                  FT_Size_Request  req,
@@ -703,50 +703,50 @@ FT_BEGIN_HEADER
                  FT_ULong*        size_index );
 
 
-  /* Use the horizontal metrics to synthesize the vertical metrics. */
-  /* If `advance' is zero, it is also synthesized.                  */
+  
+  
   FT_BASE( void )
   ft_synthesize_vertical_metrics( FT_Glyph_Metrics*  metrics,
                                   FT_Pos             advance );
 
 
-  /* Free the bitmap of a given glyphslot when needed (i.e., only when it */
-  /* was allocated with ft_glyphslot_alloc_bitmap).                       */
+  
+  
   FT_BASE( void )
   ft_glyphslot_free_bitmap( FT_GlyphSlot  slot );
 
 
-  /* Preset bitmap metrics of an outline glyphslot prior to rendering */
-  /* and check whether the truncated bbox is too large for rendering. */
+  
+  
   FT_BASE( FT_Bool )
   ft_glyphslot_preset_bitmap( FT_GlyphSlot      slot,
                               FT_Render_Mode    mode,
                               const FT_Vector*  origin );
 
-  /* Allocate a new bitmap buffer in a glyph slot. */
+  
   FT_BASE( FT_Error )
   ft_glyphslot_alloc_bitmap( FT_GlyphSlot  slot,
                              FT_ULong      size );
 
 
-  /* Set the bitmap buffer in a glyph slot to a given pointer.  The buffer */
-  /* will not be freed by a later call to ft_glyphslot_free_bitmap.        */
+  
+  
   FT_BASE( void )
   ft_glyphslot_set_bitmap( FT_GlyphSlot  slot,
                            FT_Byte*      buffer );
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /****                        R E N D E R E R S                        ****/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 #define FT_RENDERER( x )       ( (FT_Renderer)(x) )
@@ -769,23 +769,23 @@ FT_BEGIN_HEADER
   } FT_RendererRec;
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /****                    F O N T   D R I V E R S                      ****/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
-  /* typecast a module into a driver easily */
+  
 #define FT_DRIVER( x )  ( (FT_Driver)(x) )
 
-  /* typecast a module as a driver, and get its driver class */
+  
 #define FT_DRIVER_CLASS( x )  FT_DRIVER( x )->clazz
 
 
@@ -823,17 +823,17 @@ FT_BEGIN_HEADER
   } FT_DriverRec;
 
 
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /****                       L I B R A R I E S                         ****/
-  /****                                                                 ****/
-  /****                                                                 ****/
-  /*************************************************************************/
-  /*************************************************************************/
-  /*************************************************************************/
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
   /**************************************************************************
@@ -909,26 +909,26 @@ FT_BEGIN_HEADER
    */
   typedef struct  FT_LibraryRec_
   {
-    FT_Memory          memory;           /* library's memory manager */
+    FT_Memory          memory;           
 
     FT_Int             version_major;
     FT_Int             version_minor;
     FT_Int             version_patch;
 
     FT_UInt            num_modules;
-    FT_Module          modules[FT_MAX_MODULES];  /* module objects  */
+    FT_Module          modules[FT_MAX_MODULES];  
 
-    FT_ListRec         renderers;        /* list of renderers        */
-    FT_Renderer        cur_renderer;     /* current outline renderer */
+    FT_ListRec         renderers;        
+    FT_Renderer        cur_renderer;     
     FT_Module          auto_hinter;
 
     FT_DebugHook_Func  debug_hooks[4];
 
 #ifdef FT_CONFIG_OPTION_SUBPIXEL_RENDERING
-    FT_LcdFiveTapFilter      lcd_weights;      /* filter weights, if any */
-    FT_Bitmap_LcdFilterFunc  lcd_filter_func;  /* filtering callback     */
+    FT_LcdFiveTapFilter      lcd_weights;      
+    FT_Bitmap_LcdFilterFunc  lcd_filter_func;  
 #else
-    FT_Vector                lcd_geometry[3];  /* RGB subpixel positions */
+    FT_Vector                lcd_geometry[3];  
 #endif
 
     FT_Int             refcount;
@@ -992,14 +992,14 @@ FT_BEGIN_HEADER
   FT_BASE( void )
   FT_Done_Memory( FT_Memory  memory );
 
-#endif /* !FT_CONFIG_OPTION_NO_DEFAULT_SYSTEM */
+#endif 
 
 
-  /* Define default raster's interface.  The default raster is located in  */
-  /* `src/base/ftraster.c'.                                                */
-  /*                                                                       */
-  /* Client applications can register new rasters through the              */
-  /* FT_Set_Raster() API.                                                  */
+  
+  
+  
+  
+  
 
 #ifndef FT_NO_DEFAULT_RASTER
   FT_EXPORT_VAR( FT_Raster_Funcs )  ft_default_raster;
@@ -1248,7 +1248,7 @@ FT_BEGIN_HEADER
 
 FT_END_HEADER
 
-#endif /* FTOBJS_H_ */
+#endif 
 
 
-/* END */
+

@@ -22,7 +22,7 @@
    *
    * `COLR' table specification:
    *
-   *   https://www.microsoft.com/typography/otspec/colr.htm
+   *   https:
    *
    */
 
@@ -51,7 +51,7 @@
 #define COLOR_STOP_SIZE                   6U
 #define VAR_IDX_BASE_SIZE                 4U
 #define LAYER_SIZE                        4U
-/* https://learn.microsoft.com/typography/opentype/spec/colr#colr-header */
+/* https:
 /* 3 * uint16 + 2 * Offset32 */
 #define COLRV0_HEADER_SIZE               14U
 /* COLRV0_HEADER_SIZE + 5 * Offset32 */
@@ -823,7 +823,7 @@
         apaint->u.radial_gradient.c0.x += INT_TO_FIXED( item_deltas[0] );
         apaint->u.radial_gradient.c0.y += INT_TO_FIXED( item_deltas[1] );
 
-        // TODO: Anything to be done about UFWORD deltas here?
+        
         apaint->u.radial_gradient.r0 += INT_TO_FIXED( item_deltas[2] );
 
         apaint->u.radial_gradient.c1.x += INT_TO_FIXED( item_deltas[3] );
@@ -871,7 +871,7 @@
                                              item_deltas ) )
           return 0;
 
-        // TODO: Handle overflow?
+        
         apaint->u.sweep_gradient.center.x += INT_TO_FIXED( item_deltas[0] );
         apaint->u.sweep_gradient.center.y += INT_TO_FIXED( item_deltas[1] );
 

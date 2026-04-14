@@ -1,4 +1,4 @@
-// Replace this value once the final trailer URL is available.
+
 const HERO_VIDEO_URL = "";
 
 const frame = document.querySelector("[data-video-frame]");

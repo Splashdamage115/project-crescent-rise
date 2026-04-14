@@ -3792,7 +3792,7 @@
       return FT_THROW( Invalid_Table );
 
     /* Version 1.8.3 of the OpenType specification contains the following */
-    /* (https://learn.microsoft.com/typography/opentype/spec/cmap):       */
+    /* (https:
     /*                                                                    */
     /*   The 'cmap' table version number remains at 0x0000 for fonts that */
     /*   make use of the newer subtable formats.                          */

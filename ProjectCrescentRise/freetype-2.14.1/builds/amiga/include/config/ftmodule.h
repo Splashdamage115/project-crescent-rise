@@ -5,7 +5,7 @@
 /*    Amiga-specific FreeType module selection.                            */
 /*                                                                         */
 /*  Copyright (C) 2005-2025 by                                             */
-/*  Werner Lemberg and Detlef Würkner.                                     */
+/*  Werner Lemberg and Detlef Wï¿½rkner.                                     */
 /*                                                                         */
 /*  This file is part of the FreeType project, and may only be used,       */
 /*  modified, and distributed under the terms of the FreeType project      */
@@ -22,20 +22,20 @@
  * application by uncommenting the appropriate lines.
  */
 /*
-//#define FT_USE_AUTOFIT // autofitter
-//#define FT_USE_RASTER  // monochrome rasterizer
-//#define FT_USE_SMOOTH  // anti-aliasing rasterizer
-//#define FT_USE_TT      // truetype font driver
-//#define FT_USE_T1      // type1 font driver
-//#define FT_USE_T42     // type42 font driver
-//#define FT_USE_T1CID   // cid-keyed type1 font driver  // no cmap support
-//#define FT_USE_CFF     // opentype font driver
-//#define FT_USE_BDF     // bdf bitmap font driver
-//#define FT_USE_PCF     // pcf bitmap font driver
-//#define FT_USE_PFR     // pfr font driver
-//#define FT_USE_WINFNT  // windows .fnt|.fon bitmap font driver
-//#define FT_USE_OTV     // opentype validator
-//#define FT_USE_GXV     // truetype gx validator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #include "FT:src/base/ftinit.c"
 */
 

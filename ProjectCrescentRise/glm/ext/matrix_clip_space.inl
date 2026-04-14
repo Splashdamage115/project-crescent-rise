@@ -357,7 +357,7 @@ namespace glm
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / width; 
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -377,7 +377,7 @@ namespace glm
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / width; 
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -397,7 +397,7 @@ namespace glm
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / width; 
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -417,7 +417,7 @@ namespace glm
 
 		T const rad = fov;
 		T const h = glm::cos(static_cast<T>(0.5) * rad) / glm::sin(static_cast<T>(0.5) * rad);
-		T const w = h * height / width; ///todo max(width , Height) / min(width , Height)?
+		T const w = h * height / width; 
 
 		mat<4, 4, T, defaultp> Result(static_cast<T>(0));
 		Result[0][0] = w;
@@ -568,7 +568,7 @@ namespace glm
 #		endif
 	}
 
-	// Infinite projection matrix: http://www.terathon.com/gdc07_lengyel.pdf
+	
 	template<typename T>
 	GLM_FUNC_QUALIFIER mat<4, 4, T, defaultp> tweakedInfinitePerspective(T fovy, T aspect, T zNear, T ep)
 	{
@@ -592,4 +592,4 @@ namespace glm
 	{
 		return tweakedInfinitePerspective(fovy, aspect, zNear, epsilon<T>());
 	}
-}//namespace glm
+}

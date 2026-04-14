@@ -53,7 +53,7 @@ std::vector<std::shared_ptr<GameObject>> GameObjects::getAllOfTag(const std::str
 void GameObjects::renderAll()
 {
 	std::lock_guard<std::mutex> lock(gameObjectsMutex);
-	// render normals
+	
 	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 	{
 		if (m_gameObjects.at(i) != nullptr)
@@ -67,7 +67,7 @@ void GameObjects::renderAll()
 			}
 		}
 	}
-	// render viewmodel on top of world geometry
+	
 	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 	{
 		if (m_gameObjects.at(i) != nullptr)
@@ -78,7 +78,7 @@ void GameObjects::renderAll()
 			}
 		}
 	}
-	// render GUI
+	
 	for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 	{
 		if (m_gameObjects.at(i) != nullptr)

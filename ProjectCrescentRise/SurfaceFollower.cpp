@@ -43,7 +43,7 @@ void SurfaceFollower::Update()
 	}
 	else
 	{
-		// planet surface following
+		
 		glm::vec3 surfacePoint = m_planet->GetSurfacePointFromWorldPosition(transform->position);
 
 		glm::vec3 planetCenter = m_planet->getTransform()->position;

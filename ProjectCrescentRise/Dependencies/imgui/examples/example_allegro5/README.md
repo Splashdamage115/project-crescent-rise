@@ -21,7 +21,7 @@ On macOS, install Allegro with homebrew: `brew install allegro`.
 
 You may install Allegro using vcpkg:
 ```
-git clone https://github.com/Microsoft/vcpkg
+git clone https:
 cd vcpkg
 bootstrap-vcpkg.bat
 vcpkg install allegro5 --triplet=x86-windows    ; for win32

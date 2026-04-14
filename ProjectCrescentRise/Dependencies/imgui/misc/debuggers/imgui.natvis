@@ -8,10 +8,10 @@ To enable:
 * or copy in %USERPROFILE%\Documents\Visual Studio XXXX\Visualizers (current user)
 * or copy in %VsInstallDirectory%\Common7\Packages\Debugger\Visualizers (all users)
 
-More information at: https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-views-of-native-objects?view=vs-2019
+More information at: https:
 -->
 
-<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+<AutoVisualizer xmlns="http:
 
 <Type Name="ImVector&lt;*&gt;">
   <DisplayString>{{Size={Size} Capacity={Capacity}}}</DisplayString>

@@ -34,7 +34,7 @@
 FT_BEGIN_HEADER
 
 
-  /* gcc-3.1 and later can warn about functions tagged as deprecated */
+  
 #ifndef FT_DEPRECATED_ATTRIBUTE
 #if defined( __GNUC__ )                                     && \
     ( ( __GNUC__ >= 4 )                                  ||    \
@@ -277,13 +277,13 @@ FT_BEGIN_HEADER
                           FT_Face      *aface )
                         FT_DEPRECATED_ATTRIBUTE;
 
-  /* */
+  
 
 
 FT_END_HEADER
 
 
-#endif /* FTMAC_H_ */
+#endif 
 
 
-/* END */
+

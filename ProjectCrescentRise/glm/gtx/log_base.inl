@@ -1,4 +1,4 @@
-/// @ref gtx_log_base
+
 
 namespace glm
 {
@@ -13,4 +13,4 @@ namespace glm
 	{
 		return glm::log(x) / glm::log(base);
 	}
-}//namespace glm
+}

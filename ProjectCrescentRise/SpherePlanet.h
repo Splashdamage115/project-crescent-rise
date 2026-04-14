@@ -19,7 +19,7 @@ private:
     static constexpr int ICOSPHERE_SUBDIVISIONS = 7;
     static constexpr float ICOSPHERE_SCALE = 18.0f;
 
-    static constexpr float heightFactor = 1.f;  // Match GroundTile's heightFactor
-    static constexpr int width = 1024;            // Resolution for Voronoi sampling
-    static constexpr float displacementScale = 2.4f;  // Overall displacement scaling
+    static constexpr float heightFactor = 1.f;  
+    static constexpr int width = 1024;            
+    static constexpr float displacementScale = 2.4f;  
 };

@@ -91,12 +91,12 @@ FT_BEGIN_HEADER
   FT_Stream_OpenBzip2( FT_Stream  stream,
                        FT_Stream  source );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTBZIP2_H_ */
+#endif 
 
 
-/* END */
+

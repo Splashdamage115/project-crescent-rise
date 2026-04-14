@@ -19,42 +19,42 @@
 #define FTHEADER_H_
 
 
-  /*@***********************************************************************/
-  /*                                                                       */
-  /* <Macro>                                                               */
-  /*    FT_BEGIN_HEADER                                                    */
-  /*                                                                       */
-  /* <Description>                                                         */
-  /*    This macro is used in association with @FT_END_HEADER in header    */
-  /*    files to ensure that the declarations within are properly          */
-  /*    encapsulated in an `extern "C" { .. }` block when included from a  */
-  /*    C++ compiler.                                                      */
-  /*                                                                       */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 #ifndef FT_BEGIN_HEADER
 #  ifdef __cplusplus
 #    define FT_BEGIN_HEADER  extern "C" {
 #  else
-#  define FT_BEGIN_HEADER  /* nothing */
+#  define FT_BEGIN_HEADER  
 #  endif
 #endif
 
 
-  /*@***********************************************************************/
-  /*                                                                       */
-  /* <Macro>                                                               */
-  /*    FT_END_HEADER                                                      */
-  /*                                                                       */
-  /* <Description>                                                         */
-  /*    This macro is used in association with @FT_BEGIN_HEADER in header  */
-  /*    files to ensure that the declarations within are properly          */
-  /*    encapsulated in an `extern "C" { .. }` block when included from a  */
-  /*    C++ compiler.                                                      */
-  /*                                                                       */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 #ifndef FT_END_HEADER
 #  ifdef __cplusplus
 #    define FT_END_HEADER  }
 #  else
-#   define FT_END_HEADER  /* nothing */
+#   define FT_END_HEADER  
 #  endif
 #endif
 
@@ -101,7 +101,7 @@
    */
 
 
-  /* configuration files */
+  
 
   /**************************************************************************
    *
@@ -163,9 +163,9 @@
 #define FT_CONFIG_MODULES_H  <freetype/config/ftmodule.h>
 #endif
 
-  /* */
+  
 
-  /* public headers */
+  
 
   /**************************************************************************
    *
@@ -700,7 +700,7 @@
    */
 #define FT_FONT_FORMATS_H  <freetype/ftfntfmt.h>
 
-  /* deprecated */
+  
 #define FT_XFREE86_H  FT_FONT_FORMATS_H
 
 
@@ -789,25 +789,25 @@
 #define FT_OTSVG_H  <freetype/otsvg.h>
 
 
-  /* */
+  
 
-  /* These header files don't need to be included by the user. */
+  
 #define FT_ERROR_DEFINITIONS_H  <freetype/fterrdef.h>
 #define FT_PARAMETER_TAGS_H     <freetype/ftparams.h>
 
-  /* Deprecated macros. */
+  
 #define FT_UNPATENTED_HINTING_H   <freetype/ftparams.h>
 #define FT_TRUETYPE_UNPATENTED_H  <freetype/ftparams.h>
 
-  /* `FT_CACHE_H` is the only header file needed for the cache subsystem. */
+  
 #define FT_CACHE_IMAGE_H          FT_CACHE_H
 #define FT_CACHE_SMALL_BITMAPS_H  FT_CACHE_H
 #define FT_CACHE_CHARMAP_H        FT_CACHE_H
 
-  /* The internals of the cache sub-system are no longer exposed.  We */
-  /* default to `FT_CACHE_H` at the moment just in case, but we know  */
-  /* of no rogue client that uses them.                               */
-  /*                                                                  */
+  
+  
+  
+  
 #define FT_CACHE_MANAGER_H           FT_CACHE_H
 #define FT_CACHE_INTERNAL_MRU_H      FT_CACHE_H
 #define FT_CACHE_INTERNAL_MANAGER_H  FT_CACHE_H
@@ -816,21 +816,21 @@
 #define FT_CACHE_INTERNAL_IMAGE_H    FT_CACHE_H
 #define FT_CACHE_INTERNAL_SBITS_H    FT_CACHE_H
 
-/* TODO(david): Move this section below to a different header */
-#ifdef FT2_BUILD_LIBRARY
-#if defined( _MSC_VER )      /* Visual C++ (and Intel C++) */
 
-  /* We disable the warning `conditional expression is constant' here */
-  /* in order to compile cleanly with the maximum level of warnings.  */
-  /* In particular, the warning complains about stuff like `while(0)' */
-  /* which is very useful in macro definitions.  There is no benefit  */
-  /* in having it enabled.                                            */
+#ifdef FT2_BUILD_LIBRARY
+#if defined( _MSC_VER )      
+
+  
+  
+  
+  
+  
 #pragma warning( disable : 4127 )
 
-#endif /* _MSC_VER */
-#endif /* FT2_BUILD_LIBRARY */
+#endif 
+#endif 
 
-#endif /* FTHEADER_H_ */
+#endif 
 
 
-/* END */
+

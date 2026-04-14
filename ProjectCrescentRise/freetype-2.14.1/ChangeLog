@@ -109,7 +109,7 @@
 
 	Reported as
 
-	  https://issues.oss-fuzz.com/issues/424613326
+	  https:
 
 2025-09-05  Jouk Jansen  <joukj@hrem.nano.tudelft.nl>
 
@@ -397,7 +397,7 @@
 
 	Reported as
 
-	  https://gitlab.freedesktop.org/freetype/freetype/-/merge_requests/381#note_2984610
+	  https:
 
 2025-07-01  Werner Lemberg  <wl@gnu.org>
 
@@ -448,7 +448,7 @@
 
 	Reported as
 
-	  https://gitlab.freedesktop.org/freetype/freetype/-/merge_requests/381#note_2984253
+	  https:
 
 	* src/base/fthash.c: Include `ftobjs.h`.
 	* src/autofit/afgsub.c: Include `afglobal.h`.
@@ -692,7 +692,7 @@
 
 	Reported as
 
-	  https://issues.chromium.org/issues/420401651
+	  https:
 
 	* src/autofit/afadjust.c (af_reverse_character_map_new): Implement it.
 
@@ -801,7 +801,7 @@
 
 	Fix setting of named-instance to Regular
 
-	Fixes https://gitlab.freedesktop.org/freetype/freetype/-/issues/1341
+	Fixes https:
 
 	And more elaborate avoidance of loading face->blend if all coords
 	are zero.
@@ -968,7 +968,7 @@
 
 	Reported as
 
-	  https://issues.oss-fuzz.com/issues/420401635
+	  https:
 
 	* src/autofit/aflatin.c (af_latin_stretch_top_tilde,
 	  af_latin_stretch_bottom_tilde): Use `SUB_LONG`.
@@ -1622,7 +1622,7 @@
 
 	Reported as
 
-	  https://issues.oss-fuzz.com/issues/416538625
+	  https:
 
 	* src/sfnt/ttsvg.c (MAX_SVG_SIZE): New macro.
 	  (tt_face_load_svg_doc): Reject too large buffer.
@@ -1844,7 +1844,7 @@
 
 	Reported as
 
-	  https://issues.oss-fuzz.com/issues/414320186
+	  https:
 
 2025-04-28  Werner Lemberg  <wl@gnu.org>
 
@@ -2152,7 +2152,7 @@
 
 	Reported as
 
-	  https://issues.chromium.org/issues/410925355
+	  https:
 
 2025-04-18  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -2168,7 +2168,7 @@
 
 	Reported as
 
-	  https://bugs.ghostscript.com/show_bug.cgi?id=708295
+	  https:
 
 	* src/autofit/aflatin.c
 	  (af_glyph_hints_apply_vertical_separation_adjustments): Initialize all
@@ -2192,7 +2192,7 @@
 
 	Reported as
 
-	  https://issues.oss-fuzz.com/issues/410811029
+	  https:
 
 	* src/autofit/aflatin.c (af_remove_segments_containing_point): Check
 	  `edge->last`.
@@ -2324,7 +2324,7 @@
 
 	Reported as
 
-	  https://issues.oss-fuzz.com/issues/410609442
+	  https:
 
 	* src/autofit/aflatin.c (af_remove_segments_containing_point): Check `edge`.
 
@@ -2334,7 +2334,7 @@
 
 	Reported as
 
-	  https://issues.oss-fuzz.com/issues/410393975
+	  https:
 
 	* src/autofit/afadjust.c [!FT_CONFIG_OPTION_USE_HARFBUZZ]: Synchronize with
 	  HarfBuzz code.
@@ -2630,8 +2630,8 @@
 	Only one STARTPROPERTIES was permitted in the old flow preventing
 	leaks and overflows.
 
-	See https://issues.oss-fuzz.com/issues/389968131
-	    https://issues.oss-fuzz.com/issues/390464875
+	See https:
+	    https:
 
 2025-01-17  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -2651,8 +2651,8 @@
 
 	* src/bdf/bdflib.c (bdf_add_property_): Add extra protection.
 
-	See https://issues.oss-fuzz.com/issues/389972472
-	    https://issues.oss-fuzz.com/issues/389968131
+	See https:
+	    https:
 
 2025-01-15  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -2688,7 +2688,7 @@
 
 	* src/bdf/bdflib.c (bdf_parse_glyphs_): Free unused glyph_name.
 
-	See https://issues.oss-fuzz.com/issues/389330334.
+	See https:
 
 2025-01-13  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -2847,7 +2847,7 @@
 	must always point into the `bez_stack` object and therefore cannot be at
 	a "negative index" so the predicate is always true.
 
-	[0] https://github.com/llvm/llvm-project/commit/e21ab4d16b555c28ded307571d138f594f33e325
+	[0] https:
 
 	* src/base/ftstroke.c (FT_Stroker_ConicTo, FT_Stroker_CubicTo): test
 	loop exit condition (there are no more arcs to process) before
@@ -3145,8 +3145,8 @@
 	[truetype/GX] Read points and deltas more carefully.
 
 	Hopefully fixes newly introduced buffer overflows:
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=70807
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=70809
+	  https:
+	  https:
 
 	* src/truetype/ttgxvar.c (ft_var_readpacked{points,deltas}): Explicitly
 	check stream frame limits and modify run counting.
@@ -3253,7 +3253,7 @@
 	Use unsigned point and contour indexing in `FT_Outline`.
 
 	This doubles the number or allowed points, see
-	    https://github.com/harfbuzz/harfbuzz/issues/4752
+	    https:
 
 	Although it is hardly practical to use more than 32767 points,
 	other font engines seem to support it.
@@ -3455,8 +3455,8 @@
 	* src/sfnt/ttcolr.c (tt_face_load_colr): Avoid overflow.
 	(find_base_glyph_v1_record): Remove old work-around.
 
-	Bug: https://issues.chromium.org/issues/41495455
-	Bug: https://issues.chromium.org/issues/40945818
+	Bug: https:
+	Bug: https:
 
 2024-05-06  Werner Lemberg  <wl@gnu.org>
 
@@ -3476,7 +3476,7 @@
 	* src/autofit/aflatin.c (af_latin_metrics_scale_dim): Remove FT_ABS.
 
 	See
-	    https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=68679
+	    https:
 
 2024-05-03  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -3506,7 +3506,7 @@
 	* src/sfnt/sfwoff2.c (woff2_open_font): error on zero tables, always
 	initalize sfnt_header
 
-	Fixes: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=68384
+	Fixes: https:
 
 2024-05-02  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -3647,7 +3647,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=66566
+	  https:
 
 2024-03-08  Ben Wagner  <bungeman@gmail.com>
 
@@ -3678,7 +3678,7 @@
 
 	Reported as
 
-	  https://issues.chromium.org/issues/40201695
+	  https:
 
 2024-03-06  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -3720,7 +3720,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=66543
+	  https:
 
 2024-01-27  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -3789,7 +3789,7 @@
 
 	* CMakeLists.txt: Accommodate MingGW.
 
-	See https://github.com/StephanTLavavej/mingw-distro/issues/97.
+	See https:
 
 2024-01-08  Ozkan Sezer  <sezeroz@gmail.com>
 
@@ -3825,7 +3825,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1505216
+	  https:
 
 	* src/sfnt/ttcolr.c (find_base_glyph_v1_record): Guard access of the search
 	pointer during binary search.  The pointer needs to be checked as we go as
@@ -3860,7 +3860,7 @@
 	obvious issue being that the x-heights of lower-case letters did not align;
 	see
 
-	  https://github.com/adobe-fonts/source-serif/issues/121#issuecomment-1773794136
+	  https:
 
 	After some analysis we determined that this was due to an interaction
 	between `BlueValue` rounding and the zone-based algorithm.  In short, for a
@@ -3925,7 +3925,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=63723
+	  https:
 
 2023-12-07  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -4401,7 +4401,7 @@
 
 	This reverts commit 8ed6d97446f2f3e5523da62eefbbf32ef7c1290e
 	and fixes
-	   https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=62246
+	   https:
 
 2023-09-10  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -4627,7 +4627,7 @@
 	* src/sfnt/ttcolr.c (tt_face_load_colr): subtract 4 from `table_size`
 	instead of adding 4 to font data offsets in bounds checks
 
-	Fixes: https://crbug.com/1469348
+	Fixes: https:
 
 2023-08-02  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -4707,7 +4707,7 @@
 
 	* src/sfnt/sfwoff2.c (woff2_open_font): set error and goto cleanup
 
-	Fixes: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=60711
+	Fixes: https:
 
 2023-07-16  Werner Lemberg  <wl@gnu.org>
 
@@ -4715,7 +4715,7 @@
 
 	This is a fix for commit 85167dbd5, reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=60615
+	  https:
 
 	* src/sfnt/sfwoff2.c (MAX_SFNT_SIZE): New macro.
 	(woff2_open_font): Use it to limit the maximum size of an uncompressed WOFF2
@@ -4904,7 +4904,7 @@
 	encryption is used.  For detail and concrete examples,
 	see the analysis on:
 
-	https://gitlab.freedesktop.org/freetype/freetype/-/issues/1231
+	https:
 
 2023-05-19  Craig White  <gerzytet@gmail.com>
 
@@ -5019,7 +5019,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=58739
+	  https:
 
 2023-05-08  Werner Lemberg  <wl@gnu.org>
 
@@ -5513,7 +5513,7 @@
 	type is undefined behavior. This may be caught at runtime by Control
 	Flow Integrity with something like clang's `cfi-icall`.
 
-	Issue: https://crbug.com/1433651
+	Issue: https:
 
 	* include/freetype/internal/services/svmetric.h (FT_Size_Reset_Func):
 	return `FT_Error` instead of `void`.
@@ -5531,7 +5531,7 @@
 	runtime by Control Flow Integrity with something like clang's
 	`cfi-icall`.
 
-	Issue: https://crbug.com/1433651
+	Issue: https:
 
 	* src/truetype/ttobjs.h (tt_size_reset_height): take `FT_Size`
 
@@ -5789,7 +5789,7 @@
 
 	* src/tools/vms_shorten_symbol.c: New file, taken from
 
-	  https://sourceforge.net/p/vms-ports/vmsshortsym/ci/default/tree/vms_shorten_symbol.c
+	  https:
 
 	with some minor edits to allow compilation with C++ and being included in
 	another source code file.
@@ -5813,7 +5813,7 @@
 
 	This leak has been introduced in the previous commit and immediately
 	detected:
-	  https://chromium-review.googlesource.com/c/chromium/src/+/4313202
+	  https:
 
 2023-03-06  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -5922,7 +5922,7 @@
 	* src/cid/cidparse.c (cid_parser_new): Use the parser to parse the
 	tokens.
 
-	Fixes: https://bugs.chromium.org/p/chromium/issues/detail?id=1420329
+	Fixes: https:
 
 2023-03-02  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -5948,7 +5948,7 @@
 
 	This follows
 
-	  https://lists.gnu.org/archive/html/bug-gnulib/2023-02/msg00200.html
+	  https:
 
 2023-02-28  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -5963,7 +5963,7 @@
 
 	This follows
 
-	  https://lists.gnu.org/archive/html/bug-gnulib/2023-02/msg00159.html
+	  https:
 
 2023-02-26  Werner Lemberg  <wl@gnu.org>
 
@@ -6202,7 +6202,7 @@
 	[truetype, type1] Additional variation tags.
 
 	Sync with
-	  https://learn.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg#registered-axis-tags
+	  https:
 
 	* src/truetype/ttgxvar.h (TTAG_ital): New tag.
 	* src/truetype/ttgxvar.c (TT_Get_MM_Var): Use it.
@@ -6253,7 +6253,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=55581
+	  https:
 
 2023-02-01  Werner Lemberg  <wl@gnu.org>
 
@@ -6312,7 +6312,7 @@
 
 	[sfnt] Avoid nullptr dereference in reading malformed 'COLR' v1 table.
 
-	Fixes https://bugs.chromium.org/p/chromium/issues/detail?id=1408044.
+	Fixes https:
 
 	* src/sfnt/ttcolr.c (tt_face_load_colr): When the 'COLR' v1 table header is
 	too small, don't deallocate delta set index map structures.
@@ -6404,7 +6404,7 @@
 	(open_face_from_buffer): Simplify error handling, since
 	`ft_open_face_internal` always closes `args.stream` on any error.
 
-	Fixes: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=54930
+	Fixes: https:
 
 2023-01-16  Werner Lemberg  <wl@gnu.org>
 
@@ -6496,7 +6496,7 @@
 	data.  When this happened the item store claimed to have entires it actually
 	did not, leading to crashes later when it was used.
 
-	Fixes: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=54449
+	Fixes: https:
 
 	* src/truetype/ttgxvar.c (tt_var_load_item_variation_store): Read the counts
 	into local variables and store them in the item store only after the related
@@ -6526,7 +6526,7 @@
 	the stream ownership information.  As a result the stream may not have been
 	free'd when needed.
 
-	Fixes https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=54700
+	Fixes https:
 
 	* src/base/ftobjs.c (open_face): Pass back the ownership information as
 	well.
@@ -6540,7 +6540,7 @@
 
 	[sfnt] Fix color stop bounds check calculation at table end.
 
-	Fixes https://bugs.chromium.org/p/skia/issues/detail?id=14021
+	Fixes https:
 
 	* src/sfnt/ttcolr.c (VAR_IDX_BASE_SIZE): New macro.
 	(tt_face_get_colorline_stops): Fix off-by-one bounds check calculation, take
@@ -6634,7 +6634,7 @@
 
 	Taken from
 
-	  https://github.com/freetype/freetype/pull/2
+	  https:
 
 2022-11-15  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -6649,7 +6649,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=50462
+	  https:
 
 2022-11-14  Loïc Yhuel  <loic.yhuel@softathome.com>
 
@@ -6725,7 +6725,7 @@
 
 	Reported as:
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=53062
+	  https:
 
 2022-11-09  Ben Wagner  <bungeman@chromium.org>
 
@@ -6748,7 +6748,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=53061
+	  https:
 
 2022-11-08  Werner Lemberg  <wl@gnu.org>
 
@@ -6799,7 +6799,7 @@
 
 	See
 
-	  https://github.com/harfbuzz/boring-expansion-spec/blob/main/avar2.md
+	  https:
 
 	for the specification.
 
@@ -6851,7 +6851,7 @@
 	offset can be read.
 
 	This is a follow-up to !124 and issue
-	https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=52404
+	https:
 
 2022-10-18  Werner Lemberg  <wl@gnu.org>
 
@@ -6876,7 +6876,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=52404
+	  https:
 
 2022-10-17  Xiang Xiao  <xiaoxiang@xiaomi.com>
 
@@ -6992,7 +6992,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=51816
+	  https:
 
 2022-09-27  Ben Wagner  <bungeman@chromium.org>
 
@@ -7011,7 +7011,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=51812
+	  https:
 
 2022-09-23  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -7060,7 +7060,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1360295
+	  https:
 
 2022-09-05  Dominik Röttsches  <drott@chromium.org>
 
@@ -7081,7 +7081,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=50633
+	  https:
 
 2022-09-05  Werner Lemberg  <wl@gnu.org>
 
@@ -7118,7 +7118,7 @@
 	* src/sfnt/ttcolr.c (tt_face_get_colorline_stops): Disambiguate shift
 	behavior by using multiplication using macros from ftcalc.h.
 
-	Fixes: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=50573
+	Fixes: https:
 
 2022-08-21  Sean Farrell  <sean.farrell@rioki.org>
 
@@ -7141,7 +7141,7 @@
 
 	The Type1 problems was reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=50057.
+	  https:
 
 2022-08-06  Tim-Philipp Müller  <tim@centricular.com>
 
@@ -7652,7 +7652,7 @@
 
 	* src/type1/t1parse.c (T1_Get_Private_Dict): avoid n^2 parsing
 
-	Bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1328883
+	Bug: https:
 
 2022-06-16  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -7678,7 +7678,7 @@
 	* src/gzlip/ftgzip.c (FT_Gzip_Uncompress): treat `Z_NEED_DICT` as
 	indicating invalid data since there is no means to provide a dictionary.
 
-	Bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1335712
+	Bug: https:
 
 2022-06-13  Ben Wagner  <bungeman@chromium.org>
 
@@ -7691,7 +7691,7 @@
 
 	* src/sfnt/sfwoff2.c (woff2_open_font): Partial revert.
 
-	Fixes https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=47981.
+	Fixes https:
 
 2022-06-12  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -7847,7 +7847,7 @@
 	This is because the `git archive` command doesn't preserve submodules.
 
 	Note that currently there is no support for disabling the 'download' button
-	in gitlab (https://gitlab.com/gitlab-org/gitlab/-/issues/17032).
+	in gitlab (https:
 
 	Fixes issue #1158.
 
@@ -7946,7 +7946,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=46792
+	  https:
 
 2022-04-16  Georg Brandl  <georg@python.org>
 
@@ -8012,7 +8012,7 @@
 
 	* src/truetype/ttgload.c (TT_Process_Composite_Component): do it.
 
-	Bug: https://crbug.com/1309429
+	Bug: https:
 
 2022-03-31  Werner Lemberg  <wl@gnu.org>
 
@@ -8170,7 +8170,7 @@
 	In the woff2 spec it has been proposed to allow the OVERLAP_SIMPLE flag
 	to be retained through the woff2 format [0].
 
-	[0] https://www.w3.org/TR/WOFF2/#glyf_table_format
+	[0] https:
 
 	* src/sfnt/sfwoff2.h (GLYF_OVERLAP_SIMPLE): add glyf flag.
 
@@ -8260,7 +8260,7 @@
 	* src/sfnt/ttsvg.c (tt_face_load_svg): wrap macro definitions in
 	parentheses.
 
-	Bug: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=45179
+	Bug: https:
 
 2022-02-23  Ben Wagner  <bungeman@chromium.org>
 
@@ -8285,7 +8285,7 @@
 	`blend->num_designs` can be copied to `decoder->buildchar[idx]`.
 	Also avoid passing NULL to `ft_memcpy`.
 
-	Bug: https://crbug.com/1299259
+	Bug: https:
 
 2022-02-21  suzuki toshiya  <mpsuzuki@hiroshima-u.ac.jp>
 
@@ -8603,7 +8603,7 @@
 
 	* src/pshinter/pshalgo.c (psh_glyph_init): always initialize flags.
 
-	Fixes: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=43930
+	Fixes: https:
 
 2022-01-24  Werner Lemberg  <wl@gnu.org>
 
@@ -8636,7 +8636,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=43918
+	  https:
 
 2022-01-22  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -8786,7 +8786,7 @@
 	behavior is bettr than undefined one.
 
 	This is alternative to !132 and discussed in
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=43708
+	  https:
 
 	* src/base/ftobjs.c (FT_Load_Glyph): Deal with zero scale.
 	* include/freetype/freetype.h: Document it.
@@ -8828,7 +8828,7 @@
 	before using `normal_top.zones[0]`. Do not rescale if there are no
 	`zones`.
 
-	Fixes: https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=43675
+	Fixes: https:
 
 2022-01-15  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -8889,7 +8889,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=43564
+	  https:
 
 	* src/bzip2/ftbzip2.c (FT_BZip2FileRec_): Add `reset` to track the need to
 	reset the stream.
@@ -8930,7 +8930,7 @@
 
 	* src/bzip2/ftbzip2.c (FT_Stream_OpenBzip2): Revert to using `FT_QNEW`.
 
-	[0] https://github.com/freetype/freetype2-testing/commit/3c052a837a3c960709227a0d6ddd256e87b88853
+	[0] https:
 
 2022-01-11  Ben Wagner  <bungeman@chromium.org>
 
@@ -8974,7 +8974,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=43151
+	  https:
 
 2022-01-11  Werner Lemberg  <wl@gnu.org>
 
@@ -8982,7 +8982,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=43508
+	  https:
 
 2022-01-11  Werner Lemberg  <wl@gnu.org>
 
@@ -8996,10 +8996,10 @@
 
 	```
 	Downloading zlib patch from
-	  https://wrapdb.mesonbuild.com/v2/zlib_1.2.11-5/get_patch
+	  https:
 	A fallback URL could be specified using patch_fallback_url key in the wrap file
 	WrapDB connection failed to
-	  https://wrapdb.mesonbuild.com/v2/zlib_1.2.11-5/get_patch
+	  https:
 	with error
 	  <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify
 	   failed: certificate has expired (_ssl.c:1122)>
@@ -9015,7 +9015,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=40716
+	  https:
 
 2022-01-10  Werner Lemberg  <wl@gnu.org>
 
@@ -9116,7 +9116,7 @@
 
 	Fixes
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=42800
+	  https:
 
 2022-01-09  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -9134,7 +9134,7 @@
 
 	[sfnt, type42] Correct previous commit.
 
-	Really fix https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=42773.
+	Really fix https:
 
 	* src/sfnt/ttload.c (check_table_dir): Revert change.
 
@@ -9148,7 +9148,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=42773
+	  https:
 
 2022-01-07  Werner Lemberg  <wl@gnu.org>
 
@@ -9196,7 +9196,7 @@
 	* src/truetype/ttgxvar.c (tt_face_vary_cvt): Reset `localpoints` to `NULL`
 	when it isn't valid.
 
-	Fixes: https://crbug.com/1284742
+	Fixes: https:
 
 2022-01-02  Werner Lemberg  <wl@gnu.org>
 
@@ -9368,7 +9368,7 @@
 	* src/bdf/bdflib.c (_bfd_readstream): Correctly update cursor. Remove
 	unread set of `avail`.
 
-	Bug: https://lists.nongnu.org/archive/html/freetype-devel/2021-12/msg00001.html
+	Bug: https:
 
 2021-12-07  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -9484,7 +9484,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=38562
+	  https:
 
 2021-11-20  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -9513,8 +9513,8 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=41178
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=41182
+	  https:
+	  https:
 
 	* include/freetype/config/public-macros.h (FT_STATIC_CAST,
 	FT_REINTERPRET_CAST): Modify macro to take two arguments.
@@ -9580,7 +9580,7 @@
 	This is in preparation for implementing `DeltaSetIndexMap` format 1, which
 	is used by `COLR` v1 tables, and which allows 32bit indices.
 
-	  https://docs.microsoft.com/en-us/typography/opentype/otspec190/delta/otvarcommonformats_delta.html
+	  https:
 
 	* src/truetype/ttgxvar.h (GX_DeltaSetIdxMapRec): Change type of `mapCount`
 	to `FT_ULong`.
@@ -9609,7 +9609,7 @@
 	* src/sfnt/ttcolr.c (read_paint, tt_face_get_paint): Tighten shift
 	behavior by using multiplication, mostly using macros from ftcalc.h.
 
-	Fixes: https://bugs.chromium.org/p/chromium/issues/detail?id=1269168
+	Fixes: https:
 
 2021-11-13  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -9768,8 +9768,8 @@
 
 	1.6.37-5 released patches for win-arm64 to successfully build
 	libpng with Meson:
-	https://github.com/mesonbuild/wrapdb/pull/205
-	https://github.com/mesonbuild/wrapdb/pull/216
+	https:
+	https:
 
 	Updated by the following command:
 	meson wrap update libpng
@@ -9788,7 +9788,7 @@
 	FT_PaintLinearGradient, FT_PaintRadialGradient, FT_PaintSweepGradient
 	accordingly.
 
-	Fixes: https://gitlab.freedesktop.org/freetype/freetype/-/issues/1110
+	Fixes: https:
 
 2021-11-03  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -9900,7 +9900,7 @@
 	an error.
 
 	Reported as
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1261762
+	  https:
 
 	* src/type1/t1load.c (t1_allocate_blend): Remove early allocation and
 	initialization.
@@ -9920,7 +9920,7 @@
 	to clean up.
 
 	Reportd as
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=40104
+	  https:
 
 	* src/cff/cffload.c (cff_vstore_load): Read the region and data counts
 	into locals and update the vstore counts immediately after each entry
@@ -9938,7 +9938,7 @@
 	inconsistent state which may still be accessed.
 
 	Reported as
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1261450
+	  https:
 
 	* src/sfnt/ttload.c (tt_face_load_gasp): Delay setting gasp.numRanges
 	and gasp.gaspRanges until after the ranges are initialized.
@@ -9953,7 +9953,7 @@
 	dispose of the memory as the string fields had not been initialized.
 
 	Reported as
-	  https://bugs.chromium.org/p/chromium/issues/detail?id=1261343
+	  https:
 
 	* src/sfnt/ttload.c (tt_face_load_name): delay setting table->langTags
 	and table->names until after the memory they will point to is fully
@@ -9986,7 +9986,7 @@
 	[pcf] Zero out the allocated properties.
 
 	Fallout reported as
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=40033
+	  https:
 
 	* src/pcf/pcfread.c (pcf_get_properties): Use FT_NEW_ARRAY and zero
 	out `properties` in case of failure.
@@ -10004,14 +10004,14 @@
 	* src/sfnt/ttload.c (tt_face_load_name): NULL-initialize langTag.
 
 	Another attempt to fix fallout reported as
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=40024
+	  https:
 
 2021-10-17  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
 	[bdf] Fix up user properties.
 
 	Fallout reported as
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=40027
+	  https:
 
 	* src/bdf/bdflib.c (_bdf_add_property): Cosmetic NULL.
 	(bdf_create_property): Limit allocations to customary signed
@@ -10023,7 +10023,7 @@
 	* src/sfnt/ttload.c (tt_face_load_name): Accounting fix.
 
 	Fallout reported as
-	  https://crbug.com/40024
+	  https:
 
 2021-10-16  Ben Wagner  <bungeman@chromium.org>
 
@@ -10073,7 +10073,7 @@
 	[type1] Revert to signed size for binary data.
 
 	Recently introduced and reported as
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=39838
+	  https:
 
 	* src/type1/t1load.c (read_binary_data): Reject negative size.
 	(parse_subrs, parse_charstrings): Use customary signed size.
@@ -10160,7 +10160,7 @@
 	* builds/unix/ftsystem.c (FT_Stream_Open): Check for MAP_FAILED.
 	* builds/vms/ftsystem.c (FT_Stream_Open): Ditto.
 
-	This should cover https://savannah.nongnu.org/patch/?5909 as well.
+	This should cover https:
 
 2021-10-05  Hugh McMaster  <hugh.mcmaster@outlook.com>
 
@@ -10417,7 +10417,7 @@
 
 	Fixes fallout from 731d0b685685 reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=38685
+	  https:
 
 2021-09-13  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -10444,7 +10444,7 @@
 
 	Fixes fallout from c1fa7aa2bc96, reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=38641
+	  https:
 
 2021-09-13  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -10701,7 +10701,7 @@
 	to keep from mistaking "DLC" in the randomization tag as a
 	tricky font name. See discussion in:
 
-	https://lists.nongnu.org/archive/html/freetype-devel/2021-02/msg00002.html
+	https:
 
 	For technical detail about the randomization tag, please find
 	PDF Reference 5.5.3 "Font Subsets".  Thanks to Justyna Wawrzynska
@@ -10859,7 +10859,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=36243
+	  https:
 
 	* src/smooth/ftgrays.c(ADD_LONG, SUB_LONG, MUL_LONG, NEG_LONG)
 	[STANDALONE_]: Removed, unused.
@@ -10874,7 +10874,7 @@
 	libraries allocate a sufficiently large bitmap for a glyph without having to
 	traverse the glyph graph for that.  See
 
-	  https://github.com/googlefonts/colr-gradients-spec/issues/251
+	  https:
 
 	for background on the introduction of this specification change.
 
@@ -10901,7 +10901,7 @@
 
 	Reported as
 
-	  https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=36241
+	  https:
 
 	* src/smooth/ftgrays.c (LEFT_SHIFT): New macro.
 	(gray_render_conic) [BEZIER_USE_DDA]: Use it.

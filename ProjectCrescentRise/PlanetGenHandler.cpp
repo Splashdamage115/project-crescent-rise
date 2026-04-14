@@ -15,7 +15,7 @@ void PlanetGenHandler::init(std::shared_ptr<PlanetSurface> t_planet, std::shared
 	m_water = t_water;
 
 	Update::append([this]() { this->update(); });
-	// read all info here from a save file
+	
 }
 
 void PlanetGenHandler::FirstLoadPlanet()
@@ -25,13 +25,13 @@ void PlanetGenHandler::FirstLoadPlanet()
 
 void PlanetGenHandler::guiRender()
 {
-	////////////////////////////////////////////////////////////
-	//
-	//			Basic Settings
-	//
-	////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	
 
-	int inputLength = 128; // length of input boxes
+	int inputLength = 128; 
 
 	m_planet->callChange = LiveUpdate;
 	m_water->callChange = LiveUpdate;
@@ -66,7 +66,7 @@ void PlanetGenHandler::guiRender()
 		m_water->callChange = LiveUpdate;
 	}
 	
-	// basic info
+	
 	ImGui::Text("Planet Point Count");
 	if (ImGui::SliderInt("Planet Point Count", &m_planet->pointsPerRow, 2, 128))
 	{
@@ -92,7 +92,7 @@ void PlanetGenHandler::guiRender()
 
 	}
 
-	// planet colour layers
+	
 	if (ImGui::Button("+"))
 	{
 		m_planet->planetColour.active.at(colourSelected) = true;
@@ -116,17 +116,17 @@ void PlanetGenHandler::guiRender()
 
 		if (m_planet->planetColour.m_shaderType.at(i) == 0)
 		{
-			// name for the colour, mainly for seperation between colours
+			
 			ImGui::Text(text.c_str());
 
-			// small indicator to show the layers colour, this is to help read the item, and know which it is
+			
 			text = "actual colour " + std::to_string(i);
 			ImGui::ColorButton(text.c_str(), ImVec4(col[0], col[1], col[2], 255.0f));
 		}
 
 
 
-		// collapsing header to hiade all other elements
+		
 		if (ImGui::CollapsingHeader(t.c_str()))
 		{
 			std::string n = "Layer Overlay Type " + std::to_string(i);
@@ -166,7 +166,7 @@ void PlanetGenHandler::guiRender()
 
 			}
 
-			// control the layer height
+			
 			text = "layer height adjustment " + std::to_string(i);
 			if (ImGui::SliderFloat(text.c_str(), &m_planet->planetColour.m_heights.at(i), 0.f, 1.f))
 			{
@@ -176,7 +176,7 @@ void PlanetGenHandler::guiRender()
 
 			if (m_planet->planetColour.m_shaderType.at(i) == 0)
 			{
-				// change the colour on that layer
+				
 				text = "Layer Colour " + std::to_string(i);
 				if (ImGui::ColorPicker3(text.c_str(), col))
 				{
@@ -234,15 +234,15 @@ void PlanetGenHandler::guiRender()
 	ImGui::End();
 
 
-	////////////////////////////////////////////////////////////
-	//
-	//			Noise Settings
-	//
-	////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	
 
 	ImGui::Begin("Noise Settings");
 
-	// add a new noise leayer
+	
 	ImGui::Text("Noise Layers");
 	if (ImGui::Button("+"))
 	{
@@ -296,21 +296,21 @@ void PlanetGenHandler::guiRender()
 
 			}
 
-			// Layer Amount
+			
 			n = "Layer Amount " + std::to_string(i);
 			if (ImGui::SliderInt(n.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.numLayers, 1, 30))
 			{
 				resetPlanet();
 			}
 
-			// base roughness
+			
 			n = "Base Roughness " + std::to_string(i);
 			if (ImGui::SliderFloat(n.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.baseRoughness, 0.f, 256.f))
 			{
 				resetPlanet();
 			}
 
-			// Center of Noise
+			
 			n = "Center " + std::to_string(i);
 			float pos[] = { m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.center.x, m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.center.y, m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.center.z };
 			if (ImGui::SliderFloat3(n.c_str(), pos, -100.f, 100.f))
@@ -321,21 +321,21 @@ void PlanetGenHandler::guiRender()
 				resetPlanet();
 			}
 
-			// min value (for depth)
+			
 			n = "min Value " + std::to_string(i);
 			if (ImGui::SliderFloat(n.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.minValue, 0.f, 1.f))
 			{
 				resetPlanet();
 			}
 
-			// Persistence between layers
+			
 			n = "Persistence " + std::to_string(i);
 			if (ImGui::SliderFloat(n.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.persistence, 0.f, 1.f))
 			{
 				resetPlanet();
 			}
 
-			// Layer Strength
+			
 			n = "Strength " + std::to_string(i);
 			if (ImGui::SliderFloat(n.c_str(), &m_planet->shapeSettings.noiseLayers.at(i).noiseSettings.strength, 0.f, 10.f))
 			{

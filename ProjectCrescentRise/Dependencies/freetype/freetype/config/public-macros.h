@@ -37,17 +37,17 @@
 #ifdef __cplusplus
 #define FT_BEGIN_HEADER  extern "C" {
 #else
-#define FT_BEGIN_HEADER  /* empty */
+#define FT_BEGIN_HEADER  
 #endif
-#endif  /* FT_BEGIN_HEADER */
+#endif  
 
 #ifndef FT_END_HEADER
 #ifdef __cplusplus
 #define FT_END_HEADER  }
 #else
-#define FT_END_HEADER  /* empty */
+#define FT_END_HEADER  
 #endif
-#endif  /* FT_END_HEADER */
+#endif  
 
 
 FT_BEGIN_HEADER
@@ -62,7 +62,7 @@ FT_BEGIN_HEADER
    * because it is needed by `FT_EXPORT`.
    */
 
-  /* Visual C, MinGW, Cygwin */
+  
 #if defined( _WIN32 ) || defined( __CYGWIN__ )
 
 #if defined( FT2_BUILD_LIBRARY ) && defined( DLL_EXPORT )
@@ -71,19 +71,19 @@ FT_BEGIN_HEADER
 #define FT_PUBLIC_FUNCTION_ATTRIBUTE  __declspec( dllimport )
 #endif
 
-  /* gcc, clang */
+  
 #elif ( defined( __GNUC__ ) && __GNUC__ >= 4 ) || defined( __clang__ )
 #define FT_PUBLIC_FUNCTION_ATTRIBUTE \
           __attribute__(( visibility( "default" ) ))
 
-  /* Sun */
+  
 #elif defined( __SUNPRO_C ) && __SUNPRO_C >= 0x550
 #define FT_PUBLIC_FUNCTION_ATTRIBUTE  __global
 #endif
 
 
 #ifndef FT_PUBLIC_FUNCTION_ATTRIBUTE
-#define FT_PUBLIC_FUNCTION_ATTRIBUTE  /* empty */
+#define FT_PUBLIC_FUNCTION_ATTRIBUTE  
 #endif
 
 
@@ -135,4 +135,4 @@ FT_BEGIN_HEADER
 
 FT_END_HEADER
 
-#endif  /* FREETYPE_CONFIG_PUBLIC_MACROS_H_ */
+#endif  

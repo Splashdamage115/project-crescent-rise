@@ -1,5 +1,5 @@
 #
-# You will need GLFW (http://www.glfw.org):
+# You will need GLFW (http:
 #   brew install glfw
 #
 

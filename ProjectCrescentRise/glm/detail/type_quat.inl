@@ -67,9 +67,9 @@ namespace detail
 			return vec<4, T, Q>(q * vec<3, T, Q>(v), v.w);
 		}
 	};
-}//namespace detail
+}
 
-	// -- Component accesses --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR T & qua<T, Q>::operator[](typename qua<T, Q>::length_type i)
@@ -93,7 +93,7 @@ namespace detail
 #		endif
 	}
 
-	// -- Implicit basic constructors --
+	
 
 #	if GLM_CONFIG_DEFAULTED_DEFAULT_CTOR == GLM_DISABLE
 		template<typename T, qualifier Q>
@@ -129,7 +129,7 @@ namespace detail
 #		endif
 	{}
 
-	// -- Explicit basic constructors --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR qua<T, Q>::qua(T s, vec<3, T, Q> const& v)
@@ -162,7 +162,7 @@ namespace detail
 #	endif
 	}
 	
-	// -- Conversion constructors --
+	
 
 	template<typename T, qualifier Q>
 	template<typename U, qualifier P>
@@ -174,23 +174,23 @@ namespace detail
 #		endif
 	{}
 
-	//template<typename valType>
-	//GLM_FUNC_QUALIFIER qua<valType>::qua
-	//(
-	//	valType const& pitch,
-	//	valType const& yaw,
-	//	valType const& roll
-	//)
-	//{
-	//	vec<3, valType> eulerAngle(pitch * valType(0.5), yaw * valType(0.5), roll * valType(0.5));
-	//	vec<3, valType> c = glm::cos(eulerAngle * valType(0.5));
-	//	vec<3, valType> s = glm::sin(eulerAngle * valType(0.5));
-	//
-	//	this->w = c.x * c.y * c.z + s.x * s.y * s.z;
-	//	this->x = s.x * c.y * c.z - c.x * s.y * s.z;
-	//	this->y = c.x * s.y * c.z + s.x * c.y * s.z;
-	//	this->z = c.x * c.y * s.z - s.x * s.y * c.z;
-	//}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER qua<T, Q>::qua(vec<3, T, Q> const& u, vec<3, T, Q> const& v)
@@ -201,15 +201,15 @@ namespace detail
 
 		if(real_part < static_cast<T>(1.e-6f) * norm_u_norm_v)
 		{
-			// If u and v are exactly opposite, rotate 180 degrees
-			// around an arbitrary orthogonal axis. Axis normalisation
-			// can happen later, when we normalise the quaternion.
+			
+			
+			
 			real_part = static_cast<T>(0);
 			t = abs(u.x) > abs(u.z) ? vec<3, T, Q>(-u.y, u.x, static_cast<T>(0)) : vec<3, T, Q>(static_cast<T>(0), -u.z, u.y);
 		}
 		else
 		{
-			// Otherwise, build quaternion the standard way.
+			
 			t = cross(u, v);
 		}
 
@@ -252,9 +252,9 @@ namespace detail
 	{
 		return mat4_cast(*this);
 	}
-#	endif//GLM_HAS_EXPLICIT_CONVERSION_OPERATORS
+#	endif
 
-	// -- Unary arithmetic operators --
+	
 
 #	if GLM_CONFIG_DEFAULTED_FUNCTIONS == GLM_DISABLE
 		template<typename T, qualifier Q>
@@ -321,7 +321,7 @@ namespace detail
 		return (*this = detail::compute_quat_div_scalar<T, Q, detail::is_aligned<Q>::value>::call(*this, static_cast<U>(s)));
 	}
 
-	// -- Unary bit operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR qua<T, Q> operator+(qua<T, Q> const& q)
@@ -335,7 +335,7 @@ namespace detail
 		return qua<T, Q>::wxyz(-q.w, -q.x, -q.y, -q.z);
 	}
 
-	// -- Binary operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR qua<T, Q> operator+(qua<T, Q> const& q, qua<T, Q> const& p)
@@ -403,7 +403,7 @@ namespace detail
 			q.w / s, q.x / s, q.y / s, q.z / s);
 	}
 
-	// -- Boolean operators --
+	
 
 	template<typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR bool operator==(qua<T, Q> const& q1, qua<T, Q> const& q2)
@@ -416,7 +416,7 @@ namespace detail
 	{
 		return q1.x != q2.x || q1.y != q2.y || q1.z != q2.z || q1.w != q2.w;
 	}
-}//namespace glm
+}
 
 #if GLM_CONFIG_SIMD == GLM_ENABLE
 #	include "type_quat_simd.inl"

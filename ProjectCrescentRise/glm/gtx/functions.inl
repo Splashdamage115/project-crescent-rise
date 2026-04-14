@@ -1,4 +1,4 @@
-/// @ref gtx_functions
+
 
 #include "../exponential.hpp"
 
@@ -26,5 +26,5 @@ namespace glm
 		vec<2, T, Q> const Squared = ((Coord - ExpectedValue) * (Coord - ExpectedValue)) / (static_cast<T>(2) * StandardDeviation * StandardDeviation);
 		return exp(-(Squared.x + Squared.y));
 	}
-}//namespace glm
+}
 

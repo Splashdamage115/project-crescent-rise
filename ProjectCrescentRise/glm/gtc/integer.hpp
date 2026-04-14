@@ -1,19 +1,19 @@
-/// @ref gtc_integer
-/// @file glm/gtc/integer.hpp
-///
-/// @see core (dependence)
-/// @see gtc_integer (dependence)
-///
-/// @defgroup gtc_integer GLM_GTC_integer
-/// @ingroup gtc
-///
-/// Include <glm/gtc/integer.hpp> to use the features of this extension.
-///
-/// @brief Allow to perform bit operations on integer values
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma once
 
-// Dependencies
+
 #include "../detail/setup.hpp"
 #include "../detail/qualifier.hpp"
 #include "../common.hpp"
@@ -29,15 +29,15 @@
 
 namespace glm
 {
-	/// @addtogroup gtc_integer
-	/// @{
+	
+	
 
-	/// Returns the log2 of x for integer values. Useful to compute mipmap count from the texture size.
-	/// @see gtc_integer
+	
+	
 	template<length_t L, typename T, qualifier Q>
 	GLM_FUNC_DECL vec<L, T, Q> log2(vec<L, T, Q> const& v);
 
-	/// @}
-} //namespace glm
+	
+} 
 
 #include "integer.inl"

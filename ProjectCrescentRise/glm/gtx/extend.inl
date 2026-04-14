@@ -1,4 +1,4 @@
-/// @ref gtx_extend
+
 
 namespace glm
 {
@@ -45,4 +45,4 @@ namespace glm
 	{
 		return Origin + (Source - Origin) * Distance;
 	}
-}//namespace glm
+}

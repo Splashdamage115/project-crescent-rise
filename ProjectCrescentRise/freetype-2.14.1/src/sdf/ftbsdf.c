@@ -46,14 +46,14 @@
    *     papers, where one is dependent on the other:
    *
    *     - Per-Erik Danielsson: Euclidean Distance Mapping
-   *       http://webstaff.itn.liu.se/~stegu/JFA/Danielsson.pdf
+   *       http:
    *
    *       From this paper we use the eight-point sequential Euclidean
    *       distance mapping (8SED).  This is the heart of the process used
    *       in this rasterizer.
    *
    *     - Stefan Gustavson, Robin Strand: Anti-aliased Euclidean distance transform.
-   *       http://weber.itn.liu.se/~stegu/aadist/edtaa_preprint.pdf
+   *       http:
    *
    *       The original 8SED algorithm discards the pixels' alpha values,
    *       which can contain information about the actual outline of the
@@ -97,20 +97,20 @@
    * ```
    * b  = source bitmap;
    * t  = target bitmap;
-   * dm = list of distances; // dimension equal to b
+   * dm = list of distances; 
    *
    * foreach grid_point (x, y) in b:
    * {
    *   if (is_edge(x, y)):
    *     dm = approximate_edge_distance(b, x, y);
    *
-   *   // do the 8SED on the distances
+   *   
    *   edt8(dm);
    *
-   *   // determine the signs
+   *   
    *   determine_signs(dm):
    *
-   *   // copy SDF data to the target bitmap
+   *   
    *   copy(dm to t);
    * }
    *
@@ -437,9 +437,9 @@
      * References:
      *
      * - Anti-Aliased Euclidean Distance Transform:
-     *     http://weber.itn.liu.se/~stegu/aadist/edtaa_preprint.pdf
+     *     http:
      * - Sobel Operator:
-     *     https://en.wikipedia.org/wiki/Sobel_operator
+     *     https:
      */
 
     FT_16D16_Vec  g = { 0, 0 };

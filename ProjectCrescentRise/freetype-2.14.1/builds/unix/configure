@@ -344,25 +344,25 @@ as_fn_mkdir_p ()
       esac
       as_dirs="'$as_qdir' $as_dirs"
       as_dir=`$as_dirname -- "$as_dir" ||
-$as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
-	 X"$as_dir" : 'X\(//\)[^/]' \| \
-	 X"$as_dir" : 'X\(//\)$' \| \
+$as_expr X"$as_dir" : 'X\(.*[^/]\)
+	 X"$as_dir" : 'X\(
+	 X"$as_dir" : 'X\(
 	 X"$as_dir" : 'X\(/\)' \| . 2>/dev/null ||
 printf "%s\n" X"$as_dir" |
     sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)[^/].*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\).*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  s/.*/./; q'`
@@ -458,19 +458,19 @@ fi
 
 as_me=`$as_basename -- "$0" ||
 $as_expr X/"$0" : '.*/\([^/][^/]*\)/*$' \| \
-	 X"$0" : 'X\(//\)$' \| \
+	 X"$0" : 'X\(
 	 X"$0" : 'X\(/\)' \| . 2>/dev/null ||
 printf "%s\n" X/"$0" |
     sed '/^.*\/\([^/][^/]*\)\/*$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\/\(\/\/\)$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\/\(\/\).*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  s/.*/./; q'`
@@ -503,7 +503,7 @@ as_cr_alnum=$as_cr_Letters$as_cr_digits
       :loop
       s/[$]LINENO\([^'$as_cr_alnum'_].*\n\)\(.*\)/\2\1\2/
       t loop
-      s/-\n.*//
+      s/-\n.*
     ' >$as_me.lineno &&
   chmod +x "$as_me.lineno" ||
     { printf "%s\n" "$as_me: error: cannot create $as_me.lineno; rerun with a POSIX shell" >&2; as_fn_exit 1; }
@@ -1333,25 +1333,25 @@ if test -z "$srcdir"; then
   ac_srcdir_defaulted=yes
   # Try the directory containing this script, then the parent directory.
   ac_confdir=`$as_dirname -- "$as_myself" ||
-$as_expr X"$as_myself" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
-	 X"$as_myself" : 'X\(//\)[^/]' \| \
-	 X"$as_myself" : 'X\(//\)$' \| \
+$as_expr X"$as_myself" : 'X\(.*[^/]\)
+	 X"$as_myself" : 'X\(
+	 X"$as_myself" : 'X\(
 	 X"$as_myself" : 'X\(/\)' \| . 2>/dev/null ||
 printf "%s\n" X"$as_myself" |
     sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)[^/].*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\).*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  s/.*/./; q'`
@@ -1914,7 +1914,7 @@ fi
 ac_fn_check_decl ()
 {
   as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
-  as_decl_name=`echo $2|sed 's/ *(.*//'`
+  as_decl_name=`echo $2|sed 's/ *(.*
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether $as_decl_name is declared" >&5
 printf %s "checking whether $as_decl_name is declared... " >&6; }
 if eval test \${$3+y}
@@ -2331,7 +2331,7 @@ ac_c_conftest_c99_globals='
 # error "Compiler does not advertise C99 conformance"
 #endif
 
-// See if C++-style comments work.
+
 
 #include <stdbool.h>
 extern int puts (const char *);
@@ -2340,9 +2340,9 @@ extern int dprintf (int, const char *, ...);
 extern void *malloc (size_t);
 extern void free (void *);
 
-// Check varargs macros.  These examples are taken from C99 6.10.3.5.
-// dprintf is used instead of fprintf to avoid needing to declare
-// FILE and stderr.
+
+
+
 #define debug(...) dprintf (2, __VA_ARGS__)
 #define showlist(...) puts (#__VA_ARGS__)
 #define report(test,...) ((test) ? puts (#test) : printf (__VA_ARGS__))
@@ -2357,7 +2357,7 @@ test_varargs_macros (void)
   report (x>y, "x is %d but y is %d", x, y);
 }
 
-// Check long long types.
+
 #define BIG64 18446744073709551615ull
 #define BIG32 4294967295ul
 #define BIG_OK (BIG64 / BIG32 == 4294967297ull && BIG64 % BIG32 == 0)
@@ -2388,14 +2388,14 @@ typedef const char *ccp;
 static inline int
 test_restrict (ccp restrict text)
 {
-  // Iterate through items via the restricted pointer.
-  // Also check for declarations in for loops.
+  
+  
   for (unsigned int i = 0; *(text+i) != '\''\0'\''; ++i)
     continue;
   return 0;
 }
 
-// Check varargs and va_copy.
+
 static bool
 test_varargs (const char *format, ...)
 {
@@ -2412,13 +2412,13 @@ test_varargs (const char *format, ...)
     {
       switch (*format++)
 	{
-	case '\''s'\'': // string
+	case '\''s'\'': 
 	  str = va_arg (args_copy, const char *);
 	  break;
-	case '\''d'\'': // int
+	case '\''d'\'': 
 	  number = va_arg (args_copy, int);
 	  break;
-	case '\''f'\'': // float
+	case '\''f'\'': 
 	  fnumber = va_arg (args_copy, double);
 	  break;
 	default:
@@ -2434,29 +2434,29 @@ test_varargs (const char *format, ...)
 
 # Test code for whether the C compiler supports C99 (body of main).
 ac_c_conftest_c99_main='
-  // Check bool.
+  
   _Bool success = false;
   success |= (argc != 0);
 
-  // Check restrict.
+  
   if (test_restrict ("String literal") == 0)
     success = true;
   char *restrict newvar = "Another string";
 
-  // Check varargs.
+  
   success &= test_varargs ("s, d'\'' f .", "string", 65, 34.234);
   test_varargs_macros ();
 
-  // Check flexible array members.
+  
   struct incomplete_array *ia =
     malloc (sizeof (struct incomplete_array) + (sizeof (double) * 10));
   ia->datasize = 10;
   for (int i = 0; i < ia->datasize; ++i)
     ia->data[i] = i * 1.234;
-  // Work around memory leak warnings.
+  
   free (ia);
 
-  // Check named initializers.
+  
   struct named_init ni = {
     .number = 34,
     .name = L"Test wide string",
@@ -2469,7 +2469,7 @@ ac_c_conftest_c99_main='
   dynamic_array[0] = argv[0][0];
   dynamic_array[ni.number - 1] = 543;
 
-  // work around unused variable warnings
+  
   ok |= (!success || bignum == 0LL || ubignum == 0uLL || newvar[0] == '\''x'\''
 	 || dynamic_array[ni.number - 1] != 543);
 '
@@ -2481,13 +2481,13 @@ ac_c_conftest_c11_globals='
 # error "Compiler does not advertise C11 conformance"
 #endif
 
-// Check _Alignas.
+
 char _Alignas (double) aligned_as_double;
 char _Alignas (0) no_special_alignment;
 extern char aligned_as_int;
 char _Alignas (0) _Alignas (int) aligned_as_int;
 
-// Check _Alignof.
+
 enum
 {
   int_alignment = _Alignof (int),
@@ -2496,10 +2496,10 @@ enum
 };
 _Static_assert (0 < -_Alignof (int), "_Alignof is signed");
 
-// Check _Noreturn.
+
 int _Noreturn does_not_return (void) { for (;;) continue; }
 
-// Check _Static_assert.
+
 struct test_static_assert
 {
   int x;
@@ -2508,16 +2508,16 @@ struct test_static_assert
   long int y;
 };
 
-// Check UTF-8 literals.
+
 #define u8 syntax error!
 char const utf8_literal[] = u8"happens to be ASCII" "another string";
 
-// Check duplicate typedefs.
+
 typedef long *long_ptr;
 typedef long int *long_ptr;
 typedef long_ptr long_ptr;
 
-// Anonymous structures and unions -- taken from C11 6.7.2.1 Example 1.
+
 struct anonymous
 {
   union {
@@ -3351,7 +3351,7 @@ ac_clean_files="$ac_clean_files a.out a.out.dSYM a.exe b.out"
 # of exeext.
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether the C compiler works" >&5
 printf %s "checking whether the C compiler works... " >&6; }
-ac_link_default=`printf "%s\n" "$ac_link" | sed 's/ -o *conftest[^ ]*//'`
+ac_link_default=`printf "%s\n" "$ac_link" | sed 's/ -o *conftest[^ ]*
 
 # The possible output files:
 ac_files="a.out conftest.exe conftest a.exe a_out.exe b.out conftest.*"
@@ -4326,7 +4326,7 @@ printf "%s\n" "$ac_cv_path_SED" >&6; }
   rm -f conftest.sed
 
 test -z "$SED" && SED=sed
-Xsed="$SED -e 1s/^X//"
+Xsed="$SED -e 1s/^X
 
 
 
@@ -5023,7 +5023,7 @@ else case e in #(
   sysv5* | sco5v6* | sysv4.2uw2*)
     kargmax=`grep ARG_MAX /etc/conf/cf.d/stune 2>/dev/null`
     if test -n "$kargmax"; then
-      lt_cv_sys_max_cmd_len=`echo $kargmax | $SED 's/.*[	 ]//'`
+      lt_cv_sys_max_cmd_len=`echo $kargmax | $SED 's/.*[	 ]
     else
       lt_cv_sys_max_cmd_len=32768
     fi
@@ -6670,7 +6670,7 @@ case $with_sysroot in #(
  yes)
    if test yes = "$GCC"; then
      # Trim trailing / since we'll always append absolute paths and we want
-     # to avoid //, if only for less confusing output for the user.
+     # to avoid 
      lt_sysroot=`$CC --print-sysroot 2>/dev/null | $SED 's:/\+$::'`
    fi
    ;; #(
@@ -7955,8 +7955,8 @@ func_munge_path_list ()
         eval $1=\"\$$1 `$ECHO $2 | $SED 's/:/ /g'`\"
         ;;
     *::*)
-        eval $1=\"\$$1\ `$ECHO $2 | $SED -e 's/.*:://' -e 's/:/ /g'`\"
-        eval $1=\"`$ECHO $2 | $SED -e 's/::.*//' -e 's/:/ /g'`\ \$$1\"
+        eval $1=\"\$$1\ `$ECHO $2 | $SED -e 's/.*::
+        eval $1=\"`$ECHO $2 | $SED -e 's/::.*
         ;;
     *)
         eval $1=\"`$ECHO $2 | $SED 's/:/ /g'`\"
@@ -9597,7 +9597,7 @@ printf %s "checking whether the $compiler linker ($LD) supports shared libraries
   compiler_needs_object=no
   enable_shared_with_static_runtimes=no
   export_dynamic_flag_spec=
-  export_symbols_cmds='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
+  export_symbols_cmds='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* 
   hardcode_automatic=no
   hardcode_direct=no
   hardcode_direct_absolute=no
@@ -9688,7 +9688,7 @@ printf %s "checking whether the $compiler linker ($LD) supports shared libraries
       whole_archive_flag_spec=
     fi
     supports_anon_versioning=no
-    case `$LD -v | $SED -e 's/([^)]\+)\s\+//' 2>&1` in
+    case `$LD -v | $SED -e 's/([^)]\+)\s\+
       *GNU\ gold*) supports_anon_versioning=yes ;;
       *\ [01].* | *\ 2.[0-9].* | *\ 2.10.*) ;; # catch versions < 2.11
       *\ 2.11.93.0.2\ *) supports_anon_versioning=yes ;; # RH7.3 ...
@@ -9750,7 +9750,7 @@ _LT_EOF
       allow_undefined_flag=unsupported
       always_export_symbols=no
       enable_shared_with_static_runtimes=yes
-      export_symbols_cmds='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[BCDGRS][ ]/s/.*[ ]\([^ ]*\)/\1 DATA/;s/^.*[ ]__nm__\([^ ]*\)[ ][^ ]*/\1 DATA/;/^I[ ]/d;/^[AITW][ ]/s/.* //'\'' | sort | uniq > $export_symbols'
+      export_symbols_cmds='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[BCDGRS][ ]/s/.*[ ]\([^ ]*\)/\1 DATA/;s/^.*[ ]__nm__\([^ ]*\)[ ][^ ]*/\1 DATA/;/^I[ ]/d;/^[AITW][ ]/s/.* 
       exclude_expsyms='[_]+GLOBAL_OFFSET_TABLE_|[_]+GLOBAL__[FID]_.*|[_]+head_[A-Za-z0-9_]+_dll|[A-Za-z0-9_]+_dll_iname'
       file_list_spec='@'
 
@@ -9758,7 +9758,7 @@ _LT_EOF
         archive_cmds='$CC -shared $libobjs $deplibs $compiler_flags -o $output_objdir/$soname $wl--enable-auto-image-base -Xlinker --out-implib -Xlinker $lib'
 	# If the export-symbols file already is a .def file, use it as
 	# is; otherwise, prepend EXPORTS...
-	archive_expsym_cmds='if   test DEF = "`$SED -n     -e '\''s/^[	 ]*//'\''     -e '\''/^\(;.*\)*$/d'\''     -e '\''s/^\(EXPORTS\|LIBRARY\)\([	 ].*\)*$/DEF/p'\''     -e q     $export_symbols`" ; then
+	archive_expsym_cmds='if   test DEF = "`$SED -n     -e '\''s/^[	 ]*
           cp $export_symbols $output_objdir/$soname.def;
         else
           echo EXPORTS > $output_objdir/$soname.def;
@@ -10314,7 +10314,7 @@ fi
 	shrext_cmds=.dll
 	# FIXME: Setting linknames here is a bad hack.
 	archive_cmds='$CC -Fe$output_objdir/$soname $libobjs $compiler_flags $deplibs -Wl,-DLL,-IMPLIB:"$tool_output_objdir$libname.dll.lib"~linknames='
-	archive_expsym_cmds='if   test DEF = "`$SED -n     -e '\''s/^[	 ]*//'\''     -e '\''/^\(;.*\)*$/d'\''     -e '\''s/^\(EXPORTS\|LIBRARY\)\([	 ].*\)*$/DEF/p'\''     -e q     $export_symbols`" ; then
+	archive_expsym_cmds='if   test DEF = "`$SED -n     -e '\''s/^[	 ]*
             cp "$export_symbols" "$output_objdir/$soname.def";
             echo "$tool_output_objdir$soname.def" > "$output_objdir/$soname.exp";
           else
@@ -10326,7 +10326,7 @@ fi
 	# _LT_TAGVAR(old_archive_from_new_cmds, )='true'
 	enable_shared_with_static_runtimes=yes
 	exclude_expsyms='_NULL_IMPORT_DESCRIPTOR|_IMPORT_DESCRIPTOR_.*'
-	export_symbols_cmds='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[BCDGRS][ ]/s/.*[ ]\([^ ]*\)/\1,DATA/'\'' | $SED -e '\''/^[AITW][ ]/s/.*[ ]//'\'' | sort | uniq > $export_symbols'
+	export_symbols_cmds='$NM $libobjs $convenience | $global_symbol_pipe | $SED -e '\''/^[BCDGRS][ ]/s/.*[ ]\([^ ]*\)/\1,DATA/'\'' | $SED -e '\''/^[AITW][ ]/s/.*[ ]
 	# Don't use ranlib
 	old_postinstall_cmds='chmod 644 $oldlib'
 	postlink_cmds='lt_outputfile="@OUTPUT@"~
@@ -10352,7 +10352,7 @@ fi
 	# Tell ltmain to make .dll files, not .so files.
 	shrext_cmds=.dll
 	# FIXME: Setting linknames here is a bad hack.
-	archive_cmds='$CC -o $lib $libobjs $compiler_flags `func_echo_all "$deplibs" | $SED '\''s/ -lc$//'\''` -link -dll~linknames='
+	archive_cmds='$CC -o $lib $libobjs $compiler_flags `func_echo_all "$deplibs" | $SED '\''s/ -lc$
 	# The linker will automatically build a .lib file if we build a DLL.
 	old_archive_from_new_cmds='true'
 	# FIXME: Should let the user specify the lib program.
@@ -11124,7 +11124,7 @@ if test yes = "$GCC"; then
     mingw* | windows* | cegcc*) lt_sed_strip_eq='s|=\([A-Za-z]:\)|\1|g' ;;
     *) lt_sed_strip_eq='s|=/|/|g' ;;
   esac
-  lt_search_path_spec=`$CC -print-search-dirs | awk $lt_awk_arg | $SED -e "s/^libraries://" -e $lt_sed_strip_eq`
+  lt_search_path_spec=`$CC -print-search-dirs | awk $lt_awk_arg | $SED -e "s/^libraries:
   case $lt_search_path_spec in
   *\;*)
     # if the path contains ";" then we assume it to be the separator
@@ -11420,7 +11420,7 @@ cygwin* | mingw* | windows* | pw32* | cegcc*)
       do
         IFS=$lt_save_ifs
         # Let DOS variable expansion print the short 8.3 style file name.
-        lt_path=`cd "$lt_path" 2>/dev/null && cmd //C "for %i in (".") do @echo %~si"`
+        lt_path=`cd "$lt_path" 2>/dev/null && cmd 
         sys_lib_search_path_spec="$sys_lib_search_path_spec $lt_path"
       done
       IFS=$lt_save_ifs
@@ -11522,7 +11522,7 @@ freebsd* | dragonfly* | midnightbsd*)
   case $host_cpu in
     powerpc64)
       # On FreeBSD bi-arch platforms, a different variable is used for 32-bit
-      # binaries.  See <https://man.freebsd.org/cgi/man.cgi?query=ld.so>.
+      # binaries.  See <https:
       cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 int test_pointer_size[sizeof (void *) - 5];
@@ -11760,7 +11760,7 @@ fi
   # even though it is searched at run-time.  Try to do the best guess by
   # appending ld.so.conf contents (and includes) to the search path.
   if test -f /etc/ld.so.conf; then
-    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;s/"//g;/^$/d' | tr '\n' ' '`
+    lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \$2)); skip = 1; } { if (!skip) print \$0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*
     sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
   fi
 
@@ -16857,9 +16857,9 @@ ax_pthread_clang="$ax_cv_PTHREAD_CLANG"
 # Note that for GCC and Clang -pthread generally implies -lpthread,
 # except when -nostdlib is passed.
 # This is problematic using libtool to build C++ shared libraries with pthread:
-# [1] https://gcc.gnu.org/bugzilla/show_bug.cgi?id=25460
-# [2] https://bugzilla.redhat.com/show_bug.cgi?id=661333
-# [3] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=468555
+# [1] https:
+# [2] https:
+# [3] https:
 # To solve this, first try -pthread together with -lpthread for GCC
 
 if test "x$GCC" = "xyes"
@@ -17523,18 +17523,18 @@ printf "%s\n" "$python_version" >&6; }
                      -e 's/Z\([0-9]\)Z/Z0\1Z/g' \
                      -e 's/Z\([0-9][0-9]\)Z/Z0\1Z/g' \
                      -e 's/Z\([0-9][0-9][0-9]\)Z/Z0\1Z/g' \
-                     -e 's/[^0-9]//g'`
+                     -e 's/[^0-9]
 
 
   ax_compare_version_B=`echo "$python_version" | sed -e 's/\([0-9]*\)/Z\1Z/g' \
                      -e 's/Z\([0-9]\)Z/Z0\1Z/g' \
                      -e 's/Z\([0-9][0-9]\)Z/Z0\1Z/g' \
                      -e 's/Z\([0-9][0-9][0-9]\)Z/Z0\1Z/g' \
-                     -e 's/[^0-9]//g'`
+                     -e 's/[^0-9]
 
 
     ax_compare_version=`echo "x$ax_compare_version_A
-x$ax_compare_version_B" | sed 's/^ *//' | sort | sed "s/x${ax_compare_version_A}/true/;s/x${ax_compare_version_B}/false/;1q"`
+x$ax_compare_version_B" | sed 's/^ *
 
 
 
@@ -17585,12 +17585,12 @@ PKGCONFIG_REQUIRES_PRIVATE="$zlib_reqpriv,     \
                             $brotli_reqpriv"
 # beautify
 PKGCONFIG_REQUIRES_PRIVATE=`echo "$PKGCONFIG_REQUIRES_PRIVATE" \
-                            | sed -e 's/^  *//'      \
-                                  -e 's/  *$//'      \
+                            | sed -e 's/^  *
+                                  -e 's/  *$
                                   -e 's/, */,/g'     \
                                   -e 's/,,*/,/g'     \
-                                  -e 's/^,*//'       \
-                                  -e 's/,*$//'       \
+                                  -e 's/^,*
+                                  -e 's/,*$
                                   -e 's/,/, /g'`
 
 PKGCONFIG_LIBS_PRIVATE="$zlib_libspriv     \
@@ -17601,8 +17601,8 @@ PKGCONFIG_LIBS_PRIVATE="$zlib_libspriv     \
                         $ft2_extra_libs"
 # beautify
 PKGCONFIG_LIBS_PRIVATE=`echo "$PKGCONFIG_LIBS_PRIVATE"  \
-                        | sed -e 's/^  *//'   \
-                              -e 's/  *$//'   \
+                        | sed -e 's/^  *
+                              -e 's/  *$
                               -e 's/  */ /g'`
 
 LIBSSTATIC_CONFIG="-lfreetype               \
@@ -17617,8 +17617,8 @@ LIBSSTATIC_CONFIG="-lfreetype               \
 LIBSSTATIC_CONFIG=`echo "$LIBSSTATIC_CONFIG"          \
                    | sed -e 's|-L */usr/lib64/* | |g' \
                          -e 's|-L */usr/lib/* | |g'   \
-                         -e 's/^  *//'                \
-                         -e 's/  *$//'                \
+                         -e 's/^  *
+                         -e 's/  *$
                          -e 's/  */ /g'`
 
 # If FreeType gets installed with `--disable-shared', don't use
@@ -17830,7 +17830,7 @@ ac_ltlibobjs=
 U=
 for ac_i in : $LIBOBJS; do test "x$ac_i" = x: && continue
   # 1. Remove the extension, and $U if already installed.
-  ac_script='s/\$U\././;s/\.o$//;s/\.obj$//'
+  ac_script='s/\$U\././;s/\.o$
   ac_i=`printf "%s\n" "$ac_i" | sed "$ac_script"`
   # 2. Prepend LIBOBJDIR.  When used with automake>=1.10 LIBOBJDIR
   #    will be set to the directory where LIBOBJS objects are built.
@@ -18080,19 +18080,19 @@ fi
 
 as_me=`$as_basename -- "$0" ||
 $as_expr X/"$0" : '.*/\([^/][^/]*\)/*$' \| \
-	 X"$0" : 'X\(//\)$' \| \
+	 X"$0" : 'X\(
 	 X"$0" : 'X\(/\)' \| . 2>/dev/null ||
 printf "%s\n" X/"$0" |
     sed '/^.*\/\([^/][^/]*\)\/*$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\/\(\/\/\)$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\/\(\/\).*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  s/.*/./; q'`
@@ -18173,25 +18173,25 @@ as_fn_mkdir_p ()
       esac
       as_dirs="'$as_qdir' $as_dirs"
       as_dir=`$as_dirname -- "$as_dir" ||
-$as_expr X"$as_dir" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
-	 X"$as_dir" : 'X\(//\)[^/]' \| \
-	 X"$as_dir" : 'X\(//\)$' \| \
+$as_expr X"$as_dir" : 'X\(.*[^/]\)
+	 X"$as_dir" : 'X\(
+	 X"$as_dir" : 'X\(
 	 X"$as_dir" : 'X\(/\)' \| . 2>/dev/null ||
 printf "%s\n" X"$as_dir" |
     sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)[^/].*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\).*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  s/.*/./; q'`
@@ -18305,7 +18305,7 @@ Report bugs to <freetype@nongnu.org>."
 
 _ACEOF
 ac_cs_config=`printf "%s\n" "$ac_configure_args" | sed "$ac_safe_unquote"`
-ac_cs_config_escaped=`printf "%s\n" "$ac_cs_config" | sed "s/^ //; s/'/'\\\\\\\\''/g"`
+ac_cs_config_escaped=`printf "%s\n" "$ac_cs_config" | sed "s/^ 
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
 ac_cs_config='$ac_cs_config_escaped'
 ac_cs_version="\\
@@ -18902,10 +18902,10 @@ h
 s/^/S["/; s/!.*/"]=/
 p
 g
-s/^[^!]*!//
+s/^[^!]*!
 :repl
 t repl
-s/'"$ac_delim"'$//
+s/'"$ac_delim"'$
 t delim
 :nl
 h
@@ -18919,7 +18919,7 @@ b repl
 s/["\\]/\\&/g; s/^/"/; s/$/"\\/
 p
 g
-s/.\{148\}//
+s/.\{148\}
 t nl
 :delim
 h
@@ -18932,12 +18932,12 @@ b
 s/["\\]/\\&/g; s/^/"/; s/$/"\\/
 p
 g
-s/.\{148\}//
+s/.\{148\}
 t delim
 ' <conf$$subs.awk | sed '
 /^[^""]/{
   N
-  s/\n//
+  s/\n
 }
 ' >>$CONFIG_STATUS || ac_write_fail=1
 rm -f conf$$subs.awk
@@ -18971,8 +18971,8 @@ cat >>"\$ac_tmp/subs1.awk" <<_ACAWK &&
 _ACAWK
 _ACEOF
 cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
-if sed "s/$ac_cr//" < /dev/null > /dev/null 2>&1; then
-  sed "s/$ac_cr\$//; s/$ac_cr/$ac_cs_awk_cr/g"
+if sed "s/$ac_cr
+  sed "s/$ac_cr\$
 else
   cat
 fi < "$ac_tmp/subs1.awk" > "$ac_tmp/subs.awk" \
@@ -18986,19 +18986,19 @@ _ACEOF
 if test "x$srcdir" = x.; then
   ac_vpsub='/^[	 ]*VPATH[	 ]*=[	 ]*/{
 h
-s///
+s
 s/^/:/
 s/[	 ]*$/:/
 s/:\$(srcdir):/:/g
 s/:\${srcdir}:/:/g
 s/:@srcdir@:/:/g
-s/^:*//
-s/:*$//
+s/^:*
+s/:*$
 x
 s/\(=[	 ]*\).*/\1/
 G
-s/\n//
-s/^[^=]*=[	 ]*$//
+s/\n
+s/^[^=]*=[	 ]*$
 }'
 fi
 
@@ -19044,7 +19044,7 @@ s/^[	 ]*#[	 ]*define[	 ][	 ]*/ /
 t def
 d
 :def
-s/\\$//
+s/\\$
 t bsnl
 s/["\\]/\\&/g
 s/^ \('"$ac_word_re"'\)\(([^()]*)\)[	 ]*\(.*\)/P["\1"]="\2"\
@@ -19064,7 +19064,7 @@ n
 s/.\{148\}/&'"$ac_delim"'/g
 t clear
 :clear
-s/\\$//
+s/\\$
 t bsnlc
 s/["\\]/\\&/g; s/^/"/; s/$/"/p
 d
@@ -19184,25 +19184,25 @@ printf "%s\n" "$as_me: creating $ac_file" >&6;}
   esac
 
   ac_dir=`$as_dirname -- "$ac_file" ||
-$as_expr X"$ac_file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
-	 X"$ac_file" : 'X\(//\)[^/]' \| \
-	 X"$ac_file" : 'X\(//\)$' \| \
+$as_expr X"$ac_file" : 'X\(.*[^/]\)
+	 X"$ac_file" : 'X\(
+	 X"$ac_file" : 'X\(
 	 X"$ac_file" : 'X\(/\)' \| . 2>/dev/null ||
 printf "%s\n" X"$ac_file" |
     sed '/^X\(.*[^/]\)\/\/*[^/][^/]*\/*$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)[^/].*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\/\)$/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  /^X\(\/\).*/{
-	    s//\1/
+	    s
 	    q
 	  }
 	  s/.*/./; q'`
@@ -19405,7 +19405,7 @@ printf "%s\n" "$as_me: executing $ac_file commands" >&6;}
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with this program.  If not, see <http:
 
 
 # The names of the tagged configurations supported by this script.
@@ -19467,7 +19467,7 @@ build_os=$build_os
 SED=$lt_SED
 
 # Sed that helps us avoid accidentally triggering echo(1) options like -n.
-Xsed="\$SED -e 1s/^X//"
+Xsed="\$SED -e 1s/^X
 
 # A grep program that handles long lines.
 GREP=$lt_GREP
@@ -19857,8 +19857,8 @@ func_munge_path_list ()
         eval $1=\"\$$1 `$ECHO $2 | $SED 's/:/ /g'`\"
         ;;
     *::*)
-        eval $1=\"\$$1\ `$ECHO $2 | $SED -e 's/.*:://' -e 's/:/ /g'`\"
-        eval $1=\"`$ECHO $2 | $SED -e 's/::.*//' -e 's/:/ /g'`\ \$$1\"
+        eval $1=\"\$$1\ `$ECHO $2 | $SED -e 's/.*::
+        eval $1=\"`$ECHO $2 | $SED -e 's/::.*
         ;;
     *)
         eval $1=\"`$ECHO $2 | $SED 's/:/ /g'`\"

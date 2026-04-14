@@ -1,4 +1,4 @@
-/// @ref gtx_extended_min_max
+
 
 namespace glm
 {
@@ -135,4 +135,4 @@ namespace glm
 	{
 		return glm::max(glm::max(x, y), glm::max(z, w));
 	}
-}//namespace glm
+}

@@ -108,7 +108,7 @@ How to prepare a new release
 
     GPG="/usr/bin/gpg --batch --no-tty --local-user $GPG_KEY_ID"
 
-    version=`echo $VERSION | sed "s/\\.//g"`
+    version=`echo $VERSION | sed "s/\\.
 
     FREETYPE_PACKAGES="freetype-$VERSION.tar.gz \
                        freetype-$VERSION.tar.xz \

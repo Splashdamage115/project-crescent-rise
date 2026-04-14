@@ -285,12 +285,12 @@ FT_BEGIN_HEADER
                     FT_Memory           memory,
                     void*               user );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTLIST_H_ */
+#endif 
 
 
-/* END */
+

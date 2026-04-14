@@ -5,7 +5,7 @@
 #include "stb_image.h"
 #include "TextureStore.h"
 
-// static instance definition
+
 PlanetSurface* PlanetSurface::s_instance = nullptr;
 
 glm::vec3 PlanetSurface::GetSurfacePointFromWorldPosition(glm::vec3 worldPos)
@@ -76,9 +76,9 @@ void PlanetSurface::ResetPlanet()
 
     std::vector<float> vertices;
     std::vector<unsigned int> indices;
-    int vertLength = 8; // x y z NormalX NormalY NormalZ u v
-    int faceAmt = 6; // face for each side
-    int triIntCount = 6; // top left, top right, bottom left ~ bootom left, top right, bottom right ~ these are the triangle positions
+    int vertLength = 8; 
+    int faceAmt = 6; 
+    int triIntCount = 6; 
     int pointAmt = (pointsPerRow * pointsPerRow);
     int indiceAmt = (pointsPerRow - 1) * (pointsPerRow - 1);
 
@@ -90,12 +90,12 @@ void PlanetSurface::ResetPlanet()
     glm::vec3 playerPos = PlayerInput::playerPosition;
 
 
-    direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   // Up
-    direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  // Down
-    direction.emplace_back(glm::vec3(-1.0f, 0.0f, 0.0f));  // Left
-    direction.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));   // Right
-    direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  // Forward
-    direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   // Back
+    direction.emplace_back(glm::vec3(0.0f, 1.0f, 0.0f));   
+    direction.emplace_back(glm::vec3(0.0f, -1.0f, 0.0f));  
+    direction.emplace_back(glm::vec3(-1.0f, 0.0f, 0.0f));  
+    direction.emplace_back(glm::vec3(1.0f, 0.0f, 0.0f));   
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, -1.0f));  
+    direction.emplace_back(glm::vec3(0.0f, 0.0f, 1.0f));   
 
     int closestNum = 0;
 
@@ -115,7 +115,7 @@ void PlanetSurface::ResetPlanet()
 
     for (int i = 0; i < 6; i++)
     {
-        //if (i == closestNum); // i is now the closest face
+        
 
         CubeSphereFace::generateFace(vertices, indices, pointsPerRow, direction.at(i), i, shapeGenerator);
 
@@ -127,7 +127,7 @@ void PlanetSurface::ResetPlanet()
         std::string location = "./Assets/Images/floorTextures/";
         location += planetColour.m_textureLocation.at(i);
 
-        textureLocations.at(i) = TextureStore::RetrieveTexture(location); // initialise texture
+        textureLocations.at(i) = TextureStore::RetrieveTexture(location); 
 
 
         glGenTextures(1, &normalLocations.at(i));
@@ -136,7 +136,7 @@ void PlanetSurface::ResetPlanet()
         location = "./Assets/Images/floorTextures/";
         location += planetColour.m_normalLocation.at(i);
 
-        normalLocations.at(i) = TextureStore::RetrieveNormals(location); // initialise Normal
+        normalLocations.at(i) = TextureStore::RetrieveNormals(location); 
 
         planetColour.m_needsReloading.at(i) = false;
     }
@@ -154,7 +154,7 @@ void PlanetSurface::ResetPlanet()
 
 void PlanetSurface::Start()
 {
-	// register global instance for surface followers
+	
 	s_instance = this;
 
     for (int i = 0; i < planetColour.COLOUR_MAX; i++)
@@ -177,20 +177,20 @@ void PlanetSurface::Start()
             location += planetColour.m_textureLocation.at(i);
 
 
-            textureLocations.at(0) = TextureStore::RetrieveTexture(location); // initialise texture
+            textureLocations.at(0) = TextureStore::RetrieveTexture(location); 
 
             location = "./Assets/Images/floorTextures/";
             location += planetColour.m_normalLocation.at(i);
 
-            normalLocations.at(0) = TextureStore::RetrieveNormals(location); // initialise Normal
+            normalLocations.at(0) = TextureStore::RetrieveNormals(location); 
         }
     }
-    // TO DO: change from being static lowest being sand
+    
     planetColour.m_shaderType.at(0) = 1;
 
     planetColour.m_heights.at(0) = -1.0f;
 
-    // Generate and setup VAO
+    
     glGenVertexArrays(1, &m_body.vao);
     glBindVertexArray(m_body.vao);
 
@@ -240,7 +240,7 @@ void PlanetSurface::Start()
     NormalStrength = glGetUniformLocation(m_shader->shaderPair, "uLayerNormalStrength");
     ambientLight = glGetUniformLocation(m_shader->shaderPair, "ambientLightStrength"); 
 
-    // Generate initial mesh data
+    
     ResetPlanet();
     callChange = false;
 }
@@ -272,7 +272,7 @@ void PlanetSurface::Render()
     if (CenterPoint >= 0) glUniform3f(CenterPoint, (float)transform->position.x, (float)transform->position.y, (float)transform->position.z);
     if (MinMax >= 0) glUniform2f(MinMax, shapeGenerator.elevationMinMax.getMin(), shapeGenerator.elevationMinMax.getMax()); 
     if (heightColours >= 0 && planetColour.m_colours.size() > 0) {
-        //std::cout << planetColour.m_colurs[0].x << " " << planetColour.m_colurs[0].g << " " << planetColour.m_colurs[0].b << "\n";
+        
         glUniform3fv(heightColours, planetColour.m_colours.size(), glm::value_ptr(planetColour.m_colours[0]));
     }
     if (startHeight >= 0 && planetColour.m_heights.size() > 0) glUniform1fv(startHeight, planetColour.m_heights.size(), &planetColour.m_heights[0]);

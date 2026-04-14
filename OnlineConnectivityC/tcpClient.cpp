@@ -10,7 +10,7 @@ std::queue<std::string> TcpClient::tcpQueue;
 std::mutex TcpClient::tcpMutex;
 std::queue<std::string> TcpClient::recievedData;
 
-// start the online connection client
+
 int TcpClient::Start() 
 {
     int errorResult = SetUpConnections();
@@ -74,7 +74,7 @@ int TcpClient::initiliseDataFromServer()
     return 0;
 }
 
-// set up the tcp & udp connections
+
 int TcpClient::SetUpConnections()
 {
     int errorResult = 0;
@@ -93,7 +93,7 @@ int TcpClient::SetUpConnections()
     return 0;
 }
 
-// set up the udp connection
+
 int TcpClient::SetUpUdp()
 {
     struct sockaddr_in si_other;
@@ -102,7 +102,7 @@ int TcpClient::SetUpUdp()
     char message[BUFFER_SIZE];
     WSADATA wsa;
 
-    //Initialise winsock
+    
     std::cout << "\nInitialising Winsock...\n";
     if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
     {
@@ -111,7 +111,7 @@ int TcpClient::SetUpUdp()
     }
     std::cout << "Initialised.\n";
 
-    //create socket
+    
     if ((udpSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == SOCKET_ERROR)
     {
         std::cout << "socket() failed with error code : %d" << WSAGetLastError() << std::endl;
@@ -121,7 +121,7 @@ int TcpClient::SetUpUdp()
     return 0;
 }
 
-// set up the tcp connection
+
 int TcpClient::SetUpTcp()
 {
     WSADATA wsaData;
@@ -169,14 +169,14 @@ int TcpClient::SetUpTcp()
     return 0;
 }
 
-// safely push data, ready to send
+
 void TcpClient::pushTcp(std::string& data)
 {
     std::lock_guard<std::mutex> lock(tcpMutex);
     tcpQueue.push(data);
 }
 
-// safely pop the data, and send it
+
 bool TcpClient::popTcp(std::string& data)
 {
     std::lock_guard<std::mutex> lock(tcpMutex);
@@ -208,7 +208,7 @@ void TcpClient::LoopConnection()
     position += " > ";
     position += " {0,0,0}";
 
-    // loop the data transfer
+    
     while (loopActive)
     {
         FD_ZERO(&readFds);
@@ -220,23 +220,23 @@ void TcpClient::LoopConnection()
         FD_SET(tcpSocket, &writeFds);
         FD_SET(udpSocket, &writeFds);
 
-        // check if buffers are ready for data
+        
         int result = select(0, &readFds, &writeFds, nullptr, &timeout);
 
         if (result > 0)
         {
-            // recieve data udp
+            
             if (FD_ISSET(udpSocket, &readFds))
             {
                 int bytesReceived = recvfrom(udpSocket, buffer, BUFFER_SIZE, 0, (struct sockaddr*)&si_other, &slen);
                 if (bytesReceived > 0)
                 {
-                    // handle udp data
-                    //std::cout << "UDP DATA : " << std::string(buffer, bytesReceived) << "\n";
+                    
+                    
                 }
             }
 
-            // recieve data tcp
+            
             if (FD_ISSET(tcpSocket, &readFds))
             {
                 int bytesReceived = recv(tcpSocket, buffer, BUFFER_SIZE, 0);
@@ -246,13 +246,13 @@ void TcpClient::LoopConnection()
                 }
             }
 
-            // send data tcp
+            
             if (FD_ISSET(tcpSocket, &writeFds) && popTcp(topOfQueue))
             {
                 send(tcpSocket, topOfQueue.c_str(), topOfQueue.size(), 0);
             }
 
-            // send data udp
+            
             if (FD_ISSET(udpSocket, &writeFds))
             {
                 sendto(udpSocket, position.c_str(), strlen(position.c_str()), 0, (struct sockaddr*)&si_other, slen);

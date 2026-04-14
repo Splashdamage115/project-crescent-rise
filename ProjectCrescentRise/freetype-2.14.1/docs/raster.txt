@@ -590,9 +590,9 @@ II. Rendering Technology
                    /     /  |   |          For example, we have here
                   /     /   |   |          four profiles.  Two of
                 >/     /    |   |  |       them are ascending (1 &
-              1//     /   ^ |   |  | 2     3), while the two others
-              //     //  3| |   |  v       are descending (2 & 4).
-              /     //4   | |   |          On the given scanline,
+              1
+              
+              /     
            a /     /<       |   |          the left list is (1,3),
       - - - *-----* - - - - *---* - - y -  and the right one is
            /     / b       c|   |d         (4,2) (sorted).

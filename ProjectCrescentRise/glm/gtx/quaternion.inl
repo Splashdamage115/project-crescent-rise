@@ -1,4 +1,4 @@
-/// @ref gtx_quaternion
+
 
 #include <limits>
 #include "../gtc/constants.hpp"
@@ -82,19 +82,19 @@ namespace glm
 		if(a >= static_cast<T>(1)) return y;
 
 		T fCos = dot(x, y);
-		qua<T, Q> y2(y); //BUG!!! qua<T> y2;
+		qua<T, Q> y2(y); 
 		if(fCos < static_cast<T>(0))
 		{
 			y2 = -y;
 			fCos = -fCos;
 		}
 
-		//if(fCos > 1.0f) // problem
+		
 		T k0, k1;
 		if(fCos > (static_cast<T>(1) - epsilon<T>()))
 		{
 			k0 = static_cast<T>(1) - a;
-			k1 = static_cast<T>(0) + a; //BUG!!! 1.0f + a;
+			k1 = static_cast<T>(0) + a; 
 		}
 		else
 		{
@@ -125,26 +125,26 @@ namespace glm
 		vec<3, T, Q> rotationAxis;
 
 		if(cosTheta >= static_cast<T>(1) - epsilon<T>()) {
-			// orig and dest point in the same direction
+			
 			return quat_identity<T,Q>();
 		}
 
 		if(cosTheta < static_cast<T>(-1) + epsilon<T>())
 		{
-			// special case when vectors in opposite directions :
-			// there is no "ideal" rotation axis
-			// So guess one; any will do as long as it's perpendicular to start
-			// This implementation favors a rotation around the Up axis (Y),
-			// since it's often what you want to do.
+			
+			
+			
+			
+			
 			rotationAxis = cross(vec<3, T, Q>(0, 0, 1), orig);
-			if(length2(rotationAxis) < epsilon<T>()) // bad luck, they were parallel, try again!
+			if(length2(rotationAxis) < epsilon<T>()) 
 				rotationAxis = cross(vec<3, T, Q>(1, 0, 0), orig);
 
 			rotationAxis = normalize(rotationAxis);
 			return angleAxis(pi<T>(), rotationAxis);
 		}
 
-		// Implementation from Stan Melax's Game Programming Gems 1 article
+		
 		rotationAxis = cross(orig, dest);
 
 		T s = sqrt((T(1) + cosTheta) * static_cast<T>(2));
@@ -156,4 +156,4 @@ namespace glm
 			rotationAxis.y * invs,
 			rotationAxis.z * invs);
 	}
-}//namespace glm
+}

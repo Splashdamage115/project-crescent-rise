@@ -23,9 +23,9 @@ jobs:
         run: |
           if [[ "$PVS_STUDIO_LICENSE" != "" ]];
           then
-            wget -q https://files.viva64.com/etc/pubkey.txt
+            wget -q https:
             sudo apt-key add pubkey.txt
-            sudo wget -O /etc/apt/sources.list.d/viva64.list https://files.viva64.com/etc/viva64.list
+            sudo wget -O /etc/apt/sources.list.d/viva64.list https:
             sudo apt-get update
             sudo apt-get install -y pvs-studio
             pvs-studio-analyzer credentials -o pvs-studio.lic $PVS_STUDIO_LICENSE
@@ -37,7 +37,7 @@ jobs:
           then
             echo "PVS Studio license is missing. No analysis will be performed."
             echo "If you have a PVS Studio license please create a project secret named PVS_STUDIO_LICENSE with your license."
-            echo "You may use a free license. More information at https://www.viva64.com/en/b/0457/"
+            echo "You may use a free license. More information at https:
             exit 0
           fi
           cd examples/example_null

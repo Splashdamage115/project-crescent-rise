@@ -7,10 +7,10 @@ for x in "$@"
 do
   case x"$x" in
   x--srcdir=* | x--topdir=* )
-    TOP_DIR=`echo $x | sed 's/^--[a-z]*dir=//'`
+    TOP_DIR=`echo $x | sed 's/^--[a-z]*dir=
     ;;
   x--builddir=* | x--objdir=* )
-    OBJ_DIR=`echo $x | sed 's/^--[a-z]*dir=//'`
+    OBJ_DIR=`echo $x | sed 's/^--[a-z]*dir=
     ;;
   esac
 done

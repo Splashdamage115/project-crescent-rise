@@ -5,7 +5,7 @@ namespace glm
 	{
 		vec<3, T, Q> Tmp = v;
 
-		// Axis of rotation must be normalised
+		
 		T len = glm::length(Tmp);
 		if(abs(len - static_cast<T>(1)) > static_cast<T>(0.001))
 		{
@@ -20,5 +20,5 @@ namespace glm
 
 		return q * qua<T, Q>::wxyz(cos(AngleRad * static_cast<T>(0.5)), Tmp.x * Sin, Tmp.y * Sin, Tmp.z * Sin);
 	}
-}//namespace glm
+}
 

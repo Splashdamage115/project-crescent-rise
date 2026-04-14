@@ -19,13 +19,13 @@
 
 FT_BEGIN_HEADER
 
-  /* There are systems (like the Texas Instruments 'C54x) where a `char`  */
-  /* has 16~bits.  ANSI~C says that `sizeof(char)` is always~1.  Since an */
-  /* `int` has 16~bits also for this system, `sizeof(int)` gives~1 which  */
-  /* is probably unexpected.                                              */
-  /*                                                                      */
-  /* `CHAR_BIT` (defined in `limits.h`) gives the number of bits in a     */
-  /* `char` type.                                                         */
+  
+  
+  
+  
+  
+  
+  
 
 #ifndef FT_CHAR_BIT
 #define FT_CHAR_BIT  CHAR_BIT
@@ -33,7 +33,7 @@ FT_BEGIN_HEADER
 
 #ifndef FT_SIZEOF_INT
 
-  /* The size of an `int` type. */
+  
 #if                                 FT_UINT_MAX == 0xFFFFUL
 #define FT_SIZEOF_INT  ( 16 / FT_CHAR_BIT )
 #elif                               FT_UINT_MAX == 0xFFFFFFFFUL
@@ -44,12 +44,12 @@ FT_BEGIN_HEADER
 #error "Unsupported size of `int' type!"
 #endif
 
-#endif  /* !defined(FT_SIZEOF_INT) */
+#endif  
 
 #ifndef FT_SIZEOF_LONG
 
-  /* The size of a `long` type.  A five-byte `long` (as used e.g. on the */
-  /* DM642) is recognized but avoided.                                   */
+  
+  
 #if                                  FT_ULONG_MAX == 0xFFFFFFFFUL
 #define FT_SIZEOF_LONG  ( 32 / FT_CHAR_BIT )
 #elif FT_ULONG_MAX > 0xFFFFFFFFUL && FT_ULONG_MAX == 0xFFFFFFFFFFUL
@@ -60,18 +60,18 @@ FT_BEGIN_HEADER
 #error "Unsupported size of `long' type!"
 #endif
 
-#endif /* !defined(FT_SIZEOF_LONG) */
+#endif 
 
 #ifndef FT_SIZEOF_LONG_LONG
 
-  /* The size of a `long long` type if available */
+  
 #if defined( FT_ULLONG_MAX ) && FT_ULLONG_MAX >= 0xFFFFFFFFFFFFFFFFULL
 #define FT_SIZEOF_LONG_LONG  ( 64 / FT_CHAR_BIT )
 #else
 #define FT_SIZEOF_LONG_LONG  0
 #endif
 
-#endif /* !defined(FT_SIZEOF_LONG_LONG) */
+#endif 
 
 
   /**************************************************************************
@@ -103,10 +103,10 @@ FT_BEGIN_HEADER
    */
   typedef unsigned short  FT_UInt16;
 
-  /* */
+  
 
 
-  /* this #if 0 ... #endif clause is for documentation purposes */
+  
 #if 0
 
   /**************************************************************************
@@ -155,7 +155,7 @@ FT_BEGIN_HEADER
    */
   typedef unsigned XXX  FT_UInt64;
 
-  /* */
+  
 
 #endif
 
@@ -174,7 +174,7 @@ FT_BEGIN_HEADER
 #endif
 
 
-  /* look up an integer type that is at least 32~bits */
+  
 #if FT_SIZEOF_INT >= ( 32 / FT_CHAR_BIT )
 
   typedef int            FT_Fast;
@@ -188,7 +188,7 @@ FT_BEGIN_HEADER
 #endif
 
 
-  /* determine whether we have a 64-bit integer type */
+  
 #if FT_SIZEOF_LONG == ( 64 / FT_CHAR_BIT )
 
 #define FT_INT64   long
@@ -208,40 +208,40 @@ FT_BEGIN_HEADER
    */
 #elif !defined( __STDC__ ) || defined( FT_CONFIG_OPTION_FORCE_INT64 )
 
-#if defined( _MSC_VER ) && _MSC_VER >= 900 /* Visual C++ (and Intel C++) */
+#if defined( _MSC_VER ) && _MSC_VER >= 900 
 
-  /* this compiler provides the `__int64` type */
+  
 #define FT_INT64   __int64
 #define FT_UINT64  unsigned __int64
 
-#elif defined( __BORLANDC__ )  /* Borland C++ */
+#elif defined( __BORLANDC__ )  
 
-  /* XXXX: We should probably check the value of `__BORLANDC__` in order */
-  /*       to test the compiler version.                                 */
+  
+  
 
-  /* this compiler provides the `__int64` type */
+  
 #define FT_INT64   __int64
 #define FT_UINT64  unsigned __int64
 
-#elif defined( __WATCOMC__ ) && __WATCOMC__ >= 1100  /* Watcom C++ */
+#elif defined( __WATCOMC__ ) && __WATCOMC__ >= 1100  
 
 #define FT_INT64   long long int
 #define FT_UINT64  unsigned long long int
 
-#elif defined( __MWERKS__ )    /* Metrowerks CodeWarrior */
+#elif defined( __MWERKS__ )    
 
 #define FT_INT64   long long int
 #define FT_UINT64  unsigned long long int
 
 #elif defined( __GNUC__ )
 
-  /* GCC provides the `long long` type */
+  
 #define FT_INT64   long long int
 #define FT_UINT64  unsigned long long int
 
-#endif /* !__STDC__ */
+#endif 
 
-#endif /* FT_SIZEOF_LONG == (64 / FT_CHAR_BIT) */
+#endif 
 
 #ifdef FT_INT64
 
@@ -250,9 +250,9 @@ FT_BEGIN_HEADER
 
 #  define FT_INT64_ZERO  0
 
-#else  /* !FT_INT64 */
+#else  
 
-  /* we need to emulate 64-bit data types if none are available */
+  
 
   typedef struct  FT_Int64_
   {
@@ -270,8 +270,8 @@ FT_BEGIN_HEADER
 
 #  define FT_INT64_ZERO  { 0, 0 }
 
-#endif /* !FT_INT64 */
+#endif 
 
 FT_END_HEADER
 
-#endif  /* FREETYPE_CONFIG_INTEGER_TYPES_H_ */
+#endif  

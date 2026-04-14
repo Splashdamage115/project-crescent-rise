@@ -173,12 +173,12 @@ FT_BEGIN_HEADER
   FT_EXPORT( void )
   FT_Set_Default_Log_Handler( void );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTLOGGING_H_ */
+#endif 
 
 
-/* END */
+

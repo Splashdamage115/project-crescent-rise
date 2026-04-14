@@ -48,7 +48,7 @@ FT_BEGIN_HEADER
    *
    *   For more information on the implementation, see our standard hooks
    *   based on 'librsvg' in the [FreeType Demo
-   *   Programs](https://gitlab.freedesktop.org/freetype/freetype-demos)
+   *   Programs](https:
    *   repository.
    *
    */
@@ -330,7 +330,7 @@ FT_BEGIN_HEADER
 
 FT_END_HEADER
 
-#endif /* OTSVG_H_ */
+#endif 
 
 
-/* END */
+

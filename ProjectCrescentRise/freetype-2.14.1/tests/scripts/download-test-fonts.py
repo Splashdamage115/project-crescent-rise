@@ -78,7 +78,7 @@ from typing import Callable, List, Optional, Tuple
 #
 _DOWNLOAD_ITEMS = [
     {
-        "zip_url": "https://github.com/python-pillow/Pillow/files/6622147/As.I.Lay.Dying.zip",
+        "zip_url": "https:
         "zip_files": [
             {
                 "filename": "As I Lay Dying.ttf",

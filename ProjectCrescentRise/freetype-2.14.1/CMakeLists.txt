@@ -16,7 +16,7 @@
 # call cmake to configure the build with default parameters as a static
 # library.  See
 #
-#   https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html
+#   https:
 #
 # for information about debug or release builds, for example
 #

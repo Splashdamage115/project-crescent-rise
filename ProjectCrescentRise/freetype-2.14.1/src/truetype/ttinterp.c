@@ -1457,7 +1457,7 @@
    *
    * Apple's TrueType specification at
    *
-   *   https://developer.apple.com/fonts/TrueType-Reference-Manual/RM02/Chap2.html#order
+   *   https:
    *
    * gives the following order of operations in instructions that move
    * points.
@@ -6817,12 +6817,12 @@
           Ins_SxyTCA( exc );
           break;
 
-        case 0x06:  /* SPvTL // */
+        case 0x06:  /* SPvTL 
         case 0x07:  /* SPvTL +  */
           Ins_SPVTL( exc, args );
           break;
 
-        case 0x08:  /* SFvTL // */
+        case 0x08:  /* SFvTL 
         case 0x09:  /* SFvTL +  */
           Ins_SFVTL( exc, args );
           break;

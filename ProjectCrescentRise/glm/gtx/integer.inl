@@ -1,8 +1,8 @@
-/// @ref gtx_integer
+
 
 namespace glm
 {
-	// pow
+	
 	GLM_FUNC_QUALIFIER int pow(int x, uint y)
 	{
 		if(y == 0)
@@ -14,7 +14,7 @@ namespace glm
 		return result;
 	}
 
-	// sqrt: From Christopher J. Musial, An integer square root, Graphics Gems, 1990, page 387
+	
 	GLM_FUNC_QUALIFIER int sqrt(int x)
 	{
 		if(x <= 1) return x;
@@ -31,7 +31,7 @@ namespace glm
 		return CurrentAnswer;
 	}
 
-// Henry Gordon Dietz: http://aggregate.org/MAGIC/
+
 namespace detail
 {
 	GLM_FUNC_QUALIFIER unsigned int ones32(unsigned int x)
@@ -47,9 +47,9 @@ namespace detail
 		x += (x >> 16);
 		return(x & 0x0000003f);
 	}
-}//namespace detail
+}
 
-	// Henry Gordon Dietz: http://aggregate.org/MAGIC/
+	
 /*
 	GLM_FUNC_QUALIFIER unsigned int floor_log2(unsigned int x)
 	{
@@ -62,13 +62,13 @@ namespace detail
 		return _detail::ones32(x) >> 1;
 	}
 */
-	// mod
+	
 	GLM_FUNC_QUALIFIER int mod(int x, int y)
 	{
 		return ((x % y) + y) % y;
 	}
 
-	// factorial (!12 max, integer only)
+	
 	template<typename genType>
 	GLM_FUNC_QUALIFIER genType factorial(genType const& x)
 	{
@@ -141,7 +141,7 @@ namespace detail
 		return x - y * (x / y);
 	}
 
-//#if(GLM_COMPILER & (GLM_COMPILER_VC | GLM_COMPILER_GCC))
+
 
 	GLM_FUNC_QUALIFIER unsigned int nlz(unsigned int x)
 	{
@@ -150,36 +150,36 @@ namespace detail
 /*
 #else
 
-	// Hackers Delight: http://www.hackersdelight.org/HDcode/nlz.c.txt
+	
 	GLM_FUNC_QUALIFIER unsigned int nlz(unsigned int x)
 	{
 		int y, m, n;
 
-		y = -int(x >> 16);      // If left half of x is 0,
-		m = (y >> 16) & 16;  // set n = 16.  If left half
-		n = 16 - m;          // is nonzero, set n = 0 and
-		x = x >> m;          // shift x right 16.
-							// Now x is of the form 0000xxxx.
-		y = x - 0x100;       // If positions 8-15 are 0,
-		m = (y >> 16) & 8;   // add 8 to n and shift x left 8.
+		y = -int(x >> 16);      
+		m = (y >> 16) & 16;  
+		n = 16 - m;          
+		x = x >> m;          
+							
+		y = x - 0x100;       
+		m = (y >> 16) & 8;   
 		n = n + m;
 		x = x << m;
 
-		y = x - 0x1000;      // If positions 12-15 are 0,
-		m = (y >> 16) & 4;   // add 4 to n and shift x left 4.
+		y = x - 0x1000;      
+		m = (y >> 16) & 4;   
 		n = n + m;
 		x = x << m;
 
-		y = x - 0x4000;      // If positions 14-15 are 0,
-		m = (y >> 16) & 2;   // add 2 to n and shift x left 2.
+		y = x - 0x4000;      
+		m = (y >> 16) & 2;   
 		n = n + m;
 		x = x << m;
 
-		y = x >> 14;         // Set y = 0, 1, 2, or 3.
-		m = y & ~(y >> 1);   // Set m = 0, 1, 2, or 2 resp.
+		y = x >> 14;         
+		m = y & ~(y >> 1);   
 		return unsigned(n + 2 - m);
 	}
 
-#endif//(GLM_COMPILER)
+#endif
 */
-}//namespace glm
+}

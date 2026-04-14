@@ -1,8 +1,8 @@
-/// @ref gtx_associated_min_max
+
 
 namespace glm{
 
-// Min comparison between 2 variables
+
 template<typename T, typename U>
 GLM_FUNC_QUALIFIER U associatedMin(T x, U a, T y, U b)
 {
@@ -48,7 +48,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 	return Result;
 }
 
-// Min comparison between 3 variables
+
 template<typename T, typename U>
 GLM_FUNC_QUALIFIER U associatedMin
 (
@@ -75,7 +75,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 	return Result;
 }
 
-// Min comparison between 4 variables
+
 template<typename T, typename U>
 GLM_FUNC_QUALIFIER U associatedMin
 (
@@ -93,7 +93,7 @@ GLM_FUNC_QUALIFIER U associatedMin
 	return Result;
 }
 
-// Min comparison between 4 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 (
@@ -115,7 +115,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 	return Result;
 }
 
-// Min comparison between 4 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 (
@@ -138,7 +138,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 	return Result;
 }
 
-// Min comparison between 4 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 (
@@ -160,14 +160,14 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMin
 	return Result;
 }
 
-// Max comparison between 2 variables
+
 template<typename T, typename U>
 GLM_FUNC_QUALIFIER U associatedMax(T x, U a, T y, U b)
 {
 	return x > y ? a : b;
 }
 
-// Max comparison between 2 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 (
@@ -181,7 +181,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 2 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, T, Q> associatedMax
 (
@@ -195,7 +195,7 @@ GLM_FUNC_QUALIFIER vec<L, T, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 2 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 (
@@ -209,7 +209,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 3 variables
+
 template<typename T, typename U>
 GLM_FUNC_QUALIFIER U associatedMax
 (
@@ -222,7 +222,7 @@ GLM_FUNC_QUALIFIER U associatedMax
 	return Result;
 }
 
-// Max comparison between 3 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 (
@@ -237,7 +237,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 3 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, T, Q> associatedMax
 (
@@ -252,7 +252,7 @@ GLM_FUNC_QUALIFIER vec<L, T, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 3 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 (
@@ -267,7 +267,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 4 variables
+
 template<typename T, typename U>
 GLM_FUNC_QUALIFIER U associatedMax
 (
@@ -285,7 +285,7 @@ GLM_FUNC_QUALIFIER U associatedMax
 	return Result;
 }
 
-// Max comparison between 4 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 (
@@ -307,7 +307,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 4 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 (
@@ -330,7 +330,7 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 	return Result;
 }
 
-// Max comparison between 4 variables
+
 template<length_t L, typename T, typename U, qualifier Q>
 GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 (
@@ -351,4 +351,4 @@ GLM_FUNC_QUALIFIER vec<L, U, Q> associatedMax
 	}
 	return Result;
 }
-}//namespace glm
+}

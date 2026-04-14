@@ -2,7 +2,7 @@
 README for the builds/amiga subdirectory.
 
 Copyright (C) 2005-2025 by
-Werner Lemberg and Detlef Würkner.
+Werner Lemberg and Detlef Wï¿½rkner.
 
 This file is part of the FreeType project, and may only be used, modified,
 and distributed under the terms of the FreeType project license,
@@ -15,7 +15,7 @@ The makefile.os4 is for the AmigaOS4 SDK.  To use it, type
 "make -f makefile.os4", it produces a link library libft2_ppc.a.
 
 The makefile is for ppc-morphos-gcc-2.95.3-bin.tgz (gcc 2.95.3 hosted on
-68k-Amiga producing MorphOS-PPC-binaries from http://www.morphos.de).
+68k-Amiga producing MorphOS-PPC-binaries from http:
 To use it, type "make assign", then "make"; it produces a link library
 libft2_ppc.a.
 
@@ -23,10 +23,10 @@ The smakefile is a makefile for Amiga SAS/C 6.58 (no longer available,
 latest sold version was 6.50, updates can be found in Aminet).  It is
 based on the version found in the sourcecode of ttf.library 0.83b for
 FreeType 1.3.1 from Richard Griffith (ragriffi@sprynet.com,
-http://ragriffi.home.sprynet.com).
+http:
 
 You will also need the latest include files and amiga.lib from the
-Amiga web site (https://os.amigaworld.de/download.php?id=3) for
+Amiga web site (https:
 AmigaOS 3.9; the generated code should work under AmigaOS 2.04 and up.
 
 To use it, call "smake assign" and then "smake" from the builds/amiga

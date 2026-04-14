@@ -339,12 +339,12 @@ FT_BEGIN_HEADER
                         FT_Fixed    length,
                         FT_Angle    angle );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTTRIGON_H_ */
+#endif 
 
 
-/* END */
+

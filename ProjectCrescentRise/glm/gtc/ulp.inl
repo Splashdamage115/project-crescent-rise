@@ -1,4 +1,4 @@
-/// @ref gtc_ulp
+
 
 #include "../ext/scalar_ulp.hpp"
 
@@ -169,5 +169,5 @@ namespace glm
 			Result[i] = float_distance(x[i], y[i]);
 		return Result;
 	}
-}//namespace glm
+}
 

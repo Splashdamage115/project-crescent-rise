@@ -10,21 +10,21 @@ void OrientToCenter::Update()
     glm::vec3 planetCenter = PlanetSurface::s_instance->getTransform()->position;
     glm::vec3 currentPos = transform->position;
     
-    // Ensure position has been set by instancer
+    
     if (glm::length(currentPos) < 0.001f && glm::length(planetCenter) < 0.001f)
         return; 
 
     glm::vec3 up = glm::normalize(currentPos - planetCenter);
 
-    // Align local Y with up
+    
     glm::vec3 forward = (glm::abs(up.y) < 0.999f) ? glm::vec3(0, 0, 1) : glm::vec3(1, 0, 0);
     glm::vec3 right = glm::normalize(glm::cross(forward, up));
     forward = glm::cross(up, right);
 
     glm::mat3 rot(right, up, -forward);
     
-    // Decompose into Euler ZYX (degrees)
-    // Based on Transform's order: Rz * Ry * Rx
+    
+    
     float sy = -rot[0][2];
     float cy = sqrt(1.0f - sy * sy);
     

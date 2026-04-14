@@ -1,5 +1,5 @@
 # ===========================================================================
-#    https://www.gnu.org/software/autoconf-archive/ax_compare_version.html
+#    https:
 # ===========================================================================
 #
 # SYNOPSIS
@@ -98,14 +98,14 @@ AC_DEFUN([AX_COMPARE_VERSION], [
                      -e 's/Z\([[0-9]]\)Z/Z0\1Z/g' \
                      -e 's/Z\([[0-9]][[0-9]]\)Z/Z0\1Z/g' \
                      -e 's/Z\([[0-9]][[0-9]][[0-9]]\)Z/Z0\1Z/g' \
-                     -e 's/[[^0-9]]//g'`
+                     -e 's/[[^0-9]]
 
   AS_VAR_PUSHDEF([B],[ax_compare_version_B])
   B=`echo "$3" | sed -e 's/\([[0-9]]*\)/Z\1Z/g' \
                      -e 's/Z\([[0-9]]\)Z/Z0\1Z/g' \
                      -e 's/Z\([[0-9]][[0-9]]\)Z/Z0\1Z/g' \
                      -e 's/Z\([[0-9]][[0-9]][[0-9]]\)Z/Z0\1Z/g' \
-                     -e 's/[[^0-9]]//g'`
+                     -e 's/[[^0-9]]
 
   dnl # In the case of le, ge, lt, and gt, the strings are sorted as necessary
   dnl # then the first line is used to determine if the condition is true.
@@ -113,19 +113,19 @@ AC_DEFUN([AX_COMPARE_VERSION], [
   m4_case(m4_tolower($2),
   [lt],[
     ax_compare_version=`echo "x$A
-x$B" | sed 's/^ *//' | sort -r | sed "s/x${A}/false/;s/x${B}/true/;1q"`
+x$B" | sed 's/^ *
   ],
   [gt],[
     ax_compare_version=`echo "x$A
-x$B" | sed 's/^ *//' | sort | sed "s/x${A}/false/;s/x${B}/true/;1q"`
+x$B" | sed 's/^ *
   ],
   [le],[
     ax_compare_version=`echo "x$A
-x$B" | sed 's/^ *//' | sort | sed "s/x${A}/true/;s/x${B}/false/;1q"`
+x$B" | sed 's/^ *
   ],
   [ge],[
     ax_compare_version=`echo "x$A
-x$B" | sed 's/^ *//' | sort -r | sed "s/x${A}/true/;s/x${B}/false/;1q"`
+x$B" | sed 's/^ *
   ],[
     dnl Split the operator from the subversion count if present.
     m4_bmatch(m4_substr($2,2),

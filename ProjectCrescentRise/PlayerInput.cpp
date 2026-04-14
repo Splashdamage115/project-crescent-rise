@@ -85,7 +85,7 @@ void PlayerInput::Update()
 	}
 	else
 	{
-		// Apply horizontal movement reduction when underwater
+		
 		displacement.x *= speedMultiplier;
 		displacement.z *= speedMultiplier;
 		transform->moveAlongForwardPlanet(displacement);

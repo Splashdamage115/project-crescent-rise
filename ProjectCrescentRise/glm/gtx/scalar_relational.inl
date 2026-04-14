@@ -1,4 +1,4 @@
-/// @ref gtx_scalar_relational
+
 
 namespace glm
 {
@@ -85,4 +85,4 @@ namespace glm
 	{
 		return !x;
 	}
-}//namespace glm
+}

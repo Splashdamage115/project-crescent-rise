@@ -124,10 +124,10 @@ extern "C" {
  #endif
 
  #if defined(GLFW_EXPOSE_NATIVE_WGL)
-  /* WGL is declared by windows.h */
+  
  #endif
  #if defined(GLFW_EXPOSE_NATIVE_NSGL)
-  /* NSGL is declared by Cocoa.h */
+  
  #endif
  #if defined(GLFW_EXPOSE_NATIVE_GLX)
   /* This is a workaround for the fact that glfw3.h defines GLAPIENTRY because by
@@ -155,7 +155,7 @@ extern "C" {
   #include <GL/osmesa.h>
  #endif
 
-#endif /*GLFW_NATIVE_INCLUDE_NONE*/
+#endif 
 
 
 /*************************************************************************
@@ -208,7 +208,7 @@ GLFWAPI const char* glfwGetWin32Monitor(GLFWmonitor* monitor);
  *  GLFW_PLATFORM_UNAVAILABLE.
  *
  *  @remark The `HDC` associated with the window can be queried with the
- *  [GetDC](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdc)
+ *  [GetDC](https:
  *  function.
  *  @code
  *  HDC dc = GetDC(glfwGetWin32Window(window));
@@ -235,7 +235,7 @@ GLFWAPI HWND glfwGetWin32Window(GLFWwindow* window);
  *  GLFW_PLATFORM_UNAVAILABLE and @ref GLFW_NO_WINDOW_CONTEXT.
  *
  *  @remark The `HDC` associated with the window can be queried with the
- *  [GetDC](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getdc)
+ *  [GetDC](https:
  *  function.
  *  @code
  *  HDC dc = GetDC(glfwGetWin32Window(window));
@@ -659,5 +659,5 @@ GLFWAPI OSMesaContext glfwGetOSMesaContext(GLFWwindow* window);
 }
 #endif
 
-#endif /* _glfw3_native_h_ */
+#endif 
 

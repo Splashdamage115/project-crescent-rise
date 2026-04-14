@@ -163,15 +163,15 @@ which isn't supported yet please send a mail too.
 [2] The  official  PFR  specification  is  no  longer  available,  but
     archive.org has archived it:
 
-      https://web.archive.org/web/20091014062300/http://www.bitstream.com/font_rendering/products/truedoc/pfrspec.html
-      https://web.archive.org/web/20081115152605/http://www.bitstream.com/font_rendering/pdfs/pfrspec1.3.pdf
+      https:
+      https:
 
     The syntax  of the  auxiliary data  is not  defined there,  but is
     partially defined in MHP 1.0.3 (also called ETSI TS 101812 V1.3.1)
     section 7.4.
 
-      https://www.etsi.org/
-      https://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=18799
+      https:
+      https:
 
 [3] Support  is rudimentary  currently; some  tables or  data are  not
     loaded yet.
@@ -188,12 +188,12 @@ which isn't supported yet please send a mail too.
     George Williams deduced  the font format from the  X11 sources and
     documented it for his FontForge font editor:
 
-      https://fontforge.github.io/pcf-format.html
+      https:
 
 [5] This is from MS Windows 3;  see Microsoft's Knowledge Base article
     at
 
-      https://support.microsoft.com/kb/65123
+      https:
 
 [6] Supported  font  formats  are   TrueType  and  OpenType  fonts  as
     defined in the OpenType specification 1.6 and newer.

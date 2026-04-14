@@ -31,7 +31,7 @@ Window::Window()
         glfwTerminate();
         return;
     }
-    /* Make the window's context current */
+    
     glfwMakeContextCurrent(m_window);
     glewInit();
     glEnable(GL_DEPTH_TEST);
@@ -53,14 +53,14 @@ void Window::initGui()
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     ImGui::StyleColorsDark();
 
-    // Make ImGui background more transparent
+    
     ImGuiStyle& style = ImGui::GetStyle();
-    style.Colors->w = 0.8f; // 80% opaque background
+    style.Colors->w = 0.8f; 
 
     ImGui_ImplGlfw_InitForOpenGL(m_window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    // Set up mouse callbacks for dragging
+    
     glfwSetWindowUserPointer(m_window, this);
 }
 
@@ -152,7 +152,7 @@ void Window::SetCameraFromTransform(Transform& t) {
 
         if (fabs(glm::dot(glm::normalize(forward), up)) > 0.999f)
         {
-            forward = fYaw; // yaw-only
+            forward = fYaw; 
         }
 
         glm::vec3 target = pos + forward;
@@ -216,10 +216,10 @@ void Window::render()
 
     if (guiActive)
     {
-        // render all im gui stuff
-        //glfwMakeContextCurrent(guiWindow);
-        //glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Set alpha to 0 for transparent background
-        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        
+        
+        
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
@@ -230,14 +230,14 @@ void Window::render()
         {
             ImGui::Render();
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-            //glfwSwapBuffers(m_window);
+            
         }
     }
 
-    /* Swap front and back buffers */
+    
     glfwSwapBuffers(m_window);
 
-    /* Poll for and process events */
+    
     glfwPollEvents();
 
     if(planetReady)

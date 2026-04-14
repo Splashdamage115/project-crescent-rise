@@ -89,16 +89,16 @@ void OnlineDispatcher::RecieveDispatch(DispatchType t_type, std::string data)
 std::vector<char> OnlineDispatcher::serializePlanetSettings(const PlanetPayload& t_planetPayload)
 {
     std::string result;
-    // planetPointCount
+    
     result += std::to_string(t_planetPayload.planetPointCount) + ",";
-    // planetRadius
+    
     result += std::to_string(t_planetPayload.shapeSettings.planetRadius) + ",";
-    // noiseLayers count
+    
     result += std::to_string(t_planetPayload.shapeSettings.noiseLayers.size()) + ",";
-    // noiseLayers
+    
     for (const auto& nl : t_planetPayload.shapeSettings.noiseLayers) {
         result += std::to_string(nl.enabled) + "," + std::to_string(nl.useAsMask) + ",";
-        // NoiseSettings fields
+        
         result += std::to_string(static_cast<int>(nl.noiseSettings.filterType)) + ",";
         result += std::to_string(nl.noiseSettings.strength) + ",";
         result += std::to_string(nl.noiseSettings.roughness) + ",";
@@ -111,21 +111,21 @@ std::vector<char> OnlineDispatcher::serializePlanetSettings(const PlanetPayload&
         result += std::to_string(nl.noiseSettings.minValue) + ",";
         result += std::to_string(nl.noiseSettings.weightMultiplier) + ",";
     }
-    // m_colours count
+    
     result += std::to_string(t_planetPayload.planetColour.m_colours.size()) + ",";
-    // m_colours
+    
     for (const auto& c : t_planetPayload.planetColour.m_colours) {
         result += std::to_string(c.x) + "," + std::to_string(c.y) + "," + std::to_string(c.z) + ",";
     }
-    // m_heights count
+    
     result += std::to_string(t_planetPayload.planetColour.m_heights.size()) + ",";
-    // m_heights
+    
     for (const auto& h : t_planetPayload.planetColour.m_heights) {
         result += std::to_string(h) + ",";
     }
-    // active count
+    
     result += std::to_string(t_planetPayload.planetColour.active.size()) + ",";
-    // active
+    
     for (const auto& a : t_planetPayload.planetColour.active) {
         result += std::to_string(a) + ",";
     }
@@ -183,17 +183,17 @@ PlanetPayload OnlineDispatcher::deSerializePlanet(const char* data, size_t size)
     if (start < str.size()) tokens.push_back(str.substr(start));
 
     size_t idx = 0;
-    // planetRadius
+    
     p.planetPointCount = std::stoi(tokens[idx]);
     idx++;
     p.shapeSettings.planetRadius = std::stof(tokens[idx++]);
-    // noiseLayers count
+    
     size_t noiseLayerLen = std::stoul(tokens[idx++]);
     p.shapeSettings.noiseLayers.resize(noiseLayerLen);
     for (size_t i = 0; i < noiseLayerLen; ++i) {
         p.shapeSettings.noiseLayers[i].enabled = std::stoi(tokens[idx++]);
         p.shapeSettings.noiseLayers[i].useAsMask = std::stoi(tokens[idx++]);
-        // NoiseSettings fields
+        
         p.shapeSettings.noiseLayers[i].noiseSettings.filterType = static_cast<NoiseSettings::FilterType>(std::stoi(tokens[idx++]));
         p.shapeSettings.noiseLayers[i].noiseSettings.strength = std::stof(tokens[idx++]);
         p.shapeSettings.noiseLayers[i].noiseSettings.roughness = std::stof(tokens[idx++]);
@@ -206,7 +206,7 @@ PlanetPayload OnlineDispatcher::deSerializePlanet(const char* data, size_t size)
         p.shapeSettings.noiseLayers[i].noiseSettings.minValue = std::stof(tokens[idx++]);
         p.shapeSettings.noiseLayers[i].noiseSettings.weightMultiplier = std::stof(tokens[idx++]);
     }
-    // m_colours count
+    
     size_t colourLen = std::stoul(tokens[idx++]);
     p.planetColour.m_colours.resize(colourLen);
     for (size_t i = 0; i < colourLen; ++i) {
@@ -215,13 +215,13 @@ PlanetPayload OnlineDispatcher::deSerializePlanet(const char* data, size_t size)
         float z = std::stof(tokens[idx++]);
         p.planetColour.m_colours[i] = glm::vec3(x, y, z);
     }
-    // m_heights count
+    
     size_t heightsLen = std::stoul(tokens[idx++]);
     p.planetColour.m_heights.resize(heightsLen);
     for (size_t i = 0; i < heightsLen; ++i) {
         p.planetColour.m_heights[i] = std::stof(tokens[idx++]);
     }
-    // active count
+    
     size_t activeLen = std::stoul(tokens[idx++]);
     p.planetColour.active.resize(activeLen);
     for (size_t i = 0; i < activeLen; ++i) {

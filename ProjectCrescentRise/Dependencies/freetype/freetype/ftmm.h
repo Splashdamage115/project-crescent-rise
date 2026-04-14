@@ -97,14 +97,14 @@ FT_BEGIN_HEADER
    *       value~0, and the maximum mapped to value~1, and all other
    *       coordinates mapped to intervening points.  Please look up the
    *       [OpenType
-   *       specification](https://learn.microsoft.com/en-us/typography/opentype/spec/otvaroverview)
+   *       specification](https:
    *       on how this mapping works in detail.
    *
    *       For Adobe MM fonts, this standard range is [0;1], with the minimum
    *       mapped to value~0 and the maximum mapped to value~1, and all other
    *       coordinates mapped to intervening points.  Please look up [Adobe
    *       TechNote
-   *       #5015](https://adobe-type-tools.github.io/font-tech-notes/pdfs/5015.Type1_Supp.pdf)
+   *       #5015](https:
    *       on how this mapping works in detail.
    *
    *       Assuming that the two fonts in the previous example are OpenType
@@ -279,7 +279,7 @@ FT_BEGIN_HEADER
   {
     FT_Fixed*  coords;
     FT_UInt    strid;
-    FT_UInt    psid;   /* since 2.7.1 */
+    FT_UInt    psid;   
 
   } FT_Var_Named_Style;
 
@@ -879,12 +879,12 @@ FT_BEGIN_HEADER
   FT_Get_Default_Named_Instance( FT_Face   face,
                                  FT_UInt  *instance_index );
 
-  /* */
+  
 
 
 FT_END_HEADER
 
-#endif /* FTMM_H_ */
+#endif 
 
 
-/* END */
+
